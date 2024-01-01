@@ -97,7 +97,7 @@ const config = {
           alt: "luke.geek.nz",
           src: "img/logo.png",
         },
-        hideOnScroll: true,
+        hideOnScroll: false,
         items: [
           {
             label: "Tags",
