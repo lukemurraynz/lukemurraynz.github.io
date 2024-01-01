@@ -262,16 +262,420 @@ All the code can be found on my public GitHub repository here: [lukemurraynz/Azu
 
 ### main.bicep
 
-{% gist b53479ccaafde7a90349f033557314ee %}
+```bicep title="main.bicep"
+// Define parameters for the Bicep template
+param location string = resourceGroup().location
+param imagetemplatename string
+param azComputeGalleryName string = 'myGallery'
+@description('The name of the Storage account.')
+param stgaccountname string
+param azUserAssignedManagedIdentity string = 'useri'
 
+// Define the details for the VM offer
+var vmOfferDetails = {
+  offer: 'WindowsServer'
+  publisher: 'MicrosoftWindowsServer'
+  sku: '2022-datacenter-azure-edition'
+}
+
+// Include the customizations module
+module customizationsModule 'customizations.bicep' = {
+  name: 'customizationsModule'
+  params: {
+    stgaccountname: stgaccountname
+  }
+}
+
+// Create a user-assigned managed identity
+resource uami 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
+  name: azUserAssignedManagedIdentity
+  location: location
+}
+
+// Create a Compute Gallery
+resource azComputeGallery 'Microsoft.Compute/galleries@2022-03-03' = {
+  name: azComputeGalleryName
+  location: location
+  properties: {
+    description: 'mygallery'
+  }
+}
+
+// Assign the Contributor role to the managed identity at the resource group scope
+resource uamicontribassignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(resourceGroup().id, 'contributor')
+  properties: {
+    principalId: uami.properties.principalId
+    principalType: 'ServicePrincipal' 
+    roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', 'b24988ac-6180-42a0-ab88-20f7382dd24c') // Contributor
+  }
+  scope: resourceGroup()
+}
+
+// Assign the Storage Blob Data Reader role to the managed identity at the resource group scope
+resource uamiblobassignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(resourceGroup().id, 'blobreader')
+  properties: {
+    principalId: uami.properties.principalId
+    principalType: 'ServicePrincipal' 
+    roleDefinitionId: resourceId('Microsoft.Authorization/roleDefinitions', '2a2b9908-6ea1-4ae2-8e65-a410df84e7d1') // Storage Blob Data Reader
+  }
+  scope: resourceGroup()
+}
+
+// Create an image in the Compute Gallery
+resource azImage 'Microsoft.Compute/galleries/images@2022-03-03' = {
+  name: '${azComputeGallery.name}/myImage'
+  location: location
+  properties: {
+    description: 'myImage'
+    osType: 'Windows'
+    osState: 'Generalized'
+    hyperVGeneration: 'V2'
+    identifier: {
+      publisher: vmOfferDetails.publisher
+      offer: vmOfferDetails.offer
+      sku: vmOfferDetails.sku
+    }
+  }
+  dependsOn: [
+    uami
+  ]
+}
+
+// Create an image template
+resource azImageTemplate 'Microsoft.VirtualMachineImages/imageTemplates@2022-07-01' = {
+  name: imagetemplatename
+  location: location
+  identity: {
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '${uami.id}': {}
+    }
+  }
+  properties: {
+    buildTimeoutInMinutes: 360
+    distribute: [
+      {
+        type: 'SharedImage'
+        galleryImageId: azImage.id
+        runOutputName: 'myImageTemplateRunOutput'
+        replicationRegions: [
+          'Australia East'
+        ]
+      }
+    ]
+    source: {
+      type: 'PlatformImage'
+      publisher: vmOfferDetails.publisher
+      offer: vmOfferDetails.offer
+      sku: vmOfferDetails.sku
+      version: 'latest'
+    }
+    customize: customizationsModule.outputs.customizationsOutput
+    vmProfile: {
+      vmSize: 'Standard_D4ds_v5'
+      osDiskSizeGB: 0 // Leave size as source image size.
+    
+    }
+    
+    optimize: {
+      vmBoot: {
+        state: 'Enabled'
+      }
+    }
+  }
+}
+}
+```
 ### storageaccount.bicep
 
-{% gist 5cb1c76147741d726c5c07fb80e3d8f8 %}
+```bicep title="storageaccount.bicep"
+// Define the location parameter for all resources
+@description('Location for all resources.')
+param location string = resourceGroup().location
+
+// Define the parameter for the Storage account name
+@description('The name of the Storage account.')
+param stgaccountname string
+
+// Define the parameter for the public access setting of the Storage account
+@description('Sets the public access of the storage account.')
+param publicaccess bool
+
+// Create a Storage account
+resource storgeaccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
+  name: toLower(stgaccountname) // Convert the Storage account name to lowercase
+  location: location // Set the location of the Storage account
+  kind: 'StorageV2' // Use the 'StorageV2' kind
+  sku: {
+    name: 'Standard_LRS' // Use the 'Standard_LRS' SKU
+  }
+  properties: {
+    accessTier: 'Hot' // Set the access tier to 'Hot'
+    allowBlobPublicAccess: publicaccess // Set the public access setting
+  }
+}
+
+// Create a Blob service for the Storage account
+resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2022-09-01' = {
+  parent: storgeaccount // Set the parent resource to the Storage account
+  name: 'default' // Use the 'default' name
+  properties: {
+    isVersioningEnabled: true // Enable versioning
+  
+  }
+}
+
+// Create a container in the Blob service
+resource appcontainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2022-09-01' = {
+  name: 'iac' // Set the container name to 'iac'
+  parent: blobService // Set the parent resource to the Blob service
+  properties: {
+    publicAccess: publicaccess ? 'Blob' : 'None' // Set the public access setting
+  }
+}
+
+// Output the ID of the Storage account
+output storgeaccountid string = storgeaccount.id
+
+// Output the name of the Storage account
+output storgeaccountname string = storgeaccount.name
+
+// Output the name of the container
+output containername string = appcontainer.name
+```
 
 ### customizations.bicep
 
-{% gist 8bd2439737996a84813408fb3cc2db96 %}
+```bicep title="customizations.bicep"
+// Define the parameter for the Storage account name
+@description('The name of the Storage account.')
+param stgaccountname string
+
+// Get the environment-specific metadata
+var environmentMetadata = environment()
+
+// Define the customizations for the image
+var customizations = [
+  // Create a apps directory on the OS drive
+  {
+    type: 'PowerShell'
+    name: 'Create Apps Directory on OS drive'
+    runElevated: false
+    runAsSystem: false
+    inline: [
+      // Use double backslashes to represent a single backslash in the file path
+      'New-Item -ItemType Directory -Force -Path $env:SystemDrive\\apps\\'
+    ]
+  }
+
+  // Set the timezone to New Zealand Standard Time
+  {
+    type: 'PowerShell'
+    name: 'Set Timezone - New Zealand Standard Time'
+    runElevated: true
+    runAsSystem: true
+    inline: [
+      'Set-TimeZone -Id "New Zealand Standard Time"'
+    ]
+  }
+
+  // Install Windows updates, excluding preview updates
+  {
+    type: 'WindowsUpdate'
+    searchCriteria: 'IsInstalled=0'
+    filters: [
+      'exclude:$_.Title -like \'*Preview*\'' // Exclude preview updates
+      'include:$true'
+    ]
+    updateLimit: 20
+  }
+
+  // Restart the system after Windows updates have completed
+  {
+    type: 'WindowsRestart'
+    restartCheckCommand: 'write-host \'restarting post Windows Updates\''
+    restartTimeout: '10m'
+  }
+
+  // Copy BGInfo from the Storage account to the temporary directory
+  {
+    type: 'File'
+    name: 'Copy BGInfo from Storage account'
+    sourceUri: 'https://${stgaccountname}.blob.${environmentMetadata.suffixes.storage}/iac/bginfo/BGInfo.zip'
+    destination: '$env:SystemDrive\\apps\\BGInfo.zip'
+  }
+
+  // Copy Storage Explorer from the Storage account to the temporary directory
+  {
+    type: 'PowerShell'
+    name: 'Copy Storage Explorer from Storage account'
+    runElevated: true
+    runAsSystem: true
+    inline: [
+      // Use double backslashes to represent a single backslash in the file path
+      'Invoke-RestMethod  https://${stgaccountname}.blob.${environmentMetadata.suffixes.storage}/iac/storageexplorer/StorageExplorer-windows-x64.exe -OutFile  $env:SystemDrive\\apps\\StorageExplorer-windows-x64.exe'
+    ]
+  }
+
+  // Extract BGInfo
+  {
+    type: 'PowerShell'
+    name: 'Extract BGInfo'
+    runElevated: true
+    runAsSystem: true
+    inline: [
+      // Use double backslashes to represent a single backslash in the file path
+      'Expand-Archive -LiteralPath $env:SystemDrive\\apps\\BGInfo.zip -DestinationPath $env:SystemDrive\\apps\\'
+    ]
+  }
+
+  // Install Storage Explorer
+  {
+    type: 'PowerShell'
+    name: 'Install Storage Explorer'
+    runElevated: true
+    runAsSystem: true
+    inline: [
+      // Use double backslashes to represent a single backslash in the file path
+      // Check if the executable file exists
+    '$exePath = "$env:SystemDrive\\apps\\StorageExplorer-windows-x64.exe"'
+    'if (Test-Path $exePath) {'
+    '  & $exePath /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /ALLUSERS'
+    '} else {'
+    '  Write-Output "The file $exePath does not exist."'
+    '}'
+    ]
+  }
+
+   // Install any Windows updates, that are left or needed after app installs
+   {
+    type: 'WindowsUpdate'
+    searchCriteria: 'IsInstalled=0'
+    filters: [
+      'exclude:$_.Title -like \'*Preview*\'' // Exclude preview updates
+      'include:$true'
+    ]
+    updateLimit: 20
+  }
+
+  // Restart the system after Windows updates have completed and fresh restart before sysprep.
+  {
+    type: 'WindowsRestart'
+    restartCheckCommand: 'write-host \'restarting post image customisation\''
+    restartTimeout: '10m'
+  }
+
+]
+
+// Output the customizations array
+output customizationsOutput array = customizations
+```
 
 ### azure-pipelines.yml
 
-{% gist 8e43d88c1fb005491f3d597dde841c19 %}
+```yaml title="azure-pipelines.yml"
+# Define the pipeline name and trigger
+name: Azure Image Builder - Build and Publish Image Template
+trigger:
+- main
+
+# Define pipeline variables
+variables:
+  serviceconnection: azserviceconnections
+  overwrite: false
+
+# Define the VM image for the pipeline
+pool:
+  vmImage: ubuntu-latest
+
+# Define the stages of the pipeline
+stages:
+
+  # First stage: Deploy Azure Storage Account
+- stage: ImageBuilderDeploy
+  jobs:
+  - deployment: Bicepstgaccount
+    displayName: 'Deploy Azure Storage Account to Azure for Apps'
+    environment: 'AzureDeployment'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - checkout: self
+           # Deploy the Bicep template for the Azure Storage account
+          - task: AzureCLI@2
+            displayName: 'Deploy Bicep - Azure Storage account and IaC App Container'
+            inputs:
+              azureSubscription: $(serviceconnection) # replace with your service connection name
+              scriptType: 'pscore'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                az group create --name $(ResourceGroupName) --location $(location) 
+                az deployment group create `
+                        --template-file $(Build.SourcesDirectory)/iac/storageaccount.bicep `
+                        --resource-group $(resourceGroupName) `
+                        --parameters location=$(location) stgaccountname=$(storageaccountname) publicaccess=true
+
+          # Copy the app install files to the Azure Storage account
+          - task: AzureCLI@2
+            displayName: 'Copy App install files to Azure Storage Account'
+            inputs:
+              azureSubscription: $(serviceconnection)
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                az storage blob upload-batch -d 'iac' --account-name $(storageaccountname) -s $(Build.SourcesDirectory)/apps --type block --overwrite $(overwrite) --verbose
+                blobs=$(az storage blob list --account-name $(storageaccountname) --container-name 'iac' --query '[].{name:name, url:properties.url}' -o tsv)
+                echo $blobs
+
+  # Second job: Deploy Azure Image Builder Infrastructure
+  - job: ImageBuilderDeployment
+    dependsOn: Bicepstgaccount
+    displayName: 'Deploy Azure Image Builder Infrastructure'
+    steps:
+     # Build the Azure Image Builder template
+      - task: AzureCLI@2
+        displayName: ' Build Azure Image Builder Template'
+        inputs:
+          azureSubscription: $(serviceconnection) # replace with your service connection name
+          scriptType: 'pscore'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            az group create --name $(ResourceGroupName) --location $(location) 
+            az deployment group create `
+                    --template-file $(Build.SourcesDirectory)/iac/main.bicep `
+                    --resource-group $(resourceGroupName) `
+                    --parameters location=$(location) imagetemplatename=$(imagetemplatename) stgaccountname=$(storageaccountname) # Add more parameters as needed
+
+# Second stage: Run Azure Image Builder Template Build
+- stage: ImageBuilderRun
+  jobs:
+  - job: ImageBuilderRun
+    displayName: 'Run Azure Image Builder Template Build'
+    steps:
+      # Run the Azure Image Builder
+      - task: AzureCLI@2
+        displayName: 'Run Azure Image Builder'
+        inputs:
+          azureSubscription: $(serviceconnection) # replace with your service connection name
+          scriptType: 'pscore'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            az image builder run -n $(imagetemplatename) -g $(resourceGroupName) --no-wait --verbose
+                        az image builder wait -n $(imagetemplatename) -g $(resourceGroupName) --custom "lastRunStatus.runState!='Running'" --verbose
+
+      - task: AzureCLI@2
+        displayName: 'Deploy Bicep - Set Azure Storage account public access to false'
+        inputs:
+              azureSubscription: $(serviceconnection) # replace with your service connection name
+              scriptType: 'pscore'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                az group create --name $(ResourceGroupName) --location $(location) 
+                az deployment group create `
+                        --template-file $(Build.SourcesDirectory)/iac/storageaccount.bicep `
+                        --resource-group $(resourceGroupName) `
+                        --parameters location=$(location) stgaccountname=$(storageaccountname) publicaccess=false
+```
