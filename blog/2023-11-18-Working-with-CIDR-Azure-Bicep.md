@@ -18,7 +18,7 @@ This article includes sample Bicep functions for working with CIDR, for Azure Vi
 
 <!-- truncate -->
 
-
+```bicep title="CiDR.bicep"
     // This function parses the CIDR notation and returns an object with the network address, subnet mask, and other details.
     output v6addressspace object = parseCidr('2001:db8:1234::/48')
 
@@ -38,6 +38,7 @@ This article includes sample Bicep functions for working with CIDR, for Azure Vi
     // The 'cidrHost' function calculates a host address within the '2001:db8:1234::/48' CIDR block.
     // The host index is '0 + 3', which is 3. This is because the first three addresses in a subnet are reserved in Azure.
     output v6hostsazure string = cidrHost('2001:db8:1234::/48', 0 + 3)
+```
 
 References:
 
