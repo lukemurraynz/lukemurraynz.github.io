@@ -14,15 +14,15 @@ const config = {
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://lukemurraynzdev.github.io",
+  url: "https://luke.geek.nz",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/lukemurraynzdev/",
+  baseUrl: "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "lukemurraynz", // Usually your GitHub org/user name.
-  projectName: "lukemurraynzdev", // Usually your repo name.
+  projectName: "lukemurraynz", // Usually your repo name.
   deploymentBranch: "gh-pages",
   trailingSlash: true,
   onBrokenLinks: "warn",
