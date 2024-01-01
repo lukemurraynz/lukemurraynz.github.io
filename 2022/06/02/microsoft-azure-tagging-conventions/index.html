@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.0.1">
+<title data-rh="true">Microsoft Azure Tagging Conventions | luke.geek.nz</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://luke.geek.nz/img/social-card.png"><meta data-rh="true" name="twitter:image" content="https://luke.geek.nz/img/social-card.png"><meta data-rh="true" property="og:url" content="https://luke.geek.nz/2022/06/02/microsoft-azure-tagging-conventions/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="Microsoft Azure Tagging Conventions | luke.geek.nz"><meta data-rh="true" name="description" content="Organizing cloud-based resources is a crucial task for IT unless you only have simple deployments. Use naming and tagging standards to organize your resources for these reasons:"><meta data-rh="true" property="og:description" content="Organizing cloud-based resources is a crucial task for IT unless you only have simple deployments. Use naming and tagging standards to organize your resources for these reasons:"><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2022-06-01T12:00:00.000Z"><meta data-rh="true" property="article:author" content="https://luke.geek.nz"><meta data-rh="true" property="article:tag" content="Azure"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://luke.geek.nz/2022/06/02/microsoft-azure-tagging-conventions/"><link data-rh="true" rel="alternate" href="https://luke.geek.nz/2022/06/02/microsoft-azure-tagging-conventions/" hreflang="en"><link data-rh="true" rel="alternate" href="https://luke.geek.nz/2022/06/02/microsoft-azure-tagging-conventions/" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/rss.xml" title="luke.geek.nz RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/atom.xml" title="luke.geek.nz Atom Feed">
+<link rel="alternate" type="application/json" href="/feed.json" title="luke.geek.nz JSON Feed">
+
+<link rel="preconnect" href="https://www.google-analytics.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QDLBY7NNN"></script>
+<script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0QDLBY7NNN",{anonymize_ip:!0})</script><link rel="stylesheet" href="/assets/css/styles.4a383e58.css">
+<script src="/assets/js/runtime~main.350318f6.js" defer="defer"></script>
+<script src="/assets/js/main.4f3380ca.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"dark")}(),function(){try{const a=new URLSearchParams(window.location.search).entries();for(var[t,e]of a)if(t.startsWith("docusaurus-data-")){var n=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(n,e)}}catch(t){}}(),document.documentElement.setAttribute("data-announcement-bar-initially-dismissed",function(){try{return"true"===localStorage.getItem("docusaurus.announcement.dismiss")}catch(t){}return!1}())</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><div class="announcementBar_mb4j" style="background-color:#D3D3D3" role="banner"><div class="announcementBarPlaceholder_vyr4"></div><div class="content_knG7 announcementBarContent_xLdY">Happy New Year! This is a redesign of my website, hopefully you like it!</div><button type="button" aria-label="Close" class="clean-btn close closeButton_CVFx announcementBarClose_gvF7"><svg viewBox="0 0 15 15" width="14" height="14"><g stroke="currentColor" stroke-width="3.1"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"></path></g></svg></button></div><nav aria-label="Main" class="navbar navbar--fixed-top navbarHideable_m1mJ"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.png" alt="luke.geek.nz" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.png" alt="luke.geek.nz" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">luke.geek.nz</b></a><a class="navbar__item navbar__link" href="/Tags/">Tags</a><a class="navbar__item navbar__link" href="/Archive/">Blog Archive</a></div><div class="navbar__items navbar__items--right"><a href="https://twitter.com/lukemurraynz" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link navbar-icon" aria-label="X"><svg height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 8.586l4.293-4.293a1 1 0 011.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414L10 8.586z" clip-rule="evenodd"/>
+          </svg></a><a href="https://www.linkedin.com/in/ljmurray/" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link navbar-icon" aria-label="LinkedIn"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently dark mode)" aria-label="Switch between dark and light mode (currently dark mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="container margin-vert--lg"><div class="row"><aside class="col col--3"><nav class="sidebar_re4s thin-scrollbar" aria-label="Blog recent posts navigation"><div class="sidebarItemTitle_pO2u margin-bottom--md">Recent posts</div><ul class="sidebarItemList_Yudw clean-list"><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/azure/microsoft-copilot-azure-preview/">Microsoft Copilot for Azure - Preview</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/azure/Azure-DevTest-Subscription-Considerations/">Azure Dev/Test Subscription considerations</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/azure/Azure-Image-Builder-Build-Pipeline-with-Azure-DevOps/">Azure Image Builder Image Build with Bicep and Azure DevOps</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/azure/misc/Book-Review-Azure-architecture-explained/">Book Review Azure Architecture Explained</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/azure/Working-with-CIDR-Azure-Bicep/">Mastering CIDRs With Azure Bicep</a></li></ul></nav></aside><main class="col col--7" itemscope="" itemtype="https://schema.org/Blog"><article itemprop="blogPost" itemscope="" itemtype="https://schema.org/BlogPosting"><meta itemprop="description" content="Organizing cloud-based resources is a crucial task for IT unless you only have simple deployments. Use naming and tagging standards to organize your resources for these reasons:"><header><h1 class="title_f1Hy" itemprop="headline">Microsoft Azure Tagging Conventions</h1><div class="container_mt6G margin-vert--md"><time datetime="2022-06-01T12:00:00.000Z" itemprop="datePublished">June 1, 2022</time> · <!-- -->5 min read</div><div class="margin-top--md margin-bottom--sm row"><div class="col col--6 authorCol_Hf19"><div class="avatar margin-bottom--sm"><a href="https://luke.geek.nz" target="_blank" rel="noopener noreferrer" class="avatar__photo-link"><img class="avatar__photo" src="../img/logo.png" alt="Luke Murray" itemprop="image"></a><div class="avatar__intro" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><div class="avatar__name"><a href="https://luke.geek.nz" target="_blank" rel="noopener noreferrer" itemprop="url"><span itemprop="name">Luke Murray</span></a></div><small class="avatar__subtitle" itemprop="description">Author</small></div></div></div></div></header><div id="__blog-post-container" class="markdown" itemprop="articleBody"><p>Organizing cloud-based resources is a crucial task for IT unless you only have simple deployments. Use naming and tagging standards to organize your resources for these reasons:</p>
+<ul>
+<li><strong>Resource management</strong>: Your IT teams will need to quickly locate resources associated with specific workloads, environments, ownership groups, or other important information. Organizing resources is critical to assigning organizational roles and access permissions for resource management.</li>
+<li><strong>Cost management and optimization</strong>: Making business groups aware of cloud resource consumption requires IT to understand each team&#x27;s resources and workloads.</li>
+<li><strong>Operations management</strong>: Visibility for the operations management team regarding business commitments and SLAs is an essential aspect of ongoing operations.</li>
+<li><strong>Security:</strong> Classification of data and security impact is a vital data point for the team when breaches or other security issues arise.</li>
+<li><strong>Governance and regulatory compliance:</strong> Maintaining consistency across resources helps identify deviation from agreed-upon policies.</li>
+<li><strong>Automation:</strong> In addition to making resources easier for IT to manage, a proper organizational scheme allows you to take advantage of automation as part of resource creation, operational monitoring, and the result of DevOps processes.</li>
+</ul>
+<p><strong>Workload optimization:</strong> Tagging can help identify patterns and resolve broad issues. A tag can also help determine the assets required to support a single workload. Tagging all assets associated with each workload enables a more profound analysis of your mission-critical workloads to make sound architectural decisions.</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources?tabs=json&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title="Use tags to organize your Azure resources and management hierarchy">Use tags to organize your Azure resources and management hierarchy</a></li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="tagging-types">Tagging Types<a href="#tagging-types" class="hash-link" aria-label="Direct link to Tagging Types" title="Direct link to Tagging Types">​</a></h3>
+<p>The common tagging patterns listed below provide examples of how tagging can be used to organize cloud assets. These patterns are not meant to be exclusive and can be used in parallel, providing multiple ways of organizing assets based on your company&#x27;s needs.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tag type</th><th>Examples</th><th>Description</th></tr></thead><tbody><tr><td>Functional</td><td>app = catalogsearch1 tier = web webserver = apache env = prod env = staging env = dev</td><td>Categorize resources in relation to their purpose within a workload, what environment they have been deployed to, or other functionality and operational details.</td></tr><tr><td>Classification</td><td>confidentiality = private SLA = 24hours</td><td>Classifies a resource by how it is used and what policies apply to it.</td></tr><tr><td>Accounting</td><td>department = finance program = business-initiative region = northamerica</td><td>Allows a resource to be associated with specific groups within an organization for billing purposes.</td></tr><tr><td>Partnership</td><td>owner = jsmith contactalias = catsearchowners stakeholders = user1; user2; user3</td><td>Provides information about what people (outside of IT) are related or otherwise affected by the resource.</td></tr><tr><td>Purpose</td><td>businessprocess = support businessimpact = moderate revenueimpact = high</td><td>Aligns resources to business functions to better support investment decisions.</td></tr></tbody></table>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="tagging-baselines">Tagging Baselines<a href="#tagging-baselines" class="hash-link" aria-label="Direct link to Tagging Baselines" title="Direct link to Tagging Baselines">​</a></h3>
+<p>Tag at the Resource Group level and then have an Azure policy implemented that tags the resources in that Resource Group with the appropriate tags.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tag Name</th><th>Value</th><th>Tag Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td>Environment</td><td>Production Development Sandbox</td><td>Functional</td><td>Tags the resources with the Environment Tag. This can be used to determine if a resource is Production, Development or Sandbox.</td><td>Environment: Production</td></tr><tr><td>Creator</td><td>{CreatorName}</td><td>Partnership</td><td>Tags the resource with the name of who created the resource. This can be used to determine who created the resource to be able to get more information.</td><td>Creator: Luke Murray</td></tr><tr><td>CreatedDate</td><td>{CreatedDate}</td><td>Purpose</td><td>Tags the resource with the Date/Time when the resource was created. This can be used to determine how old a resource is, which can be used to look at new functionality on created resources or check if resources are still required.</td><td>CreatedDate: 10:00 PM 03/06/2022 NZT</td></tr><tr><td>Criticality</td><td>P1 P2 P3</td><td>Purpose</td><td>Tags the resources with the criticality of the resources, i.e., if critical, then it is P1. This can be used to determine whether resources need to be highly available, whether changes can be made during or out of business hours.</td><td>Criticality:P1</td></tr><tr><td>SupportedBy</td><td>{TeamName}</td><td>Partnership</td><td>Tags the resources with the team/person or company who supports the resources, whether it is internally supported by the company or outsourced.</td><td>SupportedBy:Company</td></tr><tr><td>RequesterName</td><td>{Requestor}-{CompanyName)</td><td>Partnership</td><td>Tags the resources with the user that requested the creation of the resources.</td><td>RequesterName:Project Manager</td></tr><tr><td>BillTo</td><td>{BillTo}</td><td>Accounting</td><td>Tags the resources with the cost centre or project codes who will pay for the resources.</td><td>BillTo:AppTransformationProject1</td></tr><tr><td>AutoShutDown</td><td>Yes</td><td>Functional</td><td>This is an Automation functional tag, i.e., tag the resource (Virtual Machine) with a tagging code which will automatically Shut down and Start-up the Virtual Machine at specified times.</td><td>AutoShutDown:Yes</td></tr><tr><td>ApplicationName</td><td>{ProjectName}</td><td>Partnership</td><td>Tags the resource with the name of the project or what the resources in the resource group are for.</td><td>ApplicationName:AzureVirtualDesktopSH</td></tr><tr><td>Business Unit</td><td>{BusinessUnit}</td><td>Partnership</td><td>Tags the resource with the name of the Business Unit or Company that owns the resources.</td><td>BusinessUnit:Finance</td></tr><tr><td>Snapshot</td><td>True</td><td>Functional</td><td>This is an Automation functional tag, i.e., tag the resource (Disk) with a tagging code which can create daily snapshots of disks.</td><td>Snapshot:True</td></tr></tbody></table></div><footer class="row docusaurus-mt-lg blogPostFooterDetailsFull_mRVl"><div class="col"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/tags/azure/">Azure</a></li></ul></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/2022/06/02/microsoft-azure-naming-conventions/"><div class="pagination-nav__sublabel">Newer Post</div><div class="pagination-nav__label">Microsoft Azure Naming Conventions</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/2022/05/31/my-path-to-the-mvp-award/"><div class="pagination-nav__sublabel">Older Post</div><div class="pagination-nav__label">My path to the Microsoft MVP Award</div></a></nav></main><div class="col col--2"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#tagging-types" class="table-of-contents__link toc-highlight">Tagging Types</a></li><li><a href="#tagging-baselines" class="table-of-contents__link toc-highlight">Tagging Baselines</a></li></ul></div></div></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 luke.geek.nz. Powered by a lot of coffee and hamsters on wheels!</div></div></div></footer></div>
+</body>
+</html>

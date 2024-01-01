@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunklukemurraynz=self.webpackChunklukemurraynz||[]).push([[97099],{93877:e=>{e.exports=JSON.parse('{"label":"Mobile","permalink":"/tags/mobile","allTagsPath":"/tags","count":20,"unlisted":false}')}}]);
