@@ -129,7 +129,7 @@ const config = {
       },
       footer: {
         style: "dark",
-        copyright: `Copyright © ${new Date().getFullYear()} luke.geek.nz. Powered by a lot of coffee and hamsters on wheels!`,
+        copyright: `Copyright © ${new Date().getFullYear()} luke.geek.nz. Powered by coffee, clouds and hamsters on wheels!`,
       },
       prism: {
         theme: prismThemes.github,
