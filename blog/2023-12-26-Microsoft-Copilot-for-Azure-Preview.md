@@ -184,7 +184,7 @@ Remember that users can only use Microsoft Copilot for Azure to view resource da
 
 Overall, this is a product I will be following and cannot wait to see what it becomes; where this product shines at the moment is really in the Enhanced Skills and being able to bring the correct Microsoft Learn documentation straight to you while you are in the Azure Portal, making your learning and engagement a lot more streamlined!
 
-![Microsoft Copilot for Azure - Enchanced SKills](/images/posts/MicrosoftCopilotforAzure_CopilotEnchancedSkills.PNG)
+![Microsoft Copilot for Azure - Enchanced SKills](/images/posts/MicrosoftCopilotforAzure_CopilotEnchancedSkills.png)
 
 ## Reference
 
