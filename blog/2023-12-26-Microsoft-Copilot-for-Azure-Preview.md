@@ -41,7 +41,7 @@ Microsoft Copilot for Azure is designed to generate the best possible responses 
 
 Copilot for Azure can be accessed directly in the Azure Portal.
 
-![Microsoft Copilot for Azure](/images/posts/MicrosoftCopilotForAzure_PortalView.PNG)
+![Microsoft Copilot for Azure](/images/posts/MicrosoftCopilotForAzure_PortalView.png)
 
 ### Limitations
 
