@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /tags/
 
 Sitemap: https://luke.geek.nz/sitemap.xml
