@@ -105,7 +105,7 @@ const config = {
             position: "left",
           },
           {
-            label: "Blog Archive",
+            label: "Blog",
             href: "/Archive/",
             position: "left",
           },
