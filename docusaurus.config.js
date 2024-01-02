@@ -145,6 +145,10 @@ const config = {
           "json",
         ],
       },
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 5,
+      },
 
     
     }),
