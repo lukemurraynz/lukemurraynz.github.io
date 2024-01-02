@@ -4,7 +4,7 @@ tags:
   - Windows
 date: 2012-03-05 00:00:00 +1300
 ---
-Want to lower the volume of your 56k Dialup connection when connecting? You can adjust the modem options. Follow these instructions.
+Want to lower the volume of your 56k Dial-up connection when connecting? You can adjust the modem options. Follow these instructions.
 
   1. Click Start
   2. Click Control Panel

@@ -142,6 +142,7 @@ const config = {
           "yaml",
           "log",
           "hcl",
+          "json",
         ],
       },
 
