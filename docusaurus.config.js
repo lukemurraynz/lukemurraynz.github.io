@@ -110,12 +110,12 @@ const config = {
             position: "left",
           },
           {
-            href: "https://mastodon.social/@your_username",
+            href: "https://aus.social/@lukemurray",
             position: "right",
             className: "navbar-icon",
             "aria-label": "Mastodon",
             html: `
-              <svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" height="20" width="20">
+              <svg height="20" width="20" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24 xml:space="preserve" height="20" width="20">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
@@ -125,7 +125,7 @@ const config = {
             `,
           },
           {
-            href: "https://bluesky.com/your_username",
+            href: "https://bsky.app/profile/lukemurraynz.bsky.social",
             position: "right",
             className: "navbar-icon",
             "aria-label": "Bluesky",
