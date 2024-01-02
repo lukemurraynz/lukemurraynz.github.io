@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://luke.geek.nz/sitemap.xml
