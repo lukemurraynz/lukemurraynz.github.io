@@ -110,6 +110,21 @@ const config = {
             position: "left",
           },
           {
+            href: "https://www.youtube.com/channel/UCUG3TKDTAZz4UXshGrjBBoQ",
+            position: "right",
+            className: "navbar-icon",
+            "aria-label": "YouTube",
+            html: `
+              <svg height="20" width="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M21.8,8.001c-0.001-1.35-0.018-2.699-0.054-4.048C21.589,2.675,21.291,1.291,19.961,0.961
+                  C18.313,0.586,15.683,0.42,12,0.42s-6.313,0.166-7.961,0.541C2.709,1.291,2.411,2.675,2.254,3.953
+                  C2.218,5.302,2.2,6.651,2.2,8.001c0.001,1.35,0.018,2.699,0.054,4.048c0.157,1.278,0.455,2.662,1.785,2.992
+                  C5.687,15.415,8.317,15.58,12,15.58s6.313-0.165,7.961-0.539c1.33-0.33,1.628-1.714,1.785-2.992
+                  C21.782,10.7,21.8,9.351,21.8,8.001z M9.935,14.594l-0.001-9.192l8.53,4.596L9.935,14.594z"/>
+              </svg>
+            `,
+          },
+          {
             href: "https://aus.social/@lukemurray",
             position: "right",
             className: "navbar-icon",
