@@ -121,7 +121,39 @@ It is recommended to implement exclusions to reduce storing user profile data th
 
 An example redirections.xml can be found here:
 
-{% gist 376bd6eeda9d33172a8442e2d76054a2 %}
+```xml title="redirections.xml"
+
+<?xml version="1.0" encoding="UTF-8"?>
+<FrxProfileFolderRedirection ExcludeCommonFolders="0">
+ 
+<Excludes>
+<Exclude>AppData\Local\Google\Chrome\User Data\Default\Cache\</Exclude>
+<Exclude>AppData\Local\Google\Chrome\User Data\Default\Cached Theme Images\</Exclude>
+<Exclude>AppData\Roaming\Google\Chrome\UserData\Default\Code Cache\js</Exclude>
+<Exclude>AppData\Local\Google\Chrome\UserData\Default\Code Cache\js</Exclude>
+<Exclude>AppData\Local\Mozilla\Firefox</Exclude>
+<Exclude Copy="0">AppData\Local\Microsoft\Terminal Server Client</Exclude>
+<Exclude Copy="0">AppData\Local\Microsoft\Edge SxS\User Data\Default\Cache</Exclude>
+<Exclude>AppData\Roaming\Adobe\Flash Player\AssetCache</Exclude>
+<Exclude>AppData\Roaming\Adobe\Flash Player\NativeCache</Exclude>
+<Exclude>AppData\Roaming\Microsoft\Teams\Cache</Exclude>
+<Exclude>AppData\Roaming\Microsoft\Teams\Service Worker\CacheStorage</Exclude>
+<Exclude>Desktop</Exclude>
+<Exclude>Documents</Exclude>
+<Exclude>Downloads</Exclude>
+<Exclude>Musics</Exclude>
+<Exclude>Pictures</Exclude>
+<Exclude>Videos</Exclude>
+</Excludes>
+ 
+<Includes>
+<Include Copy="3">AppData\LocalLow\Sun\Java\Deployment\security</Include>
+<Include>AppData\Roaming\Google\Chrome\User Data\Default\Extensions</Include>
+</Includes>
+ 
+</FrxProfileFolderRedirection>
+
+```
 
 _Note: Make sure you test and adjust this for your own environment. The Desktop/Documents have been excluded as the assumption is these are redirected or covered by OneDrive._
 

@@ -94,7 +94,39 @@ Now that the Preview feature has been registered, we can now create a new Storag
 
 In case you are interested in Infrastructure as Code, here is an Azure Bicep file I created to create a storage account ready for SFTP here that can be deployed to a Resource Group, ready for the next steps:
 
-{% gist e2e087010c73167fdb2ce4a44ad660e9 %}
+```bicep title="storageaccount.bicep"
+param storageaccprefix string = ''
+var location = resourceGroup().location
+
+resource storageacc 'Microsoft.Storage/storageAccounts@2021-06-01' = {
+  name: '${storageaccprefix}${uniqueString(resourceGroup().id)}'
+  location: location
+  sku: {
+    name: 'Standard_ZRS'
+  }
+  kind: 'StorageV2'
+  properties: {
+    defaultToOAuthAuthentication: false
+    allowCrossTenantReplication: false
+    minimumTlsVersion: 'TLS1_2'
+    allowBlobPublicAccess: true
+    allowSharedKeyAccess: true
+    isHnsEnabled: true
+    supportsHttpsTrafficOnly: true
+    encryption: {
+      services: {
+  
+        blob: {
+          keyType: 'Account'
+          enabled: true
+        }
+      }
+      keySource: 'Microsoft.Storage'
+    }
+    accessTier: 'Hot'
+  }
+}
+```
 
 #### Setup SFTP
 

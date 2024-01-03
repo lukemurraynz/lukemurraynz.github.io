@@ -111,7 +111,47 @@ Then I created the additional Virtual Machines and Load Balancers and added them
 
 Just a quick Bicep snippet I created to create the NAT Gateway resource only:
 
-{% gist 469bf56e8287d5742ddddfd5c8affd15 %}
+```bicep title="Create-NATGateway.bicep"
+
+//Target Scope is: Resource Group
+
+targetScope = 'resourceGroup'
+
+//Set Variables and Parameters
+
+@allowed([
+  'Prod'
+  'Dev'
+])
+param environment string = 'Prod'
+param location string = resourceGroup().location
+
+param dateTime string = utcNow('d')
+param resourceTags object = {
+  Application: 'Azure NAT Gateway/Azure Network Management'
+  CostCenter: 'Operational'
+  CreationDate: dateTime
+  Environment: environment
+}
+
+//// Resource Creation
+
+/// Create - NAT Gateway
+
+resource NATGW 'Microsoft.Network/natGateways@2021-03-01' = {
+  name: 'aznatgw'
+  tags: resourceTags
+
+  location: location
+  sku: {
+    name: 'Standard'
+  }
+
+  properties: {
+    idleTimeoutInMinutes: 4
+  }
+}
+```
 
 It can be deployed by opening PowerShell _(after_ [_Bicep is installed_](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install?WT.mc_id=AZ-MVP-5004796#windows "Install Bicep tools")_using the PowerShell method)_and logging into your Azure and running the following_(replace RGNAME with the name of the Resource Group you will be deploying it to)_:
 

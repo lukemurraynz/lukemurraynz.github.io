@@ -130,4 +130,47 @@ First things first you need to install the Az.ResourceGraph module, then you can
 
 ![Azure Resource Graph](/uploads/azuregraphpowershell.png)
 
-{% gist b350b5c73ef7fb0ad63f5797e4055f56 %}
+```powershell title="AzGraph.ps1"
+
+   <#
+      .SYNOPSIS
+      Installs the Az.ResourceGraph Module and has example queries
+      .NOTES
+      Version:        1.0
+      Author:         Luke Murray (Luke.Geek.NZ) 
+      Website:        https://luke.geek.nz/azure-resource-graph-explorer-and-the-powershell-azure-resource-graph
+      Creation Date:  09.04.21
+      Change History: 
+      09.04.21 - Intital script development
+
+  #>
+  
+  # Install the Resource Graph module from PowerShell Gallery
+Install-Module -Name Az.ResourceGraph -Scope CurrentUser
+
+# Imports the Resource Graph module into the PowerShell session
+Import-Module -Name Az.ResourceGraph
+
+#Connects to Microsoft Azure
+Connect-AzAccount
+
+#Grabs the acount of all recommendations under each Category that the Azure Advisor Has
+
+Search-AzGraph -Query "advisorresources | summarize Count=count() by Category=tostring(properties.category) | where Category!='' | sort by Category asc"
+
+#Following on from the Blog post, this is the query we created to list all Security recommendations, their resource type and what resources were impacted
+
+Search-AzGraph -Query "advisorresources
+| where type == 'microsoft.advisor/recommendations'
+| where properties['category'] == 'Security'
+| project Recommendation=tostring(properties.shortDescription.solution), ImpactedType=tostring(properties.impactedField), ImpactedResources=tostring(properties.impactedValue )"
+
+#List of Performance recommendations
+
+Search-AzGraph -Query "advisorresources | where type == 'microsoft.advisor/recommendations' and properties.category == 'Performance' | project Solution=tostring(properties.shortDescription.solution) | summarize Count=count() by Solution | sort by Count"
+
+#List of Cost recommendations
+
+Search-AzGraph -Query "advisorresources | where type == 'microsoft.advisor/recommendations' and properties.category == 'Cost' | summarize Resources = dcount(tostring(properties.resourceMetadata.resourceId)), Savings = sum(todouble(properties.extendedProperties.savingsAmount)) by Solution = tostring(properties.shortDescription.solution), Currency = tostring(properties.extendedProperties.savingsCurrency) | project Solution, Resources, Savings = bin(Savings, 0.01), Currency | order by Savings desc"
+
+```

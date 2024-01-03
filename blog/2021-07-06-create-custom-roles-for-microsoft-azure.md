@@ -202,7 +202,40 @@ This base template has the following fields that the majority of most custom rol
 
 1. **Edit** these **fields** _(apart from IsCustom, which you should leave as True)_ as you need.
 
-{% gist 2f5f4e0a4cc587d7cd297cee7569f621 %}
+```json title="CustomRoleTemplate.json"
+
+{
+    "properties": {
+        "roleName": "Custom Role - Template",
+        "IsCustom": true,
+        "description": "This is a Template for creating Custom Roles.",
+        "assignableScopes": [
+            "/subscriptions/<SubscriptionID>"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.Support/register/action",
+                    "Microsoft.Support/checkNameAvailability/action",
+                    "Microsoft.Support/operationresults/read",
+                    "Microsoft.Support/operationsstatus/read",
+                    "Microsoft.Support/operations/read",
+                    "Microsoft.Support/services/read",
+                    "Microsoft.Support/services/problemClassifications/read",
+                    "Microsoft.Support/supportTickets/read",
+                    "Microsoft.Support/supportTickets/write",
+                    "Microsoft.Resources/subscriptions/resourceGroups/read",
+                    "Microsoft.Resources/subscriptions/resourcegroups/resources/read"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
+
+```
 
 This Custom Role - Template allows you to read the name of all Resource Groups in a subscription and open a Microsoft Support case.
 
@@ -212,7 +245,40 @@ In my example, I am going to add a new role called:
 
 This role will allow users to Deploy and modify Azure WebApps, among other things!
 
-{% gist c7112d45f01959963c7e919ce06098d0 %}
+```json title="LukeGeekWebDeployment-RW.json"
+
+{
+    "properties": {
+        "roleName": "Custom Role - Template",
+        "description": "This is a Template for creating Custom Roles.",
+         "IsCustom": true,
+        "assignableScopes": [
+            "/subscriptions/<SubscriptionID>"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.Support/register/action",
+                    "Microsoft.Support/checkNameAvailability/action",
+                    "Microsoft.Support/operationresults/read",
+                    "Microsoft.Support/operationsstatus/read",
+                    "Microsoft.Support/operations/read",
+                    "Microsoft.Support/services/read",
+                    "Microsoft.Support/services/problemClassifications/read",
+                    "Microsoft.Support/supportTickets/read",
+                    "Microsoft.Support/supportTickets/write",
+                    "Microsoft.Resources/subscriptions/resourceGroups/read",
+                    "Microsoft.Resources/subscriptions/resourcegroups/resources/read"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
+
+```
 
 1. To **add** the **Custom Role** to Azure, I will **run** the following **PowerShell** command:
 

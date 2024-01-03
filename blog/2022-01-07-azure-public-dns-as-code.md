@@ -110,7 +110,110 @@ This file will:
 
 I have added CNAME, A Record and TXT Records as a base.
 
-{% gist ce9c06f3afdb43666409acc3ccd619b6 %}
+```bicep title="Deploy-PublicDNS.bicep"
+///Variables - Edit, these variables can be set in the script or implemented as part of Azure DevOps variables.
+//Set the Domain Name Zone:
+param PrimaryDNSZone string = ''
+//Deploys to the location of your resource group, that is specified during the deployment.
+var location = 'Global'
+//Variable array for your A records. Add, remove and amend as needed, any new record needs to be included in {}.
+var arecords = [
+  {
+    name: '@'
+    ipv4Address: '8.8.8.8'
+  }
+  {
+    name: 'webmail'
+    ipv4Address: '8.8.8.8'
+  }
+]
+//Variable array for your CNAME records. Add, remove and amend as needed, any new record needs to be included in {}.
+var cnamerecords = [
+  {
+    name: 'blog'
+    value: 'luke.geek.nz'
+  }
+]
+
+// 
+
+var txtrecords = [
+  {
+    name: '@'
+    value: 'v=spf1 include:spf.protection.outlook.com -all'
+  }
+    
+  ]
+
+///Deploys your infrastructure below.
+
+//Deploys your DNS Zone.
+
+resource DNSZone 'Microsoft.Network/dnsZones@2018-05-01' = {
+  name: toLower(PrimaryDNSZone)
+  location: location
+  properties: {
+    zoneType: 'Public'
+  }
+}
+
+//Deploys your A records that are listed in the arecord variable table above.
+
+resource DNSARecords 'Microsoft.Network/dnsZones/A@2018-05-01' = [for arecord in arecords: {
+  name: toLower(arecord.name)
+  parent: DNSZone
+  properties: {
+    TTL: 3600
+    ARecords: [
+      {
+        ipv4Address: arecord.ipv4Address
+      }
+      
+    ]
+  targetResource: {}
+  }
+}]
+
+//Deploys your CNAME records that are listed in the cnamerecord variable table above.
+
+resource CNAMErecords 'Microsoft.Network/dnsZones/CNAME@2018-05-01' = [for cnamerecord in cnamerecords: {
+  name: toLower(cnamerecord.name)
+  parent: DNSZone
+
+  properties: {
+    'TTL': 3600
+    CNAMERecord: {
+      
+      cname: cnamerecord.value
+      
+    }
+  targetResource: {}
+  }
+}]
+
+resource TXTrecords 'Microsoft.Network/dnsZones/TXT@2018-05-01' = [for txtrecord in txtrecords: {
+name: toLower(txtrecord.name)
+parent: DNSZone
+
+properties: {
+   'TTL': 3600
+   TXTRecords: [
+      {
+ value: [
+        txtrecord.value               
+       ]
+      }
+      
+    ]
+}
+     
+ 
+}]
+
+
+output cnamerecords string = CNAMErecords[0].properties.CNAMERecord.cname
+output arecords string = arecords[0].ipv4Address
+```
 
 To add the Azure Bicep file into Azure DevOps, you can commit it into the git repository; see a previous post on '[Git using Github Desktop on Windows for SysAdmins](https://luke.geek.nz/windows/git-using-github-desktop-on-windows-for-sysadmins/ "Git using Github Desktop on Windows for SysAdmins ")' to help get started. However, at this stage, I will create it manually in the portal.
 
@@ -138,8 +241,37 @@ To add the Azure Bicep file into Azure DevOps, you can commit it into the git re
 
 Now that we have the initial Azure Bicep file, it's time to create our pipeline that will do the heavy lifting. I have created the base pipeline that you can download, and we will import it into Azure DevOps.
 
-{% gist 41f615da65884024384dbf13288ff7c2 %}
+```yml title="azure-pipelines.yml"
+# Variable 'location' was defined in the Variables tab
+# Variable 'PrimaryDNSZone' was defined in the Variables tab
+# Variable 'ResourceGroupName' was defined in the Variables tab
+# Variable 'SPN' is defined in the Variables tab
+trigger:
+  branches:
+    include:
+    - refs/heads/main
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+  - checkout: self
+  - task: AzureCLI@2
+    displayName: 'Azure CLI '
+    inputs:
+      connectedServiceNameARM: $(SPN)
+      scriptType: pscore
+      scriptLocation: inlineScript
+      inlineScript: >2-
+         az group create --name $(ResourceGroupName) --location $(location)
+                        az deployment group create  `
+                        --template-file $(Build.SourcesDirectory)\Deploy-PublicDNS.bicep `
+                        --resource-group $(ResourceGroupName) `
+                        --parameters PrimaryDNSZone=$(PrimaryDNSZone)
+      powerShellErrorActionPreference: continue
 
+```
 This pipeline will run through the following steps:
 
 * Spin up an Azure-hosted agent running Ubuntu _(it already has the Azure CLI and PowerShell setup)_

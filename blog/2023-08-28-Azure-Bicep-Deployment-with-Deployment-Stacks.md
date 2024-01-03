@@ -88,7 +88,241 @@ For the purpose of this article, I will be using a Bicep file, I already have on
 
 This is the Bicep file:
 
-{% gist ec4ae1aa83b923a8a16bdc1b5494d618 %}
+```bicep title="main.bicep"
+@description('Name of the virtual network.')
+param vnetName string = 'myVnet'
+
+@description('Name of the first subnet.')
+param subnet1Name string = 'subnet1'
+
+@description('Name of the second subnet.')
+param subnet2Name string = 'subnet2'
+
+@description('Name of the first network security group.')
+param nsg1Name string = 'nsg1'
+
+@description('Name of the second network security group.')
+param nsg2Name string = 'nsg2'
+
+@description('Name of the second virtual network.')
+param vnet2Name string = 'myVnet2'
+
+@description('Name of the third subnet.')
+param subnet3Name string = 'subnet3'
+
+@description('Name of the fourth subnet.')
+param subnet4Name string = 'subnet4'
+
+@description('Name of the third network security group.')
+param nsg3Name string = 'nsg3'
+
+@description('Name of the fourth network security group.')
+param nsg4Name string = 'nsg4'
+
+@description('Location for all resources.')
+param location string = resourceGroup().location
+
+resource vnet 'Microsoft.Network/virtualNetworks@2023-04-01' = {
+  name: vnetName
+  location: location
+  properties: {
+    addressSpace: {
+      addressPrefixes: [
+        '10.0.0.0/16'
+      ]
+    }
+  }
+}
+
+resource subnet1 'Microsoft.Network/virtualNetworks/subnets@2023-04-01' = {
+  parent: vnet
+  name: subnet1Name
+  properties: {
+    addressPrefix: '10.0.1.0/24'
+    networkSecurityGroup: {
+      id: resourceId('Microsoft.Network/networkSecurityGroups', nsg1Name)
+    }
+  }
+}
+
+resource subnet2 'Microsoft.Network/virtualNetworks/subnets@2023-04-01' = {
+  parent: vnet
+  name: subnet2Name
+  properties: {
+    addressPrefix: '10.0.2.0/24'
+    networkSecurityGroup: {
+      id: resourceId('Microsoft.Network/networkSecurityGroups', nsg2Name)
+    }
+  }
+}
+
+resource nsg1 'Microsoft.Network/networkSecurityGroups@2023-04-01' = {
+  name: nsg1Name
+  location: location
+  properties: {
+    flushConnection: false
+    securityRules: [
+
+      {
+        name: 'Deny-All-Inbound'
+        properties: {
+          priority: 4096
+          access: 'Deny'
+          direction: 'Inbound'
+          destinationPortRange: '*'
+          protocol: 'Tcp'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          sourceAddressPrefix: '*'
+        }
+      }
+    ]
+  }
+}
+
+resource nsg2 'Microsoft.Network/networkSecurityGroups@2023-04-01' = {
+  name: nsg2Name
+  location: location
+  properties: {
+    flushConnection: false
+    securityRules: [
+
+      {
+        name: 'Deny-All-Inbound'
+        properties: {
+          priority: 4096
+          access: 'Deny'
+          direction: 'Inbound'
+          destinationPortRange: '*'
+          protocol: 'Tcp'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          sourceAddressPrefix: '*'
+        }
+      }
+    ]
+  }
+}
+
+resource vnet2 'Microsoft.Network/virtualNetworks@2023-04-01' = {
+  name: vnet2Name
+  location: location
+  properties: {
+    addressSpace: {
+      addressPrefixes: [
+        '10.1.0.0/16'
+      ]
+    }
+  }
+}
+
+resource subnet3 'Microsoft.Network/virtualNetworks/subnets@2023-04-01' = {
+  parent: vnet2
+  name: subnet3Name
+  properties: {
+    addressPrefix: '10.1.1.0/24'
+    networkSecurityGroup: {
+      id: resourceId('Microsoft.Network/networkSecurityGroups', nsg3Name)
+    }
+  }
+}
+
+resource subnet4 'Microsoft.Network/virtualNetworks/subnets@2023-04-01' = {
+  parent: vnet2
+  name: subnet4Name
+  properties: {
+    addressPrefix: '10.1.2.0/24'
+    networkSecurityGroup: {
+      id: resourceId('Microsoft.Network/networkSecurityGroups', nsg4Name)
+    }
+  }
+}
+
+resource nsg3 'Microsoft.Network/networkSecurityGroups@2023-04-01' = {
+  name: nsg3Name
+  location: location
+  properties: {
+    flushConnection: false
+    securityRules: [
+
+      {
+        name: 'Deny-All-Inbound'
+        properties: {
+          priority: 4096
+          access: 'Deny'
+          direction: 'Inbound'
+          destinationPortRange: '*'
+          protocol: 'Tcp'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          sourceAddressPrefix: '*'
+        }
+      }
+    ]
+  }
+}
+
+resource nsg4 'Microsoft.Network/networkSecurityGroups@2023-04-01' = {
+  name: nsg4Name
+  location: location
+  properties: {
+    flushConnection: false
+    securityRules: [
+
+      {
+        name: 'Deny-All-Inbound'
+        properties: {
+          priority: 4096
+          access: 'Deny'
+          direction: 'Inbound'
+          destinationPortRange: '*'
+          protocol: 'Tcp'
+          sourcePortRange: '*'
+          destinationAddressPrefix: '*'
+          sourceAddressPrefix: '*'
+        }
+      }
+    ]
+  }
+}
+
+resource vnetPeering 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2023-04-01' = {
+  parent: vnet
+  name: vnet2Name
+  properties: {
+    remoteVirtualNetwork: {
+      id: vnet2.id
+    }
+    allowVirtualNetworkAccess: true
+    allowForwardedTraffic: false
+    allowGatewayTransit: false
+    useRemoteGateways: false
+  }
+  dependsOn: [
+    subnet1
+    subnet3
+  ]
+}
+
+resource vnetPeering2 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2023-04-01' = {
+  parent: vnet2
+  name: vnetName
+  properties: {
+    remoteVirtualNetwork: {
+      id: vnet.id
+    }
+    allowVirtualNetworkAccess: true
+    allowForwardedTraffic: false
+    allowGatewayTransit: false
+    useRemoteGateways: false
+  }
+  dependsOn: [
+    subnet2
+    subnet4
+    vnetPeering
+  ]
+}
+```
 
 I have already deployed a new Resource Group to deploy our virtual network into:
 

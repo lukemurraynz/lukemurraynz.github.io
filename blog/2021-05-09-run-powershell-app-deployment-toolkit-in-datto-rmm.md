@@ -18,7 +18,22 @@ Although the PowerShell App Deployment Toolkit, makes application installation a
 
 This is a brief article, intended to help other people who may be using the App Deployment Toolkit with Datto RMM.
 
-{% gist 93ac9f29ddf7db2327e356480f1c7478 %}
+```powershell title="DattoRMMpowerShellAppDeploymentToolkitCommand.ps1"
+
+#This is the name of the zip file in the component. Make sure that the PowerShell App Deployment Toolkit is zipped.
+$ZipFile = "DesktopSOE.zip"
+#This will create a folder called: C:\Temp (these folders can be changed to suit your requirements)
+Mkdir c:\Temp -Force
+#This will create a folder called: C:\Temp\DesktopSOE\ (these folders can be changed to suit your requirements)
+Mkdir C:\Temp\DesktopSOE\ -Force
+#This will then copy your PowerShellAppDeployment Toolkit to a folder, outside of the CentraStage Packagestore location. 
+Copy-Item -Path "$ZipFile" -Destination "C:\Temp\$ZipFile" -Recurse
+$DestinationFolder = $ZipFile.Split(".")[0]
+#This will then extract your PowerShell App Deployment Toolkit and run it.
+Expand-Archive -Path "c:\temp\$ZipFile" -DestinationPath "C:\Temp\DesktopSOE\" -Force
+Invoke-Command { c:\temp\DesktopSOE\Deploy-Application.exe }
+
+```
 
 Note: You may also need to navigate to: AppDeployToolkitConfig.xml, and change the: <Toolkit_RequireAdmin> attribute to False, to avoid issues with UAC (User Access Control).
 

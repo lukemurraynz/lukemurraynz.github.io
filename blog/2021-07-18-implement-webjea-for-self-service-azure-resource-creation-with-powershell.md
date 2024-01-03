@@ -371,7 +371,36 @@ Then add in:
 
 So your config.json should look similar to:
 
-{% gist 40968df6a8abd455e252f9d045ba9290 %}
+```json title="config.json"
+
+{
+    "Title": "Luke Web Automation",
+    "defaultcommandid": "overview",
+    "basepath": "C:\\WebJEA\\scripts",
+    "LogParameters": true,
+    "permittedgroups": [".\\Administrators", "luke.geek.nz\\WebJEAAdmins"],
+    "commands": [
+{
+        "id": "overview",
+        "displayname": "Overview",
+        "synopsis": "Congratulations, WebJEA is now working!  We've pre-loaded a demo script that will help you verify everything is working.  <br/><i>Tip: You can use the synopsis property of default command to display any text you want.  Including html.</i>",
+        "permittedgroups": [".\\Administrators"],
+        "script": "validate.ps1",
+        "onloadscript": "overview.ps1"
+    },
+{
+        "id": "StartStopAzVM",
+        "displayname": "StartStop-AzVM",
+        "synopsis": "Starts or Stops Azure Based VMs",
+        "permittedgroups": [".\\Administrators", "luke.geek.nz\\WebJEAAdmins"],
+        "script": "Set-VM.ps1",
+        "onloadscript": "Get-VM.ps1"
+    }
+
+]
+}
+
+```
 
 ### Test Azure Virtual Machine Start/Stop
 
