@@ -7,6 +7,7 @@ tags:
 toc: true
 header:
   teaser: /uploads/azureprivatednsresolver.png
+slug: azure/azure-point-to-site-vpn-and-private-dns-resolver
 ---
 
 You might access resources such as [Azure SQL databases](https://azure.microsoft.com/products/azure-sql/database/?WT.mc_id=AZ-MVP-5004796 "Azure SQL Database") or [Azure Storage accounts](https://learn.microsoft.com/azure/storage/?WT.mc_id=AZ-MVP-5004796 "Azure Storage documentation") if you're connecting to a Microsoft Azure network externally _(_[_from a non-Azure VM_](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances?WT.mc_id=AZ-MVP-5004796#azure-provided-name-resolution "Name resolution for resources in Azure virtual networks") _or VPN)_; mainly if you operate Cloud-only services and don't have an external DNS provider, such as Active Directory - connecting to [private link](https://azure.microsoft.com/services/private-link/?WT.mc_id=AZ-MVP-5004796 "Private Link") resources, you may have to edit your local host's file and override local DNS to point to the IP of the [private endpoint](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview?WT.mc_id=AZ-MVP-5004796) for each service.
