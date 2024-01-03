@@ -18,6 +18,7 @@ slug: azure/Monitor-Azure-LandingZones-with-AMBA
 > When deploying Azure resources, it is crucial to configure alerts to ensure your resources' health, performance, and security.
 
 By setting up alerts, you can proactively monitor your resources and take timely actions to address any issues that may arise.
+<!-- truncate -->
 Here are the key reasons why configuring alerts is essential:
 
 * Early detection of issues: Alerts enable you to identify potential problems or anomalies in your Azure resources at an early stage. By monitoring key metrics and logs, you can detect high CPU usage, low memory, network connectivity problems, or security breaches. This allows you to take immediate action and prevent any negative impact on your applications or services.
@@ -25,6 +26,7 @@ Here are the key reasons why configuring alerts is essential:
 * Optimized resource utilisation: Alerts help you optimise resource utilization by providing insights into resource usage patterns and trends. By monitoring metrics such as CPU utilisation, memory consumption, or storage capacity, you can identify opportunities for optimisation and cost savings.
 * Compliance and security: Configuring alerts is essential for maintaining compliance with regulatory requirements and ensuring the security of your Azure resources. By monitoring security logs and detecting suspicious activities or unauthorised access attempts, you can immediately mitigate potential risks and protect your data.
 * Proactive capacity planning: Alerts provide valuable information for capacity planning and scaling your resources. By monitoring resource utilisation trends over time, you can identify patterns and forecast future resource requirements. This helps you avoid performance bottlenecks and ensure a smooth user experience."
+
 
 ## Overview
 

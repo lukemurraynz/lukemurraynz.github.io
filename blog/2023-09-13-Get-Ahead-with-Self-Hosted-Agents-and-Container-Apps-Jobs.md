@@ -19,6 +19,9 @@ When considering [build agents](https://learn.microsoft.com/azure/devops/pipelin
 
 [Microsoft-hosted agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml&WT.mc_id=AZ-MVP-5004796), can be used for most things, but there are times where you may need to talk to internal company resources, or security is a concern, which is when you would consider self-hosting the agent yourself.
 
+<!-- truncate -->
+
+
 Here is a table that summarizes the pros and cons of self-hosted Azure DevOps agents and Microsoft-hosted agents:
 
 | **Agent Type** | **Pros** | **Cons** |
