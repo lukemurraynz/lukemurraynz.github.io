@@ -7,20 +7,20 @@ tags:
 toc: true
 header:
   teaser: uploads/aadproxynetworkdiagram.png
-
+slug: azure/azure-active-directory-application-proxy-implementation
 ---
 
-Are you running internal web-based applications that you want to give access to users working remotely securely, without the need for a VPN or firewalls? Do you want to enforce or use Azure Conditional Access policies to protect and manage access?
+Are you running internal web-based applications that you want to give access to users working remotely securely without the need for a VPN or firewall? Do you want to enforce or use Azure Conditional Access policies to protect and manage access?
 
 Let me introduce the Microsoft Microsoft Entra ID Application Proxy...
 
-> Application Proxy is a feature of Azure AD that enables users to access on-premises web applications from a remote client. Application Proxy includes both the Application Proxy service which runs in the cloud, and the Application Proxy connector which runs on an on-premises server. Azure AD, the Application Proxy service, and the Application Proxy connector work together to securely pass the user sign-on token from Azure AD to the web application. Application Proxy also supports single sign-on.
+> Application Proxy is a feature of Azure AD that enables users to access on-premises web applications from a remote client. Application Proxy includes both the Application Proxy service which runs in the cloud, and the Application Proxy connector, which runs on an on-premises server. Azure AD, the Application Proxy service, and the Application Proxy connector work together to securely pass the user sign-on token from Azure AD to the web application. Application Proxy also supports single sign-on.
 >
 > Application Proxy is recommended for giving remote users access to internal resources. Application Proxy replaces the need for a VPN or reverse proxy.
 
 ## Overview
 
-The [Microsoft Entra ID Application Proxy](https://learn.microsoft.com/en-us/azure/active-directory/app-proxy/what-is-application-proxy?WT.mc_id=AZ-MVP-5004796)has been around for a few years, but appears to be a hidden gem, the Application Proxy allows users_(by using Microsoft Entra ID and an Application Proxy Connector(s))_ to connect to internally hosted web applications, by the connector relaying the traffic.
+The [Microsoft Entra ID Application Proxy](https://learn.microsoft.com/en-us/azure/active-directory/app-proxy/what-is-application-proxy?WT.mc_id=AZ-MVP-5004796)has been around for a few years, but appears to be a hidden gem; the Application Proxy allows users_(by using Microsoft Entra ID and an Application Proxy Connector(s))_ to connect to internally hosted web applications, by the connector relaying the traffic.
 
 ![Azure Application Proxy - Network Diagram](/uploads/aadproxynetworkdiagram.png "Azure Application Proxy - Network Diagram")
 
