@@ -20,7 +20,8 @@
     "esbenp.prettier-vscode",
     "streetsidesoftware.code-spell-checker",
     "eliostruyf.vscode-front-matter",
-    "GitHub.copilot"
+    "GitHub.copilot",
+    "vscode-icons-team.vscode-icons"
   ],
   "forwardPorts": [3000],
   "containerUser": "vscode",
