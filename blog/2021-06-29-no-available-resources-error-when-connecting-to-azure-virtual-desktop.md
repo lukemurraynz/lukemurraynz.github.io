@@ -9,7 +9,7 @@ tags:
 toc: false
 header:
   teaser: images/iazure-marketplace-banner.png
-
+slug: azure/no-available-resources-error-when-connecting-to-azure-virtual-desktop
 ---
 
 When connecting to Azure Virtual Desktop, you may get a _"We couldn't connect because there are currently no available resources. Try again later or contact tech support for help if this keeps happening."_
@@ -20,13 +20,13 @@ When connecting to Azure Virtual Desktop, you may get a _"We couldn't connect be
 
 On your Azure Virtual Desktop Host Pool, check your Max Session Count, which hasn't been exceeded. 
 
-In my screenshot below, even 1 connection to my Azure Virtual Desktop farm couldn't connect, this was fixed when I raised this.
+In my screenshot below, even one connection to my Azure Virtual Desktop farm couldn't connect; this was fixed when I raised this.
 
 ![Host Pool - Max Session Count](/uploads/maxsessionlimitavd.png "Host Pool - Max Session Count")
 
 ### Check your Host Pool sessions are available
 
-Check your Azure Virtual Desktop Host pool, Session Hosts are: 
+Check your Azure Virtual Desktop Host pool; Session Hosts are: 
 
 * Available
 * Not in Drain Mode
