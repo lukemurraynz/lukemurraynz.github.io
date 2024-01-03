@@ -7,7 +7,7 @@ tags:
 toc: false
 header:
   teaser: images/iazure-marketplace-banner.png
-
+slug: azure/azure-virtual-machine-and-mac-address-software-licensing
 ---
 
 You may need an Azure Virtual Machine to install or license software bound to a media access control address _(MAC address)_.
