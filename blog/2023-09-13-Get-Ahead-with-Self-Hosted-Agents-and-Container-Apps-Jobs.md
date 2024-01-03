@@ -7,7 +7,7 @@ toc: true
 header:
   teaser: /images/posts/BlogHeader-GetAheadwithSelf-HostedAgentsandContainerAppsJobs.gif
 date: 2023-09-13 00:00:00 +1300
-slug: azure/Get-Ahead-with-Self-Hosted-Agents-and-Container-Apps-Jobs
+slug: azure/hosted-agents-container-apps-job
 ---
 
 When considering [build agents](https://learn.microsoft.com/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=yaml%2Cbrowser&WT.mc_id=AZ-MVP-5004796) to use in [Azure DevOps](https://azure.microsoft.com/products/devops?WT.mc_id=AZ-MVP-5004796) *(or [GitHub](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners))*, there are 2 main options to consider:
