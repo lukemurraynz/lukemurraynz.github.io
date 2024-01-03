@@ -7,6 +7,7 @@ tags:
 toc: true
 header:
   teaser: images/iazure-marketplace-banner.png
+slug: azure/update-your-azure-webapp-to-be-always-on
 ---
 
 By default, Azure Web Apps are unloaded if they are idle for a set period of time _(20 minutes)_. This way, the system can conserve resources.
