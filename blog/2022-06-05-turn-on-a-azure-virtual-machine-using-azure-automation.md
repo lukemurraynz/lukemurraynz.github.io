@@ -7,7 +7,7 @@ tags:
 toc: true
 header:
   teaser: images/iazure-marketplace-banner.png
-
+slug: azure/turn-on-a-azure-virtual-machine-using-azure-automation
 ---
 
 Turning off a Virtual Machine in Microsoft Azure on a schedule can quickly be done using the built-in Shutdown controls in the Virtual Machine blade _(part of_ [_Azure Lab Services_](https://azure.microsoft.com/en-us/services/lab-services/?WT.mc_id=AZ-MVP-5004796 " Azure Lab Services")_, but not a requirement)_, but what about starting it?
