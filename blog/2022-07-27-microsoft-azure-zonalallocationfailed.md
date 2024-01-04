@@ -7,6 +7,7 @@ date: 2022-07-27 00:00:00 +1300
 toc: true
 header:
   teaser: /uploads/zonalallocationfailed.png
+slug: azure/microsoft-azure-zonalallocationfailed
 ---
 
 > **Error code**: AllocationFailed or ZonalAllocationFailed
