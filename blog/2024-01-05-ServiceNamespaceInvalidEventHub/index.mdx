@@ -12,21 +12,21 @@ authors:
   - Luke
 header:
   teaser: EventHub_ServiceNamespaceisInvalid.png
-slug: service-namespace-invalid-eventhub
+slug: azure/service-namespace-invalid-eventhub
 keywords:
   - azure
   - bicep
   - eventhub
 ---
 
-When deploying an Event Hub using Azure Bicep you may get the following error:
+When deploying an Event Hub using Azure Bicep, you may get the following error:
 
     "code": "BadRequest",
     "message": "The specified service namespace is invalid. CorrelationId: 652cc73c-1fa7-450a-9788-b73ad6a818df"
 
 ![The specified service namespace is invalid](EventHub_ServiceNamespaceisInvalid.png)
 
-This could be caused because the name of your namespace, doesn't meet the naming requirements.
+This could be caused by the name of your namespace needing to meet the naming requirements.
 
 {/* truncate */}
 
@@ -36,7 +36,7 @@ The namespace identifier should adhere to the following naming conventions:
 
 * The name must be unique across Azure. The system immediately checks to see if the name is available.
 * The name length is at least 6 and at most 50 characters.
-* The name can contain only letters, numbers, hyphens “-“.
+* The name can contain only letters, numbers, and hyphens “-“.
 * The name must start with a letter and end with a letter or number.
 * The name doesn't end with “-sb“ or “-mgmt“.
 
