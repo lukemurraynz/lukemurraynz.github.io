@@ -2,12 +2,44 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://luke.geek.nz/</id>
     <title>luke.geek.nz Blog</title>
-    <updated>2024-01-02T06:54:06.568Z</updated>
+    <updated>2024-01-05T07:52:10.785Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://luke.geek.nz/"/>
     <subtitle>luke.geek.nz Blog</subtitle>
     <icon>https://luke.geek.nz/img/favicon.ico</icon>
     <rights>Copyright © 2024 luke.geek.nz.</rights>
+    <entry>
+        <title type="html"><![CDATA[The specified service namespace is invalid EventHub]]></title>
+        <id>https://luke.geek.nz/service-namespace-invalid-eventhub</id>
+        <link href="https://luke.geek.nz/service-namespace-invalid-eventhub"/>
+        <updated>2024-01-05T07:52:10.785Z</updated>
+        <summary type="html"><![CDATA[The specified service namespace is invalid when attempting to deploy an Azure EventHub using Bicep]]></summary>
+        <content type="html"><![CDATA[<p>When deploying an Event Hub using Azure Bicep you may get the following error:</p>
+<p>"code": "BadRequest",
+"message": "The specified service namespace is invalid. CorrelationId: 652cc73c-1fa7-450a-9788-b73ad6a818df"</p>
+<p><img loading="lazy" alt="The specified service namespace is invalid" src="https://luke.geek.nz/assets/images/EventHub_ServiceNamespaceisInvalid-9eeab3667abb3efbbf089a2d33e530d0.png" width="779" height="305" class="img_ev3q"></p>
+<p>This could be caused because the name of your namespace, doesn't meet the naming requirements.</p>
+<!-- -->
+<p>For example:</p>
+<p>The namespace identifier should adhere to the following naming conventions:</p>
+<ul>
+<li>The name must be unique across Azure. The system immediately checks to see if the name is available.</li>
+<li>The name length is at least 6 and at most 50 characters.</li>
+<li>The name can contain only letters, numbers, hyphens “-“.</li>
+<li>The name must start with a letter and end with a letter or number.</li>
+<li>The name doesn't end with “-sb“ or “-mgmt“.</li>
+</ul>
+<p>Reference:</p>
+<ul>
+<li><a href="https://learn.microsoft.com/rest/api/servicebus/create-namespace?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Create Namespace</a>, even though this article dates back to an API from 2021, the naming standards are still valid in the API for 2023-01-01-preview.</li>
+<li><a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickstart-portal#:~:text=Enter%20a%20name,sb%E2%80%9C%20or%20%E2%80%9C-mgmt?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Create Service Bus Namespace in Portal</a></li>
+</ul>]]></content>
+        <author>
+            <name>Luke Murray</name>
+            <uri>https://luke.geek.nz</uri>
+        </author>
+        <category label="Azure" term="Azure"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Deploying and Testing Azure Email Communication Services]]></title>
         <id>https://luke.geek.nz/azure/azure-email-communication-services</id>
@@ -3094,41 +3126,6 @@ Note: -n is the VM name and -g is the Resource Group, that the VM is located ins
 <p>If you are unable to connect, it may be due to an issue with the AADSSHLogin extension. You can troubleshoot by reviewing the extension log.</p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">cat /var/log/azure/Microsoft.Azure.ActiveDirectory.AADSSHLoginForLinux/CommandExecution.log</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>The Azure directory is protected, so you will need Administrator rights to delve into the logs.</p>]]></content>
-        <author>
-            <name>Luke Murray</name>
-            <uri>https://luke.geek.nz</uri>
-        </author>
-        <category label="Azure" term="Azure"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Changing the default Management Group in Azure]]></title>
-        <id>https://luke.geek.nz/azure/Changing-default-management-group-for-azure</id>
-        <link href="https://luke.geek.nz/azure/Changing-default-management-group-for-azure"/>
-        <updated>2023-07-17T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[By default, when a Management Group gets created, it goes under the Root Management Group, the same is true for Subscriptions.]]></summary>
-        <content type="html"><![CDATA[<p>By default, when a <a href="https://learn.microsoft.com/azure/governance/management-groups/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Management Group</a> gets created, it goes under the Root Management Group, the same is true for <a href="https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/organize-subscriptions?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Subscriptions</a>.</p>
-<p>This works fine, when you have a simple Microsoft Azure environment, but as soon as you start expanding into areas such as <a href="https://learn.microsoft.com/azure/architecture/landing-zones/subscription-vending?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Subscription vending</a> or limited access to who can see the Root Management Group and start to look into Visual Studio Enterprise subscriptions, you may want to consider moving new subscriptions, under its own Management Group, away from any policies or RBAC controls, essentially into a Management Group that acts as a shopping cart, to then be picked up and moved later.</p>
-<p>If we refer to a <a href="https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups?WT.mc_id=AZ-MVP-5004796#management-group-recommendations" target="_blank" rel="noopener noreferrer">recommendation</a> on the Microsoft Cloud Adoption Framework:</p>
-<blockquote>
-<p>Configure a default, dedicated management group for new subscriptions. This group ensures that no subscriptions are placed under the root management group. This group is especially important if there are users eligible for Microsoft Developer Network (MSDN) or Visual Studio benefits and subscriptions. A good candidate for this type of management group is a <a href="https://learn.microsoft.com/azure/cloud-adoption-framework/ready/considerations/sandbox-environments?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">sandbox</a> management group.</p>
-</blockquote>
-<p>So, how can we change the default Management Group, that new Subscriptions go into?</p>
-<p>Lets take a look at the different ways we could use to update the default management group, that new subscriptions go into.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="configure-using-azure-portal">Configure using Azure Portal<a href="https://luke.geek.nz/azure/Changing-default-management-group-for-azure#configure-using-azure-portal" class="hash-link" aria-label="Direct link to Configure using Azure Portal" title="Direct link to Configure using Azure Portal">​</a></h3>
-<ol>
-<li>Use the search bar to search for and select 'Management groups'.</li>
-<li>On the root management group, select details next to the name of the management group.</li>
-<li>Under Settings, select Hierarchy settings.</li>
-<li>Select the Change default management group button.</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="configuring-using-bicep">Configuring using Bicep<a href="https://luke.geek.nz/azure/Changing-default-management-group-for-azure#configuring-using-bicep" class="hash-link" aria-label="Direct link to Configuring using Bicep" title="Direct link to Configuring using Bicep">​</a></h3>
-<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">resource symbolicname 'Microsoft.Management/managementGroups/settings@2021-04-01' = {</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">name: 'default'</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">parent: resourceSymbolicName</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">properties: {</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">defaultManagementGroup: 'string'</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">requireAuthorizationForGroupCreation: bool</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">}</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<p>Reference: <a href="https://learn.microsoft.com/en-us/azure/templates/microsoft.management/managementgroups/settings?pivots=deployment-language-bicep&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Microsoft.Management managementGroups/settings</a></p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="configure-using-rest-api-using-powershell">Configure using REST API using PowerShell<a href="https://luke.geek.nz/azure/Changing-default-management-group-for-azure#configure-using-rest-api-using-powershell" class="hash-link" aria-label="Direct link to Configure using REST API using PowerShell" title="Direct link to Configure using REST API using PowerShell">​</a></h3>
-<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">$root_management_group_id = "Enter the ID of root management group"</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">$default_management_group_id = "Enter the ID of default management group (or use the same ID of the root management group)"</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">$body = '{</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain"> "properties": {</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">      "defaultManagementGroup": "/providers/Microsoft.Management/managementGroups/' + $default_management_group_id + '",</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">      "requireAuthorizationForGroupCreation": true</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain"> }</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">}'</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">$token = (Get-AzAccessToken).Token</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">$headers = @{"Authorization"= "Bearer $token"; "Content-Type"= "application/json"}</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">$uri = "https://management.azure.com/providers/Microsoft.Management/managementGroups/$root_management_group_id/settings/default?api-version=2021-04-01"</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">Invoke-RestMethod -Method PUT -Uri $uri -Headers $headers -Body $body</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="configure-using-terraform">Configure using Terraform<a href="https://luke.geek.nz/azure/Changing-default-management-group-for-azure#configure-using-terraform" class="hash-link" aria-label="Direct link to Configure using Terraform" title="Direct link to Configure using Terraform">​</a></h3>
-<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">resource "azurerm_management_group_subscription_association" "example" {</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">management_group_id = data.azurerm_management_group.example.id</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">subscription_id     = data.azurerm_subscription.example.id</span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<p>Note: Not quite the same, as configuring the default setting as above - but you can specify the Managament Group association for subscriptions using Terraform.</p>]]></content>
         <author>
             <name>Luke Murray</name>
             <uri>https://luke.geek.nz</uri>
