@@ -7,7 +7,7 @@ tags:
 toc: true
 header:
   teaser: /images/AzureBicepBanner.jpg
-
+slug: azure/azure-bicep-and-insert-resource
 ---
 
 Azure Bicep is a Domain Specific Language (DSL) for deploying Azure resources declaratively. Azure Bicep is a transparent abstraction over ARM and ARM templates, which means anything that can be done in an ARM Template can be done in Bicep.
