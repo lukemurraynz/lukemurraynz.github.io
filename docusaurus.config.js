@@ -199,6 +199,7 @@ const config = {
 
       indexName: 'luke-geek',
   contextualSearch: false,
+      searchPagePath: false,
     },
     }),
 };
