@@ -195,7 +195,7 @@ const config = {
       appId: 'ZBH2T1WJQD',
 
       // Public API key: it is safe to commit it
-      apiKey: '62f58247ec020d11cd9d655e22b5fc6d',
+      apiKey: 'fb61697222d5d23d13d387540b5515a4',
 
       indexName: 'luke-geek',
 
