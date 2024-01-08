@@ -199,9 +199,6 @@ const config = {
 
       indexName: 'luke-geek',
 
-      // Optional: see doc section below
-      contextualSearch: true,
-
     },
     }),
 };
