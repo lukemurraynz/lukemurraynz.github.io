@@ -190,7 +190,19 @@ const config = {
         minHeadingLevel: 2,
         maxHeadingLevel: 5,
       },
-    
+    algolia: {
+      // The application ID provided by Algolia
+      appId: 'ZBH2T1WJQD',
+
+      // Public API key: it is safe to commit it
+      apiKey: 'fb61697222d5d23d13d387540b5515a4',
+
+      indexName: 'luke-geek',
+
+      // Optional: see doc section below
+      contextualSearch: true,
+
+    },
     }),
 };
 
