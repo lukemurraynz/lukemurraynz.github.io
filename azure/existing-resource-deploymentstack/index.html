@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QDLBY7NNN"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0QDLBY7NNN",{anonymize_ip:!0})</script><link rel="stylesheet" href="/assets/css/styles.59c32649.css">
-<script src="/assets/js/runtime~main.a90efa13.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.e86c9bd9.js" defer="defer"></script>
 <script src="/assets/js/main.9d6b23c1.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -55,7 +55,7 @@
 <blockquote>
 <p>So if you can&#x27;t reference an existing resource, how can you bring it into the deployment stack?</p>
 </blockquote>
-<p><strong>The Answer is: You need to import it into the Bicep!</strong></p>
+<div><p>The Answer is: You need to import it into the Bicep!**</p></div>
 <p>A resource needs to exist in Infrastructure as Code, in order to be added to a Deployment Stack, the easiest way is to import it.</p>
 <p>I did a seperate <a href="https://luke.geek.nz/azure/azure-bicep-and-insert-resource/" target="_blank" rel="noopener noreferrer">blog article</a> on using the Bicep Visual Studio extension, to import an existing resource, so refer to that, but in essence it can import the resource from ARM, and compile it into an indentical resource into Bicep, matching what you have deployed.</p>
 <p>The Bicep now looks like this:</p>

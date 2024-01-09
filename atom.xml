@@ -32,7 +32,7 @@
 <blockquote>
 <p>So if you can't reference an existing resource, how can you bring it into the deployment stack?</p>
 </blockquote>
-<p><strong>The Answer is: You need to import it into the Bicep!</strong></p>
+<div><p>The Answer is: You need to import it into the Bicep!**</p></div>
 <p>A resource needs to exist in Infrastructure as Code, in order to be added to a Deployment Stack, the easiest way is to import it.</p>
 <p>I did a seperate <a href="https://luke.geek.nz/azure/azure-bicep-and-insert-resource/" target="_blank" rel="noopener noreferrer">blog article</a> on using the Bicep Visual Studio extension, to import an existing resource, so refer to that, but in essence it can import the resource from ARM, and compile it into an indentical resource into Bicep, matching what you have deployed.</p>
 <p>The Bicep now looks like this:</p>
