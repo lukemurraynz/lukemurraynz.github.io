@@ -94,6 +94,7 @@ Being able to reference the module in Bicep isn't enough to bring it into the De
 
 :::warning[Answer!]
 The answer is: You need to import it into the Bicep!
+From this moment forward, it would be wise to manage that imported resource in Bicep. Any changes to that resource outside of the Bicep will conflict with the code and state, and you may find your changes being reversed on the next deployment.
 :::
 
 A resource needs to exist in Infrastructure as Code, in order to be added to a Deployment Stack, the easiest way is to import it.
