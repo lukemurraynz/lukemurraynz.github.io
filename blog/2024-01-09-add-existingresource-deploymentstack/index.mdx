@@ -21,7 +21,7 @@ description: Add existing Azure resources to a Deployment Stack using Bicep.
 
 An Azure [deployment stack](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deployment-stacks?tabs=azure-powershell&WT.mc_id=AZ-MVP-5004796) is a type of Azure resource that enables the management of a group of Azure resources as an atomic unit.
 
-If you deploy a new Deployment Stack, all resources in your ARM/Bicep template will get included as Managed resources, but what if you want to include a resource that was deployed outside of Bicep into your Deployment Stack?
+If you deploy a new Deployment Stack, all resources in your ARM/Bicep template will be included as Managed resources, but what if you want to include a resource deployed outside of Bicep into your Deployment Stack?
 
 ![Blog Heading ](BlogHeading_DeploymentStackMissingResource.gif)
 
@@ -30,7 +30,7 @@ A community member approached me to ask how they could do this, so let us take a
 {/*truncate*/}
 
 :::info
-An Azure deployment stack is a type of Azure resource that enables the management of a group of Azure resources as an atomic unit. When a Bicep file or an ARM JSON template is submitted to a deployment stack, it defines the resources that are managed by the stack. If a resource that was previously included in the template is removed, it will either be detached or deleted based on the specified actionOnUnmanage behaviour of the deployment stack. Similar to other Azure resources, access to the deployment stack can be restricted using Azure role-based access control (Azure RBAC). To create and update a deployment stack, you can utilize Azure CLI, Azure PowerShell, or the Azure portal, along with Bicep files. These Bicep files are complied into ARM JSON templates, which are then deployed as a deployment object by the stack.
+An Azure deployment stack is a type of Azure resource that enables the management of a group of Azure resources as an atomic unit. When a Bicep file or an ARM JSON template is submitted to a deployment stack, it defines the resources that are managed by the stack. If a resource that was previously included in the template is removed, it will either be detached or deleted based on the specified actionOnUnmanage behaviour of the deployment stack. Similar to other Azure resources, access to the deployment stack can be restricted using Azure role-based access control (Azure RBAC). To create and update a deployment stack, you can utilize Azure CLI, Azure PowerShell, or the Azure portal, along with Bicep files. These Bicep files are compiled into ARM JSON templates, which are then deployed as a deployment object by the stack.
 :::
 
 :::tip
@@ -90,10 +90,10 @@ As you can see, even though the 'stfacc1337' storage account is tested as a refe
 
 Being able to reference the module in Bicep isn't enough to bring it into the Deployment Stack, and this is by design *([Issue #146](https://github.com/Azure/deployment-stacks/issues/146))*.
 
-> So if you can't reference an existing resource, how can you bring it into the deployment stack?
+> So, if you can't reference an existing resource, how can you bring it into the deployment stack?
 
 :::warning[Answer!]
-The answer is: You need to import it into the Bicep!**
+The answer is: You need to import it into the Bicep!
 :::
 
 A resource needs to exist in Infrastructure as Code, in order to be added to a Deployment Stack, the easiest way is to import it.
