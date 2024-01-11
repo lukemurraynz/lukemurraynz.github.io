@@ -160,6 +160,15 @@ const config = {
           </svg>`,
           },
           {
+            href: "https://luke.geek.nz/rss/",
+            position: "right",
+            className: "navbar-icon",
+            "aria-label": "RSS",
+            html: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-rss" viewBox="0 0 16 16">
+              <path d="M2.42 10a4.002 4.002 0 0 0 0 4.002A4.002 4.002 0 0 0 6.42 10a4.002 4.002 0 0 0-4-4.002zm-2.42 6a6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6 6 6 0 0 1-6-6zm11-3a1 1 0 0 0-1 1c0 4.411-3.589 8-8 8a1 1 0 0 0 0 2 10 10 0 0 0 10-10 1 1 0 0 0-1-1z"/>
+            </svg>`,
+          },
+          {
             href: "https://www.linkedin.com/in/ljmurray/",
             position: "right",
             className: "navbar-icon",
