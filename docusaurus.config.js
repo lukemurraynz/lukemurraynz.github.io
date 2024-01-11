@@ -159,15 +159,7 @@ const config = {
             <path fill-rule="evenodd" d="M10 8.586l4.293-4.293a1 1 0 011.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414L10 8.586z" clip-rule="evenodd" />
           </svg>`,
           },
-          {
-            href: "https://luke.geek.nz/rss",
-            position: "right",
-            className: "navbar-icon",
-            "aria-label": "RSS",
-            html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-rss" viewBox="0 0 16 16">
-              <path d="M2.42 10a4.002 4.002 0 0 0 0 4.002A4.002 4.002 0 0 0 6.42 10a4.002 4.002 0 0 0-4-4.002zm-2.42 6a6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6 6 6 0 0 1-6-6zm11-3a1 1 0 0 0-1 1c0 4.411-3.589 8-8 8a1 1 0 0 0 0 2 10 10 0 0 0 10-10 1 1 0 0 0-1-1z"/>
-            </svg>`,
-          },
+        
           {
             href: "https://www.linkedin.com/in/ljmurray/",
             position: "right",
