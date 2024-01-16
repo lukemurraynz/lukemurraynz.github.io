@@ -28,9 +28,9 @@ The tool was developed using a naming pattern based on <a href="https://learn.mi
 <p>To do this, we will have three scripts:</p>
 </blockquote>
 <ul>
-<li>main.bicep - This is our main bicep file, which will deploy our storage account and use the Azure Naming Tool API to generate a name for it.</li>
-<li>command.ps1 - This will be our PowerShell script, which will call the Azure Naming Tool API, generate a name for our storage account, and then trigger the Bicep deployment.</li>
-<li>Request-ResourceName.ps1 - This is our PowerShell function that will call the Azure Naming Tool API and return the generated name value.</li>
+<li><strong>main.bicep</strong> - This is our main bicep file, which will deploy our storage account and use the Azure Naming Tool API to generate a name for it.</li>
+<li><strong>command.ps1</strong> - This will be our PowerShell script, which will call the Azure Naming Tool API, generate a name for our storage account, and then trigger the Bicep deployment.</li>
+<li><strong>Request-ResourceName.ps1</strong> - This is our PowerShell function that will call the Azure Naming Tool API and return the generated name value.</li>
 </ul>
 <p>Command.ps1 will call the other scripts.</p>
 <p>So let us take a look at those:</p>
