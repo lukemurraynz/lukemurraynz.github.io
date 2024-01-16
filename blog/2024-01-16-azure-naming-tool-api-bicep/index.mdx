@@ -30,15 +30,19 @@ Today, we will use the Azure Naming Tool API to generate a name for our storage 
 
 {/*truncate*/}
 
+## Overview
+
 :::note
 I had a previous Blog article for [Deploying Azure Naming Tool into an Azure WebApp as a container](https://luke.geek.nz/2022/07/11/deploy-azure-naming-tool-into-an-azure-webapp-as-a-container/) this was a previous version, as of June 2022, but check it out, if you run into issues with your deployment. Today, we will deploy the latest version at the time of this article straight to a WebApp.
 :::
 
 :::tip
-The process is reasonably well documented directly on [Wiki of GitHub repository](https://github.com/mspnp/AzureNamingTool/wiki) for Azure Naming Tool, and it is what I followed, but to trigger the Publishing Profile button (if its greyed out) in the Azure Portal, for a brand new web app, I was able to go into Configuration/General Settings and Turn Basic Auth Publishing Off, Save, then back on, Save, and the button was enabled.
+The process is reasonably well documented directly on [Wiki of GitHub repository](https://github.com/mspnp/AzureNamingTool/wiki) for Azure Naming Tool, and it is what I followed, but to trigger the Publishing Profile button (if it greyed out) in the Azure Portal, for a brand new web app, I was able to go into Configuration/General Settings and Turn Basic Auth Publishing Off, Save, then back on, Save, and the button was enabled.
 :::
 
 So, now we have our Azure Naming Tool set up and deployed; we can test it out by using the API to generate a name for our storage account bicep resource.
+
+## Scripts
 
 > To do this, we will have three scripts:
 
@@ -178,6 +182,8 @@ function Request-ResourceName {
 
 ```
 
+## Deployment
+
 Now that we have the scripts, it's time to run it. I am going to run this from a GitHub Codespace that already has the latest version of PowerShell and Bicep installed. I have whitelisted the IP of the Codespace to allow it to access the Azure Naming Tool WebApp.
 
 :::warning
@@ -194,7 +200,7 @@ Enter the API and WebApp name into the command.ps1 script, these are parameters 
 
 Now it's time to create our Storage Account using a Name generated from the Azure Naming Tool.
 
-The commandscript will trigger a REST API call to Azure Naming Tool to generate a name for our storage account. Then we will use that name as a parameter for the storageAccountName Bicep deployment.
+The command script will trigger a REST API call to Azure Naming Tool to generate a name for our storage account. Then we will use that name as a parameter for the storageAccountName Bicep deployment.
 
 ![Generate Name using Azure Naming Tool API](AzureNamingTool_RunAPIGenerateName.gif "Azure Naming Tool generate name")
 
