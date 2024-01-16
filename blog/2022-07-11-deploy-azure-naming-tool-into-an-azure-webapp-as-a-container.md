@@ -31,11 +31,11 @@ The Naming Tool _(v2 as of June 2022)_ was developed using a naming pattern base
 
 ![Azure \[naming-tool\]](/uploads/azurenamingtoollogo.png "Azure [naming-tool]")
 
-This tool sitting in the [Microsoft/CloudAdoptionFramework](https://github.com/microsoft/CloudAdoptionFramework "Microsoft Cloud Adoption Framework for Azure") GitHub repository runs as a standalone Web _(.NET 6 Blazor application)_ application using stateless JSON files for its Configuration and offers users the ability to generate and customise their own [Microsoft Azure Naming convention](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming?WT.mc_id=AZ-MVP-5004796 "Define your naming convention") taking all the restrictions into account. In addition, Azure Naming Tool - also provides a Swagger API that can be used in your Infrastructure as Code deployments to generate the names of resources on the fly.
+This tool sitting in the [Azure Naming Tool](https://github.com/mspnp/AzureNamingTool) GitHub repository runs as a standalone Web _(.NET 6 Blazor application)_ application using stateless JSON files for its Configuration and offers users the ability to generate and customise their own [Microsoft Azure Naming convention](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming?WT.mc_id=AZ-MVP-5004796 "Define your naming convention") taking all the restrictions into account. In addition, Azure Naming Tool - also provides a Swagger API that can be used in your Infrastructure as Code deployments to generate the names of resources on the fly.
 
 ![Azure Naming Tool - Reference](/uploads/azurenamingtool_referencepage.png "Azure Naming Tool - Reference")
 
-This information is straight from the project [README.md](https://github.com/microsoft/CloudAdoptionFramework/blob/master/ready/AzNamingTool/README.md "Azure Naming Tool v2"):
+This information is straight from the project README.md:
 
 > **Project Components**
 >
@@ -78,7 +78,7 @@ We will be using a mix of services such as:
 * [PowerShell](https://learn.microsoft.com/en-us/powershell/?WT.mc_id=AZ-MVP-5004796 "PowerShell") & [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/?WT.mc_id=AZ-MVP-5004796 "Azure Command-Line Interface (CLI) documentation")
 * [Azure Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/?WT.mc_id=AZ-MVP-5004796 "Bicep documentation")
 
-To reduce the need to set up these dependencies on individual workstations, we will use a mix of the Azure Cloud Shell and Azure Portal. If you haven't set up your Azure Cloud Shell, you can refer to an article I wrote previously "[here](https://luke.geek.nz/azure/setup-azure-cloud-shell/ "Setup Azure Cloud Shell ")" for this remainder of this article I am going to assume you have it set up already.
+To reduce the need to set up these dependencies on individual workstations, we will use a mix of the Azure Cloud Shell and Azure Portal. If you haven't set up your Azure Cloud Shell, you can refer to an article I wrote previously "[here](https://luke.geek.nz/2022/03/07/setup-azure-cloud-shell/ "Setup Azure Cloud Shell ")" for this remainder of this article I am going to assume you have it set up already.
 
 Note: I will connect to the Cloud Shell using the [Windows Terminal](https://learn.microsoft.com/en-us/shows/it-ops-talk/azure-cloud-shell-in-the-windows-terminal?WT.mc_id=AZ-MVP-5004796 "Azure Cloud Shell in the Windows Terminal") so that any screenshots will be of the Terminal, but it's the same behaviour if I used the browser experience.
 
@@ -89,8 +89,7 @@ Now is time to clone the git repository into our Cloud Shell so that we can buil
 1. **Log in** to the [Microsoft Azure Portal](https://portal.azure.com/#home "Microsoft Azure - Portal") and open up the **Azure Cloud Shell** _(make sure you are in PowerShell (not Bash))._
 2. **Run** the following **commands** and wait for the Repository to be cloned directly into the CloudShell virtual instance:
 
-       git clone https://github.com/microsoft/CloudAdoptionFramework
-       cd ./CloudAdoptionFramework/ready/AzNamingTool/
+       git clone https://github.com/mspnp/AzureNamingTool
 
 ![Azure Naming Tool - Clone Repo](/uploads/AzNamingTool_RepoClone.gif "Azure Naming Tool - Clone Repo")
 

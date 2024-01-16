@@ -1,0 +1,204 @@
+---
+title: Using the Azure Naming Tool API to name your Bicep resources
+metaDescription: Deployment of Azure Naming Tool into an Azure WebApp, and testing the API.
+date: 2024-01-16T03:44:02.021Z
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+header:
+  teaser: /uploads/azurenamingtoollogo.png
+slug: azure/azure-naming-tool-api-bicep-resources
+keywords:
+  - api
+  - azure
+  - cloudnative
+  - NamingTool
+  - WebApp
+  - bicep
+description: Deployment of Azure Naming Tool into an Azure WebApp, and testing the API.
+---
+
+The [Azure Naming Tool](https://github.com/mspnp/AzureNamingTool) was created to help administrators define and manage their naming conventions for Azure resources, while providing a simple interface for users to generate a compliant name. 
+The tool was developed using a naming pattern based on [Microsoft's best practices](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging?WT.mc_id=AZ-MVP-5004796). Once an administrator has defined the organizational components, users can use the tool to generate a name for the desired Azure resource.
+
+Today, we are going to deploy it into an Azure WebApp, using GitHub actions and use the Azure Naming Tool, API to generate a name for our storage account bicep resource.
+
+![Azure Naming Tool Logo](/uploads/azurenamingtoollogo.png "Azure Naming Tool Logo")
+
+{/*truncate*/}
+
+:::note
+I had a previous Blog article for: [Deploying Azure Naming Tool into an Azure WebApp as a container](https://luke.geek.nz/2022/07/11/deploy-azure-naming-tool-into-an-azure-webapp-as-a-container/) this was a previous version, as of June 2022, but check it out, if you run into issues with your deployment. Today, we will deploying the latest version at the time of this article, straight to a WebApp.
+:::
+
+:::tip
+The process is reasonably well documented directly on [Wiki of GitHub repository](https://github.com/mspnp/AzureNamingTool/wiki) for Azure Naming Tool, and it is what I followed, but to trigger the Publishing Profile butto (if its greyed out) in the Azure Portal, for a brand new WebApp, I was able to go into Configuration/General Settings and Turn Basic Auth Publishing Off, Save, then back on, Save, and the button was enabled.
+:::
+
+So, now we have our Azure Naming Tool setup and deployed, we can test it out, by using the API to generate a name for our storage account bicep resource.
+
+> To do this, we will have 3 scripts:
+
+* main.bicep - This is our main bicep file, which will deploy our storage account, and use the Azure Naming Tool API to generate a name for it.
+* command.ps1 - This will be our PowerShell script, which will call the Azure Naming Tool API, and generate a name for our storage account, and then trigger the Bicep deployment.
+* Request-ResourceName.ps1 - This is our PowerShell function, that will call the Azure Naming Tool API, and return the generated name value.
+
+Command.ps1 will call the other scripts.
+
+So let us take a look at those:
+
+```powershell title="command.ps1"
+# Check if the Az.Accounts module is installed
+$module = Get-Module -ListAvailable -Name Az.Accounts
+
+# If the module is not installed, install it
+if ($null -eq $module) {
+    Install-Module -Name Az.Accounts -Scope CurrentUser -Force
+}
+
+# Check if the Az.Resources module is installed
+$module = Get-Module -ListAvailable -Name Az.Resources
+
+# If the module is not installed, install it
+if ($null -eq $module) {
+    Install-Module -Name Az.Resources -Scope CurrentUser -Force
+}
+
+# Connect-AzAccount -UseDeviceAuthentication
+
+# Import the Request-ResourceName function
+. .\Request-ResourceName.ps1
+
+# Define the API key and the Azure Naming Tool site name
+$API = ''
+$AzNamingToolSiteName = ''
+
+# Call the function with some example parameters
+$storageAccountName = Request-ResourceName -API $API -AzNamingToolSiteName $AzNamingToolSiteName -resourceEnvironment 'dev'  -resourceInstance '1' -resourceLocation 'aue'  -resourceType 'st' -createdBy 'me' -resourceProjAppSvc 'spa' | Select-Object -ExpandProperty resourceName
+
+# Define the resource group and location
+$resourceGroupName = 'stgaccount_rg'
+
+# Create the resource group if it doesn't exist
+$resourceGroup = Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
+if ($null -eq $resourceGroup) {
+    New-AzResourceGroup -Name $resourceGroupName -Location 'australiaeast'
+}
+
+# Deploy the Bicep file
+New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile './main.bicep' -storageAccountName $storageAccountName
+```
+
+```bicep title="main.bicep"
+param storageAccountName string 
+param location string = resourceGroup().location
+
+resource storageacc 'Microsoft.Storage/storageAccounts@2023-01-01' = {
+  name: storageAccountName
+  location: location
+  properties: {
+    accessTier: 'Hot'
+  }
+  sku: {
+  
+    name:  'Standard_LRS'
+  }
+  kind:  'BlobStorage'
+}
+```
+```powershell title="Request-ResourceName.ps1"
+
+# Define the function that requests a resource name
+function Request-ResourceName {
+    # Define the parameters that the function accepts
+    param (
+        [Parameter(Mandatory=$true)] [string] $API,  # The API key
+        [Parameter(Mandatory=$true)] [string] $AzNamingToolSiteName,  # The Azure Naming Tool site name
+        [Parameter(Mandatory=$true)]
+        [ValidateSet('dev', 'prd', 'sbx', 'shd', 'stg', 'tst', 'uat')]
+        [ValidateLength(1,5)]
+        [string] $resourceEnvironment,  # The environment of the resource
+        [Parameter(Mandatory=$false)] [string] $resourceFunction,  # The function of the resource
+        [Parameter(Mandatory=$true)] [string] $resourceInstance,  # The instance of the resource
+        [Parameter(Mandatory=$true)]
+        [ValidateSet('aue', 'aus', 'nzn', '	usw')]
+        [ValidateLength(1,10)]
+        [string] $resourceLocation,  # The location of the resource
+        [Parameter(Mandatory=$false)] [string] $resourceOrg,  # The organization of the resource
+        [Parameter(Mandatory=$false, HelpMessage="The shortcode of the project. This needs to match an existing Project in Azure Naming Tool.")]
+        [ValidateLength(1,3)]
+        [string] $resourceProjAppSvc,  # The project or application service of the resource
+        [Parameter(Mandatory=$true)] [string] $resourceType,  # The type of the resource
+        [Parameter(Mandatory=$false)]
+        [ValidateLength(1,5)]
+        [string] $resourceUnitDept,  # The unit or department of the resource
+        [Parameter(Mandatory=$false)] [Hashtable] $customComponents,  # Any custom components for the resource
+        [Parameter(Mandatory=$false)] [string] $createdBy  # The creator of the resource
+    )
+
+    # Define the headers for the API request
+    $headers = @{
+        'accept' = '*/*'
+        'APIKey' = $API
+        'Content-Type' = 'application/json'
+    }
+
+    # Define the body of the API request
+    $body = @{
+        'resourceEnvironment' = $resourceEnvironment
+        'resourceFunction' = $resourceFunction
+        'resourceInstance' = $resourceInstance
+        'resourceLocation' = $resourceLocation
+        'resourceOrg' = $resourceOrg
+        'resourceProjAppSvc' = $resourceProjAppSvc
+        'resourceType' = $resourceType
+        'resourceUnitDept' = $resourceUnitDept
+        'customComponents' = $customComponents
+        'createdBy' = $createdBy
+    } | ConvertTo-Json -Depth 6  # Convert the body to JSON format
+
+    # Send the API request and store the response
+    try {
+        $response = Invoke-RestMethod -Uri "https://$AzNamingToolSiteName.azurewebsites.net/api/ResourceNamingRequests/RequestName" -Method Post -Headers $headers -Body $body
+        if ($null -eq $response) {
+            Write-Host "The API returned a successful response with no body."
+        } else {
+            Write-Host "The API returned a successful response, with the name generated as: $($response.resourceName)"
+        }
+    } catch {
+        Write-Host "An error occurred: $_"
+    }
+    # Return the response
+    return $response
+}
+
+
+```
+
+Now that we have the scripts, its time to run it. I am going to run this from a GitHub Codespace, that already has the latest version of PowerShell and Bicep installed. I have whitelisted the IP of the Codespace, to allow it to access the Azure Naming Tool WebApp.
+
+:::warning
+Your Azure Naming Tool configuration is key! It needs to align with your organisational needs, naming conventions, projects and departments where necessary. Different resource types, will require different configurations, so make sure you plan this out, the Azure Naming Tool reference page can be key to review for successful name generation.
+:::
+
+First we will need the API Key, so within the Azure Naming Tool, click on Admin, enter in your password and Copy the Full Access API Key. This key is needed as the generate API resource name is a POST operation.
+
+![Copy Azure Naming Tool API](AzureNamingTool_CopyAPIKey.gif "Azure Naming Tool API Key")
+
+You will also need the name of your Azure Naming Tool WebApp, the Request-ResourceName script does make an assumption that this is an Azure hosted website *(ie https://aznamingtoolgeeknz.azurewebsites.net/)*. If you are hosting it elsewhere, you will need to update the script, to reflect the domain name.
+
+Enter the API and WebApp name into the command.ps1 script, these are parameters for the script, along with resourceType, resourceInstance, resourceLocation etc. Different resource types and configuration will require different parameters.
+
+Now its time to create our Storage Account, using a Name generated from Azure Naming Tool.
+
+The commandscript, will trigger a REST API call, to Azure Naming Tool, to generate a name for our storage account, then we will use that name, as a parameter for the storageAccountName Bicep deployment.
+
+![Generate Name using Azure Naming Tool API](AzureNamingTool_RunAPIGenerateName.gif "Azure Naming Tool generate name")
+
+Our Storage account is now created:
+
+![Azure Storage account created](Created_StorageAccount.png "Created Azure Storage account")
+
