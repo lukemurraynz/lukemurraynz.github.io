@@ -1,6 +1,6 @@
 ---
 title: Using the Azure Naming Tool API to name your Bicep resources
-metaDescription: Deployment of Azure Naming Tool into an Azure WebApp, and testing the API.
+metaDescription: Deployment of Azure Naming Tool into an Azure WebApp and testing the API.
 date: 2024-01-16T03:44:02.021Z
 tags:
   - Azure
@@ -18,33 +18,33 @@ keywords:
   - NamingTool
   - WebApp
   - bicep
-description: Deployment of Azure Naming Tool into an Azure WebApp, and testing the API.
+description: Deployment of Azure Naming Tool into an Azure WebApp and testing the API.
 ---
 
-The [Azure Naming Tool](https://github.com/mspnp/AzureNamingTool) was created to help administrators define and manage their naming conventions for Azure resources, while providing a simple interface for users to generate a compliant name. 
+The [Azure Naming Tool](https://github.com/mspnp/AzureNamingTool) was created to help administrators define and manage their naming conventions for Azure resources while providing a simple interface for users to generate a compliant name. 
 The tool was developed using a naming pattern based on [Microsoft's best practices](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging?WT.mc_id=AZ-MVP-5004796). Once an administrator has defined the organizational components, users can use the tool to generate a name for the desired Azure resource.
 
-Today, we are going to deploy it into an Azure WebApp, using GitHub actions and use the Azure Naming Tool, API to generate a name for our storage account bicep resource.
+Today, we will deploy it into an Azure WebApp, using GitHub actions and the Azure Naming Tool API to generate a name for our storage account bicep resource.
 
 ![Azure Naming Tool Logo](/uploads/azurenamingtoollogo.png "Azure Naming Tool Logo")
 
 {/*truncate*/}
 
 :::note
-I had a previous Blog article for: [Deploying Azure Naming Tool into an Azure WebApp as a container](https://luke.geek.nz/2022/07/11/deploy-azure-naming-tool-into-an-azure-webapp-as-a-container/) this was a previous version, as of June 2022, but check it out, if you run into issues with your deployment. Today, we will deploying the latest version at the time of this article, straight to a WebApp.
+I had a previous Blog article for [Deploying Azure Naming Tool into an Azure WebApp as a container](https://luke.geek.nz/2022/07/11/deploy-azure-naming-tool-into-an-azure-webapp-as-a-container/) this was a previous version, as of June 2022, but check it out, if you run into issues with your deployment. Today, we will deploy the latest version at the time of this article straight to a WebApp.
 :::
 
 :::tip
-The process is reasonably well documented directly on [Wiki of GitHub repository](https://github.com/mspnp/AzureNamingTool/wiki) for Azure Naming Tool, and it is what I followed, but to trigger the Publishing Profile butto (if its greyed out) in the Azure Portal, for a brand new WebApp, I was able to go into Configuration/General Settings and Turn Basic Auth Publishing Off, Save, then back on, Save, and the button was enabled.
+The process is reasonably well documented directly on [Wiki of GitHub repository](https://github.com/mspnp/AzureNamingTool/wiki) for Azure Naming Tool, and it is what I followed, but to trigger the Publishing Profile button (if its greyed out) in the Azure Portal, for a brand new web app, I was able to go into Configuration/General Settings and Turn Basic Auth Publishing Off, Save, then back on, Save, and the button was enabled.
 :::
 
-So, now we have our Azure Naming Tool setup and deployed, we can test it out, by using the API to generate a name for our storage account bicep resource.
+So, now we have our Azure Naming Tool set up and deployed; we can test it out by using the API to generate a name for our storage account bicep resource.
 
-> To do this, we will have 3 scripts:
+> To do this, we will have three scripts:
 
-* main.bicep - This is our main bicep file, which will deploy our storage account, and use the Azure Naming Tool API to generate a name for it.
-* command.ps1 - This will be our PowerShell script, which will call the Azure Naming Tool API, and generate a name for our storage account, and then trigger the Bicep deployment.
-* Request-ResourceName.ps1 - This is our PowerShell function, that will call the Azure Naming Tool API, and return the generated name value.
+* main.bicep - This is our main bicep file, which will deploy our storage account and use the Azure Naming Tool API to generate a name for it.
+* command.ps1 - This will be our PowerShell script, which will call the Azure Naming Tool API, generate a name for our storage account, and then trigger the Bicep deployment.
+* Request-ResourceName.ps1 - This is our PowerShell function that will call the Azure Naming Tool API and return the generated name value.
 
 Command.ps1 will call the other scripts.
 
@@ -178,23 +178,23 @@ function Request-ResourceName {
 
 ```
 
-Now that we have the scripts, its time to run it. I am going to run this from a GitHub Codespace, that already has the latest version of PowerShell and Bicep installed. I have whitelisted the IP of the Codespace, to allow it to access the Azure Naming Tool WebApp.
+Now that we have the scripts, it's time to run it. I am going to run this from a GitHub Codespace that already has the latest version of PowerShell and Bicep installed. I have whitelisted the IP of the Codespace to allow it to access the Azure Naming Tool WebApp.
 
 :::warning
 Your Azure Naming Tool configuration is key! It needs to align with your organisational needs, naming conventions, projects and departments where necessary. Different resource types, will require different configurations, so make sure you plan this out, the Azure Naming Tool reference page can be key to review for successful name generation.
 :::
 
-First we will need the API Key, so within the Azure Naming Tool, click on Admin, enter in your password and Copy the Full Access API Key. This key is needed as the generate API resource name is a POST operation.
+First, we will need the API Key, so within the Azure Naming Tool, click on Admin, enter your password and Copy the Full Access API Key. This key is needed as the generated API resource name is a POST operation.
 
 ![Copy Azure Naming Tool API](AzureNamingTool_CopyAPIKey.gif "Azure Naming Tool API Key")
 
-You will also need the name of your Azure Naming Tool WebApp, the Request-ResourceName script does make an assumption that this is an Azure hosted website *(ie https://aznamingtoolgeeknz.azurewebsites.net/)*. If you are hosting it elsewhere, you will need to update the script, to reflect the domain name.
+You will also need the name of your Azure Naming Tool WebApp, the Request-ResourceName script does make an assumption that this is an Azure hosted website *(ie https://aznamingtoolgeeknz.azurewebsites.net/)*. If you are hosting it elsewhere, you will need to update the script to reflect the domain name.
 
-Enter the API and WebApp name into the command.ps1 script, these are parameters for the script, along with resourceType, resourceInstance, resourceLocation etc. Different resource types and configuration will require different parameters.
+Enter the API and WebApp name into the command.ps1 script, these are parameters for the script, along with resourceType, resourceInstance, resourceLocation, etc. Different resource types and configurations will require different parameters.
 
-Now its time to create our Storage Account, using a Name generated from Azure Naming Tool.
+Now it's time to create our Storage Account using a Name generated from the Azure Naming Tool.
 
-The commandscript, will trigger a REST API call, to Azure Naming Tool, to generate a name for our storage account, then we will use that name, as a parameter for the storageAccountName Bicep deployment.
+The commandscript will trigger a REST API call to Azure Naming Tool to generate a name for our storage account. Then we will use that name as a parameter for the storageAccountName Bicep deployment.
 
 ![Generate Name using Azure Naming Tool API](AzureNamingTool_RunAPIGenerateName.gif "Azure Naming Tool generate name")
 
