@@ -7,7 +7,7 @@ tags:
 toc: true
 header:
   teaser: "/uploads/avddesktopfull.png"
-
+slug: azure/Azure-Virtual-Desktop-Optimisations
 ---
 If you are running Azure Virtual Desktop, you want to get the most performance and stability out of them as possible, to reduce cost and increase user experience.
 
