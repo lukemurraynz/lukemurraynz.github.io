@@ -7,7 +7,7 @@ tags:
 toc: true
 header:
   teaser: /uploads/azfirewallmon.png
-
+slug: azure/deploy-azure-firewall-mon-to-a-static-web-app
 ---
 
 [Azure-Firewall-mon](https://github.com/nicolgit/azure-firewall-mon "Azure-Firewall-mon") is a near real-time [Azure Firewall](https://learn.microsoft.com/en-us/azure/firewall/overview?WT.mc_id=AZ-MVP-5004796 "What is Azure Firewall?") log viewer.

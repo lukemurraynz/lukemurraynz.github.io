@@ -7,7 +7,7 @@ tags:
 toc: true
 header:
   teaser: images/iazure-marketplace-banner.png
-
+slug: azure/sftp-in-microsoft-azure-using-azure-blob-storage
 ---
 
 SSH File Transfer Protocol _(SFTP)_ support is now supported in Preview for Azure Blob Storage accounts with hierarchical namespace enabled.

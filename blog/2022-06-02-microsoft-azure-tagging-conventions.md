@@ -7,6 +7,7 @@ tags:
 toc: false
 header:
   teaser: images/iazure-marketplace-banner.png
+slug: azure/microsoft-azure-tagging-conventions
 ---
 
 Organizing cloud-based resources is a crucial task for IT unless you only have simple deployments. Use naming and tagging standards to organize your resources for these reasons:

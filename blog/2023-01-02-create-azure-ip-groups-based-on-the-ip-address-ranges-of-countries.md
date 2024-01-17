@@ -7,7 +7,7 @@ tags:
 toc: false
 header:
   teaser: /uploads/azureipgroupblog.png
-
+slug: azure/create-azure-ip-groups-based-on-the-ip-address-ranges-of-countries
 ---
 
 An [IP Group](https://learn.microsoft.com/azure/firewall/ip-groups?WT.mc_id=AZ-MVP-5004796 "IP Groups in Azure Firewall") in Microsoft Azure is a logical container of IP address ranges for private and public addresses.

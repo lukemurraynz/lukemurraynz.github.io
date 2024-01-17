@@ -7,7 +7,7 @@ tags:
 toc: true
 header:
   teaser: images/iazure-marketplace-banner.png
-
+slug: azure/azure-public-dns-as-code
 ---
 
 The Microsoft Azure ecosystem offers a lot of capabilities that empower individuals and businesses; one of those capabilities that are often overlooked is [DNS](https://en.wikipedia.org/wiki/Domain_Name_System)_(Domain Name System)_.

@@ -4,6 +4,7 @@ date: 2012-09-30T14:21:44+00:00
 authors: [Luke]
 tags:
   - Windows
+slug: win/mv-img-anywhere-in-word
 ---
 <ol start="1">
   <li>

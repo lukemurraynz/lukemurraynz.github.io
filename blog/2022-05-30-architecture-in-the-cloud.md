@@ -7,7 +7,7 @@ tags:
 toc: true
 header:
   teaser: /uploads/microsoft_azure.jpg
-
+slug: azure/architecture-in-the-cloud
 ---
 
 

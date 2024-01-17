@@ -5,7 +5,7 @@ authors: [Luke]
 tags:
   - Azure
 toc: false
-
+slug:  azure/azure-webapp-500-errors-reporting-from-aspnetcoremodule
 ---
 ## Issue Description
 

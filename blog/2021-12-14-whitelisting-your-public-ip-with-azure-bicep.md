@@ -7,6 +7,7 @@ date: 2021-12-14 00:00:00 +1300
 toc: false
 header:
   teaser: images/powershell-blog-feature-banner.png
+slug: azure/whitelisting-your-public-ip-with-azure-bicep
 ---
 
 Allowing and restricting Azure resources by being accessible by specific Public IP _(Internet Protocol)_ addresses has been around for years; most Azure resources support it, a Storage account is no different.

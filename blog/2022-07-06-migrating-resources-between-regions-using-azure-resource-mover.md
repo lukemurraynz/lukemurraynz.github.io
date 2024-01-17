@@ -7,7 +7,7 @@ tags:
 toc: true
 header:
   teaser: /uploads/azureresourcemover_header.png
-
+slug: azure/migrating-resources-between-regions-using-azure-resource-mover
 ---
 
 With over 70+ Microsoft Azure [regions](https://azure.microsoft.com/en-us/global-infrastructure/geographies/?WT.mc_id=AZ-MVP-5004796#overview " Azure geographies") across the globe and new regions popping up all the time _(for example new New Zealand North region coming in 2023)_!
