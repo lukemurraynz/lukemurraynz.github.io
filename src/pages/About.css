@@ -26,8 +26,9 @@
 }
 
 .carousel img {
-    width: 350px;
-    height: 350px;
+    width: 100%;  /* or any desired width */
+    height: auto; /* maintain aspect ratio */
+    object-fit: cover; /* cover the container without squishing */
     margin-right: 10px;
     transition: transform 0.3s ease;
 }
