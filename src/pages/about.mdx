@@ -33,7 +33,7 @@ export default function About() {
                 </div>
             </section>
             <h2>Achievements and Certifications</h2>
-            <section className="carousel">
+            <section id="carousel" className="carousel">
                 <a href="https://www.credly.com/earner/earned/badge/124e1101-7a47-4470-ac1e-facc189ca5db" target="_blank" rel="noopener noreferrer" aria-label="Link to Credly - Azure ArchitectureCenter_Leader">
                     <img src="/img/aboutpage/ArchitectureCenter_Leader.png" alt="Azure Architecture Center badge" />
                 </a>
@@ -74,5 +74,15 @@ export default function About() {
                 {/* Add more as needed */}
             </section>
         </main>
+
+        <script>
+
+        window.onload = function() {
+    var carousel = document.getElementById('carousel');
+    for (var i = carousel.children.length; i >= 0; i--) {
+        carousel.appendChild(carousel.children[Math.random() * i | 0]);
+    }
+}
+</script>
     );
 }
