@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+.image-container {
+    width: 50%;
+}
+.image-container img {
+    width: 100%;
+}
+.content-container {
+    width: 50%;
+}
+.carousel {
+    display: flex;
+    overflow-x: auto;
+}
+.carousel img {
+    margin-right: 10px;
+}
