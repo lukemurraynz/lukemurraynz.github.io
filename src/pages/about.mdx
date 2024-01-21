@@ -7,11 +7,13 @@ import './About.css';
 
 export default function About() {
     return (
-        <div>
-            <h1>About Me</h1>
-            <div className="container">
+        <main>
+            <header>
+                <h1>About Me</h1>
+            </header>
+            <section className="container">
                 <div className="image-container">
-                    <img src="https://via.placeholder.com/150" alt="Your Image" />
+                    <img src="https://via.placeholder.com/150" alt="Profile picture of John Doe" />
                 </div>
                 <div className="content-container">
                     <p>My name is John Doe, a software engineer with over 5 years of experience in web development, specializing in front-end development with React.js and back-end development with Node.js. I have a passion for coding and love to learn new technologies.</p>
@@ -25,12 +27,12 @@ export default function About() {
                         <li>Git and GitHub</li>
                     </ul>
                 </div>
-            </div>
-            <div className="carousel">
-                <img src="https://via.placeholder.com/350" alt="Carousel Image 1" />
-                <img src="https://via.placeholder.com/350" alt="Carousel Image 2" />
+            </section>
+            <section className="carousel">
+                <img src="https://via.placeholder.com/350" alt="Screenshot of project 1" />
+                <img src="https://via.placeholder.com/350" alt="Screenshot of project 2" />
                 {/* Add more as needed */}
-            </div>
-        </div>
+            </section>
+        </main>
     );
 }

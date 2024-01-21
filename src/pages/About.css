@@ -1,20 +1,35 @@
 .container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 }
-.image-container {
-    width: 50%;
+
+.image-container, .content-container {
+    width: 45%; /* reduced width to create some space between the containers */
+    margin: 20px;
 }
+
 .image-container img {
     width: 100%;
+    border-radius: 50%; /* make the image circular */
 }
+
 .content-container {
-    width: 50%;
+    line-height: 1.6; /* improve readability */
 }
+
 .carousel {
     display: flex;
     overflow-x: auto;
+    margin-top: 40px; /* add some space above the carousel */
 }
+
 .carousel img {
     margin-right: 10px;
+    transition: transform 0.3s ease; /* add a transition */
+}
+
+.carousel img:hover {
+    transform: scale(1.1); /* zoom in on hover */
 }
