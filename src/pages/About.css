@@ -12,7 +12,7 @@
 
 .image-container img {
     width: 100%;
-    border-radius: 10%; /* make the image corners slightly rounded */
+    border-radius: 5%; /* make the image corners slightly rounded */
 }
 
 .content-container {
@@ -21,7 +21,7 @@
 
 
 .carousel {
-    width: 120%; /* expand beyond the page limit */
+    width: 200%; /* expand beyond the page limit */
     display: flex;
     overflow-x: auto;
     margin-top: 40px;
