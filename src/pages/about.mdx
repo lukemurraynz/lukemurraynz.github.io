@@ -14,7 +14,8 @@ import React from 'react';
 export default function About() {
     return (
         <main>
-        Add the following css to this docusarus mdx file: .container {
+        <style jsx>{`
+         .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -63,6 +64,7 @@ export default function About() {
 body {
     overflow-x: hidden; /* hide horizontal scrollbar */
 }
+  `}</style>
             <header>
                 <h1>About Me</h1>
             </header>
