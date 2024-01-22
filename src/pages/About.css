@@ -13,8 +13,12 @@
 .image-container img {
     width: 100%;
     border-radius: 5%; /* make the image corners slightly rounded */
+    transition: transform 0.3s ease-in-out; /* smooth transition */
 }
 
+.image-container img:hover {
+    transform: scale(2); /* zoom in to 200% */
+}
 .content-container {
     line-height: 1.6; /* improve readability */
 }
