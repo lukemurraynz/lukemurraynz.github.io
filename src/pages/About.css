@@ -3,6 +3,41 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+}
+
+.image-container, .content-container {
+    width: 45%; /* reduced width to create some space between the containers */
+    margin: 20px;
+}
+
+.image-container img {
+    width: 100%;
+    border-radius: 5%; /* make the image corners slightly rounded */
+    transition: transform 0.3s ease-in-out; /* smooth transition */
+}
+
+.image-container img:hover {
+    transform: scale(2); /* zoom in to 200% */
+}
+.content-container {
+    line-height: 1.6; /* improve readability */
+}
+
+
+.carousel {
+    width: 100%; /* fit within the parent container */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* create 5 columns */
+    grid-auto-rows: auto; /* rows will adjust to the content size */
+    grid-gap: 10px; /* space between images */
+    overflow-x: auto; /* allow horizontal scrolling */
+    margin-top: 40px;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
     overflow: hidden; /* Add this line */
 }
 
@@ -35,6 +70,19 @@
     margin-top: 40px;
 }
 
+.carousel img {
+    width: 150px;  /* image will take up the full width of its grid cell */
+    height: 150px; /* maintain aspect ratio */
+    object-fit: cover; /* cover the container without squishing */
+    transition: transform 0.3s ease;
+}
+
+.carousel img:hover {
+    transform: scale(1.5); /* zoom in on hover */
+}
+body {
+    overflow-x: hidden; /* hide horizontal scrollbar */
+}
 .carousel img {
     width: 150px;  /* image will take up the full width of its grid cell */
     height: 150px; /* maintain aspect ratio */
