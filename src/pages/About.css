@@ -42,7 +42,7 @@
 }
 
 .carousel img:hover {
-    transform: scale(1.1); /* zoom in on hover */
+    transform: scale(2); /* zoom in on hover */
 }
 body {
     overflow-x: hidden; /* hide horizontal scrollbar */
