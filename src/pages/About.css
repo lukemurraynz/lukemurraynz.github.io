@@ -19,10 +19,12 @@
     line-height: 1.6; /* improve readability */
 }
 
+
 .carousel {
+    width: 120%; /* expand beyond the page limit */
     display: flex;
     overflow-x: auto;
-    margin-top: 40px; /* add some space above the carousel */
+    margin-top: 40px;
 }
 
 .carousel img {
