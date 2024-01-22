@@ -110,6 +110,11 @@ const config = {
             position: "left",
           },
           {
+            label: "About",
+            href: "/about/",
+            position: "left",
+          },
+          {
             href: "https://www.youtube.com/channel/UCUG3TKDTAZz4UXshGrjBBoQ",
             position: "right",
             className: "navbar-icon",
