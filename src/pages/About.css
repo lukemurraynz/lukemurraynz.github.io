@@ -22,23 +22,24 @@
 
 .carousel {
     width: 100%; /* fit within the parent container */
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* create 5 columns */
+    grid-auto-rows: auto; /* rows will adjust to the content size */
+    grid-gap: 10px; /* space between images */
     overflow-x: auto; /* allow horizontal scrolling */
     margin-top: 40px;
 }
 
 .carousel img {
-    width: 150px;  /* or any desired width */
+    width: 150px;  /* image will take up the full width of its grid cell */
     height: 150px; /* maintain aspect ratio */
     object-fit: cover; /* cover the container without squishing */
-    margin-right: 10px;
     transition: transform 0.3s ease;
 }
 
 .carousel img:hover {
     transform: scale(1.1); /* zoom in on hover */
 }
-
 body {
     overflow-x: hidden; /* hide horizontal scrollbar */
 }
