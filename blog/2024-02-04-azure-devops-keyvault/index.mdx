@@ -1,6 +1,6 @@
 ---
 title: Accessing KeyVault from Azure DevOps
-metaDescription: Access an Azure Keyvault from a Microsoft hosted agent in Azure DevOps
+metaDescription: Access an Azure Key vault from a Microsoft-hosted agent in Azure DevOps
 date: 2024-02-03T10:56:08.514Z
 tags:
   - Azure
@@ -17,50 +17,50 @@ keywords:
   - keyvault
   - security
   - devops
-description: Access an Azure Keyvault from a Microsoft hosted agent in Azure DevOps
+description: Access an Azure Key vault from a Microsoft-hosted agent in Azure DevOps
 ---
 
-If you are running a [Microsoft hosted Azure DevOp agent](https://learn.microsoft.com/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=yaml%2Cbrowser&WT.mc_id=AZ-MVP-5004796#microsoft-hosted-agents), you may need to access a [KeyVault](https://azure.microsoft.com/products/key-vault?WT.mc_id=AZ-MVP-5004796) to retrieve secrets. This is a common scenario when deploying resources to Azure. 
+If you are running a [Microsoft-hosted Azure DevOps agent](https://learn.microsoft.com/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=yaml%2Cbrowser&WT.mc_id=AZ-MVP-5004796#microsoft-hosted-agents), you may need to access a [KeyVault](https://azure.microsoft.com/products/key-vault?WT.mc_id=AZ-MVP-5004796) to retrieve secrets. This is a common scenario when deploying resources to Azure. 
 
-In this post, I will show you how to access a KeyVault from an Azure DevOps pipeline, by adding the IP of the Azure DevOps agent directly into your Azure Keyvault, and removing it after its retrieved the secrets.
+In this post, I will show you how to access a KeyVault from an Azure DevOps pipeline by adding the IP of the Azure DevOps agent directly into your Azure Keyvault and removing it after it retrieves the secrets.
 
 ![Accessing KeyVault from a Azurne DevOps Microsoft Hosted Agent](BlogHeadingAccessingKeyVaultfromAzureDevOps.gif "Accessing KeyVault from a Azurne DevOps Microsoft Hosted Agent")
 
 {/*truncate*/}
 
-When attempting to retrieve secrets from a KeyVault using Azure DevOps you may get an error such as:
+When attempting to retrieve secrets from a KeyVault using Azure DevOps, you may get an error such as:
 
 :::warning
 ##[error]Get secrets failed. Error: Client address is not authorized and caller is not a trusted service.
 :::
 
-This is due, to the Firewall of the Keyvault being enabled, which is best practice.
+This is due to the Firewall of the Keyvault being enabled, which is best practice.
 
 You have a few options here:
 
 * Option 1: Enable private endpoint for the KeyVault and use a [self-hosted agent](https://learn.microsoft.com/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=yaml%2Cbrowser&WT.mc_id=AZ-MVP-5004796#self-hosted-agents). This is the most secure option, but it requires more setup and configuration, and a self-hosted agent, running on a Virtual Machine or [Container Apps](https://luke.geek.nz/azure/hosted-agents-container-apps-job/).
 * Option 2: Add the IP of the Azure DevOps agent to the KeyVault firewall rules. This is the easiest option, but it's not the most secure, as the IP address of the Microsoft hosted agents can change *(the Microsoft hosted agents have a dynamic IP address)*.
 
-Not all organisations, have the resources to support a self hosted agent, so we are going to look at Option 2.
+Not all organisations have the resources to support a self-hosted agent, so we will look at Option 2.
 
 ![Azure KeyVault - Networking Blade (Azure Portal)](Azure_KeyVault_NetworkingPane.png "Azure KeyVault - Networking Blade (Azure Portal)")
 
-As status, the Microsoft Hosted agents, can come from any number of [Microsoft owned IP addresses](https://www.microsoft.com/en-us/download/details.aspx?id=56519?WT.mc_id=AZ-MVP-5004796) from the region, that your Azure DevOps organisation is hosted.
+As a status, the Microsoft Hosted agents can come from any number of [Microsoft-owned IP addresses](https://www.microsoft.com/en-us/download/details.aspx?id=56519?WT.mc_id=AZ-MVP-5004796) from the region, that your Azure DevOps organisation is hosted.
 
 You may immediately want to check the **Allow trusted Microsoft services to bypass this firewall** as an instant thought, but [ Azure DevOps](https://learn.microsoft.com/en-us/azure/key-vault/general/network-security?WT.mc_id=AZ-MVP-5004796#key-vault-firewall-enabled-trusted-services-only) is not an assumed trusted Microsoft service, and its not hosted within your subscription boundary.
 
-So, that leaves us with enabling Public access on the keyvault right? Because the IP will be different each time? Not quite! What we can do, is:
+So, that leaves us with enabling public access to the key vault, right? Because the IP will be different each time? Not quite! What we can do is:
 
 1. Add the IP of the Azure DevOps agent to the KeyVault firewall rules.
-2. Do task, required from Azure DevOps (ie retrieve the secrets)
+2. Do the task, required from Azure DevOps (i.e. retrieve the secrets)
 3. Remove the IP of the Azure DevOps agent from the KeyVault firewall rules.
 
-So lets take a look at the Tasks, you can use in your Azure DevOps pipelines to achieve this.
+So, let's take a look at the Tasks you can use in your Azure DevOps pipelines to achieve this.
 
-The following tasks use a Azure CLI command to grab the IP address of the Azure DevOps agent, and then add it to the KeyVault firewall rules, and then remove it after the secrets have been retrieved, tasks below. References to the KeyVaultArmSvcConnectionName is the Service Connection, that is used to authenticate to the Azure Subscription, so make sure this is adjusted for your environment.
-The keyVaultName is the name of the KeyVault you want to access.
+The following tasks use an Azure CLI command to grab the IP address of the Azure DevOps agent and then add it to the KeyVault firewall rules, and then remove it after the secrets have been retrieved, tasks below. References to the KeyVaultArmSvcConnectionName is the Service Connection that is used to authenticate to the Azure Subscription, so make sure this is adjusted for your environment.
+The keyVaultName is the name of the keyVault you want to access.
 
-Note: The condition criteria is set to succeededOrFailed, so that the task will run regardless of whether previous tasks have succeeded or failed.
+Note: The condition criteria is set to succeed or fail so that the task will run regardless of whether previous tasks have succeeded or failed.
 
 # Add Agent IP to KeyVault Firewall
 
