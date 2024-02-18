@@ -215,11 +215,11 @@ If omitted or set to false and strategy is full, EPAC will remove Security Polic
 <p><img loading="lazy" alt="Change assignment scope" src="https://luke.geek.nz/assets/images/Change_EPAC-AssignmentScopeSandbox-b20af13b32d9f00de96df5bbc45c6289.gif" width="1905" height="964" class="img_ev3q"></p>
 <p>And we can see in the plan that the assignment will change successfully.</p>
 <p><img loading="lazy" alt="Azure DevOps epac-dev plan" src="https://luke.geek.nz/assets/images/Run_ADO-Pipeline_Dev_Plan-592f4f43bc055370866dba7cec16af03.png" width="1110" height="747" class="img_ev3q"></p>
-<p>Now, lets merge or changes into Production, by opening up a Pull Request, once approved and merged the Sandbox assignment will be updated in Production.</p>
+<p>Now, let's merge or change into Production by opening up a Pull Request; once approved and merged, the Sandbox assignment will be updated in Production.</p>
 <p><img loading="lazy" alt="EPAC Pull Request" src="https://luke.geek.nz/assets/images/Change_EPAC-AssignmentScopeSandboxPR-603ce031e8264642485384496e822f89.gif" width="1905" height="964" class="img_ev3q"></p>
 <p><img loading="lazy" alt="Azure Policy Assignment" src="https://luke.geek.nz/assets/images/AzurePortal_PolicyAssignments.pngAfterChange-07735dd82cf91181554af7de91fca2c3.png" width="1630" height="634" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="reference">Reference<a href="https://luke.geek.nz/azure/enterprise-policy-code-azure-devops#reference" class="hash-link" aria-label="Direct link to Reference" title="Direct link to Reference">​</a></h2>
-<p>You can view my EPAC code for reference directly on GitHub: <a href="https://github.com/lukemurraynz/EPAC_ADO" target="_blank" rel="noopener noreferrer">lukemurraynz/EPAC_ADO</a></p>]]></content>
+<p>You can view my EPAC code for reference directly on GitHub: <a href="https://github.com/lukemurraynz/EPAC_ADO" target="_blank" rel="noopener noreferrer">lukemurraynz/EPAC_ADO</a>.</p>]]></content>
         <author>
             <name>Luke Murray</name>
             <uri>https://luke.geek.nz</uri>
