@@ -78,9 +78,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       announcementBar: {
-        id: "gfe-1", // Increment on change,
+        id: "gfe-2", // Increment on change,
         backgroundColor: "#D3D3D3",
-        content: `Happy New Year! This is a redesign of my website, hopefully you like it!`,
+        content: `If you haven't already make sure you sign up for my Weekly Azure Newsletter, straight to your inbox! <a target="_blank" rel="noopener noreferrer" href="https://newsletter.azurefeeds.com/join">Subscribe now!</a>`,
         isCloseable: true,
       },
 
