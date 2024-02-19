@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QDLBY7NNN"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0QDLBY7NNN",{anonymize_ip:!0})</script><link rel="stylesheet" href="/assets/css/styles.94a74a36.css">
-<script src="/assets/js/runtime~main.95fa5317.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.8b0d0cc8.js" defer="defer"></script>
 <script src="/assets/js/main.5a5179fd.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -137,9 +137,10 @@ With VM Image Builder, you can migrate your image customization pipeline to Azur
 <li>Select your <strong>Subscription</strong> <em>(after authenticating to Azure)</em>, and give it a <strong>name</strong> <em>(you will need the name for the Pipeline)</em>.</li>
 <li>Click <strong>Save</strong></li>
 </ol>
+<p>Note: Consider scoping your Service Connection to the individual Image Builder Resource Group for the least permissions.</p>
 <p><img loading="lazy" alt="Azure DevOps - Create Service Connection" src="/assets/images/CreateAzureServiceConnectionAIBProject-a8739909de7868e5ce4faa50c05ec5de.gif" width="1894" height="966" class="img_ev3q"></p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="import-pipeline">Import Pipeline<a href="#import-pipeline" class="hash-link" aria-label="Direct link to Import Pipeline" title="Direct link to Import Pipeline">​</a></h3>
-<p>Now that we have our Service Connection, let us import our pipeline, which will be used to run our image build.</p>
+<p>Now that we have our Service Connection let us import our pipeline, which will be used to run our image build.</p>
 <ol>
 <li>Login to your <strong><a href="https://dev.azure.com/" target="_blank" rel="noopener noreferrer">Azure DevOps</a></strong> instance</li>
 <li><strong>Navigate</strong> to your <strong>AIB</strong> project</li>
