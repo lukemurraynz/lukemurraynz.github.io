@@ -111,11 +111,13 @@ Now that we have our repository and the base code - we need a service connection
 1. Select your **Subscription** *(after authenticating to Azure)*, and give it a **name** *(you will need the name for the Pipeline)*.
 1. Click **Save**
 
+Note: Consider scoping your Service Connection to the individual Image Builder Resource Group for the least permissions.
+
 ![Azure DevOps - Create Service Connection](/images/posts/CreateAzureServiceConnectionAIBProject.gif)
 
 ### Import Pipeline
 
-Now that we have our Service Connection, let us import our pipeline, which will be used to run our image build.
+Now that we have our Service Connection let us import our pipeline, which will be used to run our image build.
 
 1. Login to your **[Azure DevOps](https://dev.azure.com/)** instance
 1. **Navigate** to your **AIB** project
