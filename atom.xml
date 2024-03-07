@@ -16,6 +16,7 @@
         <summary type="html"><![CDATA[Tag Azure Resources with Owner using Azure Automation runbook]]></summary>
         <content type="html"><![CDATA[<p>Inspired by <a href="https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/tagging-azure-resources-with-a-creator/ba-p/1479819?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Tagging Azure Resources with a Creator</a> an Azure function + event grid solution, that will tag resources with the creator of the resource. I wanted to see if I could do the same thing using Azure Automation runbooks, instead of using event grid but a schedule instead, to make use of an already existing <a href="https://learn.microsoft.com/azure/automation/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Automation</a> account.</p>
 <p>It turns out you can, so let's take a look.</p>
+<p><img loading="lazy" alt="Blog Heading - Tag Azure Resources with Owner using Azure Automation runbook" src="https://luke.geek.nz/assets/images/BlogHeading_TagAzureResourceswithOwnerAzureAutomation-55e6ea6bd6488ab6d0b4a8794fd4696e.png" width="1200" height="627" class="img_ev3q"></p>
 <!-- -->
 <p>Make sure to change the ManagementGroupID variable to match your own environment.</p>
 <p>This runbook uses a System Managed Identity from the Azure Automation account, so make sure this has Contributor rights to the subscription or management group you want to tag resources in.</p>
