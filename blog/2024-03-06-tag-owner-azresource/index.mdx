@@ -35,15 +35,15 @@ This runbook uses a System Managed Identity from the Azure Automation account, s
 
 :::info
 This PowerShell script is designed to tag Azure resources with the user's email address who last modified them. It's particularly useful for tracking who is responsible for each resource in your Azure environment. Here's a step-by-step breakdown of what the script does:
-Disable AzContext Autosave: The script starts by disabling the autosave feature for the Azure context. This ensures the script doesn't inherit any Azure context from previous sessions.
-Suppress Warnings: The script suppresses warnings related to breaking changes in Azure PowerShell. This is to prevent these warnings from cluttering the output.
-Import Modules: The script imports the Az.Accounts and Az.Resources modules, which provide the cmdlets needed to interact with Azure.
-Define Variables: The script defines a variable for the tag name ($tagName) and the management group ID ($ManagementGroupID).
-Connect to Azure: The script uses a Managed Service Identity.
-Get Subscriptions: The script defines a function (Get-AzSubscriptionsFromManagementGroup) retrieves all the subscription IDs under a specified management group, including subscriptions under child management groups. It then calls this function to get the subscription IDs under the management group specified by $ManagementGroupID.
-Process Each Subscription: For each subscription ID retrieved, the script sets the Azure context to that subscription and retrieves all resources in the subscription.
-Process Each Resource: For each resource in the subscription, the script checks if the resource has a tag with the name specified by $tagName.
-Add Tag If Not Present: If the resource does not have a tag with the name specified by $tagName, the script retrieves the Azure activity logs for the resource for the past seven days and finds the user's email address who last modified the resource. It then adds a tag to the resource with the name specified by $tagName and the value set to the user's email address.
+1. **Disable AzContext Autosave**: The script starts by disabling the autosave feature for the Azure context. This ensures the script doesn't inherit any Azure context from previous sessions.
+2. **Suppress Warnings**: The script suppresses warnings related to breaking changes in Azure PowerShell. This is to prevent these warnings from cluttering the output.
+3. **Import Modules**: The script imports the Az.Accounts and Az.Resources modules, which provide the cmdlets needed to interact with Azure.
+4. **Define Variables**: The script defines a variable for the tag name (`$tagName`) and the management group ID (`$ManagementGroupID`).
+5. **Connect to Azure**: The script uses a Managed Service Identity.
+6. **Get Subscriptions**: The script defines a function (`Get-AzSubscriptionsFromManagementGroup`) that retrieves all the subscription IDs under a specified management group, including subscriptions under child management groups. It then calls this function to get the subscription IDs under the management group specified by `$ManagementGroupID`.
+7. **Process Each Subscription**: For each subscription ID retrieved, the script sets the Azure context to that subscription and retrieves all resources in the subscription.
+8. **Process Each Resource**: For each resource in the subscription, the script checks if the resource has a tag with the name specified by `$tagName`.
+9. **Add Tag If Not Present**: If the resource does not have a tag with the name specified by `$tagName`, the script retrieves the Azure activity logs for the resource for the past seven days and finds the user's email address who last modified the resource. It then adds a tag to the resource with the name specified by `$tagName` and the value set to the user's email address.
 This script is designed to be run on a schedule, such as once a day, to ensure that all resources are tagged with the user's email address who last modified them.
 :::
 
