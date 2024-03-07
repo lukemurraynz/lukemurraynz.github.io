@@ -23,26 +23,26 @@ description: Tag Azure Resources with Owner using Azure Automation runbook
 
 Inspired by [Tagging Azure Resources with a Creator](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/tagging-azure-resources-with-a-creator/ba-p/1479819?WT.mc_id=AZ-MVP-5004796) an Azure function + event grid solution, that will tag resources with the creator of the resource. I wanted to see if I could do the same thing using Azure Automation runbooks, instead of using event grid but a schedule instead, to make use of an already existing [Azure Automation](https://learn.microsoft.com/azure/automation/overview?WT.mc_id=AZ-MVP-5004796) account.
 
-Turns out you can, so lets take a look.
+It turns out you can, so let's take a look.
 
 {/*truncate*/}
 
-Make sure to change the variable of ManagementGroupID to match your own environment.
+Make sure to change the ManagementGroupID variable to match your own environment.
 
-This runbook uses a System Managed Identity, from the Azure Automation account, so make sure this has Contributor rights to the subscription or management group you want to tag resources in. 
+This runbook uses a System Managed Identity from the Azure Automation account, so make sure this has Contributor rights to the subscription or management group you want to tag resources in. 
 
 :::info
-This PowerShell script is designed to tag Azure resources with the email address of the user who last modified them. It's particularly useful for keeping track of who is responsible for each resource in your Azure environment. Here's a step-by-step breakdown of what the script does:
-Disable AzContext Autosave: The script starts by disabling the autosave feature for the Azure context. This ensures that the script doesn't inherit any Azure context from previous sessions.
+This PowerShell script is designed to tag Azure resources with the user's email address who last modified them. It's particularly useful for tracking who is responsible for each resource in your Azure environment. Here's a step-by-step breakdown of what the script does:
+Disable AzContext Autosave: The script starts by disabling the autosave feature for the Azure context. This ensures the script doesn't inherit any Azure context from previous sessions.
 Suppress Warnings: The script suppresses warnings related to breaking changes in Azure PowerShell. This is to prevent these warnings from cluttering the output.
 Import Modules: The script imports the Az.Accounts and Az.Resources modules, which provide the cmdlets needed to interact with Azure.
 Define Variables: The script defines a variable for the tag name ($tagName) and the management group ID ($ManagementGroupID).
-Connect to Azure: The script connects to Azure using a Managed Service Identity.
-Get Subscriptions: The script defines a function (Get-AzSubscriptionsFromManagementGroup) that retrieves all the subscription IDs under a specified management group, including subscriptions under child management groups. It then calls this function to get the subscription IDs under the management group specified by $ManagementGroupID.
+Connect to Azure: The script uses a Managed Service Identity.
+Get Subscriptions: The script defines a function (Get-AzSubscriptionsFromManagementGroup) retrieves all the subscription IDs under a specified management group, including subscriptions under child management groups. It then calls this function to get the subscription IDs under the management group specified by $ManagementGroupID.
 Process Each Subscription: For each subscription ID retrieved, the script sets the Azure context to that subscription and retrieves all resources in the subscription.
 Process Each Resource: For each resource in the subscription, the script checks if the resource has a tag with the name specified by $tagName.
-Add Tag If Not Present: If the resource does not have a tag with the name specified by $tagName, the script retrieves the Azure activity logs for the resource for the past 7 days and finds the email address of the user who last modified the resource. It then adds a tag to the resource with the name specified by $tagName and the value set to the email address of the user.
-This script is designed to be run on a schedule, such as once a day, to ensure that all resources are tagged with the email address of the user who last modified them.
+Add Tag If Not Present: If the resource does not have a tag with the name specified by $tagName, the script retrieves the Azure activity logs for the resource for the past seven days and finds the user's email address who last modified the resource. It then adds a tag to the resource with the name specified by $tagName and the value set to the user's email address.
+This script is designed to be run on a schedule, such as once a day, to ensure that all resources are tagged with the user's email address who last modified them.
 :::
 
 ![Tag Azure Resources with Owner](Tag_Owner-RunbookRun.gif)
@@ -53,7 +53,7 @@ The Runbook is as follows:
 <# Ensures you do not inherit an AzContext in your runbook #>
 Disable-AzContextAutosave -Scope Process | Out-Null;
 
-#Toggle to stop warnings with regards to Breaking Changes in Azure PowerShell
+#Toggle to stop warnings with regard to Breaking Changes in Azure PowerShell
 Set-Item -Path Env:\SuppressAzurePowerShellBreakingChangeWarnings -Value $true
 
 # Import the required modules
@@ -63,7 +63,7 @@ Import-Module Az.Resources
 # Define the tag name as a variable
 $tagName = "Createdby"
 
-#Adjust to suit your management group, this is the top scope that the Script will run under
+#Adjust to suit your management group; this is the top scope that the Script will run under
 $ManagementGroupID = 'mg-landingzones'
 
 
@@ -144,5 +144,7 @@ foreach ($subId in $subIds) {
 
 :::info
 The script is also held on [GitHub](https://github.com/lukemurraynz/Azure/blob/main/Azure%20Automation/Tag-ResourceOwner.ps1), so feel free to raise an Issue or Pull Request if you have any improvements.
-If there are no logged users, due to the resource being written to or created, outside of the Log retention, the resource will be skipped.
+If there are no logged users due to the resource being written to or created outside of the Log retention, the resource will be skipped.
 :::
+
+This script could be extended with the [Change Actor feed](https://techcommunity.microsoft.com/t5/azure-governance-and-management/announcing-the-public-preview-of-change-actor/ba-p/4076626?WT.mc_id=AZ-MVP-5004796#:~:text=Identifying%20who%20made%20a%20change,all%20your%20tenants%20and%20subscriptions).to determine who made a recent change to the resource.
