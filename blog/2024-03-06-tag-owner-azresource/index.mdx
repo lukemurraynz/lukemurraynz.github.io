@@ -45,6 +45,27 @@ This PowerShell script is designed to tag Azure resources with the user's email 
 8. **Process Each Resource**: For each resource in the subscription, the script checks if the resource has a tag with the name specified by `$tagName`.
 9. **Add Tag If Not Present**: If the resource does not have a tag with the name specified by `$tagName`, the script retrieves the Azure activity logs for the resource for the past seven days and finds the user's email address who last modified the resource. It then adds a tag to the resource with the name specified by `$tagName` and the value set to the user's email address.
 This script is designed to be run on a schedule, such as once a day, to ensure that all resources are tagged with the user's email address who last modified them.
+
+```mermaid
+graph TD
+  A[Start] --> B[Disable AzContext Autosave]
+  B --> C[Suppress Warnings]
+  C --> D[Import Modules]
+  D --> E[Define Variables]
+  E --> F[Connect to Azure]
+  F --> G[Get Subscriptions]
+  G --> H{For Each Subscription}
+  H --> I[Set Azure Context]
+  I --> J[Get All Resources]
+  J --> K{For Each Resource}
+  K --> L[Check If Tag Exists]
+  L --> |No|M[Get Azure Activity Logs]
+  M --> N[Find Last Modified User]
+  N --> O[Add Tag]
+  O --> P[End]
+  L --> |Yes|P
+  K --> H
+  ```
 :::
 
 ![Tag Azure Resources with Owner](Tag_Owner-RunbookRun.gif)
