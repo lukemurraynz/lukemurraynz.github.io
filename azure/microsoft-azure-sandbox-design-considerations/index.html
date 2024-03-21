@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QDLBY7NNN"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0QDLBY7NNN",{anonymize_ip:!0})</script><link rel="stylesheet" href="/assets/css/styles.94a74a36.css">
-<script src="/assets/js/runtime~main.1cd93de6.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.ed68df28.js" defer="defer"></script>
 <script src="/assets/js/main.fe28d4f2.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -100,17 +100,17 @@ Lightly managed sandboxes are useful when many individuals want a specific regul
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="sandbox-type-decisions">Sandbox Type decisions<a href="#sandbox-type-decisions" class="hash-link" aria-label="Direct link to Sandbox Type decisions" title="Direct link to Sandbox Type decisions">​</a></h3>
 <p>When deciding on the type of Sandbox, you need to consider the following:</p>
 <ul>
-<li>The purpose of the Sandbox. What are you trying to achieve with the Sandbox? Are you trying to give users an environment to learn, or are you trying to give users an environment to test a specific set of services?</li>
-<li>The scope of the Sandbox. Are you trying to give users an environment to learn, or are you trying to give users an environment to test a specific set of services?</li>
-<li>The lifecycle of the Sandbox. How long do you want it to be available? Do you want it to be available for a specific period of time?</li>
-<li>The Cost of the Sandbox. How much are you willing to spend on it? Who has the financial authority to approve Cloud spending?</li>
-<li>Access to the Sandbox. Who has access to the Sandbox, and how do you manage access to the Sandbox?</li>
-<li>Management of the Sandbox. Who is responsible for managing the Sandbox? How do you manage the lifecycle of the Sandbox?</li>
-<li>Governance of the Sandbox. How do you manage the governance of the Sandbox? How do you manage the compliance of the Sandbox?</li>
-<li>Migration of the Sandbox. How do you migrate the Sandbox to a different environment? How do you migrate the Sandbox to a different subscription? ie what would migration of a proof of technology from a Sandbox environment into Dev/Test or Production look like?</li>
-<li>Security of the Sandbox. How do you manage the security of the Sandbox? How do you manage the identity and access to a Sandbox? How do you manage the compliance of the Sandbox?</li>
-<li>Monitoring of the Sandbox How do you monitor the Sandbox? How do you manage the cost of the Sandbox? How do you manage the performance of resources in the Sandbox (and do you need to)?</li>
-<li>Integration of the Sandbox. How do you integrate the Sandbox with other environments? How do you integrate the Sandbox with other subscriptions? How do you integrate the Sandbox with other services?</li>
+<li><strong>The purpose of the Sandbox</strong>. What are you trying to achieve with the Sandbox? Are you trying to give users an environment to learn, or are you trying to give users an environment to test a specific set of services?</li>
+<li><strong>The scope of the Sandbox</strong>. Are you trying to give users an environment to learn, or are you trying to give users an environment to test a specific set of services?</li>
+<li><strong>The lifecycle of the Sandbox</strong>. How long do you want it to be available? Do you want it to be available for a specific period of time?</li>
+<li><strong>The Cost of the Sandbox</strong>. How much are you willing to spend on it? Who has the financial authority to approve Cloud spending?</li>
+<li><strong>Access to the Sandbox</strong>. Who has access to the Sandbox, and how do you manage access to the Sandbox?</li>
+<li><strong>Management of the Sandbox</strong>. Who is responsible for managing the Sandbox? How do you manage the lifecycle of the Sandbox?</li>
+<li><strong>Governance of the Sandbox</strong>. How do you manage the governance of the Sandbox? How do you manage the compliance of the Sandbox?</li>
+<li><strong>Migration of the Sandbox</strong>. How do you migrate the Sandbox to a different environment? How do you migrate the Sandbox to a different subscription? ie what would migration of a proof of technology from a Sandbox environment into Dev/Test or Production look like?</li>
+<li><strong>Security of the Sandbox</strong>. How do you manage the security of the Sandbox? How do you manage the identity and access to a Sandbox? How do you manage the compliance of the Sandbox?</li>
+<li><strong>Monitoring of the Sandbox</strong> How do you monitor the Sandbox? How do you manage the cost of the Sandbox? How do you manage the performance of resources in the Sandbox (and do you need to)?</li>
+<li><strong>Integration of the Sandbox</strong>. How do you integrate the Sandbox with other environments? How do you integrate the Sandbox with other subscriptions? How do you integrate the Sandbox with other services?</li>
 </ul>
 <p>Consideration of all of the above will help you decide on the type of Sandbox that is right for your organisation.</p>
 <p><img loading="lazy" alt="Azure Sandbox Decisions" src="/assets/images/Azure_Sandbox_TypeDecisions-b186854a710240c85b32fd01003a7c7c.png" width="1955" height="707" class="img_ev3q"></p>
@@ -145,14 +145,13 @@ Lightly managed sandboxes are useful when many individuals want a specific regul
 <p>Also, make sure you make sure of Cloud Adoption Framework Landing Zone guidance, such as <a href="https://learn.microsoft.com/en-gb/azure/cloud-adoption-framework/ready/enterprise-scale/testing-approach?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Dev/Test Management Group and subscription Landing Zone guidance, such as a Canary Management Group structure</a>.</p>
 <p>Although not mandatory, the canary environment management group hierarchy can be used to simplify testing of the following resource types without ending up with a range of exemptions and overprivileged access to Production resources, where it is not required:</p>
 <ul>
-<li>Management groups: Management groups in Azure provide a level of scope above subscriptions. They give you enterprise-grade management at a large scale no matter what type of subscriptions you might have. All subscriptions within a management group automatically inherit the conditions applied at the management group level.</li>
-<li>Subscription placement: The placement of subscriptions within the management group hierarchy is crucial. It allows for the application of governance conditions at different levels, providing flexibility and control over the environment.</li>
-<li>RBAC: Role-Based Access Control (RBAC) is a system that provides fine-grained access management of resources in Azure. It allows you to grant the appropriate amount of access to users based on their role in the organization.</li>
-<li>Roles (built-in and custom): Azure provides several built-in roles that you can assign to users, groups, and services. You can also create custom roles if the built-in roles don&#x27;t meet your specific needs.</li>
-<li>Assignments: Assignments in Azure RBAC are the links between roles and security principals (user, group, service principal, or managed identity). They define the access a security principal has.</li>
-<li>Azure Policy: Azure Policy is a service in Azure that you use to create, assign, and manage policies. These policies enforce different rules and effects over your resources, helping to ensure your resources stay compliant with your corporate standards and service level agreements.</li>
-<li>Definitions (built-in and custom): Azure Policy uses policy definitions to express what to evaluate and what action to take. There are built-in definitions provided by Azure and you can also create custom definitions.</li>
-<li>Initiatives, also known as set definitions: An initiative definition is a set or group of policy definitions to help track your compliance state for a larger goal. Initiatives bring together one or more policies as a group to accomplish things like enabling real-time policy enforcement and more comprehensive coverage.</li>
+<li><strong>Management groups</strong>: Management groups in Azure provide a level of scope above subscriptions. They give you enterprise-grade management at a large scale no matter what type of subscriptions you might have. All subscriptions within a management group automatically inherit the conditions applied at the management group level.</li>
+<li><strong>Subscription placement</strong>: The placement of subscriptions within the management group hierarchy is crucial. It allows for the application of governance conditions at different levels, providing flexibility and control over the environment.</li>
+<li><strong>Roles (built-in and custom)</strong>: Azure provides several built-in roles that you can assign to users, groups, and services. You can also create custom roles if the built-in roles don&#x27;t meet your specific needs.</li>
+<li><strong>Assignments</strong>: Assignments in Azure RBAC are the links between roles and security principals (user, group, service principal, or managed identity). They define the access a security principal has.</li>
+<li><strong>Azure Policy</strong>: Azure Policy is a service in Azure that you use to create, assign, and manage policies. These policies enforce different rules and effects over your resources, helping to ensure your resources stay compliant with your corporate standards and service level agreements.</li>
+<li><strong>Definitions (built-in and custom)</strong>: Azure Policy uses policy definitions to express what to evaluate and what action to take. There are built-in definitions provided by Azure and you can also create custom definitions.</li>
+<li><strong>Initiatives, also known as set definitions</strong>: An initiative definition is a set or group of policy definitions to help track your compliance state for a larger goal. Initiatives bring together one or more policies as a group to accomplish things like enabling real-time policy enforcement and more comprehensive coverage.</li>
 </ul>
 <p>The Canary Landing Zone architecture is useful as it provides a controlled environment for testing changes and updates before they are applied to the production resources.</p>
 <p><img loading="lazy" alt="Azure Landing Zones - Canary" src="/assets/images/canary-mgmt-groups-97d6d855227f32f80a5e08731d991498.png" width="1407" height="542" class="img_ev3q"></p>
