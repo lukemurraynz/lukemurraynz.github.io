@@ -142,13 +142,15 @@ Lightly managed sandboxes are useful when many individuals want a specific regul
 <li><a href="https://learn.microsoft.com/purview/purview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Microsoft Purview</a> - Microsoft Purview is a unified data governance service that helps you manage and govern your on-premises, multi-cloud, and software-as-a-service (SaaS) data. You can use Purview to understand your data, manage data policies, and ensure data privacy and compliance. Microsoft Purview is useful for understanding the data that is being used in the Sandbox.</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="reference-links">📖Reference Links<a href="https://luke.geek.nz/azure/microsoft-azure-sandbox-design-considerations#reference-links" class="hash-link" aria-label="Direct link to 📖Reference Links" title="Direct link to 📖Reference Links">​</a></h2>
-<p>🔗<a href="https://youtu.be/WR9zRbzYfTQ" target="_blank" rel="noopener noreferrer">Festive Tech Calender - 2023 - Azure Sandbox Design</a>
-🔗<a href="https://www.gartner.com/en/articles/gartner-top-10-strategic-technology-trends-for-2024" target="_blank" rel="noopener noreferrer">Gartner Top 10 Strategic Technology Trends for 2024</a>
-🔗<a href="https://learn.microsoft.com/en-us/azure/architecture/guide/azure-sandbox/azure-sandbox?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Sandbox (Azure Architecture Center)</a>
-🔗<a href="https://azure.microsoft.com/en-us/solutions/cloud-enablement/cloud-adoption-framework?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Microsoft Azure Cloud Adoption Framework</a>
-🔗<a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure subscription and service limits, quotas and constraints</a>
-🔗<a href="https://github.com/BevanSin/AzureSandbox" target="_blank" rel="noopener noreferrer">BevanSin/AzureSandbox</a>
-🔗<a href="https://github.com/dazzlejim/AzureSandbox" target="_blank" rel="noopener noreferrer">dazzlejim/AzureSandbox</a></p>]]></content>
+<ol>
+<li><a href="https://youtu.be/WR9zRbzYfTQ" target="_blank" rel="noopener noreferrer">Festive Tech Calender - 2023 - Azure Sandbox Design</a></li>
+<li><a href="https://www.gartner.com/en/articles/gartner-top-10-strategic-technology-trends-for-2024" target="_blank" rel="noopener noreferrer">Gartner Top 10 Strategic Technology Trends for 2024</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/architecture/guide/azure-sandbox/azure-sandbox?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Sandbox (Azure Architecture Center)</a></li>
+<li><a href="https://azure.microsoft.com/en-us/solutions/cloud-enablement/cloud-adoption-framework?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Microsoft Azure Cloud Adoption Framework</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure subscription and service limits, quotas and constraints</a></li>
+<li><a href="https://github.com/BevanSin/AzureSandbox" target="_blank" rel="noopener noreferrer">BevanSin/AzureSandbox</a></li>
+<li><a href="https://github.com/dazzlejim/AzureSandbox" target="_blank" rel="noopener noreferrer">dazzlejim/AzureSandbox</a></li>
+</ol>]]></content>
         <author>
             <name>Luke Murray</name>
             <uri>https://luke.geek.nz</uri>
