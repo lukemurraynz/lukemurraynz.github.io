@@ -34,7 +34,7 @@ You can also review the Bicep changes and latest release notes on Github here: [
  5. In the terminal, type in: **az login**
  6. Login to Azure using the credentials that have read access to the Resource you want to export.
  7. Once you are logged in, type in: **az resource list**
- 8. In the JSON output in the terminal, **copy** the **resource ID** _(inside the commas from the id value)_
+ 8. In the JSON output in the terminal, **copy** the **resource ID** _(inside the double quotes from the id value)_
  9. Now we need to **open** the **Command Palette**, press: CTRL+Shift+P on your keyboard _(or click on View, Command Palette)_
 10. **Start typing** in **Bicep**; if you have the latest version, **you should see: Bicep: Insert Resource.**, select this
 11. ![Azure Bicep - Insert Resource](/uploads/bicepinsertresource.png "Azure Bicep - Insert Resource")
