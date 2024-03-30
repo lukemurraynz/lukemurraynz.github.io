@@ -133,7 +133,7 @@ foreach ($subId in $subIds) {
     foreach ($resource in $resources) {
         Write-Output "Processing resource $($resource.Name)..."
         $tags = $resource.Tags
-        if ($null -ne $tags -and -not $tags.ContainsKey($tagName)) {          
+        if ($null -eq $tags -or -not $tags.ContainsKey($tagName)) {        
             Write-Output "Resource $($resource.Name) does not have 'resource-owner' and  tags. Adding tags..."
 
             $endTime = Get-Date
