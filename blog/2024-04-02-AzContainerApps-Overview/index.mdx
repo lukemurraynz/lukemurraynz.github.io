@@ -119,7 +119,7 @@ Let’s delve into the differences between microservices and containers:
 
 Containers provide the infrastructure for running microservices, ensuring consistent deployment and management across different environments. Microservices, on the other hand, define the architectural approach for building modular, scalable applications.
 
-### 💡 Container orchestration
+### Container orchestration
 
 :::info
 Container orchestration is required to transition from deploying containers individually on a single host, to deploying complex multi-container apps on many machines. It requires a distributed platform, independent from infrastructure, that stays online through the entire lifetime of your application, surviving hardware failure and software updates.
@@ -156,7 +156,7 @@ Container orchestration plays a crucial role in managing and scaling containeri
 
 Container orchestration simplifies deployment, enhances reliability, and ensures efficient management of containerized applications.
 
-### 👑 Container Apps
+## 👑 Container Apps
 
 [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview?WT.mc_id=AZ-MVP-5004796) is a serverless platform that simplifies running containerized applications
 
@@ -211,7 +211,7 @@ Although anything that can connect to the Azure APIs can essentially create a [C
 * [Terraform template deployment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app)
 * [Pulumi](https://www.pulumi.com/registry/packages/azure-native/api-docs/app/containerapp/) or other API tools
 
-### 🌐 Container App environments
+### Container App environments
 
 But before you jump into the tools to create, you need to understand what you will be deploying and building, so let us take a look at [Container App Environments](https://learn.microsoft.com/azure/container-apps/environment?WT.mc_id=AZ-MVP-5004796).
 
@@ -270,7 +270,7 @@ You can split external HTTP traffic between active revisions.
 
 ![Container App Revisions](ACA_Overview_ContainerAppRevisions.gif)
 
-##### Container shutdowns
+#### Container shutdowns
 
 It's worth noting how your Containers will shut down as Azure Container Apps scales your Apps or you deactivate a revision, as this can affect your application.
 
@@ -353,11 +353,11 @@ KEDA really opens up the possibilities of scaling your Containers, based on even
 
 ![KEDA](ACA_Overview_KEDA.gif)
 
-## Azure Container Apps Networking & Storage
+## 💻 Azure Container Apps Networking & Storage
 
 Now, let us talk about Networking and Storage.
 
-### 💻 Networking
+###  Networking
 
 ![Azure Container Apps - Networking Overview](ACA_Overview_NetworkArchitecture_HighLevel.PNG)
 
@@ -419,7 +419,7 @@ Azure Container Apps uses Envoy as a network proxy for all HTTP requests. Envoy 
 * [From Chaos to Clarity: Simplifying Your Networking with Azure Container Apps](https://techcommunity.microsoft.com/t5/startups-at-microsoft/from-chaos-to-clarity-simplifying-your-networking-with-azure/ba-p/4034625?WT.mc_id=AZ-MVP-5004796)
 * [User defined routes (UDR)](https://learn.microsoft.com/azure/container-apps/networking?tabs=consumption-only-env%2Cazure-cli&WT.mc_id=AZ-MVP-5004796#user-defined-routes-udr)
 
-### 💾 Storage
+###  Storage
 
 A container app has access to different types of storage. A single app can take advantage of more than one type of storage if necessary.
 
@@ -429,7 +429,7 @@ A container app has access to different types of storage. A single app can take 
 
 * [Use storage mounts in Azure Container Apps](https://learn.microsoft.com/azure/container-apps/storage-mounts?pivots=azure-cli&WT.mc_id=AZ-MVP-5004796)
 
-### 👀 Observability
+## 👀 Observability
 
 Azure Container Apps provides several built-in observability features that together give you a holistic view of your container app’s health throughout its application lifecycle
 
@@ -443,7 +443,7 @@ These features help in monitoring and diagnosing the state of the application to
 | Deployment | Azure Monitor metrics, Azure Monitor alerts, Azure Monitor Log Analytics | Continuous monitoring after deployment for identifying problems around error rates, performance, and resource consumption |
 | Maintenance | Azure Monitor metrics, Azure Monitor alerts, Azure Monitor Log Analytics | Manages updates to your container app by creating revisions. Allows running multiple revisions concurrently for blue green deployments or A/B testing. Helps in monitoring applications across revisions |
 
-### 🏡 Azure Landing Zone for Container Apps
+## 🏡 Azure Landing Zone for Container Apps
 
 Last but not least, now that we have investigated and examined some of the finer points of Azure Container Apps, we need somewhere to put it. Following the Enterprise Scale landing zone approach, the Well-architected and Ready phase of the Cloud Adoption Framework has an Application Landing zone reference architecture for Azure Container Apps.
 
