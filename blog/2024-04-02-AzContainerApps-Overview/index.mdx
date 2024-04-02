@@ -48,7 +48,27 @@ In this section, we will take a look at the following:
 
 ### 🤔 Monoliths, Microservices and Containers? Huh?
 
-To understand why we need Container Apps, we need to go back to some of the elements of software development. 
+To understand why we might need Container Apps, we need to go back to some of the elements of software development. 
+
+Containers can be a valuable tool for deploying and managing microservices, but they are not always necessary. Let's explore why you may not need containers for microservices and how they can generally help.
+
+Microservices architecture is a software development approach where an application is built as a collection of small, loosely coupled services that can be developed, deployed, and scaled independently. Each microservice focuses on a specific business capability and communicates with other microservices through well-defined APIs.
+
+**While containers are not always necessary for deploying microservices, they offer benefits such as isolation, portability, scalability, and deployment consistency. Evaluating your specific requirements, existing infrastructure, and resource constraints will help determine whether containers are the right choice for your microservices architecture, and is intended to help you understand how it could be used, especially around some of the Cloud Native integration components.**
+
+**Why you may not need containers for microservices:**
+
+* Simplicity: If your microservices are developed using a single programming language or framework and can be easily deployed on traditional servers or virtual machines, containers may not be necessary. In such cases, deploying microservices directly on servers or virtual machines can be simpler and more straightforward.
+* Existing Infrastructure: If you already have a well-established infrastructure with efficient deployment processes and tools in place, containers may not be required. Leveraging your existing infrastructure can save time and effort in adopting and managing container technologies.
+* Resource Constraints: Containers introduce additional overhead in terms of resource utilization. If you have limited resources or strict resource constraints, deploying microservices directly on servers or virtual machines may be more efficient.
+
+**However, how containers can generally help with microservices:**
+
+* Isolation: Containers provide a lightweight and isolated runtime environment for each microservice. This isolation ensures that changes or issues in one microservice do not affect others, improving overall system stability.
+* Portability: Containers encapsulate the dependencies and runtime environment required by a microservice, making it highly portable. Microservices packaged as containers can be easily deployed and run on different platforms, such as local development machines, cloud environments, or on-premises servers.
+* Scalability: Containers enable easy scaling of microservices. With container orchestration platforms like Kubernetes, you can dynamically scale the number of containers running a specific microservice based on demand, ensuring optimal resource utilization.
+* Deployment Consistency: Containers provide a consistent deployment model, ensuring that the microservice runs the same way across different environments. This consistency simplifies the deployment process and reduces the chances of configuration-related issues.
+
 
 First, let's take a look at Monoliths.
 
