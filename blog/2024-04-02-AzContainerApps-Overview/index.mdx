@@ -46,13 +46,13 @@ In this section, we will take a look at the following:
 [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview?WT.mc_id=AZ-MVP-5004796) is a fully managed serverless container service for building and deploying modern apps at scale - without managing infrastructure. It is built on top of Kubernetes and provides a simple, fully managed experience for deploying containerized applications.
 :::
 
-### Monoliths, Microservices and Containers? Huh?
+### 🤔 Monoliths, Microservices and Containers? Huh?
 
 To understand why we need Container Apps, we need to go back to some of the elements of software development. 
 
 First, let's take a look at Monoliths.
 
-#### Monoliths
+#### 🏢 Monoliths
 
 ![Azure Container Apps - What is a Monolith?](ACA_Overview_UnderstandingWhatIsAMonolith.PNG)
 
@@ -74,7 +74,7 @@ As requirements evolve or become more complex, it becomes difficult to correctly
 
 Next up is Microservices, a more modular approach to software development.
 
-#### Microservices
+#### 🏗️ Microservices
 
 At its core, the concept of the microservices architecture is an approach to application development in which a large application is built as a collection of modular and cooperating services. 
 
@@ -88,7 +88,7 @@ Containers simplify the continuous deployment of microservices.
 
 * [Of Microservices & Containers](https://hackernoon.com/https-medium-com-spruha-pandya-of-microservices-containers-6f0ea25dac3)
 
-#### Deployment modes
+#### 🚀 Deployment modes
 
 The deployment of microservices and traditional monolith applications is usually done separately, which is an oversimplification.
 
@@ -119,7 +119,7 @@ Let’s delve into the differences between microservices and containers:
 
 Containers provide the infrastructure for running microservices, ensuring consistent deployment and management across different environments. Microservices, on the other hand, define the architectural approach for building modular, scalable applications.
 
-### Container orchestration
+### 🎛️ Container orchestration
 
 :::info
 Container orchestration is required to transition from deploying containers individually on a single host, to deploying complex multi-container apps on many machines. It requires a distributed platform, independent from infrastructure, that stays online through the entire lifetime of your application, surviving hardware failure and software updates.
@@ -180,7 +180,7 @@ With each of those applications, you can dynamically scale based on:
 * CPU or memory load
 * Any KEDA-supported scaler
 
-### What are the differences between Azure Container Apps and other Container solutions?
+### 🤔 What are the differences between Azure Container Apps and other Container solutions?
 
 :::info
 Azure customers can easily deploy microservices using either Azure Kubernetes Service for flexible customized container solutions or Azure Container Apps for productivity-optimized, fully-managed serverless container solutions. Azure delivers app portability to support business growth powered by open source in the Kubernetes ecosystem. 
@@ -200,7 +200,7 @@ Now that we know where Azure Container Apps fits in the Cloud Native ecosystem l
 
 ![Building Azure Container Apps](ACA_Overview_BuildingContainerAppsApps.PNG)
 
-### Azure Container App Deployment options
+### 🚀 Azure Container App Deployment options
 
 Although anything that can connect to the Azure APIs can essentially create a [Container App Environment](https://learn.microsoft.com/azure/container-apps/environment?WT.mc_id=AZ-MVP-5004796), common tools are:
 
@@ -211,7 +211,7 @@ Although anything that can connect to the Azure APIs can essentially create a [C
 * [Terraform template deployment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app)
 * [Pulumi](https://www.pulumi.com/registry/packages/azure-native/api-docs/app/containerapp/) or other API tools
 
-### Container App environments
+### 🌐 Container App environments
 
 But before you jump into the tools to create, you need to understand what you will be deploying and building, so let us take a look at [Container App Environments](https://learn.microsoft.com/azure/container-apps/environment?WT.mc_id=AZ-MVP-5004796).
 
@@ -232,7 +232,7 @@ Container app environments are fully managed, where Azure handles OS upgrades, s
 
 ![Container App Environment](ACA_Overview_ContainerAppEnvironments.gif)
 
-#### Container Types
+#### 📦 Container Types
 
 Azure Container Apps supports two types of Containers.
 
@@ -241,7 +241,7 @@ Init Containers - Containers that run before the app container starts
 
 ![Azure Container Apps - Container Types](ACA_Overview_BuildingContainerAppContainerTypes.PNG)
 
-#### Container registry
+#### 📦 Container registry
 
 Azure Container Apps supports multiple container registries, including:
 
@@ -252,7 +252,7 @@ Public and private registries, i.e., Azure Container Registry, are on a private 
 
 ![Azure Container Apps - Container Registries](ACA_Overview_BuildingContainerAppContainerRegistry.PNG)
 
-#### Container Revisions
+#### 🔄 Container Revisions
 
 :::info
 Azure Container Apps implements container app versioning by creating [revisions](https://learn.microsoft.com/azure/container-apps/revisions?WT.mc_id=AZ-MVP-5004796). A revision is an immutable snapshot of a container app version.
@@ -270,7 +270,7 @@ You can split external HTTP traffic between active revisions.
 
 ![Container App Revisions](ACA_Overview_ContainerAppRevisions.gif)
 
-#### Container shutdowns
+#### ⏹️ Container shutdowns
 
 It's worth noting how your Containers will shut down as Azure Container Apps scales your Apps or you deactivate a revision, as this can affect your application.
 
@@ -290,7 +290,7 @@ Additionally, make sure your application can gracefully handle shutdowns. Contai
 
 * [Application lifecycle management in Azure Container Apps](https://learn.microsoft.com/azure/container-apps/application-lifecycle-management?WT.mc_id=AZ-MVP-5004796)
 
-#### Secret Management
+#### 🔒 Secret Management
 
 Securely store sensitive configuration elements that are then available to containers through environment variables, scale rules, and Dapr.
 
@@ -357,7 +357,7 @@ KEDA really opens up the possibilities of scaling your Containers, based on even
 
 Now, let us talk about Networking and Storage.
 
-###  Networking
+### 🌐 Networking
 
 ![Azure Container Apps - Networking Overview](ACA_Overview_NetworkArchitecture_HighLevel.PNG)
 
@@ -419,7 +419,7 @@ Azure Container Apps uses Envoy as a network proxy for all HTTP requests. Envoy 
 * [From Chaos to Clarity: Simplifying Your Networking with Azure Container Apps](https://techcommunity.microsoft.com/t5/startups-at-microsoft/from-chaos-to-clarity-simplifying-your-networking-with-azure/ba-p/4034625?WT.mc_id=AZ-MVP-5004796)
 * [User defined routes (UDR)](https://learn.microsoft.com/azure/container-apps/networking?tabs=consumption-only-env%2Cazure-cli&WT.mc_id=AZ-MVP-5004796#user-defined-routes-udr)
 
-###  Storage
+### 💾 Storage
 
 A container app has access to different types of storage. A single app can take advantage of more than one type of storage if necessary.
 
@@ -435,7 +435,7 @@ Azure Container Apps provides several built-in observability features that toget
 
 These features help in monitoring and diagnosing the state of the application to improve performance and respond to trends and critical problems.
 
-### Application lifecycle observability
+### 👁️ Application lifecycle observability
 
  Phase | Features | Description |
 | --- | --- | --- |
