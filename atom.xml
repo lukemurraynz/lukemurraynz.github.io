@@ -13,7 +13,7 @@
         <id>https://luke.geek.nz/azure/change-timezone-azure-container-app</id>
         <link href="https://luke.geek.nz/azure/change-timezone-azure-container-app"/>
         <updated>2024-04-06T08:52:05.548Z</updated>
-        <summary type="html"><![CDATA[Change the Timezone of your Azure Container App]]></summary>
+        <summary type="html"><![CDATA[This article provides a guide on how to change the timezone of your Azure Container App. It includes reasons why you might need to do this, a step-by-step process, and references for further reading.]]></summary>
         <content type="html"><![CDATA[<p>Updating the timezone of your Azure Container Apps containers, might not be a common operation, but there are scenarios where it could be necessary.</p>
 <p>Example scenarios on why you may want to update the Timezone (from UTC) to another timezone, may be because of:</p>
 <ul>
