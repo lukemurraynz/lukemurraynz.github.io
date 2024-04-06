@@ -32,11 +32,11 @@ Example scenarios on why you may want to update the Timezone (from UTC) to anoth
 * Compliance and regulations
 Or general application testing and development
 
-You could have this built into the container itself, which may be preferred to keep a consistent experience, but you can update the container environment.
+You could have this built into the container itself, which would be preferred to keep a consistent experience and to work with any time offset that may be needed (daylight savings, etc), but you can update the container environment.
 
 📺 To demo this, I am using a Container App Environment and a Container App using the 'Simple hello world container' quickstart image.
 
-My revision mode is set to Single; however, the same steps can be applied with multiple revision modes. Just ensure you test and update the right revision, or the date change may not be applied.
+My revision mode is set to Single; however, the same steps can be applied with multiple revision modes. Just ensure you test and update the right revision or the date change may not be applied.
 
 To update the timezone, we will be the 'TZ' Environment variable, and this change will trigger a new Revision.
 
@@ -68,7 +68,7 @@ To do this:
 6. **Add**: **TZ** with the value of your **timezone** *(Manual Entry, although you could also have this as a Secret in a KeyVault)*.
 7. Click **Save**
 8. Click **Create** to create your Revision
-9. You can then navigate back to the Console and type in Date, to confirm the timezone has been updated.
+9. You can then navigate back to the Console and type in Date to confirm the timezone has been updated.
 
 ![Update Azure Container Apps - Timezone](Update_AzContainerAppTimeZone.gif)
 
