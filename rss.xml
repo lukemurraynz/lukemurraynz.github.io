@@ -15,23 +15,23 @@
             <guid>https://luke.geek.nz/azure/change-timezone-azure-container-app</guid>
             <pubDate>Sat, 06 Apr 2024 08:52:05 GMT</pubDate>
             <description><![CDATA[This article provides a guide on how to change the timezone of your Azure Container App. It includes reasons why you might need to do this, a step-by-step process, and references for further reading.]]></description>
-            <content:encoded><![CDATA[<p>Updating the timezone of your Azure Container Apps containers, might not be a common operation, but there are scenarios where it could be necessary.</p>
-<p>Example scenarios on why you may want to update the Timezone (from UTC) to another timezone, may be because of:</p>
+            <content:encoded><![CDATA[<p>Updating the timezone of your Azure Container Apps containers might not be a common operation, but there are scenarios where it could be necessary.</p>
+<p>Example scenarios on why you may want to update the Timezone (from UTC) to another timezone may be because of the following:</p>
 <ul>
 <li>Application requirements</li>
 <li>Logging and debugging concerns</li>
 <li>Compliance and regulations
 Or general application testing and development</li>
 </ul>
-<p>You could have this built-in to the Container itself, which may be preferred to keep a consistant experiernce, but you can update the Container environment.</p>
-<p>📺 To demo this, I am using a Container App Environment and a Container App, using the 'Simple hello world container' quickstart image.</p>
-<p>My revision mode is set to Single, however the same steps can be applied with multiple revision modes, just ensure you test and update the right revision, or the date change may not be applied.</p>
+<p>You could have this built into the container itself, which may be preferred to keep a consistent experience, but you can update the container environment.</p>
+<p>📺 To demo this, I am using a Container App Environment and a Container App using the 'Simple hello world container' quickstart image.</p>
+<p>My revision mode is set to Single; however, the same steps can be applied with multiple revision modes. Just ensure you test and update the right revision, or the date change may not be applied.</p>
 <p>To update the timezone, we will be the 'TZ' Environment variable, and this change will trigger a new Revision.</p>
-<p>First, let us check the current timezone of the container app, by running the following command <em>(on a running Container App)</em> from the Console:</p>
+<p>First, let us check the current timezone of the container app by running the following command <em>(on a running Container App)</em> from the Console:</p>
 <div class="language-PowerShell language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">    date</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p><img loading="lazy" alt="Check Time/date" src="https://luke.geek.nz/assets/images/Update_AzContainerAppTimeZone-Before-95e71d7e58d2ecfc9f2acce713268128.gif" width="1820" height="964" class="img_ev3q"></p>
 <p>This will return the current date and time in UTC.</p>
-<p>Now, lets update the Timezone, to do that we need to specify the timezone in the TZ database format, to find this format we can use sites like <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank" rel="noopener noreferrer">Wikipedia</a> or <a href="https://timezone.mariushosting.com/" target="_blank" rel="noopener noreferrer">mariushosting Docker Time Zone (TZ)</a>, as I am based in New Zealand, I will be using: Pacific/Auckland.</p>
+<p>Now, let us update the Timezone. To do that, we need to specify the timezone in the TZ database format; to find this format, we can use sites like <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank" rel="noopener noreferrer">Wikipedia</a> or <a href="https://timezone.mariushosting.com/" target="_blank" rel="noopener noreferrer">mariushosting Docker Time Zone (TZ)</a>, as I am based in New Zealand, I will be using: Pacific/Auckland.</p>
 <p><img loading="lazy" alt="Timezone - Pacific/Auckland" src="https://luke.geek.nz/assets/images/mariushostingDockerTimeZoneNZ-1d69b9f5b7a40c3e28c103d7470619c0.png" width="1371" height="742" class="img_ev3q"></p>
 <p>To do this:</p>
 <div class="theme-admonition theme-admonition-danger admonition_xJq3 alert alert--danger"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path></svg></span>danger</div><div class="admonitionContent_BuS1"><p>⚠️ If you're using Single Revision mode: This may trigger an outage, during the creation of a new revision, make sure you test this in a safe environment.</p></div></div>
