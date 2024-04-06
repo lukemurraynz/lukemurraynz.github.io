@@ -21,26 +21,26 @@ keywords:
 description: This article provides a guide on how to change the timezone of your Azure Container App. It includes reasons why you might need to do this, a step-by-step process, and references for further reading.
 ---
 
-Updating the timezone of your Azure Container Apps containers, might not be a common operation, but there are scenarios where it could be necessary.
+Updating the timezone of your Azure Container Apps containers might not be a common operation, but there are scenarios where it could be necessary.
 
 <!-- truncate -->
 
-Example scenarios on why you may want to update the Timezone (from UTC) to another timezone, may be because of:
+Example scenarios on why you may want to update the Timezone (from UTC) to another timezone may be because of the following:
 
 * Application requirements
 * Logging and debugging concerns
 * Compliance and regulations
 Or general application testing and development
 
-You could have this built-in to the Container itself, which may be preferred to keep a consistant experiernce, but you can update the Container environment.
+You could have this built into the container itself, which may be preferred to keep a consistent experience, but you can update the container environment.
 
-📺 To demo this, I am using a Container App Environment and a Container App, using the 'Simple hello world container' quickstart image.
+📺 To demo this, I am using a Container App Environment and a Container App using the 'Simple hello world container' quickstart image.
 
-My revision mode is set to Single, however the same steps can be applied with multiple revision modes, just ensure you test and update the right revision, or the date change may not be applied.
+My revision mode is set to Single; however, the same steps can be applied with multiple revision modes. Just ensure you test and update the right revision, or the date change may not be applied.
 
 To update the timezone, we will be the 'TZ' Environment variable, and this change will trigger a new Revision.
 
-First, let us check the current timezone of the container app, by running the following command *(on a running Container App)* from the Console:
+First, let us check the current timezone of the container app by running the following command *(on a running Container App)* from the Console:
 
 ```PowerShell
     date
@@ -50,7 +50,7 @@ First, let us check the current timezone of the container app, by running the fo
 
 This will return the current date and time in UTC.
 
-Now, lets update the Timezone, to do that we need to specify the timezone in the TZ database format, to find this format we can use sites like [Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) or [mariushosting Docker Time Zone (TZ)](https://timezone.mariushosting.com/), as I am based in New Zealand, I will be using: Pacific/Auckland.
+Now, let us update the Timezone. To do that, we need to specify the timezone in the TZ database format; to find this format, we can use sites like [Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) or [mariushosting Docker Time Zone (TZ)](https://timezone.mariushosting.com/), as I am based in New Zealand, I will be using: Pacific/Auckland.
 
 ![Timezone - Pacific/Auckland](mariushostingDockerTimeZoneNZ.png)
 
