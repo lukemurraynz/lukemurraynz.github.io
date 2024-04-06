@@ -4,11 +4,54 @@
         <title>luke.geek.nz Blog</title>
         <link>https://luke.geek.nz/</link>
         <description>luke.geek.nz Blog</description>
-        <lastBuildDate>Tue, 02 Apr 2024 09:15:09 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 06 Apr 2024 08:52:05 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>Copyright © 2024 luke.geek.nz.</copyright>
+        <item>
+            <title><![CDATA[Change the Timezone of your Azure Container App]]></title>
+            <link>https://luke.geek.nz/azure/change-timezone-azure-container-app</link>
+            <guid>https://luke.geek.nz/azure/change-timezone-azure-container-app</guid>
+            <pubDate>Sat, 06 Apr 2024 08:52:05 GMT</pubDate>
+            <description><![CDATA[Change the Timezone of your Azure Container App]]></description>
+            <content:encoded><![CDATA[<p>Updating the timezone of your Azure Container Apps containers, might not be a common operation, but there are scenarios where it could be necessary.</p>
+<p>Example scenarios on why you may want to update the Timezone (from UTC) to another timezone, may be because of:</p>
+<ul>
+<li>Application requirements</li>
+<li>Logging and debugging concerns</li>
+<li>Compliance and regulations
+Or general application testing and development</li>
+</ul>
+<p>You could have this built-in to the Container itself, which may be preferred to keep a consistant experiernce, but you can update the Container environment.</p>
+<p>📺 To demo this, I am using a Container App Environment and a Container App, using the 'Simple hello world container' quickstart image.</p>
+<p>My revision mode is set to Single, however the same steps can be applied with multiple revision modes, just ensure you test and update the right revision, or the date change may not be applied.</p>
+<p>To update the timezone, we will be the 'TZ' Environment variable, and this change will trigger a new Revision.</p>
+<p>First, let us check the current timezone of the container app, by running the following command <em>(on a running Container App)</em> from the Console:</p>
+<div class="language-PowerShell language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">    date</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><img loading="lazy" alt="Check Time/date" src="https://luke.geek.nz/assets/images/Update_AzContainerAppTimeZone-Before-95e71d7e58d2ecfc9f2acce713268128.gif" width="1820" height="964" class="img_ev3q"></p>
+<p>This will return the current date and time in UTC.</p>
+<p>Now, lets update the Timezone, to do that we need to specify the timezone in the TZ database format, to find this format we can use sites like <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank" rel="noopener noreferrer">Wikipedia</a> or <a href="https://timezone.mariushosting.com/" target="_blank" rel="noopener noreferrer">mariushosting Docker Time Zone (TZ)</a>, as I am based in New Zealand, I will be using: Pacific/Auckland.</p>
+<p><img loading="lazy" alt="Timezone - Pacific/Auckland" src="https://luke.geek.nz/assets/images/mariushostingDockerTimeZoneNZ-1d69b9f5b7a40c3e28c103d7470619c0.png" width="1371" height="742" class="img_ev3q"></p>
+<p>To do this:</p>
+<div class="theme-admonition theme-admonition-danger admonition_xJq3 alert alert--danger"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path></svg></span>danger</div><div class="admonitionContent_BuS1"><p>⚠️ If you're using Single Revision mode: This may trigger an outage, during the creation of a new revision, make sure you test this in a safe environment.</p></div></div>
+<ol>
+<li>Navigate to your Container App in the Azure Portal</li>
+<li>Click on Containers</li>
+<li>Click Edit and Deploy</li>
+<li>Click your Container image</li>
+<li>Navigate down to Environment variables</li>
+<li>Add: TZ with the value of your timezone <em>(Manual Entry, although you could also have this as a Secret in a KeyVault)</em>.</li>
+<li>Click Save</li>
+<li>Click Create to create your Revision</li>
+<li>You can then navigate back to the Console and type in Date, to confirm the timezone has been updated.</li>
+</ol>
+<p><img loading="lazy" alt="Update Azure Container Apps - Timezone" src="https://luke.geek.nz/assets/images/Update_AzContainerAppTimeZone-a07fc34a0c2548c427afa0fcc0212b69.gif" width="1820" height="964" class="img_ev3q"></p>
+<p>📖 References:</p>
+<p><a href="https://support.circleci.com/hc/en-us/articles/115015771347-How-do-I-set-the-timezones-in-Docker-images" target="_blank" rel="noopener noreferrer">Default timezone in Docker containers</a>
+<a href="https://stackoverflow.com/questions/57607381/how-do-i-change-timezone-in-a-docker-container" target="_blank" rel="noopener noreferrer">How do I change timezone in a docker container?</a></p>]]></content:encoded>
+            <category>Azure</category>
+        </item>
         <item>
             <title><![CDATA[Azure Container Apps - Overview]]></title>
             <link>https://luke.geek.nz/azure/azure-container-apps-overview</link>
@@ -2352,38 +2395,6 @@ Error: Code=InvalidTemplate; Message=Deployment template validation failed: 'The
 The existence of a Virtual Network Gateway, with a VPN Gateway type, doesn't include the MonitorDisable tag; if I were to deploy a VPN Gateway, it would create the alert rule for me.</p>
 </blockquote>
 <p>Finally, if you want to clean up <em>(delete the resources)</em>, you can leverage the Start-AMBACleanup.ps1 script; it will leave the Resource Group, Alert processing rules and action group.</p>]]></content:encoded>
-            <category>Azure</category>
-        </item>
-        <item>
-            <title><![CDATA[Private Endpoint traffic not appearing in Azure Firewall]]></title>
-            <link>https://luke.geek.nz/azure/private-endpoint-traffic-not-appearing-azure-firewall</link>
-            <guid>https://luke.geek.nz/azure/private-endpoint-traffic-not-appearing-azure-firewall</guid>
-            <pubDate>Tue, 03 Oct 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[Private Endpoint traffic can take a different route than your standard traffic and cause some confusion and dropped packets.]]></description>
-            <content:encoded><![CDATA[<p>You may have a situation where you have implemented <a href="https://learn.microsoft.com/azure/private-link/private-endpoint-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Private endpoints</a> and the traffic from on-premises to those Private Endpoints, either doesn't work, even though on-premises firewalls say otherwise, or is working, but doesn't appear in the Azure Firewall.</p>
-<p>I had this recently with <a href="https://learn.microsoft.com/azure/azure-arc/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Arc</a>, where the endpoints failed to connect once a site-to-site VPN connection <em>(which was working)</em> was replaced with an expressroute connection, but going through the Azure Firewall logs, was unable to see any 443 traffic for Arc, hitting the Firewall even when the connection was working.</p>
-<p><img loading="lazy" alt="Private Endpoint traffic not appearing in Azure Firewall" src="https://luke.geek.nz/assets/images/BlobHeading_PrivateEndpointtrafficnotappearing-46abd44f0fd04636f0a349e00b724711.gif" width="1200" height="628" class="img_ev3q"></p>
-<blockquote>
-<p>Traffic flow: Onpremises -- (ER Circuit) -- ER gateway -- Secured hub Azure Firewall -- (Vnet Connection) -- PE (Private Endpoint)</p>
-</blockquote>
-<p>The issue was related to how private endpoint traffic is routed differently.</p>
-<p>If the traffic has reached the Expressroute gateway from on-premises, with routing intent, normal traffic will be forced to the AzFW first before reaching its destination, as you would think and expect.</p>
-<blockquote>
-<p>However, for the private endpoint scenario, once a Private Endpoint is deployed to any VNET, there will be an automatic system route with the PE IP and prefix /32 installed on all of the linked NICs.
-The next hop for this route will be InterfaceEndpoint.
-This route will allow the traffic to go directly to the PE, bypassing the routing intent and other user-defined routes that are larger than /32. The /32 route propagates to these areas: Any VPN or ExpressRoute connection to an on-premises system.</p>
-</blockquote>
-<p>See: <a href="https://learn.microsoft.com/en-us/azure/architecture/guide/networking/private-link-hub-spoke-network?WT.mc_id=AZ-MVP-5004796#considerations" target="_blank" rel="noopener noreferrer">Considerations for Hub and Spoke topology</a>.</p>
-<p>In an Azure Virtual Wide Area Network (VWAN), you could see this route in the virtual hub <a href="https://learn.microsoft.com/azure/virtual-wan/effective-routes-virtual-hub?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">effective routes</a> and which gets propagated to the expressroute gateway.</p>
-<p>My traffic from on-premises to the Azure Arc went directly to the private endpoints (bypassing the Azure Firewall). Still, the route back via the Azure Firewall was completely different, leading to asymmetric routing <em>(a packet traverses from a source to a destination in one path and takes a different path when it returns to the source)</em>.</p>
-<p><strong>To resolve this</strong>, we need to enable network security policies for User-Defined Routes on the subnet of the private endpoint(s):</p>
-<p><img loading="lazy" alt="Azure Portal - Private Endpoint - Routes" src="https://luke.geek.nz/assets/images/AzurePortal_RouteTables_PrivateEndpoint-036eb8b544141f79ad204b3acd2aeb93.png" width="1816" height="708" class="img_ev3q"></p>
-<p>Once enabled, you should see the traffic connect and flow through your Azure Firewall almost immediately.</p>
-<p>Reference:</p>
-<ul>
-<li><a href="https://learn.microsoft.com/azure/private-link/disable-private-endpoint-network-policy?tabs=network-policy-portal&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Manage network policies for private endpoints</a></li>
-<li><a href="https://learn.microsoft.com/azure/firewall-manager/private-link-inspection-secure-virtual-hub?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Secure traffic destined to private endpoints in Azure Virtual WAN</a></li>
-</ul>]]></content:encoded>
             <category>Azure</category>
         </item>
     </channel>
