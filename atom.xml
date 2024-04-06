@@ -47,8 +47,10 @@ Or general application testing and development</li>
 </ol>
 <p><img loading="lazy" alt="Update Azure Container Apps - Timezone" src="https://luke.geek.nz/assets/images/Update_AzContainerAppTimeZone-a07fc34a0c2548c427afa0fcc0212b69.gif" width="1820" height="964" class="img_ev3q"></p>
 <p>📖 References:</p>
-<p><a href="https://support.circleci.com/hc/en-us/articles/115015771347-How-do-I-set-the-timezones-in-Docker-images" target="_blank" rel="noopener noreferrer">Default timezone in Docker containers</a>
-<a href="https://stackoverflow.com/questions/57607381/how-do-i-change-timezone-in-a-docker-container" target="_blank" rel="noopener noreferrer">How do I change timezone in a docker container?</a></p>]]></content>
+<ul>
+<li><a href="https://support.circleci.com/hc/en-us/articles/115015771347-How-do-I-set-the-timezones-in-Docker-images" target="_blank" rel="noopener noreferrer">Default timezone in Docker containers</a></li>
+<li><a href="https://stackoverflow.com/questions/57607381/how-do-i-change-timezone-in-a-docker-container" target="_blank" rel="noopener noreferrer">How do I change timezone in a docker container?</a></li>
+</ul>]]></content>
         <author>
             <name>Luke Murray</name>
             <uri>https://luke.geek.nz</uri>
