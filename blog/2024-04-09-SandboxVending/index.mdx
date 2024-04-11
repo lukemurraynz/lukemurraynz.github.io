@@ -29,7 +29,7 @@ This article aims to highlight some reference implementation considerations for 
 
 When working with Microsoft Azure, you may want an environment for learning, whether for an individual or a team.
 
-Cloud Sandboxes are contained, isolated environments that allow evaluation of new Cloud services and features (without impacting production environments).
+Cloud Sandboxes are contained, isolated environments that allow the evaluation of new Cloud services and features (without impacting production environments).
 
 :::info
 This follows on from a previous article around [Sandbox Design](https://luke.geek.nz/azure/microsoft-azure-sandbox-design-considerations/) considerations, but with a focus on the implementation elements. This article aims to give you some ideas on how you can achieve Sandbox vending.
@@ -39,9 +39,9 @@ A design area of the Ready phase of the [Cloud Adoption Framework](https://learn
 
 > "Subscription vending provides a platform mechanism for programmatically issuing subscriptions to application teams that need to deploy workloads."
 
-Subscription Vending is the foundation, of what we are going to discuss today: Sandbox vending.
+Subscription Vending is the foundation of what we are going to discuss today: Sandbox vending.
 
-I am going to base this article on Unmanaged Sandboxes *(Subscription scoped Sandboxes)* however, alot of the same information can be used across Sandbox types.
+I will base this article on Unmanaged Sandboxes *(Subscription scoped Sandboxes)*; however, a lot of the same information can be used across Sandbox types.
 
 ![Sandbox Types](Azure_Sandbox_Types.png)
 
@@ -114,7 +114,7 @@ mindmap
 
 ## Scenario
 
-The scenario we are going to run through today, is creating an Unmanaged *(ie Subscription scoped)* Sandbox *(Sandbox vending)* per-user or Team, so this could be be a method of impementing it.
+The scenario we are going to run through today is creating an Unmanaged *(i.e., Subscription scoped)* Sandbox *(Sandbox vending)* per-user or Team, so this could be a method of implementing it.
 
 ![Azure Environment Concepts](Azure_Environment_Concepts.png)
 
@@ -152,16 +152,16 @@ Although the Sandbox environment is for learning, you still need to be aware of 
 
 Implement [Budgets](https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-create-budgets?tabs=psbudget&WT.mc_id=AZ-MVP-5004796) for each Sandbox, assigned to the Budget.
 
-Monthly resource spend should be forecast initially and amended as the footprint changes. 
+Monthly resource spending should be forecast initially and amended as the footprint changes. 
 
-Budget alerts are setup to highlight unplanned spend, not to prevent it *(i.e., they are alerting thresholds, not limits)*.
+Budget alerts are set up to highlight unplanned spending, not to prevent it *(i.e., they are alerting thresholds, not limits)*.
 
-Each Sandbox environment, could start with a consistent Budget, and can be adjusted IF required as an exception.
-Budgets are intended to drive Sandbox owners, to keep their costs under control, by having the information on hand.
+Each Sandbox environment could start with a consistent Budget and can be adjusted IF required as an exception.
+Budgets are intended to drive Sandbox owners to keep their costs under control by having the information on hand.
 
 ## Security Baseline
 
-Security is a key concern for any environment, and the Sandbox environment is no different, however there are some tradeoffs - the key to a successful Sandbox environment, is that its an environment for learning, so the level of security you would adopt should be less, however there are some stop gaps that should be implemented.
+Security is a key concern for any environment, and the Sandbox environment is no different; however, there are some tradeoffs. The key to a successful Sandbox environment is that it's an environment for learning, so the level of security you would adopt should be less. However, there are some stop gaps that should be implemented.
 
 ### Defender for Cloud
 
@@ -169,48 +169,48 @@ Security is a key concern for any environment, and the Sandbox environment is no
 
 ![Defender for Cloud](defender-for-cloud-pillars.png)
 
-Defender for Cloud should be enabled on all Sandboxes, to help protect against threats, increasing visibility and is a great learning tool. 
+Defender for Cloud should be enabled on all Sandboxes to help protect against threats and increase visibility. It is a great learning tool. 
 
-As people learn how to use Azure technologies, they may not necessarily know how to secure them, or how their services might be adapted for a more secure environment. Defender for Cloud helps increases the knowledge around resources, in alignment with [current security best practices](https://learn.microsoft.com/azure/defender-for-cloud/alerts-overview?WT.mc_id=AZ-MVP-5004796).
+As people learn how to use Azure technologies, they may not necessarily know how to secure them or how their services might be adapted for a more secure environment. Defender for Cloud helps increase the knowledge around resources in alignment with [current security best practices](https://learn.microsoft.com/azure/defender-for-cloud/alerts-overview?WT.mc_id=AZ-MVP-5004796).
 
 "While the security team is responsible for improving the security posture, team members might not actually implement security recommendations.
 Using governance rules driven by the security team helps you to drive accountability and an SLA around the remediation process."
 
 > [Governance rules](https://learn.microsoft.com/en-us/azure/defender-for-cloud/governance-rules?WT.mc_id=AZ-MVP-5004796) are key.
 
-For example, using Tags, you could assign resource owners to resources, and help drive accountability, alerts and remediation. Defender for Cloud, can be a great learning tool, by informing your Sandbox users of potential security issues.
+For example, using Tags, you could assign resource owners to resources and help drive accountability, alerts, and remediation. Defender for Cloud, can be a great learning tool, by informing your Sandbox users of potential security issues.
 
 ### Azure Policy
 
-[Azure Policy](https://learn.microsoft.com/azure/governance/policy/overview?WT.mc_id=AZ-MVP-5004796) is a service in Azure that you use to create, assign, and manage policies. These policies enforce different rules and effects over your resources, so those resources stay compliant with your corporate standards and service level agreements.
+[Azure Policy](https://learn.microsoft.com/azure/governance/policy/overview?WT.mc_id=AZ-MVP-5004796) is a service in Azure that you use to create, assign, and manage policies. These policies enforce different rules and effects over your resources so those resources stay compliant with your corporate standards and service level agreements.
 
 :::tip
-Hightly recommend you deploy your Policies and initiatives using [Azure Enterprise Policy as Code](https://azure.github.io/enterprise-azure-policy-as-code/).
+I highly recommend that you deploy your policies and initiatives using [Azure Enterprise Policy as Code](https://azure.github.io/enterprise-azure-policy-as-code/).
 :::
 
-There are tradeoffs, with the type of Azure policies you deploy in a Sandbox environment, vs what you would deploy in your Production, or even Dev/Test environment, recommeded policies as a base that I would recommend are:
+There are tradeoffs with the type of Azure policies you deploy in a Sandbox environment vs what you would deploy in your Production or even Dev/Test environment; recommended policies as a base that I would recommend are:
 
 Reference: [ALZ policies](https://github.com/Azure/Enterprise-Scale/blob/main/docs/wiki/ALZ-Policies.md)
 
 | Assignment Name                                                | Definition Name                                                | Policy Type                         | Description                                                                                                                                                                                            | Effect(s)         |
 | -------------------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
-| **Enforce ALZ Sandbox Guardrails** | **Enforce policies in the Sandbox Landing Zone** | `Policy Definition Set`, **Custom** | This initiative will help enforce and govern subscriptions that are placed within the Sandobx Management Group. Policies included: <ul><li>Deny vNET peering across subscriptions<li>Deny the deployment of vWAN/ER/VPN gateways.</ul>                                                                              | Enforce              |
+| **Enforce ALZ Sandbox Guardrails** | **Enforce policies in the Sandbox Landing Zone** | `Policy Definition Set,` **Custom** | This initiative will help enforce and govern subscriptions that are placed within the Sandbox Management Group. Policies included: <ul><li>Deny vNET peering across subscriptions<li>Deny the deployment of vWAN/ER/VPN gateways.</ul>                                                                              | Enforce              |
 
 | Assignment Name                                                | Definition Name                                                | Policy Type                         | Description                                                                                                                                                                                            | Effect(s)         |
 | -------------------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
-| **Enforce ALZ Decommissioned Guardrails** | **Enforce policies in the Decommissioned Landing Zone** | `Policy Definition Set`, **Custom** | This initiative will help enforce and govern subscriptions that are placed within the decommissioned Management Group as part of your Subscription decommissioning process.  Policies included: <ul><li>Deny the deployment of new resources<li>Deploy an auto VM shutdown policy at UTC 00:00</ul>                                                                           | Enforce              |
+| **Enforce ALZ Decommissioned Guardrails** | **Enforce policies in the Decommissioned Landing Zone** | `Policy Definition Set,` **Custom** | This initiative will help enforce and govern subscriptions that are placed within the decommissioned Management Group as part of your Subscription decommissioning process.  Policies included: <ul><li>Deny the deployment of new resources<li>Deploy an auto VM shutdown policy at UTC 00:00</ul>                                                                           | Enforce              |
 
-The Decommissioned Management group, is where you would move your Sandbox subscriptions, once they are no longer required, and you want to decommission them.
+The Decommissioned Management group is where you would move your Sandbox subscriptions once they are no longer required and you want to decommission them.
 
 ![Azure Policy - Azure Landing Zones - Initiative](AzurePolicy_ALZSandboxIniiative.png)
 
-Key policies are part of the ALZ Sandbox Guardrails, essentially the policies to restrit the deployment of network resources, that would allow you to link virtual networks to on-premises, peer to other virtual networks that would allow Sandbox users to connect to prodution virtual networks, or virtual networks outside of the control of your organisation.
+Key policies are part of the ALZ Sandbox Guardrails, essentially the policies to restrict the deployment of network resources. These policies would allow you to link virtual networks to on-premises, peer to other virtual networks, and allow Sandbox users to connect to production virtual networks or virtual networks outside of the control of your organization.
 
 ## Resource Consistency
 
-Resource Consistency is key, to ensure that resources are configured consistently to manage risks related to onboarding, drift, discoverability, and recovery.
+Resource Consistency is key. It ensures that resources are configured consistently to manage risks related to onboarding, drift, discoverability, and recovery.
 
-This is where alot of automation comes into play, to prevent drift and inconsistencies, with the creation *(and decommission)* of a Sandbox environment.
+This is where a lot of automation comes into play to prevent drift and inconsistencies with the creation (and decommission)* of a Sandbox environment.
 
 ![Azure DevOps Pipeline - Sandbox](ResourceConsistency_SBX_ADOPipelines.png)
 
