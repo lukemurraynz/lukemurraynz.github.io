@@ -202,10 +202,16 @@ Reference: [ALZ policies](https://github.com/Azure/Enterprise-Scale/blob/main/do
 
 The Decommissioned Management group, is where you would move your Sandbox subscriptions, once they are no longer required, and you want to decommission them.
 
-Key policies are part of the ALZ Sandbox Guardrails, essentially the policies to restrit the deployment of network resources, that would allow you to link virtual networks to on-premises, peer to other virtual networks that would allow Sandbox users to connect to prodution virtual networks, or virtual networks outside of your organization controls.
+![Azure Policy - Azure Landing Zones - Initiative](AzurePolicy_ALZSandboxIniiative.png)
+
+Key policies are part of the ALZ Sandbox Guardrails, essentially the policies to restrit the deployment of network resources, that would allow you to link virtual networks to on-premises, peer to other virtual networks that would allow Sandbox users to connect to prodution virtual networks, or virtual networks outside of the control of your organisation.
 
 ## Resource Consistency
 
 Resource Consistency is key, to ensure that resources are configured consistently to manage risks related to onboarding, drift, discoverability, and recovery.
+
+This is where alot of automation comes into play, to prevent drift and inconsistencies, with the creation *(and decommission)* of a Sandbox environment.
+
+![Azure DevOps Pipeline - Sandbox](ResourceConsistency_SBX_ADOPipelines.png)
 
 
