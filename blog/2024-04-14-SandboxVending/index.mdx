@@ -8,8 +8,7 @@ categories:
   - Azure
 authors:
   - Luke
-header: 
-  teaser:Azure_Environment_Concepts.png
+header: teaser:Azure_Environment_Concepts.png
 slug: azure/implementing-sandbox-vending
 keywords:
   - azure
@@ -50,7 +49,7 @@ A design area of the Ready phase of the [Cloud Adoption Framework](https://learn
 
 Subscription Vending is the foundation of what we will discuss today: Sandbox vending.
 
-I will base this article on Unmanaged Sandboxes *(Subscription-scoped Sandboxes)*; however, much of the same information can be used across all Sandbox types.
+I will base this article on Unmanaged Sandboxes _(Subscription-scoped Sandboxes)_; however, much of the same information can be used across all Sandbox types.
 
 ![Sandbox Types](Azure_Sandbox_Types.png)
 
@@ -123,18 +122,18 @@ mindmap
 
 ## 🎬 Scenario
 
-The scenario we are going to run through today involves creating an [Unmanaged](https://luke.geek.nz/azure/microsoft-azure-sandbox-design-considerations/) *(i.e., subscription-scoped)* Sandbox *(Sandbox vending)* per user or team, which could be a method of implementing it.
+The scenario we are going to run through today involves creating an [Unmanaged](https://luke.geek.nz/azure/microsoft-azure-sandbox-design-considerations/) _(i.e., subscription-scoped)_ Sandbox _(Sandbox vending)_ per user or team, which could be a method of implementing it.
 
 To go through this scenario, we will use the following Disciplines of [Cloud Adoption](https://learn.microsoft.com/azure/cloud-adoption-framework/?WT.mc_id=AZ-MVP-5004796) to help separate elements.
 
 ![Disciplines of Cloud Governance](Azure_Sandbox_CloudGovernance_Disciplines.png)
 
-| Discipline           | Description                                                                                           |
-|----------------------|-------------------------------------------------------------------------------------------------------|
-| Cost Management      | Cost is a primary concern for cloud users. Develop policies for cost control for all cloud platforms. |
-| Security Baseline    | Policies and enforcement apply those requirements across network, data, and asset configurations.     |
-| Resource Consistency | Resources can be configured consistently to manage risks related to onboarding, drift, discoverability, and recovery. |
-| Identity Baseline    | Identity Baseline discipline focuses on ensuring that identity is consistently applied across cloud adoption efforts. |
+| Discipline              | Description                                                                                                                  |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Cost Management         | Cost is a primary concern for cloud users. Develop policies for cost control for all cloud platforms.                        |
+| Security Baseline       | Policies and enforcement apply those requirements across network, data, and asset configurations.                            |
+| Resource Consistency    | Resources can be configured consistently to manage risks related to onboarding, drift, discoverability, and recovery.        |
+| Identity Baseline       | Identity Baseline discipline focuses on ensuring that identity is consistently applied across cloud adoption efforts.        |
 | Deployment Acceleration | Centralization, standardization, and consistency in approaches to deployment and configuration improve governance practices. |
 
 ## 💰 Cost Management
@@ -147,26 +146,26 @@ When working with a Sandbox environment, you need to be aware of the costs assoc
 
 Recommended Tags for a Sandbox environment could be:
 
-* "costCenter": "sandbox"
-* "costModel": "show-back"
-* "environment": "sandbox"
-* "resourceowner": "your_name"
-* "project": "sandbox_project"
+- "costCenter": "sandbox"
+- "costModel": "show-back"
+- "environment": "sandbox"
+- "resourceowner": "your_name"
+- "project": "sandbox_project"
 
 Although the Sandbox environment is for learning, you still need to be aware of its associated costs and keep these as lean as possible.
 
 You can also implement Cost Management and Governance workbooks that allow Sandbox users access to interactive dashboards to help them understand their costs and usage.
 
-* [Governance workbook](https://microsoft.github.io/finops-toolkit/governance-workbook) - Monitor the governance posture of your Azure environment. Leverage recommendations to address compliance issues.
-* [Cost optimization workbook](https://microsoft.github.io/finops-toolkit/optimization-workbook) - Give your engineers a single pane of glass for cost optimization with this handy Azure Monitor workbook.
+- [Governance workbook](https://microsoft.github.io/finops-toolkit/governance-workbook) - Monitor the governance posture of your Azure environment. Leverage recommendations to address compliance issues.
+- [Cost optimization workbook](https://microsoft.github.io/finops-toolkit/optimization-workbook) - Give your engineers a single pane of glass for cost optimization with this handy Azure Monitor workbook.
 
 ### 💰 Budgets
 
 Implement [Budgets](https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-create-budgets?tabs=psbudget&WT.mc_id=AZ-MVP-5004796) for each Sandbox, assigned to the Budget.
 
-Monthly resource spending should be forecast initially and amended as the footprint changes. 
+Monthly resource spending should be forecast initially and amended as the footprint changes.
 
-Budget alerts are set up to highlight unplanned spending, not to prevent it *(i.e., they are alerting thresholds, not limits)*.
+Budget alerts are set up to highlight unplanned spending, not to prevent it _(i.e., they are alerting thresholds, not limits)_.
 
 Each Sandbox environment could start with a consistent Budget and can be adjusted IF required as an exception.
 Budgets are intended to drive Sandbox owners to keep their costs under control by having the information on hand.
@@ -181,12 +180,12 @@ Security is a key concern for any environment, and the Sandbox environment is no
 
 ![Defender for Cloud](defender-for-cloud-pillars.png)
 
-Defender for Cloud should be enabled on all Sandboxes to help protect against threats and increase visibility. It is a great learning tool. 
+Defender for Cloud should be enabled on all Sandboxes to help protect against threats and increase visibility. It is a great learning tool.
 
 As people learn how to use Azure technologies, they may not necessarily know how to secure them or how their services might be adapted for a more secure environment. Defender for Cloud helps increase the knowledge around resources in alignment with [current security best practices](https://learn.microsoft.com/azure/defender-for-cloud/alerts-overview?WT.mc_id=AZ-MVP-5004796).
 
 > "While the security team is responsible for improving the security posture, team members might not actually implement security recommendations.
-Using governance rules driven by the security team helps you to drive accountability and an SLA around the remediation process."
+> Using governance rules driven by the security team helps you to drive accountability and an SLA around the remediation process."
 
 :::tip
 [Governance rules](https://learn.microsoft.com/en-us/azure/defender-for-cloud/governance-rules?WT.mc_id=AZ-MVP-5004796) are key.
@@ -206,13 +205,13 @@ There are tradeoffs with the type of Azure policies you deploy in a Sandbox envi
 
 Reference: [ALZ policies](https://github.com/Azure/Enterprise-Scale/blob/main/docs/wiki/ALZ-Policies.md)
 
-| Assignment Name                                                | Definition Name                                                | Policy Type                         | Description                                                                                                                                                                                            | Effect(s)         |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
-| **Enforce ALZ Sandbox Guardrails** | **Enforce policies in the Sandbox Landing Zone** | `Policy Definition Set,` **Custom** | This initiative will help enforce and govern subscriptions that are placed within the Sandbox Management Group. Policies included: <ul><li>Deny vNET peering across subscriptions</li><li>Deny the deployment of vWAN/ER/VPN gateways.</li></ul>                                                                              | Enforce              |
+| Assignment Name                    | Definition Name                                  | Policy Type                         | Description                                                                                                                                                                                                                                      | Effect(s) |
+| ---------------------------------- | ------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- |
+| **Enforce ALZ Sandbox Guardrails** | **Enforce policies in the Sandbox Landing Zone** | `Policy Definition Set,` **Custom** | This initiative will help enforce and govern subscriptions that are placed within the Sandbox Management Group. Policies included: <ul><li>Deny vNET peering across subscriptions</li><li>Deny the deployment of vWAN/ER/VPN gateways.</li></ul> | Enforce   |
 
-| Assignment Name                                                | Definition Name                                                | Policy Type                         | Description                                                                                                                                                                                            | Effect(s)         |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
-| **Enforce ALZ Decommissioned Guardrails** | **Enforce policies in the Decommissioned Landing Zone** | `Policy Definition Set,` **Custom** | This initiative will help enforce and govern subscriptions that are placed within the decommissioned Management Group as part of your Subscription decommissioning process.  Policies included: <ul><li>Deny the deployment of new resources</li><li>Deploy an auto VM shutdown policy at UTC 00:00</li></ul>                                                                           | Enforce              |
+| Assignment Name                           | Definition Name                                         | Policy Type                         | Description                                                                                                                                                                                                                                                                                                  | Effect(s) |
+| ----------------------------------------- | ------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- |
+| **Enforce ALZ Decommissioned Guardrails** | **Enforce policies in the Decommissioned Landing Zone** | `Policy Definition Set,` **Custom** | This initiative will help enforce and govern subscriptions that are placed within the decommissioned Management Group as part of your Subscription decommissioning process. Policies included: <ul><li>Deny the deployment of new resources</li><li>Deploy an auto VM shutdown policy at UTC 00:00</li></ul> | Enforce   |
 
 The Decommissioned Management group is where you would move your Sandbox subscriptions once they are no longer required and you want to decommission them.
 
@@ -236,9 +235,9 @@ This is where a lot of automation comes into play to prevent drift and inconsist
 
 ![Azure DevOps Pipeline - Sandbox](ResourceConsistency_SBX_ADOPipelines.png)
 
-Ideally, you would have a user interface where a user could request a Sandbox environment *(I will talk more about this in the deployment acceleration section)*, which would trigger an Azure DevOps pipeline or GitHub action, as an example, to create the environment.
+Ideally, you would have a user interface where a user could request a Sandbox environment _(I will talk more about this in the deployment acceleration section)_, which would trigger an Azure DevOps pipeline or GitHub action, as an example, to create the environment.
 
-Using Infrastructure as Code *(IaC)*, you can ensure that the environment is consistent and repeatable and can be provisioned and decommissioned.
+Using Infrastructure as Code _(IaC)_, you can ensure that the environment is consistent and repeatable and can be provisioned and decommissioned.
 
 ### 📚 Enterprise Policy as Code
 
@@ -260,21 +259,21 @@ Feel free to refer a blog post, I did previously on [Enterprise Policy as Code, 
 
 ### 🛠️ Azure DevOps/GitHub
 
-[Azure DevOps](https://azure.microsoft.com/products/devops?WT.mc_id=AZ-MVP-5004796) or [GitHub](https://github.com/), both offer features, such as Boards/Discussions, Code Repos, Pipelines *(or Actions)* which can be used as a platform, for IaC *(Infrastructure as Code)* and CI/CD *(Continous Integration and Continous Deployment)*, and is definitely recommended to be factored in your Sandbox design, when it comes to automation and desired state of your Sandbox environment.
+[Azure DevOps](https://azure.microsoft.com/products/devops?WT.mc_id=AZ-MVP-5004796) or [GitHub](https://github.com/), both offer features, such as Boards/Discussions, Code Repos, Pipelines _(or Actions)_ which can be used as a platform, for IaC _(Infrastructure as Code)_ and CI/CD _(Continous Integration and Continous Deployment)_, and is definitely recommended to be factored in your Sandbox design, when it comes to automation and desired state of your Sandbox environment.
 
-The following automation recommendations assume you have access to Azure DevOps or GitHub *(or similar)*.
+The following automation recommendations assume you have access to Azure DevOps or GitHub _(or similar)_.
 
 ### 🎼 Symphony
 
 A large part of the Sandbox vending is a DevOps pipeline and connectivity to Azure that allows Terraform and the pipeline in Azure DevOps to connect to make changes in Azure. Terraform is the car, and Symphony is the road that it travels on.
 
-[Symphony](https://github.com/microsoft/symphony) is a framework and set of patterns and best practices for developing, testing, and deploying infrastructure on Azure using Infrastructure as Code *(IAC)* It includes modern DevOps practices for IAC such as Main and Pull Request workflows, IaC Code Validation & Linting, Automated Testing, Security Scanning, Multi-environment deployments, modules dependencies and more. A mature workflow for IAC not only automates the deployment of the IAC resources but also incorporates engineering fundamentals, resource validation, dependency management, test execution, security scanning, and more.
+[Symphony](https://github.com/microsoft/symphony) is a framework and set of patterns and best practices for developing, testing, and deploying infrastructure on Azure using Infrastructure as Code _(IAC)_ It includes modern DevOps practices for IAC such as Main and Pull Request workflows, IaC Code Validation & Linting, Automated Testing, Security Scanning, Multi-environment deployments, modules dependencies and more. A mature workflow for IAC not only automates the deployment of the IAC resources but also incorporates engineering fundamentals, resource validation, dependency management, test execution, security scanning, and more.
 
 The Symphony pipelines for Azure DevOps and Terraform, for example, are:
 
 | Pipeline Name                        | Comments                                                                                                                                                                                                                                                                                                                                                                                                             |
 | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| pipeline.ci.terraform.yml | This YAML file defines a Continuous Integration (CI) pipeline for Azure DevOps, which triggers changes to the main branch, sets up certain variables, and executes several stages, including validation of configuration and preview deployment using Terraform templates. This file is the command file, triggering the other pipelines.                                                                          |
+| pipeline.ci.terraform.yml            | This YAML file defines a Continuous Integration (CI) pipeline for Azure DevOps, which triggers changes to the main branch, sets up certain variables, and executes several stages, including validation of configuration and preview deployment using Terraform templates. This file is the command file, triggering the other pipelines.                                                                            |
 | pipeline.destroy.terraform.yml       | This YAML file defines a pipeline in Azure DevOps that uses a specific agent image to run a job based on a template for destroying a Terraform environment, with the environment details and key vault information passed as parameters. The pipeline does not trigger automatically on any branch or pull request changes.                                                                                          |
 | template.terraform.previewdeploy.yml | This YAML file defines a job in an Azure DevOps pipeline that sets up a clean workspace, installs Terraform and Go, retrieves secrets from an Azure Key Vault, updates network rules and storage account settings, and executes a Terraform plan and apply operation. It also cleans up by removing the agent IP from the Key Vault and denying public access to the Terraform DevOps Storage after the job is done. |
 | template.terraform.report.yml        | This YAML file defines a job in an Azure DevOps pipeline that, depending on a condition, cleans the workspace, retrieves secrets from an Azure Key Vault, and executes a bash script to backup the state files of a specified environment using Terraform.                                                                                                                                                           |
@@ -304,7 +303,7 @@ Terraform modules that can be used during Sandbox provisioning are:
 
 The real foundation of Sandbox vending is the [Azure/terraform-azurerm-lz-vending](https://github.com/Azure/terraform-azurerm-lz-vending) Terraform module.
 
-It can be used  to create Azure resources according to the landing zone *(Sandbox)* vending pattern. It can be used to provision resources such as subscriptions, management group associations, role assignments, and virtual networks.
+It can be used to create Azure resources according to the landing zone _(Sandbox)_ vending pattern. It can be used to provision resources such as subscriptions, management group associations, role assignments, and virtual networks.
 
 Here is an example of how you could use the module by having multiple YAML files per Sandbox and using a for_each loop to create each Sandbox environment:
 
@@ -385,7 +384,7 @@ module "lz_vending" {
       resource_group_name = lower("rg-contoso-networks-${var.env}-aue-001")
       # The location where the virtual network will be created.
       location = var.location
-    
+
     }
 
   }
@@ -420,15 +419,15 @@ locals {
 Here is an example YAML file:
 
 ```yaml
-name: SandboxOwner1  # Name of the landing zone. No spaces.
-workload: DevTest  # Type of subscription for the landing zone (DevTest vs Production (PAY AS YOU GO)). Most Sandboxes will be Production (Pay As You Go), unless all users have a Visual Studio Enterprise subscription.
-owner: admin@contoso.com  # Owner of the landing zone
-billing_enrollment_account: 123456  # Billing enrollment account for the landing zone. Limit of 5000 API requests for new subscriptions. Later Subscriptions may need a new billing enrollment.
-management_group_id: Unmanaged-Sandbox  # Management group ID for the landing zone
-budget_amount: 1000  # Budget amount for the landing zone, numerical value
-expiry_date: 2024-10-16  # The date when the landing zone will expire, the default should be 3 months from the date of provisioning. After this date, resources may be automatically cleaned up.
-cost-centre: Contoso (Cloud)  # Cost center for the landing zone
-cost-model: show-back  # Cost model for the landing zone
+name: SandboxOwner1 # Name of the landing zone. No spaces.
+workload: DevTest # Type of subscription for the landing zone (DevTest vs Production (PAY AS YOU GO)). Most Sandboxes will be Production (Pay As You Go), unless all users have a Visual Studio Enterprise subscription.
+owner: admin@contoso.com # Owner of the landing zone
+billing_enrollment_account: 123456 # Billing enrollment account for the landing zone. Limit of 5000 API requests for new subscriptions. Later Subscriptions may need a new billing enrollment.
+management_group_id: Unmanaged-Sandbox # Management group ID for the landing zone
+budget_amount: 1000 # Budget amount for the landing zone, numerical value
+expiry_date: 2024-10-16 # The date when the landing zone will expire, the default should be 3 months from the date of provisioning. After this date, resources may be automatically cleaned up.
+cost-centre: Contoso (Cloud) # Cost center for the landing zone
+cost-model: show-back # Cost model for the landing zone
 ```
 
 This is a very basic example, but it gives you an idea of how you could use the module to create a Subscription and Resource Group and define Contributor access based on data from a data map that looks at each YAML file in a folder. The Expiry date is used as part of the Sandbox decommissioning process and also added as a Tag to the Subscription, along with the Owner, which can also be used as an email recipient of a Budget.
@@ -460,13 +459,13 @@ Access packages also include one or more policies. A policy defines the rules or
 
 ![Access Packages](Azure_Sandbox_IAM_AccessPackages.png)
 
-You can use Access packages to grant access to your Sandbox environment and then remove access when the environment is no longer required. 
+You can use Access packages to grant access to your Sandbox environment and then remove access when the environment is no longer required.
 
 Access Packages can be used to delegate access to each Sandbox environment to its owner. This allows Sandbox owners, who may have financial delegation, to control who has access to their environment and remove that access when no longer required.
 
 ### 🔒 Conditional Access
 
-Make sure you factor Conditional Access into your Sandbox design by making sure that only the users who may be using compliant devices or from trusted networks can access the environment. 
+Make sure you factor Conditional Access into your Sandbox design by making sure that only the users who may be using compliant devices or from trusted networks can access the environment.
 
 ## 🚀 Deployment Acceleration
 
