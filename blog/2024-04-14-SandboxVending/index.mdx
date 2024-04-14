@@ -120,7 +120,7 @@ mindmap
       Antipatterns
 ```
 
-## Scenario
+## 🎬 Scenario
 
 The scenario we are going to run through today is creating an Unmanaged *(i.e., Subscription scoped)* Sandbox *(Sandbox vending)* per-user or Team, so this could be a method of implementing it.
 
@@ -138,9 +138,9 @@ To go through this scenario, we will use the the following Disicplines of [Cloud
 | Identity Baseline    | Identity Baseline discipline focuses on ensuring that identity is consistently applied across cloud adoption efforts. |
 | Deployment Acceleration | Centralization, standardization, and consistency in approaches to deployment and configuration improve governance practices. |
 
-## Cost Management
+## 💰 Cost Management
 
-### FinOps
+### 💰 FinOps
 
 When working with a Sandbox environment, you need to be aware of the costs associated with it. [FinOps principles](https://www.finops.org/framework/principles/) can be key.
 
@@ -158,13 +158,10 @@ Although the Sandbox environment is for learning, you still need to be aware of 
 
 You can also implement Cost Management and Governance workbooks, that allow Sandbox users, access to interactive dashboards, that can help them understand their costs and usage.
 
-See:
-
 * [Governance workbook](https://microsoft.github.io/finops-toolkit/governance-workbook) - Monitor the governance posture of your Azure environment. Leverage recommendations to address compliance issues.
 * [Cost optimization workbook](https://microsoft.github.io/finops-toolkit/optimization-workbook) - Give your engineers a single pane of glass for cost optimization with this handy Azure Monitor workbook.
 
-
-### Budgets
+### 💰 Budgets
 
 Implement [Budgets](https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-create-budgets?tabs=psbudget&WT.mc_id=AZ-MVP-5004796) for each Sandbox, assigned to the Budget.
 
@@ -175,11 +172,11 @@ Budget alerts are set up to highlight unplanned spending, not to prevent it *(i.
 Each Sandbox environment could start with a consistent Budget and can be adjusted IF required as an exception.
 Budgets are intended to drive Sandbox owners to keep their costs under control by having the information on hand.
 
-## Security Baseline
+## 🔒 Security Baseline
 
 Security is a key concern for any environment, and the Sandbox environment is no different; however, there are some tradeoffs. The key to a successful Sandbox environment is that it's an environment for learning, so the level of security you would adopt should be less. However, there are some stop gaps that should be implemented.
 
-### Defender for Cloud
+### 🛡️ Defender for Cloud
 
 [Defender for Cloud](https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction?WT.mc_id=AZ-MVP-5004796) is a cloud-native application protection platform (CNAPP) that is made up of security measures and practices that are designed to protect cloud-based applications from various cyber threats and vulnerabilities.
 
@@ -196,7 +193,7 @@ Using governance rules driven by the security team helps you to drive accountabi
 
 For example, using Tags, you could assign resource owners to resources and help drive accountability, alerts, and remediation. Defender for Cloud, can be a great learning tool, by informing your Sandbox users of potential security issues.
 
-### Azure Policy
+### 📜 Azure Policy
 
 [Azure Policy](https://learn.microsoft.com/azure/governance/policy/overview?WT.mc_id=AZ-MVP-5004796) is a service in Azure that you use to create, assign, and manage policies. These policies enforce different rules and effects over your resources so those resources stay compliant with your corporate standards and service level agreements.
 
@@ -222,7 +219,7 @@ The Decommissioned Management group is where you would move your Sandbox subscri
 
 Key policies are part of the ALZ Sandbox Guardrails, essentially the policies to restrict the deployment of network resources. These policies would allow you to link virtual networks to on-premises, peer to other virtual networks, and allow Sandbox users to connect to production virtual networks or virtual networks outside of the control of your organization.
 
-### Terms of use
+### 📜 Terms of use
 
 Make sure you don't forget about the People/Process of your Sandbox sandbox, you should implement a Terms of Use for the Sandbox environment, so that users understand the rules and regulations of the environment, such as 'Do not store Production data' in the Sandbox environment.
 
@@ -230,7 +227,7 @@ You can combine this directly into the Azure Portal login experience, by using [
 
 ![Microsoft Entra - Terms of use](user-tou.png)
 
-## Resource Consistency
+## 🔄 Resource Consistency
 
 Resource Consistency is key. It ensures that resources are configured consistently to manage risks related to onboarding, drift, discoverability, and recovery.
 
@@ -242,7 +239,7 @@ Ideally you would have a user interface, where a user could request a Sandbox en
 
 Using Infrastructure as Code *(IaC)*, you can ensure that the environment is consistent, repeatalbe, and can be provisioned and decommissioned.
 
-### Enterprise Policy as Code
+### 📚 Enterprise Policy as Code
 
 [Enterprise Policy as Code or EPAC](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/policy-management/enterprise-policy-as-code?WT.mc_id=AZ-MVP-5004796) for short comprises a number of scripts which can be used in CI/CD based system or a semi-automated use to deploy Policies, Policy Sets, Assignments, Policy Exemptions and Role Assignments.
 
@@ -258,13 +255,13 @@ Enterprise Policy as Code could be used for Sandbox environments, as an opportun
 
 Feel free to refer a blog post, I did previously on [Enterprise Policy as Code, with Azure DevOps](https://luke.geek.nz/azure/enterprise-policy-code-azure-devops/).
 
-### Azure DevOps/GitHub
+### 🛠️ Azure DevOps/GitHub
 
 [Azure DevOps](https://azure.microsoft.com/products/devops?WT.mc_id=AZ-MVP-5004796) or [GitHub](https://github.com/), both offer features, such as Boards/Discussions, Code Repos, Pipelines *(or Actions)* which can be used as a platform, for IaC *(Infrastructure as Code)* and CI/CD *(Continous Integration and Continous Deployment)*, and is defintely recommended to be factored in your Sandbox design, when it comes to automation and desired state of your Sandbox environment.
 
 Any following automation recommendations, going to assume you have access to Azure DevOps or GitHub *(or similar)*.
 
-### Symphony
+### 🎼 Symphony
 
 A large part of the Sandbox vending is a DevOps pipeline, and connectivity to Azure, that allows the Terraform and pipeline sin Azure DevOps to connect to make changes in Azure, where Terraform is the car, Symphony is the road that it travels on.
 
@@ -286,7 +283,7 @@ Using a framework, such as Symphony gives you a good starting point for your dep
 ![Symphony - Prestep](Azure_Sandbox_Symphony_Prestep.png)
 ![Symphony - Preview & Deploy](Azure_Sandbox_Symphony_PreviewandDeploy.png)
 
-### Terraform
+### 🏗️ Terraform
 
 Bicep and Terraform are both tools used for infrastructure-as-code (IaC), which means they allow you to define and manage your cloud infrastructure using code. Both are declarative, meaning you define the desired state of your infrastructure, and the tool figures out how to make it so. Bicep is more Microsoft Azure focused, while Terraform is more multi-cloud focused.
 
@@ -440,19 +437,19 @@ Using this method you can create a new Sandbox environment, by creating a new YA
 
 For the decomissioning, you can run a seperate pipeline, to check the expiry of the YAML file, then delete it, if its past its due-=date, which could then trigger the removal.
 
-## Identity Baseline
+## 👤 Identity Baseline
 
 To connect to your Sandbox environment, you need to ensure that you have the correct Identity Baseline in place.
 
 I recommend you merge your Sandbox identity access, ie Entra ID Groups, Access packages etc into your IaC pipelines, so that access is granted automatically, when a new Sandbox environment is created, then removed when not required anymore.
 
-### Entitlement Management
+### 👥 Entitlement Management
 
 [Entitlement management](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview?WT.mc_id=AZ-MVP-5004796) is an identity governance feature that enables organizations to manage identity and access lifecycle at scale, by automating access request workflows, access assignments, reviews, and expiration.
 
 ![Entitlement Management](Azure_Sandbox_IAM_EntitlementManagement.png)
 
-### Access packages
+### 📦 Access packages
 
 With an access package, an administrator or delegated access package manager lists the resources (groups, apps, and sites), and the roles the users need for those resources.
 Access packages also include one or more policies. A policy defines the rules or guardrails for assignment to access package. Each policy can be used to ensure that only the appropriate users are able to have access assignments, and the access is time-limited and will expire if not renewed.
@@ -463,13 +460,13 @@ You can use Access packages to grant access to your Sandbox environment, and the
 
 Access Packages can be used to delegate access to each Sandbox environment, to the owner of the Sandbox environment, allowing Sandbox owners, who may have financial delegation to control who has access to their environment, and remove that access when no longer required.
 
-### Conditional Access
+### 🔒 Conditional Access
 
 Make sure you factor Conditional Access into your Sandbox design, by making sure that only the users who may be using compliant devices, or from trusted networks can access the environment. 
 
-## Deployment Acceleration
+## 🚀 Deployment Acceleration
 
-### Onboarding
+### 🚀 Onboarding self-service
 
 Onboarding of a new Sandbox environment, could be automated from start to end, using a self-service portal. An example is:
 
