@@ -40,7 +40,7 @@ When working with Microsoft Azure, you may want an environment for learning, whe
 Cloud Sandboxes are contained, isolated environments that allow the evaluation of new Cloud services and features (without impacting production environments).
 
 :::info
-This follows from a previous article about [Sandbox Design](https://luke.geek.nz/azure/microsoft-azure-sandbox-design-considerations/) considerations but focuses on the implementation elements. This article aims to give you some ideas on how you can achieve Sandbox vending and is opinionated based on my experience. However, it's purely intended to show one (of many) possible ways. Just make sure you understand the business requirements of what you need to achieve.
+This follows from a previous article about [Sandbox Design](https://luke.geek.nz/azure/microsoft-azure-sandbox-design-considerations/) considerations but focuses on the implementation elements. This article aims to give you some ideas on how you can achieve Sandbox vending and is opinionated based on my experience. However, it's purely intended to show one (of many) possible ways. Just make sure you understand the business requirements and what you need to achieve.
 :::
 
 A design area of the Ready phase of the [Cloud Adoption Framework](https://learn.microsoft.com/azure/cloud-adoption-framework/?WT.mc_id=AZ-MVP-5004796) is the design and implementation of the [Azure Landing Zone](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796), it would be asmiss of me not to bring up [Subscription vending](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/subscription-vending?WT.mc_id=AZ-MVP-5004796).
@@ -269,7 +269,7 @@ A large part of the Sandbox vending is a DevOps pipeline and connectivity to Azu
 
 [Symphony](https://github.com/microsoft/symphony) is a framework and set of patterns and best practices for developing, testing, and deploying infrastructure on Azure using Infrastructure as Code *(IAC)* It includes modern DevOps practices for IAC such as Main and Pull Request workflows, IaC Code Validation & Linting, Automated Testing, Security Scanning, Multi-environment deployments, modules dependencies and more. A mature workflow for IAC not only automates the deployment of the IAC resources but also incorporates engineering fundamentals, resource validation, dependency management, test execution, security scanning, and more.
 
-The Symphony pipelines for Azure DevOps and Terraform for example, are:
+The Symphony pipelines for Azure DevOps and Terraform, for example, are:
 
 | Pipeline Name                        | Comments                                                                                                                                                                                                                                                                                                                                                                                                             |
 | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
