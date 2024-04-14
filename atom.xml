@@ -51,7 +51,7 @@
 <li><a href="https://microsoft.github.io/finops-toolkit/optimization-workbook" target="_blank" rel="noopener noreferrer">Cost optimization workbook</a> - Give your engineers a single pane of glass for cost optimization with this handy Azure Monitor workbook.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="-budgets">💰 Budgets<a href="https://luke.geek.nz/azure/implementing-sandbox-vending#-budgets" class="hash-link" aria-label="Direct link to 💰 Budgets" title="Direct link to 💰 Budgets">​</a></h3>
-<p>Implement <a href="https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-create-budgets?tabs=psbudget&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Budgets</a> for each Sandbox, assigned to the Budget.</p>
+<p>Implement <a href="https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-create-budgets?tabs=psbudget&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Budgets</a> for each Sandbox, assigned to the Sandbox owner.</p>
 <p>Monthly resource spending should be forecast initially and amended as the footprint changes.</p>
 <p>Budget alerts are set up to highlight unplanned spending, not to prevent it <em>(i.e., they are alerting thresholds, not limits)</em>.</p>
 <p>Each Sandbox environment could start with a consistent Budget and can be adjusted IF required as an exception.
