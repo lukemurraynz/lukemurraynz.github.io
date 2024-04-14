@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://luke.geek.nz/</id>
     <title>luke.geek.nz Blog</title>
-    <updated>2024-04-13T23:52:22.274Z</updated>
+    <updated>2024-04-14T00:26:42.797Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://luke.geek.nz/"/>
     <subtitle>luke.geek.nz Blog</subtitle>
@@ -12,7 +12,7 @@
         <title type="html"><![CDATA[Implementing a Sandbox Environment in Microsoft Azure]]></title>
         <id>https://luke.geek.nz/azure/implementing-sandbox-vending</id>
         <link href="https://luke.geek.nz/azure/implementing-sandbox-vending"/>
-        <updated>2024-04-13T23:52:22.274Z</updated>
+        <updated>2024-04-14T00:26:42.797Z</updated>
         <summary type="html"><![CDATA[This article highlights reference implementation considerations for implementing a Sandbox environment in Microsoft Azure.]]></summary>
         <content type="html"><![CDATA[<p>When working with Microsoft Azure, you may want an environment for learning, whether for an individual or a team.</p>
 <p>This article aims to highlight some reference implementation considerations for implementing a Sandbox environment within the Microsoft Azure platform.</p>
