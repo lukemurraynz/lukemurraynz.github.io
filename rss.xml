@@ -38,12 +38,14 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="-finops">💰 FinOps<a href="https://luke.geek.nz/azure/implementing-sandbox-vending#-finops" class="hash-link" aria-label="Direct link to 💰 FinOps" title="Direct link to 💰 FinOps">​</a></h3>
 <p>When working with a Sandbox environment, you need to be aware of the costs associated with it. <a href="https://www.finops.org/framework/principles/" target="_blank" rel="noopener noreferrer">FinOps principles</a> can be key.</p>
 <p><a href="https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Tags</a> can be key to help you showback/chargeback costs and help you assign resource owners.</p>
-<p>Recommended Tags for a Sandbox environment would be:</p>
-<p>"costCenter": "sandbox",
-"costModel": "show-back",
-"environment": "sandbox",
-"resourceowner": "your_name",
-"project": "sandbox_project"</p>
+<p>Recommended Tags for a Sandbox environment could be:</p>
+<ul>
+<li>"costCenter": "sandbox"</li>
+<li>"costModel": "show-back"</li>
+<li>"environment": "sandbox"</li>
+<li>"resourceowner": "your_name"</li>
+<li>"project": "sandbox_project"</li>
+</ul>
 <p>Although the Sandbox environment is for learning, you still need to be aware of its associated costs and keep these as lean as possible.</p>
 <p>You can also implement Cost Management and Governance workbooks that allow Sandbox users access to interactive dashboards to help them understand their costs and usage.</p>
 <ul>
