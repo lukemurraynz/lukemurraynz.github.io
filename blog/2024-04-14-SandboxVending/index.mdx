@@ -32,6 +32,8 @@ This article aims to highlight some reference implementation considerations for 
 
 <!-- truncate -->
 
+## 📝 Overview
+
 When working with Microsoft Azure, you may want an environment for learning, whether for an individual or a team.
 
 Cloud Sandboxes are contained, isolated environments that allow the evaluation of new Cloud services and features (without impacting production environments).
@@ -42,7 +44,9 @@ This follows from a previous article about [Sandbox Design](https://luke.geek.nz
 
 A design area of the Ready phase of the [Cloud Adoption Framework](https://learn.microsoft.com/azure/cloud-adoption-framework/?WT.mc_id=AZ-MVP-5004796) is the design and implementation of the [Azure Landing Zone](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796), it would be asmiss of me not to bring up [Subscription vending](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/subscription-vending?WT.mc_id=AZ-MVP-5004796).
 
-> "Subscription vending provides a platform mechanism for programmatically issuing subscriptions to application teams that need to deploy workloads."
+:::info
+"Subscription vending provides a platform mechanism for programmatically issuing subscriptions to application teams that need to deploy workloads."
+:::
 
 Subscription Vending is the foundation of what we will discuss today: Sandbox vending.
 
@@ -181,10 +185,12 @@ Defender for Cloud should be enabled on all Sandboxes to help protect against th
 
 As people learn how to use Azure technologies, they may not necessarily know how to secure them or how their services might be adapted for a more secure environment. Defender for Cloud helps increase the knowledge around resources in alignment with [current security best practices](https://learn.microsoft.com/azure/defender-for-cloud/alerts-overview?WT.mc_id=AZ-MVP-5004796).
 
-"While the security team is responsible for improving the security posture, team members might not actually implement security recommendations.
+> "While the security team is responsible for improving the security posture, team members might not actually implement security recommendations.
 Using governance rules driven by the security team helps you to drive accountability and an SLA around the remediation process."
 
-> [Governance rules](https://learn.microsoft.com/en-us/azure/defender-for-cloud/governance-rules?WT.mc_id=AZ-MVP-5004796) are key.
+:::tip
+[Governance rules](https://learn.microsoft.com/en-us/azure/defender-for-cloud/governance-rules?WT.mc_id=AZ-MVP-5004796) are key.
+:::
 
 For example, using Tags, you could assign resource owners to resources and help drive accountability, alerts, and remediation. Defender for Cloud can be a great learning tool by informing your Sandbox users of potential security issues.
 
