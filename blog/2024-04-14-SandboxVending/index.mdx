@@ -433,7 +433,9 @@ cost-model: show-back  # Cost model for the landing zone
 
 This is a very basic example, but it gives you an idea of how you could use the module to create a Subscription and Resource Group and define Contributor access based on data from a data map that looks at each YAML file in a folder. The Expiry date is used as part of the Sandbox decommissioning process and also added as a Tag to the Subscription, along with the Owner, which can also be used as an email recipient of a Budget.
 
+:::tip
 There is a [limit](https://learn.microsoft.com/azure/cost-management-billing/manage/programmatically-create-subscription-enterprise-agreement?tabs=rest&WT.mc_id=AZ-MVP-5004796#limitations-of-azure-enterprise-subscription-creation-api) to the number of API requests you can make to create a new subscription, so you may need to create a new billing enrollment account if you hit this limit, which is why its included in the yaml.
+:::
 
 Using this method, you can create a new Sandbox environment by creating a new YAML file, running the Terraform apply command, and decommissioning the environment by removing the YAML file and running the Terraform apply command again.
 
@@ -468,7 +470,7 @@ Make sure you factor Conditional Access into your Sandbox design by making sure 
 
 ## 🚀 Deployment Acceleration
 
-### 🚀 Onboarding self-service
+### 🖥️ Onboarding self-service
 
 Onboarding of a new Sandbox environment could be automated from start to end, using a self-service portal. An example is:
 
