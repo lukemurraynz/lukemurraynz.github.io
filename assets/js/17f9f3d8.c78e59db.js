@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunklukemurraynz=self.webpackChunklukemurraynz||[]).push([[36140],{6312:e=>{e.exports=JSON.parse('{"label":"SubscriptionVending","permalink":"/tags/subscription-vending","allTagsPath":"/tags","count":1,"unlisted":false}')}}]);

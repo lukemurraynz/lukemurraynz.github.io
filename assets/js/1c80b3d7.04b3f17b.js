@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunklukemurraynz=self.webpackChunklukemurraynz||[]).push([[80705],{445:a=>{a.exports=JSON.parse('{"label":"IaC","permalink":"/tags/ia-c","allTagsPath":"/tags","count":1,"unlisted":false}')}}]);

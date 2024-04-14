@@ -151,11 +151,6 @@ Access packages also include one or more policies. A policy defines the rules or
             <uri>https://luke.geek.nz</uri>
         </author>
         <category label="Azure" term="Azure"/>
-        <category label="Sandbox" term="Sandbox"/>
-        <category label="SubscriptionVending" term="SubscriptionVending"/>
-        <category label="SandboxVending" term="SandboxVending"/>
-        <category label="Terraform" term="Terraform"/>
-        <category label="IaC" term="IaC"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Change the Timezone of your Azure Container App]]></title>

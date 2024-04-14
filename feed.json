@@ -16,12 +16,7 @@
                 "url": "https://luke.geek.nz"
             },
             "tags": [
-                "Azure",
-                "Sandbox",
-                "SubscriptionVending",
-                "SandboxVending",
-                "Terraform",
-                "IaC"
+                "Azure"
             ]
         },
         {

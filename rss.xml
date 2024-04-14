@@ -148,11 +148,6 @@ Access packages also include one or more policies. A policy defines the rules or
 <p>A <a href="https://learn.microsoft.com/power-apps/powerapps-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">PowerApp</a> that allows a user to request a new Sandbox environment, by filling in a form, that then triggers a <a href="https://learn.microsoft.com/power-automate/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">PowerAutomate</a> flow, to gain approval, and then creates a new YAML file, in a folder, that then triggers a Terraform apply command, to create the new Sandbox environment.</p>
 <p><img loading="lazy" alt="Cloud Landing Zone Request - PowerApp" src="https://luke.geek.nz/assets/images/Azure_SandboxPowerApps-03eff2da8da6f063c4081fc6b8660235.png" width="1765" height="992" class="img_ev3q"></p>]]></content:encoded>
             <category>Azure</category>
-            <category>Sandbox</category>
-            <category>SubscriptionVending</category>
-            <category>SandboxVending</category>
-            <category>Terraform</category>
-            <category>IaC</category>
         </item>
         <item>
             <title><![CDATA[Change the Timezone of your Azure Container App]]></title>

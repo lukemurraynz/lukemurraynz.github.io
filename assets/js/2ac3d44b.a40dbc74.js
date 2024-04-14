@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunklukemurraynz=self.webpackChunklukemurraynz||[]).push([[18370],{82422:a=>{a.exports=JSON.parse('{"label":"SandboxVending","permalink":"/tags/sandbox-vending","allTagsPath":"/tags","count":1,"unlisted":false}')}}]);
