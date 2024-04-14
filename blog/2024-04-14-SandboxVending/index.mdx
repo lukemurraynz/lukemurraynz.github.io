@@ -289,7 +289,7 @@ Using a framework such as Symphony gives you a good starting point for your depl
 
 [Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/overview?tabs=bicep&WT.mc_id=AZ-MVP-5004796) and [Terraform](https://www.terraform.io/) are both tools used for infrastructure-as-code (IaC), which means they allow you to define and manage your cloud infrastructure using code. Both are declarative, meaning you define the desired state of your infrastructure and the tool figures out how to make it so. Bicep is more focused on Microsoft Azure, while Terraform is more focused on multi-cloud.
 
-For this article, I am going to focus on Terraform, based purely on work done with it around Sandbox provisioning and decommissioning. The Terraform state file helps with a lot of the Sandbox decommissioning aspect.
+For this article, I will focus on Terraform, based purely on work done with it around Sandbox provisioning and decommissioning. The Terraform state file helps with a lot of the Sandbox decommissioning aspect.
 
 Terraform modules that can be used during Sandbox provisioning are:
 
@@ -305,7 +305,7 @@ The real foundation of Sandbox vending is the [Azure/terraform-azurerm-lz-vendin
 
 It can be used to create Azure resources according to the landing zone _(Sandbox)_ vending pattern. It can be used to provision resources such as subscriptions, management group associations, role assignments, and virtual networks.
 
-Here is an example of how you could use the module by having multiple YAML files per Sandbox and using a for_each loop to create each Sandbox environment:
+Here is an example _(partial snippet of an overall solution)_ of how you COULD use the module by having multiple YAML files per Sandbox and using a for_each loop to create each Sandbox environment:
 
 ```hcl
 # This module is used to create resources in Azure according to the landing zone vending pattern.
