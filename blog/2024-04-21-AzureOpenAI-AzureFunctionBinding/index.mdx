@@ -1,0 +1,70 @@
+---
+title: Resolving 404 Error with OpenAI Azure Function Binding
+metaDescription: This article provides a guide on troubleshooting a 404 error when querying OpenAI using Azure Function binding in Azure.
+date: 2024-04-21T05:06:54.374Z
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+header: AzureFunction_OpenAIBinding_NotFound.png
+slug: azure/404-attempting-query-openai-azure-function-binding
+keywords:
+  - azure
+  - function
+  - cloudnative
+  - openai
+  - ExtensionBundle
+description: Troubleshooting a 404 error when querying OpenAI using Azure Function binding in Azure.
+---
+
+When attempting to work with [Azure Open AI](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796) you may want to work with an [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796) to adjust or massage the response, to do so you can use the [Azure Functions bindings for OpenAI's GPT engine
+](https://github.com/Azure/azure-functions-openai-extension) to query the OpenAI API. However, you may encounter a 404 Not Found error when attempting to query OpenAI using the Azure Function binding. 
+
+![Azure Function - 404 Not Found](AzureFunction_OpenAIBinding_NotFound.png)
+
+<!-- truncate -->
+
+If you encounter this error, it could be likely that you are using the Azure Function ExtensionBundle does not contain the necessary dependencies to query the OpenAI API. 
+
+The binding requires at least:
+
+* Microsoft.Azure.WebJobs.Extensions.OpenAI: 0.12.0-alpha
+* Microsoft.Azure.WebJobs.Extensions.OpenAI.Kusto: 0.12.0-alpha
+
+![Nuget Webjob extensions](AzureFunction_OpenAIBinding_NugetPackageRequirements.png)
+
+:::error
+The binding type(s) 'textCompletion' were not found in the configured extension buindle. Please ensure the correct version of the extension bundle is configured.
+:::
+
+Both of the two packages are not integrated in the [4.13.2](https://github.com/Azure/azure-functions-extension-bundles/releases/tag/4.13.2) version of the ExtensionBundle, which at the time of writing are not avaliable in the production ExtensionBundle shipped wth new Azure Functions *(which is 4.13.2)*. 
+
+**However**, it is integrated into the Extension Bundle Preview. For example, Extension Bundle Preview for: [4.18.0](https://github.com/Azure/azure-functions-extension-bundles/releases/tag/4.18.0-Preview) features:
+
+* Microsoft.Azure.WebJobs.Extensions.OpenAI: 0.13.0-alpha
+* Microsoft.Azure.WebJobs.Extensions.OpenAI.Kusto: 0.13.0-alpha
+
+![Extensions Bundles Preview release4.18.0](AzureFunction_OpenAIBinding_ExtensionsBundlePreview4.18.0.png)
+
+To use the latest Preview Bundle, and enable the OpenAI binding extension, you need to update your funtion apps: host.json file:
+
+```json
+{
+  "version": "2.0",
+  "managedDependency": {
+    "Enabled": true
+  },
+   "extensionBundle": {
+        "id": "Microsoft.Azure.Functions.ExtensionBundle.Preview",
+        "version": "[4.*, 5.0.0)"
+    }
+}
+```
+
+Update the id of `Microsoft.Azure.Functions.ExtensionBundle.Preview` and the version to `[4.*, 5.0.0)` in accordance with the latest [bundle releases](https://github.com/Azure/azure-functions-extension-bundles/releases) to ensure you are using the latest Preview Bundle. The wildcard `*` will ensure you are using the latest version of the Extension Bundle Preview, within that major release.
+
+You should now be able to query the OpenAI API using the Azure Function binding.
+
+![Run After Binding](AzureFunction_OpenAIBinding_SuccessRunAfterBindingUpdate.png)
