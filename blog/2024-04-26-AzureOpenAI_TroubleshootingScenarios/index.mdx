@@ -46,18 +46,18 @@ keywords:
   - system messages
 ---
 
-Troubleshooting Azure Open AI, and API calls to OpenAI can be challenging, especially when you may not know where to start!
+Troubleshooting Azure Open AI and API calls to OpenAI can be challenging, especially when you may not know where to start!
 
-The idea of this article, is to give you not only a place to start, with some common scenarios, you may run into, but also a way of thinking - to help you troubleshoot.
+The idea of this article is to give you not only a place to start with some common scenarios you may run into but also a way of thinking - to help you troubleshoot.
 
 <!-- truncate -->
 
-I am a big fan of the KT or [Kepner-Tregoe](https://kepner-tregoe.com/) problem analysis methodology, and I have used it in many scenarios in my career to help discover the test the root cause of various problems during my career, so we will use the base of this problem analysis methodology to help us troubleshoot the scenarios we will discuss in this article.
+I am a big fan of the KT, or [Kepner-Tregoe](https://kepner-tregoe.com/) problem analysis methodology and I have used it in many scenarios throughout my career to helping discover and test the root cause of various problems. So, we will use the base of this problem analysis methodology to help us troubleshoot the scenarios we will discuss in this article.
 
 ## ❓ The Kepner-Tregoe (KT) 
 
 :::info
-The Kepner-Tregoe (KT) Problem Management methodology, incorporates elements such as:
+The Kepner-Tregoe (KT) Problem Management methodology incorporates elements such as:
 
 * "Is" *(what we know to be true about the problem)*
 * "Is Not" *(what we know to be false or different from the problem)*
@@ -70,13 +70,13 @@ and "Next Steps" *(actions to further diagnose or solve the problem)*
 ![Kepner-Tregoe Method](KT_Method.png)
 :::
 
-You may find, that with some issues, with instinctulavely do alot of this, but this methology helps, give you context, allows you to check any bias you may have with trying to find the root cause, and gives you some great tools to rule out and test any theories, given its been a few years since I have been through the formal training, but its one of those methologies that have stuck with me, and always keep in mind when troubleshooting issues. Oviously you can use this methology, for more than just troubleshooting OpenAI issues, but this is the scenario we are going to cover today.
+You may find that with some issues, we instinctively do a lot of this. Still, this method helps, gives you context, allows you to check any bias you may have in trying to find the root cause, and gives you some great tools to rule out and test any theories, given it has been a few years since I have been through the formal training. Still, it's one of those methodologies that have stuck with me, and I always keep it in mind when troubleshooting issues. Obviously, you can use this methodology for more than just troubleshooting OpenAI issues; this is the scenario we are going to cover today.
 
-> The key to successful troubleshooting, if any IT *(Information Technology)* issue - is having a clear problem statement, and in the 'real-world' really concentrating on the one single problem statement to remain effective, for the purposes of this article, however, we will be covering a mix of common scenarios problems, to help give you high-level ideas and context when troubleshooting issues.
+> The key to successful troubleshooting, if any IT *(Information Technology)* issue - is having a clear problem statement, and in the 'real world' really concentrating on the one single problem statement to remain effective for this article; however, we will be covering a mix of common scenarios problems, to help give you high-level ideas and context when troubleshooting issues.
 
 ## ❗ Problem Statements
 
-Today we are going to look at the following statements:
+Today, we are going to look at the following statements:
 
 | Type of Problem Statement | Problem Statement |  
 |---------------------------|-------------------|  
@@ -87,11 +87,11 @@ Today we are going to look at the following statements:
 | Streaming Response | "User experience issues with the streaming implementation on the front-end application during real-time interactions suggest that there might be backend streaming service limitations or insufficient front-end optimization, affecting certain user interactions." |  
 | Token Volume Expectancy | "The system occasionally experiences overload or underperformance across all API endpoints during 24/7 operation, implying that token volume expectancy might not be accurately predicted or that the system's scaling and load balancing are not adequately configured." |  
 | Logging Practices | "Issues in diagnostic effectiveness within the logging system arise during error occurrences, which may be due to incomplete logging data or incorrect logging configurations, affecting the resolution of problems by not capturing comprehensive data." |  
-| API Versioning | "Persisting aborted issues and doubts regarding production readiness after using a preview API version suggest that stability might be compromised, possibly due to the continued use of a less stable preview version rather than the GA version, across the API service." |  
+| API Versioning | "Persisting aborted issues and doubts regarding production readiness after using a preview API version suggest that stability might be compromised due to the continued use of a less stable preview version rather than the GA version across the API service." |  
 
 ## 🎯 IS and Is Nots
 
-Lets take a look at each Problem, and work out at a high-level various Is and Is Nots, and potential causes.
+Let's look at each problem and work out various Is and Nots and potential causes at a high level.
 
 | Troubleshooting Criteria       | Is (What is True)                        | Is Not (What is False)                  | Could Be (Possible Causes)                       | Could Not Be (What is not a cause) | Distinctive Clarity (What sets this apart)             | Next Steps                                             |  
 |--------------------------------|------------------------------------------|-----------------------------------------|--------------------------------------------------|------------------------------------|--------------------------------------------------------|--------------------------------------------------------|  
@@ -106,7 +106,7 @@ Lets take a look at each Problem, and work out at a high-level various Is and Is
 | System Message Control         | System messages are being used           | Full control over system messages       | System message limits not being respected by the model | An issue with the API call structure | How system messages guide user interactions          | [Ensure system message limits are enforced and informative](https://learn.microsoft.com/azure/ai-services/openai/concepts/system-message?WT.mc_id=AZ-MVP-5004796) |  
 | System Message Compliance      | Checks for model adherence to system messages | The model always adheres to system message limits | Oversights in system message enforcement       | An issue with user expectations     | Instances of non-compliance impacting user experience | [Regularly verify model compliance with system message limits](https://www.microsoft.com/en-us/security/blog/2024/02/22/announcing-microsofts-open-automation-framework-to-red-team-generative-ai-systems?WT.mc_id=AZ-MVP-5004796) |  
 | Hallucinations and Accuracy    | Occurrences of hallucinations and inaccuracies | The model is always accurate          | Model training or complexity of queries          | An issue with the input data quality | Specific scenarios where inaccuracies are more frequent | [Investigate model choice and implement LLM OPS for evaluation](https://semaphoreci.com/blog/openai-models) |  
-| Request and Timeout Issues     | Experiencing request or timeout issues   | All requests are processed in a timely manner | High server load, inadequate resources, or network latency | Complete system failure            | Frequency and conditions of timeouts and request failures | [Analyze server and network logs, monitor system performance, and optimize configuration](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/latency?WT.mc_id=AZ-MVP-5004796) |  
+| Request and Timeout Issues     | Experiencing request or timeout issues   | All requests are processed promptly | High server load, inadequate resources, or network latency | Complete system failure            | Frequency and conditions of timeouts and request failures | [Analyze server and network logs, monitor system performance, and optimize configuration](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/latency?WT.mc_id=AZ-MVP-5004796) |  
 
 
-Although a very theoretical article, hopefully it points you in the right direction, and *thinking* when needing to troubleshoot your issues with Azure OpenAI, as a Consultant or Engineer, it can be very quick to jump straight into solutions, without fully knowing the extent of the issue, or the problem you are actually trying to solve.
+Although this is a very theoretical article, hopefully, it points you in the right direction and *thinking* when needing to troubleshoot your issues with Azure OpenAI. As a Consultant or Engineer, it can be very quick to jump straight into solutions without fully knowing the extent of the issue or the problem you are actually trying to solve.
