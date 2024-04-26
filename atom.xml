@@ -15,7 +15,7 @@
         <updated>2024-04-26T01:36:46.434Z</updated>
         <summary type="html"><![CDATA[Troubleshooting Azure Open AI and API calls to OpenAI can be challenging, especially when you may not know where to start!]]></summary>
         <content type="html"><![CDATA[<p>Troubleshooting Azure Open AI and API calls to OpenAI can be challenging, especially when you may not know where to start!</p>
-<p>The idea of this article is to give you not only a place to start with some common scenarios you may run into but also a way of thinking - to help you troubleshoot.</p>
+<p>The idea of this article is to give you not only a place to start with some common scenarios you may run into but also a way of thinking - to help you troubleshoot. This is not an technical 'get-your-hands dirty, delve into those logs' type article.</p>
 <p>I am a big fan of the KT, or <a href="https://kepner-tregoe.com/" target="_blank" rel="noopener noreferrer">Kepner-Tregoe</a> problem analysis methodology and I have used it in many scenarios throughout my career to helping discover and test the root cause of various problems. So, we will use the base of this problem analysis methodology to help us troubleshoot the scenarios we will discuss in this article.</p>
 <p><img decoding="async" loading="lazy" alt="Kepner-Tregoe Method" src="https://luke.geek.nz/assets/images/KT_Method-265bb6f9d9b479b3cbb62da099a35273.png" width="1856" height="1524" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-the-kepner-tregoe-kt">❓ The Kepner-Tregoe (KT)<a href="https://luke.geek.nz/azure/troubleshooting-scenarios-azure-open-ai/#-the-kepner-tregoe-kt" class="hash-link" aria-label="Direct link to ❓ The Kepner-Tregoe (KT)" title="Direct link to ❓ The Kepner-Tregoe (KT)">​</a></h2>
