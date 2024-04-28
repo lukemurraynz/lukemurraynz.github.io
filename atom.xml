@@ -52,6 +52,7 @@
         </author>
         <category label="Azure" term="Azure"/>
         <category label="Misc" term="Misc"/>
+        <category label="Service Management" term="Service Management"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Resolving 404 Error with OpenAI Azure Function Binding]]></title>
