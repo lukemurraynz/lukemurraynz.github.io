@@ -262,10 +262,13 @@ az identity federated-credential create --name "Kaito-federated-identity" --iden
 ![Assign Kaito Managed Identity federated credentials](Kaito-AKSAssignKaitoMI.gif)
 
 :::warning
+
 If you get 'Failed to connect to MSI. Please make sure MSI is configured correctly.' Make sure you relogin to Azure *(ie az login --use-device-code)*.
+
 :::
 
 :::tip
+
 You can check what entries are in the environment variables, by running using echo, to output the variable:
 
 ```bash
@@ -284,6 +287,7 @@ kubectl logs -n kube-system <gpu-provisioner-pod-name>
 ```
 
 I had issues, where the gpu-provisioner pod was not running and kept constantly restarting, and the logs showed that the identity was not found, so I had to re-run the command to assign the correct managed identity, and using the echo command, to reveal the managed identity highlighted the wrong one was selected.
+
 :::
 
 ![kaito-gpu-provisioner | Azure Portal overview](kaito-gpu-provisoner-deployment-azportal.png)
@@ -291,7 +295,9 @@ I had issues, where the gpu-provisioner pod was not running and kept constantly 
 9. Lets now deploy the Mistral 7b instruct model, to our AKS cluster.
 
 :::warning
+
 As soon as the models are grabbed from the remote registry, it will spin the GPU nodes up and you will start paying for their use, so just be aware.
+
 :::
 
 We are going to use one of the supported models, to create our interference endpoint in AKS, and will use the Mistral 7b instruct model, as per their examples in the K[aito GitHub repository](https://github.com/Azure/kaito/tree/main/examples/inference).
@@ -302,7 +308,8 @@ kubectl apply -f https://raw.githubusercontent.com/Azure/kaito/main/examples/inf
 
 ![Kaito - Mistral 7b instruct model](Kaito-Grab_Mistral7bInstruct_KaitoExamples)
 
-::tip
+:::tip
+
 You can monitor the progress of the workspaces and model deployment, by running the following command:
 
 ```bash
@@ -314,6 +321,7 @@ kubectl get workspace workspace-mistral-7b-instruct -w
 Wait for the Workspace to be ready, before continuing.
 
 ![Deploy workspace-mistral-7b-instruct](Kaito-DeployMistral7bInstruct.gif)
+
 :::
 
 Once the workspaces and pods/nodes have been provisioned, lets test the deployment, by running the following command:
@@ -322,7 +330,7 @@ Once the workspaces and pods/nodes have been provisioned, lets test the deployme
 kubectl get svc workspace-mistral-7b-instruct -o jsonpath='{.spec.clusterIP}'
 export SERVICE_IP=$(kubectl get svc workspace-mistral-7b-instruct -o jsonpath='{.spec.clusterIP}')
 kubectl run -it --rm --restart=Never curl --image=curlimages/curl -- curl -X POST http://$SERVICE_IP/chat -H "accept: application/json" -H "Content-Type: application/json" -d "{\"prompt\":\"What is your favorite ice cream flavor?\"}"
-```bash
+```
 
 ![Test Mistral 7b instruct model](Kaito-TestMistral7bInstruct.gif)
 
