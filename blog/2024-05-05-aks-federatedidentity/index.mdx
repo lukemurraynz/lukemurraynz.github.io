@@ -47,7 +47,7 @@ Click on **Settings** and **Federated credentials**
 
 We will look at one I set up earlier. How this is used is application-specific, but in this example, the Federated credentials are used by an AI Service running on an AKS cluster to talk to an Azure OpenAI instance that the User Assigned Managed identity has access to.
 
-![Federated Credentials](UserManagedIdentityEdit FederatedCredential.gif)
+![Federated Credentials](UserManagedIdentityEditFederatedCredential.gif)
 
 :::warning
 It is worth knowing that to use Federated Credentials and open the OIC APIs on your cluster, you will need to either create a new cluster or update it. The OIC APIs are not open by default on the cluster. See [Create an OpenID Connect provider on Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/use-oidc-issuer?WT.mc_id=AZ-MVP-5004796) for more information.
