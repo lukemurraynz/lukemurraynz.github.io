@@ -18,7 +18,7 @@ keywords:
   - DevOps
 ---
 
-When attempting to copy files in an Azure DevOps pipeline, to an Azure Storage account, I received the following error:
+When attempting to copy files in an Azure DevOps pipeline to an Azure Storage account, I received the following error:
 
 :::warning
 ##[error]Upload to container: 'StorageContainer' in storage account: 'ContosoStorageAccount' with blob prefix: '736' failed with error: 'AzCopy.exe exited with non-zero exit code while uploading files to blob storage.' For more info please refer to [https://aka.ms/azurefilecopyreadme](https://aka.ms/azurefilecopyreadme).
@@ -36,4 +36,6 @@ After reviewing the Azure DevOps raw pipeline logs I noticed the following:
 :::
 
 
-> **The fix, was to make sure that the Service Prinicpal that Azure DevOps is using to read/write to the Azure Storage account, has the correct permissions. In my case, I needed to assign the [Storage Blob Data Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles?WT.mc_id=AZ-MVP-5004796#storage) role to the Service Principal.**
+> **The fix was to make sure that the Service Principal that Azure DevOps is using to read/write to the Azure Storage account has the correct permissions to the Data plane *not just the Management plane**. 
+
+In my case, I needed to assign the [Storage Blob Data Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles?WT.mc_id=AZ-MVP-5004796#storage) role to the Service Principal.**
