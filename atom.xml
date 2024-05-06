@@ -14,14 +14,17 @@
         <link href="https://luke.geek.nz/azure/authorization-permission-mismatch-error-azure-storage/"/>
         <updated>2024-05-06T08:23:54.576Z</updated>
         <summary type="html"><![CDATA[Resolve the "AuthorizationPermissionMismatch" error when copying files to Azure Storage in Azure DevOps pipeline.]]></summary>
-        <content type="html"><![CDATA[<p>When attempting to copy files in an Azure DevOps pipeline, to an Azure Storage account, I received the following error:</p>
+        <content type="html"><![CDATA[<p>When attempting to copy files in an Azure DevOps pipeline to an Azure Storage account, I received the following error:</p>
 <div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>warning</div><div class="admonitionContent_BuS1"><p>##[error]Upload to container: 'StorageContainer' in storage account: 'ContosoStorageAccount' with blob prefix: '736' failed with error: 'AzCopy.exe exited with non-zero exit code while uploading files to blob storage.' For more info please refer to <a href="https://aka.ms/azurefilecopyreadme" target="_blank" rel="noopener noreferrer">https://aka.ms/azurefilecopyreadme</a>.</p></div></div>
 <p>After reviewing the Azure DevOps raw pipeline logs I noticed the following:</p>
 <div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>warning</div><div class="admonitionContent_BuS1"><p>2024-05-06T06:25:34.1051117Z --------------------------------------------------------------------------------
 2024-05-06T06:25:34.1052461Z RESPONSE 403: 403 This request is not authorized to perform this operation using this permission.
 2024-05-06T06:25:34.1053291Z ERROR CODE: AuthorizationPermissionMismatch
 2024-05-06T06:25:34.1055333Z --------------------------------------------------------------------------------</p></div></div>
-<p><strong>The fix, was to make sure that the Service Prinicpal that Azure DevOps is using to read/write to the Azure Storage account, has the correct permissions. In my case, I needed to assign the <a href="https://learn.microsoft.com/azure/role-based-access-control/built-in-roles?WT.mc_id=AZ-MVP-5004796#storage" target="_blank" rel="noopener noreferrer">Storage Blob Data Contributor</a> role to the Service Principal.</strong></p>]]></content>
+<blockquote>
+<p>*<em>The fix was to make sure that the Service Principal that Azure DevOps is using to read/write to the Azure Storage account has the correct permissions to the Data plane <em>not just the Management plane</em></em>.</p>
+</blockquote>
+<p>In my case, I needed to assign the <a href="https://learn.microsoft.com/azure/role-based-access-control/built-in-roles?WT.mc_id=AZ-MVP-5004796#storage" target="_blank" rel="noopener noreferrer">Storage Blob Data Contributor</a> role to the Service Principal.**</p>]]></content>
         <author>
             <name>Luke Murray</name>
             <uri>https://luke.geek.nz</uri>
