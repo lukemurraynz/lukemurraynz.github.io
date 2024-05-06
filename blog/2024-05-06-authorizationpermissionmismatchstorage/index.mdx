@@ -35,6 +35,5 @@ After reviewing the Azure DevOps raw pipeline logs I noticed the following:
 2024-05-06T06:25:34.1055333Z --------------------------------------------------------------------------------
 :::
 
-:::tip
-**The fix, was to make sure that the Service Prinicpal that Azure DevOps is using to read/write to the Azure Storage account, has the correct permissions. In my case, I needed to assign the `[Storage Blob Data Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles?WT.mc_id=AZ-MVP-5004796#storage)` role to the Service Principal.**
-:::
+
+**The fix, was to make sure that the Service Prinicpal that Azure DevOps is using to read/write to the Azure Storage account, has the correct permissions. In my case, I needed to assign the [Storage Blob Data Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles?WT.mc_id=AZ-MVP-5004796#storage) role to the Service Principal.**
