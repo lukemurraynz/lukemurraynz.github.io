@@ -23,9 +23,9 @@
 2024-05-06T06:25:34.1053291Z ERROR CODE: AuthorizationPermissionMismatch
 2024-05-06T06:25:34.1055333Z --------------------------------------------------------------------------------</p></div></div>
 <blockquote>
-<p>*<em>The fix was to make sure that the Service Principal that Azure DevOps is using to read/write to the Azure Storage account has the correct permissions to the Data plane <em>not just the Management plane</em></em>.</p>
+<p>The fix was to make sure that the Service Principal that Azure DevOps is using to read/write to the Azure Storage account has the correct permissions to the Data plane *not just the Management plane.</p>
 </blockquote>
-<p>In my case, I needed to assign the <a href="https://learn.microsoft.com/azure/role-based-access-control/built-in-roles?WT.mc_id=AZ-MVP-5004796#storage" target="_blank" rel="noopener noreferrer">Storage Blob Data Contributor</a> role to the Service Principal.**</p>]]></content:encoded>
+<p>In my case, I needed to assign the  <strong><a href="https://learn.microsoft.com/azure/role-based-access-control/built-in-roles?WT.mc_id=AZ-MVP-5004796#storage" target="_blank" rel="noopener noreferrer">Storage Blob Data Contributor</a> role to the Service Principal</strong>.</p>]]></content:encoded>
             <category>Azure</category>
         </item>
         <item>
