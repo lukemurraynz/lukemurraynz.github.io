@@ -89,7 +89,9 @@ Audience: The intended recipient (Azure resource) for the security token.</p>]]>
 <p><img decoding="async" loading="lazy" alt="Azure Portal - Collapse Blade Menu" src="https://luke.geek.nz/assets/images/Azure_Portal_CollapseableMenu-320e53b992b333fd398c13d7c7e8431e.png" width="424" height="692" class="img_ev3q"></p>
 <p>I actually like it because it gives the flexibility to hide areas that you may be potentially distracted by, especially as more and more service functionality is brought into the Azure Portal. However, a concern I have is not being able to see new services or options offered in the blade of a service, so for that reason alone, at the moment, I have configured my Azure Portal to have the Blade menu always open.</p>
 <p>You can do this fairly easily per user: click on Settings <em>(top right)</em>, click Appearance + Startup views, select Expanded Service menu behavior, and then click Apply.</p>
-<p><img decoding="async" loading="lazy" alt="Azure Expanded Menu" src="https://luke.geek.nz/assets/images/AzurePortal_ExpandedMenuSetting-e37ad96a6d76e876dee1ebb573883726.gif" width="1861" height="965" class="img_ev3q"></p>]]></content:encoded>
+<p><img decoding="async" loading="lazy" alt="Azure Expanded Menu" src="https://luke.geek.nz/assets/images/AzurePortal_ExpandedMenuSetting-e37ad96a6d76e876dee1ebb573883726.gif" width="1861" height="965" class="img_ev3q"></p>
+<p>You can also leave it collapsed, then expand the Blade menu of a resource, by clicking on the <em>little</em> expand icon at the top of the Blade menu, to expand or collapse all headers of the resource pane.</p>
+<p><img decoding="async" loading="lazy" alt="Azure Portal - Collapse Resource Blade Menu" src="https://luke.geek.nz/assets/images/AzurePortal_CollapseableResource-2e3a4304c526ae53fac9c17046947206.png" width="362" height="146" class="img_ev3q"></p>]]></content:encoded>
             <category>Azure</category>
         </item>
         <item>
