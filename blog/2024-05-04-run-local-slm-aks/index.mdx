@@ -87,7 +87,7 @@ Today, we are going to look at deploying a large language model *(LLM)* directly
 
 <!-- truncate -->
 
-## 🚀 Overview
+## 👀 Overview
 
 :::info
 [Kaito](https://github.com/Azure/kaito) is an operator that automates the deployment of the AI/ML inference model in a Kubernetes cluster. The target models are popular large open-sourced inference models such as Falcon and llama2. Kaito has the following critical differentiations compared to most of the mainstream model deployment methodologies built on top of virtual machine infrastructures:
@@ -159,13 +159,13 @@ The application has the following services:
 
 ### 🚀 Overview
 
-### Prerequisites
+### 📦 Prerequisites
 
 * [GitHub account](https://github.com/) *(we will use a GitHub Codespace to deploy the App, and requirements)*
 * [Azure subscription](https://azure.microsoft.com/en-us/free/open-source?WT.mc_id=AZ-MVP-5004796) *(we will need an Azure subscription, to install the cluster the model to)*
 * [Request a quota increase](https://learn.microsoft.com/azure/quotas/regional-quota-requests?WT.mc_id=AZ-MVP-5004796) for a GPU compute workload *(ie Standard NCSv3)* in your region. I am based in New Zealand so that I will be deploying to Australia East.
 
-### Deploy AKS cluster
+### 🐝 Deploy AKS cluster
 
 1. Let us deploy our Cluster and application using a pre-created Azure Developer CLI infrastructure as code deployment by connecting to the Codespace *(which already has the dependencies of Azure Developer CLI, Kubectl, Helm, Azure Bicep, and Terraform Azure CLI pre-installed)* at [aks store demo—Pets](https://github.com/Azure-Samples/aks-store-demo).
 ![Open Codespace](Kaito-AKS_Codespace_Open.gif)
@@ -224,7 +224,7 @@ This will take a few minutes to complete. Once it's done, you will see the terra
 ```bash
 eval "$(azd env get-values)"
 ```
-### Test the Pet-store app
+### 🧪 Test the Pet-store app
 
 Now, lets test that its working, by taking a look at the pet store admin public endpoint.
 
@@ -237,7 +237,7 @@ Now, lets test that its working, by taking a look at the pet store admin public 
 
 ![AKS - Test Pet store admin OpenAI endpoint](Kaito-AKS_PetStoreAdminAzOpenAITest.gif)
 
-### Implement Kaito and Falcon LLM
+### 🐦 Implement Kaito and Falcon LLM
 
 Now that we have the AKS cluster deployed and the Pets store app running, we can implement Kaito and run the Falcon 7b-instruct Large language model.
 
@@ -408,7 +408,7 @@ kubectl run -it --rm --restart=Never curl --image=curlimages/curl -- curl -X POS
 
 ![Test Falcon 7b instruct model](Kaito-TestFalcon7bInstruct.gif)
 
-### Update the Pet-store app
+### 🚀 Update the Pet-store app
 
 Almost there! Now that we know that our local chat endpoint is working with the Mistral 7b instruct model, we can update the Pet store app to use the local Mistral 7b model and remove the Azure OpenAI to generate the product descriptions.
 
