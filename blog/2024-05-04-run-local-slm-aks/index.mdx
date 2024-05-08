@@ -1,6 +1,6 @@
 ---
 title: Deploying Large Language Models on AKS with Kaito
-metaDescription: Learn how to deploy large language models on Azure Kubernetes Service (AKS) using Kaito, an operator that automates the deployment of AI/ML inference models in a Kubernetes cluster.
+metaDescription: Learn how to deploy large language models (or Small Language Models) on Azure Kubernetes Service (AKS) using Kaito, an operator that automates the deployment of AI/ML inference models in a Kubernetes cluster.
 description: Deploy large language models on AKS using Kaito, an operator that simplifies the deployment of AI/ML inference models in a Kubernetes cluster.
 date: 2024-05-08T21:49:34.752Z
 tags:
@@ -10,7 +10,7 @@ categories:
 authors:
   - Luke
 header: kaito-arch.png
-slug: azure/troubleshooting-scenarios-azure-open-ai
+slug: azure/run-local-llm-aks
 keywords:
   - azure
   - large language models
@@ -361,7 +361,7 @@ As soon as the models are grabbed from the remote registry, the GPU nodes will s
 
 :::
 
-We are going to use one of the supported models to create our interference endpoint in AKS, the Falcon 7b instruct model, as per their examples in the [Kaito GitHub repository](https://github.com/Azure/kaito/tree/main/examples/inference).
+We are going to use one of the **supported models to create our interference endpoint in AKS, the Falcon 7b instruct model, as per their examples in the [Kaito GitHub repository](https://github.com/Azure/kaito/tree/main/examples/inference)**.
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/Azure/kaito/main/examples/inference/kaito_workspace_falcon_7b-instruct.yaml
