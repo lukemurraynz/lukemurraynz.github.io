@@ -395,9 +395,9 @@ kubectl run -it --rm --restart=Never curl --image=curlimages/curl -- curl -X POS
 
 ### 🚀 Update the Pet-store app
 
-Almost there! Now that we know that our local chat endpoint is working with the Mistral 7b instruct model, we can update the Pet Store app to use the local Mistral 7b model and remove the Azure OpenAI to generate the product descriptions.
+Almost there! Now that we know that our local chat endpoint is working with the Falcon 7b instruct model, we can update the Pet Store app to use the local Falcon 7b model and remove the Azure OpenAI to generate the product descriptions.
 
-We will continue in our Terminal to do that, but like the previous steps, it can be done in the Codespace. The Pet Store application already has some great examples of doing this, so we will create a new manifest and repoint the application to use the local Mistral workspace instead of the public Azure Open AI endpoint that was created initially:
+We will continue in our Terminal to do that, but like the previous steps, it can be done in the Codespace. The Pet Store application already has some great examples of doing this, so we will create a new manifest and repoint the application to use the local Falcon workspace instead of the public Azure Open AI endpoint that was created initially:
 
 1. First, we need to create a new config map to deploy the Pet Store app with the Falcon 7b instruct model by running the following command:
 
