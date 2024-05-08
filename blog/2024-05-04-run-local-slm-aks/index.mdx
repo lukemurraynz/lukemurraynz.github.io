@@ -1,12 +1,10 @@
 ---
-title: Run LLM (Large Language Model) on AKS (Azure Kubernetes Service)
-metaDescription: This article provides some scenarios for troubleshooting Azure OpenAI using the Kepner-Tregoe problem analysis methodology.
-Description: This article provides some scenarios for troubleshooting Azure OpenAI using the Kepner-Tregoe problem analysis methodology.
-date: 2024-04-26T01:36:46.434Z
+title: Deploying Large Language Models on AKS with Kaito
+metaDescription: Learn how to deploy large language models on Azure Kubernetes Service (AKS) using Kaito, an operator that automates the deployment of AI/ML inference models in a Kubernetes cluster.
+description: Deploy large language models on AKS using Kaito, an operator that simplifies the deployment of AI/ML inference models in a Kubernetes cluster.
+date: 2024-05-08T21:49:34.752Z
 tags:
   - Azure
-  - Misc
-  - Service Management
 categories:
   - Azure
 authors:
@@ -15,6 +13,72 @@ header: KT_Method.png
 slug: azure/troubleshooting-scenarios-azure-open-ai
 keywords:
   - azure
+  - deploying
+  - large language models
+  - AKS
+  - Kaito
+  - Kubernetes
+  - operator
+  - AI/ML inference models
+  - GPU-enabled nodes
+  - deployment
+  - model provisioning
+  - model configuration
+  - model tuning
+  - model deployment
+  - model management
+  - open-source LLMs
+  - cost reduction
+  - data security
+  - privacy
+  - model development
+  - model transparency
+  - network security
+  - compliance
+  - governance
+  - AI Shared responsibility model
+  - AKS cluster
+  - quota
+  - GPU compute nodes
+  - Azure CLI
+  - GitHub account
+  - Azure subscription
+  - GitHub Codespace
+  - infrastructure as code
+  - Terraform
+  - Azure Developer CLI
+  - deployment
+  - AKS cluster deployment
+  - region
+  - Azure login
+  - environment configuration
+  - deployment completion
+  - microservices
+  - Pets app
+  - AKS demos
+  - tutorials
+  - experiments
+  - polyglot architecture
+  - event-driven design
+  - open-source back-end services
+  - RabbitMQ
+  - MongoDB
+  - OpenAI's GPT-3 models
+  - generative text
+  - graphics creation
+  - MongoDB instance
+  - RabbitMQ
+  - prerequisites
+  - Azure subscription
+  - GPU compute workload
+  - Standard NCSv3
+  - deployment steps
+  - Azure Developer CLI
+  - Terraform
+  - AKS cluster deployment
+  - Azure login
+  - environment configuration
+  - deployment completion
 ---
 
 Today, we are going to look at deploying a large language model *(LLM)* directly into your AKS *(Azure Kubernetes Service)* cluster, running on GPU-enabled nodes, using [Kaito *(Kubernetes AI Toolchain Operator)*](https://github.com/Azure/kaito).
@@ -23,7 +87,7 @@ Today, we are going to look at deploying a large language model *(LLM)* directly
 
 <!-- truncate -->
 
-## Overview
+## 🚀 Overview
 
 :::info
 [Kaito](https://github.com/Azure/kaito) is an operator that automates the deployment of the AI/ML inference model in a Kubernetes cluster. The target models are popular large open-sourced inference models such as Falcon and llama2. Kaito has the following critical differentiations compared to most of the mainstream model deployment methodologies built on top of virtual machine infrastructures:
@@ -70,7 +134,7 @@ az vm list-usage \
 You can follow this Microsoft guide for requesting a quota increase: [Request a quota increase](https://learn.microsoft.com/azure/quotas/regional-quota-requests?WT.mc_id=AZ-MVP-5004796).
 :::
 
-### Example App - Pets
+### 🐶 Example App - Pets
 
 Today, we are going to use the [aks store demo—Pets](https://github.com/Azure-Samples/aks-store-demo) sample microservices app, commonly used for AKS demos, tutorials, and experiments. We will deploy it to our AKS cluster, update it to use a locally hosted mistral model to generate the local product descriptions, and then call the externally hosted Azure OpenAI endpoint.
 
@@ -93,7 +157,7 @@ The application has the following services:
 | `mongodb` | MongoDB instance for persisted data |
 | `rabbitmq` | RabbitMQ for an order queue |
 
-## Deployment
+### 🚀 Overview
 
 ### Prerequisites
 
@@ -124,7 +188,7 @@ azd env new
 ```
 
 4. Enter an environment name *(i.e., Kaito)*; the Azure Developer CLI uses this to store the environment settings for the deployment and won't reflect any of your deployed resources.
-5. Now, we need to set a few environment variables for our deployment, which will be used by the Terraform deployment to deploy the Azure Open AI instance that Pets will use *(and we will replace it with Mistral later on; however, I recommend including it in the deployment to confirm that the OpenAI components are confirmed working first)*.
+5. Now, we need to set a few environment variables for our deployment, which will be used by the Terraform deployment to deploy the Azure Open AI instance that Pets will use *(and we will replace it with Falcon later on; however, I recommend including it in the deployment to confirm that the OpenAI components are confirmed working first)*.
 
 ```bash
 azd env set DEPLOY_AZURE_OPENAI true
@@ -173,11 +237,25 @@ Now, lets test that its working, by taking a look at the pet store admin public 
 
 ![AKS - Test Pet store admin OpenAI endpoint](Kaito-AKS_PetStoreAdminAzOpenAITest.gif)
 
-### Implement Kaito and Mistral LLM
+### Implement Kaito and Falcon LLM
 
-Now that we have the AKS cluster deployed and the Pets store app running, we can implement Kaito and run the Mistral 7b-instruct Large language model.
+Now that we have the AKS cluster deployed and the Pets store app running, we can implement Kaito and run the Falcon 7b-instruct Large language model.
 
 > You can continue to set this up in the Codespace; I am going to switch to an [Azure CloudShell](https://learn.microsoft.com/azure/cloud-shell/overview?WT.mc_id=AZ-MVP-5004796) to complete the rest of the implementation, mainly to come at the implementation, from the point of view of installing Kaito in an existing cluster, not related to the Pet store example *(i.e., make sure that there are no variables, etc. that we might be reliant on, without knowing why)*. 
+
+:::info
+Researchers from Technology Innovation Institute, Abu Dhabi introduced the [Falcon series](https://arxiv.org/pdf/2311.16867.pdf), which includes models with 7 billion, 40 billion, and 180 billion parameters. These models, which are intended to be causal decoder-only models, were trained on a high-quality, varied corpus that was mostly obtained from online data. Falcon-180B, the largest model in the series, is the only publicly available pretraining run ever, having been trained on a dataset of more than 3.5 trillion text tokens.
+
+The researchers discovered that Falcon-180B shows great advancements over other models, including PaLM or Chinchilla. It outperforms models that are being developed concurrently, such as LLaMA 2 or Inflection-1. Falcon-180B achieves performance close to PaLM-2-Large, which is noteworthy given its lower pretraining and inference costs. With this ranking, Falcon-180B joins GPT-4 and PaLM-2-Large as the leading language models in the world. For more information, see the following resources:
+
+* [The Falcon Series of Open Language Models](https://arxiv.org/pdf/2311.16867.pdf)
+* [Falcon-40B-Instruct](https://huggingface.co/tiiuae/falcon-40b-instruct)
+* [Falcon-180B](https://huggingface.co/tiiuae/falcon-180B)
+* [Falcon-7B](https://huggingface.co/tiiuae/falcon-7b)
+* [Falcon-7B-Instruct](https://github.com/Azure-Samples/aks-kaito-terraform/blob/main/alcon-7B-Instruct)
+
+Reference: [Deploy Kaito on AKS using Terraform](https://techcommunity.microsoft.com/t5/azure-for-isv-and-startups/deploy-kaito-on-aks-using-terraform/ba-p/4108930?WT.mc_id=AZ-MVP-5004796)
+:::
 
 1. To do this, we need to make sure that we have the preview version of the AKS CLI extension installed. You can check this by running the following command:
 
@@ -261,7 +339,7 @@ az identity federated-credential create --name "Kaito-federated-identity" --iden
 
 :::warning
 
-If you get 'Failed to connect to MSI. Please make sure MSI is configured correctly.' Make sure you relogin to Azure *(ie az login --use-device-code)*.
+If you get 'Failed to connect to MSI. Please make sure MSI is configured correctly.' Make sure you relogin to Azure *(ie az login --use-device-code)*, you may need to assign Contributor rights manually as well.
 
 :::
 
@@ -290,7 +368,7 @@ I had issues where the gpu-provisioner pod was not running and constantly restar
 
 ![kaito-gpu-provisioner | Azure Portal overview](kaito-gpu-provisoner-deployment-azportal.png)
 
-9. Let's now deploy the Mistral 7b instruct model to our AKS cluster.
+9. Let's now deploy the Falcon 7b instruct model to our AKS cluster.
 
 :::warning
 
@@ -298,39 +376,37 @@ As soon as the models are grabbed from the remote registry, the GPU nodes will s
 
 :::
 
-We are going to use one of the supported models to create our interference endpoint in AKS, the Mistral 7b instruct model, as per their examples in the K[aito GitHub repository](https://github.com/Azure/kaito/tree/main/examples/inference).
+We are going to use one of the supported models to create our interference endpoint in AKS, the Falcon 7b instruct model, as per their examples in the [Kaito GitHub repository](https://github.com/Azure/kaito/tree/main/examples/inference).
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/Azure/kaito/main/examples/inference/kaito_workspace_mistral_7b-instruct.yaml
+kubectl apply -f https://raw.githubusercontent.com/Azure/kaito/main/examples/inference/kaito_workspace_falcon_7b-instruct.yaml
 ```
-
-![Kaito - Mistral 7b instruct model](Kaito-Grab_Mistral7bInstruct_KaitoExamples)
 
 :::tip
 
 You can monitor the progress of the workspaces and model deployment by running the following command:
 
 ```bash
-kubectl get workspace workspace-mistral-7b-instruct -w
+kubectl get workspace workspace-falcon-7b-instruct -w
 ```
 
-> The deployment can take a few minutes *(ie 20-50 minutes, the Resources because ready, before the workspace is ready)*, so be patient. It needs to pull the Mistral model from the Microsoft public container registry *(ie, Pulling image "mcr.microsoft.com/aks/kaito/kaito-mistral-7b-instruct:0.0.4")*.  It took me 45 minutes when I tested with the Falcon 7b model, which had a faster deployment.
+> The deployment can take a few minutes *(ie 20-50 minutes, the Resources because ready, before the workspace is ready)*, so be patient. It needs to pull the Falcon model from the Microsoft public container registry *(ie, Pulling image "mcr.microsoft.com/aks/kaito/kaito-falcon-7b-instruct:0.0.4")*.  It took me 45 minutes when I tested with the Mistral 7b model
 
 Wait for the Workspace to be ready before continuing.
 
-![Deploy workspace-mistral-7b-instruct](Kaito-DeployMistral7bInstruct.gif)
+![Deploy workspace-falcon-7b-instruct](Kaito-DeployFalcon7bInstruct.gif)
 
 :::
 
 Once the workspaces and pods/nodes have been provisioned, let us test the deployment by running the following command:
 
 ```bash
-kubectl get svc workspace-mistral-7b-instruct -o jsonpath='{.spec.clusterIP}'
-export SERVICE_IP=$(kubectl get svc workspace-mistral-7b-instruct -o jsonpath='{.spec.clusterIP}')
+kubectl get svc workspace-falcon-7b-instruct -o jsonpath='{.spec.clusterIP}'
+export SERVICE_IP=$(kubectl get svc workspace-falcon-7b-instruct -o jsonpath='{.spec.clusterIP}')
 kubectl run -it --rm --restart=Never curl --image=curlimages/curl -- curl -X POST http://$SERVICE_IP/chat -H "accept: application/json" -H "Content-Type: application/json" -d "{\"prompt\":\"What is your favorite ice cream flavor?\"}"
 ```
 
-![Test Mistral 7b instruct model](Kaito-TestMistral7bInstruct.gif)
+![Test Falcon 7b instruct model](Kaito-TestFalcon7bInstruct.gif)
 
 ### Update the Pet-store app
 
@@ -338,7 +414,7 @@ Almost there! Now that we know that our local chat endpoint is working with the 
 
 We will continue in our Terminal to do that, but like the previous steps, it can be done in the Codespace. The Pet Store application already has some great examples of doing this, so we will create a new manifest and repoint the application to use the local Mistral workspace instead of the public Azure Open AI endpoint that was created initially:
 
-1. First, we need to create a new config map to deploy the Pet store app with the Mistral 7b instruct model by running the following command:
+1. First, we need to create a new config map to deploy the Pet store app with the Falcon 7b instruct model by running the following command:
 
 ```bash
 kubectl apply -n pets -f - <<EOF
@@ -348,7 +424,7 @@ metadata:
   name: ai-service-configmap
 data:
   USE_LOCAL_LLM: "True"
-  AI_ENDPOINT: "http://workspace-mistral-7b-instruct/chat"
+  AI_ENDPOINT: "http://workspace-falcon-7b-instruct/chat"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -423,3 +499,8 @@ EOF
 
 Now, let's test it! We will remove the Azure OpenAI instance first and then test it!
 
+![Test Pet Store Local LLM](Kaito-TestFalcon7bInstruct-PetStore.gif)
+
+We can confirm within our AI Service ConfigMap now that the local endpoint is being used:
+
+![Falcon 7b Kaito Local LLM](Falconb_Kaito_LocalLLM_ConfigMap.png)
