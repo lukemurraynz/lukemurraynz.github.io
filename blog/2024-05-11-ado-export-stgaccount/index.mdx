@@ -1,0 +1,42 @@
+---
+title: Export Azure DevOps Repositories to a Storage Account
+metaDescription: Learn how to fix the authorization permission mismatch error when copying files to an Azure Storage account in Azure DevOps pipeline.
+description: Resolve the "AuthorizationPermissionMismatch" error when copying files to Azure Storage in Azure DevOps pipeline.
+date: 2024-05-11T08:23:54.576Z
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: azure/authorization-permission-mismatch-error-azure-storage
+keywords:
+  - Azure
+  - Authorization Permission Mismatch
+  - Azure Storage
+  - Azure DevOps pipeline
+  - DevOps
+---
+
+When attempting to copy files in an Azure DevOps pipeline to an Azure Storage account, I received the following error:
+
+:::warning
+##[error]Upload to container: 'StorageContainer' in storage account: 'ContosoStorageAccount' with blob prefix: '736' failed with error: 'AzCopy.exe exited with non-zero exit code while uploading files to blob storage.' For more info please refer to [https://aka.ms/azurefilecopyreadme](https://aka.ms/azurefilecopyreadme).
+:::
+
+<!-- truncate -->
+
+After reviewing the Azure DevOps raw pipeline logs I noticed the following:
+
+:::warning
+2024-05-06T06:25:34.1051117Z --------------------------------------------------------------------------------
+2024-05-06T06:25:34.1052461Z RESPONSE 403: 403 This request is not authorized to perform this operation using this permission.
+2024-05-06T06:25:34.1053291Z ERROR CODE: AuthorizationPermissionMismatch
+2024-05-06T06:25:34.1055333Z --------------------------------------------------------------------------------
+:::
+
+
+>The fix was to make sure that the Service Principal that Azure DevOps is using to read/write to the Azure Storage account has the correct permissions to the Data plane *not just the Management plane. 
+
+In my case, I needed to assign the  **[Storage Blob Data Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles?WT.mc_id=AZ-MVP-5004796#storage) role to the Service Principal**.
+
