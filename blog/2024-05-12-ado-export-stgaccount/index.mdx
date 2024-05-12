@@ -50,7 +50,7 @@ Today, we will use an Azure DevOps pipeline to run a PowerShell script, which wi
 ```mermaid
 graph TD
   A[Trigger Pipeline] --> B[Checkout Code]
-  B --> C[Clone Azure DevOps Repositories]
+  B --> C[Read Azure DevOps Repositories]
   C --> G[Export Azure DevOps Repositories]
   G --> D[Allow Public Access to Azure DevOps Export Storage Account for upload]
   D --> E[Check Storage Network Access]
@@ -494,7 +494,7 @@ Double check the permissions, you have granted the Service Principal, else you m
 ```plaintext
 ERROR: (InvalidApiVersionParameter) The api-version '2023-01-01' is invalid. The supported versions are '2024-03-01,2023-07-01,2023-07-01-preview,2023-03-01-preview,2022-12-01,2022-11-01-preview,2022-09-01,2022-06-01,2022-05-01,2022-03-01-preview,2022-01-01,2021-04-01,2021-01-01,2020-10-01,2020-09-01,2020-08-01,2020-07-01,2020-06-01,2020-05-01,2020-01-01,2019-11-01,2019-10-01,2019-09-01,2019-08-01,2019-07-01,2019-06-01,2019-05-10,2019-05-01,2019-03-01,2018-11-01,2018-09-01,2018-08-01,2018-07-01,2018-06-01,2018-05-01,2018-02-01,2018-01-01,2017-12-01,2017-08-01,2017-06-01,2017-05-10,2017-05-01,2017-03-01,2016-09-01,2016-07-01,2016-06-01,2016-02-01,2015-11-01,2015-01-01,2014-04-01-preview,2014-04-01,2014-01-01,2013-03-01,2014-02-26,2014-04'.
 Code: InvalidApiVersionParameter
-``
+```
 It means, that your Service Principal is missing the Storage Blob Data Contributor role on your Storage account.
 :::
 
