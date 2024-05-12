@@ -21,31 +21,31 @@ keywords:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Recently deleted Azure DevOps code repositories go into a soft-delete state, when deleted. The Repositories are retained for 30 days before they are permanently deleted. However, for Disaster Recovery scenarios, or those scenarios where you may not realise something has been deleted, until after Microsoft retained backup. You may want to export the repositories at a single point in time, to an Azure storage account.
+When recently deleted, Azure DevOps code repositories go into a soft-delete state. The Repositories are retained for 30 days before they are permanently deleted. However, for Disaster Recovery scenarios or scenarios where you may not realise something has been deleted until after Microsoft retains the backup, you may want to export the repositories at a single point in time to an Azure storage account.
 
-Ironically, the Azure DevOps service itself is highly-reduntant built on-top of core Azure Platform infrastrcuture components, such as Avaliability Zones and relies on Azure Cloud native Storage and Azure SQL services, which are highly-reduntant and backed up services, however mistakes can happen, and there may be organisational requirements to retain backups of the repositories. 
+Ironically, the Azure DevOps service itself is highly redundant and built on top of core Azure Platform infrastructure components, such as Availability Zones. It relies on Azure Cloud native Storage and Azure SQL services, which are highly redundant and backed-up services. However, mistakes can happen, and there may be organizational requirements to retain backups of the repositories. 
 
-Today we will be looking at exporting your repositories to an Azure Storage Account, using a DevOps pipeline. This pipeline, will capture the repositories at their point in time, and run nightly. 
+Today, we will be looking at exporting your repositories to an Azure Storage Account using a DevOps pipeline. This pipeline will capture the repositories at their current point in time and run nightly. 
 
 <!-- truncate -->
 
 ## Overview
 
 :::info
-"You can recover deleted organizations or projects within the 28-day window following deletion. But, once this time period elapses, these entities are permanently deleted and can't be restored. While these backups serve as a crucial component for disaster recovery, it's essential for customers to practice appropriate data management and backup strategies to ensure comprehensive protection of their data."
+"You can recover deleted organizations or projects within the 28-day window following deletion. But, once this period elapses, these entities are permanently deleted and can't be restored. While these backups serve as a crucial component for disaster recovery, customers need to practice appropriate data management and backup strategies to ensure comprehensive data protection."
 
 "Accidental deletion here refers to scenarios that arise as a result of an incident on our services. It doesn't include customers' accidental deletion of assets (for example, repositories, work items, attachments, or artifacts).
 
-**We don't support restoring assets that customers accidently delete. These backups are meant only for business continuity and to aid recovery from outage or disaster scenarios.**"
+**We don't support restoring assets that customers accidentally delete. These backups are meant only for business continuity and to aid recovery from outages or disaster scenarios.**"
 
 Reference: [Data protection - Mistakes Happen](https://learn.microsoft.com/en-us/azure/devops/organizations/security/data-protection?view=azure-devops&WT.mc_id=AZ-MVP-5004796#mistakes-happen)
 :::
 
 :::warning
-Please be aware, that this backup, will only export the repositories and pipelines, but not the work items, pipeline variables or other artifacts. This will also backup any code stored in Azure DevOps, so if there are secrets or other sensitive information stored in the code, please ensure that these are not stored in the code, or are encrypted, or they may be readable by someone with access to the storage account.
+Please be aware that this backup will only export the repositories and pipelines, not the work items, pipeline variables, or other artifacts. This will also backup any code stored in Azure DevOps, so if there are secrets or other sensitive information stored in the code, please ensure that these are not stored in the code or are encrypted, or they may be readable by someone with access to the storage account.
 :::
 
-Today, we will use an Azure DevOps pipeline to, run a PowerShell script, which will connect to the Azure DevOps API, and grab the zip file of each Repository in all Projects, into an artifact, which then gets exported and copied to an Azure Storage Account.
+Today, we will use an Azure DevOps pipeline to run a PowerShell script, which will connect to the Azure DevOps API and grab the zip file of each Repository in all Projects into an artifact, which then gets exported and copied to an Azure Storage Account.
 
 ```mermaid
 graph TD
@@ -62,10 +62,10 @@ graph TD
 
 ## Azure Storage Account
 
-In order to store the exported repositories, we will need to create an Azure Storage Account. We can point towards an already existing Storage Account, and Container, but for the purposes of this article, we will deploy the Storage account fresh using Azure Bicep to our already existing Resource Group.
+We will need to create an Azure Storage Account to store the exported repositories. We can point towards an already existing Storage Account and Container. Still, we will deploy the Storage account fresh using Azure Bicep to our existing Resource Group for this article.
 
 :::tip
-I will using the [Deployment Pane](https://luke.geek.nz/azure/Azure-Bicep-Deploy-Pane/) to deploy the Storage Account, straight from Visual Studio Code, running in a [Codespace](https://luke.geek.nz/azure/Getting-Started-with-GitHub-Codespaces/).
+I will use the [Deployment Pane](https://luke.geek.nz/azure/Azure-Bicep-Deploy-Pane/) to deploy the Storage Account straight from Visual Studio Code, running in a [Codespace](https://luke.geek.nz/azure/Getting-Started-with-GitHub-Codespaces/).
 :::
 
 We will use [Lifecycle Management policies](https://learn.microsoft.com/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal&WT.mc_id=AZ-MVP-5004796), to help control the retention of the exported repositories. We will move the repositories to Cool Storage after 30 days, Archive Storage after 90 days, and delete the repositories after 120 days.
@@ -200,11 +200,11 @@ output containerName string = storageContainer.name // Output the name of the st
 
 ```
 
-Make note of the Storage Account name and Container Name, we will need them for Azure DevOps pipeline variables.
+Please note the Storage Account name and Container Name; we will need them for Azure DevOps pipeline variables.
 
 ## Azure DevOps Pipeline
 
-Now, its time to setup your Project and repository, if you don't know how to do that, you can follow the offical Microsoft Learn documentation here: [Create a new Git repo in your project](https://learn.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops&WT.mc_id=AZ-MVP-5004796). 
+Now, it's time to set up your project and repository. If you don't know how to do that, you can follow the official Microsoft Learn documentation here: [Create a new Git repo in your project](https://learn.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops&WT.mc_id=AZ-MVP-5004796). 
 
 Once your repository has been setup and initialized, we need to add the following files to the repository:
 
@@ -212,7 +212,7 @@ Once your repository has been setup and initialized, we need to add the followin
 The PowerShell script, [`Export-AzDevOpsRepos.ps1`](Export-AzDevOpsRepos.ps1), is responsible for cloning all repositories in a given Azure DevOps organization and downloading them as ZIP files. It uses the Azure DevOps REST API to fetch all projects and their respective repositories. For each repository, it generates a URL to download the repository as a ZIP file and saves it to a local directory. If the script is run in an Azure Pipelines environment, it also uploads the directory containing the downloaded repositories as a pipeline artifact.
 
 :::tip
-The PowerShell script, can also be ran locally. It will automatically, collect the variables from the Pipeline variables, if it detects an Azure DevOps agent, else those variables can be added manually to the script, to be able to run it locally.
+The PowerShell script can also be run locally. If it detects an Azure DevOps agent, it will automatically collect the variables from the pipeline variables; otherwise, those variables can be added manually to the script to run it locally.
 
 ```powershell
 if ($env:AGENT_ID) {
@@ -434,9 +434,9 @@ I am going to be lazy, and just drag the files right into the repo, and commit t
 
 ![Export_ADO_CommitFiles](Export_ADO_CommitFiles.gif)
 
-Once, commited. Its time to setup our pipeline.
+Once, commited. It's time to set up our pipeline.
 
-But first we need to setup our [PAT (Personal Access Token)](https://learn.microsoft.com/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows&WT.mc_id=AZ-MVP-5004796) and [Service Connection](https://learn.microsoft.com/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml&WT.mc_id=AZ-MVP-5004796). Both I have completed.
+But first, we need to setup our [PAT (Personal Access Token)](https://learn.microsoft.com/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows&WT.mc_id=AZ-MVP-5004796) and [Service Connection](https://learn.microsoft.com/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml&WT.mc_id=AZ-MVP-5004796). Both I have completed.
 
 For your PAT token, you will need the following permissions:
 
@@ -445,31 +445,31 @@ For your PAT token, you will need the following permissions:
 
 For your Service Connection, you will need the following permissions:
 
-Reader on the Subscription, that Contains your Storage Account *(the subscription scoping is required for the Azure CLI commanders to check and access your Storage account, if you are using a Self-Managed DevOps agent, you may be able to avoid this)*, and Storage Blob Data Contributor on the Storage Account.
+Reader on the Subscription that Contains your Storage Account *(the subscription scoping is required for the Azure CLI commanders to check and access your Storage account; if you are using a Self-Managed DevOps agent, you may be able to avoid this)*, and Storage Blob Data Contributor on the Storage Account.
 
-The we need to add to our pipeline are:
+Then we need to add to our pipeline are:
 
 | Variable            | Example                                        | Notes                                                                                         |
 | ------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | azDevOpsOrg         | Contoso                                        | Your Azure DevOps Org - matching your URL ie i(https://dev.azure.com/contoso)                 |
-| azServiceConnection | AzureServiceConnection                         | Your Service Connection name, for Azure Resource Provider access to your Azure Resource Group |
+| azServiceConnection | AzureServiceConnection                         | Your Service Connection name for Azure Resource Provider access to your Azure Resource Group |
 | pat                 | 2xj2jv4yf2h6xvqjgk7y2n4d2iucxltlzyxuhcdjxibnrf | Your PAT (Personal Access Token), used to authenticate to Azure DevOps. Set this as a secure string.                        |
-| stgAccContainer     | adoexport                                      | The Container, that will contain your ADO Exports inside of the Storage Account               |
+| stgAccContainer     | adoexport                                      | The Container that will contain your ADO Exports inside of the Storage Account               |
 | storageAccount      | adoexport23                                    | Storage account that your ADO exports will be going into.                                     |
 | storageAccountRG    | adoexport-rg                                   | Resource Group, containing your Azure Storage Account                                         |
 
-So lets import our pipeline, and configure our variables!
+So, let's import our pipeline and configure our variables!
 
-1. To import, the Pipeline, navigate to your Azure DevOps Project, and click on Pipelines, then click on the "New Pipeline" button.
-2. Click Azure Repos Git, and select your repository.
+1. To import the Pipeline, navigate to your Azure DevOps Project, click on Pipelines, and then click on the "New Pipeline" button.
+2. Click Azure Repos Git and select your repository.
 3. Select Existing Azure Pipelines YAML file
 4. Select your Pipeline and click Continue
-5. Now we can add our Variables in, by clicking Variables, and then Add. If you have already imported the Pipeline, you can navigate to the Pipeline, and click Edit, and then Variables.
+5. Now, we can add our Variables by clicking Variables and then Add. If you have already imported the Pipeline, you can navigate to the Pipeline, click Edit, and then Variables.
 
 ![Import Azure DevOps Pipeline & Configure Variables](Export_ADO_ImportPipelineVariables.gif)
 
 :::info
-By default, the pipeline, has a cronjob, configured to set it for midnight, but you can change this to any time you like, by editing the pipeline file, and changing the [cron syntax](https://learn.microsoft.com/azure/devops/pipelines/process/scheduled-triggers?view=azure-devops&tabs=yaml&WT.mc_id=AZ-MVP-5004796#cron-syntax).
+By default, the pipeline has a cronjob configured to set it for midnight, but you can change this to any time you like by editing the pipeline file and changing the [cron syntax](https://learn.microsoft.com/azure/devops/pipelines/process/scheduled-triggers?view=azure-devops&tabs=yaml&WT.mc_id=AZ-MVP-5004796#cron-syntax).
 
 ```yaml
 schedules: # Define schedules for pipeline runs
@@ -484,13 +484,13 @@ schedules: # Define schedules for pipeline runs
 
 ## Run
 
-Now, that you have configured your Storage Account and Pipeline, its time to run the pipeline manually, to make sure there are no problems, before your scheduled time runs.
+Now that you have configured your Storage Account and Pipeline, it's time to run the pipeline manually to ensure there are no problems before your scheduled time runs.
 
-*You may need to permit, your Pipeline to use your Service Connection, by clicking on the "Allow" button, when the pipeline runs.*
+*You may need to permit your Pipeline to use your Service Connection by clicking on the "Allow" button when the pipeline runs.*
 
 Your pipeline, may take a while to run, depending on how many repositories you have, and how large they are. You can monitor the progress of the pipeline, by clicking on the pipeline, and then clicking on the Job, and then the Task, to see the output of the PowerShell script. This is why I would recommend, running this on a schedule, during a time not impacting to users, as it can hold up an agent while it runs.
 
 :::info
-If a Repository is only used for Azure Boards, and not for code, it will not be exported, as the API, will not return it *ie you will usee a (404) Not Found*.
+If a Repository is only used for Azure Boards and not for code, it will not be exported, as the API will not return it *, i.e., you will use a (404) Not Found*.
 :::
 
