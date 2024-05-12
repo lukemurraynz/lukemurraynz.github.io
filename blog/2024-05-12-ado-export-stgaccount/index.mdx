@@ -51,12 +51,12 @@ Today, we will use an Azure DevOps pipeline to run a PowerShell script, which wi
 graph TD
   A[Trigger Pipeline] --> B[Checkout Code]
   B --> C[Clone Azure DevOps Repositories]
-  C --> [Export Azure DevOps Repositories]
+  C --> G[Export Azure DevOps Repositories]
   G --> D[Allow Public Access to Azure DevOps Export Storage Account for upload]
   D --> E[Check Storage Network Access]
   E --> F[Download Build Artifacts]
   F --> H[Upload Repositories to Azure Storage Account]
-  ```
+```
 
 ## Deployment
 
