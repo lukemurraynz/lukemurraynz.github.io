@@ -31,7 +31,7 @@ Today, we will examine exporting your repositories to an Azure Storage Account u
 
 <!-- truncate -->
 
-## Overview
+## 📚 Overview
 
 :::info
 "You can recover deleted organizations or projects within the 28-day window following deletion. But, once this period elapses, these entities are permanently deleted and can't be restored. While these backups serve as a crucial component for disaster recovery, customers need to practice appropriate data management and backup strategies to ensure comprehensive data protection."
@@ -60,9 +60,9 @@ graph TD
   F --> H[Upload Repositories to Azure Storage Account]
 ```
 
-## Deployment
+## 🚀 Deployment
 
-## Azure Storage Account
+## ☁️ Azure Storage Account
 
 We will need to create an Azure Storage Account to store the exported repositories. We can point towards an already existing Storage Account and Container. Still, we will deploy the Storage account fresh using Azure Bicep to our existing Resource Group for this article.
 
@@ -204,13 +204,13 @@ output containerName string = storageContainer.name // Output the name of the st
 
 Please note the Storage Account name and Container Name; we will need them for Azure DevOps pipeline variables.
 
-## Azure DevOps Pipeline
+## 🛠️ Azure DevOps Pipeline
 
 Now, it's time to set up your project and repository. If you don't know how to do that, you can follow the official Microsoft Learn documentation here: [Create a new Git repo in your project](https://learn.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops&WT.mc_id=AZ-MVP-5004796). 
 
 Once your repository has been setup and initialized, we need to add the following files to the repository:
 
-# PowerShell Script
+# 💻 PowerShell Script
 The PowerShell script, [`Export-AzDevOpsRepos.ps1`](Export-AzDevOpsRepos.ps1), is responsible for cloning all repositories in a given Azure DevOps organization and downloading them as ZIP files. It uses the Azure DevOps REST API to fetch all projects and their respective repositories. For each repository, it generates a URL to download the repository as a ZIP file and saves it to a local directory. If the script is run in an Azure Pipelines environment, it also uploads the directory containing the downloaded repositories as a pipeline artifact.
 
 :::tip
@@ -231,7 +231,8 @@ else {
 ```
 :::
 
-# Azure Pipelines
+# 🚀 Azure Pipelines
+
 The Azure Pipelines configuration file, [`.azure-pipelines/pipeline.ci.adoexport.yml`](.azure-pipelines/pipeline.ci.adoexport.yml), sets up a CI pipeline that runs the PowerShell script on a schedule. The pipeline is configured to run on the latest Windows agent. It uses the Azure CLI task to run the PowerShell script and to manage access to an Azure storage account. After the script has run, the pipeline downloads any ZIP files produced as artifacts and copies them to the Azure storage account. The pipeline is scheduled to run daily at midnight.
 
 <Tabs>
@@ -435,7 +436,7 @@ I am going to be lazy and just drag the files into the repo and commit them.
 
 ![Export_ADO_CommitFiles](Export_ADO_CommitFiles.gif)
 
-Once, commited. It's time to set up our pipeline.
+Once, committed, it is time to set up our pipeline.
 
 But first, we need to setup our [PAT (Personal Access Token)](https://learn.microsoft.com/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows&WT.mc_id=AZ-MVP-5004796) and [Service Connection](https://learn.microsoft.com/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml&WT.mc_id=AZ-MVP-5004796). Both I have completed.
 
@@ -483,7 +484,7 @@ schedules: # Define schedules for pipeline runs
 ```
 :::
 
-## Run
+## 🏃‍♂️ Run
 
 Now that you have configured your Storage Account and Pipeline, it's time to run the pipeline manually to ensure there are no problems before your scheduled time runs.
 
