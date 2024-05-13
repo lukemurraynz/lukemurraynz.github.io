@@ -240,7 +240,7 @@ else {
 
 # 🚀 Azure Pipelines
 
-The Azure Pipelines configuration file, [`.azure-pipelines/pipeline.ci.adoexport.yml`](.azure-pipelines/pipeline.ci.adoexport.yml), sets up a CI pipeline that runs the PowerShell script on a schedule. The pipeline is configured to run on the latest Windows agent. It uses the Azure CLI task to run the PowerShell script and to manage access to an Azure storage account. After the script has run, the pipeline downloads any ZIP files produced as artifacts and copies them to the Azure storage account. The pipeline is scheduled to run daily at midnight.
+The Azure Pipelines configuration file, `.azure-pipelines/pipeline.ci.adoexport.yml` sets up a CI pipeline that runs the PowerShell script on a schedule. The pipeline is configured to run on the latest Windows agent. It uses the Azure CLI task to run the PowerShell script and to manage access to an Azure storage account. After the script has run, the pipeline downloads any ZIP files produced as artifacts and copies them to the Azure storage account. The pipeline is scheduled to run daily at midnight.
 
 <Tabs>
 <TabItem value="pipeline" label="pipeline.ci.adoexport.yml">
@@ -426,11 +426,11 @@ $projects.value | ForEach-Object {
 
 # Check if the repositories directory exists before trying to upload it
 if (Test-Path -Path "$env:SYSTEM_DEFAULTWORKINGDIRECTORY/repositories") {
-    Write-Host "Repositories directory exists, uploading as an artifact"
+    Write-Host "Repositories directory exists, uploading as an artifact."
     Write-Host "##vso[artifact.upload containerfolder=repositories;artifactname=AzureDevOpsExportedRepositories;]$env:SYSTEM_DEFAULTWORKINGDIRECTORY/repositories"
 }
 else {
-    Write-Host "Repositories directory does not exist, cannot upload as an artifact"
+    Write-Host "The repositories directory does not exist, so you cannot upload it as an artifact."
 }
 
 ```
@@ -443,7 +443,7 @@ I am going to be lazy and just drag the files into the repo and commit them.
 
 ![Export_ADO_CommitFiles](Export_ADO_CommitFiles.gif)
 
-Once, committed, it is time to set up our pipeline.
+Once committed, it is time to set up our pipeline.
 
 But first, we need to setup our [PAT (Personal Access Token)](https://learn.microsoft.com/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows&WT.mc_id=AZ-MVP-5004796) and [Service Connection](https://learn.microsoft.com/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml&WT.mc_id=AZ-MVP-5004796). Both I have completed.
 
