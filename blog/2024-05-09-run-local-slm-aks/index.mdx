@@ -104,7 +104,7 @@ There are some significant benefits of running open-source LLMs with Kaito. Some
 A word of warning: when looking at running your model in your own AKS cluster, be aware of the [AI Shared responsibility model](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility-ai?WT.mc_id=AZ-MVP-5004796). There is a difference in the Azure AI PaaS *(Platform as a Service)* offerings, i.e., Model safety, compute, versioning, etc. and running your model in your own AKS cluster. So, although the Kaito operator helps you run some SLM models in your AKS cluster, you are responsible for the security, compliance, and governance of the entire system versus consuming a Microsoft-provided model as a service offering.
 :::
 
-:::Note
+:::info
 If you want to follow the guide and set up Kaito, make sure you have approved [quota](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits?WT.mc_id=AZ-MVP-5004796) in your region for the GPU compute nodes. In this example, I am using a 12 vCPU Standard NCSv3 instance.
 
 You can use the following Azure CLI command to check your use and limit:
