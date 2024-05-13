@@ -44,10 +44,10 @@ Reference: [Data protection - Mistakes Happen](https://learn.microsoft.com/en-us
 :::
 
 :::warning
-Please remember that this backup will only export the repositories and pipelines, not the work items, pipeline variables, or other artifacts. This will also backup any code stored in Azure DevOps, so if there are secrets or other sensitive information stored in the code, please ensure that these are not stored in the code or are encrypted, or they may be readable by someone with access to the storage account.
+Please remember that this backup will only export the repositories and pipelines, not the work items, pipeline variables, or other artifacts. This will also backup any code stored in Azure DevOps, so if secrets or other sensitive information are stored in the code, please ensure that these are not stored in the code or are encrypted, or they may be readable by someone with access to the storage account.
 :::
 
-Today, we will use an Azure DevOps pipeline to run a PowerShell script. The script will connect to the Azure DevOps API and grab the zip file of each Repository in all Projects into an artifact, which then gets exported and copied to an Azure Storage Account.
+Today, we will run a PowerShell script with an Azure DevOps pipeline. The script will connect to the Azure DevOps API and grab the zip file of each Repository in all Projects into an artifact, which then gets exported and copied to an Azure Storage Account.
 
 ```mermaid
 graph TD
@@ -489,7 +489,7 @@ Now that you have configured your Storage Account and Pipeline, it's time to run
 :::warning
 Before you run:
 
-Double-check the permissions you have granted the Service Principal and your variable naming and values, else you may get an error similar to the following when attempting to copy the artifacts to the Storage Account:
+Double-check the permissions you have granted the Service Principal and your variable naming and values; else you may get an error similar to the following when attempting to copy the artifacts to the Storage Account:
 
 ```plaintext
 ERROR: (InvalidApiVersionParameter) The api-version '2023-01-01' is invalid. The supported versions are '2024-03-01,2023-07-01,2023-07-01-preview,2023-03-01-preview,2022-12-01,2022-11-01-preview,2022-09-01,2022-06-01,2022-05-01,2022-03-01-preview,2022-01-01,2021-04-01,2021-01-01,2020-10-01,2020-09-01,2020-08-01,2020-07-01,2020-06-01,2020-05-01,2020-01-01,2019-11-01,2019-10-01,2019-09-01,2019-08-01,2019-07-01,2019-06-01,2019-05-10,2019-05-01,2019-03-01,2018-11-01,2018-09-01,2018-08-01,2018-07-01,2018-06-01,2018-05-01,2018-02-01,2018-01-01,2017-12-01,2017-08-01,2017-06-01,2017-05-10,2017-05-01,2017-03-01,2016-09-01,2016-07-01,2016-06-01,2016-02-01,2015-11-01,2015-01-01,2014-04-01-preview,2014-04-01,2014-01-01,2013-03-01,2014-02-26,2014-04'.
@@ -500,7 +500,7 @@ It means, that your variables are not parsing correctly, to the Azure CLI, make 
 
 *You may need to permit your Pipeline to use your Service Connection by clicking on the "Allow" button when the pipeline runs.*
 
-Your pipeline may take a while to run, depending on how many repositories you have and how large they are. You can monitor the progress of the pipeline by clicking on the pipeline, then clicking on the Job, and then the Task to see the output of the PowerShell script. This is why I would recommend running this on a schedule during a time that does not impact users, as it can hold up an agent while it runs.
+Your pipeline may take a while to run, depending on how many repositories you have and how large they are. You can monitor the progress of the pipeline by clicking on the pipeline, then clicking on the Job, and then the Task to see the output of the PowerShell script. This is why I would recommend running this on a schedule during a time that does not impact users, as it can hold up an agent while it runs; also be aware that depending on your repositories, running this every night can quickly use up any [build minutes you may have, if running from a Microsoft hosted agent](https://azure.microsoft.com/pricing/details/devops/azure-devops-services/?WT.mc_id=AZ-MVP-5004796).
 
 :::info
 If a Repository is only used for Azure Boards and not for code, it will not be exported, as the API will not return it *, i.e., you will use a (404) Not Found*.
