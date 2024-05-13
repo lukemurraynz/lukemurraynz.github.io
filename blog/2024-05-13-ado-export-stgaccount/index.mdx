@@ -66,7 +66,7 @@ graph TD
 
 ## 🚀 Deployment
 
-## ☁️ Azure Storage Account
+### ☁️ Azure Storage Account
 
 We will need to create an Azure Storage Account to store the exported repositories. We can point towards an already existing Storage Account and Container. Still, we will deploy the Storage account fresh using Azure Bicep to our existing Resource Group for this article.
 
@@ -208,7 +208,7 @@ output containerName string = storageContainer.name // Output the name of the st
 
 Please note the Storage Account name and Container Name; we will need them for Azure DevOps pipeline variables.
 
-## 🛠️ Azure DevOps Pipeline
+### 🛠️ Azure DevOps Pipeline
 
 Now, it's time to set up your project and repository. If you don't know how to do that, you can follow the official Microsoft Learn documentation here: [Create a new Git repo in your project](https://learn.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops&WT.mc_id=AZ-MVP-5004796). 
 
