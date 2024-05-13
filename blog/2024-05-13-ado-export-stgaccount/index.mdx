@@ -68,7 +68,9 @@ graph TD
 
 ### ☁️ Azure Storage Account
 
-We will need to create an Azure Storage Account to store the exported repositories. We can point towards an already existing Storage Account and Container. Still, we will deploy the Storage account fresh using Azure Bicep to our existing Resource Group for this article.
+We will need to create an Azure Storage Account to store the exported repositories. We can point towards an already existing Storage Account and Container. 
+
+We will deploy the Storage account fresh using [Azure Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/overview?tabs=bicep&WT.mc_id=AZ-MVP-5004796) to our existing Resource Group for this article.
 
 :::tip
 I will use the [Deployment Pane](https://luke.geek.nz/azure/Azure-Bicep-Deploy-Pane/) to deploy the Storage Account straight from Visual Studio Code, running in a [Codespace](https://luke.geek.nz/azure/Getting-Started-with-GitHub-Codespaces/).
@@ -212,10 +214,11 @@ Please note the Storage Account name and Container Name; we will need them for A
 
 Now, it's time to set up your project and repository. If you don't know how to do that, you can follow the official Microsoft Learn documentation here: [Create a new Git repo in your project](https://learn.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops&WT.mc_id=AZ-MVP-5004796). 
 
-Once your repository has been setup and initialized, we need to add the following files to the repository:
+Once your repository has been set up and initialized, we need to add the following files.
 
 # 💻 PowerShell Script
-The PowerShell script, [`Export-AzDevOpsRepos.ps1`](Export-AzDevOpsRepos.ps1), is responsible for cloning all repositories in a given Azure DevOps organization and downloading them as ZIP files. It uses the Azure DevOps REST API to fetch all projects and their respective repositories. For each repository, it generates a URL to download the repository as a ZIP file and saves it to a local directory. If the script is run in an Azure Pipelines environment, it also uploads the directory containing the downloaded repositories as a pipeline artifact.
+
+The PowerShell script, `Export-AzDevOpsRepos.ps1`, is responsible for cloning all repositories in a given Azure DevOps organization and downloading them as ZIP files. It uses the Azure DevOps REST API to fetch all projects and their respective repositories. For each repository, it generates a URL to download the repository as a ZIP file and saves it to a local directory. If the script is run in an Azure Pipelines environment, it also uploads the directory containing the downloaded repositories as a pipeline artifact.
 
 :::tip
 The PowerShell script can also be run locally. If it detects an Azure DevOps agent, it will automatically collect the variables from the pipeline variables; otherwise, those variables can be added manually to the script to run it locally.
@@ -457,9 +460,9 @@ Then, we need to add to our pipeline the following:
 
 | Variable            | Example                                        | Notes                                                                                         |
 | ------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| azDevOpsOrg         | Contoso                                        | Your Azure DevOps Org - matching your URL ie i(https://dev.azure.com/contoso)                 |
+| azDevOpsOrg         | Contoso                                        | Your Azure DevOps Org - matching your URL ie (https://dev.azure.com/contoso)                 |
 | azServiceConnection | AzureServiceConnection                         | Your Service Connection name for Azure Resource Provider access to your Azure Resource Group |
-| pat                 | 2xj2jv4yf2h6xvqjgk7y2n4d2iucxltlzyxuhcdjxibnrf | Your PAT (Personal Access Token), used to authenticate to Azure DevOps. Set this as a secure string.                        |
+| pat                 | 2xj2jv4yf2h6xvqjgk7y2n4d2iucxltlzyxuhcdjxibnrf | Your PAT (Personal Access Token), used to authenticate to Azure DevOps. Set this as a secure string.                       |
 | stgAccContainer     | adoexport                                      | The Container that will contain your ADO Exports inside of the Storage Account               |
 | storageAccount      | adoexport23                                    | Storage account that your ADO exports will be going into.                                     |
 | storageAccountRG    | adoexport-rg                                   | Resource Group, containing your Azure Storage Account                                         |
