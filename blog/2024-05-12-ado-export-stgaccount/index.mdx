@@ -1,21 +1,23 @@
 ---
-title: Export Azure DevOps Repositories to a Storage Account
-metaDescription: 
-description: 
-date: 2024-05-11T08:23:54.576Z
+title: Export Azure DevOps Repositories to Azure Storage Account
+metaDescription: Learn how to export Azure DevOps repositories to an Azure Storage Account for backup and disaster recovery.
+description: Step-by-step guide on exporting Azure DevOps repositories to an Azure Storage Account for backup and recovery.
+date: 2024-05-13T00:48:16.111Z
 tags:
   - Azure
 categories:
   - Azure
 authors:
   - Luke
-slug: azure/authorization-permission-mismatch-error-azure-storage
+slug: azure/export-azure-devops-repos-azure-storage-account
 keywords:
   - Azure
-  - Authorization Permission Mismatch
-  - Azure Storage
-  - Azure DevOps pipeline
-  - DevOps
+  - Azure DevOps
+  - Repositories
+  - Export
+  - Azure Storage Account
+  - Backup
+  - Disaster Recovery
 ---
 
 import Tabs from '@theme/Tabs';
@@ -267,15 +269,6 @@ steps:
       PAT: $(PAT) # Personal Access Token for authentication
       AzDevOpsOrg: $(AzDevOpsOrg) # Azure DevOps organization
 
-  # Log the end of the repository cloning process
-  - task: PowerShell@2
-    displayName: 'Log End of Repository Cloning Process'
-    condition: succeeded()
-    inputs:
-      targetType: 'inline'
-      script: |
-        Write-Host "Repository cloning process completed"
-
   - task: AzureCLI@2 # Use Azure CLI task
     displayName: Allow Public Access to Azure DevOps Export Storage Account for upload # Display name for the step
     condition: succeeded() # Run only if the previous step succeeded
@@ -284,7 +277,10 @@ steps:
       scriptType: bash # Use Bash script
       scriptLocation: inlineScript # Script location is inline
       inlineScript: |
-        az storage account update --name "${storageAccount}"  --resource-group "${storageAccountRG}" --default-action Allow  # Allow public access to the storage account
+        az storage account update --name "${storageAccount}"  --resource-group "${storageAccountRG}" --default-action Allow
+    env:
+      storageAccount: $(storageAccount) # Personal Access Token for authentication
+      storageAccountRG: $(storageAccountRG) # Azure DevOps organization
 
   - task: AzureCLI@2 # Use Azure CLI task
     displayName: "Check Storage Network Access" # Display name for the step
@@ -297,9 +293,10 @@ steps:
       scriptType: bash # Use Bash script
       scriptLocation: inlineScript # Script location is inline
       inlineScript: |
+        set -x
         echo -e "Setting up authentication..."
-        export AZURE_STORAGE_ACCOUNT=${storageAccount}
-        export AZURE_STORAGE_KEY=$(az storage account keys list --account-name ${storageAccount} --query '[0].value' --output tsv)
+        AZURE_STORAGE_ACCOUNT=${storageAccount}
+        AZURE_STORAGE_KEY=$(az storage account keys list --account-name ${storageAccount} --query '[0].value' --output tsv)
         echo -e "Checking storage account access every 60 seconds..."
         sleep 10
         for i in {1..60}; do
@@ -340,7 +337,10 @@ steps:
       scriptType: bash # Use Bash script
       scriptLocation: inlineScript # Script location is inline
       inlineScript: |
-        az storage account update --name "${storageAccount}" --resource-group "${storageAccountRG}" --default-action Deny  # Remove public access from the storage account
+        az storage account update --name "${storageAccount}" --resource-group "${storageAccountRG}" --default-action Deny
+    env:
+      storageAccount: $(storageAccount) # Personal Access Token for authentication
+      storageAccountRG: $(storageAccountRG) # Azure DevOps organization
 
 ```
 </TabItem>
@@ -489,13 +489,13 @@ Now that you have configured your Storage Account and Pipeline, it's time to run
 :::warning
 Before you run:
 
-Double check the permissions, you have granted the Service Principal, else you may get an error similar to the following when attempting to copy the artifacts to the Storage Account:
+Double check the permissions, you have granted the Service Principal, and your variable naming and values, else you may get an error similar to the following when attempting to copy the artifacts to the Storage Account:
 
 ```plaintext
 ERROR: (InvalidApiVersionParameter) The api-version '2023-01-01' is invalid. The supported versions are '2024-03-01,2023-07-01,2023-07-01-preview,2023-03-01-preview,2022-12-01,2022-11-01-preview,2022-09-01,2022-06-01,2022-05-01,2022-03-01-preview,2022-01-01,2021-04-01,2021-01-01,2020-10-01,2020-09-01,2020-08-01,2020-07-01,2020-06-01,2020-05-01,2020-01-01,2019-11-01,2019-10-01,2019-09-01,2019-08-01,2019-07-01,2019-06-01,2019-05-10,2019-05-01,2019-03-01,2018-11-01,2018-09-01,2018-08-01,2018-07-01,2018-06-01,2018-05-01,2018-02-01,2018-01-01,2017-12-01,2017-08-01,2017-06-01,2017-05-10,2017-05-01,2017-03-01,2016-09-01,2016-07-01,2016-06-01,2016-02-01,2015-11-01,2015-01-01,2014-04-01-preview,2014-04-01,2014-01-01,2013-03-01,2014-02-26,2014-04'.
 Code: InvalidApiVersionParameter
 ```
-It means, that your Service Principal is missing the Storage Blob Data Contributor role on your Storage account.
+It means, that your variables are not parsing correctly, to the Azure CLI, make sure they are correct.
 :::
 
 *You may need to permit your Pipeline to use your Service Connection by clicking on the "Allow" button when the pipeline runs.*
@@ -506,5 +506,8 @@ Your pipeline, may take a while to run, depending on how many repositories you h
 If a Repository is only used for Azure Boards and not for code, it will not be exported, as the API will not return it *, i.e., you will use a (404) Not Found*.
 :::
 
+![Azure DevOps - Artifact_Export](Artifact_Export.png)
 
+Once, thats completed - you will be able to see your exported repositories in your storage account!
 
+![Azure DevOps - Storage Account](Export_ADO_CheckAzureDevOpsExportStfAcc.gif)
