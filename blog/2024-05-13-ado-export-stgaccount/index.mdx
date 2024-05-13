@@ -1,7 +1,7 @@
 ---
 title: Export Azure DevOps Repositories to Azure Storage Account
 metaDescription: Learn how to export Azure DevOps repositories to an Azure Storage Account for backup and disaster recovery.
-description: Step-by-step guide on exporting Azure DevOps repositories to an Azure Storage Account for backup and recovery.
+description: This is a step-by-step guide on exporting Azure DevOps repositories to an Azure Storage Account for backup and recovery.
 date: 2024-05-13T00:48:16.111Z
 tags:
   - Azure
@@ -23,11 +23,11 @@ keywords:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-When recently deleted, Azure DevOps code repositories go into a soft-delete state. The Repositories are retained for 30 days before they are permanently deleted. However, for Disaster Recovery scenarios or scenarios where you may not realise something has been deleted until after Microsoft retains the backup, you may want to export the repositories at a single point in time to an Azure storage account.
+When recently deleted, Azure DevOps code repositories go into a soft-delete state. The Repositories are retained for 30 days before they are permanently deleted. However, for Disaster Recovery scenarios or scenarios where you may not realize something has been deleted until after Microsoft retains the backup, you may want to export the repositories at a single point in time to an Azure storage account.
 
-Ironically, the Azure DevOps service itself is highly redundant and built on top of core Azure Platform infrastructure components, such as Availability Zones. It relies on Azure Cloud native Storage and Azure SQL services, which are highly redundant and backed-up services. However, mistakes can happen, and there may be organizational requirements to retain backups of the repositories. 
+The Azure DevOps service is highly redundant and built on core Azure Platform infrastructure components, such as Availability Zones. It relies on Azure Cloud native Storage and Azure SQL services, which are highly redundant and backed-up. However, mistakes can happen, and there may be organizational requirements to retain backups of the repositories. 
 
-Today, we will be looking at exporting your repositories to an Azure Storage Account using a DevOps pipeline. This pipeline will capture the repositories at their current point in time and run nightly. 
+Today, we will examine exporting your repositories to an Azure Storage Account using a DevOps pipeline. This pipeline will capture the repositories at their current state and run nightly. 
 
 <!-- truncate -->
 
@@ -44,10 +44,10 @@ Reference: [Data protection - Mistakes Happen](https://learn.microsoft.com/en-us
 :::
 
 :::warning
-Please be aware that this backup will only export the repositories and pipelines, not the work items, pipeline variables, or other artifacts. This will also backup any code stored in Azure DevOps, so if there are secrets or other sensitive information stored in the code, please ensure that these are not stored in the code or are encrypted, or they may be readable by someone with access to the storage account.
+Please remember that this backup will only export the repositories and pipelines, not the work items, pipeline variables, or other artifacts. This will also backup any code stored in Azure DevOps, so if there are secrets or other sensitive information stored in the code, please ensure that these are not stored in the code or are encrypted, or they may be readable by someone with access to the storage account.
 :::
 
-Today, we will use an Azure DevOps pipeline to run a PowerShell script, which will connect to the Azure DevOps API and grab the zip file of each Repository in all Projects into an artifact, which then gets exported and copied to an Azure Storage Account.
+Today, we will use an Azure DevOps pipeline to run a PowerShell script. The script will connect to the Azure DevOps API and grab the zip file of each Repository in all Projects into an artifact, which then gets exported and copied to an Azure Storage Account.
 
 ```mermaid
 graph TD
@@ -70,7 +70,7 @@ We will need to create an Azure Storage Account to store the exported repositori
 I will use the [Deployment Pane](https://luke.geek.nz/azure/Azure-Bicep-Deploy-Pane/) to deploy the Storage Account straight from Visual Studio Code, running in a [Codespace](https://luke.geek.nz/azure/Getting-Started-with-GitHub-Codespaces/).
 :::
 
-We will use [Lifecycle Management policies](https://learn.microsoft.com/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal&WT.mc_id=AZ-MVP-5004796), to help control the retention of the exported repositories. We will move the repositories to Cool Storage after 30 days, Archive Storage after 90 days, and delete the repositories after 120 days.
+We will use [Lifecycle Management policies](https://learn.microsoft.com/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal&WT.mc_id=AZ-MVP-5004796) to help control the retention of the exported repositories. We will move the repositories to Cool Storage after 30 days, Archive Storage after 90 days, and delete them after 120 days.
 
 ![Export ADO - Create Storage Account](Export_ADO_CreateStgAccount.gif)
 
@@ -232,7 +232,7 @@ else {
 :::
 
 # Azure Pipelines
-The Azure Pipelines configuration file, [`.azure-pipelines/pipeline.ci.adoexport.yml`](.azure-pipelines/pipeline.ci.adoexport.yml), sets up a CI pipeline that runs the PowerShell script on a schedule. The pipeline is configured to run on the latest Windows agent. It uses the Azure CLI task to run the PowerShell script and to manage access to an Azure storage account. After the script has run, the pipeline downloads any ZIP files produced as artifacts, and copies them to the Azure storage account. The pipeline is scheduled to run daily at midnight.
+The Azure Pipelines configuration file, [`.azure-pipelines/pipeline.ci.adoexport.yml`](.azure-pipelines/pipeline.ci.adoexport.yml), sets up a CI pipeline that runs the PowerShell script on a schedule. The pipeline is configured to run on the latest Windows agent. It uses the Azure CLI task to run the PowerShell script and to manage access to an Azure storage account. After the script has run, the pipeline downloads any ZIP files produced as artifacts and copies them to the Azure storage account. The pipeline is scheduled to run daily at midnight.
 
 <Tabs>
 <TabItem value="pipeline" label="pipeline.ci.adoexport.yml">
@@ -315,7 +315,7 @@ steps:
       patterns: "**/*.zip" # Include all ZIP files
       path: "$(Build.ArtifactStagingDirectory)" # Download artifacts to the staging directory
 
-  #Storage account needs the SPN to have Storage Blob Data Contributor role, to allow blob upload.
+  #Storage account needs the SPN to have a Storage Blob Data Contributor role to allow blob upload.
 
   - task: AzureFileCopy@6 # Use Azure File Copy task
     displayName: "Copy artifacts to $(storageAccount)" # Display name for the step
@@ -389,7 +389,7 @@ $projects.value | ForEach-Object {
 
         $result.value | ForEach-Object {
             $repoName = $_.name
-            Write-Host "Attempting to clone repository: $repoName"
+            Write-Host "Attempting to clone the repository: $repoName"
 
             if (-not [string]::IsNullOrWhiteSpace($repoName)) {
                 $repoId = $_.id
@@ -418,19 +418,19 @@ $projects.value | ForEach-Object {
 
 # Check if the repositories directory exists before trying to upload it
 if (Test-Path -Path "$env:SYSTEM_DEFAULTWORKINGDIRECTORY/repositories") {
-    Write-Host "Repositories directory exists, uploading as artifact"
+    Write-Host "Repositories directory exists, uploading as an artifact"
     Write-Host "##vso[artifact.upload containerfolder=repositories;artifactname=AzureDevOpsExportedRepositories;]$env:SYSTEM_DEFAULTWORKINGDIRECTORY/repositories"
 }
 else {
-    Write-Host "Repositories directory does not exist, cannot upload as artifact"
+    Write-Host "Repositories directory does not exist, cannot upload as an artifact"
 }
 
 ```
 </TabItem>
 
-You can also, find the latest files in the [lukemurraynz/ADO_Export](https://github.com/lukemurraynz/ADO_Export) GitHub repository. Feel free to open a Pull Request, Suggust changes, or improvements.
+You can also find the latest files in the [lukemurraynz/ADO_Export](https://github.com/lukemurraynz/ADO_Export) GitHub repository. Feel free to open a Pull Request, Suggest changes, or improve.
 
-I am going to be lazy, and just drag the files right into the repo, and commit them.
+I am going to be lazy and just drag the files into the repo and commit them.
 
 ![Export_ADO_CommitFiles](Export_ADO_CommitFiles.gif)
 
@@ -447,7 +447,7 @@ For your Service Connection, you will need the following permissions:
 
 Reader on the Subscription that Contains your Storage Account *(the subscription scoping is required for the Azure CLI commanders to check and access your Storage account; if you are using a Self-Managed DevOps agent, you may be able to avoid this)*, and Storage Blob Data Contributor on the Storage Account.
 
-Then we need to add to our pipeline are:
+Then, we need to add to our pipeline the following:
 
 | Variable            | Example                                        | Notes                                                                                         |
 | ------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
@@ -489,7 +489,7 @@ Now that you have configured your Storage Account and Pipeline, it's time to run
 :::warning
 Before you run:
 
-Double check the permissions, you have granted the Service Principal, and your variable naming and values, else you may get an error similar to the following when attempting to copy the artifacts to the Storage Account:
+Double-check the permissions you have granted the Service Principal and your variable naming and values, else you may get an error similar to the following when attempting to copy the artifacts to the Storage Account:
 
 ```plaintext
 ERROR: (InvalidApiVersionParameter) The api-version '2023-01-01' is invalid. The supported versions are '2024-03-01,2023-07-01,2023-07-01-preview,2023-03-01-preview,2022-12-01,2022-11-01-preview,2022-09-01,2022-06-01,2022-05-01,2022-03-01-preview,2022-01-01,2021-04-01,2021-01-01,2020-10-01,2020-09-01,2020-08-01,2020-07-01,2020-06-01,2020-05-01,2020-01-01,2019-11-01,2019-10-01,2019-09-01,2019-08-01,2019-07-01,2019-06-01,2019-05-10,2019-05-01,2019-03-01,2018-11-01,2018-09-01,2018-08-01,2018-07-01,2018-06-01,2018-05-01,2018-02-01,2018-01-01,2017-12-01,2017-08-01,2017-06-01,2017-05-10,2017-05-01,2017-03-01,2016-09-01,2016-07-01,2016-06-01,2016-02-01,2015-11-01,2015-01-01,2014-04-01-preview,2014-04-01,2014-01-01,2013-03-01,2014-02-26,2014-04'.
@@ -500,7 +500,7 @@ It means, that your variables are not parsing correctly, to the Azure CLI, make 
 
 *You may need to permit your Pipeline to use your Service Connection by clicking on the "Allow" button when the pipeline runs.*
 
-Your pipeline, may take a while to run, depending on how many repositories you have, and how large they are. You can monitor the progress of the pipeline, by clicking on the pipeline, and then clicking on the Job, and then the Task, to see the output of the PowerShell script. This is why I would recommend, running this on a schedule, during a time not impacting to users, as it can hold up an agent while it runs.
+Your pipeline may take a while to run, depending on how many repositories you have and how large they are. You can monitor the progress of the pipeline by clicking on the pipeline, then clicking on the Job, and then the Task to see the output of the PowerShell script. This is why I would recommend running this on a schedule during a time that does not impact users, as it can hold up an agent while it runs.
 
 :::info
 If a Repository is only used for Azure Boards and not for code, it will not be exported, as the API will not return it *, i.e., you will use a (404) Not Found*.
@@ -508,6 +508,6 @@ If a Repository is only used for Azure Boards and not for code, it will not be e
 
 ![Azure DevOps - Artifact_Export](Artifact_Export.png)
 
-Once, thats completed - you will be able to see your exported repositories in your storage account!
+Once that's completed - you will be able to see your exported repositories in your storage account!
 
 ![Azure DevOps - Storage Account](Export_ADO_CheckAzureDevOpsExportStfAcc.gif)
