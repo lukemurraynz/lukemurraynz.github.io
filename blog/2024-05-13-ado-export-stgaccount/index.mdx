@@ -23,9 +23,13 @@ keywords:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-When recently deleted, Azure DevOps code repositories go into a soft-delete state. The Repositories are retained for 30 days before they are permanently deleted. However, for Disaster Recovery scenarios or scenarios where you may not realize something has been deleted until after Microsoft retains the backup, you may want to export the repositories at a single point in time to an Azure storage account.
+When recently deleted, Azure DevOps code repositories go into a soft-delete state, any repositories deleted are retained for 30 days before they are permanently deleted.
 
-The Azure DevOps service is highly redundant and built on core Azure Platform infrastructure components, such as Availability Zones. It relies on Azure Cloud native Storage and Azure SQL services, which are highly redundant and backed-up. However, mistakes can happen, and there may be organizational requirements to retain backups of the repositories. 
+For Disaster Recovery scenarios or scenarios where you may not realize something has been deleted until after Microsoft retains the backup, you may want to export the repositories at a single point in time to an Azure storage account.
+
+The Azure DevOps service is highly redundant and built on core Azure Platform infrastructure components, such as Availability Zones and is built using Azure Cloud native Storage and Azure SQL services, which are highly redundant and backed-up. 
+
+However, mistakes can happen, and there may be organizational requirements to retain backups of the repositories. 
 
 Today, we will examine exporting your repositories to an Azure Storage Account using a DevOps pipeline. This pipeline will capture the repositories at their current state and run nightly. 
 
