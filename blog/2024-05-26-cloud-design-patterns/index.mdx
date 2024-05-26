@@ -764,3 +764,19 @@ These steps constitute an eventually consistent operation, although each step is
 In many business solutions, failure of a single step doesn't always necessitate rolling back the system by using a compensating transaction. For example, consider the travel website scenario. Suppose the customer books flights F1, F2, and F3 but can't reserve a room at hotel H1. It's preferable to offer the customer a room at a different hotel in the same city rather than canceling the flights. The customer can still decide to cancel. In that case, the compensating transaction runs and undoes the bookings for flights F1, F2, and F3. But the customer should make this decision, not the system.
 
 Azure resources that can be used to implement this pattern include [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796), [Azure Logic Apps](https://learn.microsoft.com/azure/logic-apps/logic-apps-overview?WT.mc_id=AZ-MVP-5004796), and [Azure Service Bus](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview?WT.mc_id=AZ-MVP-5004796).
+
+### Security Patterns
+
+#### Sequential Convoy
+
+> Process a set of related messages in a defined order, without blocking processing of other groups of messages.
+
+
+##### Issues & considerations
+
+
+##### When to use this pattern
+
+
+##### Azure Solutions
+
