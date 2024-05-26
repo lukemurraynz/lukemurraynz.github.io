@@ -90,11 +90,11 @@ Take a Cloud Platform or ecosystem like Azure, with Services offering a theory o
 * Security—Security patterns such as API Gateway and Secure Token ensure that applications are protected against malicious actors while maintaining confidentiality, integrity, and availability. Secure systems support sustainability by preventing security breaches that could lead to resource wastage.
 * Operational Excellence - Patterns like Ambassador and Anti-Corruption Layer enhance operational excellence by simplifying the management and monitoring of cloud applications. Efficient management practices contribute to sustainability by optimizing resource usage and reducing unnecessary overhead.
 * Performance Efficiency - Patterns such as Cache-Aside and Compute Resource Consolidation optimize performance by efficiently managing resources and reducing latency. Effective resource management leads to sustainability by lowering the overall resource footprint and energy consumption.
-* Data Management—Data management patterns address challenges related to data consistency, synchronization, and management across different locations, which is crucial for cloud applications. Sustainable data practices ensure data is stored and processed efficiently, minimizing energy use and reducing environmental impact.
+* Data Management—Data management patterns address data consistency, synchronization, and management challenges across different locations, which is crucial for cloud applications. Sustainable data practices ensure data is stored and processed efficiently, minimizing energy use and reducing environmental impact.
 
 #### Acroymns
 
-When talking about Design Patterns, we will be using a few acronyms, and it is important to understand what they mean to fully understand the context.
+When talking about design patterns, we will be using a few acronyms, and it is important to understand what they mean in order to fully understand the context.
 
 | Acronym  | Definition                                                                                                                                                                                                                | Example                                                                                                                                                                                                    |
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -102,8 +102,8 @@ When talking about Design Patterns, we will be using a few acronyms, and it is i
 | Consumer | A  consumer is an entity (such as an application, service, or user) that consumes or uses the services provided by another service. Consumers send requests to services and receive responses.                            | A web application that calls an authentication service to verify user credentials is a consumer of that authentication service.                                                                            |
 | Tenant   | In a multi-tenant architecture, a tenant is a group of users who share common access with specific privileges to the software instance. Each tenant's data is isolated and remains invisible to other tenants.            | In a Software as a Service (SaaS) application, each customer (company or organization) is considered a tenant. They have their own isolated data and configuration settings within the shared application. |
 | Facade   | The Facade pattern provides a simplified interface to a complex subsystem, making it easier to use and understand. It acts as a high-level interface that hides the complexities of the underlying system.                      | In a software application, a facade can be used to provide a simplified API that abstracts away the complexities of interacting with multiple subsystems or modules.                                      |
-| Asynchronous | Asynchronous communication is a messaging pattern where the sender and receiver do not need to interact in real-time. The sender can send a message and continue with other tasks, while the receiver processes the message at its own pace. | In a distributed system, asynchronous messaging can be used to decouple components and improve scalability. For example, a message queue can be used to send and receive messages between different services. |
-| Synchronous | Synchronous communication is a messaging pattern where the sender and receiver interact in real-time. The sender sends a message and waits for a response from the receiver before proceeding. | In a request-response scenario, a client sends a request to a server and waits for the server to process the request and send back a response. This pattern is commonly used in HTTP-based APIs. |
+| Asynchronous | Asynchronous communication is a messaging pattern where the sender and receiver do not need to interact in real time. The sender can send a message and continue with other tasks, while the receiver processes the message at its own pace. | In a distributed system, asynchronous messaging can be used to decouple components and improve scalability. For example, a message queue can be used to send and receive messages between different services. |
+| Synchronous | Synchronous communication is a messaging pattern where the sender and receiver interact in real time. The sender sends a message and waits for a response from the receiver before proceeding. | In a request-response scenario, a client sends a request to a server and waits for the server to process the request and send back a response. This pattern is commonly used in HTTP-based APIs. |
 
 ### Archetypes *(Categories)* of Patterns
 
@@ -120,14 +120,14 @@ The categories include Data Management, Security, Reliability, Messaging, and De
 ![Cloud Design Patterns Archetypes](Blog_CloudDesignPatterns_Archetypes.PNG)
 
 :::warning
-As usual, the choice of pattern depends on the specific requirements of your application. It's essential to understand the characteristics and trade-offs of each pattern and business requirements, to make an informed decision. In some cases, multiple patterns may be required, or even part of one, to solve a specific problem.
+As usual, the choice of pattern depends on your application's specific requirements. To make an informed decision, it's essential to understand the characteristics and trade-offs of each pattern and business requirements. Sometimes, multiple patterns may be required, or even part of one, to solve a specific problem.
 :::
 
 ### Pattern Deep Dives
 
-The cloud has changed the way we design our applications. Let's examine some of the design patterns that we can use in the cloud. These patterns help us solve common problems in cloud architecture and make our applications more reliable, scalable, and secure.
+The cloud has changed the way we design our applications. Let's examine some design patterns we can use in the cloud. These patterns help us solve common problems in cloud architecture and make our applications more reliable, scalable, and secure.
 
-In the following sections, we will examine some common cloud design patterns, their use cases, and considerations in depth.
+In the following sections, we will examine common cloud design patterns, their use cases, and considerations in depth.
 
 ### Data Management Patterns
 
@@ -166,7 +166,7 @@ Consider the following points when deciding how to implement this pattern:
 
 ```mermaid
 graph TB
-  Start(Start) --> NoNativeCacheOps{Does in-built cache not provide native read-through or write-back operations?}
+  Start(Start) --> NoNativeCacheOps{Does the in-built cache not provide native read-through or write-back operations?}
   NoNativeCacheOps -- Yes --> UnpredictableDemand{Is resource demand unpredictable?}
   NoNativeCacheOps -- No --> DoNotUseCacheAside[Do not use Cache-Aside]
   UnpredictableDemand -- Yes --> NonStaticData{Is the cached dataset not static?}
@@ -181,7 +181,7 @@ graph TB
 
 In this example, it uses [Azure Cache for Redis](https://learn.microsoft.com/azure/azure-cache-for-redis/cache-overview?WT.mc_id=AZ-MVP-5004796). When an application needs to retrieve data, it will first check to see if it exists in Azure Cache for Redis.
 If the data is found in Azure Cache for Redis (cache hit), the application will use this data.
-If the data is not found in Azure Cache for Redis (cache miss), the application will need to retrieve it from the appropriate Azure database service.
+If the data is not found in Azure Cache for Redis (cache miss), the application must retrieve it from the appropriate Azure database service.
 For cache miss scenarios, the requesting application should add the data retrieved from the Azure Database service to Azure Cache for Redis.
 
 ### Sharding
@@ -190,7 +190,7 @@ For cache miss scenarios, the requesting application should add the data retriev
 
 Dividing a data store into a set of horizontal partitions or shards. This can improve scalability when storing and accessing large volumes of data.
 
-* The Lookup strategy. In this strategy, the sharding logic implements a map that routes a request for data to the shard, which contains that data using the shard key. In a multi-tenant application, all the data for a tenant might be stored together in a shard using the tenant ID as the shard key. Multiple tenants might share the same shard, but the data for a single tenant won't be spread across multiple shards.
+* The Lookup strategy. In this strategy, the sharding logic implements a map that routes a request for data to the shard containing that data using the shard key. In a multi-tenant application, all the data for a tenant might be stored together in a shard using the tenant ID as the shard key. Multiple tenants might share the same shard, but the data for a single tenant won't be spread across multiple shards.
 * The Range strategy. This strategy groups related items together in the same shard and orders them by shard key—the shard keys are sequential. It's useful for applications that frequently retrieve sets of items using range queries (queries that return a set of data items for a shard key that falls within a given range). For example, if an application regularly needs to find all orders placed in a given month, this data can be retrieved more quickly if all orders for a month are stored in date and time order in the same shard. If each order were stored in a different shard, they'd have to be fetched individually by performing many point queries (queries that return a single data item). 
 * The Hash strategy. The purpose of this strategy is to reduce the chance of hotspots (shards that receive a disproportionate amount of load). It distributes the data across the shards in a way that achieves a balance between the size of each shard and the average load that each shard will encounter. The sharding logic computes the shard to store an item in based on a hash of one or more data attributes. The chosen hashing function should distribute data evenly across the shards, possibly by introducing some random element into the computation.
 
@@ -209,7 +209,7 @@ Consider the following points when deciding how to implement this pattern:
 
 #### When to use this pattern
 
-The primary focus of sharding is to improve the performance and scalability of a system, but as a by-product it can also improve availability due to how the data is divided into separate partitions. A failure in one partition doesn't necessarily prevent an application from accessing data held in other partitions, and an operator can perform maintenance or recovery of one or more partitions without making the entire data for an application inaccessible. 
+The primary focus of sharding is to improve the performance and scalability of a system. Still, as a by-product it can also improve availability due to how the data is divided into separate partitions. A failure in one partition doesn't necessarily prevent an application from accessing data held in other partitions, and an operator can perform maintenance or recovery of one or more partitions without making the entire data for an application inaccessible. 
 
 * When the data store is likely to need to scale beyond the resources of a single storage node.
 * When you can improve performance  by reducing contention on a single data store.
@@ -219,7 +219,7 @@ The primary focus of sharding is to improve the performance and scalability of a
 
 ```mermaid
 graph TB
-  Start(Start) --> IsScaleBeyondSingleNode{Is data store likely to scale beyond resources of a single node?}
+  Start(Start) --> IsScaleBeyondSingleNode{Is the data store likely to scale beyond the resources of a single node?}
   IsScaleBeyondSingleNode -- Yes --> CanReduceContention{Can performance be improved by reducing contention on a single data store?}
   IsScaleBeyondSingleNode -- No --> DoNotUseSharding[Do not use Sharding]
   CanReduceContention -- Yes --> CanOptimizeCost{Can cost be optimized by multiple instances of less expensive compute or storage?}
@@ -243,7 +243,7 @@ Azure resources that can be used to implement this pattern include [Azure SQL Da
 
 > Use a token or key that provides clients with restricted direct access to a specific resource or service.
 
-Data stores have the ability to handle the upload and download of data directly without requiring that the application perform any processing to move this data. But, this typically requires the client to have access to the security credentials for the store. This can be a useful technique to minimize data transfer costs and the requirement to scale out the application, and to maximize performance. It means, though, that the application is no longer able to manage the security of the data. After the client has a connection to the data store for direct access, the application can't act as the gatekeeper. It's no longer in control of the process and can't prevent subsequent uploads or downloads from the data store.
+Data stores have the ability to handle the upload and download of data directly without requiring the application to perform any processing to move this data. However, this typically requires the client to have access to the store's security credentials. This can be a useful technique to minimize data transfer costs and the requirement to scale out the application and to maximize performance. It means, though, that the application is no longer able to manage the security of the data. After the client has a connection to the data store for direct access, the application can't act as the gatekeeper. It's no longer in control of the process and can't prevent subsequent uploads or downloads from the data store.
 This isn't a realistic approach in distributed systems that need to serve untrusted clients. 
 
 Applications must be able to securely control access to data in a granular way, but still reduce the load on the server by setting up this connection and then allowing the client to communicate directly with the data store to perform the required read or write operations.
@@ -268,7 +268,7 @@ Using a valet key doesn't require the resource to be locked, no remote server ca
 Consider using the Valet Key pattern in the following scenarios:
 
 * Offload data transfer from the application to minimize the use of valuable resources such as computing, memory, and bandwidth. 
-* When the data is stored in a remote data store or a different datacenter to the application.
+* When the data is stored in a remote data store or a different datacenter from the application.
 * Minimize operational costs by enabling direct access to stores and queues. 
 * Clients regularly upload or download data, particularly where there's a large volume or when each operation involves a large file
 * If the application doesn’t need to perform tasks on the data first.
@@ -332,9 +332,9 @@ Static Content Hosting is a common pattern used in web applications to offload t
 ```mermaid
 graph TB
   Start(Start) --> NeedToOffload{Need to offload delivery of static content from application server?}
-  NeedToOffload -- Yes --> ServerNotOptimized{Is application server not optimized for serving static content?}
+  NeedToOffload -- Yes --> ServerNotOptimized{Is the application server not optimized for serving static content?}
   NeedToOffload -- No --> DoNotUsePattern[Do not use this pattern]
-  ServerNotOptimized -- Yes --> HeavyLoad{Is application server under heavy load?}
+  ServerNotOptimized -- Yes --> HeavyLoad{Is the application server under heavy load?}
   ServerNotOptimized -- No --> DoNotUsePattern
   HeavyLoad -- Yes --> ReduceHostingCosts{Need to reduce hosting costs?}
   HeavyLoad -- No --> DoNotUsePattern
@@ -388,7 +388,7 @@ The Ambassador pattern should be used in the following scenarios:
 * Resilient Cloud-Based Applications - When building resilient cloud-based applications that require features such as circuit breaking, routing, metering and monitoring, and the ability to make network-related configuration updates. The Ambassador pattern can facilitate these features without modifying the existing codebase
 * Centralized Management of Network and Security - When network calls require substantial configuration for connection, authentication, and authorization across multiple applications built using multiple languages and frameworks. The Ambassador pattern allows these configurations to be managed centrally, reducing the risk of updating application code by a team unfamiliar with it
 * Standardizing and Extending Instrumentation - When you need to standardize and extend instrumentation, such as monitoring performance metrics like latency or resource usage. The Ambassador pattern allows this monitoring to happen in the same host environment as the application
-* Supporting Cloud or Cluster Connectivity Requirements - When you need to support cloud or cluster connectivity requirements in a legacy application or an application that is difficult to modifyBy considering these scenarios, you can effectively use the Ambassador pattern to enhance the networking capabilities, security, and maintainability of your applications.
+* Supporting Cloud or Cluster Connectivity Requirements - When you need to support cloud or cluster connectivity requirements in a legacy application or an application that is difficult to modify considering these scenarios, you can effectively use the Ambassador pattern to enhance the networking capabilities, security, and maintainability of your applications.
 
 ```mermaid
 graph TB
@@ -486,7 +486,7 @@ A typical cloud application has many tasks acting in a coordinated manner. These
 The task instances might run separately for much of the time, but it might also be necessary to coordinate the actions of each instance to ensure that they don't conflict, cause contention for shared resources, or accidentally interfere with the work that other task instances are performing.
 For example:
 In a cloud-based system that implements horizontal scaling, multiple instances of the same task could be running at the same time with each instance serving a different user. If these instances write to a shared resource, it's necessary to coordinate their actions to prevent each instance from overwriting the changes made by the others.
-If the tasks are performing individual elements of a complex calculation in parallel, the results need to be aggregated when they all complete.
+If the tasks are performing individual elements of a complex calculation in parallel, the results need to be aggregated when they are all complete.
 
 ![Cloud Design Patterns - Leader Election](Blog_CloudDesignPatterns_LeaderElection.gif)
 
@@ -1345,9 +1345,10 @@ Azure resources that can be used to implement this pattern include [Azure Front 
 
 The following Frameworks can help guide you, from the business requirements to the technical implementation of your solution:
 
-1. Cloud Adoption Framework - Proven guidance and best practices that help you confidently adopt the cloud and achieve business outcomes.
-2. Azure Architecture Center - Guidance for architecting solutions on Azure using established patterns and practices
-3. Well-Architected Framework - A set of quality-driven tenets, architectural decision points, and review tools intended to help solution architects build a technical foundation for their workloads.
+1. [Cloud Adoption Framework](https://learn.microsoft.com/azure/cloud-adoption-framework/?WT.mc_id=AZ-MVP-5004796) - Proven guidance and best practices that help you confidently adopt the cloud and achieve business outcomes.
+2. [Azure Architecture Center](https://learn.microsoft.com/azure/architecture/?WT.mc_id=AZ-MVP-5004796) - Guidance for architecting solutions on Azure using established patterns and practices
+3. [Cloud Design Patterns (part of Architecture Center)](https://learn.microsoft.com/azure/architecture/patterns/?WT.mc_id=AZ-MVP-5004796) - Design patterns are useful for building reliable, scalable, secure applications in the cloud.
+4. [Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/?WT.mc_id=AZ-MVP-5004796) - A set of quality-driven tenets, architectural decision points, and review tools intended to help solution architects build a technical foundation for their workloads.
 
 :::info
 "Design patterns are important for reusability, efficiency, maintainability, consistency, performance, and modularity 
