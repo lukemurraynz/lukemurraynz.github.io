@@ -20,500 +20,447 @@ keywords:
   - Disaster Recovery
 ---
 
-When recently deleted, Azure DevOps code repositories go into a soft-delete state, any repositories deleted are retained for 30 days before they are permanently deleted.
+Cloud Design patterns are useful for building reliable, scalable, secure applications in the cloud.
 
-For Disaster Recovery scenarios or scenarios where you may not realize something has been deleted until after Microsoft retains the backup, you may want to export the repositories at a single point in time to an Azure storage account.
+Today we are going to cover some common patterns, their use cases and considerations.
 
-The Azure DevOps service is highly redundant and built on core Azure Platform infrastructure components, such as Availability Zones and is built using Azure Cloud native Storage and Azure SQL services, which are highly redundant and backed-up. 
+The patterns we will cover today, is only a small set of common patterns, documtented in the [Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/patterns/?WT.mc_id=AZ-MVP-5004796).
 
-However, mistakes can happen, and there may be organizational requirements to retain backups of the repositories. 
-
-Today, we will examine exporting your repositories to an Azure Storage Account using a DevOps pipeline. This pipeline will capture the repositories at their current state and run nightly. 
 
 <!-- truncate -->
 
-## 📚 Overview
+## Cloud Design Patterns
+
+### Importance of Design Patterns
+
+Design patterns are reusable solutions to common problems in software design. They are templates that can be applied to solve a problem in a specific context. They are not finished designs that can be transformed directly into code. They are a starting point for your design.
 
 :::info
-"You can recover deleted organizations or projects within the 28-day window following deletion. But, once this period elapses, these entities are permanently deleted and can't be restored. While these backups serve as a crucial component for disaster recovery, customers need to practice appropriate data management and backup strategies to ensure comprehensive data protection."
-
-"Accidental deletion here refers to scenarios that arise as a result of an incident on our services. It doesn't include customers' accidental deletion of assets (for example, repositories, work items, attachments, or artifacts).
-
-**We don't support restoring assets that customers accidentally delete. These backups are meant only for business continuity and to aid recovery from outages or disaster scenarios.**"
-
-Reference: [Data protection - Mistakes Happen](https://learn.microsoft.com/en-us/azure/devops/organizations/security/data-protection?view=azure-devops&WT.mc_id=AZ-MVP-5004796#mistakes-happen)
+Design patterns are not new. They have been around for a long time. The concept of design patterns was introduced by the architect [Christopher Alexander](https://en.wikipedia.org/wiki/Christopher_Alexander#:~:text=Alexander%%20and%20personally%20built,architect%20and%20a%20general%20contractor.&text=In%20software%2C%20Alexander%20is%20regarded,to%20its%20creator%2C%20Ward%20Cunningham) in the field of architecture and later adopted by software engineers.
 :::
 
-:::warning
-Please remember that this backup will only export the repositories and pipelines, not the work items, pipeline variables, or other artifacts. This will also backup any code stored in Azure DevOps, so if secrets or other sensitive information are stored in the code, please ensure that these are not stored in the code or are encrypted, or they may be readable by someone with access to the storage account.
-:::
-
-Today, we will run a PowerShell script with an Azure DevOps pipeline. The script will connect to the Azure DevOps API and grab the zip file of each Repository in all Projects into an artifact, which then gets exported and copied to an Azure Storage Account.
-
-```mermaid
-graph TD
-  A[Trigger Pipeline] --> B[Checkout Code]
-  B --> C[Read Azure DevOps Repositories]
-  C --> G[Export Azure DevOps Repositories]
-  G --> D[Allow Public Access to Azure DevOps Export Storage Account for upload]
-  D --> E[Check Storage Network Access]
-  E --> F[Download Build Artifacts]
-  F --> H[Upload Repositories to Azure Storage Account]
-```
-
-## 🚀 Deployment
-
-### ☁️ Azure Storage Account
-
-We will need to create an Azure Storage Account to store the exported repositories. We can point towards an already existing Storage Account and Container. 
-
-We will deploy the Storage account fresh using [Azure Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/overview?tabs=bicep&WT.mc_id=AZ-MVP-5004796) to our existing Resource Group for this article.
-
-:::tip
-I will use the [Deployment Pane](https://luke.geek.nz/azure/Azure-Bicep-Deploy-Pane/) to deploy the Storage Account straight from Visual Studio Code, running in a [Codespace](https://luke.geek.nz/azure/Getting-Started-with-GitHub-Codespaces/).
-:::
-
-We will use [Lifecycle Management policies](https://learn.microsoft.com/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal&WT.mc_id=AZ-MVP-5004796) to help control the retention of the exported repositories. We will move the repositories to Cool Storage after 30 days, Archive Storage after 90 days, and delete them after 120 days.
-
-![Export ADO - Create Storage Account](Export_ADO_CreateStgAccount.gif)
-
-```bicep
-// Parameters for the script
-param storageAccountName string // Name of the storage account
-param location string = resourceGroup().location // Location of the storage account, default to the location of the resource group
-param containerName string = 'adoexport' // Name of the container
-
-// Resource definition for the storage account
-resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
-  name: storageAccountName // Set the name of the storage account
-  location: location // Set the location of the storage account
-  sku: {
-    name: 'Standard_LRS' // Set the SKU to Standard_LRS
-  }
-  kind: 'StorageV2' // Set the kind to StorageV2
-  properties: {
-    accessTier: 'Hot' // Set the access tier to Hot
-    allowBlobPublicAccess: false // Disable public access to blobs
-    publicNetworkAccess: 'Disabled' // Disable public network access
-  }
-}
-
-// Resource definition for the blob service
-resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2023-01-01' = {
-  name: 'default' // Set the name of the blob service to default
-  parent: storageAccount // Set the parent to the storage account
-  properties: {
-    lastAccessTimeTrackingPolicy: {
-      enable: true // Enable last access time tracking
-    }
-  }
-}
-
-// Resource definition for the storage container
-resource storageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
-  name: containerName // Set the name of the container
-  parent: blobService // Set the parent to the blob service
-  properties: {
-    publicAccess: 'None' // Set public access to None
-  }
-}
-
-// Define a new resource of type 'Microsoft.Storage/storageAccounts/managementPolicies'
-resource lifecyclePolicy 'Microsoft.Storage/storageAccounts/managementPolicies@2023-01-01' = {
-  // The name of the management policy. 'default' is a reserved name for the policy.
-  name: 'default'
-  
-  // The parent resource that this policy is associated with, which is the storage account.
-  parent: storageAccount
-  
-  properties: {
-    policy: {
-      rules: [
-        {
-          // This rule is enabled
-          enabled: true
-          // The name of the rule
-          name: 'MoveToCoolStorageAfter30Days'
-          // The type of rule, in this case, it's a lifecycle rule
-          type: 'Lifecycle'
-          definition: {
-            actions: {
-              // The actions to take on base blobs (i.e., non-versioned blobs)
-              baseBlob: {
-                // Move the blob to cool storage after it hasn't been modified for 30 days
-                tierToCool: {
-                  daysAfterModificationGreaterThan: 30
-                }
-              }
-            }
-            // The filters that determine which blobs the rule applies to
-            filters: {
-              // The types of blobs that the rule applies to. In this case, the rule applies to block blobs
-              blobTypes: [
-                'blockBlob'
-              ]
-            }
-          }
-        }
-        {
-          enabled: true
-          name: 'MoveToArchiveStorageAfter90Days'
-          type: 'Lifecycle'
-          definition: {
-            actions: {
-              baseBlob: {
-                // Move the blob to archive storage after it hasn't been modified for 90 days
-                tierToArchive: {
-                  daysAfterModificationGreaterThan: 90
-                }
-              }
-            }
-            filters: {
-              blobTypes: [
-                'blockBlob'
-              ]
-            }
-          }
-        }
-        {
-          enabled: true
-          name: 'DeleteBlobsAfter120Days'
-          type: 'Lifecycle'
-          definition: {
-            actions: {
-              baseBlob: {
-                // Delete the blob after it hasn't been modified for 120 days
-                delete: {
-                  daysAfterModificationGreaterThan: 120
-                }
-              }
-            }
-            filters: {
-              blobTypes: [
-                'blockBlob'
-              ]
-            }
-          }
-        }
-      ]
-    }
-  }
-}
-
-output storageAccountName string = storageAccount.name // Output the name of the storage account
-output containerName string = storageContainer.name // Output the name of the storage account container
-
-```
-
-Please note the Storage Account name and Container Name; we will need them for Azure DevOps pipeline variables.
-
-### 🛠️ Azure DevOps Pipeline
-
-Now, it's time to set up your project and repository. If you don't know how to do that, you can follow the official Microsoft Learn documentation here: [Create a new Git repo in your project](https://learn.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops&WT.mc_id=AZ-MVP-5004796). 
-
-Once your repository has been set up and initialized, we need to add the following files.
-
-# 💻 PowerShell Script
-
-The PowerShell script, `Export-AzDevOpsRepos.ps1`, is responsible for cloning all repositories in a given Azure DevOps organization and downloading them as ZIP files. It uses the Azure DevOps REST API to fetch all projects and their respective repositories. For each repository, it generates a URL to download the repository as a ZIP file and saves it to a local directory. If the script is run in an Azure Pipelines environment, it also uploads the directory containing the downloaded repositories as a pipeline artifact.
-
-:::tip
-The PowerShell script can also be run locally. If it detects an Azure DevOps agent, it will automatically collect the variables from the pipeline variables; otherwise, those variables can be added manually to the script to run it locally.
-
-```powershell
-if ($env:AGENT_ID) {
-    # Running in Azure DevOps
-    $personalAccessToken = "$env:pat" # Assuming PAT is stored as a secret variable in the pipeline
-    $organization = "$env:AzDevOpsOrg"
-
-}
-else {
-    # Running on a local PC
-    $personalAccessToken = ''
-    $organization = ''
-}
-```
-:::
-
-# 🚀 Azure Pipelines
-
-The Azure Pipelines configuration file, `.azure-pipelines/pipeline.ci.adoexport.yml` sets up a CI pipeline that runs the PowerShell script on a schedule. The pipeline is configured to run on the latest Windows agent. It uses the Azure CLI task to run the PowerShell script and to manage access to an Azure storage account. After the script has run, the pipeline downloads any ZIP files produced as artifacts and copies them to the Azure storage account. The pipeline is scheduled to run daily at midnight.
-
-<Tabs>
-<TabItem value="pipeline" label="pipeline.ci.adoexport.yml">
-
-```yaml
-name: "Export Azure DevOps repositories" # Name of the pipeline
-
-trigger: none # Pipeline is not triggered automatically
-
-schedules: # Define schedules for pipeline runs
-  - cron: "0 12 * * *" # Run daily at midnight
-    displayName: Daily midnight run # Display name for the schedule
-    branches:
-      include:
-        - main # Only run on the 'main' branch
-    always: true # Run even if there are no code changes
-
-pool:
-  vmImage: "windows-latest" # Use the latest Windows agent
-
-steps:
-  - checkout: self # Checkout the source code from the repository
-    persistCredentials: true # Persist credentials for subsequent steps
-    displayName: "Checkout code" # Display name for the step
-
-  - task: AzureCLI@2 # Use Azure CLI task
-    displayName: "Clone Azure DevOps Repositories" # Display name for the step
-    inputs:
-      azureSubscription: "$(azServiceConnection)" # Azure subscription to use
-      scriptType: "ps" # Use PowerShell script
-      scriptLocation: "scriptPath" # Script location is a file path
-      scriptPath: "$(Build.Repository.LocalPath)/Export-AzDevOpsRepos.ps1" # Path to the PowerShell script
-    env:
-      PAT: $(PAT) # Personal Access Token for authentication
-      AzDevOpsOrg: $(AzDevOpsOrg) # Azure DevOps organization
-
-  - task: AzureCLI@2 # Use Azure CLI task
-    displayName: Allow Public Access to Azure DevOps Export Storage Account for upload # Display name for the step
-    condition: succeeded() # Run only if the previous step succeeded
-    inputs:
-      azureSubscription: "$(azServiceConnection)" # Azure subscription to use
-      scriptType: bash # Use Bash script
-      scriptLocation: inlineScript # Script location is inline
-      inlineScript: |
-        az storage account update --name "${storageAccount}"  --resource-group "${storageAccountRG}" --default-action Allow
-    env:
-      storageAccount: $(storageAccount) # Personal Access Token for authentication
-      storageAccountRG: $(storageAccountRG) # Azure DevOps organization
-
-  - task: AzureCLI@2 # Use Azure CLI task
-    displayName: "Check Storage Network Access" # Display name for the step
-    condition: succeeded() # Run only if the previous step succeeded
-    timeoutInMinutes: 10 # Timeout after 10 minutes
-    continueOnError: true # Continue even if the step fails
-    name: check_storage_access # Name of the step
-    inputs:
-      azureSubscription: "$(azServiceConnection)" # Azure subscription to use
-      scriptType: bash # Use Bash script
-      scriptLocation: inlineScript # Script location is inline
-      inlineScript: |
-        set -x
-        echo -e "Setting up authentication..."
-        AZURE_STORAGE_ACCOUNT=${storageAccount}
-        AZURE_STORAGE_KEY=$(az storage account keys list --account-name ${storageAccount} --query '[0].value' --output tsv)
-        echo -e "Checking storage account access every 60 seconds..."
-        sleep 10
-        for i in {1..60}; do
-          if az storage container list --output none; then
-            echo "Access granted"
-            break
-          else
-            echo "Access denied, retrying in 60 seconds..."
-            sleep 60
-          fi
-        done
-
-  - task: DownloadPipelineArtifact@2 # Download pipeline artifacts
-    displayName: "Download Build Artifacts" # Display name for the step
-    inputs:
-      patterns: "**/*.zip" # Include all ZIP files
-      path: "$(Build.ArtifactStagingDirectory)" # Download artifacts to the staging directory
-
-  #Storage account needs the SPN to have a Storage Blob Data Contributor role to allow blob upload.
-
-  - task: AzureFileCopy@6 # Use Azure File Copy task
-    displayName: "Copy artifacts to $(storageAccount)" # Display name for the step
-    inputs:
-      azureSubscription: "$(azServiceConnection)" # Azure subscription to use
-      blobPrefix: "$(Build.DefinitionName)/$(Build.BuildId)" # Prefix for the blob names
-      containerName: $(stgAccContainer) # Name of the storage container
-      destination: "AzureBlob" # Copy to Azure Blob storage
-      sourcePath: "$(Build.ArtifactStagingDirectory)/*" # Source path for the artifacts
-      storage: $(storageAccount) # Storage account to copy the artifacts to
-    # Log the status of artifact download and storage account operations
-
-
-  - task: AzureCLI@2 # Use Azure CLI task
-    displayName: Remove Public Access from Azure DevOps Export Storage Account # Display name for the step
-    condition: succeededOrFailed() # Run whether the previous step succeeded or failed
-    inputs:
-      azureSubscription: "$(azServiceConnection)" # Azure subscription to use
-      scriptType: bash # Use Bash script
-      scriptLocation: inlineScript # Script location is inline
-      inlineScript: |
-        az storage account update --name "${storageAccount}" --resource-group "${storageAccountRG}" --default-action Deny
-    env:
-      storageAccount: $(storageAccount) # Personal Access Token for authentication
-      storageAccountRG: $(storageAccountRG) # Azure DevOps organization
-
-```
-</TabItem>
-<TabItem value="script" label="Export-AzDevOpsRepos.ps1">
-
-```powershell
-$apiVersion = '7.1' # Update API version to 6.0
-
-if ($env:AGENT_ID) {
-    # Running in Azure DevOps
-    $personalAccessToken = "$env:pat" # Assuming PAT is stored as a secret variable in the pipeline
-    $organization = "$env:AzDevOpsOrg"
-
-}
-else {
-    # Running on a local PC
-    $personalAccessToken = ''
-    $organization = ''
-}
-
-$base64AuthInfo = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes(":$($personalAccessToken)"))
-$headers = @{Authorization = ("Basic {0}" -f $base64AuthInfo) }
-
-# Get all projects
-$projects = Invoke-RestMethod -Uri "https://dev.azure.com/$organization/_apis/projects?api-version=$apiVersion" -Method Get -Headers $headers -Verbose
-
-# Output the count and names of the projects
-Write-Host "Number of projects: $($projects.value.Count)"
-Write-Host "Project names: $($projects.value | ForEach-Object { $_.name })"
-
-# For each project, get all repositories and download them as zip
-
-# Ensure the repositories directory exists before starting the loop
-$repositoriesPath = "$env:SYSTEM_DEFAULTWORKINGDIRECTORY/repositories"
-if (-not (Test-Path -Path $repositoriesPath)) {
-    Write-Host "Creating repositories directory: $repositoriesPath"
-    New-Item -ItemType Directory -Path $repositoriesPath | Out-Null
-}
-
-$projects.value | ForEach-Object {
-    $projectName = $_.name
-
-    if (-not [string]::IsNullOrWhiteSpace($projectName)) {
-        $projectName = $projectName.Replace(' ', '%20')
-        $result = Invoke-RestMethod -Uri "https://dev.azure.com/$organization/$projectName/_apis/git/repositories?api-version=$apiVersion" -Method Get -Headers $headers -Verbose
-
-        $result.value | ForEach-Object {
-            $repoName = $_.name
-            Write-Host "Attempting to clone the repository: $repoName"
-
-            if (-not [string]::IsNullOrWhiteSpace($repoName)) {
-                $repoId = $_.id
-                $zipUrl = "https://dev.azure.com/$organization/$projectName/_apis/git/repositories/$repoId/items?scopePath=/&recursionLevel=Full&api-version=$apiVersion&`$format=zip"
-                $outputPath = "repositories/$repoName.zip"
-                Write-Host "Output path: $outputPath"
-                # Ensure the directory exists before trying to download the file
-                $directoryPath = Split-Path -Path $outputPath -Parent
-                if (-not (Test-Path -Path $directoryPath)) {
-                    Write-Host "Creating directory: $directoryPath"
-                    New-Item -ItemType Directory -Path $directoryPath | Out-Null
-                }
-                try {
-                    Write-Host "Starting download for $repoName from $zipUrl"
-                    Invoke-WebRequest -Uri $zipUrl -OutFile $outputPath -Headers $headers
-                    Write-Host "Download completed for $repoName"
-                }
-                catch {
-                    Write-Host "Failed to download $repoName from $zipUrl"
-                    Write-Host $_.Exception.Message
-                }
-            }
-        }
-    }
-}
-
-# Check if the repositories directory exists before trying to upload it
-if (Test-Path -Path "$env:SYSTEM_DEFAULTWORKINGDIRECTORY/repositories") {
-    Write-Host "Repositories directory exists, uploading as an artifact."
-    Write-Host "##vso[artifact.upload containerfolder=repositories;artifactname=AzureDevOpsExportedRepositories;]$env:SYSTEM_DEFAULTWORKINGDIRECTORY/repositories"
-}
-else {
-    Write-Host "The repositories directory does not exist, so you cannot upload it as an artifact."
-}
-
-```
-</TabItem>
-</Tabs>
-
-You can also find the latest files in the [lukemurraynz/ADO_Export](https://github.com/lukemurraynz/ADO_Export) GitHub repository. Feel free to open a Pull Request, Suggest changes, or improve.
-
-I am going to be lazy and just drag the files into the repo and commit them.
-
-![Export_ADO_CommitFiles](Export_ADO_CommitFiles.gif)
-
-Once committed, it is time to set up our pipeline.
-
-But first, we need to setup our [PAT (Personal Access Token)](https://learn.microsoft.com/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows&WT.mc_id=AZ-MVP-5004796) and [Service Connection](https://learn.microsoft.com/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml&WT.mc_id=AZ-MVP-5004796). Both I have completed.
-
-For your PAT token, you will need the following permissions:
-
-- Code (Read)
-- Project and Team (Read)
-
-For your Service Connection, you will need the following permissions:
-
-Reader on the Subscription that Contains your Storage Account *(the subscription scoping is required for the Azure CLI commanders to check and access your Storage account; if you are using a Self-Managed DevOps agent, you may be able to avoid this)*, and Storage Blob Data Contributor on the Storage Account.
-
-Then, we need to add to our pipeline the following:
-
-| Variable            | Example                                        | Notes                                                                                         |
-| ------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| azDevOpsOrg         | Contoso                                        | Your Azure DevOps Org - matching your URL ie (https://dev.azure.com/contoso)                 |
-| azServiceConnection | AzureServiceConnection                         | Your Service Connection name for Azure Resource Provider access to your Azure Resource Group |
-| pat                 | 2xj2jv4yf2h6xvqjgk7y2n4d2iucxltlzyxuhcdjxibnrf | Your PAT (Personal Access Token), used to authenticate to Azure DevOps. Set this as a secure string.                       |
-| stgAccContainer     | adoexport                                      | The Container that will contain your ADO Exports inside of the Storage Account               |
-| storageAccount      | adoexport23                                    | Storage account that your ADO exports will be going into.                                     |
-| storageAccountRG    | adoexport-rg                                   | Resource Group, containing your Azure Storage Account                                         |
-
-So, let's import our pipeline and configure our variables!
-
-1. To import the Pipeline, navigate to your Azure DevOps Project, click on Pipelines, and then click on the "New Pipeline" button.
-2. Click Azure Repos Git and select your repository.
-3. Select Existing Azure Pipelines YAML file
-4. Select your Pipeline and click Continue
-5. Now, we can add our Variables by clicking Variables and then Add. If you have already imported the Pipeline, you can navigate to the Pipeline, click Edit, and then Variables.
-
-![Import Azure DevOps Pipeline & Configure Variables](Export_ADO_ImportPipelineVariables.gif)
-
-:::info
-By default, the pipeline has a cronjob configured to set it for midnight, but you can change this to any time you like by editing the pipeline file and changing the [cron syntax](https://learn.microsoft.com/azure/devops/pipelines/process/scheduled-triggers?view=azure-devops&tabs=yaml&WT.mc_id=AZ-MVP-5004796#cron-syntax).
-
-```yaml
-schedules: # Define schedules for pipeline runs
-  - cron: "0 12 * * *" # Run daily at midnight
-    displayName: Daily midnight run # Display name for the schedule
-    branches:
-      include:
-        - main # Only run on the 'main' branch
-    always: true # Run even if there are no code changes
-```
-:::
-
-## 🏃‍♂️ Run
-
-Now that you have configured your Storage Account and Pipeline, it's time to run the pipeline manually to ensure there are no problems before your scheduled time runs.
-
-:::warning
-Before you run:
-
-Double-check the permissions you have granted the Service Principal and your variable naming and values; else you may get an error similar to the following when attempting to copy the artifacts to the Storage Account:
-
-```plaintext
-ERROR: (InvalidApiVersionParameter) The api-version '2023-01-01' is invalid. The supported versions are '2024-03-01,2023-07-01,2023-07-01-preview,2023-03-01-preview,2022-12-01,2022-11-01-preview,2022-09-01,2022-06-01,2022-05-01,2022-03-01-preview,2022-01-01,2021-04-01,2021-01-01,2020-10-01,2020-09-01,2020-08-01,2020-07-01,2020-06-01,2020-05-01,2020-01-01,2019-11-01,2019-10-01,2019-09-01,2019-08-01,2019-07-01,2019-06-01,2019-05-10,2019-05-01,2019-03-01,2018-11-01,2018-09-01,2018-08-01,2018-07-01,2018-06-01,2018-05-01,2018-02-01,2018-01-01,2017-12-01,2017-08-01,2017-06-01,2017-05-10,2017-05-01,2017-03-01,2016-09-01,2016-07-01,2016-06-01,2016-02-01,2015-11-01,2015-01-01,2014-04-01-preview,2014-04-01,2014-01-01,2013-03-01,2014-02-26,2014-04'.
-Code: InvalidApiVersionParameter
-```
-It means, that your variables are not parsing correctly, to the Azure CLI, make sure they are correct.
-:::
-
-*You may need to permit your Pipeline to use your Service Connection by clicking on the "Allow" button when the pipeline runs.*
-
-Your pipeline may take a while to run, depending on how many repositories you have and how large they are. You can monitor the progress of the pipeline by clicking on the pipeline, then clicking on the Job, and then the Task to see the output of the PowerShell script. This is why I would recommend running this on a schedule during a time that does not impact users, as it can hold up an agent while it runs; also be aware that depending on your repositories, running this every night can quickly use up any [build minutes you may have, if running from a Microsoft hosted agent](https://azure.microsoft.com/pricing/details/devops/azure-devops-services/?WT.mc_id=AZ-MVP-5004796).
-
-:::info
-If a Repository is only used for Azure Boards and not for code, it will not be exported, as the API will not return it *, i.e., you will use a (404) Not Found*.
-:::
-
-![Azure DevOps - Artifact_Export](Artifact_Export.png)
-
-Once that's completed - you will be able to see your exported repositories in your storage account!
-
-![Azure DevOps - Storage Account](Export_ADO_CheckAzureDevOpsExportStfAcc.gif)
+Design patterns are important, to consider when implementing your solutions as they help with:
+
+Reusability - Design patterns promote reusability by providing proven solutions to common problems, allowing components and subsystems to be used in other applications and scenarios and interoperability
+
+* Maintainability - They simplify administration and development, making it easier to maintain and update applications.
+* Consistency - Design patterns ensure consistency and coherence in component design and deployment, which is crucial for the overall quality of the application
+* Efficiency - By following established patterns, developers can avoid repetitive work and focus on implementing specific requirements, thus saving development time
+* Scalability - Design patterns help in designing scalable systems by providing guidelines for efficient resource allocation and management
+* Performance - They help optimize the use of system resources, leading to improved performance of the application 
+* Modularity - Design patterns promote modular and structured code, making it easier to understand, modify, and maintain.
+
+This is as true in Modern Cloud solutions, as it is in traditional development, with [well-architected principles](https://learn.microsoft.com/azure/well-architected/?WT.mc_id=AZ-MVP-5004796) more important than ever.
+
+Take a Cloud Platform, ecosystem like Azure, with Services, offering a ptheora of functionality, to be put together like lego bricks.
+
+* Scalability - Cloud design patterns address scalability by providing solutions for horizontal and vertical scaling, ensuring that applications can handle increased loads efficiently. This promotes sustainability by enabling dynamic resource allocation, reducing energy consumption during low demand periods.
+* Resilience - Patterns like Circuit Breaker and Bulkhead help in building resilient applications that can withstand failures and continue to function. Sustainable operations are achieved by minimizing downtime and resource wastage, thus ensuring efficient use of resources.
+* Security - Security patterns such as API Gateway and Secure Token ensure that applications are protected against malicious actors, maintaining confidentiality, integrity, and availability. Secure systems also support sustainability by preventing security breaches that could lead to resource wastage.
+* Operational Excellence - Patterns like Ambassador and Anti-Corruption Layer enhance operational excellence by simplifying the management and monitoring of cloud applications. Efficient management practices contribute to sustainability by optimizing resource usage and reducing unnecessary overhead.
+* Performance Efficiency - Patterns such as Cache-Aside and Compute Resource Consolidation optimize performance by efficiently managing resources and reducing latency. This leads to sustainability by lowering the overall resource footprint and energy consumption through effective resource management.
+* Data Management - Data management patterns address challenges related to data consistency, synchronization, and management across different locations, crucial for cloud applications. Sustainable data practices ensure data is stored and processed efficiently, minimizing energy use and reducing the environmental impact.
+
+#### Acroymns
+
+When talking about Design Patterns, there is a few Acroymns that we will be using, and it is important to understand what they mean, to fully understand the context.
+
+| Acronym  | Definition                                                                                                                                                                                                                | Example                                                                                                                                                                                                    |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Service  | A service in cloud pattern design refers to a distinct function or set of functions provided by a cloud application. Services are typically designed to be reusable and can be consumed by multiple clients or consumers. | In a microservices architecture, each microservice is a service that performs a specific business function, such as user authentication, payment processing, or data storage.                              |
+| Consumer | A  consumer is an entity (such as an application, service, or user) that consumes or uses the services provided by another service. Consumers send requests to services and receive responses.                            | A web application that calls an authentication service to verify user credentials is a consumer of that authentication service.                                                                            |
+| Tenant   | In a multi-tenant architecture, a tenant is a group of users who share common access with specific privileges to the software instance. Each tenant's data is isolated and remains invisible to other tenants.            | In a Software as a Service (SaaS) application, each customer (company or organization) is considered a tenant. They have their own isolated data and configuration settings within the shared application. |
+| Facade   | The Facade pattern provides a simplified interface to a complex subsystem, making it easier to use and understand. It acts as a high-level interface that hides the complexities of the underlying system.                      | In a software application, a facade can be used to provide a simplified API that abstracts away the complexities of interacting with multiple subsystems or modules.                                      |
+
+### Archetypes *(Categories)* of Patterns
+
+Cloud design patterns can be categorized into different Archetypes *(categories)* based on their characteristics and use cases. These archetypes provide a structured way to understand and apply patterns in cloud architecture design.
+
+The categories include Data Management, Security, Reliability, Messaging, Design & Implementation. Let's take a look at each category in detail.
+
+* Data Management patterns help us manage data in the cloud. Caching helps us to reduce the number of database hits and improve application performance. Sharding helps us to partition our data across multiple databases to improve scalability. Federation helps us to distribute data across multiple databases for better availability and fault tolerance.
+* Security patterns help us secure our applications in the cloud. Perimeter Network helps us to isolate our application from the internet. Identity Management helps us to manage user identities and access to resources. Secure Communication helps us to protect our data in transit.
+* Reliability patterns help us to build highly available and fault tolerant applications in the cloud. Retry helps us to recover from transient failures. Circuit Breaker helps us to prevent cascading failure. Bulkhead helps us to limit the damage caused by a failure.
+* Messaging patterns help us to build scalable and decoupled applications in the cloud. Asynchronous Messaging helps us to send messages between components in a non-blocking way. Event Sourcing helps us to capture all changes to an application state. Competing Consumers helps us to process messages in parallel.
+* Design & Implementation patterns help us to build cloud-native applications that are scalable and resilient. Valet Key helps us to delegate access to resources. Ambassador helps us to expose services to external clients. Gateway helps us to provide a single entry point to our application.
+
+### Pattern Deep Dives
+
+The cloud has changed the way we design our applications. Let's take a look at some of the design patterns that we can use in the cloud. These patterns help us solve common problems in cloud architecture and make our applications more reliable, scalable and secure.
+
+In the following sections, we will take a deep dive into some of the common cloud design patterns, their use cases, and considerations.
+
+### Data Management Patterns
+
+### Cache-Aside
+
+> Load data on demand into a cache from a data store
+
+Many commercial caching systems provide read-through and write-through/write-behind operations. In these systems, an application retrieves data by referencing the cache. 
+
+If the data isn't in the cache, it's retrieved from the data store and added to the cache. Any modifications to data held in the cache are automatically written back to the data store as well.
+
+For caches that don't provide this functionality, it's the responsibility of the applications that use the cache to maintain the data.
+
+If an application updates information, it can follow the write-through strategy by making the modification to the data store, and by invalidating the corresponding item in the cache. When the item is next required, using the cache-aside strategy will cause the updated data to be retrieved from the data store and added back into the cache.
+
+#### Issues & considerations
+
+Consider the following points when deciding how to implement this pattern:
+
+* Lifetime of cached data. Many caches implement an expiration policy that invalidates data and removes it from the cache if it's not accessed for a specified period. For cache-aside to be effective, ensure that the expiration policy matches the pattern of access for applications that use the data. Don't make the expiration period too short because this can cause applications to continually retrieve data from the data store and add it to the cache. Similarly, don't make the expiration period so long that the cached data is likely to become stale. Remember that caching is most effective for relatively static data, or data that is read frequently.
+* Evicting data. Most caches have a limited size compared to the data store where the data originates, and they'll evict data if necessary. Most caches adopt a least-recently-used policy for selecting items to evict, but this might be customizable. Configure the global expiration property and other properties of the cache, and the expiration property of each cached item, to ensure that the cache is cost effective. It isn't always appropriate to apply a global eviction policy to every item in the cache. For example, if a cached item is very expensive to retrieve from the data store, it can be beneficial to keep this item in the cache at the expense of more frequently accessed but less costly items.
+* Priming the cache. Many solutions prepopulate the cache with the data that an application is likely to need as part of the startup processing. The Cache-Aside pattern can still be useful if some of this data expires or is evicted.
+* Consistency. Implementing the Cache-Aside pattern doesn't guarantee consistency between the data store and the cache. An item in the data store can be changed at any time by an external process, and this change might not be reflected in the cache until the next time the item is loaded. In a system that replicates data across data stores, this problem can become serious if synchronization occurs frequently.
+* Local *(in-memory)* caching. A cache could be local to an application instance and stored in-memory. Cache-aside can be useful in this environment if an application repeatedly accesses the same data. However, a local cache is private and so different application instances could each have a copy of the same cached data. This data could quickly become inconsistent between caches, so it might be necessary to expire data held in a private cache and refresh it more frequently. In these scenarios, consider investigating the use of a shared or a distributed caching mechanism.
+
+#### When to use this pattern
+
+* When an in-built cache, doesn't provide native read-through or write back operations.
+* When resource demand is unpredictable, and you want to avoid overloading the data store.
+* When the cached dataset is not static
+* When NOT caching session state information in a web application hosted in a web farm. 
+
+#### Azure Solutions
+
+In this example it uses [Azure Cache for Redis](https://learn.microsoft.com/azure/azure-cache-for-redis/cache-overview?WT.mc_id=AZ-MVP-5004796), When an application needs to retrieve data, it will first search to see if it exists in Azure Cache for Redis.
+If the data is found in Azure Cache for Redis (cache hit), the application will use this data.
+If the data is not found in Azure Cache for Redis (cache miss), then the application will need to retrieve the data from the appropriate Azure database service.
+For cache miss scenarios, the requesting application should add the data retrieved from the Azure Database service to Azure Cache for Redis.
+
+### Sharding
+
+> Divide a data store into a set of horizontal partitions or shards.
+
+Dividing a data store into a set of horizontal partitions or shards. This can improve scalability when storing and accessing large volumes of data.
+
+* The Lookup strategy. In this strategy the sharding logic implements a map that routes a request for data to the shard that contains that data using the shard key. In a multitenant application all the data for a tenant might be stored together in a shard using the tenant ID as the shard key. Multiple tenants might share the same shard, but the data for a single tenant won't be spread across multiple shards.
+* The Range strategy. This strategy groups related items together in the same shard, and orders them by shard key—the shard keys are sequential. It's useful for applications that frequently retrieve sets of items using range queries (queries that return a set of data items for a shard key that falls within a given range). For example, if an application regularly needs to find all orders placed in a given month, this data can be retrieved more quickly if all orders for a month are stored in date and time order in the same shard. If each order was stored in a different shard, they'd have to be fetched individually by performing a large number of point queries (queries that return a single data item). 
+* The Hash strategy. The purpose of this strategy is to reduce the chance of hotspots (shards that receive a disproportionate amount of load). It distributes the data across the shards in a way that achieves a balance between the size of each shard and the average load that each shard will encounter. The sharding logic computes the shard to store an item in based on a hash of one or more attributes of the data. The chosen hashing function should distribute data evenly across the shards, possibly by introducing some random element into the computation.
+
+#### Issues & considerations
+
+Consider the following points when deciding how to implement this pattern:
+
+* Balancing data across multiple shards.
+* Your queries need to be efficent, and not require data from multiple shards, or cause latency issues.
+* Designing for scalability (storage nodes – data & throughput)
+* Designing for availability (replication, failover, recovery)
+* Make sure to use stable and unique keys data to determine sharding state
+* Monitoring, backup and maintaining consitancy of multiple shards can be difficult.
+
+#### When to use this pattern
+
+The primary focus of sharding is to improve the performance and scalability of a system, but as a by-product it can also improve availability due to how the data is divided into separate partitions. A failure in one partition doesn't necessarily prevent an application from accessing data held in other partitions, and an operator can perform maintenance or recovery of one or more partitions without making the entire data for an application inaccessible. 
+
+* When the data store is likely to need to scale beyond the resources of a single storage node.
+* When you can improve performance  by reducing contention on a single data store.
+* When you need to optimize cost by multiple instances of less expensive compute or storage.
+* Improve resilience and reliability.
+* When you have geographical conerns, ie Optimization based on where users or systems are located.
+
+#### Azure Solutions
+
+Consider a website that surfaces an expansive collection of information on published books worldwide. 
+The number of possible books cataloged in this workload and the typical query/usage patterns contra-indicate the usage of a single relational database to store the book information. The workload architect decides to shard the data across multiple database instances, using the books' static International Standard Book Number (ISBN) for the shard key. Specifically, they use the check digit (0 - 10) of the ISBN as that gives 11 possible logical shards and the data will be fairly balanced across each shard. To start with, they decide to colocate the 11 logical shards into three physical shard databases. They use the lookup sharding approach and store the key-to-server mapping information in a shard map database.
+
+Azure resources that can be used to implement this pattern include [Azure SQL Database](https://learn.microsoft.com/azure/azure-sql/database/sql-database-paas-overview?view=azuresql&WT.mc_id=AZ-MVP-5004796), [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction?WT.mc_id=AZ-MVP-5004796), and [Azure Storage](https://learn.microsoft.com/azure/storage/common/storage-introduction?WT.mc_id=AZ-MVP-5004796).
+
+
+### Valet Key
+
+> Use a token or key that provides clients with restricted direct access to a specific resource or service.
+
+Data stores have the ability to handle upload and download of data directly, without requiring that the application perform any processing to move this data. But, this typically requires the client to have access to the security credentials for the store. This can be a useful technique to minimize data transfer costs and the requirement to scale out the application, and to maximize performance. It means, though, that the application is no longer able to manage the security of the data. After the client has a connection to the data store for direct access, the application can't act as the gatekeeper. It's no longer in control of the process and can't prevent subsequent uploads or downloads from the data store.
+This isn't a realistic approach in distributed systems that need to serve untrusted clients. 
+
+Applications must be able to securely control access to data in a granular way, but still reduce the load on the server by setting up this connection and then allowing the client to communicate directly with the data store to perform the required read or write operations.
+
+
+#### Issues & considerations
+
+By considering these issues and trade-offs, you can effectively implement the Valet Key pattern to enhance security, performance, and cost efficiency in your cloud applications.
+
+* Ensure that the token or key used for access is securely generated and transmitted to prevent unauthorized access
+* It could introduce security and audit risks if not implemented correctly
+* Implement proper access controls and authorization mechanisms to restrict the actions that can be performed using the valet key
+* Cost savings from offloading processing must be weighed against the complexity of implementing and managing the Valet Key pattern
+* Monitor and audit access using the valet key to detect any unauthorized or malicious activities
+* Ensure that the resources are managed efficiently to avoid unnecessary costs, especially when dealing with frequent or large client requests
+
+#### When to use this pattern
+
+Using a valet key doesn't require the resource to be locked, no remote server call is required, there's no limit on the number of valet keys that can be issued, and it avoids a single point of failure resulting from performing the data transfer through the application code. 
+
+Consider using the Valet Key pattern in the following scenarios:
+
+* Offload data transfer from the application to minimize the use of valuable resources such as compute, memory, and bandwidth. 
+* When the data is stored in a remote data store or a different datacenter to the application.
+* Minimize operational cost by enabling direct access to stores and queues . 
+* Clients regularly upload or download data, particularly where there's a large volume or when each operation involves large file
+* If the application doesn’t need to perform tasks on the data first.
+* When you need to provide secure, temporary access to specific resources or services.
+
+#### Azure Solutions
+
+Azure supports shared access signatures on Azure Storage for granular access control to data in blobs, tables, and queues, and for Service Bus queues and topics. A shared access signature token can be configured to provide specific access rights such as read, write, update, and delete to a specific table; a key range within a table; a queue; a blob; or a blob container. The validity can be a specified time period. This functionality is well suited for using a valet key for access.
+
+Azure resources that can be used to implement this pattern include [Azure Storage](https://learn.microsoft.com/azure/storage/common/storage-introduction?WT.mc_id=AZ-MVP-5004796) and [Azure Function](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796).
+
+### Static Content Hosting
+
+> Deploy static content to a cloud-based storage service that can deliver them directly to the client.
+
+Web applications typically include some elements of static content. This static content might include HTML pages and other resources such as images and documents that are available to the client, either as part of an HTML page (such as inline images, style sheets, and client-side JavaScript files) or as separate downloads (such as PDF documents).
+Although web servers are optimized for dynamic rendering and output caching, they still have to handle requests to download static content. This consumes processing cycles that could often be put to better use.
+
+Deploy static content to a cloud-based storage service that can deliver them directly to the client. This can reduce the need for potentially expensive compute instances.
+
+#### Issues & considerations
+
+By considering these issues and trade-offs, you can effectively implement the Valet Key pattern to enhance security, performance, and cost efficiency in your cloud applications.
+
+* Static content may need to be provisioned and deployed independently from the application if it is not included in the application deployment package or process.
+* Security access, needs to be considered – i.e., Public write access to prevent unauthorized uploads.
+* Storage services might not support the use of custom domain name
+* File compression, such as gzip, to reduce load times for clients.
+* Consider how to handle local development and testing
+* Geographic concerns, consider using a content delivery network (CDN) to cache the contents of the storage container in multiple datacenters around the world.
+* Caching of existing assets.
+
+#### When to use this pattern
+
+Static Content Hosting is a common pattern used in web applications to offload the delivery of static content from the application server to a cloud-based storage service. This pattern is particularly useful when the application server is not optimized for serving static content or when the application server is under heavy load and needs to offload some of the work to improve performance and scalability.
+
+* Reduce the hosting costs for websites and applications that contain some static resources. Cloud-hosted storage is typically much less expensive than compute instances
+* Improve performance of your main WebApp by offloading  static content serving
+* Expose static resources and content for applications running in other hosting environments or on-premises servers. 
+* Improve the performance and availability of your application by using a content delivery network (CDN) to cache the contents of the storage container in multiple datacenters around the world. 
+
+
+#### Azure Solutions
+
+Azure resources that can be used to implement this pattern include [Azure Blob Storage](https://learn.microsoft.com/azure/storage/blobs/storage-blobs-introduction?WT.mc_id=AZ-MVP-5004796), [Azure Content Delivery Network (CDN)](https://learn.microsoft.com/azure/cdn/cdn-overview?WT.mc_id=AZ-MVP-5004796), and [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview?WT.mc_id=AZ-MVP-5004796).
+
+### Design & Implementation Patterns
+
+### Ambassador
+
+> Create helper services that send network requests on behalf of a consumer service or application.
+
+Resilient cloud-based applications require features such as circuit breaking, routing, metering and monitoring, and the ability to make network-related configuration updates. It may be difficult or impossible to update legacy applications or existing code libraries to add these features, because the code is no longer maintained or can't be easily modified by the development team.
+Network calls may also require substantial configuration for connection, authentication, and authorization. If these calls are used across multiple applications, built using multiple languages and frameworks, the calls must be configured for each of these instances. In addition, network and security functionality may need to be managed by a central team within your organization. With a large code base, it can be risky for that team to update application code they aren't familiar with.
+
+Put client frameworks and libraries into an external process that acts as a proxy between your application and external services. Deploy the proxy on the same host environment as your application to allow control over routing, resiliency, security features, and to avoid any host-related access restrictions. 
+
+#### Issues & considerations
+
+When implementing the Ambassador pattern, consider the following issues and considerations:
+
+* Latency Overhead- The proxy adds some latency overhead. It is important to evaluate whether a client library, invoked directly by the application, might be a better approach to avoid this additional latency 1 .
+* Generalized Features - Including generalized features in the proxy can have unintended consequences. For example, the ambassador could handle retries, but this might not be safe unless all operations are idempotent. Ensure that the features implemented in the proxy do not introduce risks or conflicts with the application's requirements 1 .
+* Context Passing - Consider a mechanism to allow the client to pass some context to the proxy and back to the client. For example, include HTTP request headers to opt out of retry or specify the maximum number of times to retry. This flexibility can help tailor the proxy's behavior to specific needs 1 .
+* Packaging and Deployment - Think about how you'll package and deploy the proxy. The proxy can be deployed as a sidecar to accompany the lifecycle of a consuming application or service. Alternatively, if an ambassador is shared by multiple separate processes on a common host, it can be deployed as a daemon or Windows service 1 .
+* Shared vs. Dedicated Instances - Decide whether to use a single shared instance for all clients or an instance for each client. This decision can impact resource utilization, performance, and isolation between different clients 1 .
+* Security and Configuration - Network calls may require substantial configuration for connection, authentication, and authorization. If these calls are used across multiple applications built using multiple languages and frameworks, the calls must be configured for each of these instances. Additionally, network and security functionality may need to be managed by a central team within your organization 1 .
+* Specialized Teams - Features that are offloaded to the ambassador can be managed independently of the application. This allows for separate, specialized teams to implement and maintain security, networking, or authentication features that have been moved to the ambassador without disturbing the application's legacy functionality 1 .By addressing these issues and considerations, you can effectively implement the Ambassador pattern to enhance the networking capabilities, security, and maintainability of your applications.
+
+#### When to use this 
+
+The Ambassador pattern should be used in the following scenarios:
+* Offloading Common Client Connectivity Tasks - When you need to offload common client connectivity tasks such as monitoring, logging, routing, security (such as TLS), and resiliency patterns in a language-agnostic way 1 .
+* Legacy Applications - When dealing with legacy applications or other applications that are difficult to modify, the Ambassador pattern can extend their networking capabilities without requiring changes to the application code 1 .
+* Specialized Teams - When you want to enable a specialized team to implement and maintain security, networking, or authentication features independently of the application. This allows for updates and modifications to the ambassador without disturbing the application's legacy functionality 1 .
+* Resilient Cloud-Based Applications - When building resilient cloud-based applications that require features such as circuit breaking, routing, metering and monitoring, and the ability to make network-related configuration updates. The Ambassador pattern can facilitate these features without modifying the existing codebase 1 .
+* Centralized Management of Network and Security - When network calls require substantial configuration for connection, authentication, and authorization across multiple applications built using multiple languages and frameworks. The Ambassador pattern allows these configurations to be managed centrally, reducing the risk of updating application code by a team unfamiliar with it 1 .
+* Standardizing and Extending Instrumentation - When you need to standardize and extend instrumentation, such as monitoring performance metrics like latency or resource usage. The Ambassador pattern allows this monitoring to happen in the same host environment as the application 1 .
+* Supporting Cloud or Cluster Connectivity Requirements - When you need to support cloud or cluster connectivity requirements in a legacy application or an application that is difficult to modify 2 .By considering these scenarios, you can effectively use the Ambassador pattern to enhance the networking capabilities, security, and maintainability of your applications.
+
+#### Azure Solutions
+
+Azure resources that can be used to implement this pattern include [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796), [Azure Front Door](https://learn.microsoft.com/azure/frontdoor/front-door-overview?WT.mc_id=AZ-MVP-5004796) and [Azure Firewall](https://learn.microsoft.com/azure/firewall/overview?WT.mc_id=AZ-MVP-5004796).
+
+### Sidecar
+
+> Deploy components of an application into a separate process or container to provide isolation and encapsulation.
+
+Deploy components of an application into a separate process or container to provide isolation and encapsulation. This pattern can also enable applications to be composed of heterogeneous components and technologies.
+This pattern is named Sidecar because it resembles a sidecar attached to a motorcycle. In the pattern, the sidecar is attached to a parent application and provides supporting features for the application. The sidecar also shares the same lifecycle as the parent application, being created and retired alongside the parent. The sidecar pattern is sometimes referred to as the sidekick pattern and is a decomposition pattern.
+
+#### Issues & considerations
+
+When implementing the Sidecar pattern, consider the following issues and considerations:
+
+* Deployment and Packaging - Carefully decide on the deployment and packaging format for services, processes, or containers. Containers are particularly well-suited to the sidecar pattern 1 .
+* Interprocess Communication - Choose the interprocess communication mechanism wisely. Aim to use language- or framework-agnostic technologies unless performance requirements make that impractical 1 .
+* Functionality Placement - Before placing functionality into a sidecar, consider whether it would work better as a separate service or a more traditional daemon. Also, evaluate if the functionality could be implemented as a library or using a traditional extension mechanism, as language-specific libraries may offer deeper integration and less network overhead 1 .
+* Resource Management - The sidecar can access the same resources as the primary application, which allows it to monitor system resources used by both the sidecar and the primary application 1 .
+* Latency - Communication between a parent application and sidecar services includes some overhead, notably latency in the calls. This may not be an acceptable trade-off for chatty interfaces 1 .
+* Application Size and Resource Cost - For small applications, the resource cost of deploying a sidecar service for each instance may not be worth the advantage of isolation 1 .
+* Scaling - If the service needs to scale differently or independently from the main applications, it may be better to deploy the feature as a separate service 1 .
+* Security - By encapsulating tasks and deploying them out-of-process, you can reduce the surface area of sensitive processes to only the code needed to accomplish the task. Sidecars can also add cross-cutting security controls to an application component that is not natively designed with that functionality 2 .
+* Operational Excellence - The sidecar pattern provides an approach to implementing flexibility in tool integration that might enhance the application's observability without requiring the application to take direct implementation dependencies. It enables the sidecar functionality to evolve and be maintained independently of the application's lifecycle 2 .
+* Performance Efficiency - Moving cross-cutting tasks to a single process that can scale across multiple instances of the main process reduces the need to deploy duplicate functionality for each instance of the application 2 .By addressing these issues and considerations, you can effectively implement the Sidecar pattern to enhance the modularity, security, and maintainability of your applications.
+
+
+#### When to use this 
+
+The Sidecar pattern should be used in the following scenarios:
+
+* Heterogeneous Set of Languages and Frameworks - When your primary application uses a heterogeneous set of languages and frameworks. A component located in a sidecar service can be consumed by applications written in different languages using different frameworks 1 .
+* Component Ownership by Remote Teams - When a component is owned by a remote team or a different organization. This allows the component to be developed and maintained independently of the main application 1 .
+* Co-location Requirement - When a component or feature must be co-located on the same host as the application. This ensures that the component can access the same resources and environment as the primary application 1 .
+* Independent Updates - When you need a service that shares the overall lifecycle of your main application but can be independently updated. This allows for flexibility in updating the sidecar without affecting the main application 1 .
+* Fine-Grained Resource Control - When you need fine-grained control over resource limits for a particular resource or component. For example, you may want to restrict the amount of memory a specific component uses. Deploying the component as a sidecar allows you to manage memory usage independently of the main application 1 .
+* Security Enhancements - When you need to encapsulate tasks and deploy them out-of-process to reduce the surface area of sensitive processes to only the code needed to accomplish the task. Sidecars can also add cross-cutting security controls to an application component that is not natively designed with that functionality 2 .
+* Operational Excellence - When you want to implement flexibility in tool integration that might enhance the application's observability without requiring the application to take direct implementation dependencies. The sidecar functionality can evolve and be maintained independently of the application's lifecycle 2 .
+* Performance Efficiency - When you want to move cross-cutting tasks to a single process that can scale across multiple instances of the main process, reducing the need to deploy duplicate functionality for each instance of the application 2 .By considering these scenarios, you can effectively use the Sidecar pattern to enhance the modularity, security, and maintainability of your applications.
+
+#### Azure Solutions
+
+Use a sidecar container that enhances the application with the required SSL functionality without having to modify the application code. The sidecar pattern is a powerful concept in container-based architectures that lets you decompose application functionality into different container images that run together in the same container group.
+In an Azure Container Instances container group, each container can take over part of the functionality the application requires. Sidecar containers can use different container images from the application container, even from different image repositories. Containers in the same container group share some properties, such as the underlying network stack.
+
+Azure resources that can be used to implement this pattern include [Azure Container Instances](https://learn.microsoft.com/azure/container-instances/container-instances-overview?WT.mc_id=AZ-MVP-5004796), [Azure Kubernetes Service](https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796), and [Azure App Service](https://learn.microsoft.com/azure/app-service/?WT.mc_id=AZ-MVP-5004796).
+
+### Leader Election
+
+> Coordinate the actions performed by a collection of collaborating task instances in a distributed application by electing one instance as the leader that assumes responsibility for managing the other instances.
+
+A typical cloud application has many tasks acting in a coordinated manner. These tasks could all be instances running the same code and requiring access to the same resources, or they might be working together in parallel to perform the individual parts of a complex calculation.
+The task instances might run separately for much of the time, but it might also be necessary to coordinate the actions of each instance to ensure that they don't conflict, cause contention for shared resources, or accidentally interfere with the work that other task instances are performing.
+For example:
+In a cloud-based system that implements horizontal scaling, multiple instances of the same task could be running at the same time with each instance serving a different user. If these instances write to a shared resource, it's necessary to coordinate their actions to prevent each instance from overwriting the changes made by the others.
+If the tasks are performing individual elements of a complex calculation in parallel, the results need to be aggregated when they all complete.
+
+
+#### Issues & considerations
+
+When implementing the Leader Election pattern, consider the following issues and considerations:
+
+* Preventing Multiple Leaders - Ensure the election process is managed carefully to prevent two or more instances from taking over the leader position simultaneously. This requires a robust mechanism for selecting the leader that can handle events such as network outages or process failures 1 .
+* Failure Detection - The system must be able to detect when the leader has failed or become unavailable (e.g., due to a communications failure). The speed of detection depends on the system's requirements. Some systems can tolerate a short period without a leader, while others need immediate detection and a new election 1 .
+* Handling Leader Termination - In systems with horizontal autoscaling, the leader could be terminated if the system scales back and shuts down some computing resources. Ensure the system can handle such scenarios and elect a new leader promptly 1 .
+* Avoiding Single Points of Failure - Using a shared, distributed mutex introduces a dependency on the external service that provides the mutex, which can become a single point of failure. If this service becomes unavailable, the system won't be able to elect a leader 1 .
+* Leader as a Bottleneck - Avoid making the leader a bottleneck in the system. The leader's role is to coordinate the work of subordinate tasks, not necessarily to participate in the work itself. Ensure the leader can delegate tasks effectively to avoid performance issues 1 .
+* Latency and Performance - The resulting latency from leader coordination can affect the performance and response times of other processes if they are waiting for the leader to coordinate an operation. Optimize the leader election process to minimize latency 1 .
+* Flexibility and Optimization - Implementing leader election algorithms manually provides the greatest flexibility for tuning and optimizing the code. However, this approach requires careful design and testing to ensure robustness 1 .
+* Election Algorithms - Consider using established leader election algorithms such as the Bully Algorithm or the Ring Algorithm. These algorithms assume each candidate in the election has a unique ID and can communicate reliably with other candidates 1 .
+* Coordination Requirements - Use the Leader Election pattern when tasks in a distributed application need careful coordination and there is no natural leader. This pattern is useful for cloud-hosted solutions where multiple instances need to work together without conflict 1 .
+* Alternative Solutions - Evaluate if a more lightweight method, such as optimistic or pessimistic locking, can achieve the required coordination. Also, consider third-party solutions like Apache Zookeeper for managing leader election and coordination tasks 1 .By addressing these issues and considerations, you can effectively implement the Leader Election pattern to ensure reliable and efficient coordination in distributed systems.
+
+
+#### When to use this 
+
+The Leader Election pattern should be used in the following scenarios:
+
+* Task Coordination - When you need to coordinate a task among multiple instances of a service or application. The Leader Election pattern ensures that one instance acts as the coordinator, preventing conflicts and ensuring smooth operation 1 .
+* Avoiding Single Points of Failure - When you want to avoid having a single point of failure in your application. By using leader election, if the current leader fails, a new leader is automatically selected, ensuring continuous operation without manual intervention 1 2 .
+* Distributed Systems - In distributed systems where multiple instances need to work together without conflict. The Leader Election pattern helps in managing coordination tasks effectively across different instances 2 .
+* High Availability Requirements - When your application requires high availability and resilience. The pattern helps in maintaining service continuity by electing a new leader if the current one fails, thus supporting failover mechanisms 3 .
+* Scalability - When you need to scale out your application horizontally. The Leader Election pattern can help manage the coordination of tasks across multiple instances, ensuring that the system scales efficiently without bottlenecks 2 .
+* Consensus Algorithms - When implementing consensus algorithms to manage failover and ensure that work is reliably redirected in case of node malfunctions. This is particularly useful in scenarios where reliability and self-healing are critical 3 .
+* Using Off-the-Shelf Solutions - When you prefer not to implement a leader election algorithm from scratch. Off-the-shelf solutions like Apache Zookeeper can be used to manage leader election and coordination tasks effectively 1 .By considering these scenarios, you can effectively use the Leader Election pattern to ensure reliable and efficient coordination in distributed systems, enhancing the overall resilience and scalability of your application.
+
+
+#### Azure Solutions
+
+Azure resources that can be used to implement this pattern include [Azure Service Fabric](https://learn.microsoft.com/azure/service-fabric/service-fabric-overview?WT.mc_id=AZ-MVP-5004796), [Azure Kubernetes Service](https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796), and [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796).
+
+### Strangler Fig
+
+> Incrementally migrate a legacy system by gradually replacing specific pieces of functionality with new applications and services.
+
+As systems age, the development tools, hosting technology, and even system architectures they were built on can become increasingly obsolete. As new features and functionality are added, the complexity of these applications can increase dramatically, making them harder to maintain or add new features to.
+Completely replacing a complex system can be a huge undertaking. Often, you will need a gradual migration to a new system, while keeping the old system to handle features that haven't been migrated yet. However, running two separate versions of an application means that clients have to know where particular features are located. Every time a feature or service is migrated, clients need to be updated to point to the new location.
+
+The Strangler Fig pattern involves gradually replacing parts of the legacy system with new services. This allows for a controlled and step-by-step transition rather than a wholesale move. 
+
+#### Issues & considerations
+
+When implementing the Strangler Fig pattern, consider the following issues and considerations:
+
+* Handling Services and Data Stores - Ensure that both new and legacy systems can access shared services and data stores. This is crucial for maintaining consistency and avoiding data integrity issues during the migration process 1 2 .
+* Structuring New Applications - Structure new applications and services in a way that they can easily be intercepted and replaced in future migrations. This helps in maintaining flexibility and ease of further transitions 1 2 .
+* Facade Management - The facade, which intercepts requests and routes them to either the legacy or new system, must keep up with the migration. It should not become a single point of failure or a performance bottleneck. Proper management and monitoring of the facade are essential to ensure smooth operation 1 2 .
+* Incremental Migration - The pattern supports incremental migration, which helps to minimize risk and spread the development effort over time. However, this requires careful planning to ensure that each increment is functional and does not disrupt the overall system 2 .
+* Client Updates - Running two separate versions of an application means that clients need to be updated to know where particular features are located. This can add complexity to the migration process, as each client must be aware of the changes and adapt accordingly 2 .
+* Avoiding Single Points of Failure - Ensure that the facade does not become a single point of failure. It should be designed to handle high availability and failover scenarios to maintain system reliability during the migration 2 .
+* Performance Considerations - The facade should not become a performance bottleneck. It must be capable of handling the load and routing requests efficiently to avoid degrading the user experience 2 .
+* Completing the Migration - At some point, when the migration is complete, the strangler fig facade will either go away or evolve into an adaptor for legacy clients. Plan for this transition to ensure that the final system is clean and does not retain unnecessary components 1 2 .By addressing these issues and considerations, you can effectively implement the Strangler Fig pattern to ensure a smooth and controlled migration from a legacy system to a new architecture.
+
+#### When to use this 
+
+The Strangler Fig pattern should be used in the following scenarios:
+
+* Gradual Migration -  When you need to incrementally migrate a legacy system to a new architecture. This pattern allows you to gradually replace specific pieces of functionality with new applications and services, minimizing risk and spreading the development effort over time 1 .
+* Complex Systems - When dealing with complex systems where a complete replacement would be a huge undertaking. The Strangler Fig pattern enables a controlled decomposition of a monolith into a set of microservices, allowing the legacy system to continue functioning while new features are added to the new system 2 1 .
+* Maintaining Functionality - When it is essential to keep the legacy system operational during the migration. The facade in the Strangler Fig pattern intercepts requests and routes them to either the legacy application or the new services, ensuring that consumers can continue using the same interface without being aware of the migration 1 .
+* Avoiding Big Bang Rewrites - When you want to avoid the risks associated with a "big bang" rewrite. The Strangler Fig pattern supports an incremental approach, allowing you to add functionality to the new system at your own pace while ensuring the legacy application continues to function 1 .
+* Modernizing Legacy Systems - When modernizing legacy systems that have become increasingly obsolete due to outdated development tools, hosting technology, or system architectures. The pattern helps in gradually transitioning to a new system while maintaining the old system for features that haven't been migrated yet 1 .
+* Using Modern Orchestration Tools - When you want to leverage modern orchestration tools such as Azure DevOps to manage the lifecycle of each service. Once the application has been decomposed into constituent microservices, these tools can be used to manage the new system effectively 2 .By considering these scenarios, you can effectively use the Strangler Fig pattern to ensure a smooth and controlled migration from a legacy system to a new architecture, enhancing the overall resilience and scalability of your application.
+
+#### Azure Solutions
+
+Many [Azure products](https://azure.microsoft.com/products?WT.mc_id=AZ-MVP-5004796), can be used to implement this pattern.
+
+### Messaging Patterns
+
+#### Sequential Convoy
+
+> Process a set of related messages in a defined order, without blocking processing of other groups of messages.
+
+Applications often need to process a sequence of messages in the order they arrive, while still being able to scale out to handle increased load. In a distributed architecture, processing these messages in order is not straightforward, because the workers can scale independently and often pull messages independently
+
+Push related messages into categories within the queuing system, and have the queue listeners lock and pull only from one category, one message at a time.
+
+##### Issues & considerations
+
+The Sequential Convoy pattern is designed to process a set of related messages in a defined order without blocking the processing of other groups of messages. Here are some issues and considerations associated with this pattern:
+
+* Message Ordering - Ensuring that messages are processed in the order they arrive can be challenging in a distributed architecture. Workers can scale independently and often pull messages independently, which can disrupt the order of processing 1 .
+* Scalability - While the pattern allows for scaling out to handle increased load, it requires careful management to ensure that the order of messages is maintained. This can involve categorizing related messages within the queuing system and having queue listeners lock and pull only from one category at a time 1 .
+* Complexity in Implementation - Implementing the Sequential Convoy pattern can be complex, especially when dealing with interleaved transactions for multiple orders. The system must be designed to handle these transactions in a first-in-first-out (FIFO) manner at the order level 1 .
+* Resource Management - Efficiently managing resources to ensure that the processing of one group of messages does not block others is crucial. This involves coordinating actions across distributed services and remote resources 2 .
+* Error Handling - Handling errors in a sequential processing system can be more complex. If an error occurs, the system must ensure that subsequent messages are not processed until the error is resolved, which can involve implementing compensating transactions or other error recovery mechanisms .By addressing these issues and considerations, the Sequential Convoy pattern can be effectively implemented to ensure ordered processing of related messages in a distributed system.
+
+##### When to use this pattern
+
+##### Azure Solutions
+
+#### Queue-Based Load Leveling
+
+> Use a queue that acts as a buffer between a task and a service that it invokes in order to smooth intermittent heavy loads.
+
+
+##### Issues & considerations
+
+
+##### When to use this pattern
+
+##### Azure Solutions
+
+#### Publisher-Subscriber
+
+> Enable an application to announce events to multiple interested consumers asynchronously, without coupling the senders to the receivers.
+
+
+##### Issues & considerations
+
+
+##### When to use this pattern
+
+##### Azure Solutions
+
+#### Asynchronous Request-Reply
+
+> Decouple backend processing from a frontend host, where backend processing needs to be asynchronous, but the frontend still needs a clear response.
+
+
+##### Issues & considerations
+
+
+##### When to use this pattern
+
+##### Azure Solutions
+
