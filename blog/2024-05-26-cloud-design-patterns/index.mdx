@@ -767,9 +767,9 @@ Azure resources that can be used to implement this pattern include [Azure Functi
 
 ### Security Patterns
 
-#### Sequential Convoy
+#### Backends for Frontends
 
-> Process a set of related messages in a defined order, without blocking processing of other groups of messages.
+> Create separate backend services to be consumed by specific frontend applications or interfaces. 
 
 
 ##### Issues & considerations
@@ -780,3 +780,35 @@ Azure resources that can be used to implement this pattern include [Azure Functi
 
 ##### Azure Solutions
 
+#### Gatekeeper
+
+> Protect applications and services by using a dedicated host instance to broker requests between clients and the application or service.
+
+
+##### Issues & considerations
+
+
+##### When to use this pattern
+
+
+##### Azure Solutions
+
+#### Federated Identity
+
+> Delegate authentication to an external identity provider. This can simplify development, minimize the requirement for user administration, and improve the user experience of the application.
+
+##### Issues & considerations
+
+##### When to use this pattern
+
+##### Azure Solutions
+
+#### Gateway Offloading
+
+> Offload shared or specialized service functionality to a gateway proxy. 
+
+##### Issues & considerations
+
+##### When to use this pattern
+
+##### Azure Solutions
