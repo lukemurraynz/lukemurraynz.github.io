@@ -873,7 +873,22 @@ The Circuit Breaker pattern should be used in the following scenarios.
 * Logging and Monitoring—The pattern can be used to log all failed requests and monitor the operation's health. This information can be used to alert administrators when a circuit breaker trips to the Open state, providing insights into the system's health. Using the Circuit Breaker pattern in these scenarios, you can improve the resiliency and stability of your application, prevent resource exhaustion, and manage long-lasting faults effectively.
 
 ```mermaid
-
+graph TB
+  Start(Start) --> PersistentErrors{Handling Persistent or Non-Transient Errors?}
+  PersistentErrors -- Yes --> UsePattern[Use Circuit Breaker pattern]
+  PersistentErrors -- No --> ResourceExhaustion{Preventing Resource Exhaustion?}
+  ResourceExhaustion -- Yes --> UsePattern
+  ResourceExhaustion -- No --> SystemStability{Improving System Stability?}
+  SystemStability -- Yes --> UsePattern
+  SystemStability -- No --> LongLastingFaults{Managing Long-Lasting Faults?}
+  LongLastingFaults -- Yes --> UsePattern
+  LongLastingFaults -- No --> CascadingFailures{Avoiding Cascading Failures?}
+  CascadingFailures -- Yes --> UsePattern
+  CascadingFailures -- No --> ServiceRecovery{Testing Service Recovery?}
+  ServiceRecovery -- Yes --> UsePattern
+  ServiceRecovery -- No --> LoggingMonitoring{Logging and Monitoring?}
+  LoggingMonitoring -- Yes --> UsePattern
+  LoggingMonitoring -- No --> DoNotUsePattern[Do not use Circuit Breaker pattern]
 ```
 
 ##### Azure Solutions
@@ -916,6 +931,22 @@ The Deployment Stamp pattern is useful in the following scenarios
 * Different Versions of the Solution - If there is a need to have some tenants on different versions of your solution at the same time, the Deployment Stamp pattern allows for this flexibility by deploying different stamps with different versions
 * High-Scale Platforms — The pattern is suitable for implementing high-scale platforms with users distributed over a wide area. It helps manage the load and ensure that the system can handle a large number of users efficiently. By using the Deployment Stamp pattern in these scenarios, you can achieve better scalability, isolation, and resiliency for your application.
 
+```mermaid
+graph TB
+  Start(Start) --> NaturalLimitsOnScalability{Natural Limits on Scalability?}
+  NaturalLimitsOnScalability -- Yes --> UsePattern[Use Deployment Stamp pattern]
+  NaturalLimitsOnScalability -- No --> TenantIsolation{Tenant Isolation?}
+  TenantIsolation -- Yes --> UsePattern
+  TenantIsolation -- No --> MultiRegionApplications{Multi-Region Applications?}
+  MultiRegionApplications -- Yes --> UsePattern
+  MultiRegionApplications -- No --> ResiliencyDuringOutages{Resiliency During Outages?}
+  ResiliencyDuringOutages -- Yes --> UsePattern
+  ResiliencyDuringOutages -- No --> DifferentVersionsOfSolution{Different Versions of the Solution?}
+  DifferentVersionsOfSolution -- Yes --> UsePattern
+  DifferentVersionsOfSolution -- No --> HighScalePlatforms{High-Scale Platforms?}
+  HighScalePlatforms -- Yes --> UsePattern
+  HighScalePlatforms -- No --> DoNotUsePattern[Do not use Deployment Stamp pattern]
+```
 
 ##### Azure Solutions
 
@@ -962,6 +993,25 @@ The Bulkhead pattern is particularly useful in the following scenarios
 * Combining with Other Fault-Handling Patterns - Consider combining the Bulkhead pattern with other fault-handling patterns such as retry, circuit breaker, and throttling to provide more sophisticated fault-handling
 * Deploying Services with Different Quality of Service - The Bulkhead pattern allows you to deploy services that offer a different quality of service for consuming applications. For example, a high-priority consumer pool can be configured to use high-priority services. By using the Bulkhead pattern in these scenarios, you can improve the resiliency and reliability of your application, ensuring that failures are contained and do not affect the entire system.
 
+```mermaid
+graph TB
+  Start(Start) --> IsolatingResources{Isolating Resources for Backend Services?}
+  IsolatingResources -- Yes --> UsePattern[Use Bulkhead pattern]
+  IsolatingResources -- No --> IsolatingCriticalConsumers{Isolating Critical Consumers from Standard Consumers?}
+  IsolatingCriticalConsumers -- Yes --> UsePattern
+  IsolatingCriticalConsumers -- No --> ProtectingFromCascadingFailures{Protecting the Application from Cascading Failures?}
+  ProtectingFromCascadingFailures -- Yes --> UsePattern
+  ProtectingFromCascadingFailures -- No --> HandlingResourceExhaustion{Handling Resource Exhaustion?}
+  HandlingResourceExhaustion -- Yes --> UsePattern
+  HandlingResourceExhaustion -- No --> MaintainingServiceFunctionality{Maintaining Service Functionality During Failures?}
+  MaintainingServiceFunctionality -- Yes --> UsePattern
+  MaintainingServiceFunctionality -- No --> CombiningFaultHandlingPatterns{Combining with Other Fault-Handling Patterns?}
+  CombiningFaultHandlingPatterns -- Yes --> UsePattern
+  CombiningFaultHandlingPatterns -- No --> DeployingServicesDifferentQoS{Deploying Services with Different Quality of Service?}
+  DeployingServicesDifferentQoS -- Yes --> UsePattern
+  DeployingServicesDifferentQoS -- No --> DoNotUsePattern[Do not use Bulkhead pattern]
+```
+
 ##### Azure Solutions
 
 Azure resources that can be used to implement this pattern include [Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796), [Azure Container Instances](https://learn.microsoft.com/azure/container-instances/container-instances-overview?WT.mc_id=AZ-MVP-5004796), and [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796).
@@ -1004,7 +1054,26 @@ The Compensating Transaction pattern should be used in the following scenarios.
 * Complex Business Processes and Workflows - Use the Compensating Transaction pattern in cloud-hosted applications that implement complex business processes and workflows. This pattern helps in managing eventual consistency and ensuring that the system can handle failures effectively
 * Avoiding the Complexity of Distributed Transactions - When it is not feasible to use distributed transactions due to their complexity and overhead, the Compensating Transaction pattern can be an alternative. It allows you to break down a distributed transaction into separate, compensable tasks
 * Handling State Changes in Service-Oriented Architectures (SOA) - In an SOA environment, where operations can cause changes in the state held by services, the Compensating Transaction pattern can be used to undo these state changes if necessary
-* Manual Intervention and Recovery - In cases where manual intervention might be required to recover from a failed step, the Compensating Transaction pattern can be used to raise alerts and provide information about the failure, allowing for manual recovery actions using the Compensating Transaction pattern in these scenarios, you can ensure that your system can handle failures gracefully, maintain data consistency, and recover from errors effectively
+* Manual Intervention and Recovery - In cases where manual intervention might be required to recover from a failed step, the Compensating Transaction pattern can be used to raise alerts and provide information about the failure, allowing for manual recovery actions using the Compensating Transaction pattern in these scenarios, you can ensure that your system can handle failures gracefully, maintain data consistency, and recover from errors effectively.
+
+```mermaid
+graph TB
+    Start(Start) --> UndoingOperationsInEventualConsistencyModels{Undoing Operations in Eventual Consistency Models?}
+    UndoingOperationsInEventualConsistencyModels -- Yes --> UsePattern[Use Compensating Transaction pattern]
+    UndoingOperationsInEventualConsistencyModels -- No --> HandlingFailuresInLongRunningTransactions{Handling Failures in Long-Running Transactions?}
+    HandlingFailuresInLongRunningTransactions -- Yes --> UsePattern
+    HandlingFailuresInLongRunningTransactions -- No --> EnsuringReliabilityAndResilience{Ensuring Reliability and Resilience?}
+    EnsuringReliabilityAndResilience -- Yes --> UsePattern
+    EnsuringReliabilityAndResilience -- No --> ComplexBusinessProcessesAndWorkflows{Complex Business Processes and Workflows?}
+    ComplexBusinessProcessesAndWorkflows -- Yes --> UsePattern
+    ComplexBusinessProcessesAndWorkflows -- No --> AvoidingComplexityOfDistributedTransactions{Avoiding the Complexity of Distributed Transactions?}
+    AvoidingComplexityOfDistributedTransactions -- Yes --> UsePattern
+    AvoidingComplexityOfDistributedTransactions -- No --> HandlingStateChangesInSOA{Handling State Changes in Service-Oriented Architectures (SOA)?}
+    HandlingStateChangesInSOA -- Yes --> UsePattern
+    HandlingStateChangesInSOA -- No --> ManualInterventionAndRecovery{Manual Intervention and Recovery?}
+    ManualInterventionAndRecovery -- Yes --> UsePattern
+    ManualInterventionAndRecovery -- No --> DoNotUsePattern[Do not use Compensating Transaction pattern]
+```
 
 ##### Azure Solutions
 
@@ -1059,6 +1128,21 @@ The Backends for Frontends (BFF) pattern should be used in the following scenari
 * Security and Authorization - The BFF pattern is beneficial when you need to tailor security and authorization mechanisms for each front end. By individualizing the service layer for each front, you can reduce the surface area of the API and limit lateral movement among different backends, which might expose different capabilities
 * Optimized Interfaces - When you need to expose an optimal interface for each client, the BFF pattern is appropriate. This allows for different payload sizes or interaction patterns that are specific to the needs of each frontend, improving performance and user experience. Using the Backends for Frontends pattern in these scenarios, you can effectively manage the complexities associated with serving multiple frontends, ensure optimal performance, and enhance the security of your application.
 
+```mermaid
+graph TB
+  Start(Start) --> DifferentClientRequirements{Different Client Requirements?}
+  DifferentClientRequirements -- Yes --> UsePattern[Use BFF pattern]
+  DifferentClientRequirements -- No --> AvoidingBackendBottlenecks{Avoiding Backend Bottlenecks?}
+  AvoidingBackendBottlenecks -- Yes --> UsePattern
+  AvoidingBackendBottlenecks -- No --> CompetingRequirements{Competing Requirements?}
+  CompetingRequirements -- Yes --> UsePattern
+  CompetingRequirements -- No --> SecurityAndAuthorization{Security and Authorization?}
+  SecurityAndAuthorization -- Yes --> UsePattern
+  SecurityAndAuthorization -- No --> OptimizedInterfaces{Optimized Interfaces?}
+  OptimizedInterfaces -- Yes --> UsePattern
+  OptimizedInterfaces -- No --> DoNotUsePattern[Do not use BFF pattern]
+```
+
 ##### Azure Solutions
 
 Azure resources that can be used to implement this pattern include [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796), [Application Gateway](https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796), [App Service](https://learn.microsoft.com/azure/app-service/?WT.mc_id=AZ-MVP-5004796).
@@ -1102,6 +1186,25 @@ The Gatekeeper pattern should be used in the following scenarios.
 * Reducing Attack Surface - The Gatekeeper pattern is useful when you want to reduce the attack surface of your system. By decoupling the public endpoints from the code that processes requests and accesses storage, the gatekeeper can provide an additional layer of security and limit the system's exposure to potential attacks
 * Secure Communication - When secure communication between clients and the application or service is required, the Gatekeeper pattern can be implemented using secure communication channels (e.g., HTTPS, SSL, or TLS) between the gatekeeper and the trusted hosts or tasks
 * Redundancy and Availability - In scenarios where high availability is crucial, deploying redundant instances of the gatekeeper and using an autoscaling mechanism can ensure that there is always sufficient capacity to handle incoming requests, minimizing the impact of a failure using the Gatekeeper pattern in these scenarios, you can enhance the security, reliability, and performance of your application, ensuring that it meets the necessary protection and operational requirements.
+
+```mermaid
+graph TB
+  Start(Start) --> HandlingSensitiveInformation{Handling Sensitive Information?}
+  HandlingSensitiveInformation -- Yes --> UsePattern[Use Gatekeeper pattern]
+  HandlingSensitiveInformation -- No --> HighSecurityRequirements{High Security Requirements?}
+  HighSecurityRequirements -- Yes --> UsePattern
+  HighSecurityRequirements -- No --> MissionCriticalOperations{Mission Critical Operations?}
+  MissionCriticalOperations -- Yes --> UsePattern
+  MissionCriticalOperations -- No --> SeparateRequestValidation{Separate Request Validation?}
+  SeparateRequestValidation -- Yes --> UsePattern
+  SeparateRequestValidation -- No --> ReducingAttackSurface{Reducing Attack Surface?}
+  ReducingAttackSurface -- Yes --> UsePattern
+  ReducingAttackSurface -- No --> SecureCommunication{Secure Communication?}
+  SecureCommunication -- Yes --> UsePattern
+  SecureCommunication -- No --> RedundancyAndAvailability{Redundancy and Availability?}
+  RedundancyAndAvailability -- Yes --> UsePattern
+  RedundancyAndAvailability -- No --> DoNotUsePattern[Do not use Gatekeeper pattern]
+```
 
 ##### Azure Solutions
 
@@ -1152,6 +1255,25 @@ The Federated Identity pattern should be used in the following scenarios.
 * Enhancing Security - When you need to enhance security by offloading user management and authentication to a trusted identity provider. This can provide advanced capabilities for identity-based threat detection and prevention and ensure that user credentials are managed securely
 * Supporting Claims-Based Access Control — When you need to implement role-based access control (RBAC) based on role claims contained in the authentication token, this allows for a more granular level of control over access to features and resources within the application.
 
+```mermaid
+graph TB
+  Start(Start) --> SingleSignOn{Single Sign-On in the Enterprise?}
+  SingleSignOn -- Yes --> UsePattern[Use Federated Identity pattern]
+  SingleSignOn -- No --> FederatedIdentityWithMultiplePartners{Federated Identity with Multiple Partners?}
+  FederatedIdentityWithMultiplePartners -- Yes --> UsePattern
+  FederatedIdentityWithMultiplePartners -- No --> SaaSApplications{SaaS Applications?}
+  SaaSApplications -- Yes --> UsePattern
+  SaaSApplications -- No --> ImprovingUserExperience{Improving User Experience?}
+  ImprovingUserExperience -- Yes --> UsePattern
+  ImprovingUserExperience -- No --> ReducingAdministrativeOverhead{Reducing Administrative Overhead?}
+  ReducingAdministrativeOverhead -- Yes --> UsePattern
+  ReducingAdministrativeOverhead -- No --> EnhancingSecurity{Enhancing Security?}
+  EnhancingSecurity -- Yes --> UsePattern
+  EnhancingSecurity -- No --> SupportingClaimsBasedAccessControl{Supporting Claims-Based Access Control?}
+  SupportingClaimsBasedAccessControl -- Yes --> UsePattern
+  SupportingClaimsBasedAccessControl -- No --> DoNotUsePattern[Do not use Federated Identity pattern]
+```
+
 ##### Azure Solutions
 
 Azure services that can be used to implement this pattern include [Microsoft Entra ID](https://learn.microsoft.com/entra/fundamentals/whatis?WT.mc_id=AZ-MVP-5004796) and [Microsoft Entra ID External](https://learn.microsoft.com/entra/external-id/external-identities-overview?WT.mc_id=AZ-MVP-5004796).
@@ -1193,6 +1315,27 @@ The Gateway Offloading pattern should be used in the following scenarios.
 * Simplifying Configuration and Management - When you want to simplify the configuration and management of supporting resources, such as web server certificates and secure website configurations. Offloading these responsibilities to a gateway can make service upgrades simpler and more manageable
 * Specialized Team Management - When you want to allow dedicated teams to implement features that require specialized expertise, such as security. This allows your core team to focus on the application functionality, leaving these specialized but cross-cutting concerns to the relevant experts
 * Network Security and Attack Mitigation - When you need to mitigate attacks at the edge ensure that internet traffic routes only through the gateway, not directly to the workloads or PaaS services. The gateway should have the ability to mitigate exploits and provide network security. By considering these scenarios, you can determine whether the Gateway Offloading pattern is suitable for your application and ensure that it meets the necessary security, user experience, and administrative requirements.
+
+```mermaid
+graph TB
+  Start(Start) --> SharedOrSpecializedServiceFunctionality{Shared or Specialized Service Functionality?}
+  SharedOrSpecializedServiceFunctionality -- Yes --> UsePattern[Use Gateway Offloading pattern]
+  SharedOrSpecializedServiceFunctionality -- No --> ReducingAdministrativeOverhead{Reducing Administrative Overhead?}
+  ReducingAdministrativeOverhead -- Yes --> UsePattern
+  ReducingAdministrativeOverhead -- No --> CentralizedSecurityManagement{Centralized Security Management?}
+  CentralizedSecurityManagement -- Yes --> UsePattern
+  CentralizedSecurityManagement -- No --> ConsistencyInLoggingAndMonitoring{Consistency in Logging and Monitoring?}
+  ConsistencyInLoggingAndMonitoring -- Yes --> UsePattern
+  ConsistencyInLoggingAndMonitoring -- No --> HighAvailabilityAndResilience{High Availability and Resilience?}
+  HighAvailabilityAndResilience -- Yes --> UsePattern
+  HighAvailabilityAndResilience -- No --> SimplifyingConfigurationAndManagement{Simplifying Configuration and Management?}
+  SimplifyingConfigurationAndManagement -- Yes --> UsePattern
+  SimplifyingConfigurationAndManagement -- No --> SpecializedTeamManagement{Specialized Team Management?}
+  SpecializedTeamManagement -- Yes --> UsePattern
+  SpecializedTeamManagement -- No --> NetworkSecurityAndAttackMitigation{Network Security and Attack Mitigation?}
+  NetworkSecurityAndAttackMitigation -- Yes --> UsePattern
+  NetworkSecurityAndAttackMitigation -- No --> DoNotUsePattern[Do not use Gateway Offloading pattern]
+```
 
 ##### Azure Solutions
 
