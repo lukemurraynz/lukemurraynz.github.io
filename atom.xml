@@ -17,7 +17,7 @@
         <content type="html"><![CDATA[<p>Cloud Design patterns help build reliable, scalable, secure applications in the cloud.</p>
 <p>Today, we will cover common patterns, their use cases, and considerations.</p>
 <p>The patterns we will cover today are only a small set of common patterns documented in the <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Architecture Center</a>.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="cloud-design-patterns">Cloud Design Patterns<a href="https://luke.geek.nz/azure/cloud-design-patterns/#cloud-design-patterns" class="hash-link" aria-label="Direct link to Cloud Design Patterns" title="Direct link to Cloud Design Patterns">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-cloud-design-patterns">🌩️ Cloud Design Patterns<a href="https://luke.geek.nz/azure/cloud-design-patterns/#%EF%B8%8F-cloud-design-patterns" class="hash-link" aria-label="Direct link to 🌩️ Cloud Design Patterns" title="Direct link to 🌩️ Cloud Design Patterns">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="importance-of-design-patterns">Importance of Design Patterns<a href="https://luke.geek.nz/azure/cloud-design-patterns/#importance-of-design-patterns" class="hash-link" aria-label="Direct link to Importance of Design Patterns" title="Direct link to Importance of Design Patterns">​</a></h3>
 <p>Design patterns are reusable solutions to common problems in software design. They are templates that can be applied to solve a problem in a specific context. They are not finished designs that can be transformed directly into code. They are a starting point for your design.</p>
 <p><img decoding="async" loading="lazy" alt="Design Patterns" src="https://luke.geek.nz/assets/images/Blog_CloudDesignPattnerns_Importance-e7c82f7f59275c9e6c178db732b041b3.gif" width="1903" height="1005" class="img_ev3q"></p>
@@ -62,7 +62,7 @@
 <p>In the following sections, we will examine common cloud design patterns, their use cases, and considerations in depth.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="data-management-patterns">Data Management Patterns<a href="https://luke.geek.nz/azure/cloud-design-patterns/#data-management-patterns" class="hash-link" aria-label="Direct link to Data Management Patterns" title="Direct link to Data Management Patterns">​</a></h3>
 <p><img decoding="async" loading="lazy" alt="Design Patterns - Data Management" src="https://luke.geek.nz/assets/images/Blog_CloudDesignPatterns_DataManagement-938a6255d99ff5338872172f50fb6d19.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="cache-aside">Cache-Aside<a href="https://luke.geek.nz/azure/cloud-design-patterns/#cache-aside" class="hash-link" aria-label="Direct link to Cache-Aside" title="Direct link to Cache-Aside">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-cache-aside">📚 Cache-Aside<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-cache-aside" class="hash-link" aria-label="Direct link to 📚 Cache-Aside" title="Direct link to 📚 Cache-Aside">​</a></h3>
 <blockquote>
 <p>Load data on demand into a cache from a data store</p>
 </blockquote>
@@ -93,7 +93,7 @@
 If the data is found in Azure Cache for Redis (cache hit), the application will use this data.
 If the data is not found in Azure Cache for Redis (cache miss), the application must retrieve it from the appropriate Azure database service.
 For cache miss scenarios, the requesting application should add the data retrieved from the Azure Database service to Azure Cache for Redis.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sharding">Sharding<a href="https://luke.geek.nz/azure/cloud-design-patterns/#sharding" class="hash-link" aria-label="Direct link to Sharding" title="Direct link to Sharding">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-sharding">📚 Sharding<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-sharding" class="hash-link" aria-label="Direct link to 📚 Sharding" title="Direct link to 📚 Sharding">​</a></h3>
 <blockquote>
 <p>Divide a data store into a set of horizontal partitions or shards.</p>
 </blockquote>
@@ -128,7 +128,7 @@ For cache miss scenarios, the requesting application should add the data retriev
 <p>Consider a website that surfaces an expansive collection of information on published books worldwide.
 The number of possible books cataloged in this workload and the typical query/usage patterns contra-indicate the usage of a single relational database to store the book information. The workload architect decides to shard the data across multiple database instances, using the books' static International Standard Book Number (ISBN) for the shard key. Specifically, they use the&nbsp;check digit&nbsp;(0 - 10) of the ISBN as that gives 11 possible logical shards, and the data will be balanced across each shard. First, they decide to colocate the 11 logical shards into three physical shard databases. They use the&nbsp;lookup&nbsp;sharding approach and store the key-to-server mapping information in a shard map database.</p>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/azure-sql/database/sql-database-paas-overview?view=azuresql&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure SQL Database</a>, <a href="https://learn.microsoft.com/azure/cosmos-db/introduction?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Cosmos DB</a>, and <a href="https://learn.microsoft.com/azure/storage/common/storage-introduction?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Storage</a>.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="valet-key">Valet Key<a href="https://luke.geek.nz/azure/cloud-design-patterns/#valet-key" class="hash-link" aria-label="Direct link to Valet Key" title="Direct link to Valet Key">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-valet-key">🚗 Valet Key<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-valet-key" class="hash-link" aria-label="Direct link to 🚗 Valet Key" title="Direct link to 🚗 Valet Key">​</a></h3>
 <blockquote>
 <p>Use a token or key that provides clients with restricted direct access to a specific resource or service.</p>
 </blockquote>
@@ -161,7 +161,7 @@ This isn't a realistic approach in distributed systems that need to serve untrus
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-2">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-2" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h4>
 <p>Azure supports shared access signatures on Azure Storage for granular access control to data in blobs, tables, and queues, and for Service Bus queues and topics. A shared access signature token can be configured to provide specific access rights such as read, write, update, and delete to a specific table, a key range within a table, a queue, a blob, or a blob container. The validity can be a specified time period. This functionality is well-suited for accessing a valet key.</p>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/storage/common/storage-introduction?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Storage</a> and <a href="https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Function</a>.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="static-content-hosting">Static Content Hosting<a href="https://luke.geek.nz/azure/cloud-design-patterns/#static-content-hosting" class="hash-link" aria-label="Direct link to Static Content Hosting" title="Direct link to Static Content Hosting">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-static-content-hosting">📦 Static Content Hosting<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-static-content-hosting" class="hash-link" aria-label="Direct link to 📦 Static Content Hosting" title="Direct link to 📦 Static Content Hosting">​</a></h3>
 <blockquote>
 <p>Deploy static content to a cloud-based storage service that can deliver them directly to the client.</p>
 </blockquote>
@@ -193,7 +193,7 @@ Although web servers are optimized for dynamic rendering and output caching, the
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/storage/blobs/storage-blobs-introduction?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Blob Storage</a>, <a href="https://learn.microsoft.com/azure/cdn/cdn-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Content Delivery Network (CDN)</a>, and <a href="https://learn.microsoft.com/azure/static-web-apps/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Static Web Apps</a>.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="design--implementation-patterns">Design &amp; Implementation Patterns<a href="https://luke.geek.nz/azure/cloud-design-patterns/#design--implementation-patterns" class="hash-link" aria-label="Direct link to Design &amp; Implementation Patterns" title="Direct link to Design &amp; Implementation Patterns">​</a></h3>
 <p><img decoding="async" loading="lazy" alt="Design &amp;amp; Implementation Patterns" src="https://luke.geek.nz/assets/images/Blog_CloudDesignPatterns_DesignImplementation-0d041cba67e09224f3dba8c3fa0d3357.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="ambassador">Ambassador<a href="https://luke.geek.nz/azure/cloud-design-patterns/#ambassador" class="hash-link" aria-label="Direct link to Ambassador" title="Direct link to Ambassador">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-ambassador">🎉 Ambassador<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-ambassador" class="hash-link" aria-label="Direct link to 🎉 Ambassador" title="Direct link to 🎉 Ambassador">​</a></h3>
 <blockquote>
 <p>Create helper services that send network requests on behalf of a consumer service or application.</p>
 </blockquote>
@@ -226,7 +226,7 @@ Network calls may also require substantial configuration for connection, authent
 <!-- -->
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-4">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-4" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h4>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure API Management</a>, <a href="https://learn.microsoft.com/azure/frontdoor/front-door-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Front Door</a> and <a href="https://learn.microsoft.com/azure/firewall/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Firewall</a>.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sidecar">Sidecar<a href="https://luke.geek.nz/azure/cloud-design-patterns/#sidecar" class="hash-link" aria-label="Direct link to Sidecar" title="Direct link to Sidecar">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-sidecar">🚀 Sidecar<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-sidecar" class="hash-link" aria-label="Direct link to 🚀 Sidecar" title="Direct link to 🚀 Sidecar">​</a></h3>
 <blockquote>
 <p>Deploy components of an application into a separate process or container to provide isolation and encapsulation.</p>
 </blockquote>
@@ -264,7 +264,7 @@ This pattern is named&nbsp;Sidecar&nbsp;because it resembles a sidecar attached 
 <p>Use a&nbsp;sidecar&nbsp;container that enhances the application with the required SSL functionality without modifying the application code. The sidecar pattern is a powerful concept in container-based architectures that lets you decompose application functionality into different container images that run together in the same container group.
 In an Azure Container Instances container group, each container can take over part of the functionality the application requires. Sidecar containers can use different container images from the application container, even from different image repositories. Containers in the same container group share some properties, such as the underlying network stack.</p>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/container-instances/container-instances-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Container Instances</a>, <a href="https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Kubernetes Service</a>, and <a href="https://learn.microsoft.com/azure/app-service/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure App Service</a>.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="leader-election">Leader Election<a href="https://luke.geek.nz/azure/cloud-design-patterns/#leader-election" class="hash-link" aria-label="Direct link to Leader Election" title="Direct link to Leader Election">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="️-leader-election">🎖️ Leader Election<a href="https://luke.geek.nz/azure/cloud-design-patterns/#%EF%B8%8F-leader-election" class="hash-link" aria-label="Direct link to 🎖️ Leader Election" title="Direct link to 🎖️ Leader Election">​</a></h3>
 <blockquote>
 <p>Coordinate the actions performed by a collection of collaborating task instances in a distributed application by electing one instance as the leader who assumes responsibility for managing the other instances.</p>
 </blockquote>
@@ -302,7 +302,7 @@ If the tasks are performing individual elements of a complex calculation in para
 <!-- -->
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-6">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-6" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h4>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/service-fabric/service-fabric-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Service Fabric</a>, <a href="https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Kubernetes Service</a>, and <a href="https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Functions</a>.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="strangler-fig">Strangler Fig<a href="https://luke.geek.nz/azure/cloud-design-patterns/#strangler-fig" class="hash-link" aria-label="Direct link to Strangler Fig" title="Direct link to Strangler Fig">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-strangler-fig">🌳 Strangler Fig<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-strangler-fig" class="hash-link" aria-label="Direct link to 🌳 Strangler Fig" title="Direct link to 🌳 Strangler Fig">​</a></h3>
 <blockquote>
 <p>Incrementally migrate a legacy system by gradually replacing specific pieces of functionality with new applications and services.</p>
 </blockquote>
@@ -337,7 +337,7 @@ Completely replacing a complex system can be a huge undertaking. Often, you will
 <p>Many <a href="https://azure.microsoft.com/products?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure products</a>, can be used to implement this pattern.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="messaging-patterns">Messaging Patterns<a href="https://luke.geek.nz/azure/cloud-design-patterns/#messaging-patterns" class="hash-link" aria-label="Direct link to Messaging Patterns" title="Direct link to Messaging Patterns">​</a></h3>
 <p><img decoding="async" loading="lazy" alt="Messaging Patterns" src="https://luke.geek.nz/assets/images/Blog_CloudDesignPatterns_Messaging-96157045d56ca73d261c3e61955ef24f.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="sequential-convoy">Sequential Convoy<a href="https://luke.geek.nz/azure/cloud-design-patterns/#sequential-convoy" class="hash-link" aria-label="Direct link to Sequential Convoy" title="Direct link to Sequential Convoy">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="-sequential-convoy">🚚 Sequential Convoy<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-sequential-convoy" class="hash-link" aria-label="Direct link to 🚚 Sequential Convoy" title="Direct link to 🚚 Sequential Convoy">​</a></h4>
 <blockquote>
 <p>Process a set of related messages in a defined order without blocking the processing of other groups of messages.</p>
 </blockquote>
@@ -363,7 +363,7 @@ Completely replacing a complex system can be a huge undertaking. Often, you will
 <!-- -->
 <h5 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-8">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-8" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h5>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Service Bus</a>, <a href="https://learn.microsoft.com/azure/event-grid/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Event Grid</a>, and <a href="https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Functions</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="queue-based-load-leveling">Queue-Based Load Leveling<a href="https://luke.geek.nz/azure/cloud-design-patterns/#queue-based-load-leveling" class="hash-link" aria-label="Direct link to Queue-Based Load Leveling" title="Direct link to Queue-Based Load Leveling">​</a></h4>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-queue-based-load-leveling">📌 Queue-Based Load Leveling<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-queue-based-load-leveling" class="hash-link" aria-label="Direct link to 📌 Queue-Based Load Leveling" title="Direct link to 📌 Queue-Based Load Leveling">​</a></h3>
 <blockquote>
 <p>Use a buffer between a task and a service that it invokes in order to smooth intermittent heavy loads.</p>
 </blockquote>
@@ -399,7 +399,7 @@ Solution, Refactor the solution and introduce a queue between the task and the s
 <!-- -->
 <h5 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-9">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-9" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h5>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Service Bus</a>, <a href="https://learn.microsoft.com/azure/event-grid/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Event Grid</a>, and <a href="https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Functions</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="publisher-subscriber">Publisher-Subscriber<a href="https://luke.geek.nz/azure/cloud-design-patterns/#publisher-subscriber" class="hash-link" aria-label="Direct link to Publisher-Subscriber" title="Direct link to Publisher-Subscriber">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="-publisher-subscriber">📌 Publisher-Subscriber<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-publisher-subscriber" class="hash-link" aria-label="Direct link to 📌 Publisher-Subscriber" title="Direct link to 📌 Publisher-Subscriber">​</a></h4>
 <blockquote>
 <p>Enable an application to announce events to multiple interested consumers asynchronously, without coupling the senders to the receivers.</p>
 </blockquote>
@@ -437,7 +437,7 @@ A mechanism for copying each message from the input channel to the output channe
 <!-- -->
 <h5 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-10">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-10" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h5>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Service Bus</a>, <a href="https://learn.microsoft.com/azure/event-grid/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Event Grid</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="asynchronous-request-reply">Asynchronous Request-Reply<a href="https://luke.geek.nz/azure/cloud-design-patterns/#asynchronous-request-reply" class="hash-link" aria-label="Direct link to Asynchronous Request-Reply" title="Direct link to Asynchronous Request-Reply">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="-asynchronous-request-reply">🔄 Asynchronous Request-Reply<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-asynchronous-request-reply" class="hash-link" aria-label="Direct link to 🔄 Asynchronous Request-Reply" title="Direct link to 🔄 Asynchronous Request-Reply">​</a></h4>
 <blockquote>
 <p>Decouple backend processing from a frontend host, where backend processing needs to be asynchronous, but the frontend still needs a clear response.</p>
 </blockquote>
@@ -480,7 +480,7 @@ One solution to this problem is to use HTTP polling. Polling is useful to client
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Functions</a>, <a href="https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Service Bus</a>, and <a href="https://learn.microsoft.com/azure/storage/queues/storage-queues-introduction?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Storage Queues</a>.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="reliability-patterns">Reliability Patterns<a href="https://luke.geek.nz/azure/cloud-design-patterns/#reliability-patterns" class="hash-link" aria-label="Direct link to Reliability Patterns" title="Direct link to Reliability Patterns">​</a></h3>
 <p><img decoding="async" loading="lazy" alt="Reliability Patterns" src="https://luke.geek.nz/assets/images/Blog_CloudDesignPatterns_Reliability-70846e1cb6b986530554f7b4b68a7ab3.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="circuit-breaker">Circuit Breaker<a href="https://luke.geek.nz/azure/cloud-design-patterns/#circuit-breaker" class="hash-link" aria-label="Direct link to Circuit Breaker" title="Direct link to Circuit Breaker">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="️-circuit-breaker">⚡️ Circuit Breaker<a href="https://luke.geek.nz/azure/cloud-design-patterns/#%EF%B8%8F-circuit-breaker" class="hash-link" aria-label="Direct link to ⚡️ Circuit Breaker" title="Direct link to ⚡️ Circuit Breaker">​</a></h4>
 <blockquote>
 <p>Handle faults that might take a variable amount of time to recover from when connecting to a remote service or resource. This can improve an application's stability and resiliency.</p>
 </blockquote>
@@ -515,7 +515,7 @@ However, there can also be situations where faults are due to unanticipated even
 <!-- -->
 <h5 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-12">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-12" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h5>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure API Management</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="deployment-stamps">Deployment Stamps<a href="https://luke.geek.nz/azure/cloud-design-patterns/#deployment-stamps" class="hash-link" aria-label="Direct link to Deployment Stamps" title="Direct link to Deployment Stamps">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="-deployment-stamps">📮 Deployment Stamps<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-deployment-stamps" class="hash-link" aria-label="Direct link to 📮 Deployment Stamps" title="Direct link to 📮 Deployment Stamps">​</a></h4>
 <blockquote>
 <p>The deployment stamp pattern involves provisioning, managing, and monitoring a heterogeneous group of resources to host and operate multiple workloads or tenants.</p>
 </blockquote>
@@ -550,7 +550,7 @@ However, there can also be situations where faults are due to unanticipated even
 <!-- -->
 <h5 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-13">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-13" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h5>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/traffic-manager/traffic-manager-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Traffic Manager</a>, <a href="https://learn.microsoft.com/azure/frontdoor/front-door-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Front Door</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="bulkhead">Bulkhead<a href="https://luke.geek.nz/azure/cloud-design-patterns/#bulkhead" class="hash-link" aria-label="Direct link to Bulkhead" title="Direct link to Bulkhead">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="-bulkhead">🚢 Bulkhead<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-bulkhead" class="hash-link" aria-label="Direct link to 🚢 Bulkhead" title="Direct link to 🚢 Bulkhead">​</a></h4>
 <blockquote>
 <p>In a bulkhead architecture, elements of an application are isolated into pools so that if one fails, the others will continue to function.</p>
 </blockquote>
@@ -589,7 +589,7 @@ Considerations</li>
 <!-- -->
 <h5 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-14">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-14" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h5>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Kubernetes Service (AKS)</a>, <a href="https://learn.microsoft.com/azure/container-instances/container-instances-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Container Instances</a>, and <a href="https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Functions</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="compensating-transaction">Compensating Transaction<a href="https://luke.geek.nz/azure/cloud-design-patterns/#compensating-transaction" class="hash-link" aria-label="Direct link to Compensating Transaction" title="Direct link to Compensating Transaction">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="-compensating-transaction">😊 Compensating Transaction<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-compensating-transaction" class="hash-link" aria-label="Direct link to 😊 Compensating Transaction" title="Direct link to 😊 Compensating Transaction">​</a></h4>
 <blockquote>
 <p>If one or more of the steps fail, you can use the Compensating Transaction pattern to undo the work that the steps performed.</p>
 </blockquote>
@@ -636,7 +636,7 @@ Considerations</li>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Functions</a>, <a href="https://learn.microsoft.com/azure/logic-apps/logic-apps-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Logic Apps</a>, and <a href="https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Service Bus</a>.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="security-patterns">Security Patterns<a href="https://luke.geek.nz/azure/cloud-design-patterns/#security-patterns" class="hash-link" aria-label="Direct link to Security Patterns" title="Direct link to Security Patterns">​</a></h3>
 <p><img decoding="async" loading="lazy" alt="Security Patterns" src="https://luke.geek.nz/assets/images/Blog_CloudDesignPatterns_Security-9a83139c43344330ae46f562128457f2.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="backends-for-frontends">Backends for Frontends<a href="https://luke.geek.nz/azure/cloud-design-patterns/#backends-for-frontends" class="hash-link" aria-label="Direct link to Backends for Frontends" title="Direct link to Backends for Frontends">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="-backends-for-frontends">😊 Backends for Frontends<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-backends-for-frontends" class="hash-link" aria-label="Direct link to 😊 Backends for Frontends" title="Direct link to 😊 Backends for Frontends">​</a></h4>
 <blockquote>
 <p>Create separate backend services to be consumed by specific frontend applications or interfaces.</p>
 </blockquote>
@@ -669,7 +669,7 @@ Considerations</li>
 <!-- -->
 <h5 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-16">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-16" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h5>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure API Management</a>, <a href="https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Application Gateway</a>, <a href="https://learn.microsoft.com/azure/app-service/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">App Service</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="gatekeeper">Gatekeeper<a href="https://luke.geek.nz/azure/cloud-design-patterns/#gatekeeper" class="hash-link" aria-label="Direct link to Gatekeeper" title="Direct link to Gatekeeper">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="-gatekeeper">🚧 Gatekeeper<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-gatekeeper" class="hash-link" aria-label="Direct link to 🚧 Gatekeeper" title="Direct link to 🚧 Gatekeeper">​</a></h4>
 <blockquote>
 <p>Protect applications and services by using a dedicated host instance to broker requests between clients and the application or service.</p>
 </blockquote>
@@ -708,7 +708,7 @@ Considerations
 <!-- -->
 <h5 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-17">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-17" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h5>
 <p>The Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Application Gateway</a> and <a href="https://learn.microsoft.com/azure/firewall/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Firewall</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="federated-identity">Federated Identity<a href="https://luke.geek.nz/azure/cloud-design-patterns/#federated-identity" class="hash-link" aria-label="Direct link to Federated Identity" title="Direct link to Federated Identity">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="-federated-identity">🤝 Federated Identity<a href="https://luke.geek.nz/azure/cloud-design-patterns/#-federated-identity" class="hash-link" aria-label="Direct link to 🤝 Federated Identity" title="Direct link to 🤝 Federated Identity">​</a></h4>
 <blockquote>
 <p>Delegate authentication to an external identity provider. This can simplify development, minimize the requirement for user administration, and improve the user experience of the application.</p>
 </blockquote>
@@ -749,7 +749,7 @@ Issues
 <!-- -->
 <h5 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-18">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-18" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h5>
 <p>Azure services that can be used to implement this pattern include <a href="https://learn.microsoft.com/entra/fundamentals/whatis?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Microsoft Entra ID</a> and <a href="https://learn.microsoft.com/entra/external-id/external-identities-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Microsoft Entra ID External</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="gateway-offloading">Gateway Offloading<a href="https://luke.geek.nz/azure/cloud-design-patterns/#gateway-offloading" class="hash-link" aria-label="Direct link to Gateway Offloading" title="Direct link to Gateway Offloading">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="️-gateway-offloading">🛡️ Gateway Offloading<a href="https://luke.geek.nz/azure/cloud-design-patterns/#%EF%B8%8F-gateway-offloading" class="hash-link" aria-label="Direct link to 🛡️ Gateway Offloading" title="Direct link to 🛡️ Gateway Offloading">​</a></h4>
 <blockquote>
 <p>Offload shared or specialized service functionality to a gateway proxy.</p>
 </blockquote>
@@ -784,7 +784,7 @@ Issues
 <!-- -->
 <h5 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-19">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-19" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h5>
 <p>Azure resources that can be used to implement this pattern include <a href="https://learn.microsoft.com/azure/frontdoor/front-door-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Front Door with WAF</a>, <a href="https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Application Gateway</a> and <a href="https://learn.microsoft.com/azure/firewall/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Firewall</a></p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="architecting-for-azure">Architecting for Azure<a href="https://luke.geek.nz/azure/cloud-design-patterns/#architecting-for-azure" class="hash-link" aria-label="Direct link to Architecting for Azure" title="Direct link to Architecting for Azure">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="️-architecting-for-azure">🏗️ Architecting for Azure<a href="https://luke.geek.nz/azure/cloud-design-patterns/#%EF%B8%8F-architecting-for-azure" class="hash-link" aria-label="Direct link to 🏗️ Architecting for Azure" title="Direct link to 🏗️ Architecting for Azure">​</a></h3>
 <p>The following Frameworks can help guide you, from the business requirements to the technical implementation of your solution:</p>
 <ol>
 <li><a href="https://learn.microsoft.com/azure/cloud-adoption-framework/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Cloud Adoption Framework</a> - Proven guidance and best practices that help you confidently adopt the cloud and achieve business outcomes.</li>
