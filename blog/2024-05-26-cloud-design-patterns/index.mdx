@@ -581,11 +581,42 @@ Azure resources that can be used to implement this pattern include [Azure Functi
 
 > Handle faults that might take a variable amount of time to recover from, when connecting to a remote service or resource. This can improve the stability and resiliency of an application.
 
+In a distributed environment, calls to remote resources and services can fail due to transient faults, such as slow network connections, timeouts, or the resources being overcommitted or temporarily unavailable. These faults typically correct themselves after a short period of time, and a robust cloud application should be prepared to handle them by using a strategy such as the [Retry pattern](https://learn.microsoft.com/dotnet/architecture/cloud-native/application-resiliency-patterns?WT.mc_id=AZ-MVP-5004796#retry-pattern).
+However, there can also be situations where faults are due to unanticipated events, and that might take much longer to fix. These faults can range in severity from a partial loss of connectivity to the complete failure of a service. In these situations it might be pointless for an application to continually retry an operation that is unlikely to succeed, and instead the application should quickly accept that the operation has failed and handle this failure accordingly. Additionally, if a service is very busy, failure in one part of the system might lead to cascading failures. The purpose of the Circuit Breaker pattern is different than the Retry pattern. The Retry pattern enables an application to retry an operation in the expectation that it'll succeed. The Circuit Breaker pattern prevents an application from performing an operation that is likely to fail. An application can combine these two patterns by using the Retry pattern to invoke an operation through a circuit breaker. However, the retry logic should be sensitive to any exceptions returned by the circuit breaker and abandon retry attempts if the circuit breaker indicates that a fault is not transient. The failure counter used by the Closed state is time based. It's automatically reset at periodic intervals. This helps to prevent the circuit breaker from entering the Open state if it experiences occasional failures.
+
 ##### Issues & considerations
+
+The Circuit Breaker pattern is designed to handle faults that might take a variable amount of time to recover from, especially when connecting to remote services or resources. Here are some issues and considerations associated with this pattern:
+
+* State Management - The Circuit Breaker pattern typically involves three states: Closed, Open, and Half-Open. Managing these states correctly is crucial. The Closed state allows normal operation, the Open state immediately fails requests, and the Half-Open state allows a limited number of test requests to check if the issue has been resolved 1 .
+* Thresholds and Timeouts - Setting appropriate thresholds for the number of failures and timeouts is essential. If the thresholds are too low, the circuit breaker might open too frequently, causing unnecessary failures. If they are too high, the system might not protect itself effectively from cascading failures 1 .
+* Recovery Testing - In the Open state, the circuit breaker should periodically test the service to see if it has recovered. This can be done using a timer or by pinging the service. The interval for these tests should be carefully chosen based on the criticality of the operation and the nature of the service 2 3 .
+* Manual Override - Providing a manual override option can be beneficial in systems where the recovery time for a failing operation is extremely variable. This allows administrators to manually reset the circuit breaker or force it into the Open state as needed 3 .
+* Concurrency - The circuit breaker might be accessed by a large number of concurrent instances of an application. The implementation should ensure that it does not block concurrent requests or add excessive overhead to each call 3 .
+* Resource Differentiation - Using a single circuit breaker for multiple underlying independent providers can be problematic. For example, in a data store with multiple shards, one shard might be accessible while another is experiencing issues. The circuit breaker should differentiate between these resources to avoid unnecessary failures 3 .
+* Accelerated Circuit Breaking - Sometimes, a failure response can provide enough information for the circuit breaker to trip immediately and stay tripped for a minimum amount of time. For example, an overloaded shared resource might indicate that an immediate retry is not recommended 3 .
+* Replaying Failed Requests - In the Open state, the circuit breaker could record the details of each failed request and arrange for these requests to be replayed when the service becomes available again. This ensures that important operations are not lost 3 .
+* Inappropriate Timeouts - The circuit breaker might not fully protect applications from operations that fail in external services configured with lengthy timeouts. If the timeout is too long, a thread running the circuit breaker might be blocked for an extended period, tying up resources 3 .
+* Impact on Shared Resources - Aggressive retry policies can cause an increasing number of transient faults for other users and applications sharing the same resources. It is important to consider the impact of the circuit breaker on shared resources and other tenants in a multi-tenant environment 2 .By addressing these issues and considerations, the Circuit Breaker pattern can be effectively implemented to improve the stability and resiliency of an application, preventing cascading failures and managing long-lasting faults efficiently.
+
+
 
 ##### When to use this pattern
 
+The Circuit Breaker pattern should be used in the following scenarios:
+
+* Handling Persistent or Non-Transient Errors - When an application encounters persistent or non-transient errors, such as a service being down or a network failure, the Circuit Breaker pattern can prevent the application from continually trying to perform an operation that is likely to fail 1 .
+* Preventing Resource Exhaustion - If a service is frequently unavailable or busy, it might be due to resource exhaustion. The Circuit Breaker pattern helps to prevent further strain on the service by stopping additional requests until the service has had time to recover 2 .
+* Improving System Stability - The pattern provides stability while the system recovers from a failure and minimizes the impact on performance. It quickly rejects requests for operations that are likely to fail, rather than waiting for them to time out or never return 3 .
+* Managing Long-Lasting Faults - When faults are likely to be long-lasting or terminal, the Circuit Breaker pattern can handle these faults as exceptions. The application can log the exception and try to continue by invoking an alternative service or offering degraded functionality 2 .
+* Avoiding Cascading Failures - The pattern helps to mitigate failures and avoid having cascading failures disrupt the entire application. By stopping requests to a failing service, it prevents the failure from propagating to other parts of the system 1 .
+* Testing Service Recovery - The Circuit Breaker pattern allows the application to periodically test the service to detect when it becomes available again. This can be done on an intermittent basis with long intervals between requests, depending on the criticality of the operation and the nature of the service 4 .
+* Logging and Monitoring - The pattern can be used to log all failed requests and monitor the health of the operation. This information can be used to alert administrators when a circuit breaker trips to the Open state, providing insights into the health of the system 3 .By using the Circuit Breaker pattern in these scenarios, you can improve the resiliency and stability of your application, prevent resource exhaustion, and manage long-lasting faults effectively.
+
+
 ##### Azure Solutions
+
+Azure resources that can be used to implement this pattern include [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796).
 
 #### Deployment Stamps
 
