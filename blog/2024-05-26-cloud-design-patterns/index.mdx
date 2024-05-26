@@ -1058,21 +1058,21 @@ The Compensating Transaction pattern should be used in the following scenarios.
 
 ```mermaid
 graph TB
-    Start(Start) --> UndoingOperationsInEventualConsistencyModels{Undoing Operations in Eventual Consistency Models?}
-    UndoingOperationsInEventualConsistencyModels -- Yes --> UsePattern[Use Compensating Transaction pattern]
-    UndoingOperationsInEventualConsistencyModels -- No --> HandlingFailuresInLongRunningTransactions{Handling Failures in Long-Running Transactions?}
-    HandlingFailuresInLongRunningTransactions -- Yes --> UsePattern
-    HandlingFailuresInLongRunningTransactions -- No --> EnsuringReliabilityAndResilience{Ensuring Reliability and Resilience?}
-    EnsuringReliabilityAndResilience -- Yes --> UsePattern
-    EnsuringReliabilityAndResilience -- No --> ComplexBusinessProcessesAndWorkflows{Complex Business Processes and Workflows?}
-    ComplexBusinessProcessesAndWorkflows -- Yes --> UsePattern
-    ComplexBusinessProcessesAndWorkflows -- No --> AvoidingComplexityOfDistributedTransactions{Avoiding the Complexity of Distributed Transactions?}
-    AvoidingComplexityOfDistributedTransactions -- Yes --> UsePattern
-    AvoidingComplexityOfDistributedTransactions -- No --> HandlingStateChangesInSOA{Handling State Changes in Service-Oriented Architectures (SOA)?}
-    HandlingStateChangesInSOA -- Yes --> UsePattern
-    HandlingStateChangesInSOA -- No --> ManualInterventionAndRecovery{Manual Intervention and Recovery?}
-    ManualInterventionAndRecovery -- Yes --> UsePattern
-    ManualInterventionAndRecovery -- No --> DoNotUsePattern[Do not use Compensating Transaction pattern]
+  Start(Start) --> UndoingOperationsInEventualConsistencyModels{Undoing Operations in Eventual Consistency Models?}
+  UndoingOperationsInEventualConsistencyModels -- Yes --> UsePattern1[Use Compensating Transaction pattern]
+  UndoingOperationsInEventualConsistencyModels -- No --> HandlingFailuresInLongRunningTransactions{Handling Failures in Long-Running Transactions?}
+  HandlingFailuresInLongRunningTransactions -- Yes --> UsePattern2
+  HandlingFailuresInLongRunningTransactions -- No --> EnsuringReliabilityAndResilience{Ensuring Reliability and Resilience?}
+  EnsuringReliabilityAndResilience -- Yes --> UsePattern3
+  EnsuringReliabilityAndResilience -- No --> ComplexBusinessProcessesAndWorkflows{Complex Business Processes and Workflows?}
+  ComplexBusinessProcessesAndWorkflows -- Yes --> UsePattern4
+  ComplexBusinessProcessesAndWorkflows -- No --> AvoidingComplexityOfDistributedTransactions{Avoiding the Complexity of Distributed Transactions?}
+  AvoidingComplexityOfDistributedTransactions -- Yes --> UsePattern5
+  AvoidingComplexityOfDistributedTransactions -- No --> HandlingStateChangesInSOA{Handling State Changes in Service-Oriented Architectures (SOA)?}
+  HandlingStateChangesInSOA -- Yes --> UsePattern6
+  HandlingStateChangesInSOA -- No --> ManualInterventionAndRecovery{Manual Intervention and Recovery?}
+  ManualInterventionAndRecovery -- Yes --> UsePattern7
+  ManualInterventionAndRecovery -- No --> DoNotUsePattern[Do not use Compensating Transaction pattern]
 ```
 
 ##### Azure Solutions
