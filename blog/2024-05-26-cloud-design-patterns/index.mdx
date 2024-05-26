@@ -577,23 +577,6 @@ The Strangler Fig pattern should be used in the following scenarios.
 * Modernizing Legacy Systems - When modernizing legacy systems that have become increasingly obsolete due to outdated development tools, hosting technology, or system architectures. The pattern helps in gradually transitioning to a new system while maintaining the old system for features that haven't been migrated yet
 * Using Modern Orchestration Tools - When you want to leverage modern orchestration tools such as Azure DevOps to manage the lifecycle of each service. Once the application has been decomposed into constituent microservices, these tools can be used to manage the new system effectively. Considering these scenarios, you can effectively use the Strangler Fig pattern to ensure a smooth and controlled migration from a legacy system to a new architecture, enhancing the overall resilience and scalability of your application.
 
-```mermaid
-graph TB
-  Start(Start) --> GradualMigration{Gradual migration of a legacy system?}
-  GradualMigration -- Yes --> UsePattern1[Use Strangler Fig pattern]
-  GradualMigration -- No --> ComplexSystems{Dealing with complex systems?}
-  ComplexSystems -- Yes --> UsePattern2
-  ComplexSystems -- No --> MaintainFunctionality{Maintain functionality during migration?}
-  MaintainFunctionality -- Yes --> UsePattern3
-  MaintainFunctionality -- No --> AvoidBigBangRewrites{Avoid "big bang" rewrites?}
-  AvoidBigBangRewrites -- Yes --> UsePattern4
-  AvoidBigBangRewrites -- No --> ModernizeLegacySystems{Modernize legacy systems?}
-  ModernizeLegacySystems -- Yes --> UsePattern5
-  ModernizeLegacySystems -- No --> UseModernOrchestrationTools{Use modern orchestration tools?}
-  UseModernOrchestrationTools -- Yes --> UsePattern6
-  UseModernOrchestrationTools -- No --> DoNotUsePattern[Do not use Strangler Fig pattern]
-```
-
 #### Azure Solutions
 
 Many [Azure products](https://azure.microsoft.com/products?WT.mc_id=AZ-MVP-5004796), can be used to implement this pattern.
