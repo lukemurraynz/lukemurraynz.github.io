@@ -798,6 +798,8 @@ Categories of patterns include data management, security, reliability, messaging
 Implementing patterns in Azure involves using the Cloud Adoption Framework, Well-Architected Framework, and Azure Architecture Center</p><p>Recap: Design patterns are important in modern cloud architecture and can be implemented in Azure using established frameworks and guidance to ensure scalability, resilience, and security."</p></div></div>
 <p><img decoding="async" loading="lazy" alt="The time is now, go build!The time is now, go build!" src="https://luke.geek.nz/assets/images/Blog_CloudDesignPatterns_TimettoBuild-9b4a19c83b962127f6596c68a936f92d.PNG" width="4000" height="2250" class="img_ev3q"></p>]]></content:encoded>
             <category>Azure</category>
+            <category>Misc</category>
+            <category>Service Management</category>
         </item>
         <item>
             <title><![CDATA[Export Azure DevOps Repositories to Azure Storage Account]]></title>

@@ -801,6 +801,8 @@ Implementing patterns in Azure involves using the Cloud Adoption Framework, Well
             <uri>https://luke.geek.nz</uri>
         </author>
         <category label="Azure" term="Azure"/>
+        <category label="Misc" term="Misc"/>
+        <category label="Service Management" term="Service Management"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Export Azure DevOps Repositories to Azure Storage Account]]></title>

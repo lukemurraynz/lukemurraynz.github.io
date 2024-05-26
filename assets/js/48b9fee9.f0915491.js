@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunklukemurraynz=self.webpackChunklukemurraynz||[]).push([[45722],{38089:e=>{e.exports=JSON.parse('{"label":"Service Management","permalink":"/tags/service-management","allTagsPath":"/tags","count":3,"unlisted":false}')}}]);
