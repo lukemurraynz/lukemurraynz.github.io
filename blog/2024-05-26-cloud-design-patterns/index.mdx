@@ -164,7 +164,6 @@ Consider the following points when deciding how to implement this pattern:
 * When the cached dataset is not static
 * When NOT caching session state information in a web application hosted in a web farm. 
 
-<div class="mermaid" style="width: 50%; height: auto;">
 ```mermaid
 graph TB
   Start(Start) --> NoNativeCacheOps{Does the in-built cache not provide native read-through or write-back operations?}
@@ -177,7 +176,6 @@ graph TB
   NotCachingSessionState -- Yes --> UseCacheAside[Use Cache-Aside]
   NotCachingSessionState -- No --> DoNotUseCacheAside
 ```
-</div>
 
 #### Azure Solutions
 
