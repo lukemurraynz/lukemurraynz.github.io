@@ -706,12 +706,61 @@ The Bulkhead pattern is particularly useful in the following scenarios:
 
 ##### Azure Solutions
 
+Azure resources that can be used to implement this pattern include [Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796), [Azure Container Instances](https://learn.microsoft.com/azure/container-instances/container-instances-overview?WT.mc_id=AZ-MVP-5004796), and [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796).
+
 #### Compensating Transaction
 
 > If one or more of the steps fail, you can use the Compensating Transaction pattern to undo the work that the steps performed.
 
+When you use an eventually consistent operation that consists of a series of steps, the Compensating Transaction pattern can be useful. Specifically, if one or more of the steps fail, you can use the Compensating Transaction pattern to undo the work that the steps performed. Typically, you find operations that follow the eventual consistency model in cloud-hosted applications that implement complex business processes and workflows.
+Applications that run in the cloud frequently modify data. This data is sometimes spread across various data sources in different geographic locations. To avoid contention and improve performance in a distributed environment, an application shouldn't try to provide strong transactional consistency. Rather, the application should implement eventual consistency. In the eventual consistency model, a typical business operation consists of a series of separate steps. While the operation performs these steps, the overall view of the system state might be inconsistent. But when the operation finishes and all the steps have run, the system should become consistent again.
+The data that's affected by an operation that implements eventual consistency isn't always held in a database. For example, consider a service-oriented architecture (SOA) environment. An SOA operation can invoke an action in a service and cause a change in the state that's held by that service. To undo the operation, you also have to undo this state change. This process can involve invoking the service again and performing another action that reverses the effects of the first.
+
+The solution is to implement a compensating transaction. The steps in a compensating transaction undo the effects of the steps in the original operation. An intuitive approach is to replace the current state with the state the system was in at the start of the operation. But a compensating transaction can't always take that approach, because it might overwrite changes that other concurrent instances of an application have made. Instead, a compensating transaction must be an intelligent process that takes into account any work that concurrent instances do. This process is usually application-specific, driven by the nature of the work that the original operation performs.
+
+
 ##### Issues & considerations
+
+When implementing the Compensating Transaction pattern, there are several issues and considerations to keep in mind:
+
+* Determining Failure - It might not be easy to determine when a step in an operation that implements eventual consistency fails. A step might not fail immediately but could get blocked. Implementing a time-out mechanism can help identify such failures 1 .
+* Complexity of Compensation Logic - Compensation logic is often application-specific and relies on the application having sufficient information to undo the effects of each step in a failed operation. Generalizing this logic can be challenging 1 .
+* Idempotency - Define the steps in a compensating transaction as idempotent commands. This ensures that the steps can be repeated if the compensating transaction itself fails, which is crucial for maintaining consistency 1 .
+* Resilience and Reliability - The infrastructure handling the steps must be resilient both in the original operation and in the compensating transaction. It should not lose the information required to compensate for a failing step and must reliably monitor the progress of the compensation logic 1 .
+* State Restoration - A compensating transaction doesn't necessarily return the system data to its state at the start of the original operation. Instead, it compensates for the work that the operation completed successfully before it failed 1 .
+* Order of Steps - The order of the steps in the compensating transaction isn't necessarily the exact opposite of the steps in the original operation. For example, one data store might be more sensitive to inconsistencies than another, so the steps that undo changes to this store should occur first 1 .
+* Concurrency and Parallelism - It might be possible to perform some of the undo steps in parallel, depending on how the compensating logic is designed for each step. This can help speed up the compensation process 1 .
+* Manual Intervention - In some cases, manual intervention might be the only way to recover from a step that has failed. The system should raise an alert and provide as much information as possible about the reason for the failure 1 .
+* Resource Locking - To increase the likelihood of overall activity success, you can place a short-term, time-out–based lock on each resource required to complete an operation. Obtain these resources in advance and perform the work only after acquiring all the resources, finalizing all actions before the locks expire 1 .
+* Retry Logic - Implement retry logic that is more forgiving than usual to minimize failures that trigger a compensating transaction. If a step in an operation fails, handle the failure as a transient exception and repeat the step. Stop the operation and initiate a compensating transaction only if a step fails repeatedly or can't be recovered 1 .By considering these issues and implementing appropriate strategies, you can effectively manage the complexities associated with compensating transactions and ensure the reliability and consistency of your application.
+
+
 
 ##### When to use this pattern
 
+The Compensating Transaction pattern should be used in the following scenarios:
+
+* Undoing Operations in Eventual Consistency Models - Use this pattern to undo operations that implement the eventual consistency model. This is particularly useful when you need to maintain data consistency across distributed systems 1 .
+* Handling Failures in Long-Running Transactions - When dealing with long-running transactions that involve multiple steps, the Compensating Transaction pattern can be used to undo the effects of each step if the transaction fails at any point. This ensures that the system can recover gracefully from failures 2 .
+* Ensuring Reliability and Resilience - Implement this pattern to address malfunctions in critical workload paths by rolling back data changes, breaking transaction locks, or executing native system behavior to reverse the effect. This helps in making the workload resilient to malfunctions and ensures it recovers to a fully functioning state after a failure 2 .
+* Complex Business Processes and Workflows - Use the Compensating Transaction pattern in cloud-hosted applications that implement complex business processes and workflows. This pattern helps in managing eventual consistency and ensuring that the system can handle failures effectively 3 .
+* Avoiding the Complexity of Distributed Transactions - When it is not feasible to use distributed transactions due to their complexity and overhead, the Compensating Transaction pattern can be an alternative. It allows you to break down a distributed transaction into separate, compensable tasks 4 .
+* Handling State Changes in Service-Oriented Architectures (SOA) - In an SOA environment, where operations can cause changes in the state held by services, the Compensating Transaction pattern can be used to undo these state changes if necessary 5 .
+* Manual Intervention and Recovery - In cases where manual intervention might be required to recover from a failed step, the Compensating Transaction pattern can be used to raise alerts and provide information about the failure, allowing for manual recovery actions 5 .By using the Compensating Transaction pattern in these scenarios, you can ensure that your system can handle failures gracefully, maintain data consistency, and recover from errors effectively
+
+
 ##### Azure Solutions
+
+Customers use a travel website to book itineraries. A single itinerary might consist of a series of flights and hotels. A customer who travels from Seattle to London and then on to Paris might perform the following steps when creating an itinerary:
+
+1. Book a seat on flight F1 from Seattle to London.
+2. Book a seat on flight F2 from London to Paris.
+3 .Book a seat on flight F3 from Paris to Seattle.
+4. Reserve a room at hotel H1 in London.
+5. Reserve a room at hotel H2 in Paris.
+
+These steps constitute an eventually consistent operation, although each step is a separate action. Besides performing these steps, the system must also record the counter operations for undoing each step. This information is needed in case the customer cancels the itinerary. The steps that are necessary to perform the counter operations can then run as a compensating transaction.
+
+In many business solutions, failure of a single step doesn't always necessitate rolling back the system by using a compensating transaction. For example, consider the travel website scenario. Suppose the customer books flights F1, F2, and F3 but can't reserve a room at hotel H1. It's preferable to offer the customer a room at a different hotel in the same city rather than canceling the flights. The customer can still decide to cancel. In that case, the compensating transaction runs and undoes the bookings for flights F1, F2, and F3. But the customer should make this decision, not the system.
+
+Azure resources that can be used to implement this pattern include [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796), [Azure Logic Apps](https://learn.microsoft.com/azure/logic-apps/logic-apps-overview?WT.mc_id=AZ-MVP-5004796), and [Azure Service Bus](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview?WT.mc_id=AZ-MVP-5004796).
