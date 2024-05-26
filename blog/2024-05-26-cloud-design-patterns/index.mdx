@@ -102,6 +102,8 @@ When talking about Design Patterns, we will be using a few acronyms, and it is i
 | Consumer | A  consumer is an entity (such as an application, service, or user) that consumes or uses the services provided by another service. Consumers send requests to services and receive responses.                            | A web application that calls an authentication service to verify user credentials is a consumer of that authentication service.                                                                            |
 | Tenant   | In a multi-tenant architecture, a tenant is a group of users who share common access with specific privileges to the software instance. Each tenant's data is isolated and remains invisible to other tenants.            | In a Software as a Service (SaaS) application, each customer (company or organization) is considered a tenant. They have their own isolated data and configuration settings within the shared application. |
 | Facade   | The Facade pattern provides a simplified interface to a complex subsystem, making it easier to use and understand. It acts as a high-level interface that hides the complexities of the underlying system.                      | In a software application, a facade can be used to provide a simplified API that abstracts away the complexities of interacting with multiple subsystems or modules.                                      |
+| Asynchronous | Asynchronous communication is a messaging pattern where the sender and receiver do not need to interact in real-time. The sender can send a message and continue with other tasks, while the receiver processes the message at its own pace. | In a distributed system, asynchronous messaging can be used to decouple components and improve scalability. For example, a message queue can be used to send and receive messages between different services. |
+| Synchronous | Synchronous communication is a messaging pattern where the sender and receiver interact in real-time. The sender sends a message and waits for a response from the receiver before proceeding. | In a request-response scenario, a client sends a request to a server and waits for the server to process the request and send back a response. This pattern is commonly used in HTTP-based APIs. |
 
 ### Archetypes *(Categories)* of Patterns
 
@@ -116,6 +118,10 @@ The categories include Data Management, Security, Reliability, Messaging, and De
 * Design and implementation patterns help us build scalable and resilient cloud-native applications. Valet Key helps us delegate access to resources. Ambassador helps us expose services to external clients. Gateway helps us provide a single entry point to our application.
 
 ![Cloud Design Patterns Archetypes](Blog_CloudDesignPatterns_Archetypes.PNG)
+
+:::warning
+As usual, the choice of pattern depends on the specific requirements of your application. It's essential to understand the characteristics and trade-offs of each pattern and business requirements, to make an informed decision. In some cases, multiple patterns may be required, or even part of one, to solve a specific problem.
+:::
 
 ### Pattern Deep Dives
 
@@ -158,6 +164,19 @@ Consider the following points when deciding how to implement this pattern:
 * When the cached dataset is not static
 * When NOT caching session state information in a web application hosted in a web farm. 
 
+```mermaid
+graph TB
+  Start(Start) --> NoNativeCacheOps{Does in-built cache not provide native read-through or write-back operations?}
+  NoNativeCacheOps -- Yes --> UnpredictableDemand{Is resource demand unpredictable?}
+  NoNativeCacheOps -- No --> DoNotUseCacheAside[Do not use Cache-Aside]
+  UnpredictableDemand -- Yes --> NonStaticData{Is the cached dataset not static?}
+  UnpredictableDemand -- No --> DoNotUseCacheAside
+  NonStaticData -- Yes --> NotCachingSessionState{Are you not caching session state information in a web application hosted in a web farm?}
+  NonStaticData -- No --> DoNotUseCacheAside
+  NotCachingSessionState -- Yes --> UseCacheAside[Use Cache-Aside]
+  NotCachingSessionState -- No --> DoNotUseCacheAside
+```
+
 #### Azure Solutions
 
 In this example, it uses [Azure Cache for Redis](https://learn.microsoft.com/azure/azure-cache-for-redis/cache-overview?WT.mc_id=AZ-MVP-5004796). When an application needs to retrieve data, it will first check to see if it exists in Azure Cache for Redis.
@@ -198,13 +217,27 @@ The primary focus of sharding is to improve the performance and scalability of a
 * Improve resilience and reliability.
 * When you have geographical concerns, i.e., Optimization based on where users or systems are located.
 
+```mermaid
+graph TB
+  Start(Start) --> IsScaleBeyondSingleNode{Is data store likely to scale beyond resources of a single node?}
+  IsScaleBeyondSingleNode -- Yes --> CanReduceContention{Can performance be improved by reducing contention on a single data store?}
+  IsScaleBeyondSingleNode -- No --> DoNotUseSharding[Do not use Sharding]
+  CanReduceContention -- Yes --> CanOptimizeCost{Can cost be optimized by multiple instances of less expensive compute or storage?}
+  CanReduceContention -- No --> DoNotUseSharding
+  CanOptimizeCost -- Yes --> NeedToImproveResilience{Need to improve resilience and reliability?}
+  CanOptimizeCost -- No --> DoNotUseSharding
+  NeedToImproveResilience -- Yes --> HaveGeographicalConcerns{Have geographical concerns?}
+  NeedToImproveResilience -- No --> DoNotUseSharding
+  HaveGeographicalConcerns -- Yes --> UseSharding[Use Sharding]
+  HaveGeographicalConcerns -- No --> DoNotUseSharding
+```
+
 #### Azure Solutions
 
 Consider a website that surfaces an expansive collection of information on published books worldwide. 
 The number of possible books cataloged in this workload and the typical query/usage patterns contra-indicate the usage of a single relational database to store the book information. The workload architect decides to shard the data across multiple database instances, using the books' static International Standard Book Number (ISBN) for the shard key. Specifically, they use the check digit (0 - 10) of the ISBN as that gives 11 possible logical shards, and the data will be balanced across each shard. First, they decide to colocate the 11 logical shards into three physical shard databases. They use the lookup sharding approach and store the key-to-server mapping information in a shard map database.
 
 Azure resources that can be used to implement this pattern include [Azure SQL Database](https://learn.microsoft.com/azure/azure-sql/database/sql-database-paas-overview?view=azuresql&WT.mc_id=AZ-MVP-5004796), [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction?WT.mc_id=AZ-MVP-5004796), and [Azure Storage](https://learn.microsoft.com/azure/storage/common/storage-introduction?WT.mc_id=AZ-MVP-5004796).
-
 
 ### Valet Key
 
@@ -240,6 +273,23 @@ Consider using the Valet Key pattern in the following scenarios:
 * Clients regularly upload or download data, particularly where there's a large volume or when each operation involves a large file
 * If the application doesn’t need to perform tasks on the data first.
 * When you need to provide secure, temporary access to specific resources or services.
+
+```mermaid
+graph TB
+  Start(Start) --> OffloadDataTransfer{Offload data transfer to minimize resource usage?}
+  OffloadDataTransfer -- Yes --> RemoteDataStore{Is data stored remotely or in a different datacenter?}
+  OffloadDataTransfer -- No --> DoNotUsePattern[Do not use this pattern]
+  RemoteDataStore -- Yes --> MinimizeCosts{Minimize operational costs by direct access to stores and queues?}
+  RemoteDataStore -- No --> DoNotUsePattern
+  MinimizeCosts -- Yes --> RegularDataTransfer{Clients regularly upload or download large volumes of data?}
+  MinimizeCosts -- No --> DoNotUsePattern
+  RegularDataTransfer -- Yes --> NoDataProcessing{Application doesn’t need to process the data first?}
+  RegularDataTransfer -- No --> DoNotUsePattern
+  NoDataProcessing -- Yes --> SecureAccess{Need to provide secure, temporary access to resources?}
+  NoDataProcessing -- No --> DoNotUsePattern
+  SecureAccess -- Yes --> UsePattern[Use this pattern]
+  SecureAccess -- No --> DoNotUsePattern
+```
 
 #### Azure Solutions
 
@@ -278,6 +328,25 @@ Static Content Hosting is a common pattern used in web applications to offload t
 * Improve the performance of your main WebApp by offloading  static content serving
 * Expose static resources and content for applications running in other hosting environments or on-premises servers. 
 * Improve your application's performance and availability by using a content delivery network (CDN) to cache the contents of the storage container in multiple datacenters worldwide. 
+
+```mermaid
+graph TB
+  Start(Start) --> NeedToOffload{Need to offload delivery of static content from application server?}
+  NeedToOffload -- Yes --> ServerNotOptimized{Is application server not optimized for serving static content?}
+  NeedToOffload -- No --> DoNotUsePattern[Do not use this pattern]
+  ServerNotOptimized -- Yes --> HeavyLoad{Is application server under heavy load?}
+  ServerNotOptimized -- No --> DoNotUsePattern
+  HeavyLoad -- Yes --> ReduceHostingCosts{Need to reduce hosting costs?}
+  HeavyLoad -- No --> DoNotUsePattern
+  ReduceHostingCosts -- Yes --> ImprovePerformance{Need to improve performance by offloading static content serving?}
+  ReduceHostingCosts -- No --> DoNotUsePattern
+  ImprovePerformance -- Yes --> ExposeResources{Need to expose static resources for applications in other environments?}
+  ImprovePerformance -- No --> DoNotUsePattern
+  ExposeResources -- Yes --> UseCDN{Need to improve performance and availability using a CDN?}
+  ExposeResources -- No --> DoNotUsePattern
+  UseCDN -- Yes --> UsePattern[Use Static Content Hosting pattern]
+  UseCDN -- No --> DoNotUsePattern
+```
 
 #### Azure Solutions
 
@@ -321,6 +390,25 @@ The Ambassador pattern should be used in the following scenarios:
 * Standardizing and Extending Instrumentation - When you need to standardize and extend instrumentation, such as monitoring performance metrics like latency or resource usage. The Ambassador pattern allows this monitoring to happen in the same host environment as the application
 * Supporting Cloud or Cluster Connectivity Requirements - When you need to support cloud or cluster connectivity requirements in a legacy application or an application that is difficult to modifyBy considering these scenarios, you can effectively use the Ambassador pattern to enhance the networking capabilities, security, and maintainability of your applications.
 
+```mermaid
+graph TB
+  Start(Start) --> OffloadConnectivityTasks{Offload common client connectivity tasks?}
+  OffloadConnectivityTasks -- Yes --> LegacyApplications{Dealing with legacy applications?}
+  OffloadConnectivityTasks -- No --> DoNotUsePattern[Do not use this pattern]
+  LegacyApplications -- Yes --> SpecializedTeams{Enable specialized team to implement and maintain features?}
+  LegacyApplications -- No --> DoNotUsePattern
+  SpecializedTeams -- Yes --> ResilientCloudApps{Building resilient cloud-based applications?}
+  SpecializedTeams -- No --> DoNotUsePattern
+  ResilientCloudApps -- Yes --> CentralizedManagement{Require centralized management of network and security?}
+  ResilientCloudApps -- No --> DoNotUsePattern
+  CentralizedManagement -- Yes --> StandardizeInstrumentation{Need to standardize and extend instrumentation?}
+  CentralizedManagement -- No --> DoNotUsePattern
+  StandardizeInstrumentation -- Yes --> CloudClusterConnectivity{Support cloud or cluster connectivity requirements?}
+  StandardizeInstrumentation -- No --> DoNotUsePattern
+  CloudClusterConnectivity -- Yes --> UsePattern[Use Ambassador pattern]
+  CloudClusterConnectivity -- No --> DoNotUsePattern
+```
+
 #### Azure Solutions
 
 Azure resources that can be used to implement this pattern include [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796), [Azure Front Door](https://learn.microsoft.com/azure/frontdoor/front-door-overview?WT.mc_id=AZ-MVP-5004796) and [Azure Firewall](https://learn.microsoft.com/azure/firewall/overview?WT.mc_id=AZ-MVP-5004796).
@@ -361,6 +449,27 @@ The Sidecar pattern should be used in the following scenarios.
 * Security Enhancements - When you need to encapsulate tasks and deploy them out-of-process to reduce the surface area of sensitive processes to only the code needed to accomplish the task. Sidecars can also add cross-cutting security controls to an application component that is not natively designed with that functionality
 * Operational Excellence - When you want to implement flexibility in tool integration that might enhance the application's observability without requiring the application to take direct implementation dependencies. The sidecar functionality can evolve and be maintained independently of the application's lifecycle
 * Performance Efficiency — When you want to move cross-cutting tasks to a single process that can scale across multiple instances of the main process, reducing the need to deploy duplicate functionality for each application instance. By considering these scenarios, you can effectively use the Sidecar pattern to enhance the modularity, security, and maintainability of your applications.
+
+```mermaid
+graph TB
+  Start(Start) --> HeterogeneousLanguages{Heterogeneous set of languages and frameworks?}
+  HeterogeneousLanguages -- Yes --> UsePattern[Use Sidecar pattern]
+  HeterogeneousLanguages -- No --> RemoteTeams{Component ownership by remote teams?}
+  RemoteTeams -- Yes --> UsePattern
+  RemoteTeams -- No --> CoLocation{Co-location requirement?}
+  CoLocation -- Yes --> UsePattern
+  CoLocation -- No --> IndependentUpdates{Independent updates?}
+  IndependentUpdates -- Yes --> UsePattern
+  IndependentUpdates -- No --> FineGrainedControl{Fine-grained resource control?}
+  FineGrainedControl -- Yes --> UsePattern
+  FineGrainedControl -- No --> SecurityEnhancements{Security enhancements?}
+  SecurityEnhancements -- Yes --> UsePattern
+  SecurityEnhancements -- No --> OperationalExcellence{Operational excellence?}
+  OperationalExcellence -- Yes --> UsePattern
+  OperationalExcellence -- No --> PerformanceEfficiency{Performance efficiency?}
+  PerformanceEfficiency -- Yes --> UsePattern
+  PerformanceEfficiency -- No --> DoNotUsePattern[Do not use Sidecar pattern]
+```
 
 #### Azure Solutions
 
@@ -408,6 +517,25 @@ The Leader Election pattern should be used in the following scenarios.
 * Consensus Algorithms - When implementing consensus algorithms to manage failover and ensure that work is reliably redirected in case of node malfunctions. This is particularly useful in scenarios where reliability and self-healing are critical
 * Using Off-the-Shelf Solutions - When you prefer not to implement a leader election algorithm from scratch. Off-the-shelf solutions like Apache Zookeeper can be used to manage leader election and coordination tasks effectively. By considering these scenarios, you can effectively use the Leader Election pattern to ensure reliable and efficient coordination in distributed systems, enhancing the overall resilience and scalability of your application.
 
+```mermaid
+graph TB
+  Start(Start) --> TaskCoordination{Task coordination among multiple instances?}
+  TaskCoordination -- Yes --> UsePattern[Use Leader Election pattern]
+  TaskCoordination -- No --> AvoidSinglePointFailure{Avoid single point of failure?}
+  AvoidSinglePointFailure -- Yes --> UsePattern
+  AvoidSinglePointFailure -- No --> DistributedSystems{Working with distributed systems?}
+  DistributedSystems -- Yes --> UsePattern
+  DistributedSystems -- No --> HighAvailability{High availability requirements?}
+  HighAvailability -- Yes --> UsePattern
+  HighAvailability -- No --> Scalability{Need to scale out application horizontally?}
+  Scalability -- Yes --> UsePattern
+  Scalability -- No --> ConsensusAlgorithms{Implementing consensus algorithms?}
+  ConsensusAlgorithms -- Yes --> UsePattern
+  ConsensusAlgorithms -- No --> OffTheShelfSolutions{Prefer using off-the-shelf solutions?}
+  OffTheShelfSolutions -- Yes --> UsePattern
+  OffTheShelfSolutions -- No --> DoNotUsePattern[Do not use Leader Election pattern]
+```
+
 #### Azure Solutions
 
 Azure resources that can be used to implement this pattern include [Azure Service Fabric](https://learn.microsoft.com/azure/service-fabric/service-fabric-overview?WT.mc_id=AZ-MVP-5004796), [Azure Kubernetes Service](https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796), and [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796).
@@ -447,6 +575,23 @@ The Strangler Fig pattern should be used in the following scenarios.
 * Modernizing Legacy Systems - When modernizing legacy systems that have become increasingly obsolete due to outdated development tools, hosting technology, or system architectures. The pattern helps in gradually transitioning to a new system while maintaining the old system for features that haven't been migrated yet
 * Using Modern Orchestration Tools - When you want to leverage modern orchestration tools such as Azure DevOps to manage the lifecycle of each service. Once the application has been decomposed into constituent microservices, these tools can be used to manage the new system effectively. Considering these scenarios, you can effectively use the Strangler Fig pattern to ensure a smooth and controlled migration from a legacy system to a new architecture, enhancing the overall resilience and scalability of your application.
 
+```mermaid
+graph TB
+  Start(Start) --> GradualMigration{Gradual migration of a legacy system?}
+  GradualMigration -- Yes --> UsePattern[Use Strangler Fig pattern]
+  GradualMigration -- No --> ComplexSystems{Dealing with complex systems?}
+  ComplexSystems -- Yes --> UsePattern
+  ComplexSystems -- No --> MaintainFunctionality{Maintain functionality during migration?}
+  MaintainFunctionality -- Yes --> UsePattern
+  MaintainFunctionality -- No --> AvoidBigBangRewrites{Avoid "big bang" rewrites?}
+  AvoidBigBangRewrites -- Yes --> UsePattern
+  AvoidBigBangRewrites -- No --> ModernizeLegacySystems{Modernize legacy systems?}
+  ModernizeLegacySystems -- Yes --> UsePattern
+  ModernizeLegacySystems -- No --> UseModernOrchestrationTools{Use modern orchestration tools?}
+  UseModernOrchestrationTools -- Yes --> UsePattern
+  UseModernOrchestrationTools -- No --> DoNotUsePattern[Do not use Strangler Fig pattern]
+```
+
 #### Azure Solutions
 
 Many [Azure products](https://azure.microsoft.com/products?WT.mc_id=AZ-MVP-5004796), can be used to implement this pattern.
@@ -482,6 +627,19 @@ The Sequential Convoy pattern should be used in the following scenarios.
 * Ordered Message Processing - When you have messages that arrive in a specific order and must be processed in that same order. This is crucial for maintaining the integrity and consistency of the operations being performed
 * Categorized Messages - When arriving messages can be categorized in such a way that the category becomes a unit of scale for the system. For example, in an order tracking system, messages can be categorized by order ID, ensuring that all operations related to a specific order are processed sequentially
 * Avoiding Blocking - When you need to process a set of related messages in a defined order without blocking the processing of other groups of messages. This allows for efficient handling of multiple message groups concurrently while maintaining order within each group However, this pattern might not be suitable for extremely high throughput scenarios (millions of messages per minute or second), as the FIFO (First in and First Out) requirement limits the scaling that can be done by the system.
+
+```mermaid
+graph TB
+  Start(Start) --> OrderedMessageProcessing{Ordered message processing?}
+  OrderedMessageProcessing -- Yes --> UsePattern[Use Sequential Convoy pattern]
+  OrderedMessageProcessing -- No --> CategorizedMessages{Categorized messages?}
+  CategorizedMessages -- Yes --> UsePattern
+  CategorizedMessages -- No --> AvoidBlocking{Avoid blocking while processing related messages?}
+  AvoidBlocking -- Yes --> UsePattern
+  AvoidBlocking -- No --> HighThroughput{Extremely high throughput scenarios?}
+  HighThroughput -- Yes --> DoNotUsePattern[Do not use Sequential Convoy pattern]
+  HighThroughput -- No --> UsePattern
+```
 
 ##### Azure Solutions
 
@@ -523,6 +681,25 @@ The Queue-Based Load Leveling pattern should be used in the following scenarios:
 * Cost Control - When you want to control costs by deploying a number of service instances that only need to be adequate to meet the average load rather than the peak load. This can help in reducing the overall cost of the system
 * Throttling - When services implement throttling to prevent system failure due to high demand. The Queue-Based Load Leveling pattern can help ensure that the demand does not exceed the service's capacity, thereby maintaining functionality
 * Asynchronous Processing — When you need to perform tasks asynchronously to maintain the responsiveness of the user interface and distribute processing across multiple servers to improve throughput, you can use the Queue-Based Load Leveling pattern in these scenarios to improve your system's resilience, scalability, and cost-effectiveness.
+
+```mermaid
+graph TB
+  Start(Start) --> IntermittentHeavyLoads{Handling Intermittent Heavy Loads?}
+  IntermittentHeavyLoads -- Yes --> UsePattern[Use Queue-Based Load Leveling pattern]
+  IntermittentHeavyLoads -- No --> DecouplingTasks{Decoupling Tasks from Services?}
+  DecouplingTasks -- Yes --> UsePattern
+  DecouplingTasks -- No --> MaximizingAvailability{Maximizing Availability?}
+  MaximizingAvailability -- Yes --> UsePattern
+  MaximizingAvailability -- No --> MaximizingScalability{Maximizing Scalability?}
+  MaximizingScalability -- Yes --> UsePattern
+  MaximizingScalability -- No --> CostControl{Cost Control?}
+  CostControl -- Yes --> UsePattern
+  CostControl -- No --> Throttling{Services implement Throttling?}
+  Throttling -- Yes --> UsePattern
+  Throttling -- No --> AsynchronousProcessing{Asynchronous Processing?}
+  AsynchronousProcessing -- Yes --> UsePattern
+  AsynchronousProcessing -- No --> DoNotUsePattern[Do not use Queue-Based Load Leveling pattern]
+```
 
 ##### Azure Solutions
 
@@ -569,6 +746,25 @@ The Publisher-Subscriber (Pub-Sub) pattern should be used in the following scena
 * Scalability and Flexibility - When you need a scalable and flexible system where new subscribers can be added without modifying the publisher. This allows the system to grow and adapt to new requirements easily
 * Filtering and Routing Messages — When you need to filter and route messages to specific subscribers based on certain criteria, you can use topics and content filtering mechanisms. By using the Publisher-Subscriber pattern in these scenarios, you can create a robust, scalable, and flexible messaging system that efficiently handles communication between different components.
 
+```mermaid
+graph TB
+  Start(Start) --> BroadcastingInfo{Broadcasting Information to Multiple Consumers?}
+  BroadcastingInfo -- Yes --> UsePattern[Use Pub-Sub pattern]
+  BroadcastingInfo -- No --> DecouplingSendersReceivers{Decoupling Senders and Receivers?}
+  DecouplingSendersReceivers -- Yes --> UsePattern
+  DecouplingSendersReceivers -- No --> AsynchronousCommunication{Asynchronous Communication?}
+  AsynchronousCommunication -- Yes --> UsePattern
+  AsynchronousCommunication -- No --> EventDrivenArchitectures{Event-Driven Architectures?}
+  EventDrivenArchitectures -- Yes --> UsePattern
+  EventDrivenArchitectures -- No --> RealTimeNotifications{Handling Real-Time Notifications?}
+  RealTimeNotifications -- Yes --> UsePattern
+  RealTimeNotifications -- No --> ScalabilityFlexibility{Scalability and Flexibility?}
+  ScalabilityFlexibility -- Yes --> UsePattern
+  ScalabilityFlexibility -- No --> FilteringRoutingMessages{Filtering and Routing Messages?}
+  FilteringRoutingMessages -- Yes --> UsePattern
+  FilteringRoutingMessages -- No --> DoNotUsePattern[Do not use Pub-Sub pattern]
+```
+
 ##### Azure Solutions
 
 Azure resources that can be used to implement this pattern include [Azure Service Bus](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview?WT.mc_id=AZ-MVP-5004796), [Azure Event Grid](https://learn.microsoft.com/azure/event-grid/overview?WT.mc_id=AZ-MVP-5004796).
@@ -608,6 +804,23 @@ The Asynchronous Request-Reply pattern should be used in the following scenarios
 * Handling High Latency - When factors such as network infrastructure, geographic location, or current load can add significant latency to the response. The pattern helps mitigate these issues by allowing the backend to process the request asynchronously and the client to poll for the result
 * Microservices Architectures - When implementing microservices architectures where server-to-server REST API calls are common. The pattern helps manage long-running operations and decouples services, making the system more resilient and scalable
 * Client-Side Polling - When it is difficult to provide call-back endpoints or use long-running connections on the client side. The pattern allows the client to poll for the result, which can be simpler and more efficient in certain scenariosBy using the Asynchronous Request-Reply pattern in these scenarios, you can effectively manage long-running operations, improve scalability, and decouple frontend and backend processing, leading to a more robust and responsive system.
+
+```mermaid
+graph TB
+  Start(Start) --> LongRunningBackendOperations{Long-Running Backend Operations?}
+  LongRunningBackendOperations -- Yes --> UsePattern[Use Asynchronous Request-Reply pattern]
+  LongRunningBackendOperations -- No --> DecouplingFrontendBackend{Decoupling Frontend and Backend?}
+  DecouplingFrontendBackend -- Yes --> UsePattern
+  DecouplingFrontendBackend -- No --> Scalability{Scalability?}
+  Scalability -- Yes --> UsePattern
+  Scalability -- No --> HandlingHighLatency{Handling High Latency?}
+  HandlingHighLatency -- Yes --> UsePattern
+  HandlingHighLatency -- No --> MicroservicesArchitectures{Microservices Architectures?}
+  MicroservicesArchitectures -- Yes --> UsePattern
+  MicroservicesArchitectures -- No --> ClientSidePolling{Client-Side Polling?}
+  ClientSidePolling -- Yes --> UsePattern
+  ClientSidePolling -- No --> DoNotUsePattern[Do not use Asynchronous Request-Reply pattern]
+```
 
 ##### Azure Solutions
 
@@ -658,6 +871,10 @@ The Circuit Breaker pattern should be used in the following scenarios.
 * Avoiding Cascading Failures - The pattern helps mitigate failures and avoid cascading failures disrupting the entire application. By stopping requests to a failing service, it prevents the failure from propagating to other parts of the system
 * Testing Service Recovery - The Circuit Breaker pattern allows the application to periodically test the service to detect when it becomes available again. This can be done on an intermittent basis with long intervals between requests, depending on the criticality of the operation and the nature of the service
 * Logging and Monitoring—The pattern can be used to log all failed requests and monitor the operation's health. This information can be used to alert administrators when a circuit breaker trips to the Open state, providing insights into the system's health. Using the Circuit Breaker pattern in these scenarios, you can improve the resiliency and stability of your application, prevent resource exhaustion, and manage long-lasting faults effectively.
+
+```mermaid
+
+```
 
 ##### Azure Solutions
 
