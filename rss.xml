@@ -623,7 +623,6 @@ Considerations</li>
 <li>Handling State Changes in Service-Oriented Architectures (SOA) - In an SOA environment, where operations can cause changes in the state held by services, the Compensating Transaction pattern can be used to undo these state changes if necessary</li>
 <li>Manual Intervention and Recovery - In cases where manual intervention might be required to recover from a failed step, the Compensating Transaction pattern can be used to raise alerts and provide information about the failure, allowing for manual recovery actions using the Compensating Transaction pattern in these scenarios, you can ensure that your system can handle failures gracefully, maintain data consistency, and recover from errors effectively.</li>
 </ul>
-<!-- -->
 <h5 class="anchor anchorWithStickyNavbar_LWe7" id="azure-solutions-15">Azure Solutions<a href="https://luke.geek.nz/azure/cloud-design-patterns/#azure-solutions-15" class="hash-link" aria-label="Direct link to Azure Solutions" title="Direct link to Azure Solutions">​</a></h5>
 <p>Customers use a travel website to book itineraries. A single itinerary might consist of a series of flights and hotels. A customer who travels from Seattle to London and then on to Paris might perform the following steps when creating an itinerary:</p>
 <ol>
