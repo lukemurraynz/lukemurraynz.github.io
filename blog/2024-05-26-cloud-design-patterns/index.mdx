@@ -1056,24 +1056,6 @@ The Compensating Transaction pattern should be used in the following scenarios.
 * Handling State Changes in Service-Oriented Architectures (SOA) - In an SOA environment, where operations can cause changes in the state held by services, the Compensating Transaction pattern can be used to undo these state changes if necessary
 * Manual Intervention and Recovery - In cases where manual intervention might be required to recover from a failed step, the Compensating Transaction pattern can be used to raise alerts and provide information about the failure, allowing for manual recovery actions using the Compensating Transaction pattern in these scenarios, you can ensure that your system can handle failures gracefully, maintain data consistency, and recover from errors effectively.
 
-```mermaid
-graph TB
-  Start(Start) --> UndoingOperationsInEventualConsistencyModels{Undoing Operations in Eventual Consistency Models?}
-  UndoingOperationsInEventualConsistencyModels -- Yes --> UsePattern1[Use Compensating Transaction pattern]
-  UndoingOperationsInEventualConsistencyModels -- No --> HandlingFailuresInLongRunningTransactions{Handling Failures in Long-Running Transactions?}
-  HandlingFailuresInLongRunningTransactions -- Yes --> UsePattern2
-  HandlingFailuresInLongRunningTransactions -- No --> EnsuringReliabilityAndResilience{Ensuring Reliability and Resilience?}
-  EnsuringReliabilityAndResilience -- Yes --> UsePattern3
-  EnsuringReliabilityAndResilience -- No --> ComplexBusinessProcessesAndWorkflows{Complex Business Processes and Workflows?}
-  ComplexBusinessProcessesAndWorkflows -- Yes --> UsePattern4
-  ComplexBusinessProcessesAndWorkflows -- No --> AvoidingComplexityOfDistributedTransactions{Avoiding the Complexity of Distributed Transactions?}
-  AvoidingComplexityOfDistributedTransactions -- Yes --> UsePattern5
-  AvoidingComplexityOfDistributedTransactions -- No --> HandlingStateChangesInSOA{Handling State Changes in Service-Oriented Architectures (SOA)?}
-  HandlingStateChangesInSOA -- Yes --> UsePattern6
-  HandlingStateChangesInSOA -- No --> ManualInterventionAndRecovery{Manual Intervention and Recovery?}
-  ManualInterventionAndRecovery -- Yes --> UsePattern7
-  ManualInterventionAndRecovery -- No --> DoNotUsePattern[Do not use Compensating Transaction pattern]
-```
 
 ##### Azure Solutions
 
