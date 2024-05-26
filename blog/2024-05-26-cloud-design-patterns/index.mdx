@@ -55,6 +55,7 @@ Today, we will cover common patterns, their use cases, and considerations.
 
 The patterns we will cover today are only a small set of common patterns documented in the [Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/patterns/?WT.mc_id=AZ-MVP-5004796).
 
+
 <!-- truncate -->
 
 ## Cloud Design Patterns
@@ -62,6 +63,8 @@ The patterns we will cover today are only a small set of common patterns documen
 ### Importance of Design Patterns
 
 Design patterns are reusable solutions to common problems in software design. They are templates that can be applied to solve a problem in a specific context. They are not finished designs that can be transformed directly into code. They are a starting point for your design.
+
+![Design Patterns](Blog_CloudDesignPattnerns_Importance.gif)
 
 :::info
 Design patterns are not new. They have been around for a long time. The concept of design patterns was introduced by the architect [Christopher Alexander](https://en.wikipedia.org/wiki/Christopher_Alexander#:~:text=Alexander%%20and%20personally%20built,architect%20and%20a%20general%20contractor.&text=In%20software%2C%20Alexander%20is%20regarded,to%20its%20creator%2C%20Ward%20Cunningham) in the field of architecture and later adopted by software engineers.
@@ -112,6 +115,8 @@ The categories include Data Management, Security, Reliability, Messaging, and De
 * Messaging patterns help us build scalable and decoupled applications in the cloud. Asynchronous Messaging helps us send messages between components in a non-blocking way. Event Sourcing helps us capture all changes to an application state. Competing Consumers help us process messages in parallel.
 * Design and implementation patterns help us build scalable and resilient cloud-native applications. Valet Key helps us delegate access to resources. Ambassador helps us expose services to external clients. Gateway helps us provide a single entry point to our application.
 
+![Cloud Design Patterns Archetypes](Blog_CloudDesignPatterns_Archetypes.PNG)
+
 ### Pattern Deep Dives
 
 The cloud has changed the way we design our applications. Let's examine some of the design patterns that we can use in the cloud. These patterns help us solve common problems in cloud architecture and make our applications more reliable, scalable, and secure.
@@ -119,6 +124,8 @@ The cloud has changed the way we design our applications. Let's examine some of 
 In the following sections, we will examine some common cloud design patterns, their use cases, and considerations in depth.
 
 ### Data Management Patterns
+
+![Design Patterns - Data Management](Blog_CloudDesignPatterns_DataManagement.PNG)
 
 ### Cache-Aside
 
@@ -131,6 +138,8 @@ If the data isn't in the cache, it's retrieved from the data store and added to 
 For caches that don't provide this functionality, it's the responsibility of the applications that use the cache to maintain the data.
 
 If an application updates information, it can follow the write-through strategy by modifying the data store and invalidating the corresponding item in the cache. When the item is next required, using the cache-aside strategy will cause the updated data to be retrieved from the data store and added back into the cache.
+
+![Cloud Design Pattern - CacheAsSide](Blog_CloudDesignPatterns_CacheAside.gif)
 
 #### Issues & considerations
 
@@ -165,6 +174,8 @@ Dividing a data store into a set of horizontal partitions or shards. This can im
 * The Lookup strategy. In this strategy, the sharding logic implements a map that routes a request for data to the shard, which contains that data using the shard key. In a multi-tenant application, all the data for a tenant might be stored together in a shard using the tenant ID as the shard key. Multiple tenants might share the same shard, but the data for a single tenant won't be spread across multiple shards.
 * The Range strategy. This strategy groups related items together in the same shard and orders them by shard key—the shard keys are sequential. It's useful for applications that frequently retrieve sets of items using range queries (queries that return a set of data items for a shard key that falls within a given range). For example, if an application regularly needs to find all orders placed in a given month, this data can be retrieved more quickly if all orders for a month are stored in date and time order in the same shard. If each order were stored in a different shard, they'd have to be fetched individually by performing many point queries (queries that return a single data item). 
 * The Hash strategy. The purpose of this strategy is to reduce the chance of hotspots (shards that receive a disproportionate amount of load). It distributes the data across the shards in a way that achieves a balance between the size of each shard and the average load that each shard will encounter. The sharding logic computes the shard to store an item in based on a hash of one or more data attributes. The chosen hashing function should distribute data evenly across the shards, possibly by introducing some random element into the computation.
+
+![Cloud Design Pattern - Sharding](Blog_CloudDesignPatterns_Sharding.gif)
 
 #### Issues & considerations
 
@@ -204,6 +215,7 @@ This isn't a realistic approach in distributed systems that need to serve untrus
 
 Applications must be able to securely control access to data in a granular way, but still reduce the load on the server by setting up this connection and then allowing the client to communicate directly with the data store to perform the required read or write operations.
 
+![Cloud Design Pattern - Valet Key](Blog_CloudDesignPatterns_ValetKey.gif)
 
 #### Issues & considerations
 
@@ -244,6 +256,8 @@ Although web servers are optimized for dynamic rendering and output caching, the
 
 Deploy static content to a cloud-based storage service that can deliver them directly to the client. This can reduce the need for potentially expensive compute instances.
 
+![Cloud Design Pattern - StaticContent](Blog_CloudDesignPatterns_StaticContent.gif)
+
 #### Issues & considerations
 
 By considering these issues and trade-offs, you can effectively implement the Valet Key pattern to enhance security, performance, and cost efficiency in your cloud applications.
@@ -265,12 +279,13 @@ Static Content Hosting is a common pattern used in web applications to offload t
 * Expose static resources and content for applications running in other hosting environments or on-premises servers. 
 * Improve your application's performance and availability by using a content delivery network (CDN) to cache the contents of the storage container in multiple datacenters worldwide. 
 
-
 #### Azure Solutions
 
 Azure resources that can be used to implement this pattern include [Azure Blob Storage](https://learn.microsoft.com/azure/storage/blobs/storage-blobs-introduction?WT.mc_id=AZ-MVP-5004796), [Azure Content Delivery Network (CDN)](https://learn.microsoft.com/azure/cdn/cdn-overview?WT.mc_id=AZ-MVP-5004796), and [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview?WT.mc_id=AZ-MVP-5004796).
 
 ### Design & Implementation Patterns
+
+![Design & Implementation Patterns](Blog_CloudDesignPatterns_DesignImplementation.PNG)
 
 ### Ambassador
 
@@ -280,6 +295,8 @@ Resilient cloud-based applications require features such as circuit breaking, r
 Network calls may also require substantial configuration for connection, authentication, and authorization. If these calls are used across multiple applications, built using multiple languages and frameworks, the calls must be configured for each of these instances. In addition, network and security functionality may need to be managed by a central team within your organization. With a large code base, it can be risky for that team to update application code they aren't familiar with.
 
 Put client frameworks and libraries into an external process that acts as a proxy between your application and external services. Deploy the proxy on the same host environment as your application to allow control over routing, resiliency, and security features and to avoid any host-related access restrictions. 
+
+![Cloud Design Patterns - Ambassador](Blog_CloudDesignPatterns_Ambassador.gif)
 
 #### Issues & considerations
 
@@ -315,6 +332,8 @@ Azure resources that can be used to implement this pattern include [Azure API Ma
 Deploy application components into a separate process or container to provide isolation and encapsulation. This pattern can also enable applications composed of heterogeneous components and technologies.
 This pattern is named Sidecar because it resembles a sidecar attached to a motorcycle. In the pattern, the sidecar is attached to a parent application and provides supporting features for the application. The sidecar also shares the same lifecycle as the parent application, being created and retired alongside the parent. The sidecar pattern is sometimes referred to as the sidekick pattern and is a decomposition pattern.
 
+![Cloud Design Pattern - Sidecar](Blog_CloudDesignPatterns_Sidecar.gif)
+
 #### Issues & considerations
 
 When implementing the Sidecar pattern, consider the following issues and considerations.
@@ -329,7 +348,6 @@ When implementing the Sidecar pattern, consider the following issues and conside
 * Security - By encapsulating tasks and deploying them out-of-process, you can reduce the surface area of sensitive processes to only the code needed to accomplish the task. Sidecars can also add cross-cutting security controls to an application component that is not natively designed with that functionality
 * Operational Excellence - The sidecar pattern provides an approach to implementing flexibility in tool integration that might enhance the application's observability without requiring the application to take direct implementation dependencies. It enables the sidecar functionality to evolve and be maintained independently of the application's lifecycle
 * Performance Efficiency - Moving cross-cutting tasks to a single process that can scale across multiple instances of the main process reduces the need to deploy duplicate functionality for each instance of the application, by addressing these issues and considerations, you can effectively implement the Sidecar pattern to enhance the modularity, security, and maintainability of your applications.
-
 
 #### When to use this 
 
@@ -361,6 +379,7 @@ For example:
 In a cloud-based system that implements horizontal scaling, multiple instances of the same task could be running at the same time with each instance serving a different user. If these instances write to a shared resource, it's necessary to coordinate their actions to prevent each instance from overwriting the changes made by the others.
 If the tasks are performing individual elements of a complex calculation in parallel, the results need to be aggregated when they all complete.
 
+![Cloud Design Patterns - Leader Election](Blog_CloudDesignPatterns_LeaderElection.gif)
 
 #### Issues & considerations
 
@@ -377,7 +396,6 @@ When implementing the Leader Election pattern, consider the following issues and
 * Coordination Requirements - Use the Leader Election pattern when tasks in a distributed application need careful coordination and there is no natural leader. This pattern is useful for cloud-hosted solutions where multiple instances need to work together without conflict
 * Alternative Solutions — Evaluate whether a more lightweight method, such as optimistic or pessimistic locking, can achieve the required coordination. Also, consider third-party solutions like Apache Zookeeper for managing leader election and coordination tasks. By addressing these issues and considerations, you can effectively implement the Leader Election pattern to ensure reliable and efficient coordination in distributed systems.
 
-
 #### When to use this 
 
 The Leader Election pattern should be used in the following scenarios.
@@ -390,7 +408,6 @@ The Leader Election pattern should be used in the following scenarios.
 * Consensus Algorithms - When implementing consensus algorithms to manage failover and ensure that work is reliably redirected in case of node malfunctions. This is particularly useful in scenarios where reliability and self-healing are critical
 * Using Off-the-Shelf Solutions - When you prefer not to implement a leader election algorithm from scratch. Off-the-shelf solutions like Apache Zookeeper can be used to manage leader election and coordination tasks effectively. By considering these scenarios, you can effectively use the Leader Election pattern to ensure reliable and efficient coordination in distributed systems, enhancing the overall resilience and scalability of your application.
 
-
 #### Azure Solutions
 
 Azure resources that can be used to implement this pattern include [Azure Service Fabric](https://learn.microsoft.com/azure/service-fabric/service-fabric-overview?WT.mc_id=AZ-MVP-5004796), [Azure Kubernetes Service](https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796), and [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796).
@@ -402,7 +419,9 @@ Azure resources that can be used to implement this pattern include [Azure Servic
 As systems age, the development tools, hosting technology, and even system architectures they were built on can become increasingly obsolete. As new features and functionality are added, the complexity of these applications can increase dramatically, making them harder to maintain or add new features to.
 Completely replacing a complex system can be a huge undertaking. Often, you will need a gradual migration to a new system, while keeping the old system to handle features that haven't been migrated yet. However, running two separate versions of an application means that clients have to know where particular features are located. Every time a feature or service is migrated, clients need to be updated to point to the new location.
 
-The Strangler Fig pattern involves gradually replacing parts of the legacy system with new services. This allows for a controlled and step-by-step transition rather than a wholesale move. 
+The Strangler Fig pattern involves gradually replacing parts of the legacy system with new services. This allows for a controlled and step-by-step transition rather than a wholesale move.
+
+![Cloud Design Patterns - Strangler Fig](Blog_CloudDesignPatterns_StranglerFig.gif)
 
 #### Issues & considerations
 
@@ -434,6 +453,8 @@ Many [Azure products](https://azure.microsoft.com/products?WT.mc_id=AZ-MVP-50047
 
 ### Messaging Patterns
 
+![Messaging Patterns](Blog_CloudDesignPatterns_Messaging.PNG)
+
 #### Sequential Convoy
 
 > Process a set of related messages in a defined order without blocking the processing of other groups of messages.
@@ -441,6 +462,8 @@ Many [Azure products](https://azure.microsoft.com/products?WT.mc_id=AZ-MVP-50047
 Applications often need to process a sequence of messages in the order they arrive, while still being able to scale out to handle increased load. In a distributed architecture, processing these messages in order is not straightforward, because the workers can scale independently and often pull messages independently
 
 Push related messages into categories within the queuing system, and have the queue listeners lock and pull only from one category, one message at a time.
+
+![Cloud Design Pattern - Sequential Covey](Blog_CloudDesignPatterns_SequentialCovey.gif)
 
 ##### Issues & considerations
 
@@ -460,7 +483,6 @@ The Sequential Convoy pattern should be used in the following scenarios.
 * Categorized Messages - When arriving messages can be categorized in such a way that the category becomes a unit of scale for the system. For example, in an order tracking system, messages can be categorized by order ID, ensuring that all operations related to a specific order are processed sequentially
 * Avoiding Blocking - When you need to process a set of related messages in a defined order without blocking the processing of other groups of messages. This allows for efficient handling of multiple message groups concurrently while maintaining order within each group However, this pattern might not be suitable for extremely high throughput scenarios (millions of messages per minute or second), as the FIFO (First in and First Out) requirement limits the scaling that can be done by the system.
 
-
 ##### Azure Solutions
 
 Azure resources that can be used to implement this pattern include [Azure Service Bus](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview?WT.mc_id=AZ-MVP-5004796), [Azure Event Grid](https://learn.microsoft.com/azure/event-grid/overview?WT.mc_id=AZ-MVP-5004796), and [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796).
@@ -475,6 +497,7 @@ A service could be part of the same solution as the tasks that use it, or it cou
 A service might experience peaks in demand that cause it to overload and be unable to respond to requests in a timely manner. Flooding a service with a large number of concurrent requests can also result in the service failing if it's unable to handle the contention these requests cause.
 Solution, Refactor the solution and introduce a queue between the task and the service.
 
+![Cloud Design Patterns - Queue Based Levelling ](Blog_CloudDesignPatterns_QueueBasedLeveling.gif)
 
 ##### Issues & considerations
 
@@ -489,8 +512,6 @@ The Queue-Based Load Leveling pattern is designed to handle intermittent heavy l
 * Temporal Decoupling - A message broker provides temporal decoupling, meaning the producer and consumer do not have to run concurrently. This allows the producer to send messages regardless of the consumer's availability, and the consumer can process messages at its own pace
 * Asynchronous Processing — The pattern supports asynchronous message processing, which can help maintain the responsiveness of the user interface and distribute processing across multiple servers to improve throughput. By considering these issues and implementing appropriate strategies, the Queue-Based Load Leveling pattern can effectively manage load and improve a system's resilience and scalability.
 
-
-
 ##### When to use this pattern
 
 The Queue-Based Load Leveling pattern should be used in the following scenarios:
@@ -502,7 +523,6 @@ The Queue-Based Load Leveling pattern should be used in the following scenarios:
 * Cost Control - When you want to control costs by deploying a number of service instances that only need to be adequate to meet the average load rather than the peak load. This can help in reducing the overall cost of the system
 * Throttling - When services implement throttling to prevent system failure due to high demand. The Queue-Based Load Leveling pattern can help ensure that the demand does not exceed the service's capacity, thereby maintaining functionality
 * Asynchronous Processing — When you need to perform tasks asynchronously to maintain the responsiveness of the user interface and distribute processing across multiple servers to improve throughput, you can use the Queue-Based Load Leveling pattern in these scenarios to improve your system's resilience, scalability, and cost-effectiveness.
-
 
 ##### Azure Solutions
 
@@ -520,6 +540,8 @@ Asynchronous messaging is an effective way to decouple senders from consumers an
 One output messaging channel per consumer. The consumers are known as subscribers.
 A mechanism for copying each message from the input channel to the output channels for all subscribers interested in that message. This operation is typically handled by an intermediary such as a message broker or event bus.
 
+![Cloud Design Pattern - Publisher-Subscriber (PubSub)](Blog_CloudDesignPatterns_PubSub.gif)
+
 ##### Issues & considerations
 
 The Publisher-Subscriber pattern, also known as Pub-Sub, is a messaging pattern where an application (publisher) sends messages or events to multiple interested consumers (subscribers) asynchronously. Here are some issues and considerations associated with this pattern
@@ -535,7 +557,6 @@ The Publisher-Subscriber pattern, also known as Pub-Sub, is a messaging pattern 
 * Message Expiration - Defining how long messages should remain in the queue before they expire is important. This helps in managing the lifecycle of messages and ensuring that outdated messages do not clog the system 
 * Wildcard Subscriptions — Implementing wildcard subscriptions can allow subscribers to subscribe to all topics with a single action, simplifying the management of multiple topics. By addressing these issues and considerations, the Publisher-Subscriber pattern can be effectively implemented to enable scalable, reliable, and secure asynchronous communication between publishers and multiple subscribers.
 
-
 ##### When to use this pattern
 
 The Publisher-Subscriber (Pub-Sub) pattern should be used in the following scenarios.
@@ -548,7 +569,6 @@ The Publisher-Subscriber (Pub-Sub) pattern should be used in the following scena
 * Scalability and Flexibility - When you need a scalable and flexible system where new subscribers can be added without modifying the publisher. This allows the system to grow and adapt to new requirements easily
 * Filtering and Routing Messages — When you need to filter and route messages to specific subscribers based on certain criteria, you can use topics and content filtering mechanisms. By using the Publisher-Subscriber pattern in these scenarios, you can create a robust, scalable, and flexible messaging system that efficiently handles communication between different components.
 
-
 ##### Azure Solutions
 
 Azure resources that can be used to implement this pattern include [Azure Service Bus](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview?WT.mc_id=AZ-MVP-5004796), [Azure Event Grid](https://learn.microsoft.com/azure/event-grid/overview?WT.mc_id=AZ-MVP-5004796).
@@ -560,6 +580,8 @@ Azure resources that can be used to implement this pattern include [Azure Servic
 In modern application development, it's normal for client applications — often code running in a web client (browser) — to depend on remote APIs to provide business logic and compose functionality. In most cases, APIs for a client network infrastructure are largely out of the control of the application developer. Most APIs can respond quickly enough for responses to arrive back over the same connection. Application code can make a synchronous API call in a non-blocking way, giving the appearance of asynchronous processing, which is recommended for I/O-bound operations.
 In some scenarios, however, the work done by the backend may be long-running, on the order of seconds, or might be a background process that is executed in minutes or even hours. In that case, it isn't feasible to wait for the work to complete before responding to the request. This situation is a potential problem for any synchronous request-reply pattern. Applications are designed to respond quickly, on the order of 100 ms or less. 
 One solution to this problem is to use HTTP polling. Polling is useful to client-side code, as it can be hard to provide call-back endpoints or use long-running connections. Even when callbacks are possible, the extra libraries and services that are required can sometimes add too much extra complexity.
+
+![Cloud Design Pattern - Asyncronous Request-Reply](Blog_CloudDesignPatterns_AsyncronousRequestReply.gif)
 
 ##### Issues & considerations
 
@@ -576,7 +598,6 @@ The Asynchronous Request-Reply pattern is used to decouple backend processing fr
 * Legacy Clients - Some legacy clients might not support this pattern. It is important to consider the compatibility of the pattern with existing clients and whether additional support or alternative solutions are needed for those clients
 * Resource Management - Efficiently managing resources such as message queues and status endpoints is crucial to prevent resource exhaustion and ensure the system can handle many concurrent requests. By addressing these issues and considerations, the Asynchronous Request-Reply pattern can be effectively implemented to handle long-running operations while providing a clear response to the client.
 
-
 ##### When to use this pattern
 
 The Asynchronous Request-Reply pattern should be used in the following scenarios.
@@ -587,7 +608,6 @@ The Asynchronous Request-Reply pattern should be used in the following scenarios
 * Handling High Latency - When factors such as network infrastructure, geographic location, or current load can add significant latency to the response. The pattern helps mitigate these issues by allowing the backend to process the request asynchronously and the client to poll for the result
 * Microservices Architectures - When implementing microservices architectures where server-to-server REST API calls are common. The pattern helps manage long-running operations and decouples services, making the system more resilient and scalable
 * Client-Side Polling - When it is difficult to provide call-back endpoints or use long-running connections on the client side. The pattern allows the client to poll for the result, which can be simpler and more efficient in certain scenariosBy using the Asynchronous Request-Reply pattern in these scenarios, you can effectively manage long-running operations, improve scalability, and decouple frontend and backend processing, leading to a more robust and responsive system.
-
 
 ##### Azure Solutions
 
@@ -601,12 +621,16 @@ Azure resources that can be used to implement this pattern include [Azure Functi
 
 ### Reliability Patterns
 
+![Reliability Patterns](Blog_CloudDesignPatterns_Reliability.PNG)
+
 #### Circuit Breaker
 
 > Handle faults that might take a variable amount of time to recover from when connecting to a remote service or resource. This can improve an application's stability and resiliency.
 
 In a distributed environment, calls to remote resources and services can fail due to transient faults, such as slow network connections, timeouts, or the resources being overcommitted or temporarily unavailable. These faults typically correct themselves after a short period of time, and a robust cloud application should be prepared to handle them by using a strategy such as the [Retry pattern](https://learn.microsoft.com/dotnet/architecture/cloud-native/application-resiliency-patterns?WT.mc_id=AZ-MVP-5004796#retry-pattern).
 However, there can also be situations where faults are due to unanticipated events, and that might take much longer to fix. These faults can range in severity from a partial loss of connectivity to the complete failure of a service. In these situations, it might be pointless for an application to retry an operation that is unlikely to succeed continually, and instead, the application should quickly accept that the operation has failed and handle this failure accordingly. Additionally, if a service is very busy, failure in one part of the system might lead to cascading failures. The purpose of the Circuit Breaker pattern is different than the Retry pattern. The Retry pattern enables an application to retry an operation in the expectation that it'll succeed. The Circuit Breaker pattern prevents an application from performing an operation that is likely to fail. An application can combine these two patterns by using the Retry pattern to invoke an operation through a circuit breaker. However, the retry logic should be sensitive to any exceptions returned by the circuit breaker and abandon retry attempts if the circuit breaker indicates that a fault is not transient. The failure counter used by the Closed state is time-based. It's automatically reset at periodic intervals. This helps to prevent the circuit breaker from entering the Open state if it experiences occasional failures.
+
+![Cloud Design Patterns - Circuit Breaker](Blog_CloudDesignPatterns_CircuitBreaker.gif)
 
 ##### Issues & considerations
 
@@ -623,7 +647,6 @@ The Circuit Breaker pattern is designed to handle faults that might take a varia
 * Inappropriate Timeouts - The circuit breaker might not fully protect applications from operations that fail in external services configured with lengthy timeouts. If the timeout is too long, a thread running the circuit breaker might be blocked for an extended period, tying up resources
 * Impact on Shared Resources - Aggressive retry policies can cause an increasing number of transient faults for other users and applications sharing the same resources. It is important to consider the impact of the circuit breaker on shared resources and other tenants in a multi-tenant environment. Addressing these issues and considerations, the Circuit Breaker pattern can be effectively implemented to improve the stability and resiliency of an application, preventing cascading failures and managing long-lasting faults efficiently.
 
-
 ##### When to use this pattern
 
 The Circuit Breaker pattern should be used in the following scenarios.
@@ -636,7 +659,6 @@ The Circuit Breaker pattern should be used in the following scenarios.
 * Testing Service Recovery - The Circuit Breaker pattern allows the application to periodically test the service to detect when it becomes available again. This can be done on an intermittent basis with long intervals between requests, depending on the criticality of the operation and the nature of the service
 * Logging and Monitoring—The pattern can be used to log all failed requests and monitor the operation's health. This information can be used to alert administrators when a circuit breaker trips to the Open state, providing insights into the system's health. Using the Circuit Breaker pattern in these scenarios, you can improve the resiliency and stability of your application, prevent resource exhaustion, and manage long-lasting faults effectively.
 
-
 ##### Azure Solutions
 
 Azure resources that can be used to implement this pattern include [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796).
@@ -646,6 +668,8 @@ Azure resources that can be used to implement this pattern include [Azure API Ma
 > The deployment stamp pattern involves provisioning, managing, and monitoring a heterogeneous group of resources to host and operate multiple workloads or tenants.
 
 The deployment stamp pattern involves provisioning, managing, and monitoring a heterogeneous group of resources to host and operate multiple workloads or tenants. Each individual copy is called a stamp or sometimes a service unit, scale unit, or cell. In a multitenant environment, every stamp or scale unit can serve a predefined number of tenants. Multiple stamps can be deployed to scale the solution almost linearly and serve an increasing number of tenants. This approach can improve the scalability of your solution, allow you to deploy instances across multiple regions, and separate your customer data. consider grouping resources in scale units and provisioning multiple copies of your stamps. Each scale unit will host and serve a subset of your tenants. Stamps operate independently of each other and can be deployed and updated independently. A single geographical region might contain a single stamp or might contain multiple stamps to allow for horizontal scale-out within the region. 
+
+![Cloud Design - Deployment Stamps](Blog_CloudDesignPatternsDeploymentStamps.gif)
 
 ##### Issues & considerations
 
@@ -663,7 +687,6 @@ Several issues and considerations need to be addressed when implementing the dep
 * Resiliency During Outages - Stamps are independent of one another, so if an outage affects a single stamp, tenants deployed to other stamps should not be affected. This isolation helps to contain the 'blast radius' of an incident or outage
 * Handling Single and Multi-Tenant Instances - The pattern should support both single and multi-tenant instances, ensuring that each tenant's data is isolated and secure
 * Update Frequency — Different stamps might need to be on different versions of your solution at the same time. This requires careful management of updates and version control across stamps. By considering these issues and implementing appropriate strategies, the Deployment Stamp pattern can effectively improve the scalability, resiliency, and manageability of your solution.
-
 
 ##### When to use this pattern
 
@@ -687,8 +710,9 @@ Azure resources that can be used to implement this pattern include [Azure Traffi
 
 The Bulkhead pattern is a type of application design that is tolerant of failure. In a bulkhead architecture, elements of an application are isolated into pools so that if one fails, the others will continue to function. It's named after the sectioned partitions (bulkheads) of a ship's hull. If the hull of a ship is compromised, only the damaged section fills with water, which prevents the ship from sinking. A cloud-based application may include multiple services, with each service having one or more consumers. Excessive load or failure in a service will impact all consumers of the service. Partition service instances into different groups, based on consumer load and availability requirements. This design helps to isolate failures and allows you to sustain service functionality for some consumers, even during a failure.
 
+The Bulkhead pattern and the Deployment Stamp pattern are both architectural patterns used to improve the resiliency and scalability of applications, but they address different concerns and are implemented in different ways, for example, the Deployment Stamp isolates entire instances of applications, each with its own services, the bulkhead partner isolates different components or services within the same application or system and is primarily focuses on fault isolation and resource management within a single deployment. These patterns can work together for a highly resistant solution.
 
-The Bulkhead pattern and the Deployment Stamp pattern are both architectural patterns used to improve the resiliency and scalability of applications, but they address different concerns and are implemented in different ways, for example, the Deployment Stamp isolates entire instances of applications, each with its own services, the bulkhead partner isolates different components or services within the same application or system and is primarily focuses on fault isolation and resource management within a single deployment. These patterns can work together for a highly resistant solution
+![Cloud Design Patterns - Bulkhead](Blog_CloudDesignPatternsBulkhead.gif)
 
 ##### Issues & considerations
 
@@ -709,7 +733,6 @@ Considerations
 * Critical vs. Standard Consumers - Isolate critical consumers from standard consumers to ensure that critical operations can continue even if standard operations fail.
 * Security—The segmentation between components helps constrain security incidents to the compromised bulkhead, enhancing the overall security of the system. By addressing these issues and considerations, the Bulkhead pattern can help improve the resiliency and reliability of your application, ensuring that failures are contained and do not affect the entire system.
 
-
 ##### When to use this pattern
 
 The Bulkhead pattern is particularly useful in the following scenarios
@@ -722,8 +745,6 @@ The Bulkhead pattern is particularly useful in the following scenarios
 * Combining with Other Fault-Handling Patterns - Consider combining the Bulkhead pattern with other fault-handling patterns such as retry, circuit breaker, and throttling to provide more sophisticated fault-handling
 * Deploying Services with Different Quality of Service - The Bulkhead pattern allows you to deploy services that offer a different quality of service for consuming applications. For example, a high-priority consumer pool can be configured to use high-priority services. By using the Bulkhead pattern in these scenarios, you can improve the resiliency and reliability of your application, ensuring that failures are contained and do not affect the entire system.
 
-
-
 ##### Azure Solutions
 
 Azure resources that can be used to implement this pattern include [Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796), [Azure Container Instances](https://learn.microsoft.com/azure/container-instances/container-instances-overview?WT.mc_id=AZ-MVP-5004796), and [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796).
@@ -732,10 +753,14 @@ Azure resources that can be used to implement this pattern include [Azure Kubern
 
 > If one or more of the steps fail, you can use the Compensating Transaction pattern to undo the work that the steps performed.
 
-When you use an eventually consistent operation that consists of a series of steps, the Compensating Transaction pattern can be useful. Specifically, if one or more of the steps fail, you can use the Compensating Transaction pattern to undo the work that the steps performed. Typically, you find operations that follow the eventual consistency model in cloud-hosted applications that implement complex business processes and workflows. Applications that run in the cloud frequently modify data. This data is sometimes spread across various data sources in different geographic locations. To avoid contention and improve performance in a distributed environment, an application shouldn't try to provide strong transactional consistency. Rather, the application should implement eventual consistency. In the eventual consistency model, a typical business operation consists of a series of separate steps. While the operation performs these steps, the overall view of the system state might be inconsistent. But when the operation finishes and all the steps have run, the system should become consistent again. The data that are affected by an operation that implements eventual consistency isn't always held in a database. For example, consider a service-oriented architecture (SOA) environment. An SOA operation can invoke an action in a service and cause a change in the state that's held by that service. To undo the operation, you also have to undo this state change. This process can involve invoking the service again and performing another action that reverses the effects of the first.
+When you use an eventually consistent operation that consists of a series of steps, the Compensating Transaction pattern can be useful. Specifically, if one or more of the steps fail, you can use the Compensating Transaction pattern to undo the work that the steps performed. Typically, you find operations that follow the eventual consistency model in cloud-hosted applications that implement complex business processes and workflows. Applications that run in the cloud frequently modify data. This data is sometimes spread across various data sources in different geographic locations. To avoid contention and improve performance in a distributed environment, an application shouldn't try to provide strong transactional consistency. Rather, the application should implement eventual consistency. In the eventual consistency model, a typical business operation consists of a series of separate steps. While the operation performs these steps, the overall view of the system state might be inconsistent. But when the operation finishes and all the steps have run, the system should become consistent again. The data that are affected by an operation that implements eventual consistency isn't always held in a database. For example, consider a service-oriented architecture (SOA) environment. An SOA operation can invoke an action in a service and cause a change in the state that's held by that service. 
+
+To undo the operation, you also have to undo this state change. This process can involve invoking the service again and performing another action that reverses the effects of the first.
 
 The solution is to implement a compensating transaction. The steps in a compensating transaction undo the effects of the steps in the original operation. An intuitive approach is to replace the current state with the state the system was in at the start of the operation. But a compensating transaction can't always take that approach, because it might overwrite changes that other concurrent instances of an application have made. Instead, a compensating transaction must be an intelligent process that takes into account any work that concurrent instances do. This process is usually application-specific, driven by the nature of the work that the original operation performs.
 
+
+![Cloud Design Pattern - Compensating Transaction](Blog_CloudDesignPatterns_CompensatingTransaction.gif)
 
 ##### Issues & considerations
 
@@ -752,8 +777,6 @@ When implementing the Compensating Transaction pattern, there are several issues
 * Resource Locking - To increase the likelihood of overall activity success, you can place a short-term, time-out–based lock on each resource required to complete an operation. Obtain these resources in advance and perform the work only after acquiring all the resources, finalizing all actions before the locks expire
 * Retry Logic - Implement retry logic that is more forgiving than usual to minimize failures that trigger a compensating transaction. If a step in an operation fails, handle the failure as a transient exception and repeat the step. Stop the operation and initiate a compensating transaction only if a step fails repeatedly or can't be recovered. By considering these issues and implementing appropriate strategies, you can effectively manage the complexities associated with compensating transactions and ensure the reliability and consistency of your application.
 
-
-
 ##### When to use this pattern
 
 The Compensating Transaction pattern should be used in the following scenarios.
@@ -765,7 +788,6 @@ The Compensating Transaction pattern should be used in the following scenarios.
 * Avoiding the Complexity of Distributed Transactions - When it is not feasible to use distributed transactions due to their complexity and overhead, the Compensating Transaction pattern can be an alternative. It allows you to break down a distributed transaction into separate, compensable tasks
 * Handling State Changes in Service-Oriented Architectures (SOA) - In an SOA environment, where operations can cause changes in the state held by services, the Compensating Transaction pattern can be used to undo these state changes if necessary
 * Manual Intervention and Recovery - In cases where manual intervention might be required to recover from a failed step, the Compensating Transaction pattern can be used to raise alerts and provide information about the failure, allowing for manual recovery actions using the Compensating Transaction pattern in these scenarios, you can ensure that your system can handle failures gracefully, maintain data consistency, and recover from errors effectively
-
 
 ##### Azure Solutions
 
@@ -785,12 +807,15 @@ Azure resources that can be used to implement this pattern include [Azure Functi
 
 ### Security Patterns
 
+![Security Patterns](Blog_CloudDesignPatterns_Security.PNG)
+
 #### Backends for Frontends
 
 > Create separate backend services to be consumed by specific frontend applications or interfaces. 
 
 The Backends for Frontends (BFF) pattern involves creating separate backend services tailored to specific frontend applications or interfaces. This pattern is particularly useful when you want to avoid customizing a single backend for multiple interfaces, which can lead to conflicting requirements and development bottlenecks. An application may initially target a desktop web UI, with a backend service developed to support it. As the user base grows, a mobile application might be developed that needs to interact with the same backend. However, the capabilities and requirements of mobile devices differ significantly from desktop browsers, leading to competing requirements for the backend. An application may initially target a desktop web UI, with a backend service developed to support it. As the user base grows, a mobile application might be developed that needs to interact with the same backend. However, the capabilities and requirements of mobile devices differ significantly from desktop browsers, leading to competing requirements for the backend
 
+![Cloud Design Pattern - Backends for Frontends](Blog_CloudDesignPatterns_BackendsForFrontEnds.gif)
 
 ##### Issues & considerations
 
@@ -806,7 +831,6 @@ Considerations
 * Reduced Attack Surface - The BFF pattern reduces the attack surface by limiting the functionality exposed by each backend to only what is necessary for its corresponding front end. This minimizes the potential for security vulnerabilities 
 * Enhanced Monitoring and Control - The separation of backends allows for more granular monitoring and control over each service. Security incidents can be contained within the specific backend, reducing the blast radius of any potential compromise
 * Compliance and Regulatory Requirements - Different frontends might have different compliance and regulatory requirements. The BFF pattern allows for these requirements to be addressed individually, ensuring that each backend complies with the necessary standards By considering these issues and implementing appropriate strategies, you can effectively manage the complexities associated with the Backends for Frontends pattern and ensure the reliability, security, and performance of your application.
-
 
 ##### When to use this pattern
 
@@ -831,6 +855,7 @@ If a malicious user compromises the system and gains access to the application's
 
 The GateKeeper patterns allow you to protect applications and services by using a dedicated host instance to broker requests between clients and the application or service. The broker validates and sanitizes the requests, and can provide an additional layer of security and limit the system's attack surface.
 
+![Cloud Design Pattern - Gatekeeper](Blog_CloudDesignPatterns_Gatekeeper.gif)
 
 ##### Issues & considerations
 
@@ -863,7 +888,6 @@ The Gatekeeper pattern should be used in the following scenarios.
 
 ##### Azure Solutions
 
-
 The Azure resources that can be used to implement this pattern include [Azure Application Gateway](https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796) and [Azure Firewall](https://learn.microsoft.com/azure/firewall/overview?WT.mc_id=AZ-MVP-5004796). 
 
 #### Federated Identity
@@ -879,6 +903,8 @@ This model is often called claims-based access control. Applications and service
 Federated authentication provides a standards-based solution to the issue of trusting identities across diverse domains,
 
 This type of authentication is becoming more common across all types of applications, especially cloud-hosted applications because it supports single sign-on without requiring a direct network connection to identity providers. The user doesn't have to enter credentials for every application. This increases security because it prevents the creation of credentials required to access many different applications, and it also hides the user's credentials from all but the original identity provider. Applications see just the authenticated identity information contained within the token.
+
+![Cloud Design Patterns - Federated Identity](Blog_CloudDesignPatterns_FederatedIdentity.gif)
 
 ##### Issues & considerations
 
@@ -896,7 +922,6 @@ Issues
 * Security and Compliance - Offloading user management and authentication to a trusted identity provider can enhance security by leveraging the provider's advanced capabilities for identity-based threat detection and prevention. This also helps in meeting compliance requirements without implementing these capabilities in the application itself
 * Business Continuity - Federated systems typically require a load-balanced array of servers to ensure high availability for authentication requests. This setup helps maintain business continuity by providing redundancy and failover capabilities
 * Integration with Third-Party Services - Federated identity is useful for integrating with third-party services and applications, especially in scenarios where multiple organizations need to collaborate. It allows users from different organizations to authenticate using their own credentials, simplifying access management. By considering these issues and implementing appropriate strategies, you can effectively manage the complexities associated with the Federated Identity pattern and ensure the reliability, security, and performance of your application.
-
 
 ##### When to use this pattern
 
@@ -922,7 +947,9 @@ This pattern can simplify application development by moving shared service funct
 
 It is similar to the Gatekeeper pattern, which focuses on protecting applications by validating and sanitizing requests, decoupling public endpoints from backend processing, and centralizing security functionalities to limit the system's attack surface.
 
-The Gateway Offloading focuses on offloading cross-cutting concerns and shared functionalities to a gateway to simplify application development and maintenance, enhance security, and ensure consistency in logging and monitoring
+The Gateway Offloading focuses on offloading cross-cutting concerns and shared functionalities to a gateway to simplify application development and maintenance, enhance security, and ensure consistency in logging and monitoring.
+
+![Cloud Design - Gateway Offloading](Blog_CloudDesignPatterns_GatewayOffloading.gif)
 
 ##### Issues & considerations
 
@@ -936,7 +963,6 @@ When implementing the Gateway Offloading pattern, there are several issues and c
 * Consistency in Logging and Monitoring - The gateway can provide consistency in request and response logging and monitoring. However, it is essential to ensure that the gateway is correctly instrumented to provide the necessary level of monitoring and logging, even if individual services are not
 * Specialized Features - Offloading specialized features such as authentication, authorization, logging, monitoring, or throttling to the gateway allows dedicated teams to manage these features. This can simplify the development and maintenance of the core application but requires coordination between teams to ensure that the offloaded features are correctly implemented and maintained
 * Business Logic - Business logic should never be offloaded to the gateway. The gateway should only handle cross-cutting concerns that are used by the entire application, such as security or data transfer. Offloading business logic can lead to a tightly coupled architecture that is difficult to maintain and scale. Considering these issues and carefully planning the implementation, you can effectively use the Gateway Offloading pattern to simplify application development, enhance security, and ensure consistency in logging and monitoring.
-
 
 ##### When to use this pattern
 
@@ -972,3 +998,5 @@ Implementing patterns in Azure involves using the Cloud Adoption Framework, Well
 
 Recap: Design patterns are important in modern cloud architecture and can be implemented in Azure using established frameworks and guidance to ensure scalability, resilience, and security."
 :::
+
+![The time is now, go build!The time is now, go build!](Blog_CloudDesignPatterns_TimettoBuild.PNG)
