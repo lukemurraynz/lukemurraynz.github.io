@@ -622,11 +622,41 @@ Azure resources that can be used to implement this pattern include [Azure API Ma
 
 > The deployment stamp pattern involves provisioning, managing, and monitoring a heterogeneous group of resources to host and operate multiple workloads or tenants.
 
+The deployment stamp pattern involves provisioning, managing, and monitoring a heterogeneous group of resources to host and operate multiple workloads or tenants. Each individual copy is called a stamp, or sometimes a service unit, scale unit, or cell. In a multitenant environment, every stamp or scale unit can serve a predefined number of tenants. Multiple stamps can be deployed to scale the solution almost linearly and serve an increasing number of tenants. This approach can improve the scalability of your solution, allow you to deploy instances across multiple regions, and separate your customer data. consider grouping resources in scale units and provisioning multiple copies of your stamps. Each scale unit will host and serve a subset of your tenants. Stamps operate independently of each other and can be deployed and updated independently. A single geographical region might contain a single stamp, or might contain multiple stamps to allow for horizontal scale-out within the region. 
+
 ##### Issues & considerations
+
+When implementing the Deployment Stamp pattern, several issues and considerations need to be addressed to ensure a successful deployment:
+
+* Deployment Process - It's crucial to have automated and fully repeatable deployment processes. Tools like Bicep, JSON ARM templates, or Terraform modules can be used to declaratively define your stamps and keep the definitions consistent 1 .
+* Cross-Stamp Operations - When your solution is deployed across multiple stamps, operations that span multiple stamps, such as aggregating customer data, can become complex. Queries might need to be executed against each stamp, and the results aggregated. Alternatively, consider having all stamps publish data into a centralized data warehouse for consolidated reporting 1 .
+* Determining Scale-Out Policies - Stamps have a finite capacity, which might be defined using a proxy metric such as the number of tenants that can be deployed to the stamp. It's important to monitor the available and used capacity for each stamp and proactively deploy additional stamps to accommodate new tenants 1 .
+* Minimum Number of Stamps - It's advisable to deploy at least two stamps of your solution to avoid hard-coding assumptions into your code or configuration that won't apply when you scale out 1 .
+* Cost - Deploying multiple copies of your infrastructure components will likely involve a substantial increase in the cost of operating your solution. This includes the cost of additional memory, compute, and other resources required for each stamp 1 2 .
+* Moving Between Stamps - Each stamp is deployed and operated independently, so moving tenants between stamps can be difficult. Custom logic is needed to transmit customer information to a different stamp and remove it from the original stamp. This process might require a backplane for communication between stamps, further increasing the complexity of the solution 1 .
+* Traffic Routing - Routing traffic to the correct stamp for a given request can require an additional component to resolve tenants to stamps. This component needs to be highly available to ensure reliable traffic routing 1 .
+* Shared Components - Some components might be shared across stamps. For example, a shared single-page app for all tenants could be deployed in one region and replicated globally using Azure CDN 1 .
+* Geographical Distribution - For multi-region applications, each tenant's data and traffic should be directed to a specific region. This ensures that requests are routed to the correct stamp based on the user's geographical location 1 .
+* Resiliency During Outages - Stamps are independent of one another, so if an outage affects a single stamp, tenants deployed to other stamps should not be affected. This isolation helps to contain the 'blast radius' of an incident or outage 1 .
+* Handling Single and Multi-Tenant Instances - The pattern should support both single and multi-tenant instances, ensuring that each tenant's data is isolated and secure 3 .
+* Update Frequency - Different stamps might need to be on different versions of your solution at the same time. This requires careful management of updates and version control across stamps 3 .By considering these issues and implementing appropriate strategies, the Deployment Stamp pattern can be effectively used to improve the scalability, resiliency, and manageability of your solution.
+
 
 ##### When to use this pattern
 
+The Deployment Stamp pattern is useful in the following scenarios:
+
+* Natural Limits on Scalability - If certain components of your system cannot or should not scale beyond a specific number of customers or requests, the Deployment Stamp pattern allows you to scale out by deploying multiple instances (stamps) of your solution 1 .
+* Tenant Isolation - When there is a requirement to separate certain tenants from others due to security concerns or compliance requirements, the Deployment Stamp pattern can be used to deploy these tenants onto their own isolated stamps 1 .
+* Multi-Region Applications - For applications that need to be deployed across multiple regions, each tenant's data and traffic can be directed to a specific region. This ensures that requests are routed to the correct stamp based on the user's geographical location 1 .
+* Resiliency During Outages - Stamps are independent of one another, so if an outage affects a single stamp, tenants deployed to other stamps should not be affected. This isolation helps to contain the 'blast radius' of an incident or outage, enhancing the overall resiliency of the application 1 .
+* Different Versions of the Solution - If there is a need to have some tenants on different versions of your solution at the same time, the Deployment Stamp pattern allows for this flexibility by deploying different stamps with different versions 1 .
+* High-Scale Platforms - The pattern is suitable for implementing high-scale platforms that have users distributed over a wide area. It helps in managing the load and ensuring that the system can handle a large number of users efficiently 2 .By using the Deployment Stamp pattern in these scenarios, you can achieve better scalability, isolation, and resiliency for your application.
+
+
 ##### Azure Solutions
+
+Azure resources that can be used to implement this pattern include [Azure Traffic Manager](https://learn.microsoft.com/azure/traffic-manager/traffic-manager-overview?WT.mc_id=AZ-MVP-5004796), [Azure Front Door](https://learn.microsoft.com/azure/frontdoor/front-door-overview?WT.mc_id=AZ-MVP-5004796).
 
 #### Bulkhead
 
