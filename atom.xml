@@ -50,6 +50,7 @@
             <uri>https://luke.geek.nz</uri>
         </author>
         <category label="Azure" term="Azure"/>
+        <category label="Misc" term="Misc"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Cloud Design Patterns]]></title>
