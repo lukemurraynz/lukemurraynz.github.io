@@ -9,7 +9,7 @@
     <icon>https://luke.geek.nz/img/favicon.ico</icon>
     <rights>Copyright © 2024 luke.geek.nz.</rights>
     <entry>
-        <title type="html"><![CDATA[Infrastructure as Code GitHub Codespace]]></title>
+        <title type="html"><![CDATA[Infrastructure as Code GitHub Codespace Template]]></title>
         <id>https://luke.geek.nz/azure/iac-github-codespace/</id>
         <link href="https://luke.geek.nz/azure/iac-github-codespace/"/>
         <updated>2024-06-14T09:12:51.904Z</updated>
