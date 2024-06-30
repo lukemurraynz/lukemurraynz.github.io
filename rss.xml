@@ -1375,7 +1375,11 @@ Access packages also include one or more policies. A policy defines the rules or
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="️-onboarding-self-service">🖥️ Onboarding self-service<a href="https://luke.geek.nz/azure/implementing-sandbox-vending/#%EF%B8%8F-onboarding-self-service" class="hash-link" aria-label="Direct link to 🖥️ Onboarding self-service" title="Direct link to 🖥️ Onboarding self-service">​</a></h3>
 <p>Onboarding of a new Sandbox environment could be automated from start to end, using a self-service portal. An example is:</p>
 <p>A <a href="https://learn.microsoft.com/power-apps/powerapps-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">PowerApp</a> that allows a user to request a new Sandbox environment, by filling in a form, that then triggers a <a href="https://learn.microsoft.com/power-automate/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">PowerAutomate</a> flow, to gain approval, and then creates a new YAML file, in a folder, that then triggers a Terraform apply command, to create the new Sandbox environment.</p>
-<p><img decoding="async" loading="lazy" alt="Cloud Landing Zone Request - PowerApp" src="https://luke.geek.nz/assets/images/Azure_SandboxPowerApps-03eff2da8da6f063c4081fc6b8660235.png" width="1765" height="992" class="img_ev3q"></p>]]></content:encoded>
+<p><img decoding="async" loading="lazy" alt="Cloud Landing Zone Request - PowerApp" src="https://luke.geek.nz/assets/images/Azure_SandboxPowerApps-03eff2da8da6f063c4081fc6b8660235.png" width="1765" height="992" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="reference-links">📖Reference Links<a href="https://luke.geek.nz/azure/implementing-sandbox-vending/#reference-links" class="hash-link" aria-label="Direct link to 📖Reference Links" title="Direct link to 📖Reference Links">​</a></h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=dkNAnw1InA0" target="_blank" rel="noopener noreferrer">Azure Sandbox Environment - Turbo360 Podcast</a></li>
+</ul>]]></content:encoded>
             <category>Azure</category>
         </item>
         <item>
@@ -1908,6 +1912,7 @@ Lightly managed sandboxes are useful when many individuals want a specific regul
 <li><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure subscription and service limits, quotas and constraints</a></li>
 <li><a href="https://github.com/BevanSin/AzureSandbox" target="_blank" rel="noopener noreferrer">BevanSin/AzureSandbox</a></li>
 <li><a href="https://github.com/dazzlejim/AzureSandbox" target="_blank" rel="noopener noreferrer">dazzlejim/AzureSandbox</a></li>
+<li><a href="https://www.youtube.com/watch?v=dkNAnw1InA0" target="_blank" rel="noopener noreferrer">Azure Sandbox Environment - Turbo360 Podcast</a></li>
 </ol>]]></content:encoded>
             <category>Azure</category>
         </item>
