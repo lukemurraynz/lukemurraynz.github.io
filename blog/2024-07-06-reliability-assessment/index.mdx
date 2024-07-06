@@ -29,6 +29,8 @@ In this article, we will walk through the process of running the scripts to coll
 
 <!-- truncate -->
 
+## 🌐 Overview
+
 Along with recommendations to increase Azure resource resiliency, supplementing the guidance on the Well-Architected Framework, the proactive resiliency library includes sample [Azure Resource Graph queries](https://learn.microsoft.com/azure/governance/resource-graph/overview?WT.mc_id=AZ-MVP-5004796), to determine the current state of your resources.
 
 ![Azure Proactive Resiliency Library - Use Premium tier for critical production workloads](AzProactiveResiliencyLibrary_ContainerRegistry_Tier.png)
@@ -64,7 +66,7 @@ The Azure Proactive Resiliency library and the assessments we will run through w
 
 So - let us get started with the Azure Proactive Resiliency Library and the assessment report.
 
-## Azure Proactive Resiliency Library - Assessment Report
+## 📊 Azure Proactive Resiliency Library - Resiliency Reports
 
 The Assessment report is a 3 stage process.
 
@@ -78,7 +80,7 @@ The Assessment report is a 3 stage process.
 
 **It is worth noting that not all services will be supported by the automated resource graph queries, so you will need to check any services that are not supported manually, and when looking at running this for Production workloads, remember to consider the business context around the resiliency requirements.**
 
-###  Collect the data
+### 📊 Collect the data
 
 The Collector PowerShell script is designed to collect data from the Azure environment to help identify potential issues and areas for improvement using the Azure Resource Graph queries within this repository.
 
@@ -103,7 +105,7 @@ The Collector PowerShell script is designed to collect data from the Azure envir
 
 ![1_wara_collector.ps1](AzProactiveResiliencyLibrary_Collector.gif)
 
-###  Analyse the data
+### 📈 Analyse the data
 
 The Data Analyzer PowerShell script is the second script in the Azure Proactive Resiliency Library (APRL) tooling suite. This tool summarizes the collected data and provides actionable insights into the health and resiliency of the Azure environment.
 
@@ -152,7 +154,7 @@ You should now have an Excel Action Plan, with the data from the JSON file, incl
 
 > There will be resources that are not supported by the Resource Graph queries, so you will need to check these manually. Could you remove or add any recommendations based on your analysis before generating reports?
 
-###  Create the report
+### 📝 Create the report
 
 The Report Generator PowerShell script is the final script in the Azure Proactive Resiliency Library (APRL) tooling suite. Its goal is to generate a Word and PowerPoint report based on the data collected and analyzed by the Collector and Data Analyzer scripts.
 
