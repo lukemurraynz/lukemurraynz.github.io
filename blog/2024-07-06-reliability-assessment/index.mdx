@@ -43,7 +43,7 @@ An improvement to this automation is the ability to run queries to collect, anal
 
 > So, why must we consider reliability and resiliency in our Azure workloads?
 
-The answer is simple: ensure that your applications and services are available and reliable, even when failures occur. This is important for business continuity and to ensure that your customers can access your services when they need them.
+The answer is simple: ensure that your applications and services are available and reliable, even when failures occur. This is important for business continuity and ensuring that your customers can access your services when needed.
 
 ![Azure Proactive Resiliency Library - Importance of realibility](AzProactiveResiliencyLibrary_ImportanceRealiability.png)
 
@@ -66,7 +66,7 @@ The Azure Proactive Resiliency library and the assessments we will run through w
 
 So - let us get started with the Azure Proactive Resiliency Library and the assessment report.
 
-## 📊 Azure Proactive Resiliency Library - Resiliency Reports
+## 📊 Create Resiliency Reports
 
 The Assessment report is a 3 stage process.
 
@@ -146,7 +146,7 @@ You should now have an Excel Action Plan with the data from the JSON file, inclu
 
 | Worksheet Name    | Description                                                                                                                                                                                                         |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Recommendations   | You will find all Recommendations, their category, impact, description, learn more links, and much more. Note that Columns A and B count the number of Azure Resources associated with RecommendationID. |
+| Recommendations   | You will find all Recommendations, their category, impact, description, learn more links, and much more. Columns A and B count the number of Azure Resources associated with RecommendationID. |
 | ImpactedResources | You will find a list of Azure Resources associated with a RecommendationID. These Azure Resources do not follow Microsoft's best practices for Reliability.                                                   |
 | PivotTable        | You will find a couple of pivot tables used to automatically create the charts.                                                                                                                                     |
 | Charts            | You will find three charts that will be used in the Executive Summary PPTx.                                                                                                                                             |
@@ -194,7 +194,7 @@ cd D:\APRL\Azure-Proactive-Resiliency-Library\tools\
 
 ![3_wara_reports_generator.ps1](AzProactiveResiliencyLibrary_RunReportGeneration.gif)
 
-The script will generate a Word and PowerPoint report with the data from the Excel Action Plan and the recommendations for the Azure resources automatically included. You then have the ability to add additional information and recommendations based on the analysis of the data and the business context around the resources.
+The script will generate a Word and PowerPoint report with the data from the Excel Action Plan and the recommendations for the Azure resources automatically included. You can then add additional information and recommendations based on the analysis of the data and the business context around the resources.
 
 ![PowerPoint Report](AzProactiveResiliencyLibrary_PowerPointGeneration.gif)
 
