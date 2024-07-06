@@ -114,14 +114,15 @@
 <p>More detail can then be added to the Word document.</p>
 <p><img decoding="async" loading="lazy" alt="Word Report" src="https://luke.geek.nz/assets/images/AzProactiveResiliencyLibrary_WordGeneration-170286825f67aca386f03be30a036031.gif" width="1899" height="1021" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-references">📖 References:<a href="https://luke.geek.nz/azure/proactive-resiliency-assessment/#-references" class="hash-link" aria-label="Direct link to 📖 References:" title="Direct link to 📖 References:">​</a></h2>
-<p>🔗<a href="https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/tools/script-overviews/" target="_blank" rel="noopener noreferrer">Overview and Usage of APRL Scripts
-</a>
-🔗<a href="https://learn.microsoft.com/azure/well-architected/reliability/principles?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Reliability design principles</a>
-🔗<a href="https://learn.microsoft.com/azure/advisor/advisor-resiliency-reviews?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Advisor Resiliency Reviews</a>
-🔗<a href="https://learn.microsoft.com/azure/well-architected/mission-critical/mission-critical-design-methodology?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Design methodology for mission-critical workloads on Azure</a>
-🔗<a href="https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks-mission-critical/mission-critical-landing-zone?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Mission-critical baseline architecture in an Azure landing zone</a>
-🔗<a href="https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Service Level Agreements (SLA) for Online Services</a>
-🔗<a href="https://youtu.be/d7kzfogjmpE" target="_blank" rel="noopener noreferrer">Fireside Chat about Mission Critical applications on Azure with Leandro Carvalho</a></p>]]></content>
+<ul>
+<li>🔗<a href="https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/tools/script-overviews/" target="_blank" rel="noopener noreferrer">Overview and Usage of APRL Scripts</a></li>
+<li>🔗<a href="https://learn.microsoft.com/azure/well-architected/reliability/principles?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Reliability design principles</a></li>
+<li>🔗<a href="https://learn.microsoft.com/azure/advisor/advisor-resiliency-reviews?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Advisor Resiliency Reviews</a></li>
+<li>🔗<a href="https://learn.microsoft.com/azure/well-architected/mission-critical/mission-critical-design-methodology?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Design methodology for mission-critical workloads on Azure</a></li>
+<li>🔗<a href="https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks-mission-critical/mission-critical-landing-zone?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Mission-critical baseline architecture in an Azure landing zone</a></li>
+<li>🔗<a href="https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Service Level Agreements (SLA) for Online Services</a></li>
+<li>🔗<a href="https://youtu.be/d7kzfogjmpE" target="_blank" rel="noopener noreferrer">Fireside Chat about Mission Critical applications on Azure with Leandro Carvalho</a></li>
+</ul>]]></content>
         <author>
             <name>Luke Murray</name>
             <uri>https://luke.geek.nz</uri>
