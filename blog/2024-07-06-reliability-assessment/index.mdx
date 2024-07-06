@@ -37,13 +37,13 @@ Along with recommendations to increase Azure resource resiliency, supplementing 
 
 An improvement to this automation is the ability to run queries to collect, analyze, and create a Word and PowerPoint report for your Azure workloads; these reports are part of a Workshop delivery initiative - Well-Architected Reliability Assessment, usually driven by Microsoft Cloud Solution architects, we can leverage the same toolsets, to help increase visibility across the state of the reliability of our own Azure estate. This is not a set-and-forget tool but a starting point to help you understand the current state of your resources to help you make informed decisions on how to improve the reliability of your Azure workloads and an avenue to highlight Reliability improvements. This process works best when scoped to a specific workload vs an entire environment.
 
-> This article is not meant as a substitute for the Microsoft-delivered Resiliency workshop but mainly to help you start your resiliency journey. The information in this article is based on the [Azure Proactive Resiliency Library v2](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/) and the scripts provided in the public repository. Contact your local Microsoft contact for information about their Resiliency workshop and the full delivery.
+> This article is not meant as a substitute for the Microsoft-delivered Resiliency workshop but mainly to help you start your resiliency journey. The information in this article is based on the [Azure Proactive Resiliency Library v2](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/) and the scripts provided in the public repository. Please contact your local Microsoft contact for information about their Resiliency workshop and the full delivery.
 
 ![Azure Proactive Resiliency Library - Assessment](AzProactiveResiliencyLibrary_Assessment.png)
 
 > So, why must we consider reliability and resiliency in our Azure workloads?
 
-The answer is simple, to ensure that your applications and services are available and reliable, even when failures occur. This is important for business continuity, and to ensure that your customers can access your services when they need them.
+The answer is simple: ensure that your applications and services are available and reliable, even when failures occur. This is important for business continuity and to ensure that your customers can access your services when they need them.
 
 ![Azure Proactive Resiliency Library - Importance of realibility](AzProactiveResiliencyLibrary_ImportanceRealiability.png)
 
@@ -54,13 +54,13 @@ The [Swiss Cheese Model](https://en.wikipedia.org/wiki/Swiss_cheese_model), deve
 * Institutional Level: Institutions may need more procedures and regulatory narrowness at the highest level. In the context of Azure, this could mean inadequate governance policies or a lack of compliance with best practices. These gaps can create vulnerabilities that might be exploited, leading to system failures.
 * Organizational Level: Organizations often face mixed messages and production pressures. This could translate to conflicting priorities for Azure between rapid deployment and maintaining robust security and reliability. Pressure to deliver quickly might lead to overlooked reliability checks, creating potential points of failure.
 * Professional Level: Issues such as responsibility shifting can arise at the professional level. In an Azure environment, this might occur when there is a lack of clear ownership over different architecture components, leading to neglected maintenance and updates.
-* Team Level: Teams might suffer from inadequate training. In Azure, this could mean insufficient knowledge about Azure services, leading to suboptimal configuration and management of resources. Proper training ensures that teams can effectively manage and troubleshoot their environments.
+* Team Level: Teams might suffer from inadequate training. In Azure, this could mean insufficient knowledge about Azure services, leading to suboptimal configuration and resource management. Proper training ensures that teams can effectively manage and troubleshoot their environments.
 * Individual Level: Individual contributors might be distracted or make errors. In Azure, this could involve misconfigurations or overlooking critical logs and alerts. Encouraging a culture of attention to detail and thoroughness can help mitigate these risks.
 * Technical Level: Finally, technical issues such as clumsy technology, coding bugs, and deferred maintenance can directly impact reliability; in Azure, this might involve outdated software versions, unpatched vulnerabilities, or inefficient resource configurations.
 
 By understanding the layers of defense and potential triggers for failures, you can take proactive steps to enhance the reliability of your Azure resources and workloads, ensuring a robust, secure, and efficient cloud environment.
 
-The Azure Proactive Resiliency library and the assessments we will run through will concentrate on the technical level to ensure that your Azure resources are configured correctly and are resilient to failures; however, the other layers of defense are also important to consider and are a [shared responsibility](https://learn.microsoft.com/azure/reliability/overview?WT.mc_id=AZ-MVP-5004796#reliability-requirements) between Microsoft and the customer.
+The Azure Proactive Resiliency library and the assessments we will run through will concentrate on the technical level to ensure that your Azure resources are configured correctly and are resilient to failures; however, the other layers of defense are also essential to consider and are a [shared responsibility](https://learn.microsoft.com/azure/reliability/overview?WT.mc_id=AZ-MVP-5004796#reliability-requirements) between Microsoft and the customer.
 
 ![Azure Proactive Resiliency Library - shared responsibility](AzProactiveResiliencyLibrary_SharedResponsibility.png)
 
@@ -76,7 +76,7 @@ The Assessment report is a 3 stage process.
 
 ![Azure Proactive Resiliency Library - Assessment report](AzProactiveResiliencyLibrary_AssessmentProcess.png)
 
-> You can do both the data collection in an Azure CloudShell, which is useful for running this in customer environments; however, to create and analyze the data, you will need to run the script from a computer that has Word and Excel installed.
+> You can do both the data collection in an Azure CloudShell, which is useful for running this in customer environments; however, to create and analyze the data, you must run the script from a computer with Word and Excel installed.
 
 **It is worth noting that not all services will be supported by the automated resource graph queries, so you will need to check any services that are not supported manually, and when looking at running this for Production workloads, remember to consider the business context around the resiliency requirements.**
 
@@ -88,8 +88,8 @@ The Collector PowerShell script is designed to collect data from the Azure envir
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
 | TenantID          | Optional: tenant to be used.                                                                                             | 12345678-1234-1234-1234-123456789012                                       |
 | SubscriptionIds   | Required (or SubscriptionsFile): Specifies Subscription(s) to be included in the analysis.                               | 12345678-1234-1234-1234-123456789012, 12345678-1234-1234-1234-123456789012 |
-| SubscriptionsFile | Optional (or SubscriptionIds): Specifies the file with the subscription list to be analyzed (one subscription per line). | subscriptions.txt                                                          |
-| RunbookFile       | Optional: Specifies the file with the runbook (selectors & checks) to be used.                                           | runbook.json                                                               |
+| SubscriptionsFile | Optional (or SubscriptionIds): Specifies the file with the list to be analyzed (one subscription per line). | subscriptions.txt                                                          |
+| RunbookFile       | Optional: Specifies the file with the runbook (selectors & checks) for use.                                           | runbook.json                                                               |
 | ResourceGroups    | Optional: Specifies Resource Group(s) to be included in the analysis.                                                    | ResourceGroup1,ResourceGroup2                                              |
 | Debug             | Optional: Writes debugging information for the script during the execution.                                               | TRUE                                                                       |
 
@@ -109,7 +109,7 @@ The Collector PowerShell script is designed to collect data from the Azure envir
 
 The Data Analyzer PowerShell script is the second script in the Azure Proactive Resiliency Library (APRL) tooling suite. This tool summarizes the collected data and provides actionable insights into the health and resiliency of the Azure environment.
 
-If you used CloudShell in the previous step, you will need to download the JSON file to your local machine to run the Data Analyzer script.
+If you used CloudShell in the previous step, you must download the JSON file to your local machine to run the Data Analyzer script.
 
 > _(The Data Analyzer script must be run from a Windows Machine with Excel installed.)_
 
@@ -140,7 +140,7 @@ $JSONFile = 'WARA_File_2024-07-06_08_48.json'
   ```
 ![Run Data Analyzer](AzProactiveResiliencyLibrary_RunDataAnalyzer.gif)
 
-You should now have an Excel Action Plan, with the data from the JSON file, including the recommendations and the current state of the resources.
+You should now have an Excel Action Plan with the data from the JSON file, including the recommendations and the current state of the resources.
 
 ![Excel Action Plan](AzProactiveResiliencyLibrary_WARAActionPlan.gif)
 
