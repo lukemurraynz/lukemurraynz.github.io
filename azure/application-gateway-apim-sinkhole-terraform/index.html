@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QDLBY7NNN"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0QDLBY7NNN",{anonymize_ip:!0})</script><link rel="stylesheet" href="/assets/css/styles.28b9be22.css">
-<script src="/assets/js/runtime~main.10ef9225.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.2a038c5f.js" defer="defer"></script>
 <script src="/assets/js/main.128b51bf.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -68,9 +68,9 @@ request_routing_rule: This block defines a request routing rule, determining how
 <p>Here&#x27;s a breakdown of what each line does:</p>
 <ul>
 <li>backend_address_pool: This block defines a backend address pool, which is a collection of IP addresses to which the Application Gateway can route network traffic.</li>
+<li>&quot;sinkhole&quot;: This line sets the name of the backend address pool to &quot;sinkhole.&quot; This name is used to reference the backend address pool in other parts of the configuration.</li>
+<li>fqdns = null: This line sets the fully qualified domain names (FQDNs) of the backend addresses to null. This means that the backend address pool does not contain any backend addresses. In the context of a &quot;sinkhole&quot; pool, this is likely intended to discard traffic or direct it to a non-existent endpoint.</li>
 </ul>
-<p>name = &quot;sinkhole&quot;: This line sets the name of the backend address pool to &quot;sinkhole.&quot; This name is used to reference the backend address pool in other parts of the configuration.
-fqdns = null: This line sets the fully qualified domain names (FQDNs) of the backend addresses to null. This means that the backend address pool does not contain any backend addresses. In the context of a &quot;sinkhole&quot; pool, this is likely intended to discard traffic or direct it to a non-existent endpoint.</p>
 <p>I hope this helps you understand how to configure a sinkhole pool in Azure Application Gateway using Terraform. This allows you to offer both external and internal APIs through the gateway. You can also have a private listener with a different routing rile if you want to offer all the internal and external APIs to your internal consumers/networks.</p>
 <p>📖 References:</p>
 <ul>

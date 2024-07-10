@@ -46,9 +46,9 @@ request_routing_rule: This block defines a request routing rule, determining how
 <p>Here's a breakdown of what each line does:</p>
 <ul>
 <li>backend_address_pool: This block defines a backend address pool, which is a collection of IP addresses to which the Application Gateway can route network traffic.</li>
+<li>"sinkhole": This line sets the name of the backend address pool to "sinkhole." This name is used to reference the backend address pool in other parts of the configuration.</li>
+<li>fqdns = null: This line sets the fully qualified domain names (FQDNs) of the backend addresses to null. This means that the backend address pool does not contain any backend addresses. In the context of a "sinkhole" pool, this is likely intended to discard traffic or direct it to a non-existent endpoint.</li>
 </ul>
-<p>name = "sinkhole": This line sets the name of the backend address pool to "sinkhole." This name is used to reference the backend address pool in other parts of the configuration.
-fqdns = null: This line sets the fully qualified domain names (FQDNs) of the backend addresses to null. This means that the backend address pool does not contain any backend addresses. In the context of a "sinkhole" pool, this is likely intended to discard traffic or direct it to a non-existent endpoint.</p>
 <p>I hope this helps you understand how to configure a sinkhole pool in Azure Application Gateway using Terraform. This allows you to offer both external and internal APIs through the gateway. You can also have a private listener with a different routing rile if you want to offer all the internal and external APIs to your internal consumers/networks.</p>
 <p>📖 References:</p>
 <ul>
