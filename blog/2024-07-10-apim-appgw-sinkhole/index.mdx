@@ -20,7 +20,7 @@ keywords:
 description: This article provides a step-by-step guide on setting up an Azure Application Gateway Sinkhole using Terraform.
 ---
 
-When you operate an [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796) solution in Internal mode, you may also want to use an [Azure Application Gateway](https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796) to provide additional security and performance features for external consumers as well and contain a mix of both Internal *(to your own vnet and private dns)* and *(external, accessed via public DNS)* APIs.
+When you use an [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796) solution in Internal mode, you may also want to use an [Azure Application Gateway](https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796) to provide additional security and performance features for external consumers as well and contain a mix of both Internal *(to your own vnet and private dns)* and *(external, accessed via public DNS)* APIs.
 
 ![APIM Management Internal](apim_internal_appgw.png)
 _(Image courtesy of: [Azure APIM and Application Gateway Integration](https://medium.com/@thahif.86/azure-apim-and-application-gateway-integration-9039378ba197))_
@@ -34,7 +34,7 @@ In this scenario, you can use the following paths on your APIs:
 
 <!-- truncate -->
 
-Where the path of Internal is only intended for internal consumers and internal APIs, and the external path is intended to be accessed externally (and in some cases internally).
+Where the path of Internal is only intended for internal consumers and internal APIs, and the external path is intended to be accessed externally *(and in some cases internally)*.
 
 To do this, you can create a Backend Pool named sinkhole and a Rule to route traffic to the sinkhole pool based on the path using the Application Gateway path routing rules.
 
@@ -112,4 +112,5 @@ I hope this helps you understand how to configure a sinkhole pool in Azure Appli
 
 - 🔗[Deploy your Azure API Management instance to a virtual network - internal mode](https://learn.microsoft.com/azure/api-management/api-management-using-with-internal-vnet?tabs=stv2&WT.mc_id=AZ-MVP-5004796)
 - 🔗[Protect APIs with Application Gateway and API Management](https://learn.microsoft.com/azure/architecture/web-apps/api-management/architectures/protect-apis?WT.mc_id=AZ-MVP-5004796)
+- 🔗[URL Path Based Routing overview](https://learn.microsoft.com/azure/application-gateway/url-route-overview?WT.mc_id=AZ-MVP-5004796)
 - 🔗[apim-landing-zone-accelerator](https://github.com/Azure/apim-landing-zone-accelerator)
