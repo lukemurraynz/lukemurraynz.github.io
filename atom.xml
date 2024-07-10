@@ -23,7 +23,7 @@
 <li><strong>External</strong>: <code>https://apim.yourdomain.com/external/echo</code></li>
 </ul>
 <p><img decoding="async" loading="lazy" alt="Azure API Management - EchoAPI" src="https://luke.geek.nz/assets/images/apim_echoapi_external-e9a34e77e1ef9b48d3912406e4c12552.png" width="950" height="600" class="img_ev3q"></p>
-<p>Where the path of Internal is only intended for internal consumers and internal APIs, and the external path is intended to be accessed externally <em>(and in some cases internally)</em>.</p>
+<p>Where the path of Internal is only intended for internal consumers and internal APIs, and the external path is intended to be accessed externally <em>(and in some cases internally)</em>. You can drop all traffic that reaches the Azure Application Gateway with an /internal URL by routing it to a backend that doesn't exist.</p>
 <p>To do this, you can create a Backend Pool named sinkhole and a Rule to route traffic to the sinkhole pool based on the path using the Application Gateway path routing rules.</p>
 <p><img decoding="async" loading="lazy" alt="Azure App Gateway - Sinkhole" src="https://luke.geek.nz/assets/images/appgw_routingrules_sinkhole-f73fea724619e119e1fa856a8b974e18.png" width="1193" height="801" class="img_ev3q"></p>
 <p>Here is the Terraform code on how you might implement this:</p>
