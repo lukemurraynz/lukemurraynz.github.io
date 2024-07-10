@@ -34,7 +34,7 @@ In this scenario, you can use the following paths on your APIs:
 
 <!-- truncate -->
 
-Where the path of Internal is only intended for internal consumers and internal APIs, and the external path is intended to be accessed externally *(and in some cases internally)*.
+Where the path of Internal is only intended for internal consumers and internal APIs, and the external path is intended to be accessed externally *(and in some cases internally)*. You can drop all traffic that reaches the Azure Application Gateway with an /internal URL by routing it to a backend that doesn't exist.
 
 To do this, you can create a Backend Pool named sinkhole and a Rule to route traffic to the sinkhole pool based on the path using the Application Gateway path routing rules.
 
