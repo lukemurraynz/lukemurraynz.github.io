@@ -49,7 +49,7 @@ request_routing_rule: This block defines a request routing rule, determining how
 <p>name = "sinkhole": This line sets the name of the backend address pool to "sinkhole." This name is used to reference the backend address pool in other parts of the configuration.
 fqdns = null: This line sets the fully qualified domain names (FQDNs) of the backend addresses to null. This means that the backend address pool does not contain any backend addresses. In the context of a "sinkhole" pool, this is likely intended to discard traffic or direct it to a non-existent endpoint.</p>
 <p>I hope this helps you understand how to configure a sinkhole pool in Azure Application Gateway using Terraform. This allows you to offer both external and internal APIs through the gateway. You can also have a private listener with a different routing rile if you want to offer all the internal and external APIs to your internal consumers/networks.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-references">📖 References:<a href="https://luke.geek.nz/azure/application-gateway-apim-sinkhole-terraform/#-references" class="hash-link" aria-label="Direct link to 📖 References:" title="Direct link to 📖 References:">​</a></h2>
+<p>📖 References:</p>
 <ul>
 <li>🔗<a href="https://learn.microsoft.com/azure/api-management/api-management-using-with-internal-vnet?tabs=stv2&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Deploy your Azure API Management instance to a virtual network - internal mode</a></li>
 <li>🔗<a href="https://learn.microsoft.com/azure/architecture/web-apps/api-management/architectures/protect-apis?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Protect APIs with Application Gateway and API Management</a></li>
