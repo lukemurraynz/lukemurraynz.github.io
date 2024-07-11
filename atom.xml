@@ -42,6 +42,7 @@
 <ul>
 <li>🔗<a href="https://learn.microsoft.com/training/modules/deploy-manage-container-app-using-azure-container-apps/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Guided project - Deploy and manage a container app using Azure Container Apps</a></li>
 <li>🔗<a href="https://learn.microsoft.com/azure/container-apps/networking?tabs=workload-profiles-env%2Cazure-cli&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Networking in Azure Container Apps environment</a></li>
+<li>🔗<a href="https://github.com/microsoft/azure-container-apps/issues/451" target="_blank" rel="noopener noreferrer">Failed to create Container Apps Environment with custom virtual network #451</a></li>
 </ul>]]></content>
         <author>
             <name>Luke Murray</name>
