@@ -1,6 +1,6 @@
 ---
 title: Azure Container Apps Environment deployment - Missing Subnet
-metaDescription: Missing subnet, when attempting to deploy Container Apps Environment using the Azure Portal
+metaDescription: Missing subnet when attempting to deploy Container Apps Environment using the Azure Portal
 date: 2024-07-11T08:49:09.909Z
 tags:
   - Azure
@@ -16,14 +16,14 @@ keywords:
   - missingsubnet
   - cloudnative
   - containerappsenvironment
-description: Missing subnet, when attempting to deploy Container Apps Environment using the Azure Portal
+description: Missing subnet when attempting to deploy Container Apps Environment using the Azure Portal
 ---
 
-When attempting to deploy a Container Apps Environment, integrated into a VNET (Virtual Network) that was pre-created you may have issues selecting a subnet which your Container Apps Environment should be deployed into, as your subnet may not be appearing in the Azure Portal to select.
+When attempting to deploy a Container Apps Environment integrated into a VNET *(Virtual Network)* that was pre-created, you may have issues selecting a subnet which your Container Apps Environment should be deployed into, as your subnet may not be appearing in the Azure Portal to select.
 
 ![Container App Environment - Missing subnet](container-apps-env-subnetmissing.png)
 
-Before we continue make sure that the subnet address ranges matches at least:
+Before we continue, make sure that the subnet address ranges match at least the following:
 
 | Workload Profile | Minimum Subnet Size for Virtual Network Integration |
 |------------------|----------------------------------------------------|
@@ -32,7 +32,7 @@ Before we continue make sure that the subnet address ranges matches at least:
 
 If you have a subnet that meets the requirements, you can proceed with trying the following steps.
 
-1. Delete the Subnet you want to use to deloy your Container Apps environment into it.
+1. Delete the Subnet you want to use to deploy your Container Apps environment into it.
 2. Now we need to recreate the subnet using the Azure CLI *(you can use the [Azure CloudShell](https://learn.microsoft.com/azure/cloud-shell/overview?WT.mc_id=AZ-MVP-5004796))* by running the following command *(replace the values with your own)*:
 
 ```bash
@@ -69,7 +69,7 @@ In the non-working example, the addressPrefixes property is used instead of addr
 
 The difference lies in how the address prefix is represented:
 
-* Working Example: Uses addressPrefix as a single string property.
+* Working Example: Uses addressPrefix as a single-string property.
 * Non-working Example: Uses addressPrefixes as an array with one element
 
 📖 References: 
