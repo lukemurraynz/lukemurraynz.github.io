@@ -30,16 +30,16 @@ This resource is in a failed state.
 <!-- truncate -->
 
 :::info
-The error message usually occurs when there are Environments created for these Projects. This prevents the deletion of the Environment Type / Project / DevCenter. This behavior is by design to prevent accidental deletion.
+The error message usually occurs when environments are created for these projects. This prevents the deletion of the Environment Type / Project / DevCenter. This behavior is designed to prevent accidental deletion.
 :::
 
 1. Sign-in to the [Azure Portal](https://azure.microsoft.com/get-started/azure-portal?WT.mc_id=AZ-MVP-5004796) go to the project page.
-2. Select Access control (IAM) in the left panel, then click Add and choose Add role assignment
+2. Select Access Control (IAM) in the left panel, then click Add and choose Add role assignment
 ![Dev Center - RBAC (Role Based Access Control)](devcenter-projectadmin-assignrole.png)
 3. Search the **DevCenter Project Admin** and grant this role to yourself
-![DevCeter - Assign Projecct Admin role](devcenter-projectadmin-role.png)
+![DevCenter - Assign Project Admin role](devcenter-projectadmin-role.png)
 4. After the operation executes successfully, try to delete the project again
 
-If this doesn't work, then you may need to delete the Environment first, if you get Internal Server error, then 
+If this doesn't work, then you may need to delete the Environment first; if you get an Internal Server error, then wait 2 minutes and retry the deletion again. 
 
 ![DevCenter](devcenter-environments.png)
