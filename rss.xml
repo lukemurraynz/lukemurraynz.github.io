@@ -14,8 +14,9 @@
             <link>https://luke.geek.nz/azure/push-docker-images-to-acr-using-github-codespaces/</link>
             <guid>https://luke.geek.nz/azure/push-docker-images-to-acr-using-github-codespaces/</guid>
             <pubDate>Tue, 16 Jul 2024 09:16:17 GMT</pubDate>
-            <description><![CDATA[This article guides you through the process of pulling and pushing Docker images from DockerHub to Azure Container Registry using GitHub Codespaces.]]></description>
-            <content:encoded><![CDATA[<p><a href="https://github.com/features/codespaces" target="_blank" rel="noopener noreferrer">GitHub Codespaces</a> already have Docker preinstalled, as a dependency for the Codespaces environment. This article will guide you on how to pull and push a Docker image from DockerHub to Azure Container Registry using GitHub Codespaces.</p>
+            <description><![CDATA[This article guides you through pulling and pushing Docker images from DockerHub to Azure Container Registry using GitHub Codespaces.]]></description>
+            <content:encoded><![CDATA[<p><a href="https://github.com/features/codespaces" target="_blank" rel="noopener noreferrer">GitHub Codespaces</a> already have Docker preinstalled as a dependency for the Codespaces environment. This article will guide you through pulling and pushing a Docker image from DockerHub to Azure Container Registry using GitHub Codespaces.</p>
+<!-- -->
 <div></div>
 <p>This article assumes you have an <a href="https://learn.microsoft.com/azure/container-registry/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Container Registry</a> and a <a href="https://hub.docker.com/" target="_blank" rel="noopener noreferrer">DockerHub</a> account.
 :::</p>
@@ -25,20 +26,20 @@
 <li>Install the <a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker" target="_blank" rel="noopener noreferrer">Docker extension</a> for Visual Studio Code in the Codespace</li>
 <li>Open the Docker extension and sign in to DockerHub
 <img decoding="async" loading="lazy" alt="Install Docker Extension" src="https://luke.geek.nz/assets/images/Open_IAC_Codespace_InstallDockerExtension-f91ef7a3a2bf724a2c09ca9f1e698b5c.gif" width="1888" height="960" class="img_ev3q"></li>
-<li>Now we need to login to our Azure Registry, under Registry, select Azure and connect and login to your Azure account</li>
-<li>Now we don't  have any images, so we need to pull it down from the dockerhub. Open the terminal and run the following command:</li>
+<li>Now we need to log to our Azure Registry; under Registry, select Azure, and connect and log in to your Azure account</li>
+<li>Now, we don't have any images, so we need to pull them down from the docker hub. Open the terminal and run the following command:</li>
 </ol>
 <div></div>
 <p>Replace <code>api-firewall:0.6.14</code> with the image and tag you want to pull from DockerHub.
 :::</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token function" style="color:rgb(80, 250, 123)">docker</span><span class="token plain"> pull api-firewall:0.6.14</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <ol start="6">
-<li>Now that our image is pulled down from the Dockerhub, we need to tag it with our Azure Container Registry, and push it. We can do this directly from the Docker extension.</li>
-<li>Right click and select Push</li>
+<li>Now that our image is pulled down from the Dockerhub, we need to tag it with our Azure Container Registry and push it. We can do this directly from the Docker extension.</li>
+<li>Right-click and select Push</li>
 <li>Select Azure as the provider, and select your Azure Container Registry</li>
-<li>Now we need to tag the image with the Azure Container Registry, so we can push it. You can adjust the name and Tag and click Ok to Push it.
+<li>Now, we need to tag the image with the Azure Container Registry to push it. You can adjust the name and Tag and click OK to Push it.
 <img decoding="async" loading="lazy" alt="Push Azure Container Registry" src="https://luke.geek.nz/assets/images/Open_IAC_Codespace_PushContainerACR-6ecce687b3cbfa1c309cf00a3a51cfec.gif" width="1888" height="960" class="img_ev3q"></li>
-<li>Now, navigate to your Azure Container Registry in the Azure Portal, and you should be able to see your new image in the repository.
+<li>Now, navigate to your Azure Container Registry in the Azure Portal, and you should see your new image in the repository.
 <img decoding="async" loading="lazy" alt="Azure Container Registry" src="https://luke.geek.nz/assets/images/Open_IAC_Codespace_PushedACR-7e4c5116a25736135dfe13d6d862aaa7.png" width="1875" height="806" class="img_ev3q"></li>
 </ol>
 <p>You have now successfully pulled and pushed a Docker image from DockerHub to Azure Container Registry using GitHub Codespaces.</p>]]></content:encoded>
