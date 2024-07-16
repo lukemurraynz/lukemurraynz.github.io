@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QDLBY7NNN"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0QDLBY7NNN",{anonymize_ip:!0})</script><link rel="stylesheet" href="/assets/css/styles.28b9be22.css">
-<script src="/assets/js/runtime~main.3de83803.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.b8c36cd2.js" defer="defer"></script>
 <script src="/assets/js/main.2fa6a0e2.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -41,14 +41,12 @@
 <!-- -->
 <p>Pushing a container from Docker Hub to your own Azure Container Registry (ACR) can offer several benefits:</p>
 <ul>
-<li>Security: You can control who can access your container images.</li>
+<li>Security: You can control who can access your container images, and gives you more control over vulnerability scanning.</li>
 <li>Network latency: You can reduce network latency by hosting your container images closer to your deployment targets.</li>
 <li>Compliance: You can meet compliance requirements by storing your container images in a specific region.</li>
 <li>Integration: You can integrate your container images with other Azure services.</li>
 </ul>
-<div></div>
-<p>This article assumes you have an <a href="https://learn.microsoft.com/azure/container-registry/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Container Registry</a> and a <a href="https://hub.docker.com/" target="_blank" rel="noopener noreferrer">DockerHub</a> account.
-:::</p>
+<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><p>This article assumes you have an <a href="https://learn.microsoft.com/azure/container-registry/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Container Registry</a> already provisioned, you don&#x27;t need a <a href="https://hub.docker.com/" target="_blank" rel="noopener noreferrer">DockerHub</a> account, if you are pulling from the public repository.</p></div></div>
 <ol>
 <li>Launch a Codespace, for example: <a href="https://github.com/lukemurraynz/Codespace_IaC_Coding" target="_blank" rel="noopener noreferrer">lukemurraynz/Codespace_IaC_Coding</a>
 <img decoding="async" loading="lazy" alt="Open Codespace" src="/assets/images/Open_IAC_Codespace-4219be529162c1b4167674a9b8a54953.gif" width="2027" height="1021" class="img_ev3q"></li>
