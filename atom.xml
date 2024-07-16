@@ -16,6 +16,13 @@
         <summary type="html"><![CDATA[This article guides you through pulling and pushing Docker images from DockerHub to Azure Container Registry using GitHub Codespaces.]]></summary>
         <content type="html"><![CDATA[<p><a href="https://github.com/features/codespaces" target="_blank" rel="noopener noreferrer">GitHub Codespaces</a> already have Docker preinstalled as a dependency for the Codespaces environment. This article will guide you through pulling and pushing a Docker image from DockerHub to Azure Container Registry using GitHub Codespaces.</p>
 <!-- -->
+<p>Pushing a container from Docker Hub to your own Azure Container Registry (ACR) can offer several benefits:</p>
+<ul>
+<li>Security: You can control who can access your container images.</li>
+<li>Network latency: You can reduce network latency by hosting your container images closer to your deployment targets.</li>
+<li>Compliance: You can meet compliance requirements by storing your container images in a specific region.</li>
+<li>Integration: You can integrate your container images with other Azure services.</li>
+</ul>
 <div></div>
 <p>This article assumes you have an <a href="https://learn.microsoft.com/azure/container-registry/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Container Registry</a> and a <a href="https://hub.docker.com/" target="_blank" rel="noopener noreferrer">DockerHub</a> account.
 :::</p>
