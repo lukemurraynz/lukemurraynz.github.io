@@ -27,13 +27,13 @@ description: This article guides you through pulling and pushing Docker images f
 
 Pushing a container from Docker Hub to your own Azure Container Registry (ACR) can offer several benefits:
 
-- Security: You can control who can access your container images.
+- Security: You can control who can access your container images, and gives you more control over vulnerability scanning.
 - Network latency: You can reduce network latency by hosting your container images closer to your deployment targets.
 - Compliance: You can meet compliance requirements by storing your container images in a specific region.
 - Integration: You can integrate your container images with other Azure services.
 
-::info
-This article assumes you have an [Azure Container Registry](https://learn.microsoft.com/azure/container-registry/?WT.mc_id=AZ-MVP-5004796) and a [DockerHub](https://hub.docker.com/) account.
+:::info
+This article assumes you have an [Azure Container Registry](https://learn.microsoft.com/azure/container-registry/?WT.mc_id=AZ-MVP-5004796) already provisioned, you don't need a [DockerHub](https://hub.docker.com/) account, if you are pulling from the public repository.
 :::
 
 1. Launch a Codespace, for example: [lukemurraynz/Codespace_IaC_Coding](https://github.com/lukemurraynz/Codespace_IaC_Coding)
