@@ -1,0 +1,254 @@
+---
+title: Azure API Management Overview
+metaDescription: Overview of Azure API Management
+date: 2024-02-03T10:56:08.514Z
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: azure/accessing-keyvault-azure-devops
+keywords:
+  - azure
+  - cloudnative
+  - integration
+  - apimanagement
+  - apim
+description: Overview of Azure API Management
+---
+
+Today, we are going to look at [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796). Azure API Management is a service that provides a way to create consistent and modern API gateways for existing back-end services. It also provides a way to publish APIs to external, partner, and internal developers. Azure API Management is a fully managed service that enables customers to publish, secure, transform, maintain, and monitor APIs.
+
+{/*truncate*/}
+
+# Azure API Management Overview
+
+> [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796) is a hybrid, multicloud management platform for APIs across all environments. As a platform-as-a-service, API Management supports the complete API lifecycle.
+
+We're going to take an in-depth look at the API life cycle phases and explore how Azure API Management can help you efficiently manage your APIs from start to finish.
+
+![Azure API Management - Overview](/images/apim_overview.PNG)
+
+- **Design**
+The first phase of the API life cycle is Design. In this phase, we focus on defining the API's purpose, its endpoints, and the data it will handle. This involves creating a blueprint for the API, including its structure and functionality. Azure API Management provides tools and templates to help you design APIs that are efficient, scalable, and easy to use.
+- **Develop**
+Once the design is in place, we move on to the Develop phase. This is where the actual coding happens. Developers write the code that implements the API's functionality based on the design specifications. Azure API Management supports various development environments and integrates seamlessly with tools like Visual Studio, making the development process smoother and more efficient.
+- **Secure**
+Security is a critical aspect of API management. In the Secure phase, we ensure that our APIs are protected from unauthorized access and potential threats. Azure API Management offers robust security features such as authentication, authorization, and encryption. These features help safeguard your APIs and the data they handle, ensuring that only authorized users can access them.
+- **Publish**
+After securing the API, it's time to make it available to users. The Publish phase involves exposing the API to developers and end-users. Azure API Management provides a developer portal where you can publish your APIs, offer documentation, and manage subscriptions. This makes it easy for developers to discover and start using your APIs.
+- **Scale**
+As your API gains popularity, you need to ensure it can handle increased traffic. The Scale phase focuses on optimizing the API's performance and scalability. Azure API Management allows you to scale your APIs effortlessly, ensuring they can handle large volumes of requests without compromising performance.
+- **Monitor**
+Monitoring is essential to ensure your APIs are functioning correctly and efficiently. In the Monitor phase, Azure API Management provides detailed analytics and logging capabilities. You can track usage patterns, monitor performance metrics, and identify potential issues before they impact your users.
+- **Analyze**
+In the Analyze phase, we use the data collected during monitoring to gain insights into how our APIs are being used. Azure API Management offers powerful analytics tools that help you understand user behavior, identify trends, and make data-driven decisions to improve your APIs continuously.
+
+In the modern digital era, transformation is more than just a buzzword—it's a necessity. And at the heart of this transformation are APIs, which enable connected experiences and seamless integration of services and data.
+
+![Azure API Management - Digital Transformation](/images/apim_overview_digitaltransformation.gif)
+
+APIs are crucial in connecting various devices and platforms. Whether it's a smart home system, wearable technology, automotive applications, or even industrial equipment, APIs facilitate the communication and interoperability between these diverse endpoints.
+Think about your daily interactions with technology. From unlocking your smartphone, using applications on your tablet, streaming content on your smart TV, to engaging in augmented reality experiences—APIs are working behind the scenes to ensure a smooth and connected experience. They enable devices and applications to talk to each other, share data, and create a cohesive user experience.
+
+APIs connect various services, databases, servers, and cloud infrastructures. They allow these systems to interact, share data, and perform complex functions in a coordinated manner.
+
+APIs also enable businesses to be agile and adaptive. By exposing functionalities through APIs, companies can quickly integrate new services, scale their operations, and meet evolving customer demands. They empower developers to build robust applications, enhance user experiences, and drive digital growth.
+
+## API governance
+
+There are three crucial aspects of API governance and usage that play a significant role in achieving success: 
+
+- **Façade Abstraction**
+This concept involves creating an interface that simplifies and standardizes how APIs interact with backend systems.
+Aggregate or Slice: APIs can aggregate data from multiple sources or slice it into meaningful pieces for specific use cases. This flexibility allows businesses to present data in the most relevant and useful way to their users.
+Normalize or Modernize: Façade Abstraction also helps in normalizing or modernizing legacy systems, making them compatible with modern applications. By doing so, you can extend the life of older systems and integrate them with new technologies without extensive rework.
+Decouple Lifecycle Mock: Decoupling the API lifecycle from the backend systems ensures that changes in backend services do not disrupt the API functionality. Mocking services during development and testing phases further ensures smooth transitions and updates.
+- **Front Door Control**
+This aspect is all about managing and controlling how APIs are accessed and utilized.
+Route and Accelerate: By routing API requests efficiently, you can optimize the performance and responsiveness of your applications. Acceleration techniques like caching and load balancing can significantly improve user experience.
+Secure and Protect: Security is paramount in API management. Front Door Control involves implementing robust security measures to protect APIs from threats and unauthorized access. This includes authentication, authorization, and data encryption.
+Transform and Observe: Transforming API requests and responses to meet specific requirements and observing API usage patterns helps in maintaining control and ensuring optimal performance. Monitoring tools provide insights into how APIs are being used and can alert you to potential issues before they become critical.
+- **Frictionless Consumption**
+This principle is about making it easy for developers and users to discover, access, and use your APIs.
+Onboarding: A smooth onboarding process is crucial for attracting and retaining users. Providing clear documentation, tutorials, and support helps users quickly understand and start using your APIs.
+Discover and Learn: APIs should be easily discoverable. This can be achieved through a well-organized developer portal where users can learn about the available APIs, their functionalities, and use cases.
+Try and Obtain Access: Allowing users to try APIs in a sandbox environment and easily obtain access through streamlined registration processes encourages experimentation and adoption.
+
+## Stakeholders
+
+Azure API Management has the following stakeholders:
+ 
+- **App Developers** 
+These are the individuals or teams responsible for creating applications that consume APIs. They use the platform to discover, learn, try, onboard, and get help with APIs.
+Employees, Partners.
+- **Customers**
+These stakeholders leverage the APIs to enhance their workflows, integrate systems, and improve customer experiences.
+- **Apps on Devices**
+These represent the end-user applications that interact with the APIs. They could be mobile apps, web applications, IoT devices, or any other software that consumes APIs.
+
+## Planes
+
+:::info
+Azure API Management consists of three main planes:
+ 
+- **User Plane**
+Developer Portal: This portal serves as the primary interface for app developers. It provides resources for developers to discover, learn, try, and onboard with APIs. The portal ensures that developers have the support they need to integrate APIs efficiently into their applications.
+- **Data Plane**
+Gateway: The Gateway functions as a secure bridge between the API consumers and the backend services. It enforces security policies, manages traffic, and ensures reliable API performance. The gateway handles tasks such as rate limiting, authentication, and request routing.
+- **Management Plane**
+API Management Plane: This is where API providers manage the lifecycle of their APIs. The management plane includes tools for abstracting, securing, evolving, observing, and monetizing APIs. This layer ensures that APIs are managed effectively, from creation and deployment to monitoring and analytics.
+:::
+
+Azure API Management seamlessly integrates with various Azure services and microservices, providing a cohesive environment for managing and deploying APIs. This integration allows organizations to leverage the full power of Azure's cloud capabilities, ensuring that their APIs are scalable, secure, and performant.
+
+- **Benefits**
+
+Some of the benefits of Azure API Management include:
+
+* Discoverability: Developers can easily find and access APIs.
+* Security: Robust security measures protect data and ensure compliance.
+* Scalability: APIs can scale to meet growing demand.
+* Efficiency: Streamlined management processes enhance productivity.
+* Monetization: Organizations can generate revenue from their APIs.
+
+In conclusion, Azure API Management is a powerful platform that enables organizations to create, manage, and scale APIs efficiently. By following the API life cycle phases and leveraging Azure API Management's features, businesses can deliver seamless digital experiences, drive innovation, and stay ahead in today's competitive landscape.
+
+## Azure API Management plans
+
+![API Management - Pricing Tiers](/images/apim_overview_pricingtiers.gif)
+
+Azure API Management offers a variety of service tiers, each designed to provide specific capabilities and benefits. Let's explore these tiers in more detail.
+
+- **Consumption Tier**
+ 
+Key Features include:
+
+* No Infrastructure to Provision or Manage: The consumption tier eliminates the need for managing infrastructure. This serverless approach allows you to focus solely on your APIs without worrying about the underlying hardware or software.
+* Built-in Auto-scaling Down to Zero: It automatically scales to handle varying loads and can scale down to zero during periods of inactivity, ensuring cost-efficiency.
+* Consumption-based Micro Billing: Billing is based on actual usage, making it a cost-effective solution for applications with unpredictable or fluctuating traffic.
+* Variable, Usage-based Monthly Cost: You pay only for what you use, allowing for a flexible and budget-friendly approach.
+* No Reserved Capacity: This tier does not require any reserved capacity, making it ideal for projects with uncertain demands.
+* Shared Management Plane: The management plane is shared, which simplifies administration and reduces costs.
+* On-demand Activation: APIs can be activated on demand, providing flexibility and agility.
+* Curated Set of Features and Usage Limits: This tier offers a curated set of features and usage limits, ensuring a streamlined and efficient API management experience.
+
+- **Developer, Basic, Standard, and Premium Tiers**
+ 
+Key Features include:
+
+* No Infrastructure to Provision or Manage: Similar to the consumption tier, these tiers also eliminate the need to manage infrastructure, allowing you to focus on development and deployment.
+* Manual Scaling or External Auto-scaling: These tiers support manual scaling or external auto-scaling, providing more control over resource allocation.
+* Billing Based on Reserved Capacity: Billing is based on reserved capacity, offering predictable and consistent costs.
+* Constant, Predictable Monthly Cost: Unlike the consumption tier, these tiers provide a constant, predictable monthly cost, making budget planning easier.
+* Reserved Capacity: These tiers offer reserved capacity, ensuring that your APIs can handle consistent and high-demand workloads.
+* Dedicated Management, User, and Data Planes: With dedicated planes, you get enhanced security, performance, and isolation, which is crucial for mission-critical applications.
+* Always On: APIs are always available, ensuring high availability and reliability for your applications.
+* Full Set of Features: These tiers offer a full set of features without governance limits, providing comprehensive capabilities for complex and large-scale API management needs.
+
+![APIM Pricing Tiers](/images/apim_pricing_tiers.png)
+
+Let's delve into the key features of each tier.
+
+| Feature                        | Basic | Basic v2 | Standard | Standard v2 | Premium |
+| ------------------------------ | ----- | -------- | -------- | ----------- | ------- |
+| Microsoft Entra Integration    | No    | Yes      | Yes      | Yes         | Yes     |
+| Virtual Network (VNet) Support | No    | No       | No       | Yes         | Yes     |
+| Private Endpoint Support       | Yes   | No       | Yes      | No          | Yes     |
+| Multi-region Deployment        | No    | No       | No       | No          | Yes     |
+| Availability Zones             | No    | No       | No       | No          | Yes     |
+| Autoscaling                    | Yes   | No       | Yes      | No          | Yes     |
+| Self-hosted Gateway            | No    | No       | No       | No          | Yes     |
+| Backup and Restore             | Yes   | No       | Yes      | No          | Yes     |
+| Management over Git            | Yes   | No       | Yes      | No          | Yes     |
+| Static IP                      | Yes   | No       | Yes      | No          | Yes     |
+
+> "Accelerate your API strategy with Azure API Management, the comprehensive lifecycle solution trusted by thousands of enterprises worldwide. From abstraction and security to observability and discoverability, the APIM platform empowers you to manage APIs effortlessly across clouds and on-premises environments. Built for reliability, security, scalability, and performance, it's designed to support both DevOps and developers alike, seamlessly integrating with Azure services. Benefit from global availability, robust support, and competitive, accessible pricing—Azure API Management simplifies API management so you can focus on innovation."
+
+## API Lifecycle
+
+
+![API Lifecycle](apim_api_lifecycle.PNG)
+
+The API lifecycle consists of several phases, each essential for creating, managing, and optimizing APIs this lifecycle emphasizing the continuous and iterative nature of API development and management.
+
+- **Design**
+
+The lifecycle begins with the Design phase. In this phase, APIs are conceptualized and defined. 
+
+Key features include:
+
+* Start fast with proxy mode: Quickly create an API proxy to start testing.
+* Design and mock: Define and simulate APIs to validate their design.
+* Import from a definition: Use existing API definitions to create new APIs.
+* Import from an Azure resource: Generate APIs based on existing Azure services.
+* Capture schema from test calls: Automatically generate API schemas from sample requests and responses.
+
+- **Develop**
+
+The next phase is Develop, where the API is built and refined. This stage includes:
+
+* 50+ policies: Apply various policies to control API behavior.
+* SOAP-to-REST: Convert SOAP services to RESTful APIs.
+* Visual Studio Code integration: Use VS Code for development and debugging.
+* Live policy debugging: Debug policies in real time.
+* API scaffolding: Automatically generate code and configurations for APIs.
+
+-**Secure**
+
+In the Secure phase, the API's security is ensured. This involves:
+
+* Data | Management | User planes: Secure different aspects of data and management.
+* Keys, OAuth, certificates, custom: Implement authentication and authorization mechanisms.
+* 1st and 3rd party identity providers: Integrate with various identity providers.
+* Request/response validation: Validate API requests and responses for security.
+* IP-based access control: Restrict access based on IP addresses.
+* Private networking: Secure APIs within private networks.
+* Compliance: Ensure APIs comply with industry standards and regulations.
+
+- **Publish**
+
+After securing the API, it is time to Publish it. This stage involves:
+
+* Revisions and versions: Manage different versions and revisions of the API.
+* API products, user groups, subscriptions: Organize APIs into products and manage user access.
+* Customizable developer portal: Provide a portal for developers to access and use APIs.
+* Integrated API playground: Allow developers to test APIs within the portal.
+* Export to the Power Platform: Integrate APIs with Microsoft Power Platform.
+* Self-service onboarding: Enable users to onboard themselves.
+* DevOps: Integrate with DevOps pipelines for continuous integration and deployment.
+
+- **Scale**
+
+Once published, the API needs to be scaled to handle increased demand. The Scale phase includes:
+
+* Worldwide availability: Deploy APIs globally to ensure availability.
+* Multi-region deployments: Distribute APIs across multiple regions for redundancy and performance.
+* Availability zones: Utilize availability zones to increase reliability.
+* Caching: Implement caching to improve performance.
+* Auto-scaling: Automatically adjust resources based on demand.
+* Hybrid and multi-cloud: Deploy APIs in hybrid and multi-cloud environments.
+* Azure Arc enabled: Manage and govern APIs across different environments using Azure Arc.
+
+- **Monitor**
+
+* After scaling, the API must be monitored to ensure it operates correctly. The Monitor phase involves:
+* Azure Monitor: Use Azure Monitor to track and analyze API performance.
+* Application Insights: Gain insights into application performance and user behavior.
+* Logs | Metrics | Traces | Alerts: Collect and analyze logs, metrics, and traces, and set up alerts.
+* Configurable verbosity: Adjust the level of detail in logs and metrics.
+* E2E request tracing: Trace requests end-to-end to diagnose issues.
+* Local telemetry for self-hosted gateway: Collect telemetry data from self-hosted API gateways.
+
+- *Analyze*
+
+Finally, in the Analyze phase, the collected data is used to gain insights and improve the API. This stage includes:
+
+* Built-in reports: Use built-in reports for quick insights.
+* Custom reports with Log Analytics: Create custom reports using Log Analytics.
+* Reports in Power BI: Visualize data and generate reports using Power BI.
+* Custom telemetry pipelines: Set up custom telemetry pipelines for advanced analysis.
+
+This lifecycle ensures that APIs are well-designed, developed, secured, published, scaled, monitored, and analyzed, providing a comprehensive approach to API management.
+
