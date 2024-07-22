@@ -76,30 +76,21 @@ Then, we can use the pipeline to connect to the Container Registry and patch the
 
 ```mermaid
 graph TD
-    A[Start] --> B{Parameters}
-    B -->|image| C[Image To Patch]
-    B -->|trivyVersion| D[Trivy Version]
-    B -->|copaVersion| E[Copacetic Version]
-    B -->|buildkitVersion| F[BuildKit Version]
-    B --> G{Variables}
-    G -->|buildkit.port| H[BuildKit Port]
-    G -->|serviceConnectionName| I[Service Connection Name]
-    G -->|system.debug| J[System Debug]
-    G --> K[Stages]
-    K --> L[Stage: Patch]
-    L --> M[Job: Copacetic]
-    M --> N[Step: Download and Install Trivy and Copa]
-    M --> O[Step: Run Buildkit]
-    M --> P[Step: Login to ACR]
-    M --> Q[Step: Scan image for DevOps Output]
-    M --> R[Step: Scan and Patch Image]
-    M --> S[Step: Upload Scan Results as a pipeline artifact]
-    M --> T[Step: Upload patched image as a pipeline artifact]
-    M --> U[Step: Push Patched Image to ACR]
-    U --> V[End]
+  A[Start] --> B{Parameters}
+  B --> C{Variables}
+  C --> D[Stages]
+  D --> E[Stage: Patch]
+  E --> F[Job: Copacetic]
+  F --> G[Step: Setup]
+  G --> H[Step: Scan and Patch Image]
+  H --> I[Step: Upload Results]
+  I --> J[Step: Push Patched Image to ACR]
+  J --> K[End]
 ```
 
 Make sure you update the parameters, and Service Principal variable name with the up-to-date versions of Trivy, Copacetic and BuildKit, at the time you run this, and of course the container image you want to patch.
+
+You can also find the full pipeline code at the following gist: [lukemurraynz/copacetic.yml](https://gist.github.com/lukemurraynz/ea00bc9c6b6a9468a82f3b679c40a220).
 
 ```yaml copacetic.yml
 # The name of the pipeline, including the date and a revision number
