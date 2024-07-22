@@ -21,7 +21,7 @@ keywords:
 description: Learn how to automate Docker container patching with Trivy, Copacetic, and Azure DevOps. This guide covers vulnerability scanning, image patching, and pushing to Azure Container Registry.
 ---
 
-Copacetic (or Copa for short) is a CLI tool written in Go and based on buildkit that can be used to directly patch container images given the vulnerability scanning results from popular tools like [Trivy](https://github.com/aquasecurity/trivy).
+[Copacetic](https://project-copacetic.github.io/copacetic/website/) (or Copa for short) is a CLI tool written in Go and based on buildkit that can be used to directly patch container images given the vulnerability scanning results from popular tools like [Trivy](https://github.com/aquasecurity/trivy).
 
 [Trivy](https://aquasecurity.github.io/trivy/) is a security scanner that can scan container images for vulnerabilities. It is a simple and comprehensive scanner that can be used to scan images for vulnerabilities in the OS packages, application dependencies, and language-specific packages, supplemented by vulnerability databases supplemented with Copa, which can be used to patch the vulnerabilities found by Trivy; this tool can be used to quickly patch container images without going upstream for a full rebuild, which may require more time, and the involvement of multiple teams _(ie Developers, Q&A, Operations, Support)_ to patch, test and deploy.
 
