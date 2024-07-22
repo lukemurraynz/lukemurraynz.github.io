@@ -21,29 +21,29 @@ keywords:
 description: Learn how to automate Docker container patching with Trivy, Copacetic, and Azure DevOps. This guide covers vulnerability scanning, image patching, and pushing to Azure Container Registry.
 ---
 
-Copacetic (or Copa for short) s a CLI tool written in Go and based on buildkit that can be used to directly patch container images given the vulnerability scanning results from popular tools like [Trivy](https://github.com/aquasecurity/trivy).
+Copacetic (or Copa for short) is a CLI tool written in Go and based on buildkit that can be used to directly patch container images given the vulnerability scanning results from popular tools like [Trivy](https://github.com/aquasecurity/trivy).
 
-[Trivy](https://aquasecurity.github.io/trivy/) is a security scanner that can be used to scan container images for vulnerabilities. It is a simple and comprehensive scanner that can be used to scan images for vulnerabilities in the OS packages, application dependencies, and language-specific packages, supplemented by vulnerability databases, supplemented with Copa, which can be used to patch the vulnerabilities found by Trivy, this tool can be used to quickly patch container images without going upstream for a full rebuild, which may require more time, and the involvement of multiple teams _(ie Developers, Q&A, Operations, Support)_ to patch, test and deploy.
+[Trivy](https://aquasecurity.github.io/trivy/) is a security scanner that can scan container images for vulnerabilities. It is a simple and comprehensive scanner that can be used to scan images for vulnerabilities in the OS packages, application dependencies, and language-specific packages, supplemented by vulnerability databases supplemented with Copa, which can be used to patch the vulnerabilities found by Trivy; this tool can be used to quickly patch container images without going upstream for a full rebuild, which may require more time, and the involvement of multiple teams _(ie Developers, Q&A, Operations, Support)_ to patch, test and deploy.
 
 In this article, we will use [Azure DevOps](https://azure.microsoft.com/products/devops?WT.mc_id=AZ-MVP-5004796) to run a pipeline that will use [Trivy](https://aquasecurity.github.io/trivy/) to scan a container image for vulnerabilities, and then use [Copa](https://project-copacetic.github.io/copacetic/website/) to patch the vulnerabilities found by Trivy, and then push the patched image to an [Azure Container Registry (ACR)](https://azure.microsoft.com/products/container-registry?WT.mc_id=AZ-MVP-5004796).
 
 {/* truncate */}
 
 :::info
-[Copa](https://github.com/project-copacetic/copacetic) gives the ability to patch containers quickly without going upstream for a full rebuild. As the window between [vulnerability disclosure and active exploitation](https://www.bleepingcomputer.com/news/security/hackers-scan-for-vulnerabilities-within-15-minutes-of-disclosure/) continues to narrow, there is a growing operational need to patch critical security vulnerabilities in container images so they can be quickly redeployed into production.
+[Copa](https://github.com/project-copacetic/copacetic) gives the ability to patch containers quickly without going upstream for a complete rebuild. As the window between [vulnerability disclosure and active exploitation](https://www.bleepingcomputer.com/news/security/hackers-scan-for-vulnerabilities-within-15-minutes-of-disclosure/) continues to narrow, there is a growing operational need to patch critical security vulnerabilities in container images so they can be quickly redeployed into production.
 
-In addition to filling the operational gap not met by left-shift security practices and tools, the ability of copa to patch a container without requiring a rebuild of the container image provides other benefits:
+In addition to filling the operational gap not met by left-shift security practices and tools, the ability of Copa to patch a container without requiring a rebuild of the container image provides other benefits:
 
 ![Container image patching](direct-image-patching.png)
 
-* Allows users other than the image publishers to also patch container images, such as DevSecOps engineers.
-* Reduces the storage and transmission costs of redistributing patched images by only creating an additional patch layer, instead of rebuilding the entire image which usually results in different layer hashes that break layer caching.
+* Allows users other than the image publishers also to patch container images, such as DevSecOps engineers.
+* Reduces the storage and transmission costs of redistributing patched images by only creating an additional patch layer instead of rebuilding the entire image, which usually results in different layer hashes that break layer caching.
 * Reduces the turnaround time for patching a container image by not having to wait for base image updates and being a faster operation than a full image rebuild.
 * Reduces the complexity of patching the image from running a rebuild pipeline to running a single tool on the image.
 :::
 
 :::warning
-Copa currently only supports OS package vulnerabilities, and does not support application dependencies or language-specific packages. It is recommended to use Copa in conjunction with Trivy to patch OS package vulnerabilities and use other tools to patch application dependencies and language-specific packages, when validated and tested with developers.
+Copa currently only supports OS package vulnerabilities and does not support application dependencies or language-specific packages. When validated and tested with developers, it is recommended to use Copa in conjunction with Trivy to patch OS package vulnerabilities and other tools to patch application dependencies and language-specific packages.
 :::
 
 :::info
@@ -57,11 +57,11 @@ Applies the resulting update binaries to the container image using buildkit.
 
 This approach is motivated by the core principles of making direct container patching broadly applicable and accessible:
 
-* Copa supports patching existing container images _(Devs don't need to build their images using specific tools or modify them in some way just to support container patching)_.
-* Copa supports containers without package managers including distroless containers
+* Copa supports patching existing container images _(Devs don't need to build their images using specific tools or modify them in some way to support container patching)_.
+* Copa supports containers without package managers, including distro less containers
 * Copa works with the existing vulnerability scanning and mitigation ecosystems.
 _(Image publishers don't need to create new workflows for container patching since Copa supports patching container images using the security update packages already being published today.)_
-_(Consumers do not need to migrate to a new and potentially more limited support ecosystem for custom distros or change their container vulnerability scanning pipelines to include remediation, since Copa can be integrated seamlessly as an extra step to patch containers based on those scanning reports.)_
+_(Consumers do not need to migrate to a new and potentially more limited support ecosystem for custom distros or change their container vulnerability scanning pipelines to include remediation since Copa can be integrated seamlessly as an extra step to patch containers based on those scanning reports.)_
 * Copa reduces the technical expertise needed and waiting on dependencies needed to patch an image.
 _(For OS package vulnerabilities, no specialized knowledge about a specific image is needed to be patch it as Copa relies on the vulnerability remediation knowledge already embedded in the reports produced by popular container scanning tools today.)_
 :::
@@ -72,7 +72,7 @@ First we need to create the Service Connection, we can create a [Docker Registry
 
 ![Create Service Connection](docker-registry-acr-serviceconnection.png)
 
-Then we can use the pipeline, to connect to the Container Registry and patch the Container.
+Then, we can use the pipeline to connect to the Container Registry and patch the Container.
 
 ```mermaid
 graph TD
@@ -291,19 +291,19 @@ stages:
           displayName: Push Patched Image to ACR
 ```
 
-For demo purposes, I am using an older version of the `[api-firewall](https://hub.docker.com/_/api-firewall)` image, which has known vulnerabilities that need to be patched.
+For demo purposes, I am using an older version of the `[api-firewall](https://hub.docker.com/_/api-firewall)` image, which has known vulnerabilities that must be patched.
 
-Lets take a look at the image in Azure Container Registry before the patch.
+Let's look at the image in Azure Container Registry before the patch.
 
 ![API FW Before Patch](api-firewall-acr-beforecopapatch.png)
 
-Now, lets deploy the pipeline and see the results.
+Now, let us deploy the pipeline and see the results.
 
 ![API FW Before Patch](api-firewall-ado-beforecopapatch.png)
 
 ![Copa ADO pipeline](copa-pipelinerun.gif)
 
-After the pipeline has run, we can see the patched image in Azure Container Registry.
+After the pipeline has run, we can see the patched image in the Azure Container Registry.
 
 ![API Firewall](api-firewall-acr-aftercopapatch.png)
 
@@ -311,4 +311,4 @@ If we re-run the pipeline again, this time targetting our new patched image, we 
 
 ![Copa ADO pipeline](copa-pipelinererun.gif)
 
-Remember, that Copacetic is a tool that can be used to quickly patch container images without going upstream for a full rebuild - HOWEVER does not replace the need to do a full rebuild of the image, as it only patches OS package vulnerabilities, and does not support application dependencies or language-specific packages. It is also recommended not to layer patch on top of patch, as this can lead to a bloated image, and potential conflicts between patches, consider patching the same base image other an an already patched image, if new updates occur.
+Remember that Copacetic is a tool that can be used to quickly patch container images without going upstream for a full rebuild - HOWEVER, it does not replace the need to do a full rebuild of the image, as it only patches OS package vulnerabilities, and does not support application dependencies or language-specific packages. It is also recommended not to layer patch on top of patch, as this can lead to a bloated image, and potential conflicts between patches, consider patching the same base image other an an already patched image, if new updates occur.
