@@ -256,7 +256,7 @@ This lifecycle ensures that APIs are well-designed, developed, secured, publishe
 
 ### Design
 
-![API Lifecycle - Design](apim_apilifecyle_design.PNG)
+![API Lifecycle - Design](/images/apim_apilifecyle_design.PNG)
 
 Code-and design-first approaches to building APIs
 
@@ -273,7 +273,7 @@ Benefits:
 
 Better API consumer experience thanks to the deliberate API design Reduced risk thanks to the API review processes
 
-![API Lifecycle - Develop](apim_apilifecyle_design_codefirst.PNG)
+![API Lifecycle - Develop](/images/apim_apilifecyle_design_codefirst.PNG)
 
 You can create APIs
 
@@ -284,4 +284,46 @@ You can create APIs
 
 ![API Management - Create an API](apim_apilifecyle_design_createAPI.PNG)
 
+So let us create a new API, by importing the [Star Wars API](https://swapi.dev/).
+
+1. Open your Azure API Management instance
+2. Navigate to: APIs
+3. Click on + Add API
+4. Click on HTTP (manually define an HTTP API)
+5. Select Full
+5. Fill in the details:
+   - Display name: Star Wars
+   - Name: star-wars
+   - Description: Star Wars API
+   - Web service URL: https://swapi.dev/api
+   - API URL suffix: starwars
+6. Click Create
+Now that we have imported our initial API endpoint, we can start to define the operations that we want to expose.
+1. Click on + Add operation
+2. Fill in the details:
+   - Display name: Get People
+   - Name: get-people
+   - URL template: /people
+   - HTTP verb: GET
+Now, lets add another operation,, to get information about Starships in the Star Wars universe. Fill in the details:
+   - Display name: Get Starships
+   - Name: get-starships
+   - URL template: /starships
+   - HTTP verb: GET
+
+Now lets test it.
+
+1. Click on Get Starships API operation
+2. Click on test
+3. Click + Add parameter 
+4. Type in Search in the name, and the value as 'Star Destroyer'
+5. Click Send
+
+![API Management - Add Star Wars API](images/apim-add-starwars-api.gif)
+
+:::tip
+You can use a wildcard in the URL path, if you are not sure of an accurate specification, while you work on the API design.
+
+![API Management - wildcard](/images/apim_apilifecyle_design_wildcardproxy.PNG)
+:::
 
