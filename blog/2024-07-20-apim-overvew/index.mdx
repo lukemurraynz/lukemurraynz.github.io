@@ -41,7 +41,7 @@ After securing the API, it's time to make it available to users. The Publish pha
 - **Scale**
 As your API gains popularity, you must ensure it can handle increased traffic. The Scale phase focuses on optimizing the API's performance and scalability. Azure API Management allows you to scale your APIs effortlessly, ensuring they can handle large volumes of requests without compromising performance.
 - **Monitor**
-Monitoring is essential to ensuring your APIs are functioning correctly and efficiently. Azure API Management provides detailed analytics and logging capabilities in the Monitor phase. You can track usage patterns, monitor performance metrics, and identify potential issues before they impact your users.
+Monitoring is essential to ensuring your APIs function correctly and efficiently. In the Monitor phase, Azure API Management provides detailed analytics and logging capabilities. You can track usage patterns, monitor performance metrics, and identify potential issues before they impact your users.
 - **Analyze**
 In the Analyze phase, we use the data collected during monitoring to gain insights into how our APIs are used. Azure API Management offers powerful analytics tools that help you understand user behavior, identify trends, and make data-driven decisions to improve your APIs continuously.
 
@@ -68,7 +68,7 @@ Normalize or Modernize: Façade Abstraction also helps normalize or modernize le
 Decouple Lifecycle Mock: Decoupling the API lifecycle from the backend systems ensures that changes in backend services do not disrupt the API functionality. Mocking services during the development and testing phases further ensures smooth transitions and updates.
 - **Front Door Control**
 This aspect is about managing and controlling how APIs are accessed and utilized.
-Route and Accelerate: By routing API requests efficiently, you can optimize your applications' performance and responsiveness. Acceleration techniques like caching and load balancing can significantly improve user experience.
+Route and Accelerate: You can optimize your applications' performance and responsiveness by routing API requests efficiently. Acceleration techniques like caching and load balancing can significantly improve user experience.
 Secure and Protect: Security is paramount in API management. Front Door Control involves implementing robust security measures to protect APIs from threats and unauthorized access. These measures include authentication, authorization, and data encryption.
 Transform and Observe: Transforming API requests and responses to meet specific requirements and observing API usage patterns helps maintain control and ensure optimal performance. Monitoring tools provide insights into how APIs are being used and can alert you to potential issues before they become critical.
 - **Frictionless Consumption**
@@ -120,7 +120,7 @@ In conclusion, Azure API Management is a robust platform that enables organizati
 
 ![API Management - Pricing Tiers](images/apim_overview_pricingtiers.gif)
 
-Azure API Management offers various service tiers, each designed to provide specific capabilities and benefits. Let's explore these tiers in more detail.
+Azure API Management offers various service tiers designed to provide specific capabilities and benefits. Let's explore these tiers in more detail.
 
 - **Consumption Tier**
  
@@ -283,10 +283,10 @@ You can create APIs
 
 ![API Management - Create an API](apim_apilifecyle_design_createAPI.PNG)
 
-So let us create a new API, by importing the [Star Wars API](https://swapi.dev/).
+So, let us create a new API by importing the [Star Wars API](https://swapi.dev/).
 
 1. Open your Azure API Management instance
-2. Navigate to: APIs
+2. Navigate to APIs
 3. Click on + Add API
 4. Click on HTTP (manually define an HTTP API)
 5. Select Full
@@ -297,36 +297,36 @@ So let us create a new API, by importing the [Star Wars API](https://swapi.dev/)
    - Web service URL: https://swapi.dev/api
    - API URL suffix: starwars
 6. Click Create
-Now that we have imported our initial API endpoint, we can start to define the operations that we want to expose.
+Now that we have imported our initial API endpoint, we can start defining the operations we want to expose.
 1. Click on + Add operation
 2. Fill in the details:
    - Display name: Get People
    - Name: get-people
    - URL template: /people
    - HTTP verb: GET
-Now, lets add another operation,, to get information about Starships in the Star Wars universe. Fill in the details:
+Now, let's add another operation to get information about Starships in the Star Wars universe. Fill in the details:
    - Display name: Get Starships
    - Name: get-starships
    - URL template: /starships
    - HTTP verb: GET
 
-Now lets test it.
+Now let us test it.
 
 1. Click on Get Starships API operation
 2. Click on test
 3. Click + Add parameter 
-4. Type in Search in the name, and the value as 'Star Destroyer'
+4. Type in Search in the name and the value as 'Star Destroyer'
 5. Click Send
 
 ![API Management - Add Star Wars API](images/apim-add-starwars-api.gif)
 
 :::tip
-You can use a wildcard in the URL path, if you are not sure of an accurate specification, while you work on the API design.
+You can use a wildcard in the URL path if you are not sure of an accurate specification while you work on the API design.
 
 ![API Management - wildcard](images/apim_apilifecyle_design_wildcardproxy.PNG)
 :::
 
-Now that we have imported and tested an existing API, lets consider the design of a new API.
+Now that we have imported and tested an existing API, let's consider designing a new API.
 
 ![APIM - Design a API](apim_apilifecyle_design_designaapi.png)
 
@@ -343,7 +343,7 @@ Perfect for those who prefer a guided, step-by-step setup.
 
 Text-Based Editors:
 
-For those who are more comfortable with coding, Azure allows us to directly edit the API definition in JSON format.
+For those more comfortable with coding, Azure allows us to edit the API definition directly in JSON format.
 This method offers greater flexibility and control over the API specifications.
 
 Visual Studio Code Extension:
@@ -355,7 +355,7 @@ Testing the API:
 Once the API is defined, the next crucial step is testing. Azure simplifies this process in several ways:
 
 Azure Portal Testing:
-You can test your API directly within the Azure portal. This feature allows you to make sure everything is functioning correctly without switching between multiple tools.
+You can test your API directly within the Azure portal. This feature lets you ensure everything functions correctly without switching between multiple tools.
 Schema Generation:
 Azure can generate schemas from your API responses. These schemas provide a clear structure of your API's data, ensuring that both developers and consumers understand the expected input and output formats.
 
@@ -368,7 +368,7 @@ Design-First Approach - Mock the API:
 1. Unblock Front-End Teams:
 
 Mocking API responses is a game-changer for front-end developers.
-By providing predefined responses, we can enable front-end teams to continue their development work without waiting for the back-end to be fully implemented.
+Providing predefined responses enables front-end teams to continue their development work without waiting for the back-end to be fully implemented.
 This leads to parallel development, reducing bottlenecks and speeding up the overall project timeline.
 
 2. Use an Example Defined in the API Definition:
@@ -378,7 +378,7 @@ This predefined response acts as a placeholder, simulating the actual API behavi
 It ensures that front-end teams have consistent and reliable data to work with during the early stages of development.
 3. Configure with a Single-Line Policy:
 
-One of the standout features of Azure API Management is the ability to configure mocking with a simple, single-line policy.
+One of Azure API Management's standout features is the ability to configure mocking with a simple, single-line policy.
 
 As shown in the example on the image, the policy can be written as:
 
@@ -433,7 +433,7 @@ Azure API Management offers a range of features to streamline the development pr
 
 ![APIM - API Challenges](images/apim_apilifecyle_develop_apichallenges.PNG)
 
-APIs are the backbone of modern digital ecosystems, enabling connected experiences across a wide range of devices and services. However, managing these APIs efficiently comes with its own set of challenges. This is where API management steps in, providing a structured approach to streamline the API lifecycle.
+APIs are the backbone of modern digital ecosystems, enabling connected experiences across various devices and services. However, managing these APIs efficiently comes with its own set of challenges. API management steps in, providing a structured approach to streamlining the API lifecycle.
 
 1. Consume:
 
@@ -441,15 +441,15 @@ Developer Portal:
 The first pillar of API management is the Developer Portal.
 This portal is a crucial interface where developers can discover, understand, and consume APIs.
 It provides comprehensive documentation, code samples, and testing tools, making it easier for developers to integrate APIs into their applications.
-By offering a centralized hub for API information, the Developer Portal enhances developer productivity and reduces the time to market for new applications.
+The Developer Portal offers a centralized hub for API information, enhancing developer productivity and reducing the time to market for new applications.
 
 2. Mediate:
 
 Gateway:
-At the heart of API management lies the Gateway, which mediates the communication between client applications and backend services.
+The gateway is at the heart of API management. It mediates the communication between client applications and backend services.
 The Gateway ensures secure, reliable, and efficient API traffic management.
-It provides various capabilities such as load balancing, rate limiting, and security enforcement.
-By mediating API requests, the Gateway helps in scaling applications, protecting against malicious attacks, and ensuring consistent performance.
+It provides various capabilities, such as load balancing, rate limiting, and security enforcement.
+By mediating API requests, the Gateway helps scale applications, protect against malicious attacks, and ensure consistent performance.
 
 3. Publish:
 
@@ -457,38 +457,42 @@ Azure Portal:
 The third pillar is the Azure Portal, where APIs are published and managed.
 This portal allows API providers to define and publish their APIs, making them available to developers.
 It offers tools for monitoring API usage, setting up policies, and managing API versions.
-Through the Azure Portal, API providers can ensure their APIs are robust, secure, and up-to-date.
+API providers can ensure their APIs are robust, secure, and up-to-date through the Azure Portal.
 
 ![APIM - Product](images/apim_apilifecyle_develop_apichallengesproduct.PNG)
 
-APIs are essential for modern digital ecosystems, but managing them efficiently can be complex. API management provides a unified approach to streamline the interaction between different products and backend services.
+APIs are essential for modern digital ecosystems, but managing them efficiently can be complex. API management provides a unified approach to streamlining the interaction between products and backend services.
 
 Products:
 
 Diverse Product Integration:
-At the top, we have multiple products (Product 1 to Product 5). Each product has its unique functionalities and API requirements.
+
+We have multiple products (Products 1 to 5) at the top. Each product has unique functionalities and API requirements.
 These products represent different applications and services that need to communicate with various backend systems.
-2. API Management Layer:
+
+API Management Layer:
 
 Centralized Management:
+
 The middle section represents the API Management layer, a crucial component in this architecture.
 API Management acts as a mediator, facilitating seamless communication between the products and the backend services.
 It standardizes API interactions, ensuring consistency, security, and reliability.
-3. Backend Systems:
+
+Backend Systems:
 
 Backend on Azure and On-premises:
-At the bottom, we see the backend systems, categorized into Azure-based backends and on-premises backends.
+At the bottom, we see the backend systems, categorized into Azure-based and on-premises backends.
 Azure backends include services such as Azure Functions, Virtual Machines, and Logic Apps.
 On-premises backends consist of traditional servers and databases.
-API Management ensures that products can seamlessly interact with both cloud-based and on-premises backend systems.
-Key Benefits of API Management:
+API Management ensures that products seamlessly interact with cloud-based and on-premises backend systems.
+Critical Benefits of API Management:
 
 Unified API Gateway:
 
 Provides a single entry point for all API requests, simplifying the management of APIs across multiple products and services.
 Enhanced Security:
 
-Ensures secure communication between products and backend systems through policies like authentication, authorization, and rate limiting.
+Secure communication between products and backend systems is ensured through policies like authentication, authorization, and rate limiting.
 Scalability:
 
 Handles large volumes of API traffic, enabling applications to scale efficiently.
