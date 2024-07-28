@@ -8,7 +8,7 @@ categories:
   - Azure
 authors:
   - Luke
-slug: azure/accessing-keyvault-azure-devops
+slug: azure/apim-overview
 keywords:
   - azure
   - cloudnative
@@ -169,7 +169,6 @@ Let's delve into the key features of each tier.
 
 ## API Lifecycle
 
-
 ![API Lifecycle](images/apim_api_lifecycle.PNG)
 
 The API lifecycle consists of several phases, each essential for creating, managing, and optimizing APIs. This lifecycle emphasizes the continuous and iterative nature of API development and management.
@@ -329,4 +328,173 @@ You can use a wildcard in the URL path, if you are not sure of an accurate speci
 
 Now that we have imported and tested an existing API, lets consider the design of a new API.
 
+![APIM - Design a API](apim_apilifecyle_design_designaapi.png)
+
+ Azure offers powerful resources to streamline and enhance our workflow.
+
+Defining the API:
+
+First, let's talk about defining our API. Azure provides two main approaches:
+
+Form-Based Editors:
+
+These editors are highly intuitive, offering a user-friendly interface to input all necessary details about your API.
+Perfect for those who prefer a guided, step-by-step setup.
+
+Text-Based Editors:
+
+For those who are more comfortable with coding, Azure allows us to directly edit the API definition in JSON format.
+This method offers greater flexibility and control over the API specifications.
+
+Visual Studio Code Extension:
+
+In addition to the Azure portal, you can also leverage the Visual Studio Code extension. This extension integrates seamlessly with Azure, allowing you to manage and define your APIs directly within your development environment. It's an excellent tool for developers who prefer to work locally.
+
+Testing the API:
+
+Once the API is defined, the next crucial step is testing. Azure simplifies this process in several ways:
+
+Azure Portal Testing:
+You can test your API directly within the Azure portal. This feature allows you to make sure everything is functioning correctly without switching between multiple tools.
+Schema Generation:
+Azure can generate schemas from your API responses. These schemas provide a clear structure of your API's data, ensuring that both developers and consumers understand the expected input and output formats.
+
 ![APIM - Mock API](images/apim_apilifecyle_design_mockapi.PNG)
+
+Adopting a design-first approach can significantly enhance efficiency and collaboration. One technique we can utilize is mocking the API. Let's explore how this approach can benefit our development workflow.
+
+Design-First Approach - Mock the API:
+
+1. Unblock Front-End Teams:
+
+Mocking API responses is a game-changer for front-end developers.
+By providing predefined responses, we can enable front-end teams to continue their development work without waiting for the back-end to be fully implemented.
+This leads to parallel development, reducing bottlenecks and speeding up the overall project timeline.
+
+2. Use an Example Defined in the API Definition:
+
+The process starts with defining an example response within the API definition.
+This predefined response acts as a placeholder, simulating the actual API behavior.
+It ensures that front-end teams have consistent and reliable data to work with during the early stages of development.
+3. Configure with a Single-Line Policy:
+
+One of the standout features of Azure API Management is the ability to configure mocking with a simple, single-line policy.
+
+As shown in the example on the image, the policy can be written as:
+
+```xml
+<inbound>
+  <base />
+  <mock-response status-code="200" content-type="application/json" />
+</inbound>
+```
+
+![APIM - Mock Design](apim_apilifecyle_design_apimock.gif)
+
+This configuration tells the API to return a mock response with a status code of 200 and a content type of application/json.
+
+![APIM - Websocket](images/apim_apilifecyle_design_websocket.PNG)
+
+[WebSocket API](https://learn.microsoft.com/azure/api-management/websocket-api?tabs=portal&WT.mc_id=AZ-MVP-5004796) support enables real-time communication, making our APIs more dynamic and responsive.
+
+[WebSocket API](https://learn.microsoft.com/azure/api-management/websocket-api?tabs=portal&WT.mc_id=AZ-MVP-5004796) support in Azure API Management opens up a whole new realm of possibilities for real-time applications. Let's delve into what this entails and how it can benefit our API infrastructure.
+
+Passthrough Support for WebSocket APIs:
+
+1. Establishing Connections:
+
+Client applications can establish WebSocket connections directly with API Management (APIM).
+This setup allows for continuous, two-way communication between clients and backend services.
+Once the connection is established, APIM seamlessly proxies WebSocket messages to the backend services, ensuring smooth and reliable communication.
+2. Features of WebSocket API Support:
+
+CRUD Operations:
+
+With WebSocket API support, we can perform Create, Read, Update, and Delete (CRUD) operations on WebSocket APIs.
+This flexibility ensures that our APIs can handle various real-time data interactions effectively.
+Apply Policies:
+
+We can apply policies to handshake requests, which is crucial for managing security, authentication, and other operational requirements.
+These policies ensure that only authorized and legitimate requests can establish WebSocket connections.
+Browse and Test:
+
+WebSocket APIs can be easily browsed and tested within the Azure and Developer portals.
+This capability allows developers to interact with and validate the WebSocket APIs during the design and development phases.
+Monitoring and Logging:
+
+Azure Monitor provides metrics and logs specifically for WebSocket APIs.
+These monitoring tools enable us to track performance, detect issues, and gain insights into the usage patterns of our WebSocket connections.
+
+### Develop
+
+![API Lifecycle - Develop](images/apim_apilifecyle_develop.PNG)
+
+Azure API Management offers a range of features to streamline the development process and enhance the functionality of our APIs.
+
+![APIM - API Challenges](images/apim_apilifecyle_develop_apichallenges.PNG)
+
+APIs are the backbone of modern digital ecosystems, enabling connected experiences across a wide range of devices and services. However, managing these APIs efficiently comes with its own set of challenges. This is where API management steps in, providing a structured approach to streamline the API lifecycle.
+
+1. Consume:
+
+Developer Portal:
+The first pillar of API management is the Developer Portal.
+This portal is a crucial interface where developers can discover, understand, and consume APIs.
+It provides comprehensive documentation, code samples, and testing tools, making it easier for developers to integrate APIs into their applications.
+By offering a centralized hub for API information, the Developer Portal enhances developer productivity and reduces the time to market for new applications.
+
+2. Mediate:
+
+Gateway:
+At the heart of API management lies the Gateway, which mediates the communication between client applications and backend services.
+The Gateway ensures secure, reliable, and efficient API traffic management.
+It provides various capabilities such as load balancing, rate limiting, and security enforcement.
+By mediating API requests, the Gateway helps in scaling applications, protecting against malicious attacks, and ensuring consistent performance.
+
+3. Publish:
+
+Azure Portal:
+The third pillar is the Azure Portal, where APIs are published and managed.
+This portal allows API providers to define and publish their APIs, making them available to developers.
+It offers tools for monitoring API usage, setting up policies, and managing API versions.
+Through the Azure Portal, API providers can ensure their APIs are robust, secure, and up-to-date.
+
+![APIM - Product](images/apim_apilifecyle_develop_apichallengesproduct.PNG)
+
+APIs are essential for modern digital ecosystems, but managing them efficiently can be complex. API management provides a unified approach to streamline the interaction between different products and backend services.
+
+Products:
+
+Diverse Product Integration:
+At the top, we have multiple products (Product 1 to Product 5). Each product has its unique functionalities and API requirements.
+These products represent different applications and services that need to communicate with various backend systems.
+2. API Management Layer:
+
+Centralized Management:
+The middle section represents the API Management layer, a crucial component in this architecture.
+API Management acts as a mediator, facilitating seamless communication between the products and the backend services.
+It standardizes API interactions, ensuring consistency, security, and reliability.
+3. Backend Systems:
+
+Backend on Azure and On-premises:
+At the bottom, we see the backend systems, categorized into Azure-based backends and on-premises backends.
+Azure backends include services such as Azure Functions, Virtual Machines, and Logic Apps.
+On-premises backends consist of traditional servers and databases.
+API Management ensures that products can seamlessly interact with both cloud-based and on-premises backend systems.
+Key Benefits of API Management:
+
+Unified API Gateway:
+
+Provides a single entry point for all API requests, simplifying the management of APIs across multiple products and services.
+Enhanced Security:
+
+Ensures secure communication between products and backend systems through policies like authentication, authorization, and rate limiting.
+Scalability:
+
+Handles large volumes of API traffic, enabling applications to scale efficiently.
+Monitoring and Analytics:
+
+Offers insights into API usage, performance metrics, and error tracking, helping in proactive management and optimization.
+Developer Empowerment:
+
+Facilitates a developer-friendly environment with comprehensive documentation, testing tools, and self-service capabilities.
