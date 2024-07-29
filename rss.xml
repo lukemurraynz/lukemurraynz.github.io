@@ -97,7 +97,7 @@ To the requestors block, to enable the policy, or the policy will be deployed as
 <p>In the GitHub repository, we have an Environment named: production, and inside this is our:</p>
 <table><thead><tr><th>Variable</th><th>Description</th></tr></thead><tbody><tr><td>AZURE_CLIENT_ID</td><td>The client ID of the Entra ID User assigned managed identity used for authentication</td></tr><tr><td>AZURE_SUBSCRIPTION_ID</td><td>The ID of the Azure subscription</td></tr><tr><td>AZURE_TENANT_ID</td><td>The ID of the Entra ID tenant</td></tr></tbody></table>
 <p><img decoding="async" loading="lazy" alt="Hackathon - GitHub Actions" src="https://luke.geek.nz/assets/images/hackathon_GitHub_ProductionEnvironment-a65b65a571eb7da24df9314cc6819fbd.png" width="1282" height="857" class="img_ev3q"></p>
-<p>You can find the full code for this, in the <a href="https://github.com/lukemurraynz/Hackathon" target="_blank" rel="noopener noreferrer">lukemurraynz/Hackathon</a>. Feel free to open a PR <em>(Pull Request)</em>, if you have any suggestions or improvements.</p>
+<p>You can find the full code for this, in the <a href="https://github.com/lukemurraynz/HackathonRGAzureEnvironment" target="_blank" rel="noopener noreferrer">lukemurraynz/HackathonRGAzureEnvironment</a>. Feel free to open a PR <em>(Pull Request)</em>, if you have any suggestions or improvements.</p>
 <p>Finally, once the Hackathon is over, you can use Terraform to revert the configuration, and clean up the Azure subscription, once the users are removed from the Hackathon Access packages, their Guest accounts can be Disabled, you can also configure the policy to remove them from your tenancy automatically.</p>]]></content:encoded>
             <category>Azure</category>
         </item>
