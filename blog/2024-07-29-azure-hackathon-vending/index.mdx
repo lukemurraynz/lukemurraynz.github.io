@@ -1,6 +1,6 @@
 ---
 title: Azure Hackathon Vending with Terraform
-metaDescription: Learn how to build and deploy a Hackathon environment, with Azure, GitHub Actions, Entra ID and Terraform.
+metaDescription: Learn how to build and deploy a Hackathon environment with Azure, GitHub Actions, Entra ID, and Terraform.
 date: 2024-07-29T06:27:25.893Z
 tags:
   - Azure
@@ -19,7 +19,7 @@ keywords:
 description: Learn how to build and deploy a Hackathon environment with Azure, GitHub Actions, Entra ID, and Terraform.
 ---
 
-When working with Microsoft Azure, you may want an environment for learning, testing, or Hackathons. This post will cover some technical implementation considerations for creating a sandbox environment in Azure that could be used for your own Hackathons using Terraform, Entra ID Access packages, and GitHub Actions.
+When working with Microsoft Azure, you may want an environment for learning, testing, or Hackathons. This post will cover some technical implementation considerations for creating a sandbox environment in Azure that could be used for your Hackathons using Terraform, Entra ID Access packages, and GitHub Actions.
 
 {/*truncate*/}
 
@@ -44,22 +44,22 @@ Let us look at how we can leverage Microsoft Azure technologies to implement thi
 
 ![Hackathon - Azure environment](images/hackathon_environmenttech.PNG)
 
-* Azure subscription
+* [Azure Subscription](https://learn.microsoft.com/azure/cost-management-billing/manage/create-subscription?WT.mc_id=AZ-MVP-5004796)
 * [Azure Resource Groups](https://learn.microsoft.com/azure/azure-resource-manager/management/overview?WT.mc_id=AZ-MVP-5004796#resource-groups) _(within Azure subscription)_
 * [Entra ID](https://learn.microsoft.com/entra/fundamentals/whatis?WT.mc_id=AZ-MVP-5004796)
 * [Entra ID Identity Governance - Access Packages](https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-create?WT.mc_id=AZ-MVP-5004796). This requires a Entra ID P2 license.
 
-For the purposes of this article, there are some assumptions I will be making, such as:
+For this article, there are some assumptions I will be making, such as:
 
 * A Resource Group per Team is sufficient for the Hackathon.
 
 ![Hackathon - Environment concepts](images/hackathon_environmentconcepts.PNG)
 
-We will look at approaching this as a [Lightly Managed Sandbox](https://luke.geek.nz/azure/microsoft-azure-sandbox-design-considerations/).
+We will approach this as a [Lightly Managed Sandbox](https://luke.geek.nz/azure/microsoft-azure-sandbox-design-considerations/).
 
 ![Hackathon - Sandbox Types](images/hackathon_sandboxtypes.PNG)
 
-and give External Identites access to an Azure subscription through Access Packages and a Group with a Contributor role assigned to the individual Resource Groups.
+And give External Identities access to an Azure subscription through Access Packages and a Group with a Contributor role assigned to the individual Resource Groups.
 
 ![Hackathon - Identity & Access](images/hackathon_identityaccess.PNG)
 
@@ -67,7 +67,7 @@ To do this, we will leverage Access packages to invite external users into the H
 
 ![Hackthon - Access packages](images/hackathon_identityaccesspackages.PNG)
 
-By creating a Policy allowing External organisations to request, the Hackathon Organiser will be able to invite external users to the Azure subscription and access internal _(Hackathon)_ resources.
+By creating a Policy allowing external organizations to make requests, the Hackathon Organiser can invite external users to the Azure subscription and access internal _(Hackathon)_ resources.
 
 ![Hackathon - Identity Access packages](images/hackathon_identityaccesspackagespolicy.PNG)
 ![Hackathon - Identity Access packages](images/hackathon_identityaccesspackagespolicy1.PNG)
@@ -78,25 +78,25 @@ By creating a Policy allowing External organisations to request, the Hackathon O
 
 ![Hackathon - Cross tenant Access Settings](images/hackathon_identityaccesstrustsettings.PNG)
 
-So lets take a look at some of the main Terraform code snippets that could be used to create the Azure resources for the Hackathon.
+So, let's look at some of the main Terraform code snippets that could be used to create the Azure resources for the Hackathon.
 
 :::info
 The identity being used to create these Terraform resources will need the following:
 
-* Owner to the Azure Subscription to create the Resource Groups and role assignments.
+* [Owner](https://learn.microsoft.com/azure/role-based-access-control/role-assignments-portal-subscription-admin?WT.mc_id=AZ-MVP-5004796) of the Azure Subscription to create the Resource Groups and role assignments.
 * [Identity Governance Administrator](https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference?WT.mc_id=AZ-MVP-5004796#identity-governance-administrator), to create the Access Packages and Catalog.
 * [Groups Administrator](https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference?WT.mc_id=AZ-MVP-5004796#groups-administrator) role to create and delete the Groups in the Entra ID tenant.
 :::
 
 ```hcl
 locals {
-  # Read the content of the CSV file named "az_hackathon.csv" and store it in the local variable "csv_content".
+  # Read the content of the CSV file named "az_hackathon.csv" and store it in the local variable "csv_content."
   csv_content = file("az_hackathon.csv")
   # Decode the CSV content into a list of maps, each representing a row in the CSV file.
   csv_data    = csvdecode(local.csv_content)
 }
 ```
-What this does is read a CSV file containing the details of the Azure Resource Groups that need to be created for the Hackathon. Here is a base CSV file that I have used.
+This reads a CSV file containing the details of the Azure Resource Groups that need to be created for the Hackathon. I have used this base CSV file.
 
 ```csv
 Team,Location,Environment,Application,Notes
@@ -164,7 +164,7 @@ resource "azurerm_role_assignment" "role_assignment" {
 
 ![Hackathon - Resource Group Access Control (IAM)](images/hackathon_team1_resourcegroupiam.png)'
 
-So now, we have created the Resource Groups and Entra ID groups and assigned Owner permissions to the Resource Groups for each Team in the CSV file, It is time to deploy a base resource - such as Azure OpenAI, which those hackathon teams can use, to get going! [Azure OpenAI models are deployed to various regions](https://learn.microsoft.com/azure/ai-services/openai/concepts/models?WT.mc_id=AZ-MVP-5004796) and have token limits constrained to the region, so we need to consider how heavily these endpoints will be hit - which is why you may have noticed in the CSV, that the location of each Resource Group is different, so we want to use that to make sure that our Azure OpenAI resources are deployed in the same region as the Resource Group, to help balance.
+So now, we have created the Resource Groups and Entra ID groups and assigned Owner permissions to the Resource Groups for each Team in the CSV file; it is time to deploy a base resource - such as Azure OpenAI, which those hackathon teams can use, to get going! [Azure OpenAI models are deployed to various regions](https://learn.microsoft.com/azure/ai-services/openai/concepts/models?WT.mc_id=AZ-MVP-5004796) and have token limits constrained to the region, so we need to consider how heavily these endpoints will be hit - which is why you may have noticed in the CSV, that the location of each Resource Group is different, so we want to use that to make sure that our Azure OpenAI resources are deployed in the same region as the Resource Group, to help balance.
 
 ```hcl
 # This resource block defines an Azure Cognitive Account resource named "openai"
@@ -229,11 +229,11 @@ resource "azurerm_resource_provider_registration" "resourceproviders" {
 Now, we need to create our Entra ID Catalog and Access Packages and assign the Resource Groups to the Access package.
 
 :::warning
-The [request policies](https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-create?WT.mc_id=AZ-MVP-5004796#create-request-policies) themselves, I had issues deploying via Terraform, I suspect due to missing Graph permissions 'EntitlementManagement.ReadWrite.All' on the identity, but had some issues adding this, so did them manually, however have successfully deployed the policies in another environment successfully using the: [azuread_access_package_assignment_policy](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/access_package_assignment_policy) terraform resource. 
+The [request policies](https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-create?WT.mc_id=AZ-MVP-5004796#create-request-policies) themselves, I had issues deploying via Terraform, I suspect due to missing Graph permissions 'EntitlementManagement.ReadWrite.All' on the identity, but had some issues adding this, so did them manually, however, I have successfully deployed the policies in another environment successfully using the: [azuread_access_package_assignment_policy](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/access_package_assignment_policy) terraform resource. 
 
 Make sure you add:
 requests_accepted = true
-To the requestors block, enable the policy or the policy will be deployed as Disabled.
+To the requestors block, enable the policy, or the policy will be deployed as Disabled.
 :::
   
   ```hcl
@@ -544,4 +544,6 @@ In the GitHub repository, we have an Environment named production, and inside th
 
 The full code for this can be found in the [lukemurraynz/HackathonRGAzureEnvironment](https://github.com/lukemurraynz/HackathonRGAzureEnvironment). If you have any suggestions or improvements, feel free to open a PR _(Pull Request)_.
 
-Finally, once the Hackathon is over, you can use Terraform to revert the configuration, and clean up the Azure subscription, once the users are removed from the Hackathon Access packages, their Guest accounts can be Disabled, you can also configure the policy to remove them from your tenancy automatically.
+Finally, once the Hackathon is over, you can use Terraform to revert the configuration and clean up the Azure subscription; once the users are removed from the Hackathon Access packages, their Guest accounts can be Disabled; you can also configure the policy to remove them from your tenancy automatically.
+
+Your Hackathon students should now be able to log in to the [My Access Portal](https://learn.microsoft.com/entra/id-governance/entitlement-management-request-access?WT.mc_id=AZ-MVP-5004796#sign-in-to-the-my-access-portal), request access, to a Team, and once approved _(based on the policy you specified in the Access package)_ will be able to navigate to the Azure Portal for your tenancy 'https://portal.azure.com/YOURTENANTNAMEORID' and be able to create resources in the Azure Resource Group, and as Teams expand, you simply have to edit the CSV file and push the change.
