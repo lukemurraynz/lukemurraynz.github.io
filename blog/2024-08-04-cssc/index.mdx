@@ -279,7 +279,7 @@ The same tools we have used in the previous stages can be used in this stage.
 * [Trivy](https://trivy.dev/)
 * [HELM](https://helm.sh/)
 
-This is the stage where Copacetic can assist with patching deployed containers and ensuring that the images are up to date and secure at the OS layers. The images are fully patched and tested back at the Build and Catalog stages.
+This is the stage where Copacetic can assist with patching deployed containers and ensuring that the images are up-to-date and secure at the OS layers. The images are fully patched and tested back at the Build and Catalog stages.
 
 ## 🚀Stage 5: Runtime
 
@@ -300,6 +300,10 @@ Tools that can be used in this stage are:
 * [Defender for Cloud](https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction?WT.mc_id=AZ-MVP-5004796)
 * [Gatekeeper](https://open-policy-agent.github.io/gatekeeper/website/)
 * [Ratify](https://learn.microsoft.com/azure/aks/image-integrity?tabs=azure-cli&WT.mc_id=AZ-MVP-5004796)
+
+:::tip
+[Containers running in Azure should have vulnerability findings resolved](https://portal.azure.com/#view/Microsoft_Azure_Security_CloudNativeCompute/AggregatedRecommendationBlade/assessmentKey/e9acaf48-d2cf-45a3-a6e7-3caa2ef769e0/showSecurityCenterCommandBar~/false) Defender recommendations are worth a look to see a list of vulnerabilities, once Defender for Cloud is turned, for Azure Kubernetes Clusters.
+:::
 
 ## 🏁 Conclusion
 
