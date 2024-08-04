@@ -717,6 +717,8 @@ It is worth noting, that Azure API Management, has a [Landing Zone Accelerator](
 
 [APIOps](https://azure.github.io/apiops/) is a set of practices and tools that help organizations manage the full lifecycle of APIs, from design to deprecation. It combines the principles of DevOps with API management to streamline API development and deployment.
 
+![APIOps](images/apim_apilifecyle_publish_APIOps.PNG)
+
 ![APIOps](images/ApiOps.gif)
 
 APIOps can be used to automate API management tasks, improve collaboration between development and operations teams, and ensure consistency and quality across APIs, and API Management environments, such as Development, Testing and Production.
@@ -745,7 +747,6 @@ Configuration Management: Use Azure Policy, and deployment stacks to enforce sec
 | 8     | Security Misconfiguration                 | Incorrectly configured API settings.                | Maintain an up-to-date API catalog and manage the API lifecycle rigorously.    |  
 | 9     | Improper Inventory Management             | Exposing more endpoints than necessary.             | Regularly update and document your API endpoints to manage exposure effectively. API Versioning: Implement API versioning to manage exposure of endpoints. Documentation: Keep API documentation updated and use tools like Swagger or OpenAPI.|  
 | 10    | Insufficient Logging and Monitoring       | Lack of proper logging and monitoring mechanisms.   | Ensure comprehensive and updated documentation, and maintain robust logging and monitoring practices. Azure Monitor and Application Insights: Integrate with these services for comprehensive logging and monitoring. Alerts: Set up alerts for unusual activities. |  
-
 
 Azure API Management provides a range of security features to protect APIs from these threats.
 
@@ -940,3 +941,226 @@ flowchart TD
 ```
 
 ![APIM - Revisions and Versions](images/apim_apilifecyle_publig_RevisionsVersexample.PNG)
+
+
+Now that we have had a look at the Revisions and versions, lets take a look at [Products](https://learn.microsoft.com/azure/api-management/api-management-howto-add-products?tabs=azure-portal&WT.mc_id=AZ-MVP-5004796).
+
+> In Azure API Management, a product contains one or more APIs, a usage quota, and the terms of use. After a product is published, developers can subscribe to the product and begin to use the product's APIs.
+
+APIs _(Application Programming Interfaces)_ play a crucial role in enabling seamless interaction between different software applications. However, managing multiple APIs can be challenging. To streamline this process, bundling APIs with products has emerged as an effective strategy.
+
+![APIM - Products](images/apim_apilifecyle_publish_BundleAPIs.PNG)
+
+API bundling involves grouping multiple APIs into a single package or product. This approach simplifies the management, subscription, and usage of APIs for developers and organizations.
+
+* Developer Portal
+Browse Products: Developers can explore various API products available in the portal.
+Subscribe to Products: Once a suitable product is identified, developers can subscribe to it.
+Manage Subscriptions and Keys: The portal allows developers to manage their subscriptions and obtain the necessary API keys.
+
+* Management Plane
+Manage Products and API Associations: Administrators can define and manage the associations between products and their respective APIs.
+Define Product-Scoped Policies: Specific policies can be set for each product, ensuring controlled and secure access.
+Approve and Manage Subscriptions: Administrators can approve subscription requests and manage existing subscriptions.
+Collect and Analyze Usage Data: Usage data is collected and analyzed to monitor and optimize API performance.
+Monetize Access: Administrators can monetize API access by setting pricing plans and usage limits.
+
+* Gateway
+Authenticate API Requests: The gateway authenticates incoming API requests using the provided keys.
+Execute Product-Scoped Policies: It ensures that the defined policies for each product are enforced during API execution.
+
+![APIM - Products](images/apim_apilifecyle_publish_APISubscriptions.PNG)
+
+Understanding the relationships between users, groups, products, APIs, and subscriptions is crucial for efficient and effective management.
+
+| Entity         | Relationships                                      |  
+|----------------|-----------------------------------------------------|  
+| **User**       | - Can have many Subscriptions                      |  
+|                | - Can belong to many Groups                        |  
+| **Group**      | - Can contain many Users                           |  
+|                | - Can have many Subscriptions                      |  
+|                | - Built-in: Guest, Developer, Admin                |  
+|                | - Custom: native or Entra ID                       |  
+| **Subscription**| - Each Subscription is related to one User or Group|  
+|                | - Can provide access to one Product                |  
+| **Product**    | - Can be part of many Subscriptions                |  
+|                | - Can contain many APIs                            |  
+| **API**        | - Each API is part of one Product                  |  
+
+
+### Scale
+
+![API Lifecycle - Scale](images/apim_apilifecyle_scale.PNG)
+
+Azure, and the Azure API Management service has a significant [global footprint](https://azure.microsoft.com/en-au/explore/global-infrastructure/products-by-region?WT.mc_id=AZ-MVP-5004796) with 44+ public regions worldwide, 6 regions for US government use, and 4 regions in China, showcasing its extensive infrastructure and specialized services.
+
+![APIM - Scale](images/apim_apilifecyle_scale_GlobalPresence.PNG)
+
+![APIM - Multi-region](images/apim_apilifecyle_scale_Multiregion.PNG)
+
+Azure API Management's multi-region deployment offers a robust solution for improving API reliability and reducing latency. Let's dive into the key features and benefits of this setup.
+Improved Availability and Reduced Latency
+ 
+One of the standout features of Azure API Management's multi-region deployment is the significantly improved availability of the data plane. With a Service Level Agreement (SLA) of 99.99% compared to the standard 99.95%, you can expect minimal downtime. This increased reliability ensures that your APIs remain accessible to users around the world, thereby enhancing the overall user experience.
+
+* Scalability Across Multiple Regions
+ 
+A single Premium instance of Azure API Management can be scaled across multiple regions. This flexibility allows you to deploy additional units into the primary or secondary regions based on your needs. However, it's important to note that regions and units come at an additional cost. This scalability ensures that your API infrastructure can grow alongside your business demands.
+
+* Primary and Secondary Regions
+ 
+In a multi-region deployment, the primary region hosts all components, including the gateway, developer portal, management API, and developer portal API. If the primary region becomes unavailable, these components are inaccessible, highlighting the importance of a robust primary region setup.
+
+On the other hand, secondary regions host only the gateway. These secondary gateways can operate on the last received configuration while the primary region is unavailable. They periodically try to reconnect and catch up, ensuring that API requests continue to be processed even during primary region outages.
+
+* Global API Availability
+ 
+One of the most significant advantages of multi-region deployment is that all APIs are available in every region. Azure Traffic Manager plays a crucial role in this setup by routing requests to the closest available region. Using Traffic Manager’s performance routing with a 5-minute Time-to-Live (TTL), API requests are efficiently managed, reducing latency and improving response times for users worldwide.
+
+![APIM - Multi-Region Example](images/apim_apilifecyle_scale_MultiregionEExample.PNG)
+
+Lets take a look at the nuances on the anatomy of an Azure API Management instance.
+
+![APIM - Anatomy](images/apim_apilifecyle_scale_AnatomyAPIM.PNG)
+
+An Azure API Management instance with 1 unit, represented by two machines (Machine #1 and Machine #2). Each machine has a set of components that work together to manage and secure APIs.
+
+| Machine   | Component      | Description                                                                 |  
+|-----------|----------------|-----------------------------------------------------------------------------|  
+| Machine #1| Control-Plane  | The administrative interface for configuring and managing APIs and policies.|  
+|           | Gateway        | Handles API requests and applies policies like rate limiting and authentication.|  
+|           | Developer Portal | Customizable portal for developers to discover, learn, and use APIs.       |  
+| Machine #2| Control-Plane  | Redundant administrative interface for high availability.                   |  
+|           | Gateway        | Redundant API Gateway for load balancing and fault tolerance.               |  
+|           | Developer Portal | Another instance of the Developer Portal to ensure high availability.      |  
+
+This is a typical setup of an Azure API Management instance, emphasizing the redundancy and high availability by distributing core components (Control-Plane, Gateway, and Developer Portal) across multiple machines. This setup ensures that the API management service remains operational even if one machine fails. 
+
+However, one may want to expand the Azure API Management instance, to another region, to ensure high availability and disaster recovery.
+
+![APIM - Scale](images/apim_apilifecyle_scale_AnatomyAPIMSecondRegion.PNG)
+
+When you scale an Azure API Management instance to another region, you are essentially creating a secondary region deployment. This setup provides high availability and disaster recovery capabilities, ensuring that your APIs remain accessible even in the event of a regional outage, by expanding the Gateway service. All Control planet traffic and the developer portal are still managed by the primary region, however your APIs will still function.
+
+![APIM - Availability Zones](images/apim_apilifecyle_scale_AvaliabilityZone.PNG)
+
+By deploying your APIM instance across two or more Availability Zones within a single region, you can achieve a Service Level Agreement (SLA) of 99.99%. 
+In a multi-region deployment, using Availability Zones can enhance the resiliency of the primary region. This means that even if one zone experiences an outage, the services can continue to operate seamlessly from another zone within the same region.
+
+Every unit deployed across the Availability Zones includes all necessary API Management components, ensuring comprehensive coverage and functionality.
+
+Using Availability Zones in Azure API Management provides enhanced availability, reliability, and resiliency for your API services, especially in a multi-region deployment. This setup ensures that your APIs remain accessible and operational even in the face of regional outages or disruptions.
+
+Now, lets take a look at self-hosting your own Gateway. 
+
+![APIM - Self-hosted Gateway](images/apim_apilifecyle_scale_SelfHostedAPIGateway.PNG)
+
+The self-hosted API gateway is functionally equivalent to the managed gateway. This feature provides flexibility, allowing the gateway to be deployed either on-premises or in the cloud, depending on the needs of the organization. The self-hosted gateway requires only outgoing connectivity to Azure _(API Management Gateway)_ on port 443.
+
+The self-hosted gateway connects to a "parent" API Management service in Azure. It pulls down configuration settings and pushes up telemetry data to Azure. This integration with Azure allows for centralized management and monitoring, simplifying the oversight and control of the API gateway.
+
+![APIM - Self-hosted Gateway SKU](images/apim_apilifecyle_scale_SelfHostedAPIGatewaySKU.PNG)
+
+Now, lets take a look at [Dapr](https://dapr.io/) and Azure API Management.
+
+:::info
+> [Azure API Management is a way to create consistent and modern API gateways for back-end services, including those built with Dapr](https://docs.dapr.io/developing-applications/integrations/azure/azure-api-management/). You can enable Dapr support in self-hosted API Management gateways to allow them to:
+
+Forward requests to Dapr services
+Send messages to Dapr Pub/Sub topics
+Trigger Dapr output bindings
+:::
+
+![APIM - Dapr](images/apim_apilifecyle_scale_Dapr.PNG)
+
+* Dapr can work with self-hosted Azure API Management gateways. Dapr can be used to invoke services running in different pods. This allows for seamless communication between microservices within the Kubernetes cluster. 
+* Dapr supports publish/subscribe messaging, enabling applications to send messages to topics and other applications to subscribe to these topics
+* Dapr can trigger outbound bindings, which allows it to interact with external systems and services. This feature is useful for integrating with external databases, message queues, and other services.
+
+By integrating Dapr with self-hosted gateways, the complexity of the architecture is reduced, and common tasks like service discovery, state management, and pub/sub are simplified.
+
+Azure API Management, does offer an isolated SKU, which is a dedicated instance of Azure API Management that runs on a single-tenant virtual network. This SKU is ideal for organizations that require enhanced security, compliance, and isolation for their APIs.
+
+![APIM - Isolated SKU](images/apim_apilifecyle_scale_IsolatedTenant.PNG)
+
+> The purpose of the Isolated tier is to enable use of all the features of API Management Premium tier in highly-regulated industries where compute environment isolation is a requirement. 
+
+Now, lets discuss [Backup and Restore](https://learn.microsoft.com/azure/api-management/api-management-howto-disaster-recovery-backup-restore?tabs=powershell&WT.mc_id=AZ-MVP-5004796).
+
+![APIM - Backup and Restore](images/apim_apilifecyle_scale_IBackupRestore.PNG)
+
+| **Process**                 | **Details**                                                                                              |  
+|-----------------------------|----------------------------------------------------------------------------------------------------------|  
+| **Backup**                  |                                                                                                          |  
+| Duration                    | Usually takes around 10 minutes.                                                                         |  
+| Scope                       | Captures everything but reports and custom domain settings in a blob.                                    |  
+| Service Configuration       | Operations such as scaling and upgrades are blocked while the backup is in progress.                     |  
+| Changes                     | Any changes applied after the backup starts are not included in the backup.                              |  
+| **Restore**                 |                                                                                                          |  
+| Duration                    | Could take 30 minutes or more depending on the size.                                                     |  
+| Availability                | The instance is not available while the restore is in progress.                                          |  
+| Custom Domain               | Custom domain configurations need to be re-applied manually after the restore.                           |  
+| **Standby Failover Instance** |                                                                                                          |  
+| Setup                       | Create a backup instance in a different region in advance.                                               |  
+| Configuration               | Configure the custom domain identically to the active instance.                                          |  
+| Sync                        | Periodically sync the configuration with the active instance to achieve the desired RPO (Recovery Point Objective). |  
+| Failover                    | To fail over, update the CNAME to reference the backup instance.                                         |  
+| Scalability                 | Scale up the backup instance if and as required.                                                         |  
+| **Summary**                 |                                                                                                          |  
+| Backup                      | This process is relatively quick but does block certain operations and does not capture changes made after the backup begins. |  
+| Restore                     | This can be time-consuming and renders the instance unavailable during the process. Manual intervention is required for custom domain settings. |  
+| Standby Failover            | Setting up a standby instance in advance can significantly reduce downtime and improve recovery times. This involves periodic synchronization and possibly updating DNS records during a failover. |  
+
+:::Warning
+Backup and restore, needs to be configured. It is not enabled by default.
+Backup is not possible in Consumption.
+Backup and restore could take between 30 minutes to 1 hours.
+Taking a backup or restore, puts the API Management Management plane in a read-only state while backup or restore is in progress.
+The backups expire after 30 days
+:::
+
+Backup and restore is where you can consider, Infrastructure as Code and APIOps functionality and testing. 
+
+###  Monitor and Analyze
+
+![API Lifecycle - Monitor and Analyze](images/apim_apilifecyle_MonitorAnalyze.PNG)
+
+Now we need to monitor and analyze the APIs and API Management, to ensure that they are performing as expected, and to identify any issues that may arise. Azure API Management provides a range of monitoring and analytics features to help you track API usage, performance, and health.
+
+![APIM - Monitor and Analyze](images/apim_apilifecyle_MonitorAnalyzeFeatures.PNG)
+
+![APIM - Monitor and Analyze](images/apim_apilifecyle_MonitorAnalyzeAPIInspector.PNG)
+
+The "[API Inspector](https://learn.microsoft.com/azure/api-management/observability?WT.mc_id=AZ-MVP-5004796)" feature used for monitoring and analyzing API requests. It provides detailed information about each request, including the request URL, headers, and response status code. This feature is useful for troubleshooting issues and optimizing API performance.
+
+![APIM - Monitor and Analyze](images/apim_apilifecyle_MonitorAnalyzeAzureMonitorMetrics.PNG)
+
+| Tool        | Useful for    | Data lag | Retention | Sampling | Data kind | Supported Deployment Model(s) |
+|:------------- |:-------------|:---- |:----|:---- |:--- |:---- |
+| **[API Inspector](https://learn.microsoft.com/azure/api-management/api-management-howto-api-inspector?WT.mc_id=AZ-MVP-5004796)** | Testing and debugging | Instant | Last 100 traces | Turned on per request | Request traces | Managed, Self-hosted, Azure Arc |
+| **[Built-in Analytics](https://learn.microsoft.com/azure/api-management/howto-use-analytics?WT.mc_id=AZ-MVP-5004796)** | Reporting and monitoring | Minutes | Lifetime | 100% | Reports and logs | Managed |
+| **[Azure Monitor Metrics](https://learn.microsoft.com/azure/api-management/api-management-howto-use-azure-monitor?WT.mc_id=AZ-MVP-5004796)** | Reporting and monitoring | Minutes | 90 days (upgrade to extend) | 100% | Metrics | Managed, Self-hosted<sup>2</sup>, Azure Arc |
+| **[Azure Monitor Logs](https://learn.microsoft.com/azure/api-management/api-management-howto-use-azure-monitor?WT.mc_id=AZ-MVP-5004796)** | Reporting, monitoring, and debugging | Minutes | 31 days/5GB (upgrade to extend) | 100% (adjustable) | Logs | Managed<sup>1</sup>, Self-hosted<sup>3</sup>, Azure Arc<sup>3</sup> |
+| **[Azure Application Insights](https://learn.microsoft.com/azure/api-management/api-management-howto-app-insights?tabs=rest&WT.mc_id=AZ-MVP-5004796)** | Reporting, monitoring, and debugging | Seconds | 90 days/5GB (upgrade to extend) | Custom | Logs, metrics | Managed<sup>1</sup>, Self-hosted<sup>1</sup>, Azure Arc<sup>1</sup> |
+| **[Logging through Azure Event Hubs](https://learn.microsoft.com/azure/api-management/api-management-howto-log-event-hubs?tabs=PowerShell&WT.mc_id=AZ-MVP-5004796)** | Custom scenarios | Seconds | User managed | Custom | Custom | Managed<sup>1</sup>, Self-hosted<sup>1</sup>, Azure Arc<sup>1</sup> |
+| **[OpenTelemetry](https://learn.microsoft.com/azure/api-management/how-to-deploy-self-hosted-gateway-kubernetes-opentelemetry?WT.mc_id=AZ-MVP-5004796#introduction-to-opentelemetry)** | Monitoring | Minutes | User managed | 100% | Metrics | Self-hosted<sup>2</sup> |
+
+*1. Optional, depending on the configuration of feature in Azure API Management*
+
+*2. Optional, depending on the configuration of the gateway*
+
+*3. The [self-hosted gateway](self-hosted-gateway-overview.md) currently does not send diagnostic logs to Azure Monitor. However, it is possible to configure and persist logs locally where the self-hosted gateway is deployed. For more information, please see [configuring local metrics and logs for self-hosted gateway](how-to-configure-local-metrics-logs.md)*
+
+![APIM - Monitor Logs](images/apim_apilifecyle_MonitorAnalyzeAzureMonitorLogs.PNG)
+
+![APIM - Monitor Logs](images/apim_apilifecyle_MonitorAnalyzeAppInsights.PNG)
+
+!@[APIM - Monitor Reports](images/apim_apilifecyle_MonitorAnalyzeReports.PNG)
+'
+More information on API Management can be found here: [https://aka.ms/apimlove](https://aka.ms/apimlove).
+
+![APIM - Monitor and Analyze](images/apim_love.png)
+
+A great resource for Architecting Azure API Management, considerations can be found here: [stephaneey/azure-and-k8s-architecture](https://github.com/stephaneey/azure-and-k8s-architecture/blob/main/maps/apim.md) from MVP [Stephane Eyskens](https://www.linkedin.com/in/stephane-eyskens).
+
+![APIM - Monitor and Analyze](images/apim_architecturemap.PNG)
