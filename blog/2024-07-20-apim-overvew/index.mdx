@@ -406,12 +406,14 @@ Passthrough Support for WebSocket APIs:
 Client applications can establish WebSocket connections directly with API Management (APIM).
 This setup allows for continuous, two-way communication between clients and backend services.
 Once the connection is established, APIM seamlessly proxies WebSocket messages to the backend services, ensuring smooth and reliable communication.
+
 2. Features of WebSocket API Support:
 
 CRUD Operations:
 
 With WebSocket API support, we can perform Create, Read, Update, and Delete (CRUD) operations on WebSocket APIs.
 This flexibility ensures that our APIs can handle various real-time data interactions effectively.
+
 Apply Policies:
 
 We can apply policies to handshake requests, which is crucial for managing security, authentication, and other operational requirements.
@@ -420,6 +422,7 @@ Browse and Test:
 
 WebSocket APIs can be easily browsed and tested within the Azure and Developer portals.
 This capability allows developers to interact with and validate the WebSocket APIs during the design and development phases.
+
 Monitoring and Logging:
 
 Azure Monitor provides metrics and logs specifically for WebSocket APIs.
@@ -437,7 +440,8 @@ APIs are the backbone of modern digital ecosystems, enabling connected experienc
 
 1. Consume:
 
-Developer Portal:
+_(Developer Portal)_
+
 The first pillar of API management is the Developer Portal.
 This portal is a crucial interface where developers can discover, understand, and consume APIs.
 It provides comprehensive documentation, code samples, and testing tools, making it easier for developers to integrate APIs into their applications.
@@ -445,7 +449,8 @@ The Developer Portal offers a centralized hub for API information, enhancing dev
 
 2. Mediate:
 
-Gateway:
+_(Gateway)_
+
 The gateway is at the heart of API management. It mediates the communication between client applications and backend services.
 The Gateway ensures secure, reliable, and efficient API traffic management.
 It provides various capabilities, such as load balancing, rate limiting, and security enforcement.
@@ -453,9 +458,11 @@ By mediating API requests, the Gateway helps scale applications, protect against
 
 3. Publish:
 
-Azure Portal:
+_(Azure Portal)_
+
 The third pillar is the Azure Portal, where APIs are published and managed.
 This portal allows API providers to define and publish their APIs, making them available to developers.
+
 It offers tools for monitoring API usage, setting up policies, and managing API versions.
 API providers can ensure their APIs are robust, secure, and up-to-date through the Azure Portal.
 
@@ -465,20 +472,20 @@ APIs are essential for modern digital ecosystems, but managing them efficiently 
 
 Products:
 
-Diverse Product Integration:
+* Diverse Product Integration:
 
 We have multiple products (Products 1 to 5) at the top. Each product has unique functionalities and API requirements.
 These products represent different applications and services that need to communicate with various backend systems.
 
 API Management Layer:
 
-Centralized Management:
+* Centralized Management:
 
 The middle section represents the API Management layer, a crucial component in this architecture.
 API Management acts as a mediator, facilitating seamless communication between the products and the backend services.
 It standardizes API interactions, ensuring consistency, security, and reliability.
 
-Backend Systems:
+* Backend Systems:
 
 Backend on Azure and On-premises:
 At the bottom, we see the backend systems, categorized into Azure-based and on-premises backends.
@@ -487,18 +494,449 @@ On-premises backends consist of traditional servers and databases.
 API Management ensures that products seamlessly interact with cloud-based and on-premises backend systems.
 Critical Benefits of API Management:
 
-Unified API Gateway:
+* Unified API Gateway:
 
 Provides a single entry point for all API requests, simplifying the management of APIs across multiple products and services.
 Enhanced Security:
 
 Secure communication between products and backend systems is ensured through policies like authentication, authorization, and rate limiting.
-Scalability:
+
+* Scalability:
 
 Handles large volumes of API traffic, enabling applications to scale efficiently.
-Monitoring and Analytics:
+
+* Monitoring and Analytics:
 
 Offers insights into API usage, performance metrics, and error tracking, helping in proactive management and optimization.
 Developer Empowerment:
 
 Facilitates a developer-friendly environment with comprehensive documentation, testing tools, and self-service capabilities.
+
+![APIM - Cross Domain policies](images/apim_apilifecyle_design_crossdomainpolicy.PNG)
+
+Policy Scopes
+
+![APIM - Policy Scopes](images/apim_apilifecyle_design_policyscopes.PNG)
+
+Lets take a look at the policy scopes, understanding the scopes is cruical to apply the right policy at the right place. Policies get inherited from the parent scope to the child scope.
+
+So lets go through them.
+
+* Global _(Red Border)_
+
+Description: Global policies apply to all requests and responses passing through the API Management instance. They are the outermost scope, impacting every operation, API, and product.
+Usage: Commonly used for policies like CORS _(Cross-Origin Resource Sharing)_ and logging, which should be consistent across the entire API Management instance.
+
+* Workspace _(Yellow Border)_
+
+Description: This scope is associated with a workspace, which is a grouping of related APIs and other components within API Management.
+Usage: Policies defined at this level are used when there is a need for consistent policy enforcement across multiple APIs that belong to the same workspace.
+
+* Product _(Green Border)_
+
+Description: Product-level policies apply to all APIs included within a specific product. Products are a way to bundle APIs together for subscription and access management.
+Usage: Common for setting rate limits and quotas that apply to all APIs in the product, helping to manage usage and prevent abuse.
+
+* API _(Blue Border)_
+
+Description: API-level policies apply to all operations within a specific API. This scope allows for API-wide behavior customization.
+Usage: Often used for API-specific security measures like JWT (JSON Web Token) validation or other API-wide configurations.
+
+* Operation _(Purple Border)_
+
+Description: Operation-level policies are the most granular and apply to a specific operation within an API _(e.g., a single endpoint or method)_.
+Usage: Useful for operation-specific requirements like caching, URL rewriting, or request/response transformation.
+
+* Inbound and Outbound policies
+
+Inbound policies are applied as the request comes in from the caller, and outbound policies are applied as the response is sent back to the caller after being processed by the backend.
+
+Each of these scopes allows for different levels of customization and control over how requests and responses are handled within Azure API Management.
+
+If we take a look at the [policy named values](https://learn.microsoft.com/azure/api-management/api-management-howto-properties?tabs=azure-portal&WT.mc_id=AZ-MVP-5004796) and [expressions](https://learn.microsoft.com/azure/api-management/api-management-policy-expressions?WT.mc_id=AZ-MVP-5004796).
+
+![APIM - Policy Values](images/apim_apilifecyle_design_policysvalues.PNG)
+
+We can see that Named Values are a powerful feature in Azure API Management that allows us to define reusable variables and secrets that can be used across policies.
+
+> Policies are a collection of statements that are executed sequentially on the request or response of an API. Policy statements can be constructed using literal text values, policy expressions, and named values.
+
+Named values are a global collection of name/value pairs in each API Management instance. There is no imposed limit on the number of items in the collection. Named values can be used to manage constant string values and secrets across all API configurations and policies.
+
+Lets take a look at some out of the box policies
+
+![APIM - Out of the box policies](images/apim_apilifecyle_design_outoftheboxpolicies.PNG)
+
+Azure API Management includes, "Out of the box policies" provides the majority of use cases that that can be implemented to manage access, transform data, advance functionalities, integrate with Dapr, authenticate users, cache data, manage cross-domain calls, and validate information. 
+
+Let us delve into each category to understand the capabilities these policies offer.
+
+* **Access Restriction**
+
+Access restriction policies are crucial for controlling who can access your services and how often. These policies include:
+
+Check HTTP header: Validates headers in HTTP requests.
+Limit call rate by subscription/key: Controls the rate of API calls based on the subscription or key.
+Restrict caller IPs: Allows access only from specified IP addresses.
+Set usage quota by subscription/key: Limits the usage based on subscription or key.
+Validate client certificate: Ensures the authenticity of the client via certificates.
+Validate JWT (JSON Web Token): Verifies the token to ensure secure access.
+
+* **Transformation**
+
+Transformation policies handle the modification and conversion of data formats and content. These policies include:
+
+Convert JSON to XML / XML to JSON: Transforms data between JSON and XML formats.
+Find and replace string in body: Replaces specific strings in the request or response body.
+Mask URLs in content: Hides sensitive URLs within the content.
+Set backend service/body/HTTP header/query string parameter: Customizes backend service configurations and request parameters.
+Rewrite URL: Modifies the URL of incoming requests.
+Transform XML using XSLT: Applies XSLT to transform XML data.
+
+* **Advanced**
+
+Advanced policies provide extended functionalities for handling requests and responses. These include:
+
+Send one-way request / request: Facilitates sending HTTP requests.
+Set HTTP proxy / request method / status code / variable: Configures proxy, method, status code, and variables.
+Control flow / Emit metric: Manages the flow of requests and emits metrics.
+Log to Event Hub / Trace: Logs events and traces for monitoring.
+Mock response / Forward request: Creates mock responses or forwards requests.
+Limit concurrency / Return response / Retry / Wait: Manages concurrency, responses, and retry mechanisms.
+
+* **Dapr Integration**
+
+Dapr (Distributed Application Runtime) integration policies enable communication with Dapr services:
+
+Send request to a service / message to a pub/subtopic: Facilitates interaction with Dapr services and pub/subtopics.
+Trigger output binding: Initiates output bindings in Dapr.
+
+* **Authentication**
+
+Authentication policies ensure that only authorized users can access your services:
+
+Authenticate with basic / client certificate / managed identity: Supports various authentication methods to verify user identity.
+
+* **Caching**
+
+Caching policies improve performance by storing and retrieving data from the cache:
+
+Store to cache / Get value from cache / Store value from cache / Remove value from cache: Manages caching operations to optimize data retrieval.
+
+* **Cross Domain**
+Cross-domain policies handle calls across different domains:
+
+CORS / JSON: Manages cross-origin resource sharing and JSON data handling.
+
+* **Validation Policies**
+
+Validation policies ensure the integrity and correctness of data:
+
+Validate content / parameters / headers / status code / GraphQL request: Checks the validity of content, parameters, headers, status codes, and GraphQL requests.
+
+An example of policies that are useful is **Request Forwarding**:
+
+![APIM - Policy Example](images/apim_apilifecyle_design_outoftheboxpolicies_RequestForwarding.PNG)
+
+This policy is usually inherited from the global scope via the <base/> tag. If no specific policy is set, it defaults to the base configuration.
+Timeout Settings: The forwarding timeout can be configured between 30 seconds to 10 minutes, with the default being 5 minutes.
+Redirect Handling: It can be configured to follow redirects or, by default, return them to the caller.
+
+* You can configure Retry (<retry/>)
+
+Triggering Conditions: Retry is triggered when a specified expression evaluates to true.
+Backoff Intervals: Offers options for fixed, linear, or exponential backoff intervals.
+Fast First Retry: An optional feature for a quick retry attempt.
+Request Copy: Does not retain a copy of the request automatically, ensuring efficient resource utilization.
+
+* Limit Concurrency (<limit-concurrency/>)
+
+Concurrency Cap: Caps the number of concurrent requests forwarded to the backend to prevent overloading.
+Policy Integration: Can be used in conjunction with other policies to limit the number of requests entering enclosed policies.
+Set Backend Service (<set-backend-service/>)
+
+Runtime Changes: Allows changing the backend service during runtime, providing flexibility in managing backend services.
+Conditional Policies: Can be configured with conditional policies for blue/green deployment, ensuring smooth transitions and updates.
+
+and Authentication (<authentication/>)
+
+![APIM - Authentication policy](images/apim_apilifecyle_design_outoftheboxpolicies_Authentication.PNG)
+
+Such as:
+
+* <validate-jwt>
+
+Purpose: Validates JSON Web Tokens (JWTs).
+Supported Standards:
+* JWS (JSON Web Signature)
+* JWE (JSON Web Encryption)
+* RSA256 and HS256 algorithms
+* OpenID Configuration: Supports OpenID Configuration endpoints for validation.
+* Claims Validation: Can check specific claims within the JWT.
+* Scope: Can be configured at any policy scope, offering flexibility in where it is applied.
+
+* <validate-client-certificate>
+
+Purpose: Enforces that a certificate presented by a client matches the specified validation rules and claims.
+Key Attributes:
+* validate-revocation="true": Ensures the certificate has not been revoked.
+* validate-trust="true": Checks that the certificate is trusted.
+* validate-not-before="true": Ensures the certificate is not used before a certain date.
+* validate-not-after="true": Ensures the certificate is not used after a certain date.
+* ignore-error="false": Indicates whether errors should be ignored.
+
+Identities Section:
+
+Contains one or more <identity> elements.
+
+* Each <identity> element includes a thumbprint attribute, identifying the specific certificate by its thumbprint.
+
+Lets take a look at the [Azure API Management Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-apimanagement).
+
+![APIM - Visual Studio Code](images/apim_apilifecyle_design_vscodeextension.PNG)
+
+The Azure API Management Visual Studio Code extension provides a seamless experience for managing APIs directly from your development environment.
+
+![VSCode Visual Studio Extension](images/VSCode_APIMExtension.gif)
+
+The extension, allows us to test and edit APIs directly from Visual Studio Code, and push those changes straight to Azure API Management, streamlining the development process and enhancing productivity.
+
+![APIM - Visual Studio Code - Test APIs](images/apim_apilifecyle_design_vscodeextensiontest.PNG)
+
+Let us take a look at some of the Deployment Options for Azure API Management.
+
+![APIM - Deployment Options](images/apim_apilifecyle_design_deploymentoptions.PNG)
+
+Azure API Management, is an ARM (Azure Resource Manager) resource, and can be deployed using [ARM templates](https://learn.microsoft.com/azure/azure-resource-manager/templates/overview?WT.mc_id=AZ-MVP-5004796), [Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/overview?tabs=bicep&WT.mc_id=AZ-MVP-5004796), or [Terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs).
+
+:::info
+It is worth noting, that Azure API Management, has a [Landing Zone Accelerator](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/landing-zone-accelerator?WT.mc_id=AZ-MVP-5004796), which is a set of pre-built configurations and best practices for deploying Azure API Management in a secure and compliant manner.
+
+![APIM - Landing Zone Accelerator](images/apim_reference-implementation.png)
+:::
+
+[APIOps](https://azure.github.io/apiops/) is a set of practices and tools that help organizations manage the full lifecycle of APIs, from design to deprecation. It combines the principles of DevOps with API management to streamline API development and deployment.
+
+![APIOps](images/ApiOps.gif)
+
+APIOps can be used to automate API management tasks, improve collaboration between development and operations teams, and ensure consistency and quality across APIs, and API Management environments, such as Development, Testing and Production.
+
+### Secure
+
+![API Lifecycle - Secure](images/apim_apilifecyle_secure.PNG)
+
+Security is a critical aspect of API management, ensuring that APIs are protected from unauthorized access, data breaches, and other security threats. Azure API Management offers a range of security features to safeguard APIs and ensure compliance with industry standards.
+
+The [Open Web Application Security Project (OWASP)](https://owasp.org/) has identified the top 10 critical API security risks for 2023
+
+![APIM - Security](images/apim_apilifecyle_secure_OWASP.PNG)
+
+| **#** | **Threat**                               | **Description**                                     | **Mitigation**                                                                 |  
+|-------|-------------------------------------------|-----------------------------------------------------|--------------------------------------------------------------------------------|  
+| 1     | Broken Object Level Authorization         | Unauthorized access to objects.                     | Implement key/token/certificate-based authentication and request transformation. Policy-based Access Control: Use policies to enforce authorization rules. OAuth2/JWT: Integrate with Entra ID for token validation.
+|  
+| 2     | Broken Authentication                     | Weak authentication mechanisms.                     | Use strong key/token-based authentication methods and transform requests appropriately.Authentication Policies: Enforce authentication using OAuth2, OpenID Connect, certificates, and API keys. |  
+| 3     | Broken Object Property Level Authorization| Unauthorized access to object properties.           | Filter or mask sensitive data and ensure both request and response validations. Data Masking: Use policies to mask sensitive data. Validation: Validate input to ensure only authorized properties are accessed.|  
+| 4     | Unrestricted Resource Consumption         | Overuse of resources leading to denial of service.  | Apply throttling, quota limits, and manage backend concurrency effectively.Rate Limiting and Quotas: Use policies to set rate limits and quotas. Caching: Reduce load by caching responses.    |  
+| 5     | Broken Function Level Authorization       | Unauthorized access to functions.                   | Enforce key/token-based and custom authorizations. Role-Based Access Control (RBAC): Use Azure RBAC to control access to different API operations. Request Validation: Validate incoming requests to ensure they don't contain malicious URLs. Network Security: Use VNETs and NSGs to control outbound traffic.
+Configuration Management: Use Azure Policy, and deployment stacks to enforce security configurations. Automated Deployments: Use CI/CD pipelines to ensure consistent and secure deployments.                             |  
+| 6     | Unrestricted Access to Sensitive Business Flows | Uncontrolled access to critical business operations. | Validate all requests and responses meticulously. Custom Policies: Implement custom policies to validate requests and responses, ensuring sensitive operations are protected.                             |  
+| 7     | Server-Side Request Forgery (SSRF)        | Attackers tricking the server into making requests to unintended locations. | Validate remote resources and user-supplied URIs, and ensure response validation.|  
+| 8     | Security Misconfiguration                 | Incorrectly configured API settings.                | Maintain an up-to-date API catalog and manage the API lifecycle rigorously.    |  
+| 9     | Improper Inventory Management             | Exposing more endpoints than necessary.             | Regularly update and document your API endpoints to manage exposure effectively. API Versioning: Implement API versioning to manage exposure of endpoints. Documentation: Keep API documentation updated and use tools like Swagger or OpenAPI.|  
+| 10    | Insufficient Logging and Monitoring       | Lack of proper logging and monitoring mechanisms.   | Ensure comprehensive and updated documentation, and maintain robust logging and monitoring practices. Azure Monitor and Application Insights: Integrate with these services for comprehensive logging and monitoring. Alerts: Set up alerts for unusual activities. |  
+
+
+Azure API Management provides a range of security features to protect APIs from these threats.
+
+Lets take a look at securing the different planes of Azure API Management.
+
+![APIM - APIM Planes](images/apim_apilifecyle_secure_planes.PNG)
+
+| Plane Name        | Used For                                                          |  
+|-------------------|-------------------------------------------------------------------|  
+| User Plane        | Securing user interactions and data at the entry point.           |  
+| Management Plane  | Managing and securing interactions between API providers and the management system. |  
+| Data Plane        | Securing the flow and integrity of data between the gateway and backend services. |  
+
+![APIM - Data Plane](images/apim_apilifecyle_secure_dataplanes.PNG)
+
+In today's interconnected digital landscape, securing backend APIs is paramount. One of the key strategies for achieving this is through robust data plane security. This layered defense mechanism ensures that sensitive data and applications are protected from unauthorized access and malicious attacks. Let's delve deeper into how data plane security works and the roles of its components.
+
+**Firewall: Blocking Suspicious Requests**
+
+The first line of defense in data plane security is the firewall. It acts as a gatekeeper, scrutinizing incoming requests to block any that appear suspicious. The firewall employs several rule sets and mechanisms to identify and mitigate potential threats:
+
+* OWASP Core Rule Sets: These are standardized rules for detecting common web application security risks.
+* Bot Protection Rule Set: This helps in identifying and blocking automated bot traffic that could pose security risks.
+* Custom Rules: Organizations can define their own rules tailored to their specific security requirements.
+
+**Gateway: Authenticating and Authorizing Requests**
+
+Once a request passes through the firewall, it reaches the gateway. The gateway is responsible for performing in-depth request authentication and authorization to ensure only valid requests proceed. Key functions of the gateway include:
+
+* Authentication Mechanisms: Such as OAuth 2, client certificates, and custom authentication methods.
+* Authorization Mechanisms: Including IP filtering and custom authorization rules.
+* Request/Response Validation: Ensuring that both incoming requests and outgoing responses meet predefined security criteria.
+* Throttling: Managing the rate of incoming requests to prevent denial-of-service (DoS) attacks.
+
+**Backend APIs: Fine-Grained Authorization**
+
+The final layer involves the backend APIs themselves, which must accept requests only from trusted sources. This layer applies fine-grained authorization to enforce strict access controls. Key security measures include:
+
+* HTTP Basic (Shared Secret): Simple but effective method for authenticating requests.
+* Mutual Certificates: Ensuring both client and server authenticate each other.
+* OAuth 2: Secure token-based authentication.
+* Managed Identity and IP Filtering: Restricting access based on IP addresses and managing identities to enforce security policies.
+* Private Networking: Isolating the APIs within a secure network environment.
+
+![APIM - Data Plane - Facade](images/apim_apilifecyle_secure_dataplanesfacafe.PNG)
+
+![APIM - Data Plane - Keys](images/apim_apilifecyle_secure_dataplaneskeys.PNG)
+
+![APIM - Data Plane - JWT](images/apim_apilifecyle_secure_dataplanejwt.PNG)
+
+![APIM - Data Plane - Client certificates](images/apim_apilifecyle_secure_dataplaneclientcerts.PNG)
+
+![APIM - Data Plane - Throttling](images/apim_apilifecyle_secure_dataplanethrottling.PNG)
+
+![APIM - Data Plane - Sanitization](images/apim_apilifecyle_secure_dataplaneresponsesanitization.PNG)
+
+![APIM - Data Plane - DDoS](images/apim_apilifecyle_secure_dataplanereddos.PNG)
+
+Lets take a look at the security considerations, when looking at networking.
+
+![APIM - Private Networking Security](images/apim_apilifecyle_secure_privatenetworking.PNG)
+
+Azure API Management has two networking options:
+
+* internal
+* external
+
+The [internal](https://learn.microsoft.com/azure/api-management/api-management-using-with-internal-vnet?tabs=stv2&WT.mc_id=AZ-MVP-5004796) option is more secure, as it is not exposed to the public internet. It is ideal for scenarios where you want to restrict access to your APIs to only internal clients or services.
+The [external](https://learn.microsoft.com/azure/api-management/api-management-using-with-vnet?tabs=stv2&WT.mc_id=AZ-MVP-5004796) option is exposed to the public internet, making it accessible to a broader audience. This option is suitable for scenarios where you want to provide public access to your APIs.
+
+![APIM - External](images/apim_apilifecyle_secure_external.PNG)
+
+![APIM - External](images/apim_apilifecyle_secure_internal.PNG)
+
+You can also use the best of both worlds, by allowing Azure API Management in Internal mode, to publish APIs to the internet, or external customers, by having it in Internal mode and using Azure Front Door, or Azure Application Gateway, to expose the APIs to the internet.
+
+![APIM - Internal with WAF](images/apim_apilifecyle_secure_internalwaf.PNG)
+
+Deciding between using Azure API Management (APIM) in Internal or External mode depends on your specific requirements for security, accessibility, and network configuration. Here are some key considerations:
+
+* Internal Mode
+
+Accessibility: The APIM endpoints are accessible only from within the Virtual Network (VNet) via an internal load balancer.
+Security: This mode is more secure as it restricts access to the APIM endpoints to only those resources within the VNet.
+Use Case: Ideal for scenarios where you need to protect sensitive APIs and ensure that they are only accessible from within your organization’s network.
+
+* External Mode
+
+Accessibility: The APIM endpoints are accessible from the public internet via an external load balancer.
+Security: While still secure, this mode allows for broader access, including from the internet.
+Use Case: Suitable for scenarios where you need to expose APIs to external clients or partners.
+
+Deciding between Internal and External mode depends on your specific requirements and use case. Consider the security, accessibility, and network configuration needs of your APIs to determine the best mode for your scenario.
+
+For example:
+
+Security Requirements: If your APIs handle sensitive data, internal mode is preferable.
+Accessibility Needs: If you need to provide access to external clients, external mode is the way to go.
+Network Configuration: Consider your existing network setup and how APIM will integrate with it.
+
+![APIM Compliance](images/apim_apilifecyle_secure_compliance.PNG)
+
+Azure API Management, meets Compliance requirements, such as:
+
+* GDPR
+* HIPAA
+* ISO 27001 PCI
+
+More information on the compliance can be found here: [Azure compliance documentation](https://learn.microsoft.com/azure/compliance/?WT.mc_id=AZ-MVP-5004796)
+
+### Publish
+
+![API Lifecycle - Publish](images/apim_apilifecyle_publish.PNG)
+
+Once an API is designed, developed, and secured, it is ready to be published. Azure API Management offers a range of features to help you publish and manage your APIs effectively.
+
+One of those features is the Developer Portal.
+
+![APIM - Developer Portal](images/apim_apilifecyle_publish_DeveloperPortal.PNG)
+
+The Developer Portal in API Management _(APIM)_ serves as a discovery and self-onboarding point for application developers. Here are the primary functions and features it offers:
+
+* Discover APIs:
+Developers can explore and find available APIs that they can integrate into their applications.
+* Learn How to Use Them:
+The portal provides comprehensive documentation and tutorials to help developers understand how to effectively use the APIs.
+* Test Them Out with Interactive Console:
+Developers can interactively test the APIs within the portal using a built-in console. This allows them to see how the APIs work and validate their functionality before integrating them into their applications.
+* Create and Manage Accounts:
+Developers can create accounts on the portal, manage their profiles, and keep track of their API usage and subscriptions.
+* Request and Manage API Access:
+The portal enables developers to request access to specific APIs and manage their access permissions, ensuring they have the appropriate level of access for their needs.
+* Analyze API Usage:
+Developers can analyze their API usage data to monitor performance, identify trends, and optimize their application's interaction with the APIs.
+
+The Developer Portal is customizable, allowing organizations to tailor it to their specific needs and branding. It serves as a central hub for developers to discover, learn, and interact with APIs, streamlining the API consumption process and fostering collaboration between API providers and consumers.
+
+![APIM - Developer Portal](images/apim_apilifecyle_publish_DeveloperPortalcustomization.PNG)
+
+You can self-host the Developer Portal as well, whether you host it in an App Service, or in a Virtual Machine, or in a Kubernetes Cluster. 
+
+You can find the files directly here: [Azure/api-management-developer-portal](https://github.com/Azure/api-management-developer-portal). 
+
+![APIM - Developer Portal](images/apim_apilifecyle_publish_DeveloperPortalselfhostedn.PNG)
+
+![APIM - Developer Portal](images/apim_apilifecyle_publish_DeveloperPortaSwagger.PNG)
+
+Lets take a look at Revisions and Versions.
+
+![APIM - Revisions and Versions](images/apim_apilifecyle_publig_RevisionsVersions.PNG)
+
+Azure API Management provides the ability to manage [revisions](https://learn.microsoft.com/azure/api-management/api-management-revisions?WT.mc_id=AZ-MVP-5004796) and [versions](https://learn.microsoft.com/azure/api-management/api-management-versions?WT.mc_id=AZ-MVP-5004796) of APIs, allowing you to make changes and updates without affecting existing consumers.
+
+![APIM - Revisions and Versions](images/apim_apilifecyle_publig_RevisionsVersionscompare.PNG)
+
+![APIM - Revisions](images/apim_apilifecyle_publig_Revisions.PNG)
+
+| Scenario                                     | Description                                                                                       | Benefits                                                                                          |  
+|----------------------------------------------|---------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|  
+| Non-Breaking Changes to Your API             | Modifications that do not disrupt existing functionality for the end-users.                        | - Track and document changes systematically.                                                      |  
+|                                              |                                                                                                   | - Ensure a smooth transition for developers using the API.                                        |  
+| Potential Roll-Back of Changes               | Reverting to a previous stable state if new changes cause problems.                                | - Quickly revert to a stable state.                                                               |  
+|                                              |                                                                                                   | - Minimize downtime and maintain service reliability.                                             |  
+| Communicating Changes to Your Developer Community | Keeping your developer community informed about the changes you make.                              | - Provide detailed logs and documentation of changes.                                             |  
+|                                              |                                                                                                   | - Help developers understand how updates might affect their applications and how to adapt to them. |  
+
+![APIM - Versions](images/apim_apilifecyle_publig_versions.PNG)
+
+| Scenario                                      | Description                                                                 | Benefits                                                               |  
+|-----------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------|  
+| Show relationship between APIs                | Demonstrating how different versions of APIs are related                    | Helps developers understand the evolution and compatibility of APIs     |  
+| Provide predictable way to switch APIs        | Giving developers a clear method to switch between different API versions   | Reduces confusion and ensures smoother transitions between versions     |  
+| Add breaking changes                          | Introducing changes that are not backward compatible                        | Allows for significant improvements and updates without disrupting users|  
+| Try out changes and solicit feedback          | Testing new features or changes and gathering community feedback            | Encourages community engagement and helps refine the API before release |  
+
+Lets take a look at the following flowchart for deciding between Revisions and Versions.
+
+```mermaid
+flowchart TD  
+    A[Start] --> B{Do you need to make changes to the API?}  
+    B --> |Yes| C{Are the changes backward compatible?}  
+    B --> |No| D[No need for revisions or versions]  
+    C --> |Yes| E[Use Revisions]  
+    C --> |No| F{Do the changes require a new URL or breaking changes?}  
+    F --> |Yes| G[Use Versions]  
+    F --> |No| E[Use Revisions]  
+  
+    E --> H[Make backward-compatible changes]  
+    G --> I[Create a new version of the API]  
+    H --> J[Deploy changes using revisions]  
+    I --> K[Deploy changes using new version]  
+```
+
+![APIM - Revisions and Versions](images/apim_apilifecyle_publig_RevisionsVersexample.PNG)
