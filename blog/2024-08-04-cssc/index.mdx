@@ -1,6 +1,6 @@
 ---
 title: Ensuring Security in Container Supply Chains
-metaDescription: Learn about the best practices and frameworks for securing container supply chains to protect against vulnerabilities and threats.
+metaDescription: Learn the best practices and frameworks for securing container supply chains to protect against vulnerabilities and threats.
 date: 2024-08-04T03:12:10.971Z
 tags:
   - Azure
@@ -20,7 +20,7 @@ keywords:
 description: Learn about the best practices and frameworks for securing container supply chains to protect against vulnerabilities and threats.
 ---
 
-Today, we are going to take a look inside the [Containers Secure Supply Chain Framework](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview?WT.mc_id=AZ-MVP-5004796), a framework from Microsoft that utilises an agile ecosystem of tools and processes built to integrate and execute security controls throughout the lifecycle of containers.
+Today, we are going to take a look inside the [Containers Secure Supply Chain Framework](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview?WT.mc_id=AZ-MVP-5004796), a framework from Microsoft that utilizes an agile ecosystem of tools and processes built to integrate and execute security controls throughout the lifecycle of containers.
 
 {/* truncate */}
 
@@ -29,7 +29,7 @@ Today, we are going to take a look inside the [Containers Secure Supply Chain Fr
 :::info
 ![Container Supply Chain (CSSC) Framework](images/ContainerSupplyFramework_Overview.PNG)
 
-> Microsoft's [Containers Secure Supply Chain Framework](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview?WT.mc_id=AZ-MVP-5004796) framework is a seamless, agile ecosystem of tools and processes built to integrate and execute security controls throughout the lifecycle of containers. The container secure supply chain strategy is built considering all the security needs of the container applications. The goal is to prevent the use of vulnerable container images and create container infrastructure with a standard security portfolio.
+> Microsoft's [Containers Secure Supply Chain Framework](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview?WT.mc_id=AZ-MVP-5004796) framework is a seamless, agile ecosystem of tools and processes built to integrate and execute security controls throughout the lifecycle of containers. The container secure supply chain strategy considers all the security needs of container applications. The goal is to prevent the use of vulnerable container images and create container infrastructure with a standard security portfolio.
 
 The CSSC framework is built using the following steps:
 
@@ -40,7 +40,7 @@ The CSSC framework is built using the following steps:
 * Maintain security posture with metadata, logging, and reporting in each stage
 :::
 
-So in essence, the Containers Secure Supply Chain (CSSC) framework exists to ensure the security and integrity of containerized applications throughout their lifecycle. It aims to prevent the use of vulnerable container images and create a secure container infrastructure by integrating security controls at every stage of the supply chain.
+In essence, the Containers Secure Supply Chain (CSSC) framework ensures the security and integrity of containerized applications throughout their lifecycle. It aims to prevent vulnerable container images and create a secure container infrastructure by integrating security controls at every stage of the supply chain.
 
 The CSSC framework protects against several risks, including:
 
@@ -51,38 +51,38 @@ The CSSC framework protects against several risks, including:
 
 By addressing these risks, the CSSC framework helps maintain a secure and reliable environment for containerized applications.
 
-During each stage, make sure you ensure you have gates in place, to ensure that the image is secure, and meets the minimum quality standard, gets peer-approval, before moving to the next stage. This could be done by using Azure Policy, Azure Security Center, or CI/CD with tools such as Azure DevOps or GitHub.
+During each stage, make sure you have gates in place to ensure that the image is secure, meets the minimum quality standard, and gets peer approval before moving to the next stage. This could be done by using Azure Policy, Azure Security Center, or CI/CD with tools such as Azure DevOps or GitHub.
 
 ## 🔄Stages of the Container Supply Chain
 
 We will dig into each stage, with a focus on some of the tools, mainly [Azure Container Registry (ACR)](https://learn.microsoft.com/azure/container-registry/container-registry-intro?WT.mc_id=AZ-MVP-5004796), that can be used to implement the security controls in each stage.
 
-We will look at using seperate Container Registries, one for each stage, to ensure that the security controls are implemented at each stage.
+We will consider using separate Container Registers, one for each stage, to ensure that the security controls are implemented at each stage.
 
 ![Azure Container registries](images/ContainerSupplyFramework_ACRRegistries.PNG)
 
 * One for Quarantine
 * One for Catalog
-* One for deploment
+* One for deployment
 
 ![Container Supply Chain (CSSC) Framework](images/ContainerSupplyFramework_PortalACRRegistries.PNG)
 
 :::tip
-Make use of [Azure Container Registry webhooks](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-webhook?WT.mc_id=AZ-MVP-5004796), to trigger awareness and automation, when images are pushed to the registries. This could be used to trigger a pipeline, to scan the images, and move them to the next stage, if they meet the minimum quality standard.
+Make use of [Azure Container Registry webhooks](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-webhook?WT.mc_id=AZ-MVP-5004796) to trigger awareness and automation when images are pushed to the registries. This could trigger a pipeline to scan the images and move them to the next stage if they meet the minimum quality standard.
 :::
 
 So, let us dig into each stage.
 
 ## 🛒Stage 1: Acquire
 
-The [Acquire](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/acquire-overview?WT.mc_id=AZ-MVP-5004796) stage is the first step in the container supply chain. It involves obtaining container images from sources, that you may deem trusted or un-trusted and ensuring their integrity and authenticity.
+The [Acquire](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/acquire-overview?WT.mc_id=AZ-MVP-5004796) stage is the first step in the container supply chain. It involves obtaining container images from sources that you may deem trusted or un-trusted and ensuring their integrity and authenticity.
 
 ![Acquire](images/ContainerSupplyFramework_Acquire.PNG)
 
 * The Acquire stage aims to validate and ensure compliance of external container images with enterprise policies before internal use. This includes vulnerability and malware scanning.
-* It involves centralizing acquisition and management of external artifacts, importing images into an internal registry, and enriching images with metadata like SBOMs and provenance.
-* Key tools include Azure Container Registry (ACR) for storing and distributing images, ORAS for interacting with OCI registries, ACR Tasks for automating tasks, and Microsoft Defender for Cloud for security.
-* Microsoft recommends building software from source when possible, and if not, following the CSSC framework’s practices for acquiring external container images.
+* It involves centralizing the acquisition and management of external artifacts, importing images into an internal registry, and enriching images with metadata like SBOMs and provenance.
+* Key tools include Azure Container Registry (ACR) for storing and distributing images, ORAS for interacting with OCI registries, ACR Tasks for automating tasks, and Microsoft Defender for Cloud security.
+* Microsoft recommends building software from source when possible and, if not, following the CSSC framework’s practices for acquiring external container images.
 
 In the Aquire stage, you should establish a minimum quality standard for images sourced externally. This includes scanning for vulnerabilities and malware, verifying the authenticity and integrity of images, and enriching images with metadata like Software Bill of Materials (SBOMs) and provenance information.
 
@@ -93,17 +93,17 @@ Tools that can be useful during this stage are:
 * [Copacetic](https://project-copacetic.github.io/copacetic/website/)
 * [Azure Container Registry (ACR)](https://learn.microsoft.com/azure/container-registry/container-registry-intro?WT.mc_id=AZ-MVP-5004796)
 
-> The process of quarantining is a security measure, which consists of a series of checkpoints that are employed before an artifact is consumed. Those security checkpoints make sure that an artifact transitions from an untrusted status to a trusted status.
+> The process of quarantining is a security measure that consists of a series of checkpoints that are employed before an artifact is consumed. Those security checkpoints make sure that an artifact transitions from an untrusted status to a trusted status.
 
-Lets take a look at [Quarantine](https://learn.microsoft.com/azure/architecture/patterns/quarantine?WT.mc_id=AZ-MVP-5004796) functionity of Azure Container Registry, which could be used to automate the process of scanning and quarantining images that do not meet the minimum quality standard.
+Let's take a look at the [Quarantine](https://learn.microsoft.com/azure/architecture/patterns/quarantine?WT.mc_id=AZ-MVP-5004796) function of Azure Container Registry. This function could automate the process of scanning and quarantining images that do not meet the minimum quality standard.
 
-In my demo, I will be using the [debian](https://hub.docker.com/_/debian) base image, from the dockerhub, and pushed into my Azure Container Registry.
+In my demo, I will be using the [debian](https://hub.docker.com/_/debian) base image from the dockerhub and pushed into my Azure Container Registry.
 
 ![Container Image - Debian](images/ContainerSupplyFramework_Quarantine_debianimage.PNG)
 
-Lets enable Quarantine functionality on the Azure Container Registry. **At the time of this article, this is a preview feature.**
+Let's enable Quarantine functionality on the Azure Container Registry. **At the time of this article, this is a preview feature.**
 
-> When a registries policy is set to [Quarantine](https://learn.microsoft.com/rest/api/containerregistry/registries/update?view=rest-containerregistry-2023-01-01-preview&tabs=HTTP&WT.mc_id=AZ-MVP-5004796#quarantinepolicy) Enabled, all images pushed to that registry are put in quarantine by default. Only after the image has been verifed, and the quarantine flag removed may a subsequent pull be completed. Once Quarantine is enabled on a registry, for newly pushed image, it will enter quarantine state automatically and only a user with quarantine reader permissions can see the image. 
+> When a registries policy is set to [Quarantine](https://learn.microsoft.com/rest/api/containerregistry/registries/update?view=rest-containerregistry-2023-01-01-preview&tabs=HTTP&WT.mc_id=AZ-MVP-5004796#quarantinepolicy) Enabled, all images pushed to that registry are put in quarantine by default. Only after the image has been verified and the quarantine flag removed may a subsequent pull be completed. Once Quarantine is enabled on a registry, a newly pushed image will enter a quarantine state automatically, and only a user with quarantine reader permissions can see the image. 
 
 Using Azure CLI, we can enable Quarantine on the Azure Container Registry. Quarantine functionality is only allowed on Premium SKU registries.
 
@@ -114,9 +114,9 @@ export ACR_NAME=acrqr
 id=$(az acr show --name $ACR_NAME --query id -o tsv)
 az resource update --ids $id --set properties.policies.quarantinePolicy.status=enabled
 ```
-Once the image is quarantined, you will need a user with the AcrQuarantineReader role. The presumption here is the Vulnerability Scanning solution is configured to use this account.
+Once the image is quarantined, you need a user with the AcrQuarantineReader role. The presumption here is the Vulnerability Scanning solution is configured to use this account.
 
-We can run the following Azure CLI, to check the status of the image in the Quarantine.
+We can run the following Azure CLI to check the image status in the Quarantine.
 
 ```bash
 export ACR_NAME=acrqr
@@ -127,16 +127,16 @@ az acr manifest list -r $ACR_NAME -n $IMAGE_NAME
 !![Check Quarantine status](images/ACR_CheckQuarantine.gif)
 
 1. Now using [Defender for Containers](https://learn.microsoft.com/azure/defender-for-cloud/defender-for-containers-introduction?WT.mc_id=AZ-MVP-5004796), we can scan our images in the Container Registry for vulnerabilities.
-2. You can also make use of [Trivy](https://trivy.dev/), to scan the images for vulnerabilities, and reveal more about the SBOM (Software Bill of Materials), used in the image.
+2. You can also use [Trivy](https://trivy.dev/) to scan the images for vulnerabilities and reveal more about the SBOM (Software Bill of Materials) used in the image.
 3. Add any additional metadata to the image, such as the [SBOM](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/attach-sbom?WT.mc_id=AZ-MVP-5004796), and [provenance](https://docs.docker.com/build/attestations/slsa-provenance/) information.
 
 :::tip
-Check out [Container Patching with Azure DevOps, Trivy and Copacetic](https://luke.geek.nz/azure/automate-container-patching-with-trivy-copacetic-azure-devops/) blog article, for more information on how to automate the scanning of images with Copacetic in the Azure Container Registry, from an Azure DevOps pipeline.
+Check out [Container Patching with Azure DevOps, Trivy and Copacetic](https://luke.geek.nz/azure/automate-container-patching-with-trivy-copacetic-azure-devops/) blog article for more information on how to automate the scanning of images with Copacetic in the Azure Container Registry, from an Azure DevOps pipeline.
 :::
 
-Once you have determined the state of your Container Image is good, you can remove the Quarantine flag from your image by running the following Azure CLI command.
+Once you have determined that your Container Image's state is good, you can remove the Quarantine flag from it by running the following Azure CLI command.
 
-In order to call the API, currently you need both Contributor and AcrQuarantineWriter (or AcrPush role) permissions on the registry.
+In order to call the API, you currently need permissions for both Contributor and AcrQuarantineWriter (or AcrPush role) on the registry.
 
 ```bash
 export ACR_NAME=acrqr
@@ -162,7 +162,7 @@ export ACR_REFRESH_TOKEN=$(curl -s -X POST -H "Content-Type: application/x-www-f
   https://$REGISTRY/oauth2/exchange \
   | jq -r '.refresh_token')
 
-# Create the repo level scope
+# Create the repo-level scope
 SCOPE="repository:$REPOSITORY:pull,metadata_write"
 
 # Get the ACR access token using the refresh token
@@ -198,23 +198,23 @@ The [Catalog](https://learn.microsoft.com/azure/security/container-secure-supply
 :::info
 Microsoft recommends that internal teams use container images from an internal catalog whenever possible. 
 
-In case enterprises are not able to do so, we recommend the following practices for catalog of container images.
+If enterprises are not able to do so, we recommend the following practices for cataloging container images.
 
-* Catalog golden images to enable internal teams to easily discover and consume approved images required by enterprise applications and services.
+* Catalog golden images to enable internal teams to easily discover and consume approved images that enterprise applications and services require.
 * Continuously scan container images for vulnerabilities and malware, generate reports, and sign reports to ensure authenticity and integrity.
-* Monitor the lifecycle of catalogue images and retire images that are out of support.
+* Monitor the lifecycle of catalog images and retire images that are out of support.
 :::
 
-After the images have been acquired, and vetted by the previous step, and meet organisational requirements, its time to move the images into a Catalog Container Registry, where they can be stored in a central repository, and easily accessed.
+After the images have been acquired, vetted by the previous step, and meet organizational requirements, it's time to move the photos into a Catalog Container Registry, where they can be stored in a central repository and easily accessed.
 
-Unlike the Acquire Container Registry, this Registry will not be quarantined, however, this registry will need to be continously scanned for vulnerabilities, and malware, as part of operations, using tools like Defender for Cloud and Trivy.
+Unlike the Acquire Container Registry, this Registry will not be quarantined. However, it will need to be continuously scanned for vulnerabilities and malware as part of operations using tools like Defender for Cloud and Trivy.
 
 1. Now using [Defender for Containers](https://learn.microsoft.com/azure/defender-for-cloud/defender-for-containers-introduction?WT.mc_id=AZ-MVP-5004796), we can scan our images in the Container Registry for vulnerabilities. As this is a Catalog registry, we need to make sure that we monitor and remediate any vulnerabilities that are found.
 2. You can also make use of [Trivy](https://trivy.dev/), to scan the images for vulnerabilities.
 
-It can also be valid, to move images from the Catalog, back to the Quarantine registry, if the Catalog registry is not monitored, or the image has been found to have high priroties vulnerabilities, that fall beneath an organisation threshold.
+It can also be valid to move images from the Catalog back to the Quarantine registry if the Catalog registry is not monitored or the image has been found to have high-priority vulnerabilities that fall beneath an organization threshold.
 
-To move an image between the Quarantine and Catalog registries, you can use the following Azure CLI command.
+You can use the following Azure CLI command to move an image between the Quarantine and Catalog registries.
 
 ```bash
 # Variables
@@ -228,24 +228,24 @@ az acr import --name $TARGET_REGISTRY --source $SOURCE_REGISTRY.azurecr.io/$IMAG
 
 ![Move Image between Registries](images/ACR_MoveQuarantinetoCatalog.gif)
 
-We can see the image now in our Catalog registry. The image is left in the Quarantine registry, as the image has not been removed from the Quarantine registry, if needed you can now remove this.
+We can see the image now in our Catalog registry. The image is left in the Quarantine registry, as it has not been removed. If needed, you can now remove this.
 
 ![Azure Container Registry - Catalog](images/ContainerSupplyFramework_Catalog_debianimage.PNG)
 
 ## 🛠️Stage 3: Build
 
-The [Build](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/build-overview?WT.mc_id=AZ-MVP-5004796) step, is the third step in the container supply chain. It involves building container images from source code, and ensuring that they meet security and compliance requirements, where previous steps were more aligned to container images that were sourced externally. However, the following practices can be applied to both.
+The [Build](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/build-overview?WT.mc_id=AZ-MVP-5004796) step is the third step in the container supply chain. It involves building container images from source code and ensuring that they meet security and compliance requirements, whereas previous steps were more aligned with container images that were sourced externally. However, the following practices can be applied to both.
 
 ![Build](images/ContainerSupplyFramework_Build.PNG)
 
-> It is crucial to ensure that base images are always pulled from the internal catalog and verified before use. After building the images, some enterprises publish them without vulnerability and malware scanning, and fail to generate attestations like SBOM, which cannot be verified in subsequent supply chain stages. It is essential to ensure that the produced container images are trusted and compliant with the enterprise policies.
+> It is crucial to ensure that base images are always pulled from the internal catalog and verified before use. After building the images, some enterprises publish them without vulnerability and malware scanning and fail to generate attestations like SBOM, which cannot be verified in subsequent supply chain stages. It is essential to ensure that the produced container images are trusted and compliant with the enterprise policies.
 
-Build phase is all about building application images, in a consistant and secure way. 
+The build phase is all about building application images consistently and securely. 
 
 * Use trusted images only
 * Verify lifecycle and provenance metadata
 * Scan after build
-* Fix known vulnerabilities during and post build
+* Fix known vulnerabilities during and post-build
 * Sign images and artifacts
 
 Tools that can be used during the Build stage are:
@@ -258,39 +258,39 @@ Tools that can be used during the Build stage are:
 
 ## 🚢Stage 4: Deploy
 
-The Deploy stage is the fourth step in the container supply chain. It involves deploying container images to production environments, where they can be accessed by end-users.
+The Deploy stage is the fourth step in the container supply chain. It involves deploying container images to production environments where end-users can access them.
 
 ![Build](images/ContainerSupplyFramework_Deploy.PNG)
 
-This stage, is usually where you would move the images downstream from the Catalog registry, to the application Deployment registeries, where the images are deployed to production environments.
+This stage is usually where you move the images downstream from the Catalog registry to the application Deployment registries, where they are deployed to production environments.
 
-Use a secure and scalable private registry for application deployments. Ensure that the registry is protected with role-based access control (RBAC) and that images are signed and have the correct metadata attached.
+Use a secure and scalable private registry for application deployments. Ensure that the registry is protected with role-based access control (RBAC), that images are signed, and that the correct metadata is attached.
 
-* Continously scan for vulnerabilities and malware
+* Continuously scan for vulnerabilities and malware
 * Keep artifact metadata up-to-date
 * Enforce deployment policies
 
-Just because the images have been moved to the Deployment registry, does not mean that the images are safe to deploy. You should still be scanning the images for vulnerabilities, and malware, and ensuring that the images are signed, and have the correct metadata attached.
+Just because the images have been moved to the Deployment registry does not mean that they are safe to deploy. You should still be scanning them for vulnerabilities and malware and ensuring that they are signed and have the correct metadata attached.
 
-The same tools, we have used in the previous stages, can be used in this stage.
+The same tools we have used in the previous stages can be used in this stage.
 
 * [Defender for Cloud](https://learn.microsoft.com/azure/defender-for-cloud/defender-for-containers-introduction?WT.mc_id=AZ-MVP-5004796)
 * [Copacetic](https://project-copacetic.github.io/copacetic/website/)
 * [Trivy](https://trivy.dev/)
 * [HELM](https://helm.sh/)
 
-This the stage, where Copacetic can assist, with patching containers that are deployed, and ensuring that the images are up to date, and secure at the OS layers, while the images are fully patched, tested back at the Build and Catalog stages.
+This is the stage where Copacetic can assist with patching deployed containers and ensuring that the images are up to date and secure at the OS layers. The images are fully patched and tested back at the Build and Catalog stages.
 
 ## 🚀Stage 5: Runtime
 
-The Runtime stage is the fifth and final step in the container supply chain. It involves monitoring and securing running containers in production environments, where they can be accessed by end-users.
+The Runtime stage is the fifth and final step in the container supply chain. It involves monitoring and securing running containers in production environments so that end-users can access them.
 
 ![Run](images/ContainerSupplyFramework_Run.PNG)
 
-This is one of the most important stages, as this is where the images are running in production, and are exposed to the internet. You should be monitoring the images for vulnerabilities, and malware, and ensuring that the images are signed, and have the correct metadata attached.
+This is one of the most important stages, as this is where the images are running in production and are exposed to the Internet. You should monitor the images for vulnerabilities and malware and ensure that they are signed and have the correct metadata attached.
 
-* Monitor for Abnormal behaviour
-* Continously scan for vulnerabilities and malware
+* Monitor for Abnormal behavior
+* Continuously scan for vulnerabilities and malware
 * Keep runtime node ContainerSupplyFramework_Quarantine_debianimage
 
 Tools that can be used in this stage are:
