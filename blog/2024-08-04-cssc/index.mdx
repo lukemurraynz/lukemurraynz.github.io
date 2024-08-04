@@ -67,6 +67,10 @@ We will look at using seperate Container Registries, one for each stage, to ensu
 
 ![Container Supply Chain (CSSC) Framework](images/ContainerSupplyFramework_PortalACRRegistries.PNG)
 
+:::tip
+Make use of [Azure Container Registry webhooks](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-webhook?WT.mc_id=AZ-MVP-5004796), to trigger awareness and automation, when images are pushed to the registries. This could be used to trigger a pipeline, to scan the images, and move them to the next stage, if they meet the minimum quality standard.
+:::
+
 So, let us dig into each stage.
 
 ## 🛒Stage 1: Acquire
