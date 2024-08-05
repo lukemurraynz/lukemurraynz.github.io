@@ -1,0 +1,61 @@
+---
+title: API Management AI Gateway
+metaDescription: 
+date: 2024-07-22T09:28:31.063Z
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: azure/automate-container-patching-with-trivy-copacetic-azure-devops
+keywords:
+  - azure
+  - apim
+  - AzureOpenAI
+description: 
+---
+
+Today, we are going to deleve into some of the Generative AI Gateway capabilities _(commonly refered to as AI Gateway)_ that are available in the [API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796) service. 
+
+These capabilities are designed, to help secure and monitor your OpenAI endpoints, for use in your applications, as you head towards production.
+
+{/* truncate */}
+
+Common scenarios that the AI Gateway capabilities can help with include:
+
+* How can we track token usage across multiple applications? How can we do cross charges for multiple applications/teams that use Azure OpenAI models? 
+* How can we make sure that a single app does not consume the whole TPM quota, leaving other apps with no option to use Azure OpenAI models? 
+* How can we make sure that the API key is securely distributed across multiple applications? 
+* How can we distribute load across multiple Azure OpenAI endpoints? How can we make sure that PTUs are used first before falling back to Pay-as-you-go instances? 
+
+In this post, we will explore how to use the AI Gateway capabilities in API Management to address these scenarios.
+
+## Import Azure OpenAI service and definition.
+
+The first step is to [import the Azure OpenAI](https://learn.microsoft.com/azure/api-management/azure-openai-api-from-specification?WT.mc_id=AZ-MVP-5004796) service and definition into API Management. This will allow you to create a new API in API Management that can act as a gateway to the Azure OpenAI service.
+
+:::info
+You can import an Azure OpenAI API directly to API Management from the Azure OpenAI Service. When you import the API, API Management automatically configures:
+
+* Operations for each of the Azure OpenAI REST API endpoints.
+* A system-assigned identity with the necessary permissions to access the Azure OpenAI resource.
+* A backend resource and set-backend-service policy that direct API requests to the Azure OpenAI Service endpoint.
+* An authentication-managed-identity policy that can authenticate to the Azure OpenAI resource using the instance's system-assigned identity.
+* _(optionally)_ Policies to help you monitor and manage token consumption by the Azure OpenAI API.
+
+General avaliability of this functionality, went into May 2024. [GA Import Azure OpenAI enpoints as an APIs in Azure API Management](https://azure.microsoft.com/en-us/updates/ga-import-azure-openai-enpoints-as-an-apis-in-azure-api-management/?WT.mc_id=AZ-MVP-5004796).
+:::
+
+So, let us take a look at how to import the Azure OpenAI service and definition into API Management.
+
+For this article I have the following resources pre-deployed already:
+
+| **Name**                  | **Type**               | **Region** |
+|---------------------------|------------------------|------------|
+| openai-ca-res-eastus      | Azure OpenAI           | East US    |
+| openai-ca-res-uksouth     | Azure OpenAI           | UK South   |
+| apim-lmv01-dev-eastus-aka | API Management service | East US    |
+
+We will start by adding openai-ca-res-eastus to the Azure API Management, service first, before looking at adding the other resources.
+
