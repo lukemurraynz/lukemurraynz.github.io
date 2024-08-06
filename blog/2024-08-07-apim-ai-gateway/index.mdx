@@ -31,9 +31,9 @@ Common scenarios that the AI Gateway capabilities can help with include:
 
 In this post, we will explore how to use the AI Gateway capabilities in API Management to address these scenarios.
 
-![AI Gateway](images/ai-gateway.gif)
+![APIM + Azure OpenAI](images/AI_Gateway_APIMOpenAI.PNG)
 
-## Import Azure OpenAI service and definition.
+![AI Gateway](images/ai-gateway.gif)
 
 The first step is to [import the Azure OpenAI](https://learn.microsoft.com/azure/api-management/azure-openai-api-from-specification?WT.mc_id=AZ-MVP-5004796) service and definition into API Management. This will allow you to create a new API in API Management that can act as a gateway to the Azure OpenAI service.
 
@@ -51,6 +51,12 @@ General avaliability of this functionality, went into May 2024. [GA Import Azure
 
 So, let us take a look at how to import the Azure OpenAI service and definition into API Management.
 
+## Request Forwarding
+
+Let us take a look at Request forwarding.
+
+![Request Forwarding](images/AI_Gateway_APIMRequestForwarding.PNG)
+
 For this article I have the following resources pre-deployed already:
 
 | **Name**                  | **Type**               | **Region** |
@@ -60,4 +66,215 @@ For this article I have the following resources pre-deployed already:
 | apim-lmv01-dev-eastus-aka | API Management service | East US    |
 
 We will start by adding openai-ca-res-eastus to the Azure API Management, service first, before looking at adding the other resources.
+
+> This will automatically, enable the System Managed Identity of API Management, to access the Azure OpenAI service with the role of [Cognitive Services OpenAI User](https://learn.microsoft.com/azure/ai-services/openai/how-to/role-based-access-control?WT.mc_id=AZ-MVP-5004796#cognitive-services-openai-user), and create a new Backend instance, and operations.
+
+![Add Azure OpenAI to API Management](images/apim_add_azureopenaibackend)
+
+We can see the policiy changes applied, pointing to the backend and system managed identity.
+
+![Azure OpenAI API Management Policies](images/apim_api_openaipolicybase.png)
+
+:::info
+There is Azure Portal integration, to enable a few API policies out of the box, to help you manage the token consumption of the Azure OpenAI API.
+
+These are:
+
+Manage token consumption _(Use the Azure OpenAI token limit policy to protect the API from overuse and to control Azure OpenAI cost. If selected, API Management will add the policy with the configured TPM value. You can add, edit, or remove this policy after the API is created.)_
+Track token usage _(Use the Azure OpenAI emit token policy to log the consumed total, completion, and prompt tokens. If selected, API Management will add the policy with specified configuration. You can add, edit, or remove this policy after the API is created)_
+:::
+
+Now that we have a frontend for our Azure OpenAI service, its time to test the Azure OpenAI endpoint, through Azure API Management.
+
+To do this, we will need a:
+
+* deployment-id _(this is the name of the Model deployment, in Azure OpenAI)
+* api-version _(this is the version of the Azure OpenAI API, that we want to use)_
+
+We can get this information from the Azure AI Studio, in the Azure Portal, in the Deployment blade.
+
+![Azure OpenAI Deployment ID and API Version](images/AzureAIStudio-gpt4odeploymenturl.png)
+
+Now, we can test the Azure OpenAI endpoint, through Azure API Management. In Azure API Management, navigate to the openai API that you created, and select the Creates a completion for the chat message operation and the Test tab.
+
+Add in your deployment id and api version, and in the request body, enter in a sameple prompt like below:
+
+```json
+{
+  "messages": [
+    {"role": "system", "content": "You are a knowledgeable assistant in an ice cream parlor."},
+    {"role": "user", "content": "What are the ingredients typically used to make a classic vanilla ice cream?"}
+  ],
+  "max_tokens": 100
+}
+```
+
+![Azure OpenAI Test](images/apim_test_azureopenaibackend.gif)
+
+This confirms that we can now communicate with the Azure OpenAI service, through Azure API Management.
+
+So let us test Request forwarding, from a client application, such as Postman.
+
+We will need to get the subscription key, from the Azure API Management instance, and add this to the request header, as 'api-key', after first associating the openai API with a Product, and subscription key generated.
+
+![Azure OpenAI Postman Request Forwarding](images/apim_test_postmanrequestforwarding.gif)
+
+Here is a sample PowerShell script for invoking the Azure OpenAI endpoint, through Azure API Management, as well.
+
+```powershell
+$headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+$headers.Add("api-key", "YOURSUBSCRIPTIONKEY")
+$headers.Add("Content-Type", "application/json")
+
+$body = @"
+{
+    `"messages`": [
+        {
+            `"role`": `"system`",
+            `"content`": `"You are a knowledgeable assistant in an ice cream parlor.`"
+        },
+        {
+            `"role`": `"user`",
+            `"content`": `"What are the ingredients typically used to make a classic vanilla ice cream?`"
+        }
+    ],
+    `"max_tokens`": 100
+}
+"@
+
+$response = Invoke-RestMethod 'https://apim-lmv01-dev-eastus-aka.azure-api.net/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview' -Method 'POST' -Headers $headers -Body $body
+$response | ConvertTo-Json
+```
+We have successfully implemented Request forwarding, through API Management to the Azure OpenAI endpoint.
+
+
+## Backend circuit breaking
+
+Now, let us take a look at Backend circuit breaking. The [Circuit Breaker](https://learn.microsoft.com/azure/architecture/patterns/circuit-breaker?WT.mc_id=AZ-MVP-5004796) pattern, follows the same principles as the electrical circuit breaker. It is used to detect failures and encapsulate the logic of preventing a failure from constantly recurring, during maintenance, temporary overloads, or unexpected spikes in traffic. When the circuit breaker trips, it can return an error immediately, without trying to execute the operation.
+
+::trip
+The Circuit Breaker pattern, is mentioned in my [Cloud Design Patterns](https://luke.geek.nz/azure/cloud-design-patterns/) blog post.
+:::
+
+A circuit breaker acts as a proxy for operations that might fail. The proxy should monitor the number of recent failures that have occurred, and use this information to decide whether to allow the operation to proceed, or simply return an exception immediately, when the circuit is Closed the requests are allowed to pass through, when the circuit is Open, the requests are blocked.
+
+![Backend Circuit Breaking](images/AI_Gateway_APIMCircuitBreaker.png)
+
+To implement a circuit breaker in API Management, we will need to add a policy to the Azure OpenAI API, that will monitor the number of recent failures that have occurred, and use this information to decide whether to allow the operation to proceed, or simply return an exception immediately.
+
+Unlike, Request forwarding, configuring the Circuit Breaker, cannot currently be done in the Azure Portal, and will require configuration, through Infrastructure as Code _(ie Bicep)_ or the API Management REST API.
+
+:::warning
+Before you configure a circuitBreaker policy, make sure you have a backup of your Backend configuration and test this is a non-production environment.
+:::
+
+Today, we will configure it using Bicep, by referencing the backend of an already existing API Management resource, and adding in the circuitBreaker rule.
+
+![Backend Circuit Breaking Bicep](images/AI_Gateway_APIMCircuitBreakerBicepDeploy.png)
+
+```bicep
+param backend string
+param existingUrl string
+
+// Use the parameters to update properties
+resource updatedBackend 'Microsoft.ApiManagement/service/backends@2023-09-01-preview' = {
+  name: backend
+  properties: {
+    url: existingUrl  // Use the parameter to keep the existing URL
+    protocol: 'http'
+    circuitBreaker: {
+      rules: [
+        {
+          failureCondition: {
+            count: 3 // Number of failures before tripping the circuit breaker
+            errorReasons: [
+              'Server errors' // Reasons for the failure
+            ]
+            interval: 'PT1H' // Time interval to count the failures
+            statusCodeRanges: [
+              {
+                min: 500 // Minimum status code to consider as a failure
+                max: 599 // Maximum status code to consider as a failure
+              }
+            ]
+          }
+          name: 'myBreakerRule' // Name of the circuit breaker rule
+          tripDuration: 'PT1H' // Duration for which the circuit breaker remains tripped
+          acceptRetryAfter: true // Whether to accept retry after the trip duration
+        }
+      ]
+    }
+  }
+}
+
+```
+
+In the Circuit Breaker rule above, the following behavior will occur:
+
+| **Parameter**             | **Description**                                                                                                                        |
+|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Number of Failures**    | The circuit breaker will trip if there are 3 or more failures within the specified time interval.                                     |
+| **Error Reasons**         | Failures considered are those matching the reason 'Server errors'. The application or service should categorize errors with this reason. |
+| **Status Code Ranges**    | Failures are identified based on HTTP status codes ranging from 500 to 599, covering server-side errors such as internal server errors (500), service unavailable (503), and similar issues. |
+| **Time Interval**         | Failures are counted within a time interval of 1 hour ('PT1H'). If there are 3 or more failures with status codes in the 500–599 range within any 1-hour window, the circuit breaker will trip. |
+| **Trip Duration**         | Once tripped, the circuit breaker remains in the tripped state for 1 hour ('PT1H'). During this period, requests will not pass through until the breaker is reset. |
+| **Retry Behavior**        | After the trip duration of 1 hour, the circuit breaker is designed to allow retries (acceptRetryAfter: true). Requests will be accepted again after the trip duration, and the service will attempt to recover. |
+| **Scenarios Where the Circuit Breaker Will Trip** | If, within any 1-hour period, there are 3 or more server-side errors (HTTP status codes 500–599) with the reason 'Server errors', the circuit breaker will trip. Once tripped, the circuit breaker will block requests for 1 hour. After the 1-hour block period, the circuit breaker will reset and start accepting requests again. |
+
+There is nothing in the Azure Portal for API MAnagemement, but if we take a look at the backend provider resource we can confirm, that the configuration for the backend has been set.
+
+![Backend Circuit Breaking Bicep](images/AI_Gateway_APIMCircuitBreakerPostBicepDeploy.png)
+
+## Backend Load Balacing
+
+Let us now take a look at Backend Load Balancing, with [Load-Balanced Pools](https://learn.microsoft.com/azure/api-management/backends?tabs=bicep&WT.mc_id=AZ-MVP-5004796#load-balanced-pool). Load balancing is the process of distributing network traffic across multiple endpoints. This ensures that no single server bears too much demand. By spreading the work evenly, load balancing improves application responsiveness.
+
+![Backend Load Balancing](images/AI_Gateway_APIMBackendLoadBalancing.PNG)
+
+Backend pooling your Azure OpenAI endpoints, allows you to:
+
+* Spread the load to multiple backends, which may have individual backend circuit breakers.
+* Shift the load from one set of backends to another for upgrade _(blue-green deployment)_.
+
+Note Backend pools don't need any policy configuration. The rules are just properties of the backend.
+
+:::info
+API Management supports the following load balancing options for backend pools:
+
+* Round-robin: By default, requests are distributed evenly across the backends in the pool.
+* Weighted: Weights are assigned to the backends in the pool, and requests are distributed across the backends based on the relative weight assigned to each backend. Use this option for scenarios such as conducting a blue-green deployment.
+* Priority-based: Backends are organized in priority groups, and requests are sent to the backends in order of the priority groups. Within a priority group, requests are distributed either evenly across the backends, or (if assigned) according to the relative weight assigned to each backend.
+
+_(Backends in lower priority groups will only be used when all backends in higher priority groups are unavailable because circuit breaker rules are tripped.)_
+:::
+
+If we go back to my environment we are currently operating with the following resources:
+
+| **Name**                  | **Type**               | **Region** |
+|---------------------------|------------------------|------------|
+| openai-ca-res-eastus      | Azure OpenAI           | East US    |
+| openai-ca-res-uksouth     | Azure OpenAI           | UK South   |
+| apim-lmv01-dev-eastus-aka | API Management service | East US    |
+
+So so far, the Azure OpenAI backend of eastus is being used, but we can add the uksouth backend to the backend pool, and configure it to be used in a round-robin fashion. 
+
+:::info
+One of the reasons you may want to do this, is not only to ensure reliability, using a priority group - that your Azure OpenAI service is highly available, and can be accessed from multiple regions, but you may also want to ensure that you are not hitting the [TPM _(Tokens Per Minute)_ regional limits](https://learn.microsoft.com/azure/ai-services/openai/quotas-limits?WT.mc_id=AZ-MVP-5004796#regional-quota-limits) of the Azure OpenAI service, and that you are distributing the load across multiple regions. 
+
+A common scenario here would be to have a primary region, that has a [PTU _(Proviosned Throughout)_](https://learn.microsoft.com/azure/ai-services/openai/concepts/provisioned-throughput?WT.mc_id=AZ-MVP-5004796) assigned, and failover to a pay as you go region.
+:::
+
+Similar to the Circuit Breaker rule capability, we need to configure Backend Pools using the Azure RestAPI or an Infrastructure as Code method, such as Bicep.
+
+In my example, I will be adding the openai-ca-res-uksouth to the backend pool of the Azure OpenAI API, and configuring it to use EastUS first, and failover to UKSouth if eastus stops responding.
+
+To do this, we need to add a new backend, and then reference that in a new pool configuration.
+
+:::Note
+When we initially added our first Azure OpenAI resource, alot of the configuration was done for us, including adding the [Cognitive Services OpenAI User](https://learn.microsoft.com/azure/ai-services/openai/how-to/role-based-access-control?WT.mc_id=AZ-MVP-5004796#cognitive-services-openai-user) role to the System Managed Identity of the API Management instance to authenticate with the Azure OpenAI resource, so make sure you grant Azure API Management the necessary permissions to access any other Azure OpenAI resource.
+
+![Azure OpenAI API Management Policies](images/aapim_add_cognitiveaiuserrbacuksouth.gif)
+
+:::
+
 
