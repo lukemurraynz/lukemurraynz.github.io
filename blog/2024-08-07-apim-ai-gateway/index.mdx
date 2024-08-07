@@ -274,7 +274,184 @@ To do this, we need to add a new backend, and then reference that in a new pool 
 When we initially added our first Azure OpenAI resource, alot of the configuration was done for us, including adding the [Cognitive Services OpenAI User](https://learn.microsoft.com/azure/ai-services/openai/how-to/role-based-access-control?WT.mc_id=AZ-MVP-5004796#cognitive-services-openai-user) role to the System Managed Identity of the API Management instance to authenticate with the Azure OpenAI resource, so make sure you grant Azure API Management the necessary permissions to access any other Azure OpenAI resource.
 
 ![Azure OpenAI API Management Policies](images/aapim_add_cognitiveaiuserrbacuksouth.gif)
-
 :::
 
+Navigate to your secondary Azure OpenAI instance, and navigate to Keys and Endpoints, we need to grab the endpoint URL ie _(https://openai-ca-res-uksouth.openai.azure.com/)_, to add as another Backend and append with /openai.
+
+![Azure OpenAI UKSouth Endpoint](images/apim_add_cognitiveaiserviceuksouth.gif)
+
+Now that its added as a backend, we can add it to the backend pool, and configure it.
+
+```bicep
+param backendnane string
+param subscriptionID string
+param resourceGroupName string
+param APIManagementName string
+param backend1 string
+param backend2 string
+
+// Use the parameters to update properties
+resource updatedBackend 'Microsoft.ApiManagement/service/backends@2023-09-01-preview' = {
+  name: '${APIManagementName}/${backendnane}'
+  properties: {
+    description: 'Load balancer for multiple backends'
+    type: 'Pool'
+    pool: {
+      services: [
+        // Define the backend pool configuration for an API Management service
+        {
+          // Define the first backend with a specific ID, priority, and weight
+          id: '/subscriptions/${subscriptionID}/resourceGroups/${resourceGroupName}/providers/Microsoft.ApiManagement/service/${APIManagementName}/backends/${backend1}'
+          priority: 1 // Higher priority backend
+          weight: 1   // Weight of the backend
+        }
+        {
+          // Define the second backend with a specific ID, priority, and weight
+          id: '/subscriptions/${subscriptionID}/resourceGroups/${resourceGroupName}/providers/Microsoft.ApiManagement/service/${APIManagementName}/backends/${backend2}'
+          priority: 1 // Higher priority backend
+          weight: 2   // Weight of the backend
+        }
+      ]
+    }
+  }
+}
+
+```
+
+![Backend Pool Bicep](images/AI_Gateway_APIMBackendPoolBicepDeploy.png)
+
+Once the deploy is done, we can see the backend pool configuration in the Azure Portal.
+
+![Backend Pool Bicep](images/AI_Gateway_APIMBackendPool.png)
+
+Now we need to update the Azure API Managememt OpenAI API, to use the backend pool, instead of the single backend.
+
+Navigate to APIs, and your OpenAI API, select All Operations and then select the edit button.
+
+Change the backend it to the name of your Backend Pool.
+
+![Backend Pool Bicep](images/AI_Gateway_APIMBackendPoolAPIPolicyConfig.png)
+
+Now if we test the Azure OpenAI endpoint, through Azure API Management, we can see that the requests are being distributed across the two backends in the backend pool.
+
+If we enable, Tracing we can see the handoff, and our API callers are oblivious to the fact that their API call is getting redirected. 
+
+![Backend Pool Bicep](images/apim_test_loadbalancedpools.gif)
+
+You can use the Circuitbreaker and Backend Pooling in conjunction with each other, to ensure that your Azure OpenAI service is highly available, and can be accessed from multiple regions. 
+
+:::info
+The Circuitbreaker policies are on the Backends, not the Pools.
+:::
+
+For example, I changed the circuitBreaker rule, status code range to: 401 _(Permission Denied)_ and removed the Cogniative User role from the System Managed Identity of the API Management instance, to simulate a backend failure, and moved the UkSouth endpoint to priority group 2.
+
+![Backend Pool Bicep](images/AI_Gateway_APIMBackendPoolPermissionDenied.png)
+
+```json
+         statusCodeRanges: [
+              {
+               // Define the range of HTTP status codes that will be considered as failures for the circuit breaker
+                min: 401 // Minimum status code to consider as a failure (e.g., Unauthorized)
+                max: 401 // Maximum status code to consider as a failure (e.g., Unauthorized)
+              }
+            ]
+```
+
+And it worked as expected, the circuit breaker tripped, and the requests were redirected to the UKSouth backend.
+
+![Backend Pool Bicep](images/apim_test_loadbalancedcircuitbreakerpools.gif)
+
+## Response Streaming
+
+Let us take a look at Response Streaming. Response streaming is a technique used to send a response to a client in chunks, rather than all at once. This can be useful when the response is large, or when the response is being generated in real-time.
+
+![Response Streaming](images/AI_Gateway_APIMResponseStreaming.PNG)
+
+:::tip
+Follow the [guidelines](https://learn.microsoft.com/en-us/azure/api-management/how-to-server-sent-events?WT.mc_id=AZ-MVP-5004796#guidelines-for-sse) when using API Management to reach a backend API that implements SSE (Server side streaming).
+:::
+
+If I go back to our Creates a completion for the chat message, operation, and edit the policy and add the following to the inbound and outbound Azure policies.
+
+```xml
+    <inbound>
+        <!-- Base inbound processing -->
+        <base />
+        <!-- Conditional logic to check if the request body contains a non-null "stream" property -->
+        <choose>
+            <when condition="@(context.Request.Body.As<JObject>(true)["stream"] != null && context.Request.Body.As<JObject>(true)["stream"].Type != JTokenType.Null)">
+                <!-- Set a variable "isStream" with the value of the "stream" property from the request body -->
+                <set-variable name="isStream" value="@{
+                    var content = (context.Request.Body?.As<JObject>(true));
+                    string streamValue = content["stream"].ToString();
+                    return streamValue;
+                }" />
+            </when>
+        </choose>
+    </inbound>
+    <!-- Control if and how the requests are forwarded to services -->
+    <backend>
+        <!-- Base backend processing -->
+        <base />
+    </backend>
+    <!-- Customize the responses -->
+    <outbound>
+        <!-- Base outbound processing -->
+        <base />
+        <!-- Set a custom header "x-ms-stream" based on the value of the "isStream" variable -->
+        <set-header name="x-ms-stream" exists-action="override">
+            <value>@{
+                    return context.Variables.GetValueOrDefault<string>("isStream","false").Equals("true", StringComparison.OrdinalIgnoreCase).ToString();
+                }</value>
+        </set-header>
+    </outbound>
+```
+
+This sets the x-ms-stream header to true, if the request body contains a non-null "stream" property, allowing streaming, so let us test this in Postman
+
+By using the following prompt:
+
+```json
+{
+    "messages": [
+        {
+            "role": "system",
+            "content": "You are a knowledgeable assistant in an ice cream parlor."
+        },
+        {
+            "role": "user",
+            "content": "What are the ingredients typically used to make a classic vanilla ice cream?"
+        }
+    ],
+    "max_tokens": 100,
+    "stream": true
+}
+```
+
+![Response Streaming](images/apim_test_responsestreamingpostman.gif)
+
+Note: Full JSON streaming support [is not avaliable](https://github.com/postmanlabs/postman-app-support/issues/12713) at this time of this article in postman, so again - you need a client to support this.
+
+We can however see the response, does include the response being streamed, and broken up into chunks:
+
+![Response Streaming](images/AI_Gateway_APIMResponseStreamingPostmanOutput.PNG)
+
+To remove the streaming component, we can either remove stream, from the body, or change the stream from true to false.
+
+## Logging
+
+Now let us take a look at Logging. Logging is the process of recording events that occur during the execution of a process. Logs can be used to monitor and troubleshoot requests, as well as to analyze and report on application performance.
+
+![APIM Built in Logging](images/AI_Gateway_APIMBuiltinLogging.PNG)
+
+To do this, we need to enable [Application Insights](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview?WT.mc_id=AZ-MVP-5004796), if we haven't already.
+
+![APIM Built in Logging](images/AI_Gateway_APIMLogging_AppInsights.PNG)
+
+:::tip
+If your NOT using Azure API Management, I recommend you check out the workbook by Dolev Shor _(Microsoft Fastrack Engineer)_, you can read more about it here: [Azure OpenAI Insights: Monitoring AI with Confidence](https://techcommunity.microsoft.com/t5/fasttrack-for-azure/azure-openai-insights-monitoring-ai-with-confidence/ba-p/4026850?WT.mc_id=AZ-MVP-5004796).
+:::
+
+So lets take a look at some of the logs, that are being generated by the Azure OpenAI API, through Azure API Management, and visible through Application Insights and Log Analytics workspace.
 
