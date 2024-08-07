@@ -826,7 +826,7 @@ Backup and restore could take between 30 minutes to 1 hour.
 Taking a backup or restore puts the API Management Management plane in a read-only state while the backup or restore is in progress.
 The backups expire after 30 days.</p></div></div>
 <p>Backup and restore is where you can consider Infrastructure as Code and APIOps functionality and testing.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="monitor-and-analyze">Monitor and Analyze<a href="https://luke.geek.nz/azure/api-management-overview/#monitor-and-analyze" class="hash-link" aria-label="Direct link to Monitor and Analyze" title="Direct link to Monitor and Analyze">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-monitor-and-analyze">📊 Monitor and Analyze<a href="https://luke.geek.nz/azure/api-management-overview/#-monitor-and-analyze" class="hash-link" aria-label="Direct link to 📊 Monitor and Analyze" title="Direct link to 📊 Monitor and Analyze">​</a></h3>
 <p><img decoding="async" loading="lazy" alt="API Lifecycle - Monitor and Analyze" src="https://luke.geek.nz/assets/images/apim_apilifecyle_MonitorAnalyze-40d533759aa62b720005173e34760838.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p>Now we need to monitor and analyze the APIs and API Management to ensure that they are performing as expected and to identify any issues that may arise. Azure API Management provides a range of monitoring and analytics features to help you track API usage, performance, and health.</p>
 <p><img decoding="async" loading="lazy" alt="APIM - Monitor and Analyze" src="https://luke.geek.nz/assets/images/apim_apilifecyle_MonitorAnalyzeFeatures-e514006bc3cbb46153a3f7db814a79f8.PNG" width="4000" height="2250" class="img_ev3q"></p>
