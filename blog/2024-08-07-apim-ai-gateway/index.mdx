@@ -469,4 +469,11 @@ Next, we need to make sure that we are logging the information from the API requ
 
 ![APIM Built in Logging](images/AI_Gateway_APIMBuiltinLoggingAppInsightsEnable.PNG)
 
-Lets take a look at a custom [Azure Monitor workbook](https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-overview?WT.mc_id=AZ-MVP-5004796), that helps vislise and bring out 
+Lets take a look at a custom [Azure Monitor workbook](https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-overview?WT.mc_id=AZ-MVP-5004796), that helps vislise and bring out alot of the data you need to make informed decisions , without having to delve into KQL _(Kusto Query Language)_ queries in Log Analytics.
+
+In Application Insights, navigate to Workbooks, click + New , click on the Code and paste the workbook data from: [AI-Gateway/main/labs/built-in-logging/openai-usage-analysis-workbook.json](https://github.com/Azure-Samples/AI-Gateway/blob/main/labs/built-in-logging/openai-usage-analysis-workbook.json).
+
+You can see the APIs getting called, the subscription key being used, the response time, and the response code.
+
+![APIM Built in Logging](images/apim_test_OpenAIWorkbook.gif)
+
