@@ -4,16 +4,16 @@
         <title>luke.geek.nz Blog</title>
         <link>https://luke.geek.nz/</link>
         <description>luke.geek.nz Blog</description>
-        <lastBuildDate>Wed, 07 Aug 2024 09:08:40 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 07 Aug 2024 09:25:09 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>Copyright © 2024 luke.geek.nz.</copyright>
         <item>
             <title><![CDATA[Features and Benefits of Azure API Management]]></title>
-            <link>https://luke.geek.nz/azure/apim-overview/</link>
-            <guid>https://luke.geek.nz/azure/apim-overview/</guid>
-            <pubDate>Wed, 07 Aug 2024 09:08:40 GMT</pubDate>
+            <link>https://luke.geek.nz/azure/api-management-overview/</link>
+            <guid>https://luke.geek.nz/azure/api-management-overview/</guid>
+            <pubDate>Wed, 07 Aug 2024 09:25:09 GMT</pubDate>
             <description><![CDATA[Discover the key features and benefits of Azure API Management, including security, scalability, and monitoring capabilities.]]></description>
             <content:encoded><![CDATA[<p>Today, we are going to look at <a href="https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure API Management</a>. Azure API Management is a service that creates consistent and modern API gateways for existing back-end services. It also publishes APIs to external, partner, and internal developers. Azure API Management is a fully managed service that enables customers to publish, secure, transform, maintain, and monitor APIs.</p>
 <!-- -->
@@ -44,7 +44,7 @@ In the Analyze phase, we use the data collected during monitoring to gain insigh
 <p>Please be sure to think about your daily interactions with technology. From unlocking your smartphone, using applications on your tablet, streaming content on your smart TV, and engaging in augmented reality experiences, APIs are working behind the scenes to ensure a smooth and connected experience. They enable devices and applications to talk to each other, share data, and create a cohesive user experience.</p>
 <p>APIs connect various services, databases, servers, and cloud infrastructures. They allow these systems to interact, share data, and coordinate complex functions.</p>
 <p>APIs also enable businesses to be agile and adaptive. By exposing functionalities through APIs, companies can quickly integrate new services, scale their operations, and meet evolving customer demands. They empower developers to build robust applications, enhance user experiences, and drive digital growth.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-api-governance">📜 API governance<a href="https://luke.geek.nz/azure/apim-overview/#-api-governance" class="hash-link" aria-label="Direct link to 📜 API governance" title="Direct link to 📜 API governance">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-api-governance">📜 API governance<a href="https://luke.geek.nz/azure/api-management-overview/#-api-governance" class="hash-link" aria-label="Direct link to 📜 API governance" title="Direct link to 📜 API governance">​</a></h2>
 <p>Three crucial aspects of API governance and usage play a significant role in achieving success:</p>
 <ul>
 <li><strong>Façade Abstraction</strong>
@@ -63,7 +63,7 @@ Onboarding: A smooth onboarding process is crucial for attracting and retaining 
 Discover and Learn: APIs should be easily discoverable. A well-organized developer portal where users can learn about the available APIs, their functionalities, and use cases can achieve this.
 Try and Obtain Access: Allowing users to try APIs in a sandbox environment and easily obtain access through streamlined registration encourages experimentation and adoption.</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-stakeholders">🤝 Stakeholders<a href="https://luke.geek.nz/azure/apim-overview/#-stakeholders" class="hash-link" aria-label="Direct link to 🤝 Stakeholders" title="Direct link to 🤝 Stakeholders">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-stakeholders">🤝 Stakeholders<a href="https://luke.geek.nz/azure/api-management-overview/#-stakeholders" class="hash-link" aria-label="Direct link to 🤝 Stakeholders" title="Direct link to 🤝 Stakeholders">​</a></h2>
 <p>Azure API Management has the following stakeholders:
 &nbsp;</p>
 <ul>
@@ -75,7 +75,7 @@ These stakeholders leverage the APIs to enhance workflows, integrate systems, an
 <li><strong>Apps on Devices</strong>
 These represent the end-user applications that interact with the APIs. They could be mobile apps, web applications, IoT devices, or other software that consumes APIs.</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-planes">✈️ Planes<a href="https://luke.geek.nz/azure/apim-overview/#%EF%B8%8F-planes" class="hash-link" aria-label="Direct link to ✈️ Planes" title="Direct link to ✈️ Planes">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-planes">✈️ Planes<a href="https://luke.geek.nz/azure/api-management-overview/#%EF%B8%8F-planes" class="hash-link" aria-label="Direct link to ✈️ Planes" title="Direct link to ✈️ Planes">​</a></h2>
 <div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><p>Azure API Management consists of three main planes:
 &nbsp;</p><ul>
 <li><strong>User Plane</strong>
@@ -98,7 +98,7 @@ API Management Plane: This is where API providers manage the lifecycle of their 
 <li>Monetization: Organizations can generate revenue from their APIs.</li>
 </ul>
 <p>In conclusion, Azure API Management is a robust platform that enables organizations to create, manage, and scale APIs efficiently. By following the API life cycle phases and leveraging Azure API Management's features, businesses can deliver seamless digital experiences, drive innovation, and stay ahead in today's competitive landscape.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-azure-api-management-plans">📊 Azure API Management plans<a href="https://luke.geek.nz/azure/apim-overview/#-azure-api-management-plans" class="hash-link" aria-label="Direct link to 📊 Azure API Management plans" title="Direct link to 📊 Azure API Management plans">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-azure-api-management-plans">📊 Azure API Management plans<a href="https://luke.geek.nz/azure/api-management-overview/#-azure-api-management-plans" class="hash-link" aria-label="Direct link to 📊 Azure API Management plans" title="Direct link to 📊 Azure API Management plans">​</a></h2>
 <p><img decoding="async" loading="lazy" alt="API Management - Pricing Tiers" src="https://luke.geek.nz/assets/images/apim_overview_pricingtiers-bcfa201ca0c9fd9294564e842a8384f7.gif" width="2238" height="1200" class="img_ev3q"></p>
 <p>Azure API Management offers various service tiers that provide specific capabilities and benefits. Let's explore these tiers in more detail.</p>
 <ul>
@@ -137,7 +137,7 @@ Key Features include:</li>
 <blockquote>
 <p>"Accelerate your API strategy with Azure API Management, the comprehensive lifecycle solution trusted by thousands of enterprises worldwide. From abstraction and security to observability and discoverability, the APIM platform empowers you to manage APIs effortlessly across clouds and on-premises environments. Built for reliability, security, scalability, and performance, it's designed to support DevOps and developers, seamlessly integrating with Azure services. Benefit from global availability, robust support, and competitive, accessible pricing—Azure API Management simplifies API management so you can focus on innovation."</p>
 </blockquote>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-api-lifecycle">🔄 API Lifecycle<a href="https://luke.geek.nz/azure/apim-overview/#-api-lifecycle" class="hash-link" aria-label="Direct link to 🔄 API Lifecycle" title="Direct link to 🔄 API Lifecycle">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-api-lifecycle">🔄 API Lifecycle<a href="https://luke.geek.nz/azure/api-management-overview/#-api-lifecycle" class="hash-link" aria-label="Direct link to 🔄 API Lifecycle" title="Direct link to 🔄 API Lifecycle">​</a></h2>
 <p><img decoding="async" loading="lazy" alt="API Lifecycle" src="https://luke.geek.nz/assets/images/apim_api_lifecycle-82f1ac68f6035c8177bb18ad49f66b02.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p>The API lifecycle consists of several phases, each essential for creating, managing, and optimizing APIs. This lifecycle emphasizes the continuous and iterative nature of API development and management.</p>
 <ul>
@@ -225,7 +225,7 @@ Key Features include:</li>
 <li>Custom telemetry pipelines: Set up custom telemetry pipelines for advanced analysis.</li>
 </ul>
 <p>This lifecycle ensures that APIs are well-designed, developed, secured, published, scaled, monitored, and analyzed, providing a comprehensive approach to API management.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-design">🎨 Design<a href="https://luke.geek.nz/azure/apim-overview/#-design" class="hash-link" aria-label="Direct link to 🎨 Design" title="Direct link to 🎨 Design">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-design">🎨 Design<a href="https://luke.geek.nz/azure/api-management-overview/#-design" class="hash-link" aria-label="Direct link to 🎨 Design" title="Direct link to 🎨 Design">​</a></h3>
 <p><img decoding="async" loading="lazy" alt="API Lifecycle - Design" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design-54ff90660862827afb8ef8a7337fc86d.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p>Code-and design-first approaches to building APIs</p>
 <p>API Management supports both approaches to building APIs:</p>
@@ -359,7 +359,7 @@ This capability allows developers to interact with and validate the WebSocket AP
 <p>Monitoring and Logging:</p>
 <p>Azure Monitor provides metrics and logs specifically for WebSocket APIs.
 These monitoring tools enable us to track performance, detect issues, and gain insights into the usage patterns of our WebSocket connections.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="️-develop">🛠️ Develop<a href="https://luke.geek.nz/azure/apim-overview/#%EF%B8%8F-develop" class="hash-link" aria-label="Direct link to 🛠️ Develop" title="Direct link to 🛠️ Develop">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="️-develop">🛠️ Develop<a href="https://luke.geek.nz/azure/api-management-overview/#%EF%B8%8F-develop" class="hash-link" aria-label="Direct link to 🛠️ Develop" title="Direct link to 🛠️ Develop">​</a></h3>
 <p><img decoding="async" loading="lazy" alt="API Lifecycle - Develop" src="https://luke.geek.nz/assets/images/apim_apilifecyle_develop-40d0a11c0c3d20462c3787e679224373.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p>Azure API Management offers a range of features to streamline the development process and enhance the functionality of our APIs.</p>
 <p><img decoding="async" loading="lazy" alt="APIM - API Challenges" src="https://luke.geek.nz/assets/images/apim_apilifecyle_develop_apichallenges-54766c74b68d018aaf589566b240e6c0.PNG" width="4000" height="2250" class="img_ev3q"></p>
@@ -609,7 +609,7 @@ Key Attributes:</p>
 <p><img decoding="async" loading="lazy" alt="APIOps" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publish_APIOps-35ac2c2bbfd02a0746c79ba1ce9bcfab.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p><img decoding="async" loading="lazy" alt="APIOps" src="https://luke.geek.nz/assets/images/ApiOps-ba714e5dbf5a703e46c7826affab267c.gif" width="1280" height="720" class="img_ev3q"></p>
 <p>APIOps can be used to automate API management tasks, improve collaboration between development and operations teams, and ensure consistency and quality across APIs, and API Management environments, such as Development, Testing and Production.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-secure">🔒 Secure<a href="https://luke.geek.nz/azure/apim-overview/#-secure" class="hash-link" aria-label="Direct link to 🔒 Secure" title="Direct link to 🔒 Secure">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-secure">🔒 Secure<a href="https://luke.geek.nz/azure/api-management-overview/#-secure" class="hash-link" aria-label="Direct link to 🔒 Secure" title="Direct link to 🔒 Secure">​</a></h3>
 <p><img decoding="async" loading="lazy" alt="API Lifecycle - Secure" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure-cebce17d19a653c3e13d5626181e07fb.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p>Security is a critical aspect of API management, ensuring that APIs are protected from unauthorized access, data breaches, and other security threats. Azure API Management offers a range of security features to safeguard APIs and ensure compliance with industry standards.</p>
 <p>The <a href="https://owasp.org/" target="_blank" rel="noopener noreferrer">Open Web Application Security Project (OWASP)</a> has identified the top 10 critical API security risks for 2023</p>
@@ -691,7 +691,7 @@ Network Configuration: Consider your existing network setup and how APIM will in
 <li>ISO 27001 PCI</li>
 </ul>
 <p>More information on the compliance can be found here: <a href="https://learn.microsoft.com/azure/compliance/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure compliance documentation</a></p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-publish">🚀 Publish<a href="https://luke.geek.nz/azure/apim-overview/#-publish" class="hash-link" aria-label="Direct link to 🚀 Publish" title="Direct link to 🚀 Publish">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-publish">🚀 Publish<a href="https://luke.geek.nz/azure/api-management-overview/#-publish" class="hash-link" aria-label="Direct link to 🚀 Publish" title="Direct link to 🚀 Publish">​</a></h3>
 <p><img decoding="async" loading="lazy" alt="API Lifecycle - Publish" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publish-205798b51e663ddfade8f5f686f1c5d4.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p>Once an API is designed, developed, and secured, it is ready to be published. Azure API Management offers a range of features to help you publish and manage your APIs effectively.</p>
 <p>One of those features is the Developer Portal.</p>
@@ -759,7 +759,7 @@ Execute Product-Scoped Policies: It ensures that the defined policies for each p
 <p><img decoding="async" loading="lazy" alt="APIM - Products" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publish_APISubscriptions-1114aabf06a703c07c8428202397544b.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p>Understanding the relationships between users, groups, products, APIs, and subscriptions is crucial for efficient and effective management.</p>
 <table><thead><tr><th>Entity</th><th>Relationships</th></tr></thead><tbody><tr><td><strong>User</strong></td><td>- Can have many Subscriptions</td></tr><tr><td></td><td>- Can belong to many Groups</td></tr><tr><td><strong>Group</strong></td><td>- Can contain many Users</td></tr><tr><td></td><td>- Can have many Subscriptions</td></tr><tr><td></td><td>- Built-in: Guest, Developer, Admin</td></tr><tr><td></td><td>- Custom: native or Entra ID</td></tr><tr><td><strong>Subscription</strong></td><td>- Each Subscription is related to one User or Group</td></tr><tr><td></td><td>- Can provide access to one Product</td></tr><tr><td><strong>Product</strong></td><td>- Can be part of many Subscriptions</td></tr><tr><td></td><td>- Can contain many APIs</td></tr><tr><td><strong>API</strong></td><td>- Each API is part of one Product</td></tr></tbody></table>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-scale">📏 Scale<a href="https://luke.geek.nz/azure/apim-overview/#-scale" class="hash-link" aria-label="Direct link to 📏 Scale" title="Direct link to 📏 Scale">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-scale">📏 Scale<a href="https://luke.geek.nz/azure/api-management-overview/#-scale" class="hash-link" aria-label="Direct link to 📏 Scale" title="Direct link to 📏 Scale">​</a></h3>
 <p><img decoding="async" loading="lazy" alt="API Lifecycle - Scale" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale-bf01c71d9390e9a22b78f911a885e31a.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p>Azure and the Azure API Management service have a significant <a href="https://azure.microsoft.com/en-au/explore/global-infrastructure/products-by-region?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">global footprint</a>, with 44+ public regions worldwide, 6 regions for US government use, and 4 regions in China, showcasing its extensive infrastructure and specialized services.</p>
 <p><img decoding="async" loading="lazy" alt="APIM - Scale" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale_GlobalPresence-adb8dcab06686cc7e9769fe85fb80887.PNG" width="4000" height="2250" class="img_ev3q"></p>
@@ -820,13 +820,13 @@ Trigger Dapr output bindings</p></div></div>
 <p>Now, let us discuss <a href="https://learn.microsoft.com/azure/api-management/api-management-howto-disaster-recovery-backup-restore?tabs=powershell&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Backup and Restore</a>.</p>
 <p><img decoding="async" loading="lazy" alt="APIM - Backup and Restore" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale_IBackupRestore-7f0df87da055d9655a002fbf9cc68cca.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <table><thead><tr><th><strong>Process</strong></th><th><strong>Details</strong></th></tr></thead><tbody><tr><td><strong>Backup</strong></td><td></td></tr><tr><td>Duration</td><td>Usually takes around 10 minutes.</td></tr><tr><td>Scope</td><td>Captures everything but reports and custom domain settings in a blob.</td></tr><tr><td>Service Configuration</td><td>Operations such as scaling and upgrades are blocked while the backup is in progress.</td></tr><tr><td>Changes</td><td>Any changes applied after the backup starts are not included in the backup.</td></tr><tr><td><strong>Restore</strong></td><td></td></tr><tr><td>Duration</td><td>It Could take 30 minutes or more, depending on the size.</td></tr><tr><td>Availability</td><td>The instance is not available while the restore is in progress.</td></tr><tr><td>Custom Domain</td><td>Custom domain configurations need to be re-applied manually after the restore.</td></tr><tr><td><strong>Standby Failover Instance</strong></td><td></td></tr><tr><td>Setup</td><td>Create a backup instance in a different region in advance.</td></tr><tr><td>Configuration</td><td>Configure the custom domain identically to the active instance.</td></tr><tr><td>Sync</td><td>Periodically sync the configuration with the active instance to achieve the desired RPO (Recovery Point Objective).</td></tr><tr><td>Failover</td><td>To failover, update the CNAME to reference the backup instance.</td></tr><tr><td>Scalability</td><td>Scale up the backup instance if and as required.</td></tr><tr><td><strong>Summary</strong></td><td></td></tr><tr><td>Backup</td><td>This process is relatively quick but does block certain operations and does not capture changes made after the backup begins.</td></tr><tr><td>Restore</td><td>This can be time-consuming and renders the instance unavailable during the process. Manual intervention is required for custom domain settings.</td></tr><tr><td>Standby Failover</td><td>Setting up a standby instance in advance can significantly reduce downtime and improve recovery times. This involves periodic synchronization and possibly updating DNS records during a failover.</td></tr></tbody></table>
-<div><p>Backup and restore need to be configured. It is not enabled by default.
+<div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>warning</div><div class="admonitionContent_BuS1"><p>Backup and restore need to be configured. It is not enabled by default.
 Backup is not possible in Consumption.
 Backup and restore could take between 30 minutes to 1 hour.
 Taking a backup or restore puts the API Management Management plane in a read-only state while the backup or restore is in progress.
-The backups expire after 30 days.</p></div>
+The backups expire after 30 days.</p></div></div>
 <p>Backup and restore is where you can consider Infrastructure as Code and APIOps functionality and testing.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="monitor-and-analyze">Monitor and Analyze<a href="https://luke.geek.nz/azure/apim-overview/#monitor-and-analyze" class="hash-link" aria-label="Direct link to Monitor and Analyze" title="Direct link to Monitor and Analyze">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="monitor-and-analyze">Monitor and Analyze<a href="https://luke.geek.nz/azure/api-management-overview/#monitor-and-analyze" class="hash-link" aria-label="Direct link to Monitor and Analyze" title="Direct link to Monitor and Analyze">​</a></h3>
 <p><img decoding="async" loading="lazy" alt="API Lifecycle - Monitor and Analyze" src="https://luke.geek.nz/assets/images/apim_apilifecyle_MonitorAnalyze-40d533759aa62b720005173e34760838.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p>Now we need to monitor and analyze the APIs and API Management to ensure that they are performing as expected and to identify any issues that may arise. Azure API Management provides a range of monitoring and analytics features to help you track API usage, performance, and health.</p>
 <p><img decoding="async" loading="lazy" alt="APIM - Monitor and Analyze" src="https://luke.geek.nz/assets/images/apim_apilifecyle_MonitorAnalyzeFeatures-e514006bc3cbb46153a3f7db814a79f8.PNG" width="4000" height="2250" class="img_ev3q"></p>
