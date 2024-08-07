@@ -33,7 +33,7 @@ After securing the API, it's time to make it available to users. The Publish pha
 <li><strong>Scale</strong>
 As your API gains popularity, you must ensure it can handle increased traffic. The Scale phase focuses on optimizing the API's performance and scalability. Azure API Management allows you to scale your APIs effortlessly, ensuring they can handle large volumes of requests without compromising performance.</li>
 <li><strong>Monitor</strong>
-Monitoring is essential to ensuring your APIs function correctly and efficiently. In the Monitor phase, Azure API Management provides detailed analytics and logging capabilities. You can track usage patterns, monitor performance metrics, and identify potential issues before they impact your users.</li>
+Monitoring is essential to ensuring your APIs function correctly and efficiently. Azure API Management provides detailed analytics and logging capabilities in the Monitor phase. You can track usage patterns, monitor performance metrics, and identify potential issues before they impact your users.</li>
 <li><strong>Analyze</strong>
 In the Analyze phase, we use the data collected during monitoring to gain insights into how our APIs are used. Azure API Management offers powerful analytics tools that help you understand user behavior, identify trends, and make data-driven decisions to improve your APIs continuously.</li>
 </ul>
@@ -362,7 +362,7 @@ These monitoring tools enable us to track performance, detect issues, and gain i
 <p><img decoding="async" loading="lazy" alt="API Lifecycle - Develop" src="https://luke.geek.nz/assets/images/apim_apilifecyle_develop-40d0a11c0c3d20462c3787e679224373.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p>Azure API Management offers a range of features to streamline the development process and enhance the functionality of our APIs.</p>
 <p><img decoding="async" loading="lazy" alt="APIM - API Challenges" src="https://luke.geek.nz/assets/images/apim_apilifecyle_develop_apichallenges-54766c74b68d018aaf589566b240e6c0.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>APIs are the backbone of modern digital ecosystems, enabling connected experiences across various devices and services. However, managing these APIs efficiently comes with its own set of challenges. API management steps in, providing a structured approach to streamlining the API lifecycle.</p>
+<p>APIs are the backbone of modern digital ecosystems, enabling connected experiences across various devices and services. However, managing these APIs efficiently comes with its own set of challenges. API management provides a structured approach to streamlining the API lifecycle.</p>
 <ol>
 <li>Consume:</li>
 </ol>
@@ -388,7 +388,7 @@ This portal allows API providers to define and publish their APIs, making them a
 <p>It offers tools for monitoring API usage, setting up policies, and managing API versions.
 API providers can ensure their APIs are robust, secure, and up-to-date through the Azure Portal.</p>
 <p><img decoding="async" loading="lazy" alt="APIM - Product" src="https://luke.geek.nz/assets/images/apim_apilifecyle_develop_apichallengesproduct-0c1b5041e09b1ec6aeb15e30b50fadc1.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>APIs are essential for modern digital ecosystems, but managing them efficiently can be complex. API management provides a unified approach to streamlining the interaction between products and backend services.</p>
+<p>APIs are essential for modern digital ecosystems, but managing them efficiently can be complex. API management provides a unified approach to streamlining product interaction and backend services.</p>
 <p>Products:</p>
 <ul>
 <li>Diverse Product Integration:</li>
@@ -416,7 +416,7 @@ Critical Benefits of API Management:</p>
 </ul>
 <p>Provides a single entry point for all API requests, simplifying the management of APIs across multiple products and services.
 Enhanced Security:</p>
-<p>Secure communication between products and backend systems is ensured through authentication, authorization, and rate-limiting policies.</p>
+<p>Authentication, authorization, and rate-limiting policies ensure secure communication between products and backend systems.</p>
 <ul>
 <li>Scalability:</li>
 </ul>
