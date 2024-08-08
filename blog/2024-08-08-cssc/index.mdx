@@ -81,7 +81,7 @@ Make use of [Azure Container Registry webhooks](https://learn.microsoft.com/en-u
 
 So, let us dig into each stage.
 
-## 🛒Stage 1: Acquire
+### 🛒Stage 1: Acquire
 
 The [Acquire](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/acquire-overview?WT.mc_id=AZ-MVP-5004796) stage is the first step in the container supply chain. It involves obtaining container images from sources that you may deem trusted or un-trusted and ensuring their integrity and authenticity.
 
@@ -197,7 +197,7 @@ curl -v -X PATCH \
 ```
 ![Remove Quarantine](images/ACR_RemoveQuarantine.gif)
 
-## 📦Stage 2: Catalog
+### 📦Stage 2: Catalog
 
 The [Catalog](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/catalog-overview?WT.mc_id=AZ-MVP-5004796) stage is the second step in the container supply chain. It involves storing and managing container images in a central repository, where they can be easily accessed and deployed.
 
@@ -240,7 +240,7 @@ We can see the image now in our Catalog registry. The image is left in the Quara
 
 ![Azure Container Registry - Catalog](images/ContainerSupplyFramework_Catalog_debianimage.PNG)
 
-## 🛠️Stage 3: Build
+### 🛠️Stage 3: Build
 
 The [Build](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/build-overview?WT.mc_id=AZ-MVP-5004796) step is the third step in the container supply chain. It involves building container images from source code and ensuring that they meet security and compliance requirements, whereas previous steps were more aligned with container images that were sourced externally. However, the following practices can be applied to both.
 
@@ -268,7 +268,7 @@ Tools that can be used during the Build stage are:
 [Azure Container Registry (ACR) Tasks](https://learn.microsoft.com/azure/container-registry/container-registry-tasks-overview?WT.mc_id=AZ-MVP-5004796) can help fill in the gaps in the Build stage. ACR Tasks can automate the building of container images from source code, scanning for vulnerabilities, and signing images, as part of your build workflow.
 :::
 
-## 🚢Stage 4: Deploy
+### 🚢Stage 4: Deploy
 
 The Deploy stage is the fourth step in the container supply chain. It involves deploying container images to production environments where end-users can access them.
 
@@ -293,7 +293,7 @@ The same tools we have used in the previous stages can be used in this stage.
 
 This is the stage where Copacetic can assist with patching deployed containers and ensuring that the images are up-to-date and secure at the OS layers. The images are fully patched and tested back at the Build and Catalog stages.
 
-## 🚀Stage 5: Runtime
+### 🚀Stage 5: Runtime
 
 The Runtime stage is the fifth and final step in the container supply chain. It involves monitoring and securing running containers in production environments so that end-users can access them.
 
@@ -317,13 +317,13 @@ Tools that can be used in this stage are:
 [Containers running in Azure should have vulnerability findings resolved](https://portal.azure.com/#view/Microsoft_Azure_Security_CloudNativeCompute/AggregatedRecommendationBlade/assessmentKey/e9acaf48-d2cf-45a3-a6e7-3caa2ef769e0/showSecurityCenterCommandBar~/false) Defender recommendations are worth a look to see a list of vulnerabilities, once Defender for Cloud is turned, for Azure Kubernetes Clusters.
 :::
 
-## 🏁 Conclusion
+### 🏁 Conclusion
 
 Hopefully, this article has given you an insight into the [Containers Secure Supply Chain Framework](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview?WT.mc_id=AZ-MVP-5004796), and how you can implement the security controls at each stage, using Azure Container Registry, and other tools.
 
 ![Impact of Technology](images/ImpactofTechnology_SatyaNadella.PNG)
 
-### 📖 Reference
+## 📖 Reference
 
 * 🔗[Containers Secure Supply Chain Framework](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview?WT.mc_id=AZ-MVP-5004796)
 * 🔗[duffney/secure-supply-chain-on-aks](https://github.com/duffney/secure-supply-chain-on-aks)
