@@ -152,7 +152,7 @@ We have successfully implemented Request forwarding, through API Management to t
 
 Now, let us take a look at Backend circuit breaking. The [Circuit Breaker](https://learn.microsoft.com/azure/architecture/patterns/circuit-breaker?WT.mc_id=AZ-MVP-5004796) pattern, follows the same principles as the electrical circuit breaker. It is used to detect failures and encapsulate the logic of preventing a failure from constantly recurring, during maintenance, temporary overloads, or unexpected spikes in traffic. When the circuit breaker trips, it can return an error immediately, without trying to execute the operation.
 
-::trip
+:::tip
 The Circuit Breaker pattern, is mentioned in my [Cloud Design Patterns](https://luke.geek.nz/azure/cloud-design-patterns/) blog post.
 :::
 
@@ -270,7 +270,7 @@ In my example, I will be adding the openai-ca-res-uksouth to the backend pool of
 
 To do this, we need to add a new backend, and then reference that in a new pool configuration.
 
-:::Note
+:::note
 When we initially added our first Azure OpenAI resource, alot of the configuration was done for us, including adding the [Cognitive Services OpenAI User](https://learn.microsoft.com/azure/ai-services/openai/how-to/role-based-access-control?WT.mc_id=AZ-MVP-5004796#cognitive-services-openai-user) role to the System Managed Identity of the API Management instance to authenticate with the Azure OpenAI resource, so make sure you grant Azure API Management the necessary permissions to access any other Azure OpenAI resource.
 
 ![Azure OpenAI API Management Policies](images/aapim_add_cognitiveaiuserrbacuksouth.gif)
@@ -348,7 +348,7 @@ For example, I changed the circuitBreaker rule, status code range to: 401 _(Perm
 
 ![Backend Pool Bicep](images/AI_Gateway_APIMBackendPoolPermissionDenied.png)
 
-```json
+```bicep
          statusCodeRanges: [
               {
                // Define the range of HTTP status codes that will be considered as failures for the circuit breaker
