@@ -439,6 +439,158 @@ We can however see the response, does include the response being streamed, and b
 
 To remove the streaming component, we can either remove stream, from the body, or change the stream from true to false.
 
+## Token rate limiting
+
+Let us take a look at Token rate limiting. Token rate limiting is a technique used to limit the number of requests that can be made to an API within a certain time period. This can help prevent abuse of the API, and ensure that all users have fair access to the API.
+
+![Token Rate Limiting](images/AI_Gateway_APIMTokenRateLimiting.PNG)
+
+To implement token rate limiting in API Management, we need to add a policy to the Azure OpenAI API, that will limit the number of requests that can be made to the API within a certain time period, the tokens per minute.
+
+This is an Inbound policy, and will limit the tokens per minute, with a 429 _(Too Many Requests)_ response, that can be called from a single IP address _(each unqiue IP address will have its own counter)_.
+
+![Token Rate Limiting](apim_set_RateLimitPolicy.gif)
+
+
+```xml
+        <azure-openai-token-limit counter-key="@(context.Request.IpAddress)" tokens-per-minute="500" estimate-prompt-tokens="false" remaining-tokens-variable-name="remainingTokens" />
+```
+
+| **Property**                          | **Description**                                                                                     |
+|---------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `<azure-openai-token-limit>`          | This is a custom tag or directive used to define the rate limiting policy for Azure OpenAI tokens. |
+| `counter-key="@(context.Request.IpAddress)"` | This specifies that the rate limiting should be based on the client's IP address. Each unique IP address will have its own counter. |
+| `tokens-per-minute="500"`             | This sets the limit to 500 tokens per minute for each IP address. Once an IP address consumes 500 tokens within a minute, further requests will be restricted until the next minute. |
+| `estimate-prompt-tokens="false"`      | This indicates whether to estimate the number of tokens in the prompt. Setting it to false means the actual token count will be used rather than an estimate. |
+| `remaining-tokens-variable-name="remainingTokens"` | This specifies the variable name (`remainingTokens`) that will store the number of tokens remaining for the current minute. |
+
+So lets test it, in my test, I am using a PowerShell script to call the Azure OpenAI endpoint, through Azure API Management, and I am calling it 20 times, in a loop, to test the rate limiting.
+
+```powershell
+# Define the headers
+$headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+$headers.Add("api-key", "b352f426be53484f8520e5502285264c")
+$headers.Add("Content-Type", "application/json")
+
+# Define the body
+$body = @"
+{
+    `"messages`": [
+        {
+            `"role`": `"system`",
+            `"content`": `"You are a knowledgeable assistant in an ice cream parlor.`"
+        },
+        {
+            `"role`": `"user`",
+            `"content`": `"What are the ingredients typically used to make a classic vanilla ice cream?`"
+        }
+    ],
+    `"max_tokens`": 100
+}
+"@
+
+# Loop to run the script 20 times
+for ($i = 1; $i -le 20; $i++) {
+    try {
+        # Send the request and capture the response
+        $response = Invoke-RestMethod 'https://apim-lmv01-dev-eastus-aka.azure-api.net/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview' -Method 'POST' -Headers $headers -Body $body
+
+        # Output the response as JSON
+        $responseJson = $response | ConvertTo-Json -Depth 10
+     
+        Write-Output $responseJson
+    } catch {
+        # Handle any errors that occur during the request
+        Write-Error $_.Exception.Message
+    }
+}
+```
+
+![Token Rate Limit test](images/apim_test_RateLimitPolicy.gif)
+
+As we can see, it instantly gets declined after the 500th token, however other traffic from other IP addresses, would still be able to access the API.
+
+## Semantic Caching
+
+Let us take a look at [Semantic Caching](https://learn.microsoft.com/en-us/azure/api-management/azure-openai-enable-semantic-caching?WT.mc_id=AZ-MVP-5004796). Semantic caching is a technique used to cache responses from an API based on the content of the request. This can help improve performance by reducing the number of requests that need to be made to the API.
+
+> With semantic caching, you can return cached responses for identical prompts and also for prompts that are similar in meaning, even if the text isn't the same. 
+
+To use Semantic Caching, we need an Embedding model to generate embeddings for the prompts, and a Cache policy to cache the responses based on the embeddings.
+
+So in my example, I am going to deploy a Embedding model _(text-embedding-ada-002)_ to the East US Azure OpenAI resource.
+
+![Semantic Caching - text-embedding-ada-002 deployment](images/AI_Gateway_APIMSemanticCaching_EmbeddingDeployment.PNG)
+
+Now we need to add a Backend for the embedding endpoint, similar to how we originally added the US East backend, if you are using load balancing you can add this to a new backend pool as well, as long as the model is deployed across all endpoints.
+
+However instead of a /chat endpoint, we will be using the /embed endpoint, and the deployment will be the name of the embedding model deployment, as an example _(https://openai-ca-res-eastus.openai.azure.com/openai/deployments/text-embedding-ada-002/embeddings)_.
+
+Once we have our URL we can add a new Backend. 
+
+:::info
+This could be deployed to another Azure OpenAI instance, but make sure you enable the Cognitive Services OpenAI User role on the System Managed Identity of the API Management instance, to authenticate with the Azure OpenAI resource.
+:::
+
+![Semantic Caching - Embedding Backend](images/apim_set_SemanticCachingModelBackend.gif)
+
+Now, its time to configure our [semantic caching policy](https://learn.microsoft.com/azure/api-management/azure-openai-semantic-cache-lookup-policy?WT.mc_id=AZ-MVP-5004796).
+
+> We will need a **[Redis Enterprise Cache deployed](https://learn.microsoft.com/azure/api-management/api-management-howto-cache-external?WT.mc_id=AZ-MVP-5004796)**, and configured as an External cache to API Management, with **[RediSearch module](https://learn.microsoft.com/azure/azure-cache-for-redis/cache-redis-modules?WT.mc_id=AZ-MVP-5004796#redisearch) enabled** and then we can add the semantic caching policy to the Azure OpenAI API. Without the Redis cache, the semantic caching policy will not work, and the azure-openai-semantic-cache-lookup policy will be skipped.
+
+Navigate to our OpenAI API, and select the Creates a completion for the chat message operation, and add the following policy to the inbound section.
+
+```xml
+<azure-openai-semantic-cache-lookup
+    score-threshold="0.5"  <!-- Adjusted threshold for better precision -->
+    embeddings-backend-id="azureaiembeddingbackend"  <!-- Updated backend ID -->
+    embeddings-backend-auth="system-assigned"
+    ignore-system-messages="false"  <!-- Include system messages if they add value -->
+    max-message-count="15"> <!-- Increased message count for more context -->
+    <vary-by>@(context.Subscription.Id)</vary-by>
+</azure-openai-semantic-cache-lookup>
+```
+| **Element**                                      | **Description**                                                                                                                                         |
+|--------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `<azure-openai-semantic-cache-lookup>`           | A custom tag used to define the semantic cache lookup policy for Azure OpenAI.                                                                           |
+| `score-threshold="0.8"`                          | Sets the threshold for similarity scores. Only results with a score of 0.5 or higher are considered.                                                     |
+| `embeddings-backend-id="embeddings-deployment"`  | Specifies the ID of the embeddings backend deployment used for the cache lookup.                                                                         |
+| `embeddings-backend-auth="system-assigned"`      | Indicates that the system-assigned managed identity is used for authentication with the embeddings backend.                                              |
+| `ignore-system-messages="true"`                  | Specifies that system messages should be ignored during the cache lookup.                                                                                |
+| `max-message-count="10"`                         | Sets the maximum number of messages to be considered in the cache lookup.                                                                                |
+| `<vary-by>@(context.Subscription.Id)</vary-by>`  | Specifies that the cache should vary by subscription ID, meaning each subscription will have its own cache.                                              |
+
+
+In the Outbound processing section for the API, add the azure-openai-semantic-cache-store policy.
+
+```xml
+<azure-openai-semantic-cache-store duration="60" />
+```
+
+| **Attribute**                              | **Description**                                                                                           |
+|----------------------------------------|-------------------------------------------------------------------------------------------------------|
+| `<azure-openai-semantic-cache-store>`  | This is a custom tag or directive used to define the semantic cache store policy for Azure OpenAI.     |
+| `duration="60"`                        | This specifies the duration for which the cached data should be stored, in minutes. In this case, the cache will be stored for 60 minutes. |
+
+![Semantic Caching - Embedding Backend](images/apim_Add_SemanticCachingAPIPolicies.gif)
+
+Once added, we can test it.
+
+We can do this, using the [Trace](https://learn.microsoft.com/azure/api-management/api-management-howto-api-inspector?WT.mc_id=AZ-MVP-5004796) feature in Azure API Management, and we can see the cache hit, and the response being returned from the cache.
+
+:::warning
+If you get HTTP/1.1 415 model_error, make sure you are using a [model that supports embeddings](https://learn.microsoft.com/azure/ai-services/openai/concepts/models?WT.mc_id=AZ-MVP-5004796), and that the model is deployed.
+Also if you are testing, make sure that the content-type is application/json.
+:::
+
+:::info
+This was not something, I was able to test in my environment, end to end, due to needing a payment instance for Redis.
+:::
+
+If this is all configured you should see something like below in a Trace:
+
+![Semantic Caching - Semantic Cache lookup](images/semantic-cache-lookup.png)
+
 ## Logging
 
 Now let us take a look at Logging. Logging is the process of recording events that occur during the execution of a process. Logs can be used to monitor and troubleshoot requests, as well as to analyze and report on application performance.
@@ -476,4 +628,8 @@ In Application Insights, navigate to Workbooks, click + New , click on the Code 
 You can see the APIs getting called, the subscription key being used, the response time, and the response code.
 
 ![APIM Built in Logging](images/apim_test_OpenAIWorkbook.gif)
+
+If you are using a Token Limit policy, you can trace the OpenAITokenLimitExeeded exceptions. This can help you determine if you need to block any particular ip addresses either using an ip-filter policy, or Application Gateway if that is infront of your API Management, or if you need to increase the TPM limit.
+
+![App Insights - Token Limit](images/AI_Gateway_APIMBuiltinLoggingAppInsights_TokenLimit.PNG)
 
