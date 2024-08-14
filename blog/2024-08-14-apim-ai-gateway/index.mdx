@@ -1,19 +1,21 @@
 ---
-title: API Management AI Gateway
-metaDescription: 
-date: 2024-07-22T09:28:31.063Z
+title: Implementing AI Gateway capabilities in API Management
+metaDescription: Comprehensive guide on implementing an AI Gateway in API Management, covering key concepts, benefits, and implementation details.
+date: 2024-08-14T06:40:06.774Z
 tags:
   - Azure
 categories:
   - Azure
 authors:
   - Luke
-slug: azure/automate-container-patching-with-trivy-copacetic-azure-devops
+slug: azure/implementing-ai-gateway-in-api-management
 keywords:
   - azure
   - apim
   - AzureOpenAI
-description: 
+  - AIGateway
+  - API Management
+description: Comprehensive guide on implementing an AI Gateway in API Management, covering key concepts, benefits, and implementation details.
 ---
 
 Today, we are going to deleve into some of the Generative [AI Gateway capabilities](https://learn.microsoft.com/ai/playbook/technology-guidance/generative-ai/dev-starters/genai-gateway/?WT.mc_id=AZ-MVP-5004796) _(commonly refered to as AI Gateway)_ that are available in the [API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796) service. 
@@ -51,7 +53,7 @@ General avaliability of this functionality, went into May 2024. [GA Import Azure
 
 So, let us take a look at how to import the Azure OpenAI service and definition into API Management.
 
-## Request Forwarding
+## 📬 Request Forwarding
 
 Let us take a look at Request forwarding.
 
@@ -147,8 +149,7 @@ $response | ConvertTo-Json
 ```
 We have successfully implemented Request forwarding, through API Management to the Azure OpenAI endpoint.
 
-
-## Backend circuit breaking
+## 🔌 Backend circuit breaking
 
 Now, let us take a look at Backend circuit breaking. The [Circuit Breaker](https://learn.microsoft.com/azure/architecture/patterns/circuit-breaker?WT.mc_id=AZ-MVP-5004796) pattern, follows the same principles as the electrical circuit breaker. It is used to detect failures and encapsulate the logic of preventing a failure from constantly recurring, during maintenance, temporary overloads, or unexpected spikes in traffic. When the circuit breaker trips, it can return an error immediately, without trying to execute the operation.
 
@@ -225,7 +226,7 @@ There is nothing in the Azure Portal for API MAnagemement, but if we take a look
 
 ![Backend Circuit Breaking Bicep](images/AI_Gateway_APIMCircuitBreakerPostBicepDeploy.png)
 
-## Backend Load Balacing
+## ⚖️ Backend Load Balacing
 
 Let us now take a look at Backend Load Balancing, with [Load-Balanced Pools](https://learn.microsoft.com/azure/api-management/backends?tabs=bicep&WT.mc_id=AZ-MVP-5004796#load-balanced-pool). Load balancing is the process of distributing network traffic across multiple endpoints. This ensures that no single server bears too much demand. By spreading the work evenly, load balancing improves application responsiveness.
 
@@ -362,7 +363,7 @@ And it worked as expected, the circuit breaker tripped, and the requests were re
 
 ![Backend Pool Bicep](images/apim_test_loadbalancedcircuitbreakerpools.gif)
 
-## Response Streaming
+## 📡 Response Streaming
 
 Let us take a look at Response Streaming. Response streaming is a technique used to send a response to a client in chunks, rather than all at once. This can be useful when the response is large, or when the response is being generated in real-time.
 
@@ -439,7 +440,7 @@ We can however see the response, does include the response being streamed, and b
 
 To remove the streaming component, we can either remove stream, from the body, or change the stream from true to false.
 
-## Token rate limiting
+## ⏳ Token rate limiting
 
 Let us take a look at Token rate limiting. Token rate limiting is a technique used to limit the number of requests that can be made to an API within a certain time period. This can help prevent abuse of the API, and ensure that all users have fair access to the API.
 
@@ -510,7 +511,7 @@ for ($i = 1; $i -le 20; $i++) {
 
 As we can see, it instantly gets declined after the 500th token, however other traffic from other IP addresses, would still be able to access the API.
 
-## Semantic Caching
+## 🗂️ Semantic Caching
 
 Let us take a look at [Semantic Caching](https://learn.microsoft.com/en-us/azure/api-management/azure-openai-enable-semantic-caching?WT.mc_id=AZ-MVP-5004796). Semantic caching is a technique used to cache responses from an API based on the content of the request. This can help improve performance by reducing the number of requests that need to be made to the API.
 
@@ -591,7 +592,7 @@ If this is all configured you should see something like below in a Trace:
 
 ![Semantic Caching - Semantic Cache lookup](images/semantic-cache-lookup.png)
 
-## Logging
+## 📜 Logging
 
 Now let us take a look at Logging. Logging is the process of recording events that occur during the execution of a process. Logs can be used to monitor and troubleshoot requests, as well as to analyze and report on application performance.
 
@@ -613,7 +614,7 @@ First thing you could do is configure an avaliability test for your API Manageme
 
 The API Management Gateway health probe URL is: /status-0123456789abcdef
 
-So our avaliability test URL would be: https://apim-lmv01-dev-eastus-aka.azure-api.net/status-0123456789abcdef
+So our avaliability test URL would be: 'https://apim-lmv01-dev-eastus-aka.azure-api.net/status-0123456789abcdef'
 
 ![API Management avaliability test](images/AI_Gateway_APIMLogging_AppInsightsAvaliabilityTest.PNG)
 
@@ -633,3 +634,15 @@ If you are using a Token Limit policy, you can trace the OpenAITokenLimitExeeded
 
 ![App Insights - Token Limit](images/AI_Gateway_APIMBuiltinLoggingAppInsights_TokenLimit.PNG)
 
+## 🔚 Conclusion
+
+In this article, we have taken a look at how we can use Azure OpenAI as a backend to Azure API Management, how to test the Azure OpenAI endpoint, through Azure API Management, and how to implement Request forwarding, Backend circuit breaking, Backend Load Balancing, Response Streaming, Token rate limiting, Semantic Caching, and Logging.
+
+All code can be found here: [lukemurraynz/AI_Gateway_Tests](https://github.com/lukemurraynz/AI_Gateway_Tests)
+
+## 📚 Reference
+
+* [What is Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796)
+* [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai?WT.mc_id=AZ-MVP-5004796)
+* [Introducing GenAI Gateway Capabilities in Azure API Management](https://techcommunity.microsoft.com/t5/azure-integration-services-blog/introducing-genai-gateway-capabilities-in-azure-api-management/ba-p/4146525?WT.mc_id=AZ-MVP-5004796)
+* [Azure-Samples/AI-Gateway](https://aka.ms/apim/genai/labs)
