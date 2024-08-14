@@ -18,9 +18,9 @@ keywords:
 description: Comprehensive guide on implementing an AI Gateway in API Management, covering key concepts, benefits, and implementation details.
 ---
 
-Today, we are going to deleve into some of the Generative [AI Gateway capabilities](https://learn.microsoft.com/ai/playbook/technology-guidance/generative-ai/dev-starters/genai-gateway/?WT.mc_id=AZ-MVP-5004796) _(commonly refered to as AI Gateway)_ that are available in the [API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796) service. 
+Today, we are going to delve into some of the Generative [AI Gateway capabilities](https://learn.microsoft.com/ai/playbook/technology-guidance/generative-ai/dev-starters/genai-gateway/?WT.mc_id=AZ-MVP-5004796) _(commonly referred to as AI Gateway)_ that are available in the [API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796) service. 
 
-These capabilities are designed, to help secure and monitor your OpenAI endpoints, for use in your applications, as you head towards production.
+These capabilities are designed to help secure and monitor your OpenAI endpoints for use in your applications as you head toward production.
 
 {/* truncate */}
 
@@ -40,15 +40,15 @@ In this post, we will explore how to use the AI Gateway capabilities in API Mana
 The first step is to [import the Azure OpenAI](https://learn.microsoft.com/azure/api-management/azure-openai-api-from-specification?WT.mc_id=AZ-MVP-5004796) service and definition into API Management. This will allow you to create a new API in API Management that can act as a gateway to the Azure OpenAI service.
 
 :::info
-You can import an Azure OpenAI API directly to API Management from the Azure OpenAI Service. When you import the API, API Management automatically configures:
+You can import an Azure OpenAI API directly from the Azure OpenAI Service to API Management. When you import the API, API Management automatically configures:
 
 * Operations for each of the Azure OpenAI REST API endpoints.
 * A system-assigned identity with the necessary permissions to access the Azure OpenAI resource.
-* A backend resource and set-backend-service policy that direct API requests to the Azure OpenAI Service endpoint.
+* A backend resource and set-backend-service policy that directs API requests to the Azure OpenAI Service endpoint.
 * An authentication-managed-identity policy that can authenticate to the Azure OpenAI resource using the instance's system-assigned identity.
-* _(optionally)_ Policies to help you monitor and manage token consumption by the Azure OpenAI API.
+* _(optionally)_ Policies are used to help you monitor and manage token consumption using the Azure OpenAI API.
 
-General avaliability of this functionality, went into May 2024. [GA Import Azure OpenAI enpoints as an APIs in Azure API Management](https://azure.microsoft.com/en-us/updates/ga-import-azure-openai-enpoints-as-an-apis-in-azure-api-management/?WT.mc_id=AZ-MVP-5004796).
+The general availability of this functionality went into May 2024. [GA Import Azure OpenAI endpoints as an API in Azure API Management](https://azure.microsoft.com/en-us/updates/ga-import-azure-openai-enpoints-as-an-apis-in-azure-api-management/?WT.mc_id=AZ-MVP-5004796).
 :::
 
 So, let us take a look at how to import the Azure OpenAI service and definition into API Management.
@@ -59,7 +59,7 @@ Let us take a look at Request forwarding.
 
 ![Request Forwarding](images/AI_Gateway_APIMRequestForwarding.PNG)
 
-For this article I have the following resources pre-deployed already:
+For this article, I have the following resources pre-deployed already:
 
 | **Name**                  | **Type**               | **Region** |
 |---------------------------|------------------------|------------|
@@ -67,26 +67,26 @@ For this article I have the following resources pre-deployed already:
 | openai-ca-res-uksouth     | Azure OpenAI           | UK South   |
 | apim-lmv01-dev-eastus-aka | API Management service | East US    |
 
-We will start by adding openai-ca-res-eastus to the Azure API Management, service first, before looking at adding the other resources.
+We will start by adding openai-ca-res-eastus to the Azure API Management service first before looking at adding the other resources.
 
 > This will automatically, enable the System Managed Identity of API Management, to access the Azure OpenAI service with the role of [Cognitive Services OpenAI User](https://learn.microsoft.com/azure/ai-services/openai/how-to/role-based-access-control?WT.mc_id=AZ-MVP-5004796#cognitive-services-openai-user), and create a new Backend instance, and operations.
 
 ![Add Azure OpenAI to API Management](images/apim_add_azureopenaibackend)
 
-We can see the policiy changes applied, pointing to the backend and system managed identity.
+We can see the police changes applied, pointing to the backend and system-managed identity.
 
 ![Azure OpenAI API Management Policies](images/apim_api_openaipolicybase.png)
 
 :::info
-There is Azure Portal integration, to enable a few API policies out of the box, to help you manage the token consumption of the Azure OpenAI API.
+There is Azure Portal integration to enable a few API policies out of the box to help you manage the token consumption of the Azure OpenAI API.
 
 These are:
 
 Manage token consumption _(Use the Azure OpenAI token limit policy to protect the API from overuse and to control Azure OpenAI cost. If selected, API Management will add the policy with the configured TPM value. You can add, edit, or remove this policy after the API is created.)_
-Track token usage _(Use the Azure OpenAI emit token policy to log the consumed total, completion, and prompt tokens. If selected, API Management will add the policy with specified configuration. You can add, edit, or remove this policy after the API is created)_
+Track token usage _(Use the Azure OpenAI emit token policy to log the consumed total, completion, and prompt tokens. If selected, API Management will add the policy with the specified configuration. You can add, edit, or remove this policy after the API is created)_
 :::
 
-Now that we have a frontend for our Azure OpenAI service, its time to test the Azure OpenAI endpoint, through Azure API Management.
+Now that we have a frontend for our Azure OpenAI service, it's time to test the Azure OpenAI endpoint through Azure API Management.
 
 To do this, we will need a:
 
@@ -99,7 +99,7 @@ We can get this information from the Azure AI Studio, in the Azure Portal, in th
 
 Now, we can test the Azure OpenAI endpoint, through Azure API Management. In Azure API Management, navigate to the openai API that you created, and select the Creates a completion for the chat message operation and the Test tab.
 
-Add in your deployment id and api version, and in the request body, enter in a sameple prompt like below:
+Add in your deployment id and api version, and in the request body, enter in a sample prompt like below:
 
 ```json
 {
@@ -161,9 +161,9 @@ A circuit breaker acts as a proxy for operations that might fail. The proxy shou
 
 ![Backend Circuit Breaking](images/AI_Gateway_APIMCircuitBreaker.png)
 
-To implement a circuit breaker in API Management, we will need to add a policy to the Azure OpenAI API, that will monitor the number of recent failures that have occurred, and use this information to decide whether to allow the operation to proceed, or simply return an exception immediately.
+To implement a circuit breaker in API Management, we will need to add a policy to the Azure OpenAI API that monitors the number of recent failures and uses this information to decide whether to allow the operation to proceed or simply return an exception immediately.
 
-Unlike, Request forwarding, configuring the Circuit Breaker, cannot currently be done in the Azure Portal, and will require configuration, through Infrastructure as Code _(ie Bicep)_ or the API Management REST API.
+Unlike Request forwarding, configuring the Circuit Breaker cannot currently be done in the Azure Portal and will require configuration through Infrastructure as Code (i.e., Bicep)_ or the API Management REST API.
 
 :::warning
 Before you configure a circuitBreaker policy, make sure you have a backup of your Backend configuration and test this is a non-production environment.
@@ -222,7 +222,7 @@ In the Circuit Breaker rule above, the following behavior will occur:
 | **Retry Behavior**        | After the trip duration of 1 hour, the circuit breaker is designed to allow retries (acceptRetryAfter: true). Requests will be accepted again after the trip duration, and the service will attempt to recover. |
 | **Scenarios Where the Circuit Breaker Will Trip** | If, within any 1-hour period, there are 3 or more server-side errors (HTTP status codes 500–599) with the reason 'Server errors', the circuit breaker will trip. Once tripped, the circuit breaker will block requests for 1 hour. After the 1-hour block period, the circuit breaker will reset and start accepting requests again. |
 
-There is nothing in the Azure Portal for API MAnagemement, but if we take a look at the backend provider resource we can confirm, that the configuration for the backend has been set.
+There is nothing in the Azure Portal for API management, but if we take a look at the backend provider resource, we can confirm that the configuration for the backend has been set.
 
 ![Backend Circuit Breaking Bicep](images/AI_Gateway_APIMCircuitBreakerPostBicepDeploy.png)
 
@@ -434,11 +434,11 @@ By using the following prompt:
 
 Note: Full JSON streaming support [is not avaliable](https://github.com/postmanlabs/postman-app-support/issues/12713) at this time of this article in postman, so again - you need a client to support this.
 
-We can however see the response, does include the response being streamed, and broken up into chunks:
+We can, however see the response does include the response being streamed and broken up into chunks:
 
 ![Response Streaming](images/AI_Gateway_APIMResponseStreamingPostmanOutput.PNG)
 
-To remove the streaming component, we can either remove stream, from the body, or change the stream from true to false.
+To remove the streaming component, we can either remove the stream from the body or change the stream from true to false.
 
 ## ⏳ Token rate limiting
 
@@ -459,8 +459,8 @@ This is an Inbound policy, and will limit the tokens per minute, with a 429 _(To
 
 | **Property**                          | **Description**                                                                                     |
 |---------------------------------------|-----------------------------------------------------------------------------------------------------|
-| `<azure-openai-token-limit>`          | This is a custom tag or directive used to define the rate limiting policy for Azure OpenAI tokens. |
-| `counter-key="@(context.Request.IpAddress)"` | This specifies that the rate limiting should be based on the client's IP address. Each unique IP address will have its own counter. |
+| `<azure-openai-token-limit>`          | This is a custom tag or directive used to define the rate-limiting policy for Azure OpenAI tokens. |
+| `counter-key="@(context.Request.IpAddress)"` | This specifies that the rate-limiting should be based on the client's IP address. Each unique IP address will have its own counter. |
 | `tokens-per-minute="500"`             | This sets the limit to 500 tokens per minute for each IP address. Once an IP address consumes 500 tokens within a minute, further requests will be restricted until the next minute. |
 | `estimate-prompt-tokens="false"`      | This indicates whether to estimate the number of tokens in the prompt. Setting it to false means the actual token count will be used rather than an estimate. |
 | `remaining-tokens-variable-name="remainingTokens"` | This specifies the variable name (`remainingTokens`) that will store the number of tokens remaining for the current minute. |
@@ -509,7 +509,7 @@ for ($i = 1; $i -le 20; $i++) {
 
 ![Token Rate Limit test](images/apim_test_RateLimitPolicy.gif)
 
-As we can see, it instantly gets declined after the 500th token, however other traffic from other IP addresses, would still be able to access the API.
+As we can see, it instantly gets declined after the 500th token; however, traffic from other IP addresses can still access the API.
 
 ## 🗂️ Semantic Caching
 
@@ -517,29 +517,29 @@ Let us take a look at [Semantic Caching](https://learn.microsoft.com/en-us/azure
 
 > With semantic caching, you can return cached responses for identical prompts and also for prompts that are similar in meaning, even if the text isn't the same. 
 
-To use Semantic Caching, we need an Embedding model to generate embeddings for the prompts, and a Cache policy to cache the responses based on the embeddings.
+To use Semantic Caching, we need an Embedding model to generate embeddings for the prompts and a Cache policy to cache the responses based on the embeddings.
 
-So in my example, I am going to deploy a Embedding model _(text-embedding-ada-002)_ to the East US Azure OpenAI resource.
+In my example, I will deploy an Embedding model _(text-embedding-ada-002)_ to the East US Azure OpenAI resource.
 
 ![Semantic Caching - text-embedding-ada-002 deployment](images/AI_Gateway_APIMSemanticCaching_EmbeddingDeployment.PNG)
 
-Now we need to add a Backend for the embedding endpoint, similar to how we originally added the US East backend, if you are using load balancing you can add this to a new backend pool as well, as long as the model is deployed across all endpoints.
+Now, we need to add a Backend for the embedding endpoint, similar to how we originally added the US East backend. If you are using load balancing, you can add this to a new backend pool as well, as long as the model is deployed across all endpoints.
 
-However instead of a /chat endpoint, we will be using the /embed endpoint, and the deployment will be the name of the embedding model deployment, as an example _(https://openai-ca-res-eastus.openai.azure.com/openai/deployments/text-embedding-ada-002/embeddings)_.
+However, instead of a /chat endpoint, we will use the /embed endpoint, and the deployment will be the name of the embedding model deployment, as an example _(https://openai-ca-res-eastus.openai.azure.com/openai/deployments/text-embedding-ada-002/embeddings)_.
 
 Once we have our URL we can add a new Backend. 
 
 :::info
-This could be deployed to another Azure OpenAI instance, but make sure you enable the Cognitive Services OpenAI User role on the System Managed Identity of the API Management instance, to authenticate with the Azure OpenAI resource.
+This could be deployed to another Azure OpenAI instance, but make sure you enable the Cognitive Services OpenAI User role on the System Managed Identity of the API Management instance to authenticate with the Azure OpenAI resource.
 :::
 
 ![Semantic Caching - Embedding Backend](images/apim_set_SemanticCachingModelBackend.gif)
 
-Now, its time to configure our [semantic caching policy](https://learn.microsoft.com/azure/api-management/azure-openai-semantic-cache-lookup-policy?WT.mc_id=AZ-MVP-5004796).
+Now, it is time to configure our [semantic caching policy](https://learn.microsoft.com/azure/api-management/azure-openai-semantic-cache-lookup-policy?WT.mc_id=AZ-MVP-5004796).
 
 > We will need a **[Redis Enterprise Cache deployed](https://learn.microsoft.com/azure/api-management/api-management-howto-cache-external?WT.mc_id=AZ-MVP-5004796)**, and configured as an External cache to API Management, with **[RediSearch module](https://learn.microsoft.com/azure/azure-cache-for-redis/cache-redis-modules?WT.mc_id=AZ-MVP-5004796#redisearch) enabled** and then we can add the semantic caching policy to the Azure OpenAI API. Without the Redis cache, the semantic caching policy will not work, and the azure-openai-semantic-cache-lookup policy will be skipped.
 
-Navigate to our OpenAI API, and select the Creates a completion for the chat message operation, and add the following policy to the inbound section.
+Navigate to our OpenAI API, select the Creates a completion for the chat message operation, and add the following policy to the inbound section.
 
 ```xml
 <azure-openai-semantic-cache-lookup
@@ -571,7 +571,7 @@ In the Outbound processing section for the API, add the azure-openai-semantic-ca
 | **Attribute**                              | **Description**                                                                                           |
 |----------------------------------------|-------------------------------------------------------------------------------------------------------|
 | `<azure-openai-semantic-cache-store>`  | This is a custom tag or directive used to define the semantic cache store policy for Azure OpenAI.     |
-| `duration="60"`                        | This specifies the duration for which the cached data should be stored, in minutes. In this case, the cache will be stored for 60 minutes. |
+| `duration="60"`                        | This specifies the duration for which the cached data should be stored in minutes. In this case, the cache will be stored for 60 minutes. |
 
 ![Semantic Caching - Embedding Backend](images/apim_Add_SemanticCachingAPIPolicies.gif)
 
@@ -585,10 +585,10 @@ Also if you are testing, make sure that the content-type is application/json.
 :::
 
 :::info
-This was not something, I was able to test in my environment, end to end, due to needing a payment instance for Redis.
+I was not able to test this end-to-end in my environment due to needing a payment instance for Redis, not covered under my Visual Studio Enterprise subscription.
 :::
 
-If this is all configured you should see something like below in a Trace:
+If this is all configured you should see something like the below in a Trace:
 
 ![Semantic Caching - Semantic Cache lookup](images/semantic-cache-lookup.png)
 
@@ -603,18 +603,18 @@ To do this, we need to enable [Application Insights](https://learn.microsoft.com
 ![APIM Built in Logging](images/AI_Gateway_APIMLogging_AppInsights.PNG)
 
 :::tip
-If your NOT using Azure API Management, I recommend you check out the workbook by Dolev Shor _(Microsoft Fastrack Engineer)_, you can read more about it here: [Azure OpenAI Insights: Monitoring AI with Confidence](https://techcommunity.microsoft.com/t5/fasttrack-for-azure/azure-openai-insights-monitoring-ai-with-confidence/ba-p/4026850?WT.mc_id=AZ-MVP-5004796).
+If you're not using Azure API Management, I recommend you check out the workbook by Dolev Shor (Microsoft Fastrack Engineer). You can read more about it here: [Azure OpenAI Insights: Monitoring AI with Confidence](https://techcommunity.microsoft.com/t5/fasttrack-for-azure/azure-openai-insights-monitoring-ai-with-confidence/ba-p/4026850?WT.mc_id=AZ-MVP-5004796).
 :::
 
-So lets take a look at some of the logs, that are being generated by the Azure OpenAI API, through Azure API Management, and visible through Application Insights and Log Analytics workspace.
+So, let's take a look at some of the logs generated by the Azure OpenAI API through Azure API Management and visible through the Application Insights and Log Analytics workspace.
 
 ![APIM Built in Logging](images/AI_Gateway_APIMBuiltinLoggingAppInsights.PNG)
 
-First thing you could do is configure an avaliability test for your API Management endpoint.
+The first thing you could do is configure an availability test for your API Management endpoint.
 
 The API Management Gateway health probe URL is: /status-0123456789abcdef
 
-So our avaliability test URL would be: 'https://apim-lmv01-dev-eastus-aka.azure-api.net/status-0123456789abcdef'
+So our availability test URL would be: 'https://apim-lmv01-dev-eastus-aka.azure-api.net/status-0123456789abcdef'
 
 ![API Management avaliability test](images/AI_Gateway_APIMLogging_AppInsightsAvaliabilityTest.PNG)
 
@@ -622,15 +622,15 @@ Next, we need to make sure that we are logging the information from the API requ
 
 ![APIM Built in Logging](images/AI_Gateway_APIMBuiltinLoggingAppInsightsEnable.PNG)
 
-Lets take a look at a custom [Azure Monitor workbook](https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-overview?WT.mc_id=AZ-MVP-5004796), that helps vislise and bring out alot of the data you need to make informed decisions , without having to delve into KQL _(Kusto Query Language)_ queries in Log Analytics.
+Let's take a look at a custom [Azure Monitor workbook](https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-overview?WT.mc_id=AZ-MVP-5004796) that helps visualize and bring out a lot of the data you need to make informed decisions without having to delve into KQL _(Kusto Query Language)_ queries in Log Analytics.
 
-In Application Insights, navigate to Workbooks, click + New , click on the Code and paste the workbook data from: [AI-Gateway/main/labs/built-in-logging/openai-usage-analysis-workbook.json](https://github.com/Azure-Samples/AI-Gateway/blob/main/labs/built-in-logging/openai-usage-analysis-workbook.json).
+In Application Insights, navigate to Workbooks, click + New, click on the Code and paste the workbook data from: [AI-Gateway/main/labs/built-in-logging/openai-usage-analysis-workbook.json](https://github.com/Azure-Samples/AI-Gateway/blob/main/labs/built-in-logging/openai-usage-analysis-workbook.json).
 
 You can see the APIs getting called, the subscription key being used, the response time, and the response code.
 
 ![APIM Built in Logging](images/apim_test_OpenAIWorkbook.gif)
 
-If you are using a Token Limit policy, you can trace the OpenAITokenLimitExeeded exceptions. This can help you determine if you need to block any particular ip addresses either using an ip-filter policy, or Application Gateway if that is infront of your API Management, or if you need to increase the TPM limit.
+If you are using a Token Limit policy, you can trace the OpenAITokenLimitExeeded exceptions. This can help you determine if you need to block any particular IP addresses either using an ip-filter policy or Application Gateway if that is in front of your API Management or if you need to increase the TPM limit.
 
 ![App Insights - Token Limit](images/AI_Gateway_APIMBuiltinLoggingAppInsights_TokenLimit.PNG)
 
@@ -642,7 +642,9 @@ All code can be found here: [lukemurraynz/AI_Gateway_Tests](https://github.com/l
 
 ## 📚 Reference
 
-* [What is Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796)
-* [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai?WT.mc_id=AZ-MVP-5004796)
-* [Introducing GenAI Gateway Capabilities in Azure API Management](https://techcommunity.microsoft.com/t5/azure-integration-services-blog/introducing-genai-gateway-capabilities-in-azure-api-management/ba-p/4146525?WT.mc_id=AZ-MVP-5004796)
-* [Azure-Samples/AI-Gateway](https://aka.ms/apim/genai/labs)
+* 🔗[What is Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796)
+* 🔗[Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai?WT.mc_id=AZ-MVP-5004796)
+* 🔗[Introducing GenAI Gateway Capabilities in Azure API Management](https://techcommunity.microsoft.com/t5/azure-integration-services-blog/introducing-genai-gateway-capabilities-in-azure-api-management/ba-p/4146525?WT.mc_id=AZ-MVP-5004796)
+* 🔗[Cloud Design Patterns](https://luke.geek.nz/azure/cloud-design-patterns/)
+* 🔗[Features and Benefits of Azure API Management](https://luke.geek.nz/azure/api-management-overview/)
+* 🔗[Azure-Samples/AI-Gateway](https://aka.ms/apim/genai/labs)
