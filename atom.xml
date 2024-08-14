@@ -17,6 +17,7 @@
         <content type="html"><![CDATA[<p>Today, we are going to delve into some of the Generative <a href="https://learn.microsoft.com/ai/playbook/technology-guidance/generative-ai/dev-starters/genai-gateway/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">AI Gateway capabilities</a> <em>(commonly referred to as AI Gateway)</em> that are available in the <a href="https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">API Management</a> service.</p>
 <p>These capabilities are designed to help secure and monitor your OpenAI endpoints in your applications as you head toward production.</p>
 <!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-overview">🌐 Overview<a href="https://luke.geek.nz/azure/implementing-ai-gateway-in-api-management/#-overview" class="hash-link" aria-label="Direct link to 🌐 Overview" title="Direct link to 🌐 Overview">​</a></h2>
 <p>Common scenarios that the AI Gateway capabilities can help with include:</p>
 <ul>
 <li>How can we track token usage across multiple applications? How can we do cross charges for multiple applications/teams that use Azure OpenAI models?</li>
