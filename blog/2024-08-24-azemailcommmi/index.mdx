@@ -1,0 +1,173 @@
+---
+title: Azure Communication Services and PowerShell for Email
+metaDescription: A step-by-step guide on how to use Azure Communication Services and PowerShell to send emails.
+date: 2024-08-24T10:21:21.789Z
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: azure/using-communication-services-and-powershell-to-send-emails
+keywords:
+  - azure
+  - communication services
+  - PowerShell
+  - email
+  - script
+  - System Managed Identity
+  - authentication
+description: A step-by-step guide on how to use Azure Communication Services and PowerShell to send emails.
+---
+
+[Azure Communication Services](https://azure.microsoft.com/products/communication-services?WT.mc_id=AZ-MVP-5004796) brings rich communication APIs to all of your apps across any device on any platform, using the same reliable and secure infrastructure that powers Microsoft Teams.
+
+Today, we will explore using Email as part of Azure Communication Services, using the REST API and PowerShell to send an email.
+
+![Azure Communication Services](images/BlogHeading_DeployandTestACS.gif)
+
+{/* truncate */}
+
+:::info
+I did a previous article: [Deploying and Testing Azure Email Communication Services](https://luke.geek.nz/azure/azure-email-communication-services/) on this, however the authentication was using an Azure Service Principal. This time we will use oauth using a System Assigned Managed Identity.
+:::
+
+In this example, I will access a token from [Azure Communication Services](https://azure.microsoft.com/products/communication-services?WT.mc_id=AZ-MVP-5004796). I will make a GET request to the identity endpoint of Azure Communication Services, using the oauth identity from the system-managed identity. This will return a token we can use to authenticate against the REST API.
+
+Here's a step-by-step explanation of the script:
+
+The script first defines the subject and body of the email. The body is an HTML string that contains the email content.
+It checks if the email body is not empty.
+If the email body is not empty, it proceeds to get an access token from Azure Communication Services. This is done by making a GET request to the identity endpoint of Azure Communication Services. The access token is then printed to the console.
+If there's an error when getting the access token, the script catches the exception and prints the error message and response details on the console.
+The script then constructs the URI for the email-sending endpoint and defines the headers for the REST API call. The headers include the content type and the obtained access token in the Authorization header.
+The script defines the body for the REST API call. This includes the sender address, the email content (subject and body), the recipients, the reply-to address, and a flag to disable user engagement tracking.
+The script then converts the PowerShell object to JSON and attempts to send the email by making a POST request to the email-sending endpoint. The request details and response are logged to the console.
+If the email is sent incorrectly, the script catches the exception and logs the error message and stack trace to the console.
+
+Further information on the authentication process itself:
+
+1. The script first defines the resource ID for Azure Communication Services and the communication endpoint URL.
+2. It then constructs the URI for the identity endpoint. This URI includes the environment variable IDENTITY_ENDPOINT (automatically set by Azure when using Managed Identity) and the resource ID.
+3. The script then attempts to get an access token from the identity endpoint. It does this by sending a GET request to the identity endpoint with a header that includes Metadata: true. This tells the identity endpoint that the request is coming from within Azure.
+4. the response will include an access token if the request is successful. This token is then extracted from the response.
+
+This access token can then be used to authenticate requests to Azure Communication Services. The token tells Azure Communication Services that the request comes from an authenticated source (in this case, the Managed Identity) and should be allowed.
+
+_(This authenticaiton was inititally written to be used in a Azure Automation Runbook, with the System Managed Identity assigned Contributor rights to the Azure Communication Services resource (not the Email Communication Services).)_
+
+Here is the PowerShell script to send an email using Azure Communication Services using the [System Managed identity](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview?WT.mc_id=AZ-MVP-5004796) of an [Azure Automation account](https://learn.microsoft.com/azure/automation/overview?WT.mc_id=AZ-MVP-5004796):
+
+```powershell
+$emailSubject = "Important: Server Maintenance Notification"
+$EmailRecipient = "ituser@contoso.com"
+$emailBody = @"
+<html>
+<body>
+<p>Dear User,</p>
+<p>This is to inform you that a <b><i>server maintenance is scheduled for the next week</i></b>.</p>
+<p>The servers will be down from 10:00 PM to 2:00 AM.</p>
+<p>Please save your work and log off during this period to avoid any data loss.</p>
+<p>If you have any questions or concerns, please contact our IT Support team.</p>
+<p>Thank you for your understanding and cooperation.</p>
+<p>Best Regards,</p>
+<p>IT Support Team</p>
+</body>
+</html>
+"@
+
+if ($emailBody -ne "") {
+    Write-Output $emailBody  
+
+    # Define the resource ID for Azure Communication Services
+    $ResourceID = 'https://communication.azure.com'
+
+    # Define the communication endpoint URL
+    $communicationendpointurl = "azcomm-contoso.australia.communication.azure.com" # Update with your communication endpoint URL
+
+    # Construct the URI for the identity endpoint
+    $Uri = "$($env:IDENTITY_ENDPOINT)?api-version=2018-02-01&resource=$ResourceID"
+
+    # Debug output
+    # Print the constructed URI and headers
+    Write-Output "URI: $Uri"
+    Write-Output "Headers: @{ Metadata = 'true' }"
+
+    # Try to get the access token
+    try {
+        # Invoke a GET request to the identity endpoint to get the access token
+        $AzToken = Invoke-WebRequest -Uri $Uri -Method GET -Headers @{ Metadata = "true" } -UseBasicParsing | Select-Object -ExpandProperty Content | ConvertFrom-Json | Select-Object -ExpandProperty access_token
+        # Print the obtained access token
+        Write-Output "Access Token: $AzToken"
+    }
+    catch {
+        # If there's an error, print the error message and response details
+        Write-Error "Failed to get access token: $_"
+        Write-Output "Response Status Code: $($_.Exception.Response.StatusCode.Value__)"
+        Write-Output "Response Status Description: $($_.Exception.Response.StatusDescription)"
+        Write-Output "Response Content: $($_.Exception.Response.GetResponseStream() | %{ $_.ReadToEnd() })"
+    }
+
+    # Construct the URI for the email sending endpoint
+    $uri = "https://$communicationendpointurl/emails:send?api-version=2023-03-31"
+
+    # Define the headers for the REST API call
+    # Include the content type and the obtained access token in the Authorization header
+    $headers = @{
+        "Content-Type"  = "application/json"
+        "Authorization" = "Bearer $AzToken"
+    }
+    # Define the body for the REST API call
+    $apiResponse = @{
+        headers                        = @{
+            id = (New-Guid).Guid
+        }
+        senderAddress                  = 'DoNotReply@7647475b-a51b-4901-8674-917e6abea743.azurecomm.net'
+        content                        = @{
+            subject = $emailSubject
+            html    = $emailBody
+        }
+        recipients                     = @{
+            to = @(
+                @{
+                    address     = $EmailRecipient
+                    displayName = $EmailRecipient
+                }
+            )
+        }
+
+        replyTo                        = @(
+            @{
+                address     = "example@contoso.com"
+                displayName = "Contoso"
+            }
+        )
+        userEngagementTrackingDisabled = $true
+    }
+                
+    # Convert the PowerShell object to JSON
+    $body = $apiResponse | ConvertTo-Json -Depth 10
+    # Send the email
+    try {
+        # Log the request details
+        Write-Output "Sending email..."
+        Write-Output "URI: $uri"
+        Write-Output "Headers: $headers"
+        Write-Output "Body: $body"
+        # Make the request
+        $response = Invoke-RestMethod -Uri $uri -Method Post -Headers $headers -Body $body -UseBasicParsing
+        # Log the response
+        Write-Output "Response: $response"
+        # Return the response
+        $response
+    }
+    catch {
+        # Log the error
+        Write-Error "Failed to send email: $_"
+        Write-Output "Exception Message: $($_.Exception.Message)"
+        Write-Output "Exception StackTrace: $($_.Exception.StackTrace)"
+    }
+}
+```
+
+You can run this script in an Azure Automation Runbook _(and theoretically in an [Azure Function](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796) as well)_ to send an email using Azure Communication Services and the System Managed Identity—and there is no need to maintain or store client secrets!
