@@ -22,7 +22,7 @@ description: A step-by-step guide on how to use Azure Communication Services and
 
 [Azure Communication Services](https://azure.microsoft.com/products/communication-services?WT.mc_id=AZ-MVP-5004796) brings rich communication APIs to all of your apps across any device on any platform, using the same reliable and secure infrastructure that powers Microsoft Teams.
 
-Today, we will look into using Email as part of Azure Communication Services using the REST API and PowerShell to send an email.
+Today, we will explore using Email as part of Azure Communication Services, using the REST API and PowerShell to send an email.
 
 ![Azure Communication Services](images/BlogHeading_DeployandTestACS.gif)
 
@@ -32,27 +32,27 @@ Today, we will look into using Email as part of Azure Communication Services usi
 I did a previous article: [Deploying and Testing Azure Email Communication Services](https://luke.geek.nz/azure/azure-email-communication-services/) on this, however the authentication was using an Azure Service Principal. This time we will use oauth using a System Assigned Managed Identity.
 :::
 
-In this example, I will access token from [Azure Communication Services](https://azure.microsoft.com/products/communication-services?WT.mc_id=AZ-MVP-5004796). This is done by making a GET request to the identity endpoint of Azure Communication Services, using the oauth identity fromt he system managed identity. This will return a token that we can use to authenticate against the REST API.
+In this example, I will access a token from [Azure Communication Services](https://azure.microsoft.com/products/communication-services?WT.mc_id=AZ-MVP-5004796). I will make a GET request to the identity endpoint of Azure Communication Services, using the oauth identity from the system-managed identity. This will return a token we can use to authenticate against the REST API.
 
 Here's a step-by-step explanation of the script:
 
 The script first defines the subject and body of the email. The body is an HTML string that contains the email content.
 It checks if the email body is not empty.
 If the email body is not empty, it proceeds to get an access token from Azure Communication Services. This is done by making a GET request to the identity endpoint of Azure Communication Services. The access token is then printed to the console.
-If there's an error in getting the access token, the script catches the exception and prints the error message and response details to the console.
-The script then constructs the URI for the email sending endpoint and defines the headers for the REST API call. The headers include the content type and the obtained access token in the Authorization header.
+If there's an error when getting the access token, the script catches the exception and prints the error message and response details on the console.
+The script then constructs the URI for the email-sending endpoint and defines the headers for the REST API call. The headers include the content type and the obtained access token in the Authorization header.
 The script defines the body for the REST API call. This includes the sender address, the email content (subject and body), the recipients, the reply-to address, and a flag to disable user engagement tracking.
-The script then converts the PowerShell object to JSON and attempts to send the email by making a POST request to the email sending endpoint. The request details and response are logged to the console.
-If there's an error in sending the email, the script catches the exception and logs the error message and stack trace to the console.
+The script then converts the PowerShell object to JSON and attempts to send the email by making a POST request to the email-sending endpoint. The request details and response are logged to the console.
+If the email is sent incorrectly, the script catches the exception and logs the error message and stack trace to the console.
 
-And further information on the authentication process itself:
+Further information on the authentication process itself:
 
 1. The script first defines the resource ID for Azure Communication Services and the communication endpoint URL.
-2. It then constructs the URI for the identity endpoint. This URI includes the environment variable IDENTITY_ENDPOINT (which is automatically set by Azure when using Managed Identity) and the resource ID.
+2. It then constructs the URI for the identity endpoint. This URI includes the environment variable IDENTITY_ENDPOINT (automatically set by Azure when using Managed Identity) and the resource ID.
 3. The script then attempts to get an access token from the identity endpoint. It does this by sending a GET request to the identity endpoint with a header that includes Metadata: true. This tells the identity endpoint that the request is coming from within Azure.
-4. If the request is successful, the response will include an access token. This token is then extracted from the response.
+4. the response will include an access token if the request is successful. This token is then extracted from the response.
 
-This access token can then be used to authenticate requests to Azure Communication Services. The token tells Azure Communication Services that the request is coming from an authenticated source (in this case, the Managed Identity) and should be allowed.
+This access token can then be used to authenticate requests to Azure Communication Services. The token tells Azure Communication Services that the request comes from an authenticated source (in this case, the Managed Identity) and should be allowed.
 
 _(This authenticaiton was inititally written to be used in a Azure Automation Runbook, with the System Managed Identity assigned Contributor rights to the Azure Communication Services resource (not the Email Communication Services).)_
 
@@ -170,4 +170,4 @@ if ($emailBody -ne "") {
 }
 ```
 
-You can run this script in an Azure Automation Runbook to send an email using Azure Communication Services, using the System Managed Identity - and no need to maintain or store client secrets!
+You can run this script in an Azure Automation Runbook _(and theoretically in an [Azure Function](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796) as well)_ to send an email using Azure Communication Services and the System Managed Identity—and there is no need to maintain or store client secrets!
