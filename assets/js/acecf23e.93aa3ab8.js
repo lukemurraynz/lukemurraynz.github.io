@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunklukemurraynz=self.webpackChunklukemurraynz||[]).push([[97393],{81838:e=>{e.exports=JSON.parse('{"blogBasePath":"/","blogTitle":"Lukes Tech Blog - Unleashing the power of the cloud and other technologies!"}')}}]);

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunklukemurraynz=self.webpackChunklukemurraynz||[]).push([[86037],{19181:s=>{s.exports=JSON.parse('{"label":"Windows","permalink":"/tags/windows","allTagsPath":"/tags","count":251,"unlisted":false}')}}]);

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunklukemurraynz=self.webpackChunklukemurraynz||[]).push([[62400],{91804:e=>{e.exports=JSON.parse('{"label":"Windows Phone","permalink":"/tags/windows-phone","allTagsPath":"/tags","count":1,"unlisted":false}')}}]);
