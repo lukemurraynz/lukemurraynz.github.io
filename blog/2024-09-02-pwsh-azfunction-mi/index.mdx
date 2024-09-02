@@ -31,7 +31,7 @@ The Azure Functions runtime supports triggers and bindings for Azure Queue stora
 :::
 
 
-First thing you will need to do, is enable the System Managed Identity of the Azure Function.
+The first thing you will need to do is enable the System Managed Identity of the Azure Function.
 
 ![Enable System Managed Identity](images/AzurePortal_AzureFunction_SystemManagedIdentity.jpg)
 
@@ -44,11 +44,11 @@ What level of permissions you need to assign to the Function App's System Manage
 | Trigger        | [Storage Queue Data Reader](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/storage?WT.mc_id=AZ-MVP-5004796#storage-queue-data-reader), [Storage Queue Data Message Processor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/storage?WT.mc_id=AZ-MVP-5004796#storage-queue-data-message-processor)   |
 | Output binding | [Storage Queue Data Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/storage?WT.mc_id=AZ-MVP-5004796#storage-queue-data-contributor), [Storage Queue Data Message Sender](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/storage?WT.mc_id=AZ-MVP-5004796#storage-queue-data-message-sender) |
 
-Because we are going to assigning the permissions to a Storage account, we can do this directly through the Azure Portal at the Function App System Managed identity location.
+Because we are going to assign the permissions to a Storage account, we can do this directly through the Azure Portal at the Function App System Managed identity location.
 
 ![Assign Role to Storage Account](images/AzurePortal_AzureFunction_SystemManagedIdentityAssignRole.gif)
 
-Once permissions, have been granted, in our Azure Function App, we will need to create some Connection variables, which will be used by our Function App.
+Once permissions have been granted in our Azure Function App, we will need to create some Connection variables, which our Function App will use.
 
 In the Function App, under Settings, go to Environment variables.
 
@@ -66,11 +66,11 @@ For the valuiie of the StgQueueAccount__queueServiceUri, you can get this from t
 
 ![Queue Service URI](images/AzurePortal_AzureFunction_StorageAccountQueueenebdpoint.jpg)
 
-Once we have retrieved it, we can navigate back to the Environment variables and add in the Key Value pair.
+Once we have retrieved it, we can navigate back to the Environment variables and add in the Key-Value pair.
 
 ![Environment Variables](images/AzurePortal_AzureFunction_EnvironmentVariables_queueuri.jpg)
 
-Make sure to click Apply, and Apply.
+Make sure to click Apply and Apply.
 
 Once completed, the default profile.ps1 file will run to authenticate using the Managed Identity of the Function App.
 
@@ -81,7 +81,7 @@ if ($env:MSI_SECRET) {
 }
 ```
 
-Your actual function, will need to have the binding updated, with the name of the Connection prefix determined earlier, and include the queue name, for example:
+Your actual function will need to have the binding updated with the name of the Connection prefix determined earlier and include the queue name, for example:
 
 ```json title="function.json"
 {
@@ -97,4 +97,4 @@ Your actual function, will need to have the binding updated, with the name of th
 }
 ```
 
-You should now be able to read the messages from the queue, and process them as required, using the System Managed Identity of the Azure Function account.
+You should now be able to read the messages from the queue and process them as required using the System Managed Identity of the Azure Function account.
