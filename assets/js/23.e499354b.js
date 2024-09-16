@@ -26575,8 +26575,8 @@ var styles_b966c4ae = __webpack_require__(7584);
 var dayjs_min = __webpack_require__(74353);
 // EXTERNAL MODULE: ./node_modules/@braintree/sanitize-url/dist/index.js
 var dist = __webpack_require__(16750);
-// EXTERNAL MODULE: ./node_modules/dompurify/dist/purify.es.js
-var purify_es = __webpack_require__(77046);
+// EXTERNAL MODULE: ./node_modules/dompurify/dist/purify.es.mjs
+var purify_es = __webpack_require__(99418);
 // EXTERNAL MODULE: ./node_modules/dagre-d3-es/src/graphlib/json.js + 1 modules
 var json = __webpack_require__(83765);
 ;// CONCATENATED MODULE: ./node_modules/mermaid/dist/flowDiagram-61eb444c.js
