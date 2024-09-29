@@ -23,7 +23,7 @@ description: Install and test Cloudcloak, a browser extension that hides sensiti
 You can consider this the next version/update to [Azure Mask](https://github.com/clarkio/azure-mask/) _(shout out to Brian Clark for his pioneering work and blessing us to create this one)_.
 :::
 
-![Cloudcloak](images/Cloudcloak-icon-128.png)
+![Cloudcloak](images/cloudcloak-icon-128.png)
 
 {/* truncate */}
 
@@ -43,7 +43,7 @@ So let us see how it works according to GitHub Copilot:
 
 The extension monitors specific websites and, when activated, blurs sensitive information such as email addresses, GUIDs, IP addresses, and phone numbers. It achieves this functionality using a combination of background scripts and content scripts.
 
-The extension is activated by clicking on the extension icon in the browser toolbar. When activated, it blurs sensitive information on the current page. It will remain active until the user deactivates it by clicking on the extension icon again.
+The extension is activated by clicking on the extension icon in the browser toolbar. When activated, sensitive information is blurred on the current page. It will remain active until the user deactivates it by clicking on the extension icon again.
 
 1. Initialization: When the extension is installed or updated, it initializes the state from storage and updates the badge for the current tab.
 Tab Update/Activation: When a tab is updated or activated, the extension checks if the URL matches one of the specified extensions. If it does, it injects the cloak.js script and updates the badge.
