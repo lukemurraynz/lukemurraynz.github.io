@@ -12,15 +12,15 @@ slug: azure/cloudcloak
 keywords:
   - azure
   - browser extension
-  - Cloudcloak
-  - Hackathon
+  - cloudcloak
+  - hackathon
 description: Install and test Cloudcloak, a browser extension that hides sensitive information while streaming or presenting Microsoft Cloud Portals.
 ---
 
-[Cloud Cloak](https://github.com/microsoft/Cloudcloak) is a browser extension for folks who might be streaming or presenting while simultaneously showing one of the Microsoft Cloud Portals. It does its very best to hide connection strings, email addresses, avatars, and anything that might show secure or personal information.
+[Cloud Cloak](https://github.com/microsoft/Cloudcloak) is a browser extension for folks streaming or presenting while simultaneously showing one of the Microsoft Cloud Portals. It does its best to hide connection strings, email addresses, avatars, and anything that might show secure or personal information.
 
 :::info
-You can consider this the next-version/update to [Azure Mask](https://github.com/clarkio/azure-mask/) _(shout out to Brian Clark for his pioneering work and blessing for us to create this one)_.
+You can consider this the next version/update to [Azure Mask](https://github.com/clarkio/azure-mask/) _(shout out to Brian Clark for his pioneering work and blessing us to create this one)_.
 :::
 
 ![Cloudcloak](images/Cloudcloak-icon-128.png)
@@ -28,11 +28,11 @@ You can consider this the next-version/update to [Azure Mask](https://github.com
 {/* truncate */}
 
 :::info
-Developed as part of the Microsoft Global Hackathon 2024 🚀! This extension helps to 'cloak _(ie blur)_' potentially personable or information in the relevant Azure portals, that could potentially be mistreated, allowing presentors to focus on the content they are delivering, instead of having to worry about the type of information _(such as Azure subscription ids)_, that people can see.
+Developed as part of the Microsoft Global Hackathon 2024 🚀! This extension helps to 'cloak _(i.e., blur)_' potentially personable information in the relevant Azure portals that could be mistreated, allowing presenters to focus on the content they are delivering instead of having to worry about the type of information _(such as Azure subscription ids)_, that people can see.
 
 ![Cloudcloak](images/AzurePortal_Cloudcloak_On.jpg)
 
-[Cloud Cloak](https://github.com/microsoft/Cloudcloak) is open for contributions, and make sure you provide feedback by opening an issue on how we it could be improved further. This is an open-source initiative and not directly supported by Microsoft. At the time of writing this is at release version 1.0.
+[Cloud Cloak](https://github.com/microsoft/Cloudcloak) is open for contributions, and make sure you provide feedback by opening an issue on how it could be improved further. This is an open-source initiative and not directly supported by Microsoft. At the time of writing, this is the release version of version 1.0.
 :::
 
 :::warning
@@ -41,9 +41,9 @@ It does not guarantee that all sensitive information is hidden, for example, alt
 
 So let us see how it works according to GitHub Copilot:
 
-The extension monitors specific websites and, when activated, blurs sensitive information such as email addresses, GUIDs, IP addresses, and phone numbers. It uses a combination of background scripts and content scripts to achieve this functionality.
+The extension monitors specific websites and, when activated, blurs sensitive information such as email addresses, GUIDs, IP addresses, and phone numbers. It achieves this functionality using a combination of background scripts and content scripts.
 
-The extension is activated by clicking on the extension icon in the browser toolbar. When activated, the extension will blur sensitive information on the current page. The extension will remain active until the user deactivates it by clicking on the extension icon again.
+The extension is activated by clicking on the extension icon in the browser toolbar. When activated, it blurs sensitive information on the current page. It will remain active until the user deactivates it by clicking on the extension icon again.
 
 1. Initialization: When the extension is installed or updated, it initializes the state from storage and updates the badge for the current tab.
 Tab Update/Activation: When a tab is updated or activated, the extension checks if the URL matches one of the specified extensions. If it does, it injects the cloak.js script and updates the badge.
@@ -62,7 +62,7 @@ Tab Update/Activation: When a tab is updated or activated, the extension checks 
 | `chrome.tabs.onUpdated` | Listens for tab updates and injects the script if the URL matches the specified conditions.             |
 | `chrome.tabs.onActivated` | Listens for tab activation and updates the badge accordingly.                                        |
 | `chrome.webNavigation.onCompleted` | Injects the script into iframes upon navigation completion.                                  |
-| `chrome.action.onClicked` | Toggles the extension's enabled/disabled state when the action button is clicked.                   |
+| `chrome.action.onClicked` | Toggles the extension's enabled/disabled state when clicking the action button.                   |
 
 At the time of writing, the following URLs are supported:
 
@@ -84,26 +84,26 @@ At the time of writing, the following URLs are supported:
 - https://copilotstudio.preview.microsoft.com
 - https://portal.azure.us
 
-However, new URLs can be added by updating the `background.js` file, and readding to your browser to test locally.
+However, new URLs can be added by updating the `background.js` file and reading it in your browser to test locally.
 
-Because of the chrome event listeners, this extension is only available for Chrome and Edge browsers _(and I would assume any other chromium browser)_.
+Because of the Chrome event listeners, this extension is only available for Chrome and Edge browsers (and I would assume any other Chrome browser).
 
-So let us get started with the installation, we will be using Edge, as its the browser I use mainly for my own presentations.
+So, let's get started with the installation. We will be using Edge, as it's the browser I use mainly for my presentations.
 
-This is an unofficial extension, and at this time, not in the Edge or Chrome stores, so will need to be installed manually, and updated manually. This is per user-profile as well, if your browser has multiple profiles.
+This is an unofficial extension, and at this time, it is not in the Edge or Chrome stores, so it will need to be installed and updated manually. If your browser has multiple profiles, this is also per user profile.
 
-So let us download the extension from the [GitHub repository](https://github.com/microsoft/Cloudcloak) and unzip the file.
+So, let us download the extension from the [GitHub repository](https://github.com/microsoft/Cloudcloak) and unzip the file.
 
 ![Download Cloudcloak](images/Download_Cloudcloak.gif)
 
-Then in Edge, go to `edge://extensions/` and enable Developer mode, and then click on `Load unpacked` and select the folder where you unzipped the extension.
+Then, in Edge, go to `edge://extensions/` and enable Developer mode. Then click on `Load unpacked` and select the folder where you unzipped the extension.
 
 ![Install Cloudcloak](images/Install_Cloudcloak.gif)
 
 :::tip
-You can disable Developer mode, after extension is installed. For ease of use, you can pin the extension to the toolbar.
+After the extension is installed, you can disable Developer mode. For ease of use, you can pin the extension to the toolbar.
 :::
 
-Now when you are presenting, you can click on the extension icon, and it will blur out sensitive information on the page. So lets test it, by navigating to an Azure resource.
+Now, when you are presenting, you can click on the extension icon, which will blur out sensitive information on the page. So, let's test it by navigating to an Azure resource.
 
 ![Cloudcloak On](images/Test_Cloudcloak.gif)
