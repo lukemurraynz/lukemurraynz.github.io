@@ -56,8 +56,8 @@ Tab Update/Activation: When a tab is updated or activated, the extension checks 
 | `background.js`       | Manages the extension’s state, handles events, and injects the content script into specified websites.   |
 | `cloak.js`            | Contains the logic to identify and blur sensitive information on web pages.                             |
 | **How It Works**      |                                                                                                         |
-| `manifest.json`       | - Defines metadata, permissions, and the background script. <br> - Specifies icons and permissions.      |
-| `background.js`       | - Manages the extension’s state. <br> - Injects `cloak.js` script into the specified tab and frames.    |
+| `manifest.json`       | - Defines metadata, permissions, and the background script. Specifies icons and permissions.      |
+| `background.js`       | - Manages the extension’s state. Injects `cloak.js` script into the specified tab and frames.    |
 | **Event Listeners**   |                                                                                                         |
 | `chrome.tabs.onUpdated` | Listens for tab updates and injects the script if the URL matches the specified conditions.             |
 | `chrome.tabs.onActivated` | Listens for tab activation and updates the badge accordingly.                                        |
