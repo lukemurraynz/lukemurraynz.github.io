@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunklukemurraynz=self.webpackChunklukemurraynz||[]).push([[33963],{19612:e=>{e.exports=JSON.parse('{"label":"PowerShell","permalink":"/tags/power-shell","allTagsPath":"/tags","count":13,"unlisted":false}')}}]);
