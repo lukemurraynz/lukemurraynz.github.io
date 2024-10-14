@@ -37,7 +37,7 @@ Day 0  - Design and build stage
 Day 1  - Infrastructure and code deployment stage
 Day 2  - Runtime
 
-![Day 0, Day 1, Day 2](/images/day0-day1-day2-blogpost.png)
+![Day 0, Day 1, Day 2](images/day0-day1-day2-blogpost.png)
 
 :::
 
@@ -81,7 +81,7 @@ Implement an Azure Landing Zone for your Azure OpenAI solution. Include Identity
 
 However for more specific Azure OpenAI application landing zone considerations we can view **the [chat baseline architecture at the Azure Architecture Center](https://learn.microsoft.com/azure/architecture/ai-ml/architecture/baseline-openai-e2e-chat?WT.mc_id=AZ-MVP-5004796) for reference**.
 
-![Azure Landing Zone](/images/azure-openai-baseline-landing-zone.png)
+![Azure Landing Zone](images/azure-openai-baseline-landing-zone.png)
 
 :::tip
 Azure Landing Zones consist of more than just a place to store your resources, they should also include considerations for people/process and products to run your applications at scale. I highly recommend going through the [Azure Landing Zone Review](https://learn.microsoft.com/en-us/assessments/21765fea-dfe6-4bc4-8bb7-db9df5a6f6c0/?WT.mc_id=AZ-MVP-5004796) to ensure you have a solid foundation for your Azure OpenAI solution, and Azure workloads in general.
@@ -133,7 +133,7 @@ When considering Azure Open AI adoption, it is important to have end-to-end obse
 
 Obserability for Azure Open AI, has come a long way, with greater capabilities being integrated into products, such as [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796) features, commonly referred to as an [AI Gateway](https://learn.microsoft.com/ai/playbook/technology-guidance/generative-ai/dev-starters/genai-gateway/?WT.mc_id=AZ-MVP-5004796).
 
-![Azure API Management](/images/conceptual-architecture-ai-gw.png)
+![Azure API Management](images/conceptual-architecture-ai-gw.png)
 
 :::tip
 I did a blog article on implementing and testing some of the AI Gateway capabilities, a few months ago here: [Implementing AI Gateway capabilities in API Management](https://luke.geek.nz/azure/implementing-ai-gateway-in-api-management/), make sure you check this out for a bit more deppth, and also [implementing a correlation ID for API Management](https://luke.geek.nz/azure/implementing-correlation-id-in-api-management/) requests, to help track client transactions with Azure Application Insights.
@@ -165,7 +165,7 @@ Azure OpenAI itself has minimal capabilities, and reliant on other products to f
 * Make sure of reference architecture, such as the [Implement logging and monitoring for Azure OpenAI models](https://learn.microsoft.com/azure/architecture/ai-ml/openai/architecture/log-monitor-azure-openai?WT.mc_id=AZ-MVP-5004796) for guidance on how to implement this, and to review what metrics and logs can be pulled from Azure OpenAI logging by default and adding the API Management resource into the solution.
 * Make sure of the [AI-Gateway labs](https://aka.ms/apim/genai/labs), to help add additional capabilities to your Azure API Management instance, tailored for Azure OpenAI endpoints.
 
-![Azure API Management - AI Gateway](/images/ai-gateway.gif)
+![Azure API Management - AI Gateway](images/ai-gateway.gif)
 
 ## Microsoft to not or monitor customer data
 
@@ -202,7 +202,7 @@ Impact – High | - Managed customers have the option to apply for modified acce
 
 Microsoft’s managed customers are typically large organizations, have a level of trust with Microsoft, and are deemed to be responsible for their actions
 
-![Azure OpenAI - Data Privacy](/images/azureopenai-promp-flow.jpg)
+![Azure OpenAI - Data Privacy](images/azureopenai-promp-flow.jpg)
 
 **Action**:
 
