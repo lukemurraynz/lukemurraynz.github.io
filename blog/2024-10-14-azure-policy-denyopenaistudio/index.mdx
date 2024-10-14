@@ -1,0 +1,114 @@
+---
+title: Azure Policy - Deny the creation of Azure OpenAI Studio
+metaDescription: Custom policy definition to deny the creation of Azure OpenAI Studio.
+date: 2024-10-14T08:20:46.782Z
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: azure/policy-deny-creation-azure-openai-studio
+keywords:
+  - azure
+  - policy
+  - cloud
+  - governance
+  - compliance
+  - security
+  - openai
+description: Custom policy definition to deny the creation of Azure OpenAI Studio.
+---
+
+Custom [policy definition](https://learn.microsoft.com/azure/governance/policy/tutorials/create-custom-policy-definition?WT.mc_id=AZ-MVP-5004796) to deny the creation of [Azure OpenAI Studio Hubs](https://learn.microsoft.com/azure/ai-studio/concepts/ai-resources?WT.mc_id=AZ-MVP-5004796), which will stop the creation of an Azure OpenAI Studio.
+
+{/* truncate */}
+
+This custom Azure Policy that denies the creation of Azure OpenAI Studio hubs. Here's a breakdown of its components:
+
+| Key                    | Description                                                                                     |
+|------------------------|-------------------------------------------------------------------------------------------------|
+| **policyType**         | Specifies that this is a custom policy.                                                         |
+| **mode**               | Indicates that the policy is indexed, meaning it can be evaluated against existing resources.    |
+| **displayName**        | A human-readable name for the policy.                                                           |
+| **description**        | A brief description of what the policy does.                                                    |
+| **metadata**           | Contains additional information about the policy:                                               |
+| **version**            | The version of the policy.                                                                      |
+| **category**           | The category under which this policy falls.                                                     |
+| **source**             | A URL for more information.                                                                     |
+| **alzCloudEnvironments** | Specifies the cloud environments where this policy is applicable.                              |
+| **createdBy**          | The creator of the policy.                                                                      |
+| **lastUpdated**        | The date when the policy was last updated.                                                      |
+| **parameters**         | Defines parameters that can be used within the policy:                                           |
+| **effect**             | A parameter that determines the action to take (Audit, Disabled, or Deny).                      |
+| **type**               | The type of the parameter (String).                                                             |
+| **metadata**           | Additional information about the parameter:                                                     |
+| **displayName**        | A human-readable name for the parameter.                                                        |
+| **description**        | A brief description of the parameter.                                                           |
+| **allowedValues**      | The allowed values for this parameter.                                                          |
+| **defaultValue**       | The default value for this parameter (Deny).                                                    |
+| **policyRule**         | Defines the rule that the policy enforces:                                                      |
+| **if**                 | Specifies the conditions to check:                                                              |
+| **allOf**              | An array of conditions that must all be true.                                                   |
+| **field**              | The field to check (type and kind).                                                             |
+| **equals**             | The expected value for the field.                                                               |
+| **then**               | Specifies the action to take if the conditions are met:                                         |
+| **effect**             | The action to take, which is determined by the value of the effect parameter.                   |
+
+This policy checks if a resource is of type Microsoft.MachineLearningServices/workspaces and kind Hub. If both conditions are met, the policy enforces the action specified by the effect parameter, which defaults to "Deny".
+
+![Azure Policy - Deny the creation of Azure OpenAI Studio](/images/DenyAzureStudioHub_PolicyAzurePortal.jpg)
+
+```json
+{
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "displayName": "Deny Azure OpenAI Studio creation",
+    "description": "Deny Azure OpenAI Studio hub creation.",
+    "metadata": {
+        "version": "1.0.0",
+        "category": "Machine Learning",
+        "source": "https://luke.geek.nz",
+        "alzCloudEnvironments": [
+            "AzureCloud"
+        ],
+        "createdBy": "Luke",
+        "lastUpdated": "2024-10-01"
+    },
+    "parameters": {
+        "effect": {
+            "type": "String",
+            "metadata": {
+                "displayName": "Effect",
+                "description": "Enable or disable the execution of the policy"
+            },
+            "allowedValues": [
+                "Audit",
+                "Disabled",
+                "Deny"
+            ],
+            "defaultValue": "Deny"
+        }
+       
+    },
+    "policyRule": {
+        "if": {
+            "allOf": [
+                {
+                    "field": "type",
+                    "equals": "Microsoft.MachineLearningServices/workspaces"
+                },
+                {
+                    "field": "kind",
+                    "equals": "Hub"
+                }
+            ]
+        },
+        "then": {
+            "effect": "[parameters('effect')]"
+        }
+    }
+}
+```
+
+![Azure Policy - Deny the creation of Azure OpenAI Studio](/images/DenyAzureStudioHubCreation_PolicyAzurePortal.jpg)
