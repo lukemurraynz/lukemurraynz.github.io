@@ -62,7 +62,7 @@ An [Azure landing zone](https://learn.microsoft.com/en-us/azure/cloud-adoption-f
 
 **Ask**:
 
-Establish an Azure Landing Zone to place Azure OpenAI solution into
+Establish an Azure Landing Zone to place the Azure OpenAI solution into.
 
 **Challenge**:
 
@@ -88,7 +88,7 @@ However, for more specific Azure OpenAI application landing zone considerations,
 ![Azure Landing Zone](images/azure-openai-baseline-landing-zone.png)
 
 :::tip
-Azure Landing Zones consist of more than just a place to store your resources, they should also include considerations for people/process and products to run your applications at scale. I highly recommend going through the [Azure Landing Zone Review](https://learn.microsoft.com/en-us/assessments/21765fea-dfe6-4bc4-8bb7-db9df5a6f6c0/?WT.mc_id=AZ-MVP-5004796) to ensure you have a solid foundation for your Azure OpenAI solution, and Azure workloads in general.
+Azure Landing Zones consist of more than just a place to store your resources; they should also include considerations for people/processes and products to run your applications at scale. I highly recommend going through the [Azure Landing Zone Review](https://learn.microsoft.com/en-us/assessments/21765fea-dfe6-4bc4-8bb7-db9df5a6f6c0/?WT.mc_id=AZ-MVP-5004796) to ensure you have a solid foundation for your Azure OpenAI solution, and Azure workloads in general.
 :::
 
 ## Protect confidential information
@@ -147,16 +147,15 @@ All interactions by data scientists, including prompts & responses, must be logg
 
 Azure OpenAI only logs the consumer's user ID but does not log prompts sent or responses received in the Azure Diagnostics table (or anywhere else).
 
+Here's how the table could be updated based on your provided details:
+
 | Why | Risk / Impact | Solution |
 |-----|---------------|----------|
-| - Lines of businesses that own the data need to ensure there was no misuse of confidential data
-- Complete audit trail must be established to create a fully governed environment | Risk – High
-Impact – High | - Custom applications that call AOAI should log prompts and responses from their side
-- Use Azure API Management services as a middle layer between published services and consuming applications and audience |
+| - Lines of businesses that own the data need to ensure there was no misuse of confidential data | Risk – High Impact – High | - Move complete audit trail must be established to create a fully governed environment <br> - Custom applications that call AOAI should log prompts and responses from their side <br> - Use Azure API Management services as a middle layer between published services and consuming applications and audience |
 
 **Rationale**:
 
-Azure OpenAI itself has minimal capabilities and is reliant on other products to fully capture prompts and inferences for audit and governance purposes.
+Azure OpenAI has minimal capabilities and relies on other products to capture prompts and inferences fully for audit and governance purposes.
 
 **Action**:
 
@@ -193,14 +192,15 @@ Confidential data should never be stored anywhere by Microsoft or viewed by any 
 
 Microsoft logs all prompts for internal abuse monitoring for 30 days and then deletes them.
 
+Got it! Here's the updated table incorporating your adjustments:
+
 | Why | Risk / Impact | Solution |
 |-----|---------------|----------|
-| - Some clients do not want any confidential data in prompts to be viewed by Microsoft support team | Risk – High
-Impact – High | - Managed customers have the option to apply for modified access, which stops all prompt logging |
+| Some clients do not want any confidential data in prompts to be viewed by Microsoft support team | **Risk / Impact**: High | Managed customers can apply for modified access, which stops all prompt logging |
 
 **Rationale**:
 
-Microsoft’s managed customers are typically large organizations that trust Microsoft and are deemed to be responsible for their actions.
+Microsoft’s managed customers are typically large organizations that trust Microsoft and are deemed responsible for their actions.
 
 ![Azure OpenAI - Data Privacy](images/azureopenai-promp-flow.jpg)
 
@@ -234,13 +234,12 @@ Azure OpenAI Studio should not be available to make any inferencing calls and mu
 **Challenge**:
 There is no permission or RBAC role that prevents the use of AI Studio.
 
-| Why | Risk / Impact | Solution |
-|-----|---------------|----------|
-| - Azure OpenAI Studio does not log prompts and responses in the diagnostic logs
-- Azure OpenAI Studio will bypass APIM as well | Risk – High
-Impact – High | - Create an intermediary hop between the client and AOAI service, and allow AOAI access only via Private Endpoint _(Example: AppGW/APIM)_
-- Or enable end user only via Service Principals _(no portal access)_
-- Or DNS block oai.azure.com |
+Here’s the table with all the missing information added:
+
+| **Why** | **Risk / Impact** | **Solution** |
+|---------|-------------------|--------------|
+| Azure OpenAI Studio does not log prompts and responses in the diagnostic logs | Risk – High/Impact – High | - Implement custom logging at the client side to capture relevant details. <br> - Use alternative logging mechanisms to track prompts and responses securely. |
+| Azure OpenAI Studio will bypass APIM | Risk – High <br> Impact – High | - Create an intermediary hop between the client and AOAI service and allow AOAI access only via Private Endpoint (e.g., AppGW/APIM). - Enable end user only via Service Principals (no portal access). - DNS block oai.azure.com. |
 
 Rationale:
 
@@ -250,7 +249,7 @@ No other out-of-the-box method exists to disable Azure OpenAI Studio.
 
 * Control access to individual Azure OpenAI instances through [restricting what Virtual Networks](https://learn.microsoft.com/en-gb/azure/ai-services/cognitive-services-virtual-networks?tabs=portal&WT.mc_id=AZ-MVP-5004796) can access the OpenAI instance _(Service Tags need to be allowed through a Network Security Group)_, so make sure you make use of Network Security Groups where possible to only tunnel your approved traffic *(i.e., AppGw or APIM only)*.
 * Make use of [Role-based access control for Azure OpenAI](https://learn.microsoft.com/en-gb/azure/ai-services/openai/how-to/role-based-access-control?WT.mc_id=AZ-MVP-5004796) Service to control who can see what.
-* Make sure of [Azure Policy built-in policy definitions for Azure AI services](https://learn.microsoft.com/en-us/azure/ai-services/policy-reference?WT.mc_id=AZ-MVP-5004796), to control network access to your Azure OpenAI instances for existing or new deployments. 
+* Make sure of [Azure Policy built-in policy definitions for Azure AI services](https://learn.microsoft.com/en-us/azure/ai-services/policy-reference?WT.mc_id=AZ-MVP-5004796) to control network access to your Azure OpenAI instances for existing or new deployments. 
 * Deploy a Custom policy to prevent the creation of Azure OpenAI Studio. Refer to my blog post: [Azure Policy - Deny the creation of Azure OpenAI Studio](https://luke.geek.nz/azure/policy-deny-creation-azure-openai-studio/).
 
 ## Restrict models to only certain users
@@ -265,12 +264,11 @@ The model should be accessible to only the required audience and no one else.
 
 Azure OpenAI does not have the ability to grant permissions by models.
 
-| Why | Risk / Impact | Solution |
-|-----|---------------|----------|
-| - Model and Data access to follow the principle of least privilege | Risk – High
-Impact – High | - Each use case to have its own Azure OpenAI instance
-- Deploy approved models for use cases only
-- Segregate duties of model deployment and model consumption via a custom RBAC role with least privileges |
+Here’s the table with **Risk** and **Impact** on the same row as requested:
+
+| **Why** | **Risk / Impact** | **Solution** |
+|---------|-------------------|--------------|
+| Model and data access should follow the principle of least privilege | **Risk** – High, **Impact** – High | - Each use case to have its own Azure OpenAI instance. - Deploy approved models for use cases only.  - Segregate duties of model deployment and model consumption via a custom RBAC role with the least privilege. |
 
 **Rationale**:
 
