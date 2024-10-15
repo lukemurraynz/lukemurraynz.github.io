@@ -42,7 +42,6 @@
 <li>Ensuring a well-architected foundation</li>
 <li>Need for compliance and security guardrails</li>
 </ul>
-<p>Here's how the information can be placed into the relevant table section:</p>
 <table><thead><tr><th>Why</th><th>Risk / Impact</th><th>Solution</th></tr></thead><tbody><tr><td>Solid foundation for cloud adoption</td><td>Risk – High; Impact – High</td><td>- Implement Azure Landing Zone - Include Identity, Security, and Network configurations - Address compliance and governance from the start - Provides a scalable and secure environment</td></tr></tbody></table>
 <p><strong>Rationale</strong>:</p>
 <p>Implementing an Azure Landing Zone ensures a secure and compliant foundation for deploying Azure OpenAI solutions. Providing necessary guardrails and governance helps mitigate the high risks and impacts of cloud adoption.</p>
