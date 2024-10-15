@@ -107,7 +107,6 @@ Microsoft operates the Azure OpenAI Service as an Azure service. Microsoft hosts
 <p>Confidential data should never be stored anywhere by Microsoft or viewed by any Microsoft support or product team member.</p>
 <p><strong>Challenge</strong>:</p>
 <p>Microsoft logs all prompts for internal abuse monitoring for 30 days and then deletes them.</p>
-<p>Got it! Here's the updated table incorporating your adjustments:</p>
 <table><thead><tr><th>Why</th><th>Risk / Impact</th><th>Solution</th></tr></thead><tbody><tr><td>Some clients do not want any confidential data in prompts to be viewed by Microsoft support team</td><td><strong>Risk / Impact</strong>: High</td><td>Managed customers can apply for modified access, which stops all prompt logging</td></tr></tbody></table>
 <p><strong>Rationale</strong>:</p>
 <p>Microsoft’s managed customers are typically large organizations that trust Microsoft and are deemed responsible for their actions.</p>
