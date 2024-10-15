@@ -1,18 +1,26 @@
 ---
-title: Common challenges for Azure OpenAI adoption
-metaDescription:  
-date: 2
+title: Common Challenges and Solutions for Azure OpenAI Adoption
+metaDescription: Explore common challenges in adopting Azure OpenAI and learn how to overcome them with best practices and solutions.
+date: 2024-10-15T03:32:24.048Z
 tags:
   - Azure
 categories:
   - Azure
 authors:
   - Luke
-slug: azure/common-challenges-for-azure-openai-adoption
+slug: azure/openai-adoption-challenges-solutions
 keywords:
   - azure
   - OpenAI
-description: 
+  - landing zone
+  - data privacy
+  - observability
+  - FinOps
+  - OWASP
+  - RBAC
+  - CMK
+  - multitenancy
+description: Explore common challenges in adopting Azure OpenAI and learn how to overcome them with best practices and solutions.
 ---
 
 When considering, [Azure Open AI](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796) adoption, there are some common challenges that you might face. These include:
@@ -207,6 +215,7 @@ Microsoft’s managed customers are typically large organizations, have a level 
 **Action**:
 
 * [Managed customers](https://learn.microsoft.com/legal/cognitive-services/openai/limited-access?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&WT.mc_id=AZ-MVP-5004796#registration-for-modified-content-filters-andor-abuse-monitoring) may apply for modified access, which stops all prompt logging.
+* Make use of [Security filters](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/use-your-data-securely?WT.mc_id=AZ-MVP-5004796#document-level-access-control) in Azure AI Search, for limiting the data that is returned to the user.
 
 :::info
 Managed partners and customers are customers whose subscriptions are managed by the partner network or customers who are part of the Microsoft Enterprise Agreement program. Managed customers have the option to apply for modified access, which stops all prompt logging. This is a contractual agreement between Microsoft and the customer, and the customer must apply for this access.
@@ -291,9 +300,9 @@ Use cases must be able to view their total spend for Azure OpenAI service
   
 **Challenge**:
 
-- Cost metrics are available at service level, and select deployments, but not all  
-- Any sharing of Azure OpenAI service makes cost determination not possible  
-- No ability to stop usage beyond spend budget  
+* Cost metrics are available at service level, and select deployments, but not all  
+* Any sharing of Azure OpenAI service makes cost determination not possible  
+* No ability to stop usage beyond spend budget  
   
 | Why                                                                 | Risk               | Solution                                                                                                                                                  |  
 |---------------------------------------------------------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|  
@@ -303,12 +312,137 @@ Use cases must be able to view their total spend for Azure OpenAI service
 
 - By having segregated instances for each use case, it provides accurate cost for each use case.  
 
+:::info
+Sharing an instance of Azure OpenAI among multiple tenants can also lead to a [Noisy Neighbor](https://learn.microsoft.com/en-us/azure/architecture/antipatterns/noisy-neighbor/noisy-neighbor?WT.mc_id=AZ-MVP-5004796) problem. It can cause higher latency for some tenants. You also need to make your application code multitenancy-aware. For example, if you want to charge your customers for the consumption cost of a shared Azure OpenAI instance, implement the logic to keep track of the total number of tokens for each tenant in your application.
+:::
+
 **Action**:
 
 * Provision dedicated instances for each use case, and rely on distinct Resource Group and Subscriptions, to seperate costs.
 * Review Cost Management, and [scope the cost per Model tokens](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/manage-costs?WT.mc_id=AZ-MVP-5004796#monitor-costs).
 * Make use of API Management, and [Token Usage](https://journeyofthegeek.com/2024/08/22/azure-openai-service-tracking-token-usage-with-apim/) and merge that with your billing data.
 * If the Azure OpenAI instance, is part of a wider solution, make sure you tag it with the [cm-resource-parent](https://luke.geek.nz/azure/application-cost-analysis-in-microsoft-azure-with-cm-resource-parent-tag/) tag to allow the full visibility of the cost of the workload.
+* Understand your throughput requirements and investigate PTU _(provisioned throughput units)[https://learn.microsoft.com/azure/ai-services/openai/concepts/provisioned-throughput?WT.mc_id=AZ-MVP-5004796]_. You can leverage [Azure AI Studio for calculate PTUs](https://oai.azure.com/portal/calculator). 
+* Review [Multitenancy and Azure OpenAI Service](https://learn.microsoft.com/azure/architecture/guide/multitenant/service/openai?WT.mc_id=AZ-MVP-5004796) architecture considerations.
 
+:::tip
+You don't pay for PER Azure OpenAI resource, you pay for the tokens consumed, so make sure you understand the [pricing model](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/?WT.mc_id=AZ-MVP-5004796), why over-complicate your solution with a shared resource, when you can have a dedicated resource for each use case, and have a clear understanding of the costs _(and security)_ associated with that use case.
+:::
+
+## Protect from OWASP Top 10 threats
+
+When considering Azure Open AI adoption, it is important to protect from [OWASP Top 10 threats](https://owasp.org/www-project-top-ten/). 
+
+![OWASP Top 10](images/oswasp-mapping.png)
+
+**Ask**:
+
+Service should be protected from OWASP-10 threats
+
+**Challenge**:
+
+Azure OpenAI Service is API based service, vulnerable to OWASP-10 threats Web Application Firewalls, that typically are used for this, can block significant legitimate AOAI inferencing calls.
+
+| Why                                                                                          | Risk                         | Solution                                                                                               |
+|-----------------------------------------------------------------------------------------------|------------------------------|--------------------------------------------------------------------------------------------------------|
+| - Per the Microsoft shared responsibility model, protection from OWASP-10 threats is customer responsibility | Risk – High Impact – High     | - Disable public access to service - Limit exposure to internal traffic only                            |
+|                                                                                               |                              | - Disable file uploads to service via RBAC                                                              |
+|                                                                                               |                              | - Add AppGW with WAF v2 in front of AOAI (Not recommended)                                              |
+
+**Rationale**:
+
+* Limiting to internal traffic limits the exposure
+* Even if an attack is successful from internal network, there is no data stored in service to be compromised
+
+**Action**:
+
+* Control access to individual Azure OpenAI instances, through [restricting what Virtual Networks](https://learn.microsoft.com/en-gb/azure/ai-services/cognitive-services-virtual-networks?tabs=portal&WT.mc_id=AZ-MVP-5004796) can access the OpenAI instance _(Service Tags need to be allowed through a Network Security Group)_, so make sure you make use of Network Security Groups where possible to only tunnel your approved traffic *(ie AppGw or APIM only)*.
+* Make use of [Role-based access control for Azure OpenAI](https://learn.microsoft.com/en-gb/azure/ai-services/openai/how-to/role-based-access-control?WT.mc_id=AZ-MVP-5004796) Service to control who can see what.
+* Make sure of [Azure Policy built-in policy definitions for Azure AI services](https://learn.microsoft.com/en-us/azure/ai-services/policy-reference?WT.mc_id=AZ-MVP-5004796), to control network access to your Azure OpenAI instances for existing or new deployments, and disable public endpoint access. 
+* Make use of [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796) and [Azure Application Gateway](https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796) to block, prevent, and log attempted connections to the solution.
+
+## Must use Customer Managed Keys _(CMK)_
+
+All encryption to use [Customer Managed Keys](https://learn.microsoft.com/azure/security/fundamentals/key-management?WT.mc_id=AZ-MVP-5004796). I have personally, haven't seen this requirement yet, but it is a valid requirement, especially for highly sensitive data, and industry _(such as Finance)_ requirements.
+
+### Ask:
+
+- Encryption in Azure OpenAI must be configured to use Customer Managed Keys (CMK).
+
+### Challenge:
+
+* CMK needs to be stored in a KeyVault (in the same region).
+* AOAI service connection to KeyVault can be over 'Trusted Microsoft Connection' only, and not via the private endpoint of KeyVault.
+
+| Why                                                                                                             | Risk                         | Solution                                                                           |
+|------------------------------------------------------------------------------------------------------------------|------------------------------|------------------------------------------------------------------------------------|
+| - Per policy, clients typically want to use CMK as opposed to MMK _(Microsoft Managed Keys)_ - CMK configuration will be required to stay compliant with Azure policy | Risk – High Impact – High     | - Avoid need for uploading files to Azure OpenAI studio and fine tuning - Disable public access of KeyVault |
+
+**Rationale**:
+
+Trusted Microsoft connection uses Microsoft backbone network and no public network for communication.
+
+**Action**:
+
+* Azure AI Services support [encryption of data at rest](https://learn.microsoft.com/azure/ai-services/openai/encrypt-data-at-rest?WT.mc_id=AZ-MVP-5004796) by either enabling customer-managed keys (CMK) or by enabling customers to bring their own storage (BYOS). By default, Azure AI services use Microsoft-managed keys to encrypt the data. With [Customer-managed keys for encryption](https://learn.microsoft.com/azure/ai-services/encryption/cognitive-services-encryption-keys-portal?WT.mc_id=AZ-MVP-5004796), customers now have the choice of encrypting the data at rest with an encryption key, managed by the customers, using Azure Key Vault. There is additional cost, as you are charged for the Key Vault and additonal depedendant services, as using Customer Managed Keys, brings resources _(usually managed by Microsoft in a seperate siloed subscription)_ into your own subscription, in a seperate managed Resource Group.
+
+:::tip
+Make sure you consider the People, Process and Products when considering Customer Managed Keys, and have processes in place for the key lifecycles _(rotation, revocation, etc)_, and also the implications of the additional costs associated with this, and the additional management overhead. Be pragmatic about the use of Customer Managed Keys, and understand the implications of using them.
+:::
+
+## Must not use shareable access controls
+
+Shareable access controls considered less secure.
+
+### Ask:
+
+- No use of passwords or access keys to access the Azure OpenAI service.
+
+### Challenge:
+
+* Use of Keys is typically less secure and unacceptable for long term, although typically increases pace of initial adoption This places use of Service Principal also less secure.
+
+| Why - Shareable access details                                                                                                                                          | Risk Risk –                 | Solution - Use RBAC for access                                                                                  |  
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------|---------------------------------------------------------------------------------------------------------------|  
+| can be transferred to unapproved consumers, losing audit trail - Bearer token of authenticated user can be potentially misused                                          | High Impact – High          | control to service for end users as well as applications (consumer and middleware)                             |  
+|                                                                                                                                                                         |                             | - Avoid using RBAC role with ListKey permissions or use a custom RBAC role                                     |  
+
+**Rationale**:
+
+RBAC _(Role based Access Control)_ use increases the security score.
+
+**Action**:
+
+* Make use of [Role-based access control for Azure OpenAI](https://learn.microsoft.com/en-gb/azure/ai-services/openai/how-to/role-based-access-control?WT.mc_id=AZ-MVP-5004796) Service to control who can see what, and make sure you are not using the ListKey permission, or a [custom RBAC](https://learn.microsoft.com/azure/role-based-access-control/custom-roles?WT.mc_id=AZ-MVP-5004796) role that allows or disallows access to the keys _(Microsoft.Storage/storageAccounts/listKeys/action)_.
+
+## Resource must be in a specific region only
+
+Azure OpenAI resource must be in a specific region only, this is a common requirement for data sovereignty, and also for compliance reasons.
+
+**Ask**:
+
+Provision Azure OpenAI service in same region where Express Route terminates 
+
+**Challenge**:
+
+[Azure OpenAI and model capacity is highly variable](https://learn.microsoft.com/azure/ai-services/openai/concepts/models?tabs=python-secure&WT.mc_id=AZ-MVP-5004796#model-summary-table-and-region-availability), and typically may not be available in the same region as customers Express Route region.
+
+**Rationale**:
+
+Azure OpenAI Private Endpoints can be created across regions and no VNet is required for operation.
+
+| Why                                                                                          | Risk                         | Solution                                                                                     |  
+|----------------------------------------------------------------------------------------------|------------------------------|----------------------------------------------------------------------------------------------|  
+| - Network traffic is monitored for all ingress & egress in a predetermined region            | Risk – High Impact – High    | - Enable all regions in policy within a geography acceptable to client                        |  
+| - At times there are regulatory compliance requirements to be in specific geographies        |                              | - Provision Azure OpenAI service where capacity is available in allowed regions              |  
+|                                                                                              |                              | - Create private endpoint in Express Route region                                            |  
+
+**Rationale**:
+
+Azure OpenAI Private Endpoints can be created across regions and no VNet is required for operation 
+
+* Azure OpenAI in any region can have a [Private Endpoint connected to a VNET _(Virtual Network)_ in a different region](https://learn.microsoft.com/azure/private-link/private-link-faq?WT.mc_id=AZ-MVP-5004796#can-private-endpoint-connect-to-azure-paas-resources-across-azure-regions-).
+* Make sure of Azure Policy, such as the [Restrict resource regions](https://learn.microsoft.com/azure/cloud-adoption-framework/manage/azure-server-management/common-policies?WT.mc_id=AZ-MVP-5004796#restrict-resource-regions) policy, to enforce the region of the Azure OpenAI resource.
+* Consider [model deployment types _(ie Global vs Regional)_](https://learn.microsoft.com/azure/ai-services/openai/how-to/deployment-types?WT.mc_id=AZ-MVP-5004796#global-versus-regional-deployment-types) - remember that your model inference may be in a different region to your actual Azure OpenAI resource, if Global - so need to be conssidered from a latency and and workload variance perspective, however these are Read Only - so data resilisency should not be a factor, as you can still store your own data in the region of your choice.
 
 
