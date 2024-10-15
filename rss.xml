@@ -193,18 +193,18 @@ There is no permission or RBAC role that prevents the use of AI Studio.</p>
 </ul>
 <p><strong>Action</strong>:</p>
 <ul>
-<li>Control access to individual Azure OpenAI instances through <a href="https://learn.microsoft.com/en-gb/azure/ai-services/cognitive-services-virtual-networks?tabs=portal&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">restricting what Virtual Networks</a> can access the OpenAI instance <em>(Service Tags need to be allowed through a Network Security Group)</em>, so make sure you make use of Network Security Groups where possible to only tunnel your approved traffic <em>(ie AppGw or APIM only)</em>.</li>
+<li>Control access to individual Azure OpenAI instances through <a href="https://learn.microsoft.com/en-gb/azure/ai-services/cognitive-services-virtual-networks?tabs=portal&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">restricting what Virtual Networks</a> can access the OpenAI instance <em>(Service Tags need to be allowed through a Network Security Group)</em>, so make sure you make use of Network Security Groups where possible to only tunnel your approved traffic <em>(ie, AppGw or APIM only)</em>.</li>
 <li>Make use of <a href="https://learn.microsoft.com/en-gb/azure/ai-services/openai/how-to/role-based-access-control?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Role-based access control for Azure OpenAI</a> Service to control who can see what.</li>
-<li>Make sure of <a href="https://learn.microsoft.com/en-us/azure/ai-services/policy-reference?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Policy built-in policy definitions for Azure AI services</a>, to control network access to your Azure OpenAI instances for existing or new deployments, and disable public endpoint access.</li>
+<li>Make sure of <a href="https://learn.microsoft.com/en-us/azure/ai-services/policy-reference?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Policy built-in policy definitions for Azure AI services</a> to control network access to your Azure OpenAI instances for existing or new deployments, and disable public endpoint access.</li>
 <li>Make use of <a href="https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure API Management</a> and <a href="https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Application Gateway</a> to block, prevent, and log attempted connections to the solution.</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-must-use-customer-managed-keys-cmk">🔑 Must use Customer Managed Keys <em>(CMK)</em><a href="https://luke.geek.nz/azure/openai-adoption-challenges-solutions/#-must-use-customer-managed-keys-cmk" class="hash-link" aria-label="Direct link to -must-use-customer-managed-keys-cmk" title="Direct link to -must-use-customer-managed-keys-cmk">​</a></h2>
 <p>All encryption must use <a href="https://learn.microsoft.com/azure/security/fundamentals/key-management?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Customer Managed Keys</a>. I have not personally seen this requirement yet, but it is valid, especially for highly sensitive data and industry requirements (such as Finance).</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="ask">Ask:<a href="https://luke.geek.nz/azure/openai-adoption-challenges-solutions/#ask" class="hash-link" aria-label="Direct link to Ask:" title="Direct link to Ask:">​</a></h3>
+<p><strong>Ask</strong>:</p>
 <ul>
 <li>Encryption in Azure OpenAI must be configured to use Customer Managed Keys (CMK).</li>
 </ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="challenge">Challenge:<a href="https://luke.geek.nz/azure/openai-adoption-challenges-solutions/#challenge" class="hash-link" aria-label="Direct link to Challenge:" title="Direct link to Challenge:">​</a></h3>
+<p><strong>Challenge</strong>:</p>
 <ul>
 <li>CMK needs to be stored in a KeyVault (in the same region).</li>
 <li>AOAI service connection to KeyVault can be over 'Trusted Microsoft Connection' only, and not via KeyVault's private endpoint.</li>
@@ -219,11 +219,11 @@ There is no permission or RBAC role that prevents the use of AI Studio.</p>
 <div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>When considering customer-managed keys, consider People, Processes, and Products. You should have processes in place for the key lifecycles <em>(rotation, revocation, etc)</em>. Also, consider the implications of the additional costs associated with this and the additional management overhead. Be pragmatic about using Customer-Managed Keys and understand the implications of using them.</p></div></div>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-must-not-use-shareable-access-controls">❌ Must not use shareable access controls<a href="https://luke.geek.nz/azure/openai-adoption-challenges-solutions/#-must-not-use-shareable-access-controls" class="hash-link" aria-label="Direct link to ❌ Must not use shareable access controls" title="Direct link to ❌ Must not use shareable access controls">​</a></h2>
 <p>Shareable access controls are considered less secure.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="ask-1">Ask:<a href="https://luke.geek.nz/azure/openai-adoption-challenges-solutions/#ask-1" class="hash-link" aria-label="Direct link to Ask:" title="Direct link to Ask:">​</a></h3>
+<p><strong>Ask</strong>:</p>
 <ul>
 <li>No use of passwords or access keys to access the Azure OpenAI service.</li>
 </ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="challenge-1">Challenge:<a href="https://luke.geek.nz/azure/openai-adoption-challenges-solutions/#challenge-1" class="hash-link" aria-label="Direct link to Challenge:" title="Direct link to Challenge:">​</a></h3>
+<p><strong>Challenge</strong>:</p>
 <ul>
 <li>The use of keys is typically less secure and unacceptable in the long term, although it typically increases the pace of initial adoption. This makes the use of Service Principals also less secure.</li>
 </ul>
