@@ -346,20 +346,20 @@ Azure OpenAI Service is an API-based service vulnerable to OWASP-10 threats. Web
 
 **Action**:
 
-* Control access to individual Azure OpenAI instances through [restricting what Virtual Networks](https://learn.microsoft.com/en-gb/azure/ai-services/cognitive-services-virtual-networks?tabs=portal&WT.mc_id=AZ-MVP-5004796) can access the OpenAI instance _(Service Tags need to be allowed through a Network Security Group)_, so make sure you make use of Network Security Groups where possible to only tunnel your approved traffic *(ie AppGw or APIM only)*.
+* Control access to individual Azure OpenAI instances through [restricting what Virtual Networks](https://learn.microsoft.com/en-gb/azure/ai-services/cognitive-services-virtual-networks?tabs=portal&WT.mc_id=AZ-MVP-5004796) can access the OpenAI instance _(Service Tags need to be allowed through a Network Security Group)_, so make sure you make use of Network Security Groups where possible to only tunnel your approved traffic *(ie, AppGw or APIM only)*.
 * Make use of [Role-based access control for Azure OpenAI](https://learn.microsoft.com/en-gb/azure/ai-services/openai/how-to/role-based-access-control?WT.mc_id=AZ-MVP-5004796) Service to control who can see what.
-* Make sure of [Azure Policy built-in policy definitions for Azure AI services](https://learn.microsoft.com/en-us/azure/ai-services/policy-reference?WT.mc_id=AZ-MVP-5004796), to control network access to your Azure OpenAI instances for existing or new deployments, and disable public endpoint access. 
+* Make sure of [Azure Policy built-in policy definitions for Azure AI services](https://learn.microsoft.com/en-us/azure/ai-services/policy-reference?WT.mc_id=AZ-MVP-5004796) to control network access to your Azure OpenAI instances for existing or new deployments, and disable public endpoint access. 
 * Make use of [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796) and [Azure Application Gateway](https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796) to block, prevent, and log attempted connections to the solution.
 
 ## 🔑 Must use Customer Managed Keys _(CMK)_
 
 All encryption must use [Customer Managed Keys](https://learn.microsoft.com/azure/security/fundamentals/key-management?WT.mc_id=AZ-MVP-5004796). I have not personally seen this requirement yet, but it is valid, especially for highly sensitive data and industry requirements (such as Finance).
 
-### Ask:
+**Ask**:
 
 - Encryption in Azure OpenAI must be configured to use Customer Managed Keys (CMK).
 
-### Challenge:
+**Challenge**:
 
 * CMK needs to be stored in a KeyVault (in the same region).
 * AOAI service connection to KeyVault can be over 'Trusted Microsoft Connection' only, and not via KeyVault's private endpoint.
@@ -384,11 +384,11 @@ When considering customer-managed keys, consider People, Processes, and Products
 
 Shareable access controls are considered less secure.
 
-### Ask:
+**Ask**:
 
 - No use of passwords or access keys to access the Azure OpenAI service.
 
-### Challenge:
+**Challenge**:
 
 * The use of keys is typically less secure and unacceptable in the long term, although it typically increases the pace of initial adoption. This makes the use of Service Principals also less secure.
 
