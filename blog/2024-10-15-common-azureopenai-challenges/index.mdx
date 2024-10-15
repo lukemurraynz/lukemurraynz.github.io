@@ -46,14 +46,13 @@ Day 1  - Infrastructure and code deployment stage
 Day 2  - Runtime
 
 ![Day 0, Day 1, Day 2](images/day0-day1-day2-blogpost.png)
-
 :::
 
-Today, we will look at some common challenges and how we can overcome, work around, or mitigate them.
+Today, we will look at common challenges and how we can overcome, work around, or mitigate them.
 
 ## Landing Zone
   
-When considering Azure Open AI adoption, it is important to have a well-defined landing zone for your platform architecture and application. 
+When considering Azure Open AI adoption, having a well-defined landing zone for your platform architecture and application is important. 
 
 This is where you will deploy your AI solution.
 
@@ -70,24 +69,21 @@ Establish an Azure Landing Zone to place Azure OpenAI solution into
 * Ensuring a well-architected foundation
 * Need for compliance and security guardrails
 
-| Why - Solid foundation for cloud adoption | Risk / Impact | Solution |
-|-------------------------------------------|---------------|----------|
-| - Provides a scalable and secure environment
-- Critical for enterprise-grade workloads
-- Ensures compliance and governance | Risk – High
-Impact – High | - Implement Azure Landing Zone
-- Include Identity, Security, and Network configurations
-- Address compliance and governance from the start |
+Here's how the information can be placed into the relevant table section:
+
+| Why                                       | Risk / Impact                                           | Solution                            |
+|-------------------------------------------|---------------------------------------------------------|-------------------------------------|
+| Solid foundation for cloud adoption       | Risk – High; Impact – High                              | Implement Azure Landing Zone - Include Identity, Security, and Network configurations<br> - Address compliance and governance from the start - Provides a scalable and secure environment |
 
 **Rationale**:
 
-Implementing an Azure Landing Zone ensures a secure and compliant foundation for deploying Azure OpenAI solutions. By providing necessary guardrails and governance, it helps mitigate the high risks and impacts associated with cloud adoption.
+Implementing an Azure Landing Zone ensures a secure and compliant foundation for deploying Azure OpenAI solutions. Providing necessary guardrails and governance helps mitigate the high risks and impacts of cloud adoption.
 
 **Action**:
 
 Implement an Azure Landing Zone for your Azure OpenAI solution. Include Identity, Security, and Network configurations. Address compliance and governance from the start. For Platform Landing Zone recommendations, refer to the [Cloud Adoption Framework - Ready](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796).
 
-However, for more specific Azure OpenAI application landing zone considerations, we can view **the [chat baseline architecture at the Azure Architecture Center](https://learn.microsoft.com/azure/architecture/ai-ml/architecture/baseline-openai-e2e-chat?WT.mc_id=AZ-MVP-5004796) for reference**.
+However, for more specific Azure OpenAI application landing zone considerations, we can view the [chat baseline architecture at the Azure Architecture Center](https://learn.microsoft.com/azure/architecture/ai-ml/architecture/baseline-openai-e2e-chat?WT.mc_id=AZ-MVP-5004796) for reference.
 
 ![Azure Landing Zone](images/azure-openai-baseline-landing-zone.png)
 
@@ -110,18 +106,14 @@ Establish an Azure Landing Zone to place Azure OpenAI solution into
 Ensuring a well-architected foundation
 Need for compliance and security guardrails
 
-| Why - Solid foundation for cloud adoption | Risk / Impact | Solution |
-|-------------------------------------------|---------------|----------|
-| - Provides a scalable and secure environment
-- Critical for enterprise-grade workloads
-- Ensures compliance and governance | Risk – High
-Impact – High | - Implement Azure Landing Zone
-- Include Identity, Security, and Network configurations
-- Address compliance and governance from the start |
+| Why                                      | Risk / Impact                   | Solution                                                                                  |
+|------------------------------------------|----------------------------------|-------------------------------------------------------------------------------------------|
+| - Solid foundation for cloud adoption<br>- Critical for enterprise-grade workloads<br>- Ensures compliance and governance | Risk – High<br>Impact – High         | - Implement Azure Landing Zone<br>- Include Identity, Security, and Network configurations - Address compliance and governance from the start<br>- Provides a scalable and secure environment |
+
 
 **Rationale**:
 
-Starting with Public and internal data reduces the Impact from high to low. With lower overall risk, an organization can have faster initial adoption by the time they build additional guardrails for governance and compliance in place (Audit, Monitoring, and enterprise architecture).
+Starting with Public and internal data reduces the Impact from high to low. With lower overall risk, an organization can have faster initial adoption by the time they build additional guardrails for governance and compliance in place _(Audit, Monitoring, and enterprise architecture)_.
 
 **Action**:
 
