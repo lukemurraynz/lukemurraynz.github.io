@@ -1,0 +1,61 @@
+---
+title: Azure Resource - Change Analysis
+metaDescription: 
+date: 2024-10-23T22:24:17.251Z
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: misc/kubernetes-enterprise-guide-book-review
+keywords:
+  - Kubernetes
+
+description: 
+---
+
+Who created my resource? What created my Azure resource? These are the questions that we often ask ourselves when we are troubleshooting or trying to understand the state of our Azure resources.
+
+[Change Analysis](https://learn.microsoft.com/azure/azure-monitor/change/change-analysis?WT.mc_id=AZ-MVP-5004796) is a feature in Azure Monitor that helps you answer these questions. Change Analysis helps to provide a view of the changes that have occurred on your Azure resources over time, using the [Azure Resource Graph](https://learn.microsoft.com/azure/governance/resource-graph/overview?WT.mc_id=AZ-MVP-5004796).
+
+## Overview
+
+Today, we will look at Change Analysis to see:
+
+A. Can we see the changes that have occurred on our Azure resources?
+B. Can we see the changes that have occurred on our Azure resources over time?
+C. Can we who made the change?
+D. Can we determine what made the change?
+
+:::info
+Change Analysis in the portal
+
+Change Analysis experiences across the Azure portal are powered using the Azure Resource Graph Microsoft.ResourceGraph/resources API. You can query this API for changes made to many of the Azure resources you interact with, including App Services (Microsoft.Web/sites) or Virtual Machines (Microsoft.Compute/virtualMachines).
+
+The Azure Resource Graph Change Analysis portal experience provides:
+
+* An onboarding-free experience, giving all subscriptions and resources access to change history.
+* Tenant-wide querying, rather than select subscriptions.
+* Change history summaries aggregated into cards at the top of the new Resource Graph Change Analysis.
+* More extensive filtering capabilities.
+* Improved accuracy and relevance of changed by information, using Change Actor functionality.
+
+Learn how to [view the new Change Analysis experience in the portal](https://learn.microsoft.com/en-us/azure/governance/resource-graph/changes/view-resource-changes?WT.mc_id=AZ-MVP-5004796).
+:::
+
+## Can we see the changes that have occurred on our Azure resources?
+
+> Yes, we can see the changes that have occurred on our Azure resources. Change Analysis provides a view of the changes that have occurred on your Azure resources over time. You can see the changes that have occurred on your Azure resources in the last 14 days.
+
+If we navigate to the [Change Analysis (Preview)](https://portal.azure.com/#view/Microsoft_Azure_OneInventory/ResourceChangesOverview.ReactView) blade in the Azure portal, we can see the changes that have occurred on our Azure resources.
+
+![Change Analysis](images/AzurePortal_ChangeAnalysis.gif)
+
+:::note
+The blur is intentional to protect sensitive information, as part of the [Cloudclock](https://luke.geek.nz/azure/cloudcloak/) extension.
+:::
+
+As we can see, we can see the changes _(Create, Update and Delete)_ that have occurred on our Azure resources, we can even Group by resource or who made the change.
+
+## Can we see the changes that have occurred on our Azure resources over time?
