@@ -62,7 +62,7 @@ If we navigate to the [Change Analysis (Preview)](https://portal.azure.com/#view
 The blur is intentional, as part of the [Cloudclock](https://luke.geek.nz/azure/cloudcloak/) extension to protect sensitive information.
 :::
 
-We can see the changes (Create, Update, and Delete) that have occurred on our Azure resources. We can even Group them by resource or who made the change.
+We can see the changes (Create, Update, and Delete) that have occurred on our Azure resources. We can even group them by resource or by who made the change.
 
 ## Can we see the changes on our Azure resources over time?
 
@@ -113,20 +113,20 @@ In my examples, we can see the `changedBy` field in the query results. This fiel
 
 It could be the user or the service principal that made the change. In this example, I can see:
 
-* A Network interface resource was created by `2cf9eb86-36b5-49dc-86ae-9a63135dfa8c` - which is the Application ID of a Microsoft owned Registration for: Azure Traffic Manager and DNS.
-* A Delete of the Network Interface was done by `Luke@geek` - which is my user account.
+* A Network interface resource was created by `2cf9eb86-36b5-49dc-86ae-9a63135dfa8c`, which is the Application ID of a Microsoft-owned Registration for Azure Traffic Manager and DNS.
+* A Deletion of the network interface was done by `Luke@geek,` which is my user account.
 
 ## Can we determine what made the change?
 
-> Yes, we can determine what made the change. Change Analysis provides the `clientType` field, which tells us what made the change, however as we can see in the previous screenshots this is not always as accurate as we may want it, however its good enough that you can infer what may have issued the changes.
+> Yes, we can determine what caused the change. Change Analysis provides the `clientType` field, which tells us what caused the change. However, as we can see in the previous screenshots, this is not always as accurate as we may want it to be. However, it's good enough that you can infer what may have issued the changes.
 
 Some of the clientType values you may see are:
 
 * `Azure Portal` - Changes made from the Azure Portal.
-* `Unknown` - Change happened on a client that is unrecognized.
+* `Unknown` - A change happened to a client that is unrecognized.
 * `CLI` - Changes made from Azure CLI.
 * `Unspecified` - Unspecified is displayed when the resource is missing changedByType values and could be missing for either Creates or Updates. It could also mean changes are performed in the background by Azure services and not user initiatied.
-* `ARM Template` - Changes made from an ARM Template, whether deployed automatically, or via a 'Deploy to Azure' button. This also includes changes made by Bicep.
+* `ARM Template` - Changes made from an ARM Template, whether deployed automatically or via a 'Deploy to Azure' button. This also includes changes made by Bicep.
 * `System` - System is displayed as a changedBy value when a background change occurred that wasn't correlated with any direct user action.
 
 ## References
