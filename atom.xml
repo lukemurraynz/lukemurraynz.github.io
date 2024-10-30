@@ -62,7 +62,7 @@ Support file and configuration changes over App Service.</p></div></div>
 <li>A Deletion of the network interface was done by <code>Luke@geek,</code> which is my user account.</li>
 </ul>
 <p>SOME Azure resources <em>(with the latest API)</em> such as this Data Collection Rule, contains the information in the resource metadata.</p>
-<p><img decoding="async" loading="lazy" alt="JSON - ChangedBy" src="https://luke.geek.nz/assets/images/AzurePortal_DCR_JSON-7d24e9cb4ac411ef1d7e4ab2f2344d33.png" width="1539" height="1027" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="JSON - ChangedBy" src="https://luke.geek.nz/assets/images/AzurePortal_DCR_JSON-8425d2fb17e95a8e9ffc9fcc93da1169.png" width="1539" height="1027" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="can-we-determine-what-made-the-change">Can we determine what made the change?<a href="https://luke.geek.nz/azure/change-analysis/#can-we-determine-what-made-the-change" class="hash-link" aria-label="Direct link to Can we determine what made the change?" title="Direct link to Can we determine what made the change?">​</a></h2>
 <blockquote>
 <p>Yes, we can determine what caused the change. Change Analysis provides the <code>clientType</code> field, which tells us what caused the change. However, as we can see in the previous screenshots, this is not always as accurate as we may want it to be. However, it's good enough that you can infer what may have issued the changes.</p>
