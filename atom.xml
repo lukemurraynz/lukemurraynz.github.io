@@ -16,6 +16,7 @@
         <summary type="html"><![CDATA[A comprehensive guide on using Change Analysis in Azure Monitor to track changes on your Azure resources.]]></summary>
         <content type="html"><![CDATA[<p>Who created my resource? What created my Azure resource? We often ask ourselves these questions when troubleshooting or trying to understand the state of our Azure resources.</p>
 <p><a href="https://learn.microsoft.com/azure/azure-monitor/change/change-analysis?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Change Analysis</a> is a feature in Azure Monitor that helps you answer these questions. Change Analysis helps to provide a view of the changes that have occurred on your Azure resources over time, using the <a href="https://learn.microsoft.com/azure/governance/resource-graph/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Resource Graph</a>.</p>
+<!-- -->
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="overview">Overview<a href="https://luke.geek.nz/azure/change-analysis/#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview">​</a></h2>
 <p>Today, we will look at Change Analysis to see:</p>
 <p>A. Can we see the changes that have occurred on our Azure resources?
