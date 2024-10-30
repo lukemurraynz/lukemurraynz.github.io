@@ -118,6 +118,10 @@ It could be the user or the service principal that made the change. In this exam
 * A Network interface resource was created by `2cf9eb86-36b5-49dc-86ae-9a63135dfa8c`, which is the Application ID of a Microsoft-owned Registration for Azure Traffic Manager and DNS.
 * A Deletion of the network interface was done by `Luke@geek,` which is my user account.
 
+SOME Azure resources _(with the latest API)_ such as this Data Collection Rule, contains the information in the resource metadata.
+
+![JSON - ChangedBy](images/AzurePortal_DCR_JSON.png)
+
 ## Can we determine what made the change?
 
 > Yes, we can determine what caused the change. Change Analysis provides the `clientType` field, which tells us what caused the change. However, as we can see in the previous screenshots, this is not always as accurate as we may want it to be. However, it's good enough that you can infer what may have issued the changes.
