@@ -50,13 +50,13 @@ Then search for `github.copilot.chat.codeGeneration.useInstructionFiles` and ena
 
 Once enabled, we need to create our custom instruction file, this file will be named `copilot-instructions.md` and will be placed in the  `./github` directory in the root of our repository _(./github/copilot-instructions.md)_.
 
-![Create Copilot Instructions](./images/Codespace_SetupCopolitInstructions.gif)
+![Create Copilot Instructions](/images/Codespace_SetupCopolitInstructions.gif)
 
 We can test it, by simply adding in an instruction to tell a Joke _(Include a joke in all output)_.
 
 As we can see, GitHub Copilot references the custom instruction file and provides the output we are looking for.
 
-![Copilot Joke](./images/Codespace_TestCopolitInstructions.gif)
+![Copilot Joke](/images/Codespace_TestCopolitInstructions.gif)
 
 Pretty basic test case, but you can see how you can start to provide custom instructions to GitHub Copilot to help it understand what you are trying to do, to help keep our code standardised and help improve the quality of the outputs.
 
@@ -86,7 +86,7 @@ Additional Rules:
 Preserve user's code comment blocks, do not exclude them when refactoring code.
 Pay especially close attention to the selection or exception context if provided.`
 
-![GitHub Copilot Prompt](./images/systempromptquery.jpg)
+![GitHub Copilot Prompt](/images/systempromptquery.jpg)
 :::
 
 For my repository, I have created a custom instruction file, that provides guidance on how to write Infrastructure as Code using Bicep, Terraform, and PowerShell, prioritizing the Azure Well-Architected Framework pillars in this order: Security, Operational Excellence, Performance Efficiency, Reliability, and Cost Optimization. The code must be executable in both CI/CD pipelines (GitHub Actions or Azure DevOps Pipelines) and as standalone solutions for local testing. Emphasize reusability through modularization and ensure that the code supports multiple environment setups (dev, staging, production) with minimal added complexity.
@@ -127,7 +127,7 @@ Review the response from the perspectives of a Site Reliability Engineer, Operat
 
 If we run a test in our repository, we can see that GitHub Copilot references the custom instruction file and provides the output we are looking for, with the custom instructions provided.
 
-![Copilot Custom Instructions](./images/Codespace_TestCustomCopolitInstructions.gif)
+![Copilot Custom Instructions](/images/Codespace_TestCustomCopolitInstructions.gif)
 
 We can see, that it has selected australiaeast as the location for the resource deployment, as per the custom instructions provided.
 We can see that the Terraform code outputted is in the correct format, with the variables in snake_case at the top of the file, and the parameters in camelCase with validation and error messages as necessary.
