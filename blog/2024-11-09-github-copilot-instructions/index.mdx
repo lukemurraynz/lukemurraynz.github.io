@@ -1,0 +1,149 @@
+---
+title: Enhancing GitHub Copilot with Custom Instructions
+metaDescription: Learn how to provide custom instructions to GitHub Copilot to improve code quality and standardization.
+date: 2024-11-09T08:58:40.257Z
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: azure/enhancing-github-copilot-with-custom-instructions
+keywords:
+  - GitHub
+  - Copilot
+  - Custom Instructions
+  - DevOps
+  - Infrastructure as Code
+  - Azure
+  - Bicep
+  - Terraform
+  - PowerShell
+  - Codespace
+description: Learn how to provide custom instructions to GitHub Copilot to improve code quality and standardization.
+---
+
+I've come to rely on [GitHub Copilot](https://github.com/features/copilot?WT.mc_id=AZ-MVP-5004796) for writing code. It's a great tool that helps me write code faster and with fewer errors, and also helps me understand code written by other people, but sometimes I need to provide custom instructions to Copilot to help it understand what I'm trying to do, as the standard outputs aren't quite what I want, a simple example of this is maybe having parameters or variables written with particular casing or naming convention, or even having to constantly update the location of an Azure Resource deployment from East US to Australia East or New Zealand North, when requesting Copilot to create a resource with their Terraform or Bicep.
+
+In this article, we will look at how to provide custom instructions to GitHub Copilot to help it understand what we are trying to do, to help keep our code standardised and help improve the quality of the outputs.
+
+{/* truncate */}
+
+To do that, we will make use of some new functionality [Adding custom instructions for GitHub Copilot](https://docs.github.com/en/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot?WT.mc_id=AZ-MVP-5004796).
+
+:::info
+At the time of writing, this is currently under Public preview and the experience mentioned during this article, may change in the future.
+:::
+
+:::warning
+Custom instructions are currently only supported for Copilot Chat in VS Code and Visual Studio. In our article, I will be using Visual Studio Code, inside of a GitHub Codespace.
+:::
+
+> [GitHub Copilot](https://github.com/features/copilot?WT.mc_id=AZ-MVP-5004796) can provide chat responses that are tailored to the way your team works, the tools you use, or the specifics of your project, if you provide it with enough context to do so. Instead of repeatedly adding this contextual detail to your chat questions, you can create a file that automatically adds this information for you. The additional information is not displayed in the chat, but is available to Copilot to allow it to generate higher quality responses.
+
+To get started, I am going to be using Visual Studio Code, in a GitHub Codespace, although it will be the same process for Visual Studio Code installed locally.
+
+If you haven't already installed the [GitHub Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot), you can do so by searching for it in the Extensions tab in Visual Studio Code.
+
+First we need to enable the Code Generation feature in Copilot, to do this, we need to go to Settings
+Then search for `github.copilot.chat.codeGeneration.useInstructionFiles` and enable it.
+
+Once enabled, we need to create our custom instruction file, this file will be named `copilot-instructions.md` and will be placed in the  `./github` directory in the root of our repository _(./github/copilot-instructions.md)_.
+
+![Create Copilot Instructions](./images/Codespace_SetupCopolitInstructions.gif)
+
+We can test it, by simply adding in an instruction to tell a Joke _(Include a joke in all output)_.
+
+As we can see, GitHub Copilot references the custom instruction file and provides the output we are looking for.
+
+![Copilot Joke](./images/Codespace_TestCopolitInstructions.gif)
+
+Pretty basic test case, but you can see how you can start to provide custom instructions to GitHub Copilot to help it understand what you are trying to do, to help keep our code standardised and help improve the quality of the outputs.
+
+:::info
+Using Custom instructions is great for providing context to Copilot, especially adding more detail around what you expect as outputs, and can work really well when you are working with a team, or have a specific way you want your code to be written, however your custom prompts is secondary to the standard system prompt that Copilot uses, so if you provide a custom prompt, it will be used in ADDITION with the standard prompt, and not replaced. So, for example, you cannot change the assumed name of Copilot and overwrite the prompt to get Copilot to chat to you about non-software development tasks.
+
+An example of what the GitHub prompt is as below:
+
+`You are an AI programming assistant.
+When asked for your name, you must respond with "GitHub Copilot".
+Follow the user's requirements carefully & to the letter.
+Your expertise is strictly limited to software development topics.
+Follow Microsoft content policies.
+Avoid content that violates copyrights.
+For questions not related to software development, simply give a reminder that you are an AI programming assistant.
+Keep your answers short and impersonal.
+Use Markdown formatting in your answers.
+Make sure to include the programming language name at the start of the Markdown code blocks.
+Avoid wrapping the whole response in triple backticks.
+The user works in an IDE called Visual Studio which has a concept for editors with open files, integrated unit test support, an output pane that shows the output of running the code as well as an integrated terminal.
+The active document is the source code the user is looking at right now.
+You can only give one reply for each conversation turn.
+When generating code prefer languages provided in context. If the coding language is unclear generate code in C#.
+Respond in the following locale: en-US
+
+Additional Rules:
+Preserve user's code comment blocks, do not exclude them when refactoring code.
+Pay especially close attention to the selection or exception context if provided.`
+
+![GitHub Copilot Prompt](./images/systempromptquery.jpg)
+:::
+
+For my repository, I have created a custom instruction file, that provides guidance on how to write Infrastructure as Code using Bicep, Terraform, and PowerShell, prioritizing the Azure Well-Architected Framework pillars in this order: Security, Operational Excellence, Performance Efficiency, Reliability, and Cost Optimization. The code must be executable in both CI/CD pipelines (GitHub Actions or Azure DevOps Pipelines) and as standalone solutions for local testing. Emphasize reusability through modularization and ensure that the code supports multiple environment setups (dev, staging, production) with minimal added complexity.
+
+You can see my custom file below and you can reference it directly in the following GitHub repository [lukemurraynz/Codespace_IaC_Coding](https://github.com/lukemurraynz/Codespace_IaC_Coding).:
+
+```text
+Provide comprehensive guidance and best practices for developing reusable and reliable Infrastructure as Code using Bicep, Terraform, and PowerShell, prioritizing the Azure Well-Architected Framework pillars in this order: Security, Operational Excellence, Performance Efficiency, Reliability, and Cost Optimization. The code must be executable in both CI/CD pipelines (GitHub Actions or Azure DevOps Pipelines) and as standalone solutions for local testing. Emphasize reusability through modularization and ensure that the code supports multiple environment setups (dev, staging, production) with minimal added complexity.
+
+Incorporate preferred safe deployment practices, including effective management of feature flags, and provide recommendations for when and how to use them effectively. Feature flags should be removable without impacting already deployed resources if the feature is later integrated into the main system, with clear warnings if any changes affect the solution. Advocate for ring-based deployments and consistency in coding standards, prioritizing quality over quantity and making smaller changes instead of larger ones where practical.
+
+Follow DRY principles, include thorough comments, and structure variables in snake_case at the top of each file. Parameters should be in camelCase with validation and error messages as necessary. Avoid third-party dependencies, especially when using feature flags and other core deployment features.
+
+If asked about the location of resources to be deployed, make sure the location is either of the two below as default:
+
+* "newzealandnorth"
+* "australiaeast"
+
+Include recommendations for key performance indicators (KPIs) to measure the effectiveness of deployments, focusing on metrics like deployment frequency, change failure rate, mean time to recovery, and customer satisfaction. Ensure that the code is clear and understandable for reviewers unfamiliar with the project, aligning recommendations with Microsoft guidance on secure and reliable DevOps integration. If using parameters, make sure to include relevant helper functions.
+
+Highlight how GitHub Copilot can assist by providing real-time suggestions and best-practice enforcement while identifying and proposing native solutions within Bicep, Terraform, or PowerShell to replace third-party dependencies.
+
+Additionally, provide relevant guidance on:
+
+* Infrastructure testing and validation techniques.
+* Documentation best practices.
+* Error handling and logging mechanisms.
+* Version control strategies.
+* Configuration management approaches.
+* Security best practices tailored for Azure.
+* Cost management strategies for Azure resources.
+* Establishing a change management process for IaC updates.
+* Integrating monitoring and alerting for deployed resources.
+* Engaging with the Azure community for ongoing learning and best practices.
+
+Review the response from the perspectives of a Site Reliability Engineer, Operations Manager, Microsoft Technical Specialist, Security Consultant, Business Analyst, and On-call Engineer, confirming factual accuracy and seeking clarification where needed, output what each persona thinks about the code.
+```
+
+If we run a test in our repository, we can see that GitHub Copilot references the custom instruction file and provides the output we are looking for, with the custom instructions provided.
+
+![Copilot Custom Instructions](./images/Codespace_TestCustomCopolitInstructions.gif)
+
+We can see, that it has selected australiaeast as the location for the resource deployment, as per the custom instructions provided.
+We can see that the Terraform code outputted is in the correct format, with the variables in snake_case at the top of the file, and the parameters in camelCase with validation and error messages as necessary.
+We can see some example GitHub Actions and Azure Pipeline workflows that have been outputted, that are could be used as a base to deploy our code.
+We can see some recommendations for additional guidance, on using tools such as Teratest for Terraform testing, and we can see how the code looks like from multiple personas, such as a Site Reliability Engineer, Operations Manager, Microsoft Technical Specialist, Security Consultant, Business Analyst, and On-call Engineer.
+
+My custom prompt, is overly large and includes a lot of information _(and to be frank I am trying to do alot of different things in this particular repository as its for IaC, where one day it could Terraform and the next Bicep)_, but it is a good example of how you can provide custom instructions to GitHub Copilot to help it understand what you are trying to do, to help keep our code standardised and help improve the quality of the outputs.
+
+:::tip
+If you are looking for guidance, on how to develop your own custom prompt. Consider the use of another prompt, to help build it out. An example of a great prompt is one that commonly known as 'One Prompt To Rule Them All', which you could run in ChatGPT or Azure OpenAI Playground to help build out your prompt.
+
+The prompt is below:
+
+```text
+I want you to become my Prompt Creator. Your goal is to help me craft the best possible prompt for my needs. The prompt will be used by you, GPT-4. You will follow the following process: 1. Your first response will be to ask me what the prompt should be about. I will provide my answer, but we will need to improve it through continual iterations by going through the next steps. 2. Based on my input, you will generate 3 sections. a) Revised prompt (provide your rewritten prompt. it should be clear, concise, and easily understood by you), b) Suggestions (provide suggestions on what details to include in the prompt to improve it), and c) Questions (ask any relevant questions pertaining to what additional information is needed from me to improve the prompt). 3. We will continue this iterative process with me providing additional information to you and you updating the prompt in the Revised prompt section until it's complete.
+```
+:::
+
+Hopefully this article helps you get going, and using custom instructions, and help provide more standardised outputs.
