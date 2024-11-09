@@ -55,6 +55,7 @@ const config = {
           blogTitle: "Lukes Tech Blog - Unleashing the power of the cloud and other technologies!",
           blogDescription: "Embark on a tech journey with Luke, a Microsoft Azure MVP, as he delves into the cutting-edge realm of Microsoft and Azure Cloud technologies. Explore, learn, and stay ahead in the dynamic world of cloud computing!",
           postsPerPage: 5,
+          onUntruncatedBlogPosts: 'ignore',
           blogSidebarTitle: "Recent posts",
           blogSidebarCount: 5,
           feedOptions: {
