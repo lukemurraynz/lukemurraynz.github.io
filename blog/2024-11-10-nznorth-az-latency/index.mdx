@@ -105,8 +105,7 @@ In this scenario, we will have a single VNET, with a single subnet, and two virt
 
 In this example, we have VM1 talking to VM2.
 
-### VM1 (Sender - 10.0.1.4) - VM2 (Receiver - 10.0.1.5)
-
+**VM1 (Sender - 10.0.1.4) - VM2 (Receiver - 10.0.1.5)**
 
 | Metric              | Value          | Notes                             |
 |---------------------|----------------|-----------------------------------|
@@ -133,7 +132,7 @@ In this scenario, we will have a single VNET, with a single subnet, and two virt
 
 We will be talking from VM1 to VM3.
 
-### VM1 (Sender) - VM3 (Receiver)
+**VM1 (Sender) - VM3 (Receiver)**
 
 | Metric              | Value           | Notes                             |
 |---------------------|-----------------|-----------------------------------|
@@ -162,7 +161,7 @@ We keep the same VM1 _(in Zone 1)_, but we will be talking to VM4 and VM5 (which
 
 First lets look at VM1 (Avaliability 1) talking to VM4 _(Avalibility Zone 2)_.
 
-### VM1 (Sender) - VM4 (Receiver)
+**VM1 (Sender) - VM4 (Receiver)**
 
 | Metric              | Value           | Notes                             |
 |---------------------|-----------------|-----------------------------------|
@@ -183,7 +182,7 @@ The table summarizes the latency and system performance between **VM1 (Sender)**
 
 Next lets look at VM1 (Avaliability 1) talking to VM5 _(Avalibility Zone 3)_.
 
-### VM1 (Sender) - VM5 (Receiver)
+**VM1 (Sender) - VM5 (Receiver)**
 
 | Metric              | Value           | Notes                             |
 |---------------------|-----------------|-----------------------------------|
@@ -204,7 +203,7 @@ This table summarizes the latency and system performance between **VM1 (Sender)*
 
 Finally, lets look at VM4 _(Avaliability Zone 2)_ talking to VM5 _(Avalibility Zone 3)_.
 
-### VM4 (Sender) - VM5 (Receiver)
+VM4 (Sender) - VM5 (Receiver)
 
 | Metric              | Value           | Notes                             |
 |---------------------|-----------------|-----------------------------------|
@@ -239,7 +238,7 @@ We will have VM1 _(10.0.1.4)_ in our Spoke1 network, talking to VM2 _(10.0.2.4)_
 
 ![Multiple VNETs (peered), same availability zone](images/NZN_LatencyTest_VNetPeering.JPG)
 
-### VM1 (Sender) - VM2 (Receiver) through VNet Peering
+**VM1 (Sender) - VM2 (Receiver) through VNet Peering**
 
 | Metric              | Value           | Notes                             |
 |---------------------|-----------------|-----------------------------------|
@@ -266,11 +265,9 @@ We will use the good old trusty VM1 again, and this time we will be talking to V
 
 ![Multiple VNETs (peered), across availability zones](images/NZN_LatencyTest_VNetPeering_AvaliabilityZones.JPG)
 
-### VM1 (Sender) - VM3 (Receiver) through VNet Peering
-
 Here are the performance results for **VM1 (Sender) to VM3 (Receiver) through VNet peering**. VM1 is in **Availability Zone 1** and VM3 is in **Availability Zone 2**.:
 
-### VM1 (Sender) - VM3 (Receiver) in Availability Zone 2 through VNet Peering
+**VM1 (Sender) - VM3 (Receiver) in Availability Zone 2 through VNet Peering**
 
 | Metric              | Value           | Notes                             |
 |---------------------|-----------------|-----------------------------------|
@@ -291,7 +288,7 @@ This table summarizes the latency and system performance between **VM1 (Sender)*
 
 Now, we need to test VM1 _(Avaliability Zone 1)_ by talking to VM4 _(Avaliability Zone 3)_ through VNet peering.
 
-### VM1 (Sender) - VM4 (Receiver) in Availability Zone 3 through VNet Peering
+**VM1 (Sender) - VM4 (Receiver) in Availability Zone 3 through VNet Peering**
 
 | Metric              | Value           | Notes                             |
 |---------------------|-----------------|-----------------------------------|
@@ -326,7 +323,7 @@ The Azure Firewall configuration is a Standard SKU, with a Firewall policy and z
 
 We will start with VM1 in Avalibility Zone 1, talking to VM2 in Avalibility Zone 2 via the Azure Firewall and hub and spoke network.
 
-### **VM 1 (Sender)** to **VM 2 (Receiver)** -  Availability Zone 2 through Hub and Spoke Peering with Azure Firewall
+**VM 1 (Sender)** to **VM 2 (Receiver) -  Availability Zone 2 through Hub and Spoke Peering with Azure Firewall**
 
 | Metric        | Value                      |
 |------------------|----------------------------|
@@ -347,7 +344,7 @@ This is the longest time we have seen so far, but still boarding on 1 millisecon
 
 Next, we will look at VM1 in Avalibility Zone 1, talk to VM3 in Avalibility Zone 3 and spoke 3 via the Azure Firewall and hub and spoke network.
 
-### **VM 1 (Sender)** to **VM 3 (Receiver)** -  Availability Zone 3 through Hub and Spoke Peering with Azure Firewall
+**VM 1 (Sender)** to **VM 3 (Receiver)** -  Availability Zone 3 through Hub and Spoke Peering with Azure Firewall
 
 | Metric        | Value                      |
 |------------------|----------------------------|
