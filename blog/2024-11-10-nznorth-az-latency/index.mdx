@@ -67,7 +67,7 @@ So, let us prove that with the New Zealand North region, we can communicate betw
 Then I will be using a Windows Server 2022 [Azure Virtual Machine](https://learn.microsoft.com/azure/virtual-machines/windows/overview?WT.mc_id=AZ-MVP-5004796) _(VM)_ in each zone, and I will be using [latte](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-test-latency?tabs=windows&WT.mc_id=AZ-MVP-5004796#test-vms-with-latte-or-sockperf) to do my testing from each Virtual Machine.
 
 * Each Test machine is [Accelerated Networking](https://learn.microsoft.com/azure/virtual-network/accelerated-networking-overview?tabs=redhat&WT.mc_id=AZ-MVP-5004796) enabled.
-* The size of each Virtual Machine is a: Windows Server 2022 Datacenter: Azure Edition - x64 Gen2 - Standard_D4s_v3 - 4 vCPUs, 16 GB memory, 127GB OS disk. 
+* The size of each Virtual Machine is a: Windows Server 2022 Datacenter: Azure Edition - x64 Gen2 - Standard_D4s_v3 - 4 vCPUs, 16 GB memory, 127GB OS disk. Each Virtual Machine is created fresh, for the purpose of running this test.
 * Network Security Groups as left as default _(at the VM NIC)_ and VirtualNetwork allow.
 * The version of [latte](https://github.com/microsoft/latte/), I am using is v1.0.0.
 
@@ -92,12 +92,12 @@ Even though at the time of this article, Windows Server 2025 has been generally 
 Inspired by [Nicola Delfino](https://www.linkedin.com/in/nicoladelfino) post on [Measuring latency between Azure Availability Zones and the impact of an NVA in between V2](https://nicolgit.github.io/azure-measuring-latency-across-availability-zones-in-we/) I will run through multiple scenarios for the New Zealand North Azure Region:
 
 * Same v-net, same availability zone, same [proximty placement](https://learn.microsoft.com/azure/virtual-machines/co-location?WT.mc_id=AZ-MVP-5004796) group
-* Same v-net, across availability zones
+* Same v-net across availability zones
 * multiple v-nets (in peering), same availability zone
 * multiple v-nets (in peering) across availability zones
 * multiple v-nets connected in a Hub & Spoke topology and Routing via Azure Firewall
 
-## 🏢 Scenario 1 - Same Virtual Network, same availability zone, same [proximty placement](https://learn.microsoft.com/azure/virtual-machines/co-location?WT.mc_id=AZ-MVP-5004796) group
+## 🏢 Scenario 1 - Same Virtual Network, same availability zone, same proximty placement group
 
 In this scenario, we will have a single VNET, with a single subnet, and two virtual machines in the same availability zone, and the same [proximty placement](https://learn.microsoft.com/azure/virtual-machines/co-location?WT.mc_id=AZ-MVP-5004796) group.
 
