@@ -34,7 +34,7 @@ New Zealand North region follows the newer, now standard, 3 + 0 model, with 3 [a
 At the time of this article, New Zealand North is not officially Generally Available (indicative timelines December). However, finding I can deploy to this region now on my own subscriptions, I couldn't resist the opportunity to test the latency within the region. This article is intended as an indicative of what you can expect from New Zealand North, but I recommend running your own tests within your own environment if required. #geekingout
 :::
 
-Let's look at the lower end of our resiliency tier. We can see Azure Service Bus	starts at an SLA of 99.9% (Y: 8h 45m 36s  M: 43m 12s  W: 10m 4s), and the higher SLA services such as Azure Virtual Machines and API Gateway can give up to 99.99% (Y: 52m 35s  M: 4m 23s  W: 1m 1s) _(how your solution and what services you use, impact your Composite SLA and Service Level Agreements so make sure you architect accordingly and review the [Microsoft SLA documentation](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?WT.mc_id=AZ-MVP-5004796))_.
+Let's look at the lower end of our resiliency tier. We can see Azure Service Bus	starts at an SLA of 99.9% _(Y: 8h 45m 36s  M: 43m 12s  W: 10m 4s)_, and the higher SLA services such as Azure Virtual Machines and API Gateway can give up to 99.99% _(Y: 52m 35s  M: 4m 23s  W: 1m 1s)_ _(how your solution and what services you use, impact your Composite SLA and Service Level Agreements so make sure you architect accordingly and review the [Microsoft SLA documentation](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?WT.mc_id=AZ-MVP-5004796))_.
 
 :::info
 Availability zones are close enough to have low-latency connections to other availability zones. A high-performance network connects them with a round-trip latency of less than 2ms. However, availability zones are far enough apart to reduce the likelihood that more than one will be affected by local outages or weather. Availability zones have independent power, cooling, and networking infrastructure. They're designed so that if one zone experiences an outage, then regional services, capacity, and high availability are supported by the remaining zones. They help your data stay synchronized and accessible when things go wrong.
@@ -46,7 +46,7 @@ If you are interested in more information about Availability Zones and the diffe
 
 ## 📉 Latency Testing
 
-But this is not a resiliency discussion; it is latency, so let's look at the latency of what New Zealand North is giving us.
+But this is not a resiliency discussion; it is a latency discussion, so let's examine the latency of what New Zealand North is giving us.
 
 :::warning
 Keep in mind that these tests are simply a point in time, and my open environment may not necessarily reflect your own Azure environment. At the time of these tests, the New Zealand North Region [isn't officially generally available](https://datacenters.microsoft.com/globe/explore?WT.mc_id=AZ-MVP-5004796). This article is intended as an indicator of what you can expect from New Zealand North, but I recommend running your own tests within your own environment if required.
