@@ -1,19 +1,14 @@
 {
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
-  "settings": {
-    "[typescript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "editor.formatOnSave": true
-    },
-    "[json]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "editor.formatOnSave": true
-    },
-    "[jsonc]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "editor.formatOnSave": true
-    }
-  },
+ 
+    // "customizations" section allows configuring specific aspects of the development environment, such as VS Code settings and extensions.
+    "customizations": {
+      "vscode": {
+        // Defines VS Code settings to be applied within the dev container.
+        "settings": {
+          "editor.formatOnSaveMode": "file", // Configures format on save to be applied to the entire file.
+           "github.copilot.chat.codeGeneration.useInstructionFiles": "true"
+        },
   "extensions": [
     "dbaeumer.vscode-eslint",
     "orta.vscode-jest",
