@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QDLBY7NNN"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0QDLBY7NNN",{anonymize_ip:!0})</script><link rel="stylesheet" href="/assets/css/styles.dcdba76e.css">
-<script src="/assets/js/runtime~main.36f2dfb6.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.e25921c1.js" defer="defer"></script>
 <script src="/assets/js/main.da915e79.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -56,7 +56,7 @@
 <p>Then I will be using a Windows Server 2022 <a href="https://learn.microsoft.com/azure/virtual-machines/windows/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Virtual Machine</a> <em>(VM)</em> in each zone, and I will be using <a href="https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-test-latency?tabs=windows&amp;WT.mc_id=AZ-MVP-5004796#test-vms-with-latte-or-sockperf" target="_blank" rel="noopener noreferrer">latte</a> to do my testing from each Virtual Machine.</p>
 <ul>
 <li>Each Test machine is <a href="https://learn.microsoft.com/azure/virtual-network/accelerated-networking-overview?tabs=redhat&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Accelerated Networking</a> enabled.</li>
-<li>The size of each Virtual Machine is a: Windows Server 2022 Datacenter: Azure Edition - x64 Gen2 - Standard_D4s_v3 - 4 vCPUs, 16 GB memory, 127GB OS disk.</li>
+<li>The size of each Virtual Machine is a: Windows Server 2022 Datacenter: Azure Edition - x64 Gen2 - Standard_D4s_v3 - 4 vCPUs, 16 GB memory, 127GB OS disk. Each Virtual Machine is created fresh, for the purpose of running this test.</li>
 <li>Network Security Groups as left as default <em>(at the VM NIC)</em> and VirtualNetwork allow.</li>
 <li>The version of <a href="https://github.com/microsoft/latte/" target="_blank" rel="noopener noreferrer">latte</a>, I am using is v1.0.0.</li>
 </ul>
@@ -69,12 +69,12 @@
 <p>Inspired by <a href="https://www.linkedin.com/in/nicoladelfino" target="_blank" rel="noopener noreferrer">Nicola Delfino</a> post on <a href="https://nicolgit.github.io/azure-measuring-latency-across-availability-zones-in-we/" target="_blank" rel="noopener noreferrer">Measuring latency between Azure Availability Zones and the impact of an NVA in between V2</a> I will run through multiple scenarios for the New Zealand North Azure Region:</p>
 <ul>
 <li>Same v-net, same availability zone, same <a href="https://learn.microsoft.com/azure/virtual-machines/co-location?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">proximty placement</a> group</li>
-<li>Same v-net, across availability zones</li>
+<li>Same v-net across availability zones</li>
 <li>multiple v-nets (in peering), same availability zone</li>
 <li>multiple v-nets (in peering) across availability zones</li>
 <li>multiple v-nets connected in a Hub &amp; Spoke topology and Routing via Azure Firewall</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-scenario-1---same-virtual-network-same-availability-zone-same-proximty-placement-group">🏢 Scenario 1 - Same Virtual Network, same availability zone, same <a href="https://learn.microsoft.com/azure/virtual-machines/co-location?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">proximty placement</a> group<a href="#-scenario-1---same-virtual-network-same-availability-zone-same-proximty-placement-group" class="hash-link" aria-label="Direct link to -scenario-1---same-virtual-network-same-availability-zone-same-proximty-placement-group" title="Direct link to -scenario-1---same-virtual-network-same-availability-zone-same-proximty-placement-group">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-scenario-1---same-virtual-network-same-availability-zone-same-proximty-placement-group">🏢 Scenario 1 - Same Virtual Network, same availability zone, same proximty placement group<a href="#-scenario-1---same-virtual-network-same-availability-zone-same-proximty-placement-group" class="hash-link" aria-label="Direct link to 🏢 Scenario 1 - Same Virtual Network, same availability zone, same proximty placement group" title="Direct link to 🏢 Scenario 1 - Same Virtual Network, same availability zone, same proximty placement group">​</a></h2>
 <p>In this scenario, we will have a single VNET, with a single subnet, and two virtual machines in the same availability zone, and the same <a href="https://learn.microsoft.com/azure/virtual-machines/co-location?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">proximty placement</a> group.</p>
 <p><img decoding="async" loading="lazy" alt="Same VNET, same availability zone, same proximity placement group" src="/assets/images/NZN_LatencyTest_ProximityGroup-6d011f086e68dbeee14a254970c3f343.JPG" width="3320" height="1200" class="img_ev3q"></p>
 <p>In this example, we have VM1 talking to VM2.</p>
