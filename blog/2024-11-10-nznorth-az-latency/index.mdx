@@ -31,7 +31,7 @@ New Zealand North region follows the newer, now standard, 3 + 0 model, with 3 [a
 ![New Zealand North - Azure Avaliability Zones](images/Regions_AvaliabilityZones.jpg)
 
 :::warning
-At the time of this article, New Zealand North is not officially Generally Available _(indicative timelines December)_, however finding I can deploy to this region now, I couldn't resist the opportunity to test the latency between within the region. This article is intended as an indicative to what you can expect from New Zealand North, but recommend running your own tests within your own environment if required.
+At the time of this article, New Zealand North is not officially Generally Available _(indicative timelines December)_, however finding I can deploy to this region now on my own subscriptions, I couldn't resist the opportunity to test the latency between within the region. This article is intended as an indicative to what you can expect from New Zealand North, but recommend running your own tests within your own environment if required.
 :::
 
 If we look at the lower end of our resiliency tier we can see Azure Service Bus	starts at an SLA of 99.9% (Y: 8h 45m 36s  M: 43m 12s  W: 10m 4s), and the higher SLA services such as Azure Virtual Machines and API Gateway can give up to 99.99% (Y: 52m 35s  M: 4m 23s  W: 1m 1s) _(how your solution and what services you use, impact your Composite SLA and Service Level Agreements so make sure you architect accordingly and review the [Microsoft SLA documentation](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?WT.mc_id=AZ-MVP-5004796))_.
