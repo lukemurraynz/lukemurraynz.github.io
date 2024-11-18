@@ -20,21 +20,25 @@ keywords:
 description: Learn how to deploy a Streamlit application to Azure Container Apps using Docker and GitHub Codespaces.
 ---
 
-[Streamlit](https://streamlit.io/) is a great tool for creating interactive web applications with Python. 
+[Streamlit](https://streamlit.io/) is an excellent tool for creating interactive web applications with Python. 
 
 In this post, we will deploy a Streamlit application to [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview?WT.mc_id=AZ-MVP-5004796). [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview?WT.mc_id=AZ-MVP-5004796) is a fully managed serverless container service that allows you to run your containerized applications without having to manage the underlying infrastructure.
 
 <!--truncate-->
 
 :::note
-For the purposes of this article, I am going to assume, you have access to an Azure subscription and have the permissions to deploy resources. If you don't have an Azure subscription, you can create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount&WT.mc_id=AZ-MVP-5004796) in just a couple of minutes.
+For this article, you have access to an Azure subscription and have permission to deploy resources. If you don't have an Azure subscription, you can create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=azurefreeaccount&WT.mc_id=AZ-MVP-5004796) in just a couple of minutes.
 :::
 
 Today, we are going to take a base Streamlit example application, and deploy it to Azure Container Apps.
 
+:::info
+I will be using a GitHub Codespace; feel free to reference my public repository template: [lukemurraynz/Codespace_IaC_Coding](https://github.com/lukemurraynz/Codespace_IaC_Coding) as a Codespace template.
+:::
+
 ![Streamlit Application](images/Streamlit_Demo_Example.png)
 
-Lets start off with the Streamlit application.
+Let us start off with the Streamlit application.
 
 ```python title="streamlit_app.py"
 import altair as alt
@@ -46,7 +50,7 @@ import streamlit as st
 # Welcome to Streamlit!
 
 Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:.
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
+If you have any questions, check out our [documentation](https://docs.streamlit.io) and [community
 forums](https://discuss.streamlit.io).
 
 In the meantime, below is an example of what you can do with just a few lines of code:
@@ -80,14 +84,14 @@ st.altair_chart(alt.Chart(df, height=700, width=700)
 
 ```
 
-The next step is to create a `requirements.txt` file that specifies the dependencies for the Streamlit application. This will be used to install the python dependencies for the image.
+The next step is to create a `requirements.txt` file specifying the Streamlit application's dependencies. This will be used to install the Python dependencies for the image.
 
 ```plaintext title="requirements.txt"
 altair
 pandas
 streamlit
 ```
-Now that we have our Streamlit application, we need to create a Dockerfile to containerize the application. In this example, we are using the official Python image from the Docker Hub as the base image. We then copy the application code into the container, install the dependencies, and define the command to run the Streamlit application using port 8080 _(the default port for Streamlit is 8501, but we are using 8080 for this example, as a common port)_.
+Now that we have our Streamlit application, we need to create a Dockerfile to containerize the application. In this example, we use the official Python image from the Docker Hub as the base image. We then copy the application code into the container, install the dependencies, and define the command to run the Streamlit application using port 8080 _(the default port for Streamlit is 8501, but we are using 8080 for this example as a common port)_.
 
 ```Dockerfile title="Dockerfile"
 # Use the official Python image from the Docker Hub
@@ -131,14 +135,14 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 :::tip
 [Draft](https://github.com/Azure/draft) is an open-source project that streamlines Kubernetes development. It takes a non-containerized application and generates the DockerFiles, Kubernetes manifests, Helm charts, Kustomize configurations, and other artifacts associated the application. The Azure Kubernetes Service _(AKS)_ DevX extension for Visual Studio Code enhances non-cluster experiences, allowing you to create deployment files to deploy your applications to AKS. Draft is the available feature included in the DevX extension.
 
-I used Draft and the DevX extension were used to draft the first version of the streamlit dockerfile.
+I used Draft, and the DevX extension was used to draft the first version of the streamlet dockerfile.
 
 Reference: [Use Draft and the DevX extension for Visual Studio Code with Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/aks/draft-devx-extension-aks?WT.mc_id=AZ-MVP-5004796)
 :::
 
-To build this image, I am going to use Docker on a GitHub Codespace, to build the image locally and test it. Once confirmed, we can push it to an Azure Container Registry, which can then be used to deploy the image to Azure Container Apps.
+To build this image, I will use Docker on a GitHub Codespace to build the image locally and test it. Once confirmed, we can push it to an Azure Container Registry, which can then be used to deploy the image to Azure Container Apps.
 
-We can easilly test and build the image locally in a Codespace, using the [Docker extension](https://code.visualstudio.com/docs/containers/overview?WT.mc_id=AZ-MVP-5004796) in Visual Studio Code.
+We can easily test and build the image locally in a Codespace using the [Docker extension](https://code.visualstudio.com/docs/containers/overview?WT.mc_id=AZ-MVP-5004796) in Visual Studio Code.
 
 ![Docker Build](images/Streamlit_Codespace_BuildTestDockerImage.gif)
 
@@ -148,7 +152,7 @@ Now that we have tested the image locally, we can push it to an Azure Container 
 You can also refer to a previous article [Push Docker Images to Azure Container Registry with GitHub Codespaces](https://luke.geek.nz/azure/push-docker-images-to-acr-using-github-codespaces/) for more information on how to push the image to an Azure Container Registry using the command line from the public dockerhub registry.
 :::
 
-To push the image, we are going to use the docker extension again, to do the push and tag to the [Azure Container Registry](https://learn.microsoft.com/azure/container-registry/container-registry-intro?WT.mc_id=AZ-MVP-5004796).
+To push the image, we are going to use the docker extension again to do the push and tag to the [Azure Container Registry](https://learn.microsoft.com/azure/container-registry/container-registry-intro?WT.mc_id=AZ-MVP-5004796).
 
 ![Docker Push](images/Streamlit_Codespace_DeployStreamlitImageACR.gif)
 
@@ -158,7 +162,6 @@ To deploy the image to Azure Container Apps, we will to create a new Azure Conta
 
 ![Azure Container Apps](images/Streamlit_ContainerApps_DeployStreamlit.gif)
 
-One of the best features of Azure Container Apps is the ability to scale the application to zero, so we can stand up a Scale rule to scale _(replicas)_ the Container App down to 0 when not in use.
+One of the best features of Azure Container Apps is the ability to scale the application to zero, so we can set up a Scale rule to scale _(replicas)_ the Container App down to 0 when not in use.
 
 ![Azure Container Apps Scale](images/Streamlit_ContainerApps_HTTPScaleRule.gif)
-
