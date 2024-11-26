@@ -19,14 +19,16 @@ keywords:
 description: Learn how to resolve the 'Request is badly formatted' error when using Azure OpenAI with Managed Identity in a container app.
 ---
 
-When attempting to call Azure OpenAI using a MAnaged Identity, you may encounter the following error:
+When attempting to call [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796) using a [Managed Identity](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview?WT.mc_id=AZ-MVP-5004796), you may encounter the following error:
 
 :::warning
 ERROR:root:Error generating response: Error code: 400 - {'error': {'code': 'Request is badly formated', 'message': 'Resource Id is badly formed or from wrong namespace: NA'}}
 2024-11-26T18:57:08.224640325Z ERROR:root:Response content: b'{"error":{"code":"Request is badly formated","message":"Resource Id is badly formed or from wrong namespace: NA"}}'
 :::
 
-I had issues, when attempting to call the Azure OpenAI endpoint from a container app, using a Managed Identity. The error message that was getting returned to my App was:
+<!--truncate-->
+
+I had issues when attempting to call the Azure OpenAI endpoint from an [Azure Container App](https://learn.microsoft.com/azure/container-apps/overview?WT.mc_id=AZ-MVP-5004796) using a Managed Identity. The error message that was getting returned to my App was:
 
 :::warning
 An error generating a reponse.
@@ -68,9 +70,9 @@ After some digging, **I found that the [customSubDomainName](https://learn.micro
 Custom subdomain names are required to enable features like Microsoft Entra ID for authentication.
 :::
 
-So after updating the Azure OpenAI resource to use the subdomain, updating my environment variables to use the right Azure OpenAI endpoint _(and making sure that the CLIENT_ID of the User Assigned Managed identity is correct)_ I was able to successfully call the Azure OpenAI endpoint using the Managed Identity.
+So after updating the Azure OpenAI resource to use the subdomain, updating my environment variables to use the right Azure OpenAI endpoint _(and making sure that the CLIENT_ID of the User Assigned Managed identity is correct)_ I was able to call the Azure OpenAI endpoint using the Managed Identity successfully.
 
 ![Azure OpenAI](images/App_SuccessfulTest.png)
 
 
-![Azure OpenAI](/images/ContainerApp_EnvironmentVariabnles.png)
+![Azure OpenAI](images/ContainerApp_EnvironmentVariabnles.png)
