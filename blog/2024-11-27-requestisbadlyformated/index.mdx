@@ -22,8 +22,10 @@ description: Learn how to resolve the 'Request is badly formatted' error when us
 When attempting to call [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796) using a [Managed Identity](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview?WT.mc_id=AZ-MVP-5004796), you may encounter the following error:
 
 :::warning
+```plaintext
 ERROR:root:Error generating response: Error code: 400 - {'error': {'code': 'Request is badly formated', 'message': 'Resource Id is badly formed or from wrong namespace: NA'}}
 2024-11-26T18:57:08.224640325Z ERROR:root:Response content: b'{"error":{"code":"Request is badly formated","message":"Resource Id is badly formed or from wrong namespace: NA"}}'
+```
 :::
 
 <!--truncate-->
