@@ -1,0 +1,75 @@
+---
+title: Request is badly formatted Error with Azure OpenAI
+metaDescription: Learn how to resolve the 'Request is badly formatted' error when using Azure OpenAI with Managed Identity in a container app.
+date: 2024-11-26T19:48:56.888Z
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: azure/openai-request-badly-formatted
+keywords:
+  - azure
+  - openai
+  - container apps
+  - managed identity
+  - error handling
+  - custom subdomain
+description: Learn how to resolve the 'Request is badly formatted' error when using Azure OpenAI with Managed Identity in a container app.
+---
+
+When attempting to call Azure OpenAI, using a MAnaged Identity, you may encounter the following error:
+
+:::warning
+ERROR:root:Error generating response: Error code: 400 - {'error': {'code': 'Request is badly formated', 'message': 'Resource Id is badly formed or from wrong namespace: NA'}}
+2024-11-26T18:57:08.224640325Z ERROR:root:Response content: b'{"error":{"code":"Request is badly formated","message":"Resource Id is badly formed or from wrong namespace: NA"}}'
+:::
+
+I had issues, when attempting to call the Azure OpenAI endpoint from a container app, using a Managed Identity. The error message that was getting returned to my App was:
+
+:::warning
+An error generating a reponse.
+:::
+
+![Error](/images/App_AnErrorGeneratingReponse.png)
+
+After enabling some logging on my pyhon application, I was able to review the Console Logs of my Container _(running in a Container Apps environment)_ and found the following error message:
+
+![Error](/images/Container_ErrorGenertingResponse.png)
+
+After some testing, I was able to confirm using the API Keys that I could receive a response, but when using the Managed Identity, I was getting the error message.
+
+My Azure OpenAI instance, was created with Infrastructure as Code, and noticed that my endpoint of my Azure OpenAI was:
+
+```plaintext
+https://eastus2.api.cognitive.microsoft.com/
+```
+
+![Azure OpenAI](/images/AzureOpenAI_Bad_CognitiveServicesEndpoint.png)
+
+And on a Azure OpenAI instance that was created in the Portal, the endpoint was:
+
+```plaintext
+https://azureopenaitestlol.openai.azure.com/
+```
+
+So I did a compare between the two resources:
+
+![Azure OpenAI](/images/AzureOpenAI_Diff_CognitiveServicesEndpoint.png)
+
+And my IaC created Azure OpenAI resource was missing the: 
+
+* customSubDomainName
+
+After some digging, **I found that the [customSubDomainName](https://learn.microsoft.com/azure/ai-services/cognitive-services-custom-subdomains?WT.mc_id=AZ-MVP-5004796) is the key to the issue.** When using a Managed Identity, the customSubDomainName is required to be set for Entra ID to be able to authenticate the request
+
+:::info
+Custom subdomain names are required to enable features like Microsoft Entra ID for authentication.
+:::
+
+So after updating the Azure OpenAI  resource to use the subdomain, updated my environment variables to use the right Azure OpenAI endpoint _(and make sure that the CLIENT_ID of the User Assigned Managed identity is using is correct)_ I was able to successfully call the Azure OpenAI endpoint using the Managed Identity.
+
+![Azure OpenAI](/images/App_SuccessfulTest.png)
+
+![Azure OpenAI](/images/ContainerApp_EnvironmentVariabnles.png)
