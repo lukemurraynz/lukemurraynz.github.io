@@ -163,8 +163,8 @@ function Generate-HTMLReport {
     <p>Comparison of <a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-services-resource-providers?WT.mc_id=AZ-MVP-5004796">provider namespaces</a> between <strong>$location1</strong> and <strong>$location2</strong> as of $currentDate.</p>
     <table>
         <tr>
-            <th>$location1</th>
-            <th>$location2</th>
+            <th>$location1 ($($providerNamespaces1.Count))</th>
+            <th>$location2 ($($providerNamespaces2.Count))</th>
             <th>Missing in $location1</th>
         </tr>
 "@
