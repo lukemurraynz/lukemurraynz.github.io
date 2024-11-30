@@ -40,6 +40,67 @@ The PowerShell script can be found below:
 # Get the current date in an easy-to-read format
 $currentDate = Get-Date -Format "MMMM dd, yyyy"
 
+[string]$location1 = "New Zealand North"
+[string]$location2 = "Australia East"
+
+
+
+function Get-ProviderNamespaces {
+    param (
+        [string]$location
+    )
+
+    # Validate location parameter
+    if (-not $location) {
+        throw "Location parameter is required."
+    }
+
+    try {
+        $providers = Get-AzResourceProvider
+        $providerNamespaces = @()
+
+        foreach ($provider in $providers) {
+            $providerNamespace = $provider.ProviderNamespace
+            $resourceTypes = $provider.ResourceTypes | Where-Object { $_.Locations -contains $location }
+            
+            if ($resourceTypes) {
+                $providerNamespaces += $providerNamespace
+            }
+        }
+
+        return $providerNamespaces | Sort-Object -Unique
+    }
+    catch {
+        Write-Error "Failed to get provider namespaces for location $location : $_"
+        throw
+    }
+}
+
+function Create-ComparisonTable {
+    param (
+        [array]$providerNamespaces1,
+        [array]$providerNamespaces2
+    )
+    $table = @()
+    $maxLength = [math]::Max($providerNamespaces1.Count, $providerNamespaces2.Count)
+
+    for ($i = 0; $i -lt $maxLength; $i++) {
+        $provider1 = if ($i -lt $providerNamespaces1.Count) { $providerNamespaces1[$i] } else { "" }
+        $provider2 = if ($i -lt $providerNamespaces2.Count) { $providerNamespaces2[$i] } else { "" }
+        $missingInLocation1 = if ($provider2 -and -not $providerNamespaces1.Contains($provider2)) { $provider2.Trim() } else { "" }
+
+        if ($provider1 -or $provider2 -or $missingInLocation1) {
+            $table += [PSCustomObject]@{
+                "$location1 ($($providerNamespaces1.Count))" = $provider1
+                "$location2 ($($providerNamespaces2.Count))"    = $provider2
+                "Missing in $location1"                      = $missingInLocation1
+            }
+        }
+    }
+
+    return $table
+}
+
 # Generate the HTML report with the date in the title
 function Generate-HTMLReport {
     param (
