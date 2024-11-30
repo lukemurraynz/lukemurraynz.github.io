@@ -26,10 +26,12 @@ To do so, I wrote a script that uses the Azure CLI to query the [provider namesp
 
 ![Azure Region Provider Comparison](images/RegionCompare_AustraliaVsNZN.png)
 
-There is bound to be differences between the regions, especially when Strategic Serviecs, such as Azure OpenAI _(Cognitive Services)_ is involved, especially for such a new region, especially at the time of writing when its possible not all Foundational and Mainstream services, have been deployed.
+<!--truncate-->
+
+There is bound to be differences between the regions, especially when Strategic Services, such as Azure OpenAI _(Cognitive Services)_ is involved, especially for such a new region, especially at the time of writing when its possible not all Foundational and Mainstream services, have been deployed.
 
 :::warning
-Using the Providers is not a full-proof way of comparing the regions, however for my purporses it largely helps to identify the capabilities especially when compared to the [Azure services table](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-services-resource-providers?WT.mc_id=AZ-MVP-5004796). Its also worth mentioning, that this comparison won't touch on some services or capabilities, that may be may have preview capabilities delivered to specific regions as a sub feature of that namespace.
+Using the Providers is not a full-proof way of comparing the regions, however for my purposes it largely helps to identify the capabilities especially when compared to the [Azure services table](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-services-resource-providers?WT.mc_id=AZ-MVP-5004796). Its also worth mentioning, that this comparison won't touch on some services or capabilities, that may be may have preview capabilities delivered to specific regions as a sub feature of that namespace.
 :::
 
 The PowerShell script can be found below:
@@ -152,6 +154,6 @@ catch {
 }
 ```
 
-It will output a HTML report in the directory thats its ran from _(make sure you are authentiated to Azure first and have the [Az PowerShell](https://learn.microsoft.com/powershell/azure/new-azureps-module-az?view=azps-13.0.0&WT.mc_id=AZ-MVP-5004796) modules installed)_:
+It will output a HTML report in the directory thats its ran from _(make sure you are authenticated to Azure first and have the [Az PowerShell](https://learn.microsoft.com/powershell/azure/new-azureps-module-az?view=azps-13.0.0&WT.mc_id=AZ-MVP-5004796) modules installed)_:
 
 ![Azure Region Provider Comparison](images/RegionCompare_HTMLReport.jpg)
