@@ -1,7 +1,7 @@
 ---
 title: Authenticating Azure OpenAI with Managed Identity
 metaDescription: Learn how to authenticate with Azure OpenAI using an API key for local development and Managed Identities for production in Python.
-date: 2024-12-08T19:21:20.088Z
+date: 2024-12-08T19:31:27.637Z
 tags:
   - Azure
   - Python
@@ -74,5 +74,9 @@ else:
 ```
 
 When deployed to an [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview?WT.mc_id=AZ-MVP-5004796) environment, I have set the operating system environment variables set to use Managed Identities. This is done by setting the `AUTHENTICATION` environment variable to `AZURE` and using the [DefaultAzureCredential](https://learn.microsoft.com/en-us/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&WT.mc_id=AZ-MVP-5004796) class to authenticate with Azure services.
+
+:::tip
+This is assuming you are using the System Managed identity; however, if you want to run with a User Assigned Managed identity. Make sure you have an environment variable of **AZURE_CLIENT_ID** to the value of the CLIENT ID of the User Assigned managed identity.
+:::
 
 ![Container Apps - Environment variables](images/ContainerApps_AzureOpenAIEnvVariables.png)
