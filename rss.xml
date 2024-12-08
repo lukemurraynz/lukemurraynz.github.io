@@ -15,7 +15,7 @@
             <guid>https://luke.geek.nz/azure/authenticating-azureopenai-python/</guid>
             <pubDate>Sun, 08 Dec 2024 19:31:27 GMT</pubDate>
             <description><![CDATA[Learn how to authenticate with Azure OpenAI using an API key for local development and Managed Identities for production in Python.]]></description>
-            <content:encoded><![CDATA[<p>When developing a Python application that interacts with <a href="https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure OpenAI</a>, you may want to authenticate with an API key for testing, but in Production, you should use Managed Identities within Microsoft Azure.</p>
+            <content:encoded><![CDATA[<p>When developing a Python application that interacts with <a href="https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure OpenAI</a>, you may want to authenticate with an API key for testing, however in Production, you should use Managed Identities within Microsoft Azure.</p>
 <p>In this article, we will look at how to authenticate with <a href="https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure OpenAI</a> using an API key in Python for local development, then using an environment variable switch to authenticating using <a href="https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">managed Identities</a>.</p>
 <p>The true hero for Azure authentication is the <a href="https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">DefaultAzureCredential</a> class from the Azure Identity library. This class can authenticate with Azure services using various methods, including Managed Identity, Shared Token Cache, and environment variables.</p>
 <p><img decoding="async" loading="lazy" alt="DefaultAzureCredential" src="https://luke.geek.nz/assets/images/DefaultAzureCredential-78d99839c796bbb8199cd607725fdde4.png" width="1480" height="861" class="img_ev3q"></p>
@@ -39,12 +39,6 @@
 <p>When deployed to an <a href="https://learn.microsoft.com/azure/container-apps/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Container Apps</a> environment, I have set the operating system environment variables set to use Managed Identities. This is done by setting the <code>AUTHENTICATION</code> environment variable to <code>AZURE</code> and using the <a href="https://learn.microsoft.com/en-us/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">DefaultAzureCredential</a> class to authenticate with Azure services.</p>
 <p><img decoding="async" loading="lazy" alt="Container Apps - Environment variables" src="https://luke.geek.nz/assets/images/ContainerApps_AzureOpenAIEnvVariables-650eb1d409e0b93874b81dca4ea1adb9.png" width="2152" height="1103" class="img_ev3q"></p>]]></content:encoded>
             <category>Azure</category>
-            <category>Python</category>
-            <category>Authentication</category>
-            <category>API Key</category>
-            <category>Managed Identities</category>
-            <category>OpenAI</category>
-            <category>ContainerApps</category>
         </item>
         <item>
             <title><![CDATA[Azure Region Provider Comparison]]></title>

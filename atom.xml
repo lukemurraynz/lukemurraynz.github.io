@@ -14,7 +14,7 @@
         <link href="https://luke.geek.nz/azure/authenticating-azureopenai-python/"/>
         <updated>2024-12-08T19:31:27.637Z</updated>
         <summary type="html"><![CDATA[Learn how to authenticate with Azure OpenAI using an API key for local development and Managed Identities for production in Python.]]></summary>
-        <content type="html"><![CDATA[<p>When developing a Python application that interacts with <a href="https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure OpenAI</a>, you may want to authenticate with an API key for testing, but in Production, you should use Managed Identities within Microsoft Azure.</p>
+        <content type="html"><![CDATA[<p>When developing a Python application that interacts with <a href="https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure OpenAI</a>, you may want to authenticate with an API key for testing, however in Production, you should use Managed Identities within Microsoft Azure.</p>
 <p>In this article, we will look at how to authenticate with <a href="https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure OpenAI</a> using an API key in Python for local development, then using an environment variable switch to authenticating using <a href="https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">managed Identities</a>.</p>
 <p>The true hero for Azure authentication is the <a href="https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">DefaultAzureCredential</a> class from the Azure Identity library. This class can authenticate with Azure services using various methods, including Managed Identity, Shared Token Cache, and environment variables.</p>
 <p><img decoding="async" loading="lazy" alt="DefaultAzureCredential" src="https://luke.geek.nz/assets/images/DefaultAzureCredential-78d99839c796bbb8199cd607725fdde4.png" width="1480" height="861" class="img_ev3q"></p>
@@ -42,12 +42,6 @@
             <uri>https://luke.geek.nz</uri>
         </author>
         <category label="Azure" term="Azure"/>
-        <category label="Python" term="Python"/>
-        <category label="Authentication" term="Authentication"/>
-        <category label="API Key" term="API Key"/>
-        <category label="Managed Identities" term="Managed Identities"/>
-        <category label="OpenAI" term="OpenAI"/>
-        <category label="ContainerApps" term="ContainerApps"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Azure Region Provider Comparison]]></title>
