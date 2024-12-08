@@ -4,12 +4,6 @@ metaDescription: Learn how to authenticate with Azure OpenAI using an API key fo
 date: 2024-12-08T19:31:27.637Z
 tags:
   - Azure
-  - Python
-  - Authentication
-  - API Key
-  - Managed Identities
-  - OpenAI
-  - ContainerApps
 categories:
   - Azure
 authors:
@@ -17,10 +11,16 @@ authors:
 slug: azure/authenticating-azureopenai-python
 keywords:
   - azure
+  - Python
+  - Authentication
+  - API Key
+  - Managed Identities
+  - OpenAI
+  - ContainerApps
 description: Learn how to authenticate with Azure OpenAI using an API key for local development and Managed Identities for production in Python.
 ---
 
-When developing a Python application that interacts with [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796), you may want to authenticate with an API key for testing, but in Production, you should use Managed Identities within Microsoft Azure.
+When developing a Python application that interacts with [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796), you may want to authenticate with an API key for testing, however in Production, you should use Managed Identities within Microsoft Azure.
 
 In this article, we will look at how to authenticate with [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796) using an API key in Python for local development, then using an environment variable switch to authenticating using [managed Identities](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview?WT.mc_id=AZ-MVP-5004796).
 
