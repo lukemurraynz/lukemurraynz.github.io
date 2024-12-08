@@ -1,7 +1,7 @@
 ---
-title: Authenticating Azure OpenAI with API Key and Managed Identities in Python
+title: Authenticating Azure OpenAI with Managed Identity
 metaDescription: Learn how to authenticate with Azure OpenAI using an API key for local development and Managed Identities for production in Python.
-date: 
+date: 2024-12-08T19:21:20.088Z
 tags:
   - Azure
   - Python
@@ -27,6 +27,8 @@ In this article, we will look at how to authenticate with [Azure OpenAI](https:/
 <!--truncate-->
 
 The true hero for Azure authentication is the [DefaultAzureCredential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&WT.mc_id=AZ-MVP-5004796) class from the Azure Identity library. This class is capable of authenticating with Azure services using a variety of methods, including Managed Identity, Shared Token Cache, and environment variables.
+
+![DefaultAzureCredential](images/DefaultAzureCredential.png)
 
 :::info
 This code snippet demonstrates how to load and validate environment variables needed to connect to Azure OpenAI services. Here's a step-by-step breakdown:
