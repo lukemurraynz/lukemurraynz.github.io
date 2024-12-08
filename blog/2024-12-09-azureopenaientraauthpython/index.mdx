@@ -14,19 +14,19 @@ categories:
   - Azure
 authors:
   - Luke
-slug: azure/authenticating-azure-openai-python
+slug: azure/authenticating-azureopenai-python
 keywords:
   - azure
 description: Learn how to authenticate with Azure OpenAI using an API key for local development and Managed Identities for production in Python.
 ---
 
-When developing a python application that interacts with [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796), you may want to authenticate with an API key for testing, but in Production you should make use of Managed Identities within Microsoft Azure.
+When developing a Python application that interacts with [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796), you may want to authenticate with an API key for testing, but in Production, you should use Managed Identities within Microsoft Azure.
 
 In this article, we will look at how to authenticate with [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796) using an API key in Python for local development, then using an environment variable switch to authenticating using [managed Identities](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview?WT.mc_id=AZ-MVP-5004796).
 
 <!--truncate-->
 
-The true hero for Azure authentication is the [DefaultAzureCredential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&WT.mc_id=AZ-MVP-5004796) class from the Azure Identity library. This class is capable of authenticating with Azure services using a variety of methods, including Managed Identity, Shared Token Cache, and environment variables.
+The true hero for Azure authentication is the [DefaultAzureCredential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&WT.mc_id=AZ-MVP-5004796) class from the Azure Identity library. This class can authenticate with Azure services using various methods, including Managed Identity, Shared Token Cache, and environment variables.
 
 ![DefaultAzureCredential](images/DefaultAzureCredential.png)
 
@@ -35,17 +35,18 @@ This code snippet demonstrates how to load and validate environment variables ne
 
 1. **Load Environment Variables**: The code first attempts to load environment variables from the operating system. If any of the required variables are missing, it then tries to load them from a `.env` file named `azureopenai.env`.
 
-2. **Check for Missing Variables**: It defines a list of required environment variables and checks if any of them are missing. If any required variables are not found, it raises an error indicating which variables are missing.
+2. **Check for Missing Variables**: This function defines a list of required environment variables and checks for missing ones. If any required variables are not found, an error indicates which variables are missing.
 
-3. **Authentication Setup**: The code checks if the `AUTHENTICATION` environment variable is set to `AZURE`. If it is, it uses Azure's DefaultAzureCredential to get a bearer token for authentication. Otherwise, it uses an API key for authentication.
+3. **Authentication Setup**: The code checks if the `AUTHENTICATION` environment variable is set to `AZURE`. If it is, it uses Azure's DefaultAzureCredential to get a bearer token for authentication. Otherwise, it uses an API key.
 
 4. **Initialize AzureOpenAI Client**: Finally, it initializes the `AzureOpenAI` client with the appropriate authentication method (either bearer token or API key) and the necessary API version and endpoint.
 :::
 
 
-The python code is as follows:
+The Python code is as follows:
 
 ```python
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 # Load environment variables from OS and .env file
 ENV = {var: os.getenv(var) for var in ["AZURE_OPENAI_ENDPOINT", "AZURE_OPENAI_KEY", "AZURE_OPENAI_API_VERSION", "AZURE_OPENAI_CHATGPT_DEPLOYMENT"]}
 if any(value is None for value in ENV.values()):
@@ -72,6 +73,6 @@ else:
     )
 ```
 
-When deployed to an [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview?WT.mc_id=AZ-MVP-5004796) environment, I have the operating system environment variables set to use Managed Identities. This is done by setting the `AUTHENTICATION` environment variable to `AZURE` and using the [DefaultAzureCredential](https://learn.microsoft.com/en-us/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&WT.mc_id=AZ-MVP-5004796) class to authenticate with Azure services.
+When deployed to an [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview?WT.mc_id=AZ-MVP-5004796) environment, I have set the operating system environment variables set to use Managed Identities. This is done by setting the `AUTHENTICATION` environment variable to `AZURE` and using the [DefaultAzureCredential](https://learn.microsoft.com/en-us/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&WT.mc_id=AZ-MVP-5004796) class to authenticate with Azure services.
 
 ![Container Apps - Environment variables](images/ContainerApps_AzureOpenAIEnvVariables.png)
