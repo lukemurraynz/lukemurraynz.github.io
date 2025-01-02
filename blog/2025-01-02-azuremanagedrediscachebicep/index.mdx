@@ -24,16 +24,16 @@ description: Learn how to deploy Azure Managed Redis using Bicep with code examp
 
 [Azure Managed Redis](https://learn.microsoft.com/azure/azure-cache-for-redis/managed-redis/managed-redis-overview?WT.mc_id=AZ-MVP-5004796) announced during [Microsoft Ignite 2024](https://techcommunity.microsoft.com/blog/AppsonAzureBlog/introducing-azure-managed-redis-cost-effective-caching-for-your-ai-apps/4299104?WT.mc_id=AZ-MVP-5004796) in Public Preview. 
 
-This is a a new fully-managed, first-party Redis offering in Microsoft Azure. Azure Managed Redis is available today in public preview. Microsoft Azure is the first major cloud service provider to offer its customers a licensed, multi-tiered Redis service.
+This is a new, fully-managed, first-party Redis offering in Microsoft Azure. Azure Managed Redis is available today in public preview. Microsoft Azure is the first major cloud service provider to offer customers a licensed, multi-tiered Redis service.
 
-This article will show you how to deploy an Azure Managed Redis instance using [Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/overview?tabs=bicep&WT.mc_id=AZ-MVP-5004796). Bicep is a Domain Specific Language (DSL) for deploying Azure resources declaratively. It aims to drastically simplify the authoring experience with a cleaner syntax and better support for modularity and code re-use.
+This article will show you how to deploy an Azure Managed Redis instance using [Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/overview?tabs=bicep&WT.mc_id=AZ-MVP-5004796). Bicep is a Domain Specific Language (DSL) for deploying Azure resources declaratively. It aims to drastically simplify the authoring experience with a cleaner syntax and better support for modularity and code reuse.
 
 {/* truncate */}
 
 :::info
 Every customer that migrates from any Azure Cache for Redis tier to Azure Managed Redis will gain access to years of Redis innovation. This builds on our existing integration with Microsoft Azure on the Enterprise and Enterprise Flash tiers for Azure Cache for Redis. With the introduction of Azure Managed Redis, users on Azure Cache for Redis can now access features that were previously found only on the Azure Cache for Redis Enterprise and Enterprise Flash tiers.
 
-Azure Managed Redis delivers on the best scale and SLA in the industry, building on the advancements first introduced by the Azure Cache for Redis Enterprise tier. Users can now experience up to 99.999% availability when leveraging multi-region Active-Active, the highest availability offered in the market, powered by CRDT. Apps built with Azure Managed Redis can deliver down to sub-millisecond local latency to users globally and simultaneously no matter which continent or region they’re located on.
+Azure Managed Redis delivers on the best scale and SLA in the industry, building on the advancements first introduced by the Azure Cache for the Redis Enterprise tier. Users can now experience up to 99.999% availability when leveraging multi-region Active-Active, the highest availability offered in the market, powered by CRDT. Apps built with Azure Managed Redis can deliver down to sub-millisecond local latency to users globally and simultaneously, no matter which continent or region they’re located on.
 :::
 
 
@@ -101,15 +101,15 @@ resource redisCache 'Microsoft.Cache/redisEnterprise/databases@2024-09-01-previe
 }
 ```
 
-This part sets up a Redis Cache Database within the Redis Enterprise Cache instance. It configures properties such as access keys authentication, eviction policy, clustering policy, modules, and port.
+This part sets up a Redis Cache Database within the Redis Enterprise Cache instance. It configures properties such as access key authentication, eviction policy, clustering policy, modules, and port.
 
-As a bonus, you can also link API Management to the Azure Managed Redis resource. This is a small snippet of the Connection string for API Management:
+You can also link API Management to the Azure Managed Redis resource as a bonus. This is a small snippet of the Connection string for API Management:
 
 ```bicep
 redisCacheConnectionString: '${redisEnterprise.properties.hostName}:${10000},ssl=True,abortConnect=False'
 ```
 
-This is using Entra ID authentication to connect to the REdis Cache using the following role assignment to the API System Managed Identity:
+This is using Entra ID authentication to connect to the Redis Cache using the following role assignment to the API System Managed Identity:
 
 ```bicep
 // Redis Access Policy Assignment
