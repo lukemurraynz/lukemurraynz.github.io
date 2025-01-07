@@ -19,11 +19,11 @@ keywords:
 description: Learn how to set up pre-commit hooks in GitHub Codespaces for Terraform Infrastructure as Code (IaC) development.
 ---
 
-Pre-commit hooks are automated scripts or checks that run before a developer commits code to a repository. They are particularly useful in the context of infrastructure as code _(IaC)_ development, such as when working with Terraform. 
+Pre-commit hooks are automated scripts or checks running before developers commit code to a repository. They are particularly useful in the context of infrastructure, such as code _(IaC)_ development, when working with Terraform. 
 
-These hooks serve as an early line of defense against common issues, ensuring code quality and consistency before changes are committed to version control.
+These hooks serve as an early defense against common issues, ensuring code quality and consistency before changes are committed to version control.
 
-Today we are going to discuss precommit with GitHub Codespaces.
+Today, we are going to discuss precommit with GitHub Codespaces.
 
 {/* truncate */}
 
@@ -31,8 +31,8 @@ Today we are going to discuss precommit with GitHub Codespaces.
 [Pre-commit hooks](https://pre-commit.com/) offer several advantages in the IaC development lifecycle:
 
 * Early Error Detection: They catch syntax errors, formatting issues, and potential security vulnerabilities before code is committed.
-* Consistency: Hooks enforce coding standards and best practices across the development team.
-* Time-Saving: By automating routine checks, pre-commit hooks reduce the need for manual review and minimize the likelihood of failed CI/CD pipelines.
+* Consistency: Hooks enforces coding standards and best practices across the development team.
+* Time-saving: By automating routine checks, pre-commit hooks reduce the need for manual review and minimize the likelihood of failed CI/CD pipelines.
 * Security: They can identify potential security risks in infrastructure code early in the development process.
 
 ![Pre-commit hooks](images/pre-commit-hook-flow.png)
@@ -45,7 +45,7 @@ Pre-commits work well in the Inner Loop of the Developer/Cloud Engineer workflow
 :::
 
 :::warning
-While pre-commit hooks can be valuable tools for maintaining code quality, there are several concerns and potential drawbacks to be aware of when implementing them. The use of GitHub Codespaces, can help with some of the drawbacks, especially around consistency and setup, however consider the tradeoffs of what pre-commit hooks you want, and how they may impact your development workflow.
+While pre-commit hooks can be valuable tools for maintaining code quality, there are several concerns and potential drawbacks to be aware of when implementing them. The use of GitHub Codespaces can help with some of the drawbacks, especially around consistency and setup, however consider the tradeoffs of what pre-commit hooks you want and how they may impact your development workflow.
 
 Some potential drawbacks include:
 
@@ -55,18 +55,18 @@ Some potential drawbacks include:
 * Strict pre-commit checks might discourage developers from experimenting or pushing work-in-progress code to their branches
 * Developers might be tempted to bypass hooks using git commit flags, defeating the purpose of the checks
 
-There's a delicate balance between comprehensive checks and maintaining a fast, frictionless commit process. Not all checks need to be in pre-commit hooks; some can be deferred to CI/CD pipelines or pre-push hooks, and because of the individual nature of having the precommit setup for each developer, and the developer able to force the commit _(ignoring the precommit checks)_ it is important to have a good culture around the use of precommit hooks, and any important checks need to be implemented in a CI/CD pipeline, for consistency.
+There's a delicate balance between comprehensive checks and maintaining a fast, frictionless commit process. Not all checks need to be in pre-commit hooks; some can be deferred to CI/CD pipelines or pre-push hooks, and because of the individual nature of having the pre-commit setup for each developer and the developer able to force the commit _(ignoring the pre-commit checks)_ it is important to have a good culture around the use of pre-commit hooks, and any important checks need to be implemented in a CI/CD pipeline, for consistency.
 :::
 
-So let us get started with setting up precommit hooks in GitHub Codespaces. The same premise can be applied outside of a Codespace as well, but for this article, we will focus on a Codespace.
+So, let us get started with setting up pre-commit hooks in GitHub Codespaces. The same premise can also be applied outside of a Codespace, but for this article, we will focus on a Codespace.
 
-The guts of this is the [pre-commit framework](https://pre-commit.com/), which is a Python package that manages pre-commit hooks for you. It is a framework for managing and maintaining multi-language pre-commit hooks. The pre-commit hooks are run against the files that are staged for commit, and if any of the hooks fail, the commit is rejected.
+The guts of this is the [pre-commit framework](https://pre-commit.com/), a Python package that manages pre-commit hooks for you. It is a framework for managing and maintaining multi-language pre-commit hooks. The pre-commit hooks are run against the files that are staged for commit, and if any of the hooks fail, the commit is rejected.
 
-> Git hook scripts are useful for identifying simple issues before submission to code review. We run our hooks on every commit to automatically point out issues in code such as missing semicolons, trailing whitespace, and debug statements. By pointing these issues out before code review, this allows a code reviewer to focus on the architecture of a change while not wasting time with trivial style nitpicks.
+> Git hook scripts are useful for identifying simple issues before submission to code review. We run our hooks on every commit to automatically point out issues in code, such as missing semicolons, trailing whitespace, and debug statements. Pointing these issues out before code review allows a code reviewer to focus on the architecture of a change while not wasting time with trivial style nitpicks.
 
 For the Codespace, we will add the pre-commit framework to the Codespace, then add a script to initialize the pre-commit hooks, then configure the pre-commit hooks to run the checks we want.
 
-Lets add in the pre-commit framework to the Codespace devcontainer.json.
+Let's add the pre-commit framework to the Codespace devcontainer.json.
 
 ```json
 "features": {
@@ -75,7 +75,7 @@ Lets add in the pre-commit framework to the Codespace devcontainer.json.
     },
 ```
 
-Once added, we need to add a postCreateCommand to initialise the pre-commit framework, like so:
+Once added, we need to add a postCreateCommand to initialize the pre-commit framework, like so:
 
 ```json
 "postCreateCommand": "pre-commit install",
@@ -83,7 +83,7 @@ Once added, we need to add a postCreateCommand to initialise the pre-commit fram
 
 This will run after the GitHub Codespace has been created and running.
 
-So an example for our Terraform IaC would look like this:
+So, an example for our Terraform IaC would look like this:
 
 ```json title=".devcontainer/devcontainer.json"
   // "features" section allows adding and configuring predefined features or tools in the development container.
@@ -111,7 +111,7 @@ So an example for our Terraform IaC would look like this:
   ```
 
   :::tip
-  You can view a version of the devcontainer.json file [here](https://github.com/lukemurraynz/Codespace_IaC_Coding/blob/main/.devcontainer/devcontainer.json). My [lmurraynz/Codespace_IaC_Coding](https://github.com/lukemurraynz/Codespace_IaC_Coding) repository has a devcontainer.json file that has the pre-commit framework added in. The intention is that you can take this repository as a template then modify and remove it as you need to.
+  You can view a version of the devcontainer.json file [here](https://github.com/lukemurraynz/Codespace_IaC_Coding/blob/main/.devcontainer/devcontainer.json). My [lmurraynz/Codespace_IaC_Coding](https://github.com/lukemurraynz/Codespace_IaC_Coding) repository has a devcontainer.json file that has the pre-commit framework added in. The intention is that you can take this repository as a template and then modify and remove it as you need to.
   ::: 
 
   Once the Codespace has been created, you can then add a .pre-commit-config.yaml file to the root of your repository. This file will contain the configuration for the pre-commit hooks you want to run.
@@ -197,24 +197,24 @@ Here's a breakdown of what each part does:
 
 This configuration ensures that various checks and fixes are automatically applied to the codebase before commits are made, helping to maintain code quality and security.
 
-So lets spin up our Codespace and see the pre-commit hooks in action.
+So, let's spin up our Codespace and see the pre-commit hooks in action.
 
 The first time you run this, it will take a while as it will download the pre-commit hooks and install them. Be mindful of this if you are running this in a new Codespace environment.
 
 ![Pre-commit install](images/Precommit_Codespace_Terraform_Run.gif)
 
-As you can see from the precommit output, I am missing some depedencies installed, ie Terraform docs, but we can see terraform format ran, and the trailing whitespace check ran and fixed the issue, and tflint ran and came back with some issues, such as missing provider versions, and checkov ran a security check, which came back with some failed checks, such as Public access enabled and latest TLS version not set.
+As you can see from the pre-commit output, I am missing some dependencies installed, i.e., Terraform docs, but we can see Terraform format ran, the trailing whitespace check ran and fixed the issue, and tflint ran and came back with some issues, such as missing provider versions, and checkov ran a security check, which came back with some failed checks, such as Public access enabled and latest TLS version not set.
 
-Hopefully you can see the power of the precommit, and as these failed, nothing was commited to the repository, so I can fix these issues before I commit the code.
+Hopefully, you can see the power of the pre-commit, and as these failed, nothing was committed to the repository, so I can fix these issues before I commit the code.
 
 :::info
-If needed, we can skip the precommit checks and force push the changes through with the following command:
+If needed, we can skip the pre-commit checks and force-push the changes through with the following command:
 
 git push --no-verify
 
-This will bypass the precommit checks, and force the commit through. There is a [Visual Studio Code extension - Git push(no verify)
-](https://marketplace.visualstudio.com/items?itemName=DevEscalus.git-push-no-verify) as well, that adds a noverify button to the commit dialog, so you can bypass the precommit checks if needed.
+This will bypass the pre-commit checks and force the commit through. There is a [Visual Studio Code extension - Git push(no verify)
+](https://marketplace.visualstudio.com/items?itemName=DevEscalus.git-push-no-verify) as well, which adds a noverify button to the commit dialog, so you can bypass the pre-commit checks if needed.
 :::
 
-Hopefully this gives you a great starting block, to add in precommit hooks to your Codespace and workflow, and help with secure and reliable IaC development. You can find a list of common prehooks here: [featured hooks
-](https://pre-commit.com/hooks.html), and if your game - you can create your own.
+Hopefully, this will give you a great starting block for adding pre-commit hooks to your Codespace and workflow and help with secure and reliable IaC development. You can find a list of common prehooks here: [featured hooks
+](https://pre-commit.com/hooks.html), and if your game - you can create your own and find other hooks people have created - such as this Azure Bicep [Azure4DevOps/check-azure-bicep](https://github.com/Azure4DevOps/check-azure-bicep) one.
