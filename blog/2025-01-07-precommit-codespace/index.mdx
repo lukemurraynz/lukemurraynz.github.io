@@ -218,3 +218,11 @@ This will bypass the pre-commit checks and force the commit through. There is a 
 
 Hopefully, this will give you a great starting block for adding pre-commit hooks to your Codespace and workflow and help with secure and reliable IaC development. You can find a list of common prehooks here: [featured hooks
 ](https://pre-commit.com/hooks.html), and if your game - you can create your own and find other hooks people have created - such as this Azure Bicep [Azure4DevOps/check-azure-bicep](https://github.com/Azure4DevOps/check-azure-bicep) one.
+
+:::tip
+You can run  `pre-commit autoupdate` to update all the pre-commit hook versions. For example, when I ran it, I got:
+
+* [https://github.com/bridgecrewio/checkov.git] updating 3.2.346 -> 3.2.350
+
+Which updated my `.pre-commit-config.yaml` file with the latest version without having to go and check each one manually.
+:::
