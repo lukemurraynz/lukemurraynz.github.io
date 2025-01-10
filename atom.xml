@@ -2,12 +2,139 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://luke.geek.nz/</id>
     <title>luke.geek.nz Blog</title>
-    <updated>2025-01-07T08:06:54.566Z</updated>
+    <updated>2025-01-10T09:54:15.923Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://luke.geek.nz/"/>
     <subtitle>luke.geek.nz Blog</subtitle>
     <icon>https://luke.geek.nz/img/favicon.ico</icon>
     <rights>Copyright © 2025 luke.geek.nz.</rights>
+    <entry>
+        <title type="html"><![CDATA[Product Development lifecycle]]></title>
+        <id>https://luke.geek.nz/misc/product-development-lifecycle/</id>
+        <link href="https://luke.geek.nz/misc/product-development-lifecycle/"/>
+        <updated>2025-01-10T09:54:15.923Z</updated>
+        <summary type="html"><![CDATA[Learn about the stages of product development PoC, PoT, Prototype, MVP, and Pilot, and how to progress through the lifecycle gates.]]></summary>
+        <content type="html"><![CDATA[<p>PoC, PoT, Prototype, MVP, Pilot - what do they all mean? What is the difference between them, and when should you use them?</p>
+<p>Today, we are going to take a look at a technical Cloud Product Development lifecycle - in my eyes, understanding these terminologies is key to determining:</p>
+<ul>
+<li>What kind of resources <em>(i.e., both technological and human)</em> do you need to dedicate to a product?</li>
+<li>Where should you align lifecycle management with your application or service?</li>
+<li>How likely is it that the the product makes a good market fit or solve an issue?</li>
+<li>Keep your product lean to avoid wasting the wrong resources at the wrong time</li>
+<li>Shift to a product-based mindset</li>
+<li>Focus on innovation and early feedback loops</li>
+</ul>
+<p>And, of course - what to expect when people start using these words, often thrown together in a conversation and sometimes even put in writing in Statement of Works and Requests for Proposals.</p>
+<!-- -->
+<h1>🎨 Design Thinking and Agile</h1>
+<p>Using Design Thinking - <em>(Empathize, Define, Ideate, Prototype, Test, Implement)</em> as a base - a Product needs to align with actual customer needs, it's an iterative process, as a Product or service itself isn't static. We live in a VUCA (Volatile, Uncertain, Complex, Ambiguous) world, where customers expect more from their technology <em>(as they should)</em> to help empower their own needs in a secure and reliable manner.</p>
+<p>Agile is about the speed to adapt, not the velocity to deliver, so if we take in Agile delivery and design thinking methodologies, it is no surprise that we need to break the product lifecycle into specific stages to get faster, more immediate feedback and make sure we are concentrating on the right success metrics for our product at the right time.</p>
+<p><img decoding="async" loading="lazy" alt="Product Development Lifecycle" src="https://luke.geek.nz/assets/images/ProductDevelopmentLifecycle-7044f9dafc006db527e6e07d524f0b71.png" width="4000" height="2250" class="img_ev3q"></p>
+<h1>🛠️ Stages of Product Development Lifecycle</h1>
+<p>If we break down these stages, we have:</p>
+<table><thead><tr><th><strong>Stage</strong></th><th><strong>Description</strong></th><th><strong>Benefits</strong></th><th><strong>Acceptance Criteria</strong></th><th><strong>Resources Needed</strong></th><th><strong>Where Used</strong></th></tr></thead><tbody><tr><td>Ideate</td><td>Generate and prioritize potential solutions for the identified problem based on insights and feasibility.</td><td>Fosters creativity and provides a clear roadmap for experimentation and development.</td><td>Clear problem definition, prioritized ideas based on feasibility, impact, and alignment with user needs.</td><td>Innovation workshops, user interviews, brainstorming tools, and cross-functional collaboration.</td><td>At the beginning of any product development or improvement process.</td></tr><tr><td>PoT (Proof of Technology)</td><td>Validate the technical feasibility of a specific technology or approach without focusing on user needs or business value.</td><td>Establishes whether the technology is feasible and provides initial direction for further exploration.</td><td>Demonstrates core technical capabilities and resolves major uncertainties regarding technology.</td><td>Technical experts, test environments, access to research, and innovation workshops.</td><td>When exploring unproven or novel technologies before deeper investment in development.</td></tr><tr><td>PoC (Proof of Concept)</td><td>Proves that the proposed solution can solve a specific problem, aligning technology with business and user needs.</td><td>Validates alignment of the technology with the desired outcomes and de-risks the solution.</td><td>Demonstrates that the solution addresses the problem effectively under controlled conditions; stakeholder approval is achieved.</td><td>Business analysts, developers, user research teams, and small-scale testing environments.</td><td>Before seeking stakeholder buy-in or funding for further development.</td></tr><tr><td>MVP (Minimum Viable Product)</td><td>The product's first version with enough functionality to address core user needs and gather feedback.</td><td>Accelerates market entry, reduces time-to-value, and collects feedback to prioritize future improvements.</td><td>Achieves user adoption and gathers user engagement, satisfaction, and performance metrics.</td><td>Development teams, product managers, QA testers, analytics tools, and customer success teams.</td><td>To test market fit, validate assumptions, and inform scaling decisions.</td></tr><tr><td>Pilot</td><td>A limited-scale deployment in a controlled environment to test end-to-end viability and gather comprehensive feedback.</td><td>Identifies risks, operational issues, and unforeseen challenges before scaling to production.</td><td>Demonstrates success in a real-world environment; collects data to refine for production readiness.</td><td>End users, operational teams, real-world testing environments, customer support, and analytics tools.</td><td>When preparing for scaling and addressing operational risks.</td></tr><tr><td>Production</td><td>The full-scale product deployment with all necessary features, reliability, and support for end users.</td><td>Delivers the finalized solution to users while ensuring scalability, reliability, and operational efficiency.</td><td>Meets key performance indicators (KPIs), user satisfaction benchmarks, and operational SLAs (Service Level Agreements).</td><td>Development, operations, customer support, monitoring tools, and continuous improvement processes.</td><td>To deliver the product to users at scale with ongoing support and updates.</td></tr><tr><td>Continuous Improvement</td><td>Ongoing enhancement and optimization of the product based on user feedback, performance metrics, and market needs.</td><td>Ensures the product remains competitive, relevant, and user-friendly over time.</td><td>Demonstrates improvement in key metrics (e.g., adoption, satisfaction, performance); regular delivery of enhancements with minimal disruptions.</td><td>DevOps teams, user research, monitoring tools, and agile sprint cycles for regular updates.</td><td>Post-production phase to address evolving requirements and maintain product excellence.</td></tr><tr><td>Sunset</td><td>The planned decommissioning or replacement of the product when it no longer provides value or becomes obsolete.</td><td>Frees up resources for other priorities while ensuring users transition smoothly to alternatives.</td><td>Completion of decommissioning plan, including user migration, data archiving, and system shutdown with minimal disruption.</td><td>Project managers, operations teams, user communication channels, and migration tools.</td><td>When the product reaches end-of-life, either due to replacement or diminished relevance.</td></tr></tbody></table>
+<h1>📋 Detailed Stage Descriptions</h1>
+<p><strong>Ideate</strong>
+Generates and prioritizes ideas, ensuring a user-centered approach from the outset. Benefits include a clear focus on feasible and impactful solutions.</p>
+<p><strong>PoT (Proof of Technology)</strong>
+Focused on assessing the technical feasibility of a solution, ensuring it is viable for solving the identified problem. Benefits include reducing technical risk early in the process and clarifying technological possibilities.</p>
+<p><strong>PoC (Proof of Concept)</strong>
+Aligns technical feasibility with business objectives, showing stakeholders how the solution addresses the problem. Benefits include stakeholder buy-in and a clearer understanding of the project’s potential impact.</p>
+<p><strong>MVP (Minimum Viable Product)</strong>
+A functional product with core features deployed to early adopters for real-world usage and feedback. Prioritizes speed-to-market and core functionality. Benefits include reduced time-to-market and insights into user needs for prioritizing future features.</p>
+<p><strong>Pilot</strong>
+A controlled, real-world deployment of the MVP to test the product’s operational viability in a controlled, real-world environment, focusing on end-to-end testing. Benefits include reduced risks and a more straightforward path to production readiness.</p>
+<p><strong>Production</strong>
+In the final stage, the product is fully deployed, supported, and scaled for end users. Benefits include delivering business value, achieving scalability, and operational efficiency.</p>
+<p><strong>Continuous Improvement</strong>
+Ensures the product evolves based on user feedback and performance metrics. Benefits include staying competitive and maintaining user satisfaction through regular updates.</p>
+<p><strong>Sunset</strong>
+A planned retirement phase that ensures a smooth transition for users while freeing up resources for other priorities. Benefits include minimizing disruptions and maintaining organizational focus.</p>
+<h1>❓ Key Questions for Each Stage</h1>
+<p>One of the key reasons to break down the Product Lifecycle into these stages is to focus on the right needs of your product or service at the right times; examples of questions you should be asking at each phase are:</p>
+<table><thead><tr><th><strong>Stage</strong></th><th><strong>Key Questions</strong></th></tr></thead><tbody><tr><td>PoT (Proof of Technology)</td><td>- What unknowns about the technology must be validated?  \n- Are the tools or platforms feasible for this use case?  \n- What are the technical risks, and how can they be mitigated?  \n- Is this the best technology stack for long-term scalability?</td></tr><tr><td>PoC (Proof of Concept)</td><td>- Does the solution align with business goals?  \n- Can it solve the problem in a controlled, small-scale test?  \n- What are the critical assumptions being validated?  \n- How will stakeholders measure success?  \n- What constraints or dependencies could limit progress?</td></tr><tr><td>Prototype</td><td>- Does the design meet usability and functionality needs?  \n- What feedback can be gathered on the proposed solution?  \n- Are there any technical barriers to implementing the design?  \n- How well does the prototype align with user personas or scenarios?</td></tr><tr><td>MVP (Minimum Viable Product)</td><td>- What core functionality is essential to meet user needs?  \n- Can this be delivered with minimal effort for testing adoption?  \n- How will user feedback be collected and prioritized?  \n- Are the team and infrastructure ready to iterate quickly based on feedback?</td></tr><tr><td>Pilot</td><td>- What operational or real-world risks must be addressed before scaling?  \n- How will success in the pilot phase be measured?  \n- Are there additional training or support requirements for users?  \n- How will pilot learnings be incorporated into scaling plans?</td></tr><tr><td>Production</td><td>- Is the solution robust and scalable?  \n- Are operational processes in place for monitoring, support, and continuous improvement?  \n- What KPIs or metrics indicate product success?  \n- Are end users satisfied with performance and usability?  \n- How will updates or fixes be managed post-launch?</td></tr><tr><td>Continuous Development</td><td>- What feedback from users or metrics indicates areas for improvement?  \n- How can automation enhance development or deployment processes?  \n- Are there new features or updates that align with market trends?  \n- How can emerging technologies be leveraged to improve the product?  \n- Is there a roadmap for ongoing enhancements?</td></tr><tr><td>Sunset</td><td>- What is the timeline and plan for decommissioning?  \n- How will users transition to alternatives?  \n- How will data and systems be archived or disposed of?  \n- Are there plans to communicate changes effectively to all stakeholders?  \n- What metrics indicate it is the right time to sunset the product?</td></tr></tbody></table>
+<h1>🚪 Product Lifecycle Gates</h1>
+<p>So let us dig a bit deeper into some of the gates to consider when shifting a product through this lifecycle before you reach the next stage <em>(for example, from MVP to Pilot)</em>:</p>
+<p><img decoding="async" loading="lazy" alt="Product Development Lifecycle Gates" src="https://luke.geek.nz/assets/images/ProductDevelopmentLifecycleGates-19ffe92493631d8c9725e19c384e805e.png" width="4000" height="2250" class="img_ev3q"></p>
+<ol>
+<li>Problem Definition and Technical Feasibility
+(Helps determine if you're at the PoT or PoC stage)</li>
+</ol>
+<ul>
+<li>What is the primary problem this application/workload/service is trying to solve?</li>
+<li>Do we have enough technical understanding to validate whether this can be built?</li>
+<li>Are there specific technical risks or uncertainties that need validation before proceeding further?</li>
+<li>Is there an existing technology or approach that can achieve the desired outcome, or does this require exploration?</li>
+<li>Are stakeholders aligned on the goals of the solution at this stage?</li>
+</ul>
+<ol start="2">
+<li>User and Business Alignment
+(Determines if you're ready for PoC, Prototype, or MVP stages)</li>
+</ol>
+<ul>
+<li>Who are the target users or audiences for this application/workload/service?</li>
+<li>What are the critical business outcomes or objectives tied to this solution?</li>
+<li>Do we have user personas or initial feedback to validate assumptions?</li>
+<li>Is there clarity on how this solution will fit into existing business processes or workflows?</li>
+<li>Are there measurable KPIs or success criteria defined for the next stage?</li>
+</ul>
+<ol start="3">
+<li>Functionality and Design
+(Helps decide if Prototype or MVP is needed)</li>
+</ol>
+<ul>
+<li>Do we have clear requirements and design principles for the application?</li>
+<li>What specific features or functionality are critical to test user engagement?</li>
+<li>Is the goal to explore design and usability (Prototype) or to deliver something functional for user adoption (MVP)?</li>
+<li>How much feedback or iteration is needed to validate user needs or business value?</li>
+<li>Are there competing priorities (e.g., time-to-market vs. feature completeness) that influence this stage?</li>
+</ul>
+<ol start="4">
+<li>Real-World Validation
+(Clarifies readiness for Pilot stage)</li>
+</ol>
+<ul>
+<li>Has the application/workload/service undergone sufficient technical, functional, and usability testing?</li>
+<li>Are there operational risks or challenges that require validation in a controlled environment?</li>
+<li>Do we have a defined test group or environment to deploy the solution and gather feedback?</li>
+<li>What are the success metrics for the pilot phase (e.g., adoption rate, performance, operational readiness)?</li>
+<li>What’s the contingency plan if the pilot reveals significant issues?</li>
+</ul>
+<ol start="5">
+<li>Scalability and Operational Readiness
+(Determines readiness for Production)</li>
+</ol>
+<ul>
+<li>Has the solution demonstrated scalability under expected workloads?</li>
+<li>Are there any technical, security, or compliance gaps preventing full-scale deployment?</li>
+<li>Is the team equipped with monitoring, support, and incident response processes?</li>
+<li>What are the ongoing maintenance and operational requirements?</li>
+<li>Is there a plan for onboarding users or customers at scale?</li>
+</ul>
+<ol start="6">
+<li>Post-Launch Evolution and Sunset Planning
+(Addresses long-term product lifecycle considerations)</li>
+</ol>
+<ul>
+<li>What is the plan for iterating and improving the product post-launch?</li>
+<li>How will we track performance, gather feedback, and prioritize enhancements?</li>
+<li>Is there a decommissioning or migration plan in case of obsolescence or replacement?</li>
+<li>What’s the budget and resource allocation for ongoing updates?</li>
+<li>What external factors (e.g., market changes and technology updates) could impact the solution's longevity?</li>
+</ul>
+<h1>📚 Scenarios</h1>
+<p>Let's look at two scenarios to see how these stages can be applied. Scenario #1 is the development of an Azure Landing Zone <em>(yes, it doesn't have to be specifically a product - this is a way of thinking, more of a guideline/framework than a rule)</em> and Scenario #2 is the creation of an eCommerce website.</p>
+<p>Here is the updated table with the sunset row added at the bottom:</p>
+<table><thead><tr><th><strong>Gate</strong></th><th><strong>Scenario #1. Azure Landing Zone Implementation</strong></th><th><strong>Scenario #2. E-Commerce Website</strong></th></tr></thead><tbody><tr><td>Gate 1: Technical Feasibility Validated</td><td>- All resource types required for the landing zone deployment are provisioned successfully using IaC (Infrastructure as Code).  \n- A network topology supporting hybrid cloud connectivity is deployed and passes end-to-end connectivity tests.</td><td>- The website backend can retrieve product data from a database within 50ms under test conditions.  \n- A sandbox environment successfully processes simulated payments through the payment gateway.</td></tr><tr><td>Gate 2: Stakeholder Approval</td><td>- Stakeholders review and sign off governance policies for tagging, cost management, and resource compliance.  \n- Cloud adoption teams approve the initial subscription and resource group hierarchy structure.</td><td>- Stakeholders approve a product backlog containing prioritized features for the MVP based on user stories.  \n- Design mockups of key pages (e.g., homepage, product page, checkout page) are reviewed and signed off by business stakeholders.</td></tr><tr><td>Gate 3: MVP Adoption Metrics Met</td><td>- The MVP landing zone enables three application teams to deploy workloads without manual intervention.  \n- Monitoring and logging solutions for the MVP environment are active and provide actionable insights within 5 minutes of an incident.</td><td>- The MVP site achieves at least 100 daily active users within 2 weeks of launch.  \n- Basic checkout functionality works end-to-end, including order placement and confirmation email delivery.</td></tr><tr><td>Gate 4: Pilot Success Criteria Achieved</td><td>- The pilot environment supports the deployment of workloads across all required regions with no SLA violations over 4 weeks.  \n- All critical governance, security, and operational policies pass compliance testing in the pilot.</td><td>- During a limited launch, 1,000 transactions are processed with less than 1% failure rate.  \n- Pilot users provide a Net Promoter Score (NPS) of 7 or higher for their experience on the site.</td></tr><tr><td>Gate 5: Go-Live Decision</td><td>- All key stakeholders approve readiness for production based on agreed KPIs (e.g., uptime, cost optimization, and security).  \n- Documentation for deployment, governance, and user onboarding is complete and validated by end users.</td><td>- The e-commerce platform handles a load test of 20,000 concurrent users with a 99.9% success rate in order processing.  \n- Critical user journeys (search, add to cart, checkout) are tested with zero critical defects reported in production-readiness testing.</td></tr><tr><td><strong>Gate 6: Sunset</strong></td><td>- All resources associated with the landing zone are decommissioned safely and cost-effectively, with no unexpected impact on remaining environments.  \n- Final cost and usage reports for the project are reviewed and shared with stakeholders.</td><td>- All user data is successfully migrated or anonymized according to privacy policies.  \n- All legal and financial obligations are met for the e-commerce platform, and any necessary shutdown or scaling activities are completed without affecting the remaining infrastructure.</td></tr></tbody></table>
+<h1>🏁 Conclusion</h1>
+<p>Hopefully, this article gives you more clarity about the product design lifecycle, how to apply it to your own projects, and how to use it to your advantage to make sure you are focusing on the right things at the right time and not wasting resources on the wrong things.</p>]]></content>
+        <author>
+            <name>Luke Murray</name>
+            <uri>https://luke.geek.nz</uri>
+        </author>
+        <category label="Misc" term="Misc"/>
+        <category label="Service Management" term="Service Management"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Pre-commit Hooks in GitHub Codespaces for Terraform IaC]]></title>
         <id>https://luke.geek.nz/misc/precommit-hooks-codespaces-terraform-iac/</id>
@@ -1510,847 +1637,6 @@ Also if you are testing, make sure that the content-type is application/json.</p
 <li>🔗<a href="https://notaryproject.dev/" target="_blank" rel="noopener noreferrer">Notary</a></li>
 <li>🔗<a href="https://learn.microsoft.com/azure/aks/use-azure-policy?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Secure your Azure Kubernetes Service (AKS) clusters with Azure Policy</a></li>
 </ul>]]></content>
-        <author>
-            <name>Luke Murray</name>
-            <uri>https://luke.geek.nz</uri>
-        </author>
-        <category label="Azure" term="Azure"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Features and Benefits of Azure API Management]]></title>
-        <id>https://luke.geek.nz/azure/api-management-overview/</id>
-        <link href="https://luke.geek.nz/azure/api-management-overview/"/>
-        <updated>2024-08-07T09:25:09.372Z</updated>
-        <summary type="html"><![CDATA[Discover the key features and benefits of Azure API Management, including security, scalability, and monitoring capabilities.]]></summary>
-        <content type="html"><![CDATA[<p>Today, we are going to look at <a href="https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure API Management</a>. Azure API Management is a service that creates consistent and modern API gateways for existing back-end services. It also publishes APIs to external, partner, and internal developers. Azure API Management is a fully managed service that enables customers to publish, secure, transform, maintain, and monitor APIs.</p>
-<!-- -->
-<blockquote>
-<p><a href="https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure API Management</a> is a hybrid, multi-cloud management platform for APIs across all environments. As a platform-as-a-service, API Management supports the complete API lifecycle.</p>
-</blockquote>
-<p>We'll examine the API life cycle phases in-depth and explore how Azure API Management can help you efficiently manage your APIs from start to finish.</p>
-<p><img decoding="async" loading="lazy" alt="Azure API Management - Overview" src="https://luke.geek.nz/assets/images/apim_overview-9c57c798c4389c1dc408e504110da877.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<ul>
-<li><strong>Design</strong>
-The first phase of the API life cycle is Design. In this phase, we define the API's purpose, endpoints, and the data it will handle. This involves creating a blueprint for the API, including its structure and functionality. Azure API Management provides tools and templates to help you design efficient, scalable, and easy-to-use APIs.</li>
-<li><strong>Develop</strong>
-Once the design is in place, we move on to the development phase. This is where the actual coding happens. Developers write the code that implements the API's functionality based on the design specifications. Azure API Management supports various development environments and integrates seamlessly with tools like Visual Studio, making the development process smoother and more efficient.</li>
-<li><strong>Secure</strong>
-Security is a critical aspect of API management. We ensure our APIs are protected from unauthorized access and potential threats in the Secure phase. Azure API Management offers robust security features such as authentication, authorization, and encryption. These features help safeguard your APIs and the data they handle, ensuring that only authorized users can access them.</li>
-<li><strong>Publish</strong>
-After securing the API, it's time to make it available to users. The Publish phase involves exposing the API to developers and end-users. Azure API Management provides a developer portal where you can publish your APIs, offer documentation, and manage subscriptions. This makes it easy for developers to discover and start using your APIs.</li>
-<li><strong>Scale</strong>
-As your API gains popularity, you must ensure it can handle increased traffic. The Scale phase focuses on optimizing the API's performance and scalability. Azure API Management allows you to scale your APIs effortlessly, ensuring they can handle large volumes of requests without compromising performance.</li>
-<li><strong>Monitor</strong>
-Monitoring is essential to ensuring your APIs function correctly and efficiently. Azure API Management provides detailed analytics and logging capabilities in the Monitor phase. You can track usage patterns, monitor performance metrics, and identify potential issues before they impact your users.</li>
-<li><strong>Analyze</strong>
-In the Analyze phase, we use the data collected during monitoring to gain insights into how our APIs are used. Azure API Management offers powerful analytics tools that help you understand user behavior, identify trends, and make data-driven decisions to improve your APIs continuously.</li>
-</ul>
-<p>In the modern digital era, transformation is more than just a buzzword—it's necessary. APIs are at the heart of this transformation, enabling connected experiences and seamless integration of services and data.</p>
-<p><img decoding="async" loading="lazy" alt="Azure API Management - Digital Transformation" src="https://luke.geek.nz/assets/images/apim_overview_digitaltransformation-a579568972f49eb29cfd94428caa6c86.gif" width="2238" height="1200" class="img_ev3q"></p>
-<p>APIs are crucial in connecting various devices and platforms. Whether it's a smart home system, wearable technology, automotive applications, or industrial equipment, APIs facilitate the communication and interoperability between these diverse endpoints.</p>
-<p>Please be sure to think about your daily interactions with technology. From unlocking your smartphone, using applications on your tablet, streaming content on your smart TV, and engaging in augmented reality experiences, APIs are working behind the scenes to ensure a smooth and connected experience. They enable devices and applications to talk to each other, share data, and create a cohesive user experience.</p>
-<p>APIs connect various services, databases, servers, and cloud infrastructures. They allow these systems to interact, share data, and coordinate complex functions.</p>
-<p>APIs also enable businesses to be agile and adaptive. By exposing functionalities through APIs, companies can quickly integrate new services, scale their operations, and meet evolving customer demands. They empower developers to build robust applications, enhance user experiences, and drive digital growth.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-api-governance">📜 API governance<a href="https://luke.geek.nz/azure/api-management-overview/#-api-governance" class="hash-link" aria-label="Direct link to 📜 API governance" title="Direct link to 📜 API governance">​</a></h2>
-<p>Three crucial aspects of API governance and usage play a significant role in achieving success:</p>
-<ul>
-<li><strong>Façade Abstraction</strong>
-This concept involves creating an interface that simplifies and standardizes how APIs interact with backend systems.
-Aggregate or Slice: APIs can aggregate data from multiple sources or slice it into meaningful pieces for specific use cases. This flexibility allows businesses to present data in the most relevant and valuable way to their users.
-Normalize or Modernize: Façade Abstraction also helps normalize or modernize legacy systems, making them compatible with modern applications. This allows you to extend the life of older systems and integrate them with new technologies without extensive rework.
-Decouple Lifecycle Mock: Decoupling the API lifecycle from the backend systems ensures that changes in backend services do not disrupt the API functionality. Mocking services during the development and testing phases further ensures smooth transitions and updates.</li>
-<li><strong>Front Door Control</strong>
-This aspect is about managing and controlling how APIs are accessed and utilized.
-Route and Accelerate: You can optimize your applications' performance and responsiveness by routing API requests efficiently. Acceleration techniques like caching and load balancing can significantly improve user experience.
-Secure and Protect: Security is paramount in API management. Front Door Control involves implementing robust security measures to protect APIs from threats and unauthorized access. These measures include authentication, authorization, and data encryption.
-Transform and Observe: Transforming API requests and responses to meet specific requirements and observing API usage patterns helps maintain control and ensure optimal performance. Monitoring tools provide insights into how APIs are being used and can alert you to potential issues before they become critical.</li>
-<li><strong>Frictionless Consumption</strong>
-This principle is about making it easy for developers and users to discover, access, and use your APIs.
-Onboarding: A smooth onboarding process is crucial for attracting and retaining users. Clear documentation, tutorials, and support help users quickly understand and start using your APIs.
-Discover and Learn: APIs should be easily discoverable. A well-organized developer portal where users can learn about the available APIs, their functionalities, and use cases can achieve this.
-Try and Obtain Access: Allowing users to try APIs in a sandbox environment and easily obtain access through streamlined registration encourages experimentation and adoption.</li>
-</ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-stakeholders">🤝 Stakeholders<a href="https://luke.geek.nz/azure/api-management-overview/#-stakeholders" class="hash-link" aria-label="Direct link to 🤝 Stakeholders" title="Direct link to 🤝 Stakeholders">​</a></h2>
-<p>Azure API Management has the following stakeholders:
-&nbsp;</p>
-<ul>
-<li><strong>App Developers</strong>
-These are the individuals or teams responsible for creating applications that consume APIs. They use the platform to discover, learn, try, onboard, and get help with APIs.
-Employees, Partners.</li>
-<li><strong>Customers</strong>
-These stakeholders leverage the APIs to enhance workflows, integrate systems, and improve customer experiences.</li>
-<li><strong>Apps on Devices</strong>
-These represent the end-user applications that interact with the APIs. They could be mobile apps, web applications, IoT devices, or other software that consumes APIs.</li>
-</ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-planes">✈️ Planes<a href="https://luke.geek.nz/azure/api-management-overview/#%EF%B8%8F-planes" class="hash-link" aria-label="Direct link to ✈️ Planes" title="Direct link to ✈️ Planes">​</a></h2>
-<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><p>Azure API Management consists of three main planes:
-&nbsp;</p><ul>
-<li><strong>User Plane</strong>
-Developer Portal: This portal serves as the primary interface for app developers. It provides resources for developers to discover, learn, try, and onboard with APIs. The portal ensures developers have the support they need to integrate APIs efficiently into their applications.</li>
-<li><strong>Data Plane</strong>
-Gateway: The Gateway is a secure bridge between the API consumers and the backend services. It enforces security policies, manages traffic, and ensures reliable API performance. The gateway handles rate limiting, authentication, and request routing tasks.</li>
-<li><strong>Management Plane</strong>
-API Management Plane: This is where API providers manage the lifecycle of their APIs. The management plane includes tools for abstracting, securing, evolving, observing, and monetizing APIs. This layer ensures that APIs are managed effectively, from creation and deployment to monitoring and analytics.</li>
-</ul></div></div>
-<p>Azure API Management integrates with various Azure services and microservices, providing a cohesive environment for managing and deploying APIs. This integration allows organizations to leverage the full power of Azure's cloud capabilities, ensuring that their APIs are scalable, secure, and performant.</p>
-<ul>
-<li><strong>Benefits</strong></li>
-</ul>
-<p>Some of the benefits of Azure API Management include:</p>
-<ul>
-<li>Discoverability: Developers can easily find and access APIs.</li>
-<li>Security: Robust security measures protect data and ensure compliance.</li>
-<li>Scalability: APIs can scale to meet growing demand.</li>
-<li>Efficiency: Streamlined management processes enhance productivity.</li>
-<li>Monetization: Organizations can generate revenue from their APIs.</li>
-</ul>
-<p>In conclusion, Azure API Management is a robust platform that enables organizations to create, manage, and scale APIs efficiently. By following the API life cycle phases and leveraging Azure API Management's features, businesses can deliver seamless digital experiences, drive innovation, and stay ahead in today's competitive landscape.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-azure-api-management-plans">📊 Azure API Management plans<a href="https://luke.geek.nz/azure/api-management-overview/#-azure-api-management-plans" class="hash-link" aria-label="Direct link to 📊 Azure API Management plans" title="Direct link to 📊 Azure API Management plans">​</a></h2>
-<p><img decoding="async" loading="lazy" alt="API Management - Pricing Tiers" src="https://luke.geek.nz/assets/images/apim_overview_pricingtiers-bcfa201ca0c9fd9294564e842a8384f7.gif" width="2238" height="1200" class="img_ev3q"></p>
-<p>Azure API Management offers various service tiers that provide specific capabilities and benefits. Let's explore these tiers in more detail.</p>
-<ul>
-<li><strong>Consumption Tier</strong>
-&nbsp;
-Key Features include:</li>
-</ul>
-<ul>
-<li>No Infrastructure to Provision or Manage: The consumption tier eliminates the need to manage infrastructure. This serverless approach lets you focus solely on your APIs without worrying about the underlying hardware or software.</li>
-<li>Built-in Auto-scaling Down to Zero: It automatically scales to handle varying loads and can scale down to zero during inactivity, ensuring cost-efficiency.</li>
-<li>Consumption-based Micro Billing: Billing is based on actual usage, making it a cost-effective solution for unpredictable or fluctuating traffic applications.</li>
-<li>Variable, Usage-based Monthly Cost: You pay only for what you use, allowing for a flexible and budget-friendly approach.</li>
-<li>No Reserved Capacity: This tier does not require any reserved capacity, making it ideal for projects with uncertain demands.</li>
-<li>Shared Management Plane: The management plane is shared, simplifying administration and reducing costs.</li>
-<li>On-demand Activation: APIs can be activated on demand, providing flexibility and agility.</li>
-<li>Curated Set of Features and Usage Limits: This tier offers a curated set of features and usage limits, ensuring a streamlined and efficient API management experience.</li>
-</ul>
-<ul>
-<li><strong>Developer, Basic, Standard, and Premium Tiers</strong>
-&nbsp;
-Key Features include:</li>
-</ul>
-<ul>
-<li>No Infrastructure to Provision or Manage: Similar to the consumption tier, these tiers also eliminate the need to manage infrastructure, allowing you to focus on development and deployment.</li>
-<li>Manual Scaling or External Auto-scaling: These tiers support manual scaling or external auto-scaling, providing more control over resource allocation.</li>
-<li>Billing Based on Reserved Capacity: Billing is based on reserved capacity, offering predictable and consistent costs.</li>
-<li>Constant, Predictable Monthly Cost: Unlike the consumption tier, these tiers provide a constant, predictable monthly cost, making budget planning easier.</li>
-<li>Reserved Capacity: These tiers offer reserved capacity, ensuring that your APIs can handle consistent and high-demand workloads.</li>
-<li>Dedicated Management, User, and Data Planes: With dedicated planes, you get enhanced security, performance, and isolation, which is crucial for mission-critical applications.</li>
-<li>Always On APIs are always available, ensuring high availability and reliability for your applications.</li>
-<li>Full Set of Features: These tiers offer complete features without governance limits, providing comprehensive capabilities for complex and large-scale API management needs.</li>
-</ul>
-<p><img decoding="async" loading="lazy" alt="APIM Pricing Tiers" src="https://luke.geek.nz/assets/images/apim_pricing_tiers-795f483a8b914bce8072e7d9bfd089fa.png" width="4000" height="2250" class="img_ev3q"></p>
-<p>Let's delve into the key features of each tier.</p>
-<table><thead><tr><th>Feature</th><th>Basic</th><th>Basic v2</th><th>Standard</th><th>Standard v2</th><th>Premium</th></tr></thead><tbody><tr><td>Microsoft Entra Integration</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td>Virtual Network (VNet) Support</td><td>No</td><td>No</td><td>No</td><td>Yes</td><td>Yes</td></tr><tr><td>Private Endpoint Support</td><td>Yes</td><td>No</td><td>Yes</td><td>No</td><td>Yes</td></tr><tr><td>Multi-region Deployment</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr><tr><td>Availability Zones</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr><tr><td>Autoscaling</td><td>Yes</td><td>No</td><td>Yes</td><td>No</td><td>Yes</td></tr><tr><td>Self-hosted Gateway</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr><tr><td>Backup and Restore</td><td>Yes</td><td>No</td><td>Yes</td><td>No</td><td>Yes</td></tr><tr><td>Management over Git</td><td>Yes</td><td>No</td><td>Yes</td><td>No</td><td>Yes</td></tr><tr><td>Static IP</td><td>Yes</td><td>No</td><td>Yes</td><td>No</td><td>Yes</td></tr></tbody></table>
-<blockquote>
-<p>"Accelerate your API strategy with Azure API Management, the comprehensive lifecycle solution trusted by thousands of enterprises worldwide. From abstraction and security to observability and discoverability, the APIM platform empowers you to manage APIs effortlessly across clouds and on-premises environments. Built for reliability, security, scalability, and performance, it's designed to support DevOps and developers, seamlessly integrating with Azure services. Benefit from global availability, robust support, and competitive, accessible pricing—Azure API Management simplifies API management so you can focus on innovation."</p>
-</blockquote>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-api-lifecycle">🔄 API Lifecycle<a href="https://luke.geek.nz/azure/api-management-overview/#-api-lifecycle" class="hash-link" aria-label="Direct link to 🔄 API Lifecycle" title="Direct link to 🔄 API Lifecycle">​</a></h2>
-<p><img decoding="async" loading="lazy" alt="API Lifecycle" src="https://luke.geek.nz/assets/images/apim_api_lifecycle-82f1ac68f6035c8177bb18ad49f66b02.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>The API lifecycle consists of several phases, each essential for creating, managing, and optimizing APIs. This lifecycle emphasizes the continuous and iterative nature of API development and management.</p>
-<ul>
-<li><strong>Design</strong></li>
-</ul>
-<p>The lifecycle begins with the Design phase. In this phase, APIs are conceptualized and defined.</p>
-<p>Key features include:</p>
-<ul>
-<li>Start fast with proxy mode: Quickly create an API proxy to start testing.</li>
-<li>Design and mock: Define and simulate APIs to validate their design.</li>
-<li>Import from a definition: Use existing API definitions to create new APIs.</li>
-<li>Import from Azure resources: Generate APIs based on Azure services.</li>
-<li>Capture schema from test calls: Automatically generate API schemas from sample requests and responses.</li>
-</ul>
-<ul>
-<li><strong>Develop</strong></li>
-</ul>
-<p>The next phase is Develop, where the API is built and refined. This stage includes:</p>
-<ul>
-<li>50+ policies: Apply various policies to control API behavior.</li>
-<li>SOAP-to-REST: Convert SOAP services to RESTful APIs.</li>
-<li>Visual Studio Code integration: Use VS Code for development and debugging.</li>
-<li>Live policy debugging: Debug policies in real-time.</li>
-<li>API scaffolding: Automatically generate code and configurations for APIs.</li>
-</ul>
-<ul>
-<li><strong>Secure</strong></li>
-</ul>
-<p>In the Secure phase, the API's security is ensured. This involves:</p>
-<ul>
-<li>Data | Management | User planes: Secure different aspects of data and management.</li>
-<li>Keys, OAuth, certificates, custom: Implement authentication and authorization mechanisms.</li>
-<li>1st and 3rd party identity providers: Integrate with various identity providers.</li>
-<li>Request/response validation: Validate API requests and responses for security.</li>
-<li>IP-based access control: Restrict access based on IP addresses.</li>
-<li>Private networking: Secure APIs within private networks.</li>
-<li>Compliance: Ensure APIs comply with industry standards and regulations.</li>
-</ul>
-<ul>
-<li><strong>Publish</strong></li>
-</ul>
-<p>After securing the API, it is time to Publish it. This stage involves:</p>
-<ul>
-<li>Revisions and versions: Manage different versions and revisions of the API.</li>
-<li>API products, user groups, subscriptions: Organize APIs into products and manage user access.</li>
-<li>Customizable developer portal: Provide a portal for developers to access and use APIs.</li>
-<li>Integrated API playground: Allow developers to test APIs within the portal.</li>
-<li>Export to the Power Platform: Integrate APIs with Microsoft Power Platform.</li>
-<li>Self-service onboarding: Enable users to onboard themselves.</li>
-<li>DevOps: Integrate with DevOps pipelines for continuous integration and deployment.</li>
-</ul>
-<ul>
-<li><strong>Scale</strong></li>
-</ul>
-<p>Once published, the API needs to be scaled to handle increased demand. The Scale phase includes:</p>
-<ul>
-<li>Worldwide availability: Deploy APIs globally to ensure availability.</li>
-<li>Multi-region deployments: Distribute APIs across multiple regions for redundancy and performance.</li>
-<li>Availability zones: Utilize availability zones to increase reliability.</li>
-<li>Caching: Implement caching to improve performance.</li>
-<li>Auto-scaling: Automatically adjust resources based on demand.</li>
-<li>Hybrid and multi-cloud: Deploy APIs in hybrid and multi-cloud environments.</li>
-<li>Azure Arc enabled: Manage and govern APIs across different environments using Azure Arc.</li>
-</ul>
-<ul>
-<li><strong>Monitor</strong></li>
-</ul>
-<p>The API must be monitored after scaling to ensure it operates correctly. The Monitor phase involves:</p>
-<ul>
-<li>Azure Monitor: Use Azure Monitor to track and analyze API performance.</li>
-<li>Application Insights: Gain insights into application performance and user behavior.</li>
-<li>Logs | Metrics | Traces | Alerts: Collect and analyze logs, metrics, and traces and set up alerts.</li>
-<li>Configurable verbosity: Adjust the level of detail in logs and metrics.</li>
-<li>E2E request tracing: Trace requests end-to-end to diagnose issues.</li>
-<li>Local telemetry for self-hosted gateway: Collect telemetry data from self-hosted API gateways.</li>
-</ul>
-<ul>
-<li><strong>Analyze</strong></li>
-</ul>
-<p>Finally, in the Analyze phase, the collected data is used to gain insights and improve the API. This stage includes:</p>
-<ul>
-<li>Built-in reports: Use built-in reports for quick insights.</li>
-<li>Custom reports with Log Analytics: Create custom reports using Log Analytics.</li>
-<li>Reports in Power BI: Visualize data and generate reports using Power BI.</li>
-<li>Custom telemetry pipelines: Set up custom telemetry pipelines for advanced analysis.</li>
-</ul>
-<p>This lifecycle ensures that APIs are well-designed, developed, secured, published, scaled, monitored, and analyzed, providing a comprehensive approach to API management.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-design">🎨 Design<a href="https://luke.geek.nz/azure/api-management-overview/#-design" class="hash-link" aria-label="Direct link to 🎨 Design" title="Direct link to 🎨 Design">​</a></h3>
-<p><img decoding="async" loading="lazy" alt="API Lifecycle - Design" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design-54ff90660862827afb8ef8a7337fc86d.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Code-and design-first approaches to building APIs</p>
-<p>API Management supports both approaches to building APIs:</p>
-<ul>
-<li>
-<p><strong>Code-first approach</strong>
-Implement the API and generate the API specification as an afterthought (i.e., with Swashbuckle). Benefits:
-More convenient for API developers: The only option for existing APIs</p>
-</li>
-<li>
-<p><strong>Design-first approach</strong>
-Create an API specification, review it with stakeholders, and implement the API Kickstart development by scaffolding the code from the API specification.</p>
-</li>
-</ul>
-<p>Benefits:</p>
-<p>Better API consumer experience thanks to the deliberate API design Reduced risk thanks to the API review processes</p>
-<p><img decoding="async" loading="lazy" alt="API Lifecycle - Develop" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_codefirst-aac369e9d29dc29ac251aabef2348ce8.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>You can create APIs</p>
-<ul>
-<li>Support for SOAP, REST, WebSocket and GraphQLAPIs</li>
-<li>Import an API from OpenAPI(1, 2, or 3), WADL, or WSDL files</li>
-<li>Import an API from App Service, Logic App, Function App, or Container App</li>
-<li>Create a blank API</li>
-</ul>
-<p><img decoding="async" loading="lazy" alt="API Management - Create an API" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_createAPI-977bd9f958be9031251fc22ff3b217ee.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>So, let us create a new API by importing the <a href="https://swapi.dev/" target="_blank" rel="noopener noreferrer">Star Wars API</a>.</p>
-<ol>
-<li>Open your Azure API Management instance</li>
-<li>Navigate to APIs</li>
-<li>Click on + Add API</li>
-<li>Click on HTTP (manually define an HTTP API)</li>
-<li>Select Full</li>
-<li>Fill in the details:<!-- -->
-<ul>
-<li>Display name: Star Wars</li>
-<li>Name: star-wars</li>
-<li>Description: Star Wars API</li>
-<li>Web service URL: <a href="https://swapi.dev/api" target="_blank" rel="noopener noreferrer">https://swapi.dev/api</a></li>
-<li>API URL suffix: starwars</li>
-</ul>
-</li>
-<li>Click Create
-Now that we have imported our initial API endpoint, we can start defining the operations we want to expose.</li>
-<li>Click on + Add operation</li>
-<li>Fill in the details:<!-- -->
-<ul>
-<li>Display name: Get People</li>
-<li>Name: get-people</li>
-<li>URL template: /people</li>
-<li>HTTP verb: GET
-Now, let's add another operation to get information about Starships in the Star Wars universe. Fill in the details:</li>
-<li>Display name: Get Starships</li>
-<li>Name: get-starships</li>
-<li>URL template: /starships</li>
-<li>HTTP verb: GET</li>
-</ul>
-</li>
-</ol>
-<p>Now let us test it.</p>
-<ol>
-<li>Click on Get Starships API operation</li>
-<li>Click on test</li>
-<li>Click + Add parameter</li>
-<li>Type in Search in the name and the value as 'Star Destroyer'</li>
-<li>Click Send</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="API Management - Add Star Wars API" src="https://luke.geek.nz/assets/images/apim-add-starwars-api-8768b3f40bbb8bf0827b19e951ed6320.gif" width="1901" height="885" class="img_ev3q"></p>
-<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>You can use a wildcard in the URL path if you are not sure of an accurate specification while you work on the API design.</p><p><img decoding="async" loading="lazy" alt="API Management - wildcard" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_wildcardproxy-c75b189db9307fd2a601fbce2ffd3e06.PNG" width="4000" height="2250" class="img_ev3q"></p></div></div>
-<p>Now that we have imported and tested an existing API, let's consider designing a new one.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Design a API" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_designaapi-a8683536c660e8a0c0c94ca27a4a3df5.png" width="4000" height="2250" class="img_ev3q"></p>
-<p>Azure offers powerful resources to streamline and enhance our workflow.</p>
-<p>Defining the API:</p>
-<p>First, let's talk about defining our API. Azure provides two main approaches:</p>
-<p>Form-Based Editors:</p>
-<p>These editors are highly intuitive, offering a user-friendly interface to input all necessary details about your API.
-Perfect for those who prefer a guided, step-by-step setup.</p>
-<p>Text-Based Editors:</p>
-<p>For those more comfortable with coding, Azure allows us to edit the API definition directly in JSON format.
-This method offers greater flexibility and control over the API specifications.</p>
-<p>Visual Studio Code Extension:</p>
-<p>In addition to the Azure portal, you can also leverage the Visual Studio Code extension. This extension integrates seamlessly with Azure, allowing you to manage and define your APIs directly within your development environment. It's an excellent tool for developers who prefer to work locally.</p>
-<p>Testing the API:</p>
-<p>Once the API is defined, the next crucial step is testing. Azure simplifies this process in several ways:</p>
-<p>Azure Portal Testing:
-You can test your API directly within the Azure portal. This feature lets you ensure everything functions correctly without switching between multiple tools.
-Schema Generation:
-Azure can generate schemas from your API responses. These schemas provide a clear structure of your API's data, ensuring that both developers and consumers understand the expected input and output formats.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Mock API" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_mockapi-b84e58f8c6ec4e7661ed0a65692f0946.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Adopting a design-first approach can significantly enhance efficiency and collaboration. One technique we can utilize is mocking the API. Let's explore how this approach can benefit our development workflow.</p>
-<p>Design-First Approach - Mock the API:</p>
-<ol>
-<li>Unblock Front-End Teams:</li>
-</ol>
-<p>Mocking API responses is a game-changer for front-end developers.
-Providing predefined responses enables front-end teams to continue their development work without waiting for the back-end to be fully implemented.
-This leads to parallel development, reducing bottlenecks and speeding up the overall project timeline.</p>
-<ol start="2">
-<li>Use an Example Defined in the API Definition:</li>
-</ol>
-<p>The process starts with defining an example response within the API definition.
-This predefined response acts as a placeholder, simulating the actual API behavior.
-It ensures that front-end teams have consistent and reliable data to work with during the early stages of development.
-3. Configure with a Single-Line Policy:</p>
-<p>One of Azure API Management's standout features is the ability to configure mocking with a simple, single-line policy.</p>
-<p>As shown in the example on the image, the policy can be written as:</p>
-<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&lt;</span><span class="token tag" style="color:rgb(255, 121, 198)">inbound</span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">  </span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&lt;</span><span class="token tag" style="color:rgb(255, 121, 198)">base</span><span class="token tag" style="color:rgb(255, 121, 198)"> </span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">/&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">  </span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&lt;</span><span class="token tag" style="color:rgb(255, 121, 198)">mock-response</span><span class="token tag" style="color:rgb(255, 121, 198)"> </span><span class="token tag attr-name" style="color:rgb(241, 250, 140)">status-code</span><span class="token tag attr-value punctuation attr-equals" style="color:rgb(248, 248, 242)">=</span><span class="token tag attr-value punctuation" style="color:rgb(248, 248, 242)">"</span><span class="token tag attr-value" style="color:rgb(255, 121, 198)">200</span><span class="token tag attr-value punctuation" style="color:rgb(248, 248, 242)">"</span><span class="token tag" style="color:rgb(255, 121, 198)"> </span><span class="token tag attr-name" style="color:rgb(241, 250, 140)">content-type</span><span class="token tag attr-value punctuation attr-equals" style="color:rgb(248, 248, 242)">=</span><span class="token tag attr-value punctuation" style="color:rgb(248, 248, 242)">"</span><span class="token tag attr-value" style="color:rgb(255, 121, 198)">application/json</span><span class="token tag attr-value punctuation" style="color:rgb(248, 248, 242)">"</span><span class="token tag" style="color:rgb(255, 121, 198)"> </span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">/&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain"></span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&lt;/</span><span class="token tag" style="color:rgb(255, 121, 198)">inbound</span><span class="token tag punctuation" style="color:rgb(248, 248, 242)">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<p><img decoding="async" loading="lazy" alt="APIM - Mock Design" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_apimock-9020b782711066d24856bf651e1cb633.gif" width="1901" height="885" class="img_ev3q"></p>
-<p>This configuration tells the API to return a mock response with a status code of 200 and a content type of application/json.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Websocket" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_websocket-7eeea69c929249bae19d4bab29f78273.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><a href="https://learn.microsoft.com/azure/api-management/websocket-api?tabs=portal&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">WebSocket API</a> support enables real-time communication, making our APIs more dynamic and responsive.</p>
-<p><a href="https://learn.microsoft.com/azure/api-management/websocket-api?tabs=portal&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">WebSocket API</a> support in Azure API Management opens up a whole new realm of possibilities for real-time applications. Let's delve into what this entails and how it can benefit our API infrastructure.</p>
-<p>Passthrough Support for WebSocket APIs:</p>
-<ol>
-<li>Establishing Connections:</li>
-</ol>
-<p>Client applications can establish WebSocket connections directly with API Management (APIM).
-This setup allows for continuous, two-way communication between clients and backend services.
-Once the connection is established, APIM seamlessly proxies WebSocket messages to the backend services, ensuring smooth and reliable communication.</p>
-<ol start="2">
-<li>Features of WebSocket API Support:</li>
-</ol>
-<p>CRUD Operations:</p>
-<p>With WebSocket API support, we can perform Create, Read, Update, and Delete (CRUD) operations on WebSocket APIs.
-This flexibility ensures that our APIs can handle various real-time data interactions effectively.</p>
-<p>Apply Policies:</p>
-<p>We can apply policies to handshake requests, which is crucial for managing security, authentication, and other operational requirements.
-These policies ensure that only authorized and legitimate requests can establish WebSocket connections.
-Browse and Test:</p>
-<p>WebSocket APIs can be easily browsed and tested within the Azure and Developer portals.
-This capability allows developers to interact with and validate the WebSocket APIs during the design and development phases.</p>
-<p>Monitoring and Logging:</p>
-<p>Azure Monitor provides metrics and logs specifically for WebSocket APIs.
-These monitoring tools enable us to track performance, detect issues, and gain insights into the usage patterns of our WebSocket connections.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="️-develop">🛠️ Develop<a href="https://luke.geek.nz/azure/api-management-overview/#%EF%B8%8F-develop" class="hash-link" aria-label="Direct link to 🛠️ Develop" title="Direct link to 🛠️ Develop">​</a></h3>
-<p><img decoding="async" loading="lazy" alt="API Lifecycle - Develop" src="https://luke.geek.nz/assets/images/apim_apilifecyle_develop-40d0a11c0c3d20462c3787e679224373.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Azure API Management offers a range of features to streamline the development process and enhance the functionality of our APIs.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - API Challenges" src="https://luke.geek.nz/assets/images/apim_apilifecyle_develop_apichallenges-54766c74b68d018aaf589566b240e6c0.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>APIs are the backbone of modern digital ecosystems, enabling connected experiences across various devices and services. However, managing these APIs efficiently comes with its own set of challenges. API management provides a structured approach to streamlining the API lifecycle.</p>
-<ol>
-<li>Consume:</li>
-</ol>
-<p><em>(Developer Portal)</em></p>
-<p>The first pillar of API management is the Developer Portal.
-This portal is a crucial interface where developers can discover, understand, and consume APIs.
-It provides comprehensive documentation, code samples, and testing tools, making it easier for developers to integrate APIs into their applications.
-The Developer Portal offers a centralized hub for API information, enhancing developer productivity and reducing the time to market for new applications.</p>
-<ol start="2">
-<li>Mediate:</li>
-</ol>
-<p><em>(Gateway)</em></p>
-<p>The gateway is at the heart of API management. It mediates the communication between client applications and backend services.
-The Gateway ensures secure, reliable, and efficient API traffic management.
-It provides various capabilities, such as load balancing, rate limiting, and security enforcement.
-By mediating API requests, the Gateway helps scale applications, protect against malicious attacks, and ensure consistent performance.</p>
-<ol start="3">
-<li>Publish:</li>
-</ol>
-<p><em>(Azure Portal)</em></p>
-<p>The third pillar is the Azure Portal, where APIs are published and managed.
-This portal allows API providers to define and publish their APIs, making them available to developers.</p>
-<p>It offers tools for monitoring API usage, setting up policies, and managing API versions.
-API providers can ensure their APIs are robust, secure, and up-to-date through the Azure Portal.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Product" src="https://luke.geek.nz/assets/images/apim_apilifecyle_develop_apichallengesproduct-0c1b5041e09b1ec6aeb15e30b50fadc1.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>APIs are essential for modern digital ecosystems, but managing them efficiently can be complex. API management provides a unified approach to streamlining product interaction and backend services.</p>
-<p>Products:</p>
-<ul>
-<li>Diverse Product Integration:</li>
-</ul>
-<p>We have multiple products (Products 1 to 5) at the top. Each product has unique functionalities and API requirements.
-These products represent different applications and services that need to communicate with various backend systems.</p>
-<p>API Management Layer:</p>
-<ul>
-<li>Centralized Management:</li>
-</ul>
-<p>The middle section represents the API Management layer, a crucial component in this architecture.
-API Management acts as a mediator, facilitating seamless communication between the products and the backend services.
-It standardizes API interactions, ensuring consistency, security, and reliability.</p>
-<ul>
-<li>Backend Systems:</li>
-</ul>
-<p>Backend on Azure and On-premises:
-At the bottom, we see the backend systems, categorized into Azure-based and on-premises backends.
-Azure backends include services such as Azure Functions, Virtual Machines, and Logic Apps.
-On-premises backends consist of traditional servers and databases.
-API Management ensures that products seamlessly interact with cloud-based and on-premises backend systems.
-Critical Benefits of API Management:</p>
-<ul>
-<li>Unified API Gateway:</li>
-</ul>
-<p>Provides a single entry point for all API requests, simplifying the management of APIs across multiple products and services.
-Enhanced Security:</p>
-<p>Authentication, authorization, and rate-limiting policies ensure secure communication between products and backend systems.</p>
-<ul>
-<li>Scalability:</li>
-</ul>
-<p>Handles large volumes of API traffic, enabling applications to scale efficiently.</p>
-<ul>
-<li>Monitoring and Analytics:</li>
-</ul>
-<p>Offers insights into API usage, performance metrics, and error tracking, helping in proactive management and optimization.
-Developer Empowerment:</p>
-<p>Facilitates a developer-friendly environment with comprehensive documentation, testing tools, and self-service capabilities.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Cross Domain policies" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_crossdomainpolicy-dee621e36fc6a851c601b6f649becdea.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Policy Scopes</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Policy Scopes" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_policyscopes-798c598ad09cebfb296141546877fe55.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Let's examine the policy scopes. Understanding the scope is crucial to applying the right policy in the right place. Policies are inherited from the parent scope to the child scope.</p>
-<p>So let us go through them.</p>
-<ul>
-<li>Global <em>(Red Border)</em></li>
-</ul>
-<p>Description: Global policies apply to all requests and responses passing through the API Management instance. They are the outermost scope, impacting every operation, API, and product.
-Usage: Commonly used for policies like CORS <em>(Cross-Origin Resource Sharing)</em> and logging, which should be consistent across the entire API Management instance.</p>
-<ul>
-<li>Workspace <em>(Yellow Border)</em></li>
-</ul>
-<p>Description: This scope is associated with a workspace, which groups related APIs and other components within API Management.
-Usage: Policies defined at this level are used when consistent policy enforcement is needed across multiple APIs belonging to the same workspace.</p>
-<ul>
-<li>Product <em>(Green Border)</em></li>
-</ul>
-<p>Description: Product-level policies apply to all APIs included within a specific product. Products are a way to bundle APIs together for subscription and access management.
-Usage: Common for setting rate limits and quotas that apply to all APIs in the product, helping to manage usage and prevent abuse.</p>
-<ul>
-<li>API <em>(Blue Border)</em></li>
-</ul>
-<p>Description: API-level policies apply to all operations within a specific API. This scope allows for API-wide behavior customization.
-Usage: Often used for API-specific security measures like JWT (JSON Web Token) validation or other API-wide configurations.</p>
-<ul>
-<li>Operation <em>(Purple Border)</em></li>
-</ul>
-<p>Description: Operation-level policies are the most granular and apply to a specific operation within an API <em>(e.g., a single endpoint or method)</em>.
-Usage: Useful for operation-specific requirements like caching, URL rewriting, or request/response transformation.</p>
-<ul>
-<li>Inbound and Outbound policies</li>
-</ul>
-<p>Inbound policies are applied as the request comes in from the caller, and outbound policies are applied as the response is sent back to the caller after being processed by the backend.</p>
-<p>Each of these scopes allows for different levels of customization and control over how requests and responses are handled within Azure API Management.</p>
-<p>If we take a look at the <a href="https://learn.microsoft.com/azure/api-management/api-management-howto-properties?tabs=azure-portal&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">policy named values</a> and <a href="https://learn.microsoft.com/azure/api-management/api-management-policy-expressions?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">expressions</a>.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Policy Values" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_policysvalues-a699bb0fcc072978e1873e5c20effd9d.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>We can see that Named Values are a powerful feature in Azure API Management that allows us to define reusable variables and secrets that can be used across policies.</p>
-<blockquote>
-<p>Policies are a collection of statements that are executed sequentially on the request or response of an API. Policy statements can be constructed using literal text values, policy expressions, and named values.</p>
-</blockquote>
-<p>Named values are a global collection of name/value pairs in each API Management instance. There is no imposed limit on the number of items in the collection. Named values can be used to manage constant string values and secrets across all API configurations and policies.</p>
-<p>Lets take a look at some out of the box policies</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Out of the box policies" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_outoftheboxpolicies-5282f68c21386cddf8904f61e5df4f1e.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Azure API Management includes, "Out of the box policies" provides the majority of use cases that that can be implemented to manage access, transform data, advance functionalities, integrate with Dapr, authenticate users, cache data, manage cross-domain calls, and validate information.</p>
-<p>Let us delve into each category to understand the capabilities these policies offer.</p>
-<ul>
-<li><strong>Access Restriction</strong></li>
-</ul>
-<p>Access restriction policies are crucial for controlling who can access your services and how often. These policies include:</p>
-<p>Check HTTP header: Validates headers in HTTP requests.
-Limit call rate by subscription/key: Controls the rate of API calls based on the subscription or key.
-Restrict caller IPs: Allows access only from specified IP addresses.
-Set usage quota by subscription/key: Limits the usage based on subscription or key.
-Validate client certificate: Ensures the authenticity of the client via certificates.
-Validate JWT (JSON Web Token): Verifies the token to ensure secure access.</p>
-<ul>
-<li><strong>Transformation</strong></li>
-</ul>
-<p>Transformation policies handle the modification and conversion of data formats and content. These policies include:</p>
-<p>Convert JSON to XML / XML to JSON: Transforms data between JSON and XML formats.
-Find and replace string in body: Replaces specific strings in the request or response body.
-Mask URLs in content: Hides sensitive URLs within the content.
-Set backend service/body/HTTP header/query string parameter: Customizes backend service configurations and request parameters.
-Rewrite URL: Modifies the URL of incoming requests.
-Transform XML using XSLT: Applies XSLT to transform XML data.</p>
-<ul>
-<li><strong>Advanced</strong></li>
-</ul>
-<p>Advanced policies provide extended functionalities for handling requests and responses. These include:</p>
-<p>Send one-way request / request: Facilitates sending HTTP requests.
-Set HTTP proxy / request method / status code / variable: Configures proxy, method, status code, and variables.
-Control flow / Emit metric: Manages the flow of requests and emits metrics.
-Log to Event Hub / Trace: Logs events and traces for monitoring.
-Mock response / Forward request: Creates mock responses or forwards requests.
-Limit concurrency / Return response / Retry / Wait: Manages concurrency, responses, and retry mechanisms.</p>
-<ul>
-<li><strong>Dapr Integration</strong></li>
-</ul>
-<p>Dapr (Distributed Application Runtime) integration policies enable communication with Dapr services:</p>
-<p>Send request to a service / message to a pub/subtopic: Facilitates interaction with Dapr services and pub/subtopics.
-Trigger output binding: Initiates output bindings in Dapr.</p>
-<ul>
-<li><strong>Authentication</strong></li>
-</ul>
-<p>Authentication policies ensure that only authorized users can access your services:</p>
-<p>Authenticate with basic / client certificate / managed identity: Supports various authentication methods to verify user identity.</p>
-<ul>
-<li><strong>Caching</strong></li>
-</ul>
-<p>Caching policies improve performance by storing and retrieving data from the cache:</p>
-<p>Store to cache / Get value from cache / Store value from cache / Remove value from cache: Manages caching operations to optimize data retrieval.</p>
-<ul>
-<li><strong>Cross Domain</strong>
-Cross-domain policies handle calls across different domains:</li>
-</ul>
-<p>CORS / JSON: Manages cross-origin resource sharing and JSON data handling.</p>
-<ul>
-<li><strong>Validation Policies</strong></li>
-</ul>
-<p>Validation policies ensure the integrity and correctness of data:</p>
-<p>Validate content/parameters/headers/status code / GraphQL request: Check the validity of content, parameters, headers, status codes, and GraphQL requests.</p>
-<p>An example of policies that are useful is <strong>Request Forwarding</strong>:</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Policy Example" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_outoftheboxpolicies_RequestForwarding-16185468fc02efa145d2c8fe3fdb3017.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>This policy is usually inherited from the global scope via the </p><base> tag. If no specific policy is set, it defaults to the base configuration.
-Timeout Settings: The forwarding timeout can be configured between 30 seconds to 10 minutes, with the default being 5 minutes.
-Redirect Handling: It can be configured to follow redirects or, by default, return them to the caller.<p></p>
-<ul>
-<li>You can configure Retry (<retry></retry>)</li>
-</ul>
-<p>Triggering Conditions: Retry is triggered when a specified expression evaluates to true.
-Backoff Intervals: Offers options for fixed, linear, or exponential backoff intervals.
-Fast First Retry: An optional feature for a quick retry attempt.
-Request Copy: Does not retain a copy of the request automatically, ensuring efficient resource utilization.</p>
-<ul>
-<li>Limit Concurrency (<limit-concurrency></limit-concurrency>)</li>
-</ul>
-<p>Concurrency Cap: Caps the number of concurrent requests forwarded to the backend to prevent overloading.
-Policy Integration: Can be used in conjunction with other policies to limit the number of requests entering enclosed policies.
-Set Backend Service (<set-backend-service></set-backend-service>)</p>
-<p>Runtime Changes: Allows changing the backend service during runtime, providing flexibility in managing backend services.
-Conditional Policies: Can be configured with conditional policies for blue/green deployment, ensuring smooth transitions and updates.</p>
-<p>and Authentication (<authentication></authentication>)</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Authentication policy" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_outoftheboxpolicies_Authentication-c478c63564154abbcde4d4cae67ce3a3.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Such as:</p>
-<ul>
-<li>validate-jwt</li>
-</ul>
-<p>Purpose: Validates JSON Web Tokens (JWTs).
-Supported Standards:</p>
-<ul>
-<li>
-<p>JWS (JSON Web Signature)</p>
-</li>
-<li>
-<p>JWE (JSON Web Encryption)</p>
-</li>
-<li>
-<p>RSA256 and HS256 algorithms</p>
-</li>
-<li>
-<p>OpenID Configuration: Supports OpenID Configuration endpoints for validation.</p>
-</li>
-<li>
-<p>Claims Validation: Can check specific claims within the JWT.</p>
-</li>
-<li>
-<p>Scope: Can be configured at any policy scope, offering flexibility in where it is applied.</p>
-</li>
-<li>
-<p>validate-client-certificate</p>
-</li>
-</ul>
-<p>Purpose: Enforces that a certificate presented by a client matches the specified validation rules and claims.
-Key Attributes:</p>
-<ul>
-<li>validate-revocation="true": Ensures the certificate has not been revoked.</li>
-<li>validate-trust="true": Checks that the certificate is trusted.</li>
-<li>validate-not-before="true": Ensures the certificate is not used before a certain date.</li>
-<li>validate-not-after="true": Ensures the certificate is not used after a certain date.</li>
-<li>ignore-error="false": Indicates whether errors should be ignored.</li>
-</ul>
-<p>Identities Section:</p>
-<p>Contains one or more identity elements.</p>
-<ul>
-<li>Each identity element includes a thumbprint attribute, identifying the specific certificate by its thumbprint.</li>
-</ul>
-<p>Let us take a look at the <a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-apimanagement" target="_blank" rel="noopener noreferrer">Azure API Management Visual Studio Code extension</a>.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Visual Studio Code" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_vscodeextension-6c9faef973d2df0e2a4218ac00c0c4ba.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>The Azure API Management Visual Studio Code extension provides a seamless experience for managing APIs directly from your development environment.</p>
-<p><img decoding="async" loading="lazy" alt="VSCode Visual Studio Extension" src="https://luke.geek.nz/assets/images/VSCode_APIMExtension-158b8751c63a5dfe40d6dfbdbe4428df.gif" width="1876" height="992" class="img_ev3q"></p>
-<p>The extension allows us to test and edit APIs directly from Visual Studio Code and push those changes straight to Azure API Management, streamlining the development process and enhancing productivity.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Visual Studio Code - Test APIs" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_vscodeextensiontest-8bb4910ae743ac6f40b54e8b0d903db5.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Let us take a look at some of the Deployment Options for Azure API Management.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Deployment Options" src="https://luke.geek.nz/assets/images/apim_apilifecyle_design_deploymentoptions-a51ad19bab22e3d6c31a9312e9b1b814.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Azure API Management is an ARM (Azure Resource Manager) resource and can be deployed using <a href="https://learn.microsoft.com/azure/azure-resource-manager/templates/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">ARM templates</a>, <a href="https://learn.microsoft.com/azure/azure-resource-manager/bicep/overview?tabs=bicep&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Bicep</a>, or <a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs" target="_blank" rel="noopener noreferrer">Terraform</a>.</p>
-<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><p>It is worth noting that Azure API Management has a <a href="https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/app-platform/api-management/landing-zone-accelerator?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Landing Zone Accelerator</a>, which is a set of pre-built configurations and best practices for deploying Azure API Management in a secure and compliant manner.</p><p><img decoding="async" loading="lazy" alt="APIM - Landing Zone Accelerator" src="https://luke.geek.nz/assets/images/apim_reference-implementation-59035bb0917552fdf01ea63f2b3529b9.png" width="1233" height="675" class="img_ev3q"></p></div></div>
-<p><a href="https://azure.github.io/apiops/" target="_blank" rel="noopener noreferrer">APIOps</a> is a set of practices and tools that help organizations manage the full lifecycle of APIs, from design to deprecation. It combines the principles of DevOps with API management to streamline API development and deployment.</p>
-<p><img decoding="async" loading="lazy" alt="APIOps" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publish_APIOps-35ac2c2bbfd02a0746c79ba1ce9bcfab.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIOps" src="https://luke.geek.nz/assets/images/ApiOps-ba714e5dbf5a703e46c7826affab267c.gif" width="1280" height="720" class="img_ev3q"></p>
-<p>APIOps can be used to automate API management tasks, improve collaboration between development and operations teams, and ensure consistency and quality across APIs, and API Management environments, such as Development, Testing and Production.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-secure">🔒 Secure<a href="https://luke.geek.nz/azure/api-management-overview/#-secure" class="hash-link" aria-label="Direct link to 🔒 Secure" title="Direct link to 🔒 Secure">​</a></h3>
-<p><img decoding="async" loading="lazy" alt="API Lifecycle - Secure" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure-cebce17d19a653c3e13d5626181e07fb.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Security is a critical aspect of API management, ensuring that APIs are protected from unauthorized access, data breaches, and other security threats. Azure API Management offers a range of security features to safeguard APIs and ensure compliance with industry standards.</p>
-<p>The <a href="https://owasp.org/" target="_blank" rel="noopener noreferrer">Open Web Application Security Project (OWASP)</a> has identified the top 10 critical API security risks for 2023</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Security" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_OWASP-852e95d7cdf827aa49b1b515ba81ab78.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<table><thead><tr><th><strong>#</strong></th><th><strong>Threat</strong></th><th><strong>Description</strong></th><th><strong>Mitigation</strong></th></tr></thead><tbody><tr><td>1</td><td>Broken Object Level Authorization</td><td>Unauthorized access to objects.</td><td>Implement key/token/certificate-based authentication and request transformation. Policy-based Access Control: Use policies to enforce authorization rules. OAuth2/JWT: Integrate with Entra ID for token validation.</td></tr><tr><td>2</td><td>Broken Authentication</td><td>Weak authentication mechanisms.</td><td>Use strong key/token-based authentication methods and transform requests appropriately. Authentication Policies: Enforce authentication using OAuth2, OpenID Connect, certificates, and API keys.</td></tr><tr><td>3</td><td>Broken Object Property Level Authorization</td><td>Unauthorized access to object properties.</td><td>Filter or mask sensitive data and ensure both request and response validations. Data Masking: Use policies to mask sensitive data. Validation: Validate input to ensure only authorized properties are accessed.</td></tr><tr><td>4</td><td>Unrestricted Resource Consumption</td><td>Overuse of resources leads to service denial.</td><td>Apply throttling and quota limits and manage backend concurrency effectively. Rate Limiting and Quotas: Use policies to set rate limits and quotas. Caching: Reduce load by caching responses.</td></tr><tr><td>5</td><td>Broken Function Level Authorization</td><td>Unauthorized access to functions.</td><td>Enforce key/token-based and custom authorizations. Role-Based Access Control (RBAC): Use Azure RBAC to control access to different API operations. Request Validation: Validate incoming requests to ensure they don't contain malicious URLs. Network Security: Use VNETs and NSGs to control outbound traffic.</td></tr><tr><td>Configuration Management: Use Azure Policy and deployment stacks to enforce security configurations. Automated Deployments: Use CI/CD pipelines to ensure consistent and secure deployments.</td><td></td><td></td><td></td></tr><tr><td>6</td><td>Unrestricted Access to Sensitive Business Flows</td><td>Uncontrolled access to critical business operations.</td><td>Validate all requests and responses meticulously. Custom Policies: Implement custom policies to validate requests and responses, ensuring sensitive operations are protected.</td></tr><tr><td>7</td><td>Server-Side Request Forgery (SSRF)</td><td>Attackers tricking the server into making requests to unintended locations.</td><td>Validate remote resources and user-supplied URIs and ensure response validation.</td></tr><tr><td>8</td><td>Security Misconfiguration</td><td>Incorrectly configured API settings.</td><td>Maintain an up-to-date API catalog and manage the API lifecycle rigorously.</td></tr><tr><td>9</td><td>Improper Inventory Management</td><td>Exposing more endpoints than necessary.</td><td>Regularly update and document your API endpoints to manage exposure effectively. API Versioning: Implement API versioning to manage the exposure of endpoints. Documentation: Keep API documentation updated and use tools like Swagger or OpenAPI.</td></tr><tr><td>10</td><td>Insufficient Logging and Monitoring</td><td>Lack of proper logging and monitoring mechanisms.</td><td>Ensure comprehensive and updated documentation and maintain robust logging and monitoring practices. Azure Monitor and Application Insights: Integrate with these services for comprehensive logging and monitoring. Alerts: Set up alerts for unusual activities.</td></tr><tr><td></td><td></td><td></td><td></td></tr></tbody></table>
-<p>Azure API Management provides a range of security features to protect APIs from these threats.</p>
-<p>Let us take a look at securing the different planes of Azure API Management.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - APIM Planes" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_planes-0ea6cbc8bcb55e476bb51c8bc191abeb.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<table><thead><tr><th>Plane Name</th><th>Used For</th></tr></thead><tbody><tr><td>User Plane</td><td>Securing user interactions and data at the entry point.</td></tr><tr><td>Management Plane</td><td>Managing and securing interactions between API providers and the management system.</td></tr><tr><td>Data Plane</td><td>Securing the flow and integrity of data between the gateway and backend services.</td></tr></tbody></table>
-<p><img decoding="async" loading="lazy" alt="APIM - Data Plane" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_dataplanes-eb2b2e6da5490011cb00516c8d2bf4fd.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>In today's interconnected digital landscape, securing backend APIs is paramount. One key strategy for achieving this is through robust data plane security. This layered defense mechanism protects sensitive data and applications from unauthorized access and malicious attacks. Let's delve deeper into how data plane security works and the roles of its components.</p>
-<p><strong>Firewall: Blocking Suspicious Requests</strong></p>
-<p>The first line of defense in data plane security is the firewall. It acts as a gatekeeper, scrutinizing incoming requests to block any that appear suspicious. The firewall employs several rule sets and mechanisms to identify and mitigate potential threats:</p>
-<ul>
-<li>OWASP Core Rule Sets: These are standardized rules for detecting common web application security risks.</li>
-<li>Bot Protection Rule Set: This helps in identifying and blocking automated bot traffic that could pose security risks.</li>
-<li>Custom Rules: Organizations can define their own rules tailored to their specific security requirements.</li>
-</ul>
-<p><strong>Gateway: Authenticating and Authorizing Requests</strong></p>
-<p>Once a request passes through the firewall, it reaches the gateway. The gateway is responsible for performing in-depth request authentication and authorization to ensure only valid requests proceed. Key functions of the gateway include:</p>
-<ul>
-<li>Authentication Mechanisms: OAuth 2, client certificates, and custom authentication methods.</li>
-<li>Authorization Mechanisms: Including IP filtering and custom authorization rules.</li>
-<li>Request/Response Validation: Ensuring that both incoming requests and outgoing responses meet predefined security criteria.</li>
-<li>Throttling: Managing the rate of incoming requests to prevent denial-of-service (DoS) attacks.</li>
-</ul>
-<p><strong>Backend APIs: Fine-Grained Authorization</strong></p>
-<p>The final layer involves the backend APIs themselves, which must accept requests only from trusted sources. This layer applies fine-grained authorization to enforce strict access controls. Key security measures include:</p>
-<ul>
-<li>HTTP Basic (Shared Secret): Simple but effective method for authenticating requests.</li>
-<li>Mutual Certificates: Ensuring both client and server authenticate each other.</li>
-<li>OAuth 2: Secure token-based authentication.</li>
-<li>Managed Identity and IP Filtering: This involves restricting access based on IP addresses and managing identities to enforce security policies.</li>
-<li>Private Networking: Isolating the APIs within a secure network environment.</li>
-</ul>
-<p><img decoding="async" loading="lazy" alt="APIM - Data Plane - Facade" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_dataplanesfacafe-ec2c06831c35062b6f9f186e25827f6d.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIM - Data Plane - Keys" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_dataplaneskeys-9777cedbe4e30ba09947149fa6408fe9.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIM - Data Plane - JWT" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_dataplanejwt-555c0ba40ac5b90feb6fcd40120a2c23.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIM - Data Plane - Client certificates" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_dataplaneclientcerts-4c8eaaeaa5fcd111bf7aa6322f9d5cfc.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIM - Data Plane - Throttling" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_dataplanethrottling-050c154f6878ef96a54df966082ac87a.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIM - Data Plane - Sanitization" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_dataplaneresponsesanitization-18068eacf98a67abccb32d21af05ef76.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIM - Data Plane - DDoS" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_dataplanereddos-9b7e6f30c693a2fde8bf2a31c97ef510.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Let's take a look at the security considerations when networking.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Private Networking Security" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_privatenetworking-9b7722a9ff678a4447ef50b7898dfa96.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Azure API Management has two networking options:</p>
-<ul>
-<li>Internal</li>
-<li>External</li>
-</ul>
-<p>The <a href="https://learn.microsoft.com/azure/api-management/api-management-using-with-internal-vnet?tabs=stv2&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">internal</a> option is more secure, as it is not exposed to the public internet. It is ideal for scenarios where you want to restrict access to your APIs to only internal clients or services.
-The <a href="https://learn.microsoft.com/azure/api-management/api-management-using-with-vnet?tabs=stv2&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">external</a> option is exposed to the public internet, making it accessible to a broader audience. This option suits scenarios where you want to provide public access to your APIs.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - External" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_external-eea39bf0a2989265bea5284a96292daf.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIM - External" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_internal-46a2eebec44ffb8c40d479d82334b34b.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>You can also use the best of both worlds by allowing Azure API Management in Internal mode to publish APIs to the Internet or external customers and using Azure Front Door or Azure Application Gateway to expose the APIs to the Internet.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Internal with WAF" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_internalwaf-f13da5e00ddbbdc68805301204d404b4.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Deciding between using Azure API Management (APIM) in Internal or External mode depends on your specific requirements for security, accessibility, and network configuration. Here are some key considerations:</p>
-<ul>
-<li>Internal Mode</li>
-</ul>
-<p>Accessibility: The APIM endpoints are accessible only from within the Virtual Network (VNet) via an internal load balancer.
-Security: This mode is more secure as it restricts access to the APIM endpoints to only those resources within the VNet.
-Use Case: This is ideal for scenarios where you need to protect sensitive APIs and ensure that they are only accessible from within your organization’s network.</p>
-<ul>
-<li>External Mode</li>
-</ul>
-<p>Accessibility: The APIM endpoints are accessible from the public internet via an external load balancer.
-Security: While still secure, this mode allows for broader access, including from the internet.
-Use Case: Suitable for scenarios where you must expose APIs to external clients or partners.</p>
-<p>Deciding between Internal and External modes depends on your specific requirements and use case. Consider your APIs' security, accessibility, and network configuration needs to determine the best mode for your scenario.</p>
-<p>For example:</p>
-<p>Security Requirements: Internal mode is preferable if your APIs handle sensitive data.
-Accessibility Needs: If you need to provide access to external clients, external mode is the way to go.
-Network Configuration: Consider your existing network setup and how APIM will integrate.</p>
-<p><img decoding="async" loading="lazy" alt="APIM Compliance" src="https://luke.geek.nz/assets/images/apim_apilifecyle_secure_compliance-61bc71cb1f56cbd5a74479627c54648a.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Azure API Management meets Compliance requirements, such as:</p>
-<ul>
-<li>GDPR</li>
-<li>HIPAA</li>
-<li>ISO 27001 PCI</li>
-</ul>
-<p>More information on the compliance can be found here: <a href="https://learn.microsoft.com/azure/compliance/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure compliance documentation</a></p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-publish">🚀 Publish<a href="https://luke.geek.nz/azure/api-management-overview/#-publish" class="hash-link" aria-label="Direct link to 🚀 Publish" title="Direct link to 🚀 Publish">​</a></h3>
-<p><img decoding="async" loading="lazy" alt="API Lifecycle - Publish" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publish-205798b51e663ddfade8f5f686f1c5d4.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Once an API is designed, developed, and secured, it is ready to be published. Azure API Management offers a range of features to help you publish and manage your APIs effectively.</p>
-<p>One of those features is the Developer Portal.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Developer Portal" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publish_DeveloperPortal-f85d911221a99a624cba998b951d2ebb.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>The Developer Portal in API Management <em>(APIM)</em> is a discovery and self-onboarding point for application developers. Here are the primary functions and features it offers:</p>
-<ul>
-<li>Discover APIs:
-Developers can explore and find available APIs to integrate into their applications.</li>
-<li>Learn How to Use Them:
-The portal provides comprehensive documentation and tutorials to help developers understand how to use the APIs effectively.</li>
-<li>Test Them Out with Interactive Console:
-Developers can interactively test the APIs within the portal using a built-in console. This allows them to see how the APIs work and validate their functionality before integrating them into their applications.</li>
-<li>Create and Manage Accounts:
-Developers can create accounts on the portal, manage their profiles, and keep track of their API usage and subscriptions.</li>
-<li>Request and Manage API Access:
-The portal enables developers to request access to specific APIs and manage their access permissions, ensuring they have the appropriate level of access for their needs.</li>
-<li>Analyze API Usage:
-Developers can analyze their API usage data to monitor performance, identify trends, and optimize their application's interaction with the APIs.</li>
-</ul>
-<p>The Developer Portal is customizable, allowing organizations to tailor it to their needs and branding. It is a central hub for developers to discover, learn, and interact with APIs, streamlining the API consumption process and fostering collaboration between API providers and consumers.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Developer Portal" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publish_DeveloperPortalcustomization-72463c4ebb9c44c60b2311c58b4e2799.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>You can also self-host the Developer Portal, whether in an App Service, a Virtual Machine, or a Kubernetes Cluster.</p>
-<p>You can find the files here: <a href="https://github.com/Azure/api-management-developer-portal" target="_blank" rel="noopener noreferrer">Azure/api-management-developer-portal</a>.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Developer Portal" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publish_DeveloperPortalselfhostedn-069f2ed78160a74b6322dd38a80f8e69.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIM - Developer Portal" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publish_DeveloperPortaSwagger-decbc50ea2f117494ba14cc171919160.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Let us take a look at Revisions and Versions.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Revisions and Versions" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publig_RevisionsVersions-99ac42aa3108180b3837524d8c3afda4.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Azure API Management provides the ability to manage <a href="https://learn.microsoft.com/azure/api-management/api-management-revisions?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">revisions</a> and <a href="https://learn.microsoft.com/azure/api-management/api-management-versions?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">versions</a> of APIs, allowing you to make changes and updates without affecting existing consumers.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Revisions and Versions" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publig_RevisionsVersionscompare-8f91e2e2549e8680e224f91d4a824482.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIM - Revisions" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publig_Revisions-891796e529b758dec142662a6fcee7fa.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<table><thead><tr><th>Scenario</th><th>Description</th><th>Benefits</th></tr></thead><tbody><tr><td>Non-Breaking Changes to Your API</td><td>Modifications that do not disrupt existing end-user functionality.</td><td>- Track and document changes systematically.</td></tr><tr><td></td><td></td><td>- Ensure a smooth transition for developers using the API.</td></tr><tr><td>Potential Roll-Back of Changes</td><td>Reverting to a previous stable state if new changes cause problems.</td><td>- Quickly revert to a stable state.</td></tr><tr><td></td><td></td><td>- Minimize downtime and maintain service reliability.</td></tr><tr><td>Communicating Changes to Your Developer Community</td><td>Keep your developer community informed about your changes.</td><td>- Provide detailed logs and documentation of changes.</td></tr><tr><td></td><td></td><td>- Help developers understand how updates might affect their applications and how to adapt to them.</td></tr></tbody></table>
-<p><img decoding="async" loading="lazy" alt="APIM - Versions" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publig_versions-99eadd57f18b471dbcc7a1dce2014886.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<table><thead><tr><th>Scenario</th><th>Description</th><th>Benefits</th></tr></thead><tbody><tr><td>Show relationship between APIs</td><td>Demonstrating how different versions of APIs are related</td><td>Helps developers understand the evolution and compatibility of APIs</td></tr><tr><td>Provide a predictable way to switch APIs</td><td>Giving developers a clear method to switch between different API versions</td><td>Reduces confusion and ensures smoother transitions between versions</td></tr><tr><td>Add breaking changes</td><td>Introducing changes that are not backward compatible</td><td>Allows for significant improvements and updates without disrupting users</td></tr><tr><td>Try out changes and solicit feedback</td><td>Testing new features or changes and gathering community feedback</td><td>Encourages community engagement and helps refine the API before release</td></tr></tbody></table>
-<p>Let's look at the following flowchart to decide between revisions and versions.</p>
-<!-- -->
-<p><img decoding="async" loading="lazy" alt="APIM - Revisions and Versions" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publig_RevisionsVersexample-0e5b4528d60d7818b41646da3edfc676.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Now that we have reviewed the Revisions and versions, let's examine <a href="https://learn.microsoft.com/azure/api-management/api-management-howto-add-products?tabs=azure-portal&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Products</a>.</p>
-<blockquote>
-<p>In Azure API Management, a product contains one or more APIs, a usage quota, and the terms of use. After a product is published, developers can subscribe to the product and begin to use the product's APIs.</p>
-</blockquote>
-<p>APIs <em>(Application Programming Interfaces)</em> enable seamless interaction between software applications. However, managing multiple APIs can be challenging. Bundling APIs with products has emerged as an effective strategy to streamline this process.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Products" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publish_BundleAPIs-85ccffcc743bbdacf5b4ed9eb87dbf95.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>API bundling involves grouping multiple APIs into a single package or product. This approach simplifies developers' and organizations' management, subscription, and usage of APIs.</p>
-<ul>
-<li>
-<p>Developer Portal
-Browse Products: Developers can explore various API products available in the portal.
-Subscribe to Products: Once a suitable product is identified, developers can subscribe to it.
-Manage Subscriptions and Keys: The portal allows developers to manage their subscriptions and obtain the necessary API keys.</p>
-</li>
-<li>
-<p>Management Plane
-Manage Products and API Associations: Administrators can define and manage the associations between products and their respective APIs.
-Define Product-Scoped Policies: Specific policies can be set for each product, ensuring controlled and secure access.
-Approve and Manage Subscriptions: Administrators can approve subscription requests and manage existing subscriptions.
-Collect and Analyze Usage Data: Usage data is collected and analyzed to monitor and optimize API performance.
-Monetize Access: Administrators can monetize API access by setting pricing plans and usage limits.</p>
-</li>
-<li>
-<p>Gateway
-Authenticate API Requests: The gateway authenticates incoming API requests using the provided keys.
-Execute Product-Scoped Policies: It ensures that the defined policies for each product are enforced during API execution.</p>
-</li>
-</ul>
-<p><img decoding="async" loading="lazy" alt="APIM - Products" src="https://luke.geek.nz/assets/images/apim_apilifecyle_publish_APISubscriptions-1114aabf06a703c07c8428202397544b.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Understanding the relationships between users, groups, products, APIs, and subscriptions is crucial for efficient and effective management.</p>
-<table><thead><tr><th>Entity</th><th>Relationships</th></tr></thead><tbody><tr><td><strong>User</strong></td><td>- Can have many Subscriptions</td></tr><tr><td></td><td>- Can belong to many Groups</td></tr><tr><td><strong>Group</strong></td><td>- Can contain many Users</td></tr><tr><td></td><td>- Can have many Subscriptions</td></tr><tr><td></td><td>- Built-in: Guest, Developer, Admin</td></tr><tr><td></td><td>- Custom: native or Entra ID</td></tr><tr><td><strong>Subscription</strong></td><td>- Each Subscription is related to one User or Group</td></tr><tr><td></td><td>- Can provide access to one Product</td></tr><tr><td><strong>Product</strong></td><td>- Can be part of many Subscriptions</td></tr><tr><td></td><td>- Can contain many APIs</td></tr><tr><td><strong>API</strong></td><td>- Each API is part of one Product</td></tr></tbody></table>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-scale">📏 Scale<a href="https://luke.geek.nz/azure/api-management-overview/#-scale" class="hash-link" aria-label="Direct link to 📏 Scale" title="Direct link to 📏 Scale">​</a></h3>
-<p><img decoding="async" loading="lazy" alt="API Lifecycle - Scale" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale-bf01c71d9390e9a22b78f911a885e31a.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Azure and the Azure API Management service have a significant <a href="https://azure.microsoft.com/en-au/explore/global-infrastructure/products-by-region?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">global footprint</a>, with 44+ public regions worldwide, 6 regions for US government use, and 4 regions in China, showcasing its extensive infrastructure and specialized services.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Scale" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale_GlobalPresence-adb8dcab06686cc7e9769fe85fb80887.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIM - Multi-region" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale_Multiregion-0e2e7c23dce94b1c00a01ce868718b69.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Azure API Management's multi-region deployment offers a robust solution for improving API reliability and reducing latency. Let's dive into the key features and benefits of this setup.
-Improved Availability and Reduced Latency</p>
-<p>One of the standout features of Azure API Management's multi-region deployment is the significantly improved availability of the data plane. You can expect minimal downtime with a Service Level Agreement (SLA) of 99.99% compared to the standard 99.95%. This increased reliability ensures that your APIs remain accessible to users worldwide, enhancing the overall user experience.</p>
-<ul>
-<li>Scalability Across Multiple Regions</li>
-</ul>
-<p>A single Premium instance of Azure API Management can be scaled across multiple regions. This flexibility allows you to deploy additional units into the primary or secondary regions based on your needs. However, regions and units come at an additional cost. This scalability ensures that your API infrastructure can grow alongside your business demands.</p>
-<ul>
-<li>Primary and Secondary Regions</li>
-</ul>
-<p>In a multi-region deployment, the primary region hosts all components, including the gateway, developer portal, management API, and developer portal API. If the primary region becomes unavailable, these components are inaccessible, highlighting the importance of a robust primary region setup.</p>
-<p>On the other hand, secondary regions host only the gateway. These secondary gateways can operate on the last received configuration while the primary area is unavailable. They periodically try to reconnect and catch up, ensuring that API requests continue to be processed even during primary region outages.</p>
-<ul>
-<li>Global API Availability</li>
-</ul>
-<p>One of the most significant advantages of multi-region deployment is that all APIs are available in every region. Azure Traffic Manager plays a crucial role in routing requests to the closest available region in this setup. Using Traffic Manager’s performance routing with a 5-minute Time-to-Live (TTL), API requests are efficiently managed, reducing latency and improving response times for users worldwide.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Multi-Region Example" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale_MultiregionEExample-676cd55575626c8fc3d3a5ad58e06340.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Lets take a look at the nuances on the anatomy of an Azure API Management instance.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Anatomy" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale_AnatomyAPIM-c63666f907fc47e4c67abd2488e01422.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>An Azure API Management instance with 1 unit, represented by two machines (Machine #1 and Machine #2). Each machine has a set of components that work together to manage and secure APIs.</p>
-<table><thead><tr><th>Machine</th><th>Component</th><th>Description</th></tr></thead><tbody><tr><td>Machine #1</td><td>Control-Plane</td><td>The administrative interface for configuring and managing APIs and policies.</td></tr><tr><td></td><td>Gateway</td><td>Handles API requests and applies rate limiting and authentication policies.</td></tr><tr><td></td><td>Developer Portal</td><td>Customizable portal for developers to discover, learn, and use APIs.</td></tr><tr><td>Machine #2</td><td>Control-Plane</td><td>Redundant administrative interface for high availability.</td></tr><tr><td></td><td>Gateway</td><td>Redundant API Gateway for load balancing and fault tolerance.</td></tr><tr><td></td><td>Developer Portal</td><td>Another instance of the Developer Portal to ensure high availability.</td></tr></tbody></table>
-<p>This is a typical setup of an Azure API Management instance. It emphasizes redundancy and high availability by distributing core components (Control-Plane, Gateway, and Developer Portal) across multiple machines. This setup ensures the API management service remains operational even if one machine fails.</p>
-<p>However, to ensure high availability and disaster recovery, one may want to expand the Azure API Management instance to another region.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Scale" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale_AnatomyAPIMSecondRegion-f223eb30d4dba49d7cb4bbf5d2d90e21.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>When you scale an Azure API Management instance to another region, you are essentially creating a secondary region deployment. This setup provides high availability and disaster recovery capabilities, ensuring your APIs remain accessible even during a regional outage by expanding the Gateway service. All Control planet traffic and the developer portal are still managed by the primary region, however your APIs will still function.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Availability Zones" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale_AvaliabilityZone-d4ef68e4c9fcf5423cf2c986990752fa.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>By deploying your APIM instance across two or more Availability Zones within a single region, you can achieve a Service Level Agreement (SLA) of 99.99%.
-In a multi-region deployment, using Availability Zones can enhance the resiliency of the primary region. Even if one zone experiences an outage, the services can operate seamlessly from another zone within the same region.</p>
-<p>Every unit deployed across the Availability Zones includes all necessary API Management components, ensuring comprehensive coverage and functionality.</p>
-<p>Using Availability Zones in Azure API Management provides enhanced availability, reliability, and resiliency for your API services, especially in a multi-region deployment. This setup ensures that your APIs remain accessible and operational even in the face of regional outages or disruptions.</p>
-<p>Now, let us take a look at self-hosting your own Gateway.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Self-hosted Gateway" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale_SelfHostedAPIGateway-9a3b77f802ab4dcc77bc9434140378be.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>The self-hosted API gateway is functionally equivalent to the managed gateway. This feature provides flexibility, allowing the gateway to be deployed on-premises or in the cloud, depending on the organization's needs. The self-hosted gateway requires only outgoing connectivity to Azure <em>(API Management Gateway)</em> on port 443.</p>
-<p>The self-hosted gateway connects to a "parent" API Management service in Azure. It pulls down configuration settings and pushes up telemetry data to Azure. This integration with Azure allows for centralized management and monitoring, simplifying the oversight and control of the API gateway.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Self-hosted Gateway SKU" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale_SelfHostedAPIGatewaySKU-6afdcfffadc0a6ac9e966f5bd4f8ad91.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Now, let us take a look at <a href="https://dapr.io/" target="_blank" rel="noopener noreferrer">Dapr</a> and Azure API Management.</p>
-<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><blockquote>
-<p><a href="https://docs.dapr.io/developing-applications/integrations/azure/azure-api-management/" target="_blank" rel="noopener noreferrer">Azure API Management is a way to create consistent and modern API gateways for back-end services, including those built with Dapr</a>. You can enable Dapr support in self-hosted API Management gateways to allow them to:</p>
-</blockquote><p>Forward requests to Dapr services
-Send messages to Dapr Pub/Sub topics
-Trigger Dapr output bindings</p></div></div>
-<p><img decoding="async" loading="lazy" alt="APIM - Dapr" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale_Dapr-467d22df34b4afeac447ee9776d4b46a.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<ul>
-<li>Dapr can work with self-hosted Azure API Management gateways and invoke services running in different pods. This allows for seamless communication between microservices within the Kubernetes cluster.</li>
-<li>Dapr supports publish/subscribe messaging, enabling applications to send messages to topics and other applications to subscribe to these topics</li>
-<li>Dapr can trigger outbound bindings, which allows it to interact with external systems and services. This feature is useful for integrating with external databases, message queues, and other services.</li>
-</ul>
-<p>By integrating Dapr with self-hosted gateways, the architecture's complexity is reduced, and common tasks like service discovery, state management, and pub/sub are simplified.</p>
-<p>Azure API Management offers an isolated SKU, a dedicated instance of Azure API Management that runs on a single-tenant virtual network. This SKU is ideal for organizations that require enhanced security, compliance, and isolation for their APIs.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Isolated SKU" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale_IsolatedTenant-940e7b0deec0a711648bd64c9671d4b9.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<blockquote>
-<p>The purpose of the Isolated tier is to enable the use of all the features of the API Management Premium tier in highly regulated industries where compute environment isolation is a requirement.</p>
-</blockquote>
-<p>Now, let us discuss <a href="https://learn.microsoft.com/azure/api-management/api-management-howto-disaster-recovery-backup-restore?tabs=powershell&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Backup and Restore</a>.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Backup and Restore" src="https://luke.geek.nz/assets/images/apim_apilifecyle_scale_IBackupRestore-7f0df87da055d9655a002fbf9cc68cca.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<table><thead><tr><th><strong>Process</strong></th><th><strong>Details</strong></th></tr></thead><tbody><tr><td><strong>Backup</strong></td><td></td></tr><tr><td>Duration</td><td>Usually takes around 10 minutes.</td></tr><tr><td>Scope</td><td>Captures everything but reports and custom domain settings in a blob.</td></tr><tr><td>Service Configuration</td><td>Operations such as scaling and upgrades are blocked while the backup is in progress.</td></tr><tr><td>Changes</td><td>Any changes applied after the backup starts are not included in the backup.</td></tr><tr><td><strong>Restore</strong></td><td></td></tr><tr><td>Duration</td><td>It Could take 30 minutes or more, depending on the size.</td></tr><tr><td>Availability</td><td>The instance is not available while the restore is in progress.</td></tr><tr><td>Custom Domain</td><td>Custom domain configurations need to be re-applied manually after the restore.</td></tr><tr><td><strong>Standby Failover Instance</strong></td><td></td></tr><tr><td>Setup</td><td>Create a backup instance in a different region in advance.</td></tr><tr><td>Configuration</td><td>Configure the custom domain identically to the active instance.</td></tr><tr><td>Sync</td><td>Periodically sync the configuration with the active instance to achieve the desired RPO (Recovery Point Objective).</td></tr><tr><td>Failover</td><td>To failover, update the CNAME to reference the backup instance.</td></tr><tr><td>Scalability</td><td>Scale up the backup instance if and as required.</td></tr><tr><td><strong>Summary</strong></td><td></td></tr><tr><td>Backup</td><td>This process is relatively quick but does block certain operations and does not capture changes made after the backup begins.</td></tr><tr><td>Restore</td><td>This can be time-consuming and renders the instance unavailable during the process. Manual intervention is required for custom domain settings.</td></tr><tr><td>Standby Failover</td><td>Setting up a standby instance in advance can significantly reduce downtime and improve recovery times. This involves periodic synchronization and possibly updating DNS records during a failover.</td></tr></tbody></table>
-<div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>warning</div><div class="admonitionContent_BuS1"><p>Backup and restore need to be configured. It is not enabled by default.
-Backup is not possible in Consumption.
-Backup and restore could take between 30 minutes to 1 hour.
-Taking a backup or restore puts the API Management Management plane in a read-only state while the backup or restore is in progress.
-The backups expire after 30 days.</p></div></div>
-<p>Backup and restore is where you can consider Infrastructure as Code and APIOps functionality and testing.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-monitor-and-analyze">📊 Monitor and Analyze<a href="https://luke.geek.nz/azure/api-management-overview/#-monitor-and-analyze" class="hash-link" aria-label="Direct link to 📊 Monitor and Analyze" title="Direct link to 📊 Monitor and Analyze">​</a></h3>
-<p><img decoding="async" loading="lazy" alt="API Lifecycle - Monitor and Analyze" src="https://luke.geek.nz/assets/images/apim_apilifecyle_MonitorAnalyze-40d533759aa62b720005173e34760838.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>Now we need to monitor and analyze the APIs and API Management to ensure that they are performing as expected and to identify any issues that may arise. Azure API Management provides a range of monitoring and analytics features to help you track API usage, performance, and health.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Monitor and Analyze" src="https://luke.geek.nz/assets/images/apim_apilifecyle_MonitorAnalyzeFeatures-e514006bc3cbb46153a3f7db814a79f8.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIM - Monitor and Analyze" src="https://luke.geek.nz/assets/images/apim_apilifecyle_MonitorAnalyzeAPIInspector-ef5274c2c3d3385874f38ac723150c7b.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>The "<a href="https://learn.microsoft.com/azure/api-management/observability?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">API Inspector</a>" feature monitors and analyzes API requests. It provides detailed information about each request, including the URL, headers, and response status code. This feature helps troubleshoot issues and optimize API performance.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Monitor and Analyze" src="https://luke.geek.nz/assets/images/apim_apilifecyle_MonitorAnalyzeAzureMonitorMetrics-861c586e59018acf39add8f53fc70ee9.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<table><thead><tr><th style="text-align:left">Tool</th><th style="text-align:left">Useful for</th><th style="text-align:left">Data lag</th><th style="text-align:left">Retention</th><th style="text-align:left">Sampling</th><th style="text-align:left">Data kind</th><th style="text-align:left">Supported Deployment Model(s)</th></tr></thead><tbody><tr><td style="text-align:left"><strong><a href="https://learn.microsoft.com/azure/api-management/api-management-howto-api-inspector?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">API Inspector</a></strong></td><td style="text-align:left">Testing and debugging</td><td style="text-align:left">Instant</td><td style="text-align:left">Last 100 traces</td><td style="text-align:left">Turned on per request</td><td style="text-align:left">Request traces</td><td style="text-align:left">Managed, Self-hosted, Azure Arc</td></tr><tr><td style="text-align:left"><strong><a href="https://learn.microsoft.com/azure/api-management/howto-use-analytics?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Built-in Analytics</a></strong></td><td style="text-align:left">Reporting and monitoring</td><td style="text-align:left">Minutes</td><td style="text-align:left">Lifetime</td><td style="text-align:left">100%</td><td style="text-align:left">Reports and logs</td><td style="text-align:left">Managed</td></tr><tr><td style="text-align:left"><strong><a href="https://learn.microsoft.com/azure/api-management/api-management-howto-use-azure-monitor?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Monitor Metrics</a></strong></td><td style="text-align:left">Reporting and monitoring</td><td style="text-align:left">Minutes</td><td style="text-align:left">90 days (upgrade to extend)</td><td style="text-align:left">100%</td><td style="text-align:left">Metrics</td><td style="text-align:left">Managed, Self-hosted<sup>2</sup>, Azure Arc</td></tr><tr><td style="text-align:left"><strong><a href="https://learn.microsoft.com/azure/api-management/api-management-howto-use-azure-monitor?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Monitor Logs</a></strong></td><td style="text-align:left">Reporting, monitoring, and debugging</td><td style="text-align:left">Minutes</td><td style="text-align:left">31 days/5GB (upgrade to extend)</td><td style="text-align:left">100% (adjustable)</td><td style="text-align:left">Logs</td><td style="text-align:left">Managed<sup>1</sup>, Self-hosted<sup>3</sup>, Azure Arc<sup>3</sup></td></tr><tr><td style="text-align:left"><strong><a href="https://learn.microsoft.com/azure/api-management/api-management-howto-app-insights?tabs=rest&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Application Insights</a></strong></td><td style="text-align:left">Reporting, monitoring, and debugging</td><td style="text-align:left">Seconds</td><td style="text-align:left">90 days/5GB (upgrade to extend)</td><td style="text-align:left">Custom</td><td style="text-align:left">Logs, metrics</td><td style="text-align:left">Managed<sup>1</sup>, Self-hosted<sup>1</sup>, Azure Arc<sup>1</sup></td></tr><tr><td style="text-align:left"><strong><a href="https://learn.microsoft.com/azure/api-management/api-management-howto-log-event-hubs?tabs=PowerShell&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Logging through Azure Event Hubs</a></strong></td><td style="text-align:left">Custom scenarios</td><td style="text-align:left">Seconds</td><td style="text-align:left">User managed</td><td style="text-align:left">Custom</td><td style="text-align:left">Custom</td><td style="text-align:left">Managed<sup>1</sup>, Self-hosted<sup>1</sup>, Azure Arc<sup>1</sup></td></tr><tr><td style="text-align:left"><strong><a href="https://learn.microsoft.com/azure/api-management/how-to-deploy-self-hosted-gateway-kubernetes-opentelemetry?WT.mc_id=AZ-MVP-5004796#introduction-to-opentelemetry" target="_blank" rel="noopener noreferrer">OpenTelemetry</a></strong></td><td style="text-align:left">Monitoring</td><td style="text-align:left">Minutes</td><td style="text-align:left">User managed</td><td style="text-align:left">100%</td><td style="text-align:left">Metrics</td><td style="text-align:left">Self-hosted<sup>2</sup></td></tr></tbody></table>
-<p><em>1. Optional, depending on the configuration of the feature in Azure API Management</em></p>
-<p><em>2. Optional, depending on the configuration of the gateway</em></p>
-<p><em>3. The self-hosted gateway currently does not send diagnostic logs to Azure Monitor. However, it is possible to configure and persist logs locally where the self-hosted gateway is deployed.</em></p>
-<p><img decoding="async" loading="lazy" alt="APIM - Monitor Logs" src="https://luke.geek.nz/assets/images/apim_apilifecyle_MonitorAnalyzeAzureMonitorLogs-095fdefa2225f1737d1ec99c501e51f2.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIM - Monitor Logs" src="https://luke.geek.nz/assets/images/apim_apilifecyle_MonitorAnalyzeAppInsights-ca96afa427b477146562d62a7271786b.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p><img decoding="async" loading="lazy" alt="APIM - Monitor Reports" src="https://luke.geek.nz/assets/images/apim_apilifecyle_MonitorAnalyzeReports-7ab257fd873d58e35398a4a8335d49f0.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<p>More information on API Management can be found here: <a href="https://aka.ms/apimlove" target="_blank" rel="noopener noreferrer">https://aka.ms/apimlove</a>.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Monitor and Analyze" src="https://luke.geek.nz/assets/images/apim_love-1c20502ac2a7b72384eca9a9ea26106d.png" width="4000" height="2250" class="img_ev3q"></p>
-<p>An excellent resource for Architecting Azure API Management, considerations can be found here: <a href="https://github.com/stephaneey/azure-and-k8s-architecture/blob/main/maps/apim.md" target="_blank" rel="noopener noreferrer">stephaneey/azure-and-k8s-architecture</a> from MVP <a href="https://www.linkedin.com/in/stephane-eyskens" target="_blank" rel="noopener noreferrer">Stephane Eyskens</a>.</p>
-<p><img decoding="async" loading="lazy" alt="APIM - Monitor and Analyze" src="https://luke.geek.nz/assets/images/apim_architecturemap-218572e8e16e98d868f3f4d40275429f.PNG" width="4000" height="2250" class="img_ev3q"></p>]]></content>
         <author>
             <name>Luke Murray</name>
             <uri>https://luke.geek.nz</uri>
