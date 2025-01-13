@@ -23,15 +23,15 @@ keywords:
 description: Create a PowerShell script to bootstrap Terraform, handle installation, create project directories, and automate deployments across Windows, Mac, and Linux.
 ---
 
-Today, we are going to implement a Terraform bootstrap script that will install Terraform, and create directories where we can place our Terraform project, that will then run a plan against and deploy. This script will be written in PowerShell, and will be used to bootstrap a new Terraform project.
+Today, we will implement a Terraform bootstrap script that will install Terraform and create directories where we can place our Terraform project, which will then run a plan against and deploy. This script will be written in PowerShell to bootstrap a new Terraform project.
 
-> "Bootstrapping usually refers to a self-starting process that is supposed to continue or grow without external input. Many analytical techniques are often called bootstrap methods in reference to their self-starting or self-supporting implementation" ~ Wikipedia
+> "Bootstrapping usually refers to a self-starting process that is supposed to continue or grow without external input. Many analytical techniques are often called bootstrap methods in reference to their self-starting or self-supporting implementation" ~ Wikipedia.
 
 {/* truncate */}
 
 ## 📜 Script Overview
 
-Inspired by the [ALZ Accelerator](https://github.com/Azure/ALZ-PowerShell-Module) bootscript script, this script will:
+Inspired by the [ALZ Accelerator](https://github.com/Azure/ALZ-PowerShell-Module) bootstrap script, this script will:
 
 1. Install-Terraform
 - Downloads and installs Terraform if not present
@@ -40,14 +40,14 @@ Inspired by the [ALZ Accelerator](https://github.com/Azure/ALZ-PowerShell-Module
 - Adds Terraform to PATH
 2. Creates required directories (config and output)
 - Copies *.tf and *.tfvars files from config to output
-- Validates file contents and paths
+- Validate file contents and paths
 3. Invoke-Terraform
 - Initializes Terraform
 - Creates execution plan
 - Handles apply/destroy with optional auto-approve
 - Manages working directory context
 
-And i've tested it on my Windows 11 machine and a Linux Codespace. In my examples I am using it to run some base Terraform to deploy a new Resource Group and Storage Account in the New Zealand North Azure region.
+And I've tested it on my Windows 11 machine and a Linux Codespace. In my examples, I am using it to run some base Terraform to deploy a new Resource Group and Storage Account in the New Zealand North Azure region.
 
 ![Run Terraform Bootstrap](images/RunTerraformBootstrap.gif)
 
@@ -61,7 +61,7 @@ You could also look at turning it into an executable using something like [PS2EX
 
 - PowerShell 5.1 or PowerShell Core 6.0+
 - Internet connectivity for downloading Terraform
-- Azure CLI installed and logged in (`az login`) - Only required if deploying to Azure.
+- Azure CLI is installed and logged in (`az login`). It is only required if deploying to Azure.
 - Write permissions to the directory where you'll run the script
 
 ## 🎯 Usage Examples
