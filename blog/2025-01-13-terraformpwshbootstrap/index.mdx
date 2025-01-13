@@ -23,8 +23,6 @@ keywords:
 description: Create a PowerShell script to bootstrap Terraform, handle installation, create project directories, and automate deployments across Windows, Mac, and Linux.
 ---
 
-## 🚀 Introduction
-
 Today, we are going to implement a Terraform bootstrap script that will install Terraform, and create directories where we can place our Terraform project, that will then run a plan against and deploy. This script will be written in PowerShell, and will be used to bootstrap a new Terraform project.
 
 > "Bootstrapping usually refers to a self-starting process that is supposed to continue or grow without external input. Many analytical techniques are often called bootstrap methods in reference to their self-starting or self-supporting implementation" ~ Wikipedia
@@ -63,7 +61,7 @@ You could also look at turning it into an executable using something like [PS2EX
 
 - PowerShell 5.1 or PowerShell Core 6.0+
 - Internet connectivity for downloading Terraform
-- Azure CLI installed and logged in (`az login`)
+- Azure CLI installed and logged in (`az login`) - Only required if deploying to Azure.
 - Write permissions to the directory where you'll run the script
 
 ## 🎯 Usage Examples
