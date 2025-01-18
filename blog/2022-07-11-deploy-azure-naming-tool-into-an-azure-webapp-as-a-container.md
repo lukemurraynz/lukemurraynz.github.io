@@ -7,7 +7,7 @@ tags:
 toc: true
 header:
   teaser: /uploads/azurenamingtool_referencepage.png
-
+slug: azure/deploy-azure-naming-tool-into-an-azure-webapp-as-a-container
 ---
 
 Organising your cloud workloads to support governance, operational management, and accounting requirements can take a lot of effort before the first resource is created.
