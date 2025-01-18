@@ -7,7 +7,7 @@ tags:
 toc: true
 header:
   teaser: /uploads/azurenaming.png
-
+slug: azure/microsoft-azure-naming-conventions
 ---
 
 Accurately representing and naming your resources is essential for security purposes.
