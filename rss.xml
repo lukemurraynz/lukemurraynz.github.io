@@ -62,7 +62,7 @@
 </ul>
 <p>Learn and refine is about:</p>
 <ul>
-<li>Continuous refinement and additions of health signals/SLIs/SLOs.</li>
+<li>Continuous refinement and additions of <a href="https://learn.microsoft.com/azure/well-architected/design-guides/health-modeling?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">health signals/SLIs/SLOs</a>.</li>
 <li>Learnings from the smallest outages drive repairs towards minimizing the time for self-detection in pre-prod.</li>
 <li>Enrichment of synthetics shared tests. Injection of gating signals from synthetics and customers.</li>
 <li>Ongoing ML refinements with increased cross-service signals.</li>
