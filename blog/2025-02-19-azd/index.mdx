@@ -1,0 +1,333 @@
+---
+title: Getting Started with Azure Developer CLI (azd)
+metaDescription: Learn how to use Azure Developer CLI (azd) to accelerate your Azure application development with templates, environment management, and CI/CD integration.
+date: 2025-02-19T07:27:28.954Z
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: azure/azure-developer-cli
+keywords:
+  - Azure
+  - Azure Developer CLI
+  - azd
+  - Infrastructure as Code
+  - DevOps
+  - CI/CD
+  - Azure Container Apps
+  - Azure Functions
+  - Azure Static Web Apps
+  - Azure Application Insights
+  - Azure Key Vault
+  - Development
+  - Cloud Development
+  - Azure Templates
+description: Learn how to use Azure Developer CLI (azd) to accelerate your Azure application development with templates, environment management, and CI/CD integration.
+---
+
+Today, we will touch on [Azure Developer CLI (azd)](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview?tabs=windows&WT.mc_id=AZ-MVP-5004796).
+
+So, let us take a closer look.
+
+{/* truncate */}
+
+## 🌟 Introduction
+
+:::info
+The [Azure Developer CLI (azd)](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview?tabs=windows&WT.mc_id=AZ-MVP-5004796) is an open-source tool that accelerates provisioning and deploying app resources on Azure. azd provides best practice, developer-friendly commands that map to key stages in your development workflow, whether you're working in the terminal, an integrated development environment (IDE), or through CI/CD (continuous integration/continuous deployment) pipelines.
+
+azd uses [extensible blueprint templates](https://learn.microsoft.com/azure/developer/azure-developer-cli/azd-templates?WT.mc_id=AZ-MVP-5004796) that include everything you need to get an application up and running on Azure. These templates include:
+
+* Reusable infrastructure as code assets to provision cloud resources services using Bicep or Terraform.
+* Proof-of-concept or starter app code that can be customized or replaced with your own app code.
+* Configuration files are needed to deploy your app to the provisioned resources.
+* Optionally, pipeline workflow files for GitHub Actions or Azure Pipelines to enable CI/CD integrations.
+
+You can also [create your own template](https://learn.microsoft.com/azure/developer/azure-developer-cli/make-azd-compatible?pivots=azd-create&WT.mc_id=AZ-MVP-5004796) or find one to customize and expand on from the [Awesome AZD](https://learn.microsoft.com/azure/developer/azure-developer-cli/make-azd-compatible?pivots=azd-convert&WT.mc_id=AZ-MVP-5004796) gallery.
+:::
+
+### 🤔 What is Azure Developer CLI (azd)?
+
+The [Azure Developer CLI (azd)](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview?tabs=windows&WT.mc_id=AZ-MVP-5004796) is a developer-centric command-line interface (CLI) tool for creating Azure applications. 
+
+The goals of the CLI are to:
+
+* reduce the time required for a developer to be productive
+* demonstrate opinionated best practices for Azure development
+* help developers understand core Azure development constructs
+
+To take full advantage of the CLI, code repositories need to conform to a well defined set of conventions that will be recognized by the tooling. 
+
+You can find more information on the [Azure Developer CLI (azd) GitHub repository](https://github.com/Azure/azure-dev), including installation instructions for Windows, Linux amd Mac.
+
+A common misconception is that the Azure Developer CLI (azd) is a replacement for the Azure CLI. This is not the case. The Azure Developer CLI (azd) is a tool that is designed to help developers deploy Azure applications, ideal for rapid innovation and learning scenarios, and supports the deployment of infrastructure and application components. 
+
+:::tip
+Make sure to check out [**awesome-azd**](https://azure.github.io/awesome-azd/), a curated list of resources for the Azure Developer CLI (azd) community.! I have found this to be a great resource for finding templates and other resources to help me get started with the Azure Developer CLI (azd), and sometimes the exact scenario that you may need. And there is an active Pull Request to update alot of these examples to use [Azure Verified Modules](https://azure.github.io/Azure-Verified-Modules/).
+
+For more AI-orientated workloads, refer to the [**ai-app-template gallery](https://azure.github.io/ai-app-templates/). This collection of templates can be used to deploy AI workloads to Azure, such as an Azure Agents Travel Assistant, Prompty and Semantic Kernel examples.
+:::
+
+It is not a general-purpose tool for managing Azure resources.
+
+### 🎯 Common use cases
+
+I have found the Azure Developer CLI (azd) to be particularly useful in the following scenarios:
+
+* **Learning Azure**: The Azure Developer CLI (azd) is a great tool for learning Azure, as it provides a set of opinionated best practices for Azure development. This can help you understand core Azure development constructs and get up and running quickly with Azure without having to worry about whether a solution is deployed securely or how to architect or create each resource manually. AZD allows you to easily deploy and destroy the resources you need for learning, keeping your Azure subscription clean and tidy.
+* **Rapid Innovation**: The Azure Developer CLI (azd) is also great for rapid innovation scenarios, where you need to quickly deploy a solution to Azure to test an idea or prototype or deploy in another environment in a once-off scenario.
+* **CI/CD Pipelines**: The Azure Developer CLI (azd) can create CI/CD pipelines for your Azure applications. This can help you automate the deployment of your applications to Azure, and ensure that your applications are deployed consistently and securely.
+
+> I personally would fit Azure Developer CLI into the early lifecycle of a product - it's great to get going in your iterative phases [PoT/PoC/MVP](https://luke.geek.nz/misc/product-development-lifecycle/), AZD helps bootstrap and accelerate deployments into Azure from local development environments. 
+
+For example, here is an example [copied from the MS Learn](https://learn.microsoft.com/azure/developer/azure-developer-cli/azd-commands?WT.mc_id=AZ-MVP-5004796#compare-azure-developer-cli-commands) website that showcases it nicely:
+
+| Tool | Sample Command | Outcome |
+|------|---------------|----------|
+| Azure Developer CLI | `azd provision` | Provisions multiple Azure resources required for an app based on project resources and configurations, such as an Azure resource group, an Azure App Service web app, and app service plan, an Azure Storage account, and an Azure Key Vault. |
+| Azure CLI | `az webapp create --resource-group myResourceGroup --plan myAppServicePlan --name myWebApp` | Provisions a new web app in the specified resource group and app service plan. |
+| Azure PowerShell | `New-AzWebApp -ResourceGroupName "myResourceGroup" -Name "myWebApp" -AppServicePlan "myAppServicePlan"` | Provisions a new web app in the specified resource group and app service plan. |
+
+At the time of writing, AZD can be used to deploy the infrastructure components and application components for the following services:
+
+| Service | Status |
+|---------|---------|
+| Azure App Service | GA |
+| Azure Static Web Apps | GA |
+| Azure Container Apps | Beta |
+| Azure Functions | GA |
+| Azure Kubernetes Service | Beta* |
+| Azure Spring Apps | Beta |
+
+_*KS support limited to projects deployable via kubectl apply -f_
+
+This covers the majority of scenarios, for example, a Static WebApp Frontend, an Azure Functions API backend, or a full-blown AKS cluster with a Spring App.
+
+| Category | Supported Technologies |
+|----------|----------------------|
+| Programming Languages | Node.js, Python, .NET, Java |
+| Infrastructure as Code | Bicep, Terraform |
+
+Make sure to keep an eye on [Supported languages and environments](https://learn.microsoft.com/azure/developer/azure-developer-cli/supported-languages-environments?WT.mc_id=AZ-MVP-5004796) and [Azure/azure-dev](https://github.com/Azure/azure-dev) for the most up to date information.
+
+## 🚀 Getting Started
+
+Let's get started with the Azure Developer CLI (azd) by installing the CLI and creating a new project.
+
+You can install it using tools [such as winget, straight curl sh script install, or homebrew](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/install-azd?tabs=choco-windows%2Cbrew-mac%2Cscript-linux&pivots=os-windows&WT.mc_id=AZ-MVP-5004796).
+
+For me, I favor [GitHub Codespaces](https://github.com/features/codespaces), and using a GitHub Codespace I have preconfigured with AZD allows me to get started quickly.
+
+:::info
+You can find my IaC Coding Codespace template here: [lukemurraynz/Codespace_IaC_Coding](https://github.com/lukemurraynz/Codespace_IaC_Coding).
+![Codespace_IaC_Coding](/images/IaCCodingCodespaceTemplate.jpg)
+:::
+
+If you want to add Azure CLI support to your own devcontainer/Codespace then in the devcontainer.json under the features section, add:
+
+```json
+"features": {
+    // Adds Azure Developer CLI (azd) support.
+    "ghcr.io/azure/azure-dev/azd:latest": {},
+     },
+```
+You can also add the Azure Developer CLI [Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.azure-dev) by:
+
+```json
+"extensions": [
+    "ms-azuretools.azure-dev"
+]
+``` 
+
+:::info
+My demo environment that I will be using for this article is run from my [lukemurraynz/Codespace_IaC_Coding](https://github.com/lukemurraynz/Codespace_IaC_Coding) GitHub Codespace template. This contains AZD, Terraform, Bicep, pretty much everything I need for any Infrastructure as Code work. 
+:::
+
+### 📝 Project initialization (azd init)
+
+To create a new project using the Azure Developer CLI _(azd)_, you can use the `azd init` command. This command will create a new project in the current directory or will prompt you to select a template to use for the project from the awesome-and templates list.
+
+For our demo, we will select a template already preconfigured.
+
+We will select the [dreamteam](https://github.com/Azure-Samples/dream-team) template. We can use the up and down arrows and type if we know what template we want to easily search.
+
+This template contains [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/?WT.mc_id=AZ-MVP-5004796), [Azure Application Insights](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview?WT.mc_id=AZ-MVP-5004796), [Key Vault](https://learn.microsoft.com/azure/key-vault/general/basic-concepts?WT.mc_id=AZ-MVP-5004796), [Azure Log Analytics](https://learn.microsoft.com/azure/azure-monitor/logs/log-analytics-overview?WT.mc_id=AZ-MVP-5004796), [Managed identities](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview?WT.mc_id=AZ-MVP-5004796) and [Azure OpenAI service](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796).
+
+![azd init](/images/demo-azdinit-template.gif)
+
+We could have also typed `azd init -t dream-team` to select the dream-team template if we knew what it was.
+
+* An infra folder was added that includes Bicep files to create Azure resources (it could easily be Terraform).
+* An azure.yaml configuration file was added to map the app code in the src directory to the provision of Azure resources.
+
+![azd init](/images/AZD_Base-FilesFolders.jpg)
+
+### ⬆️ Deployment (azd up)
+
+Now that we have the AZD project initialized, we can deploy the resources to Azure using the `azd up` command.
+
+But first, we need to authenticate to Azure by running `and auth login` and following the instructions to select the appropriate tenancy and subscription.
+
+![azd up](/images/demo-azdauth.gif)
+
+:::warning
+If you have tags or compliance reasons why resources need to be named something specific, now is the time to amend the infrastructure as code, in most projects, the name is made up of a resourcetoken generated by a unique token based on the subscription ID, environment name, and location + a resource suffix, for example, if it you were deploying API Management, the name could look something like: apim-nepvrtdddlfbu, but the names can be overwritten in the Bicep files like you would any other Bicep deployment - in fact, you can adjust the IaC as best to suit your environment, ie add in Private Endpoints, or adjust the SKU of a resource.
+:::
+
+Now we can run `azd up` to deploy the resources to Azure.
+
+![azd up](/images/demo-azddeploy.gif)
+
+And if we click on the supplied endpoint, we can access our Streamlit application that is running in Azure Container Apps.
+
+![azd up](/images/demo-azd-deploy-streamlit.jpg)
+
+:::tip
+You can track the deployment in the Deployment blade of the created Resource Group as well.
+:::
+
+As you can see, AZD went through a build phase to package and build the docker container from the src directory before proceeding with the infrastructure deployment and application deployment _(this behavior can be controlled by editing the azure.yaml file, but following this pattern is the default, build project, build infrastructure, then deploy project)_. No point in deploying the infrastructure if the build fails, and talking about failure, you may have issues deploying or building your service and not quite know where the problem is - one of the things you can do is enable [debug](https://learn.microsoft.com/azure/developer/azure-developer-cli/troubleshoot?tabs=Browser&WT.mc_id=AZ-MVP-5004796#using-the---debug-switch) to have more verbose output, ie `azd up --debug`.
+
+
+### 🌍 Environment management (azd env)
+
+Now we have a fully deployed application using `azd up`, lets discuss about environment management.
+
+`azd env` is a command that allows you to manage your environments. You can create, list, delete, and switch between environments using this command, so you can easily manage different environments, such as development, staging, and production, without affecting each one.
+
+:::info
+Manage your application environments. With this command group, you can create a new environment or get, set, and list your application environments.
+
+  • An Application can have multiple environments (ex: dev, test, prod).
+  • Each environment may have a different configuration (that is, connectivity information) for accessing Azure resources.
+  • You can find all environment configurations under the .azure/<environment-name> folder.
+  • The environment name is stored as the AZURE_ENV_NAME environment variable in the .azure/<environment-name>/.env file.
+
+Usage
+  azd env [command]
+
+Available Commands
+  get-value     : Get specific environment value.
+  get-values    : Get all environment values.
+  list          : List environments.
+  new           : Create a new environment and set it as the default.
+  refresh       : Refresh environment settings by using information from a previous infrastructure provision.
+  select        : Set the default environment.
+  set           : Manage your environment settings.
+  set-secret    : Set a <name> as a reference to a Key Vault secret in the environment.
+
+Global Flags
+    -C, --cwd string    : Sets the current working directory.
+        --debug         : Enables debugging and diagnostics logging.
+        --docs          : Opens the documentation for azd env in your web browser.
+    -h, --help          : Gets help for env.
+        --no-prompt     : Accepts the default value instead of prompting, or it fails if there is no default.
+:::
+
+The first thing we can do is the environment variables of our environments by running `azd env get-values`.
+
+This will output the environment variables; each solution may be different, but common values are AZURE_ENV_NAME and AZURE_LOCATION.
+
+![azd env get-values](/images/demo-azdgetenvvalues.gif)
+
+These values are also stored in the .azure/<environment-name>/.env file.
+
+So we have an environment named: testdeploy, lets see if we can create a new environment, and switch to it.
+
+![azd env new](/images/demo-azdcreateenv.gif)
+
+Now you can manage multiple environments of your application and switch between them easily, each one treated separately in terms of the values that are set, so dev could be in another region, or you could do something like this:
+
+![azd env select](/images/demo-azdcreateenvvalues.gif)
+
+It's pretty basic, and the TagENV variable, you could just pull out by using the environmentName variable in Bicep _(take a look at the main.parameters.json)_, but it shows you how you can manage different environments, and the values that are set for them.
+
+Multiple environments can be useful for testing, for different regions, or for different stages of the development lifecycle, particularly when looking at having multiple environments for a CI/CD pipeline, so dev, test, staging, production, and and up can be used to deploy to these environments. I have run into scenarios where I have deployed something with an old configuration that started to get used by a team while I continued to work on new configuration and settings - having multiple environments allowed me to leave the old one untouched while I worked on a new environment
+
+### 📊 Monitoring (azd monitor)
+
+To be fair - this isn't one I've used much, but it is a useful command to know about.
+
+`azd monitor` is a command that allows you to monitor your application. You can view logs, metrics, and other monitoring data using this command, so you can easily monitor the health and performance of your application by utilizing [Application Insights dashboards](https://learn.microsoft.com/en-us/azure/azure-monitor/app/overview-dashboard?WT.mc_id=AZ-MVP-5004796).
+
+| Dashboard Type | Command |
+|---------------|---------|
+| Main dashboard | `azd monitor --overview` |
+| Live metrics | `azd monitor --live` |
+| Logs dashboard | `azd monitor --logs` |
+
+These commands will open the respective dashboards in your default web browser, making it easy to monitor your application's performance and health.
+
+Let us take a brief look after I switched back to my testdeploy environment:
+
+![azd monitor](/images/demo-azdmonitor.gif)
+
+### ⬇️ Destroying resources (azd down)
+
+Now that we have deployed and monitored our application, we can destroy the resources using the `azd down` command.
+
+:::warning
+Before using the azd down command, make sure you have backed up any data or config that you need, as this command will delete all resources deployed with AZD and anything inside of the Resource Group that was deployed by AZD initially.
+:::
+
+:::tip
+A few Azure resources, such as Azure OpenAI, Azure API Management, and Key Vault, are not entirely deleted when you run `azd down`. You can delete these resources by running `azd down --purge to remove purge them from a soft-delete state altogether; you may want to do this if you are recreating the same resources with the same names consistently and don't want to have Bicep reinstate these resources for you.
+:::
+
+![azd down](/images/demo-azddown.gif)
+
+## 🔄 CI/CD Integration
+
+Now, you might have a scenario where you want to integrate the Azure Developer CLI _(azd)_ into your CI/CD pipeline so you can automate the deployment of your applications to Azure, especially in a team or collaborative environment.
+
+And its doable, there are a few ways to do this, and I will cover the out of the box one first, this will work for both Azure DevOps pipelines or GitHub Actions.
+
+:::info
+Manage integrating your application with deployment pipelines. (Beta)
+
+  • azd commands (e.g., provision, deploy) can be used within GitHub Actions and Azure Pipelines to test your code against real Azure resources and facilitate deployments.
+  • After creating a pipeline definition file, running pipeline config will help configure your deployment pipeline to connect securely to Azure.
+  • For more information on how to use azd in your pipeline, go to: https://aka.ms/azure-dev/pipeline.
+
+Usage
+  azd pipeline [command]
+
+Available Commands
+  config        : Configure your deployment pipeline to connect securely to Azure. (Beta)
+
+Global Flags
+    -C, --cwd string    : Sets the current working directory.
+        --debug         : Enables debugging and diagnostics logging.
+        --docs          : Opens the documentation for azd pipeline in your web browser.
+    -h, --help          : Gets help for pipeline.
+        --no-prompt     : Accepts the default value instead of prompting, or it fails if there is no default.
+
+Use azd pipeline [command] --help to view examples and more information about a specific command.
+
+Examples
+  Walk through the steps required to set up your deployment pipeline.
+    azd pipeline config
+:::
+
+![azd pipeline config](/images/demo-pipelineconfig.gif)
+
+Forgive the stop; my pre-commit file prevented it from actually committing the code, but hopefully, it was enough to show you how to configure the pipeline and link it directly into GitHub with Azure Developer CLI doing a lot of the heavy lifting for you.
+
+:::tip
+When working with multiple environments, it requires some tweaking to the GitHub Actions.
+
+I am not going to re-invent the wheel here; there is some great documentation by [Jason Taylor](https://www.linkedin.com/in/jasontaylordev/), Microsoft Azure MVP from Australia, that I have personally used to deploy to multiple environments, and it is a great resource to get started with: [Support multiple environments](https://github.com/jasontaylordev/todo-aspnetcore-csharp-sqlite/blob/main/OPTIONAL_FEATURES.md). Jason also recently did a video to the Microsoft Azure Cloud Commanders Learning Room: [Speedrunning Code to Cloud with the Azure Developer CLI (azd) with Jason Taylor](https://youtu.be/e6K2EuVfgWE). 
+:::
+
+## 💡 Tips and Tricks
+
+Just finishing off with some tips and tricks:
+
+* Make use of the [azuredeveloper cli hooks](https://learn.microsoft.com/azure/developer/azure-developer-cli/azd-extensibility?WT.mc_id=AZ-MVP-5004796#available-hooks), to run scripts and custom actions on post, predeploy. Refer to my article [Managing Environment Variables in Azure Static Web Apps with Azure Developer CLI](https://luke.geek.nz/azure/staticwebapp-azd-environment-variables/) for some guidance on how I have used this.
+* Use Templates, as mentioned earlier, the [Awesome AZD](https://azure.github.io/awesome-azd/) gallery is a great resource to find templates to get you started and AI orientated workloads, you can also refer to the [ai-app-template gallery](https://azure.github.io/ai-app-templates/).
+* There is a issue and PR being worked on, to update alot of the templates with [AVM _(Azure Verified Module)_](https://azure.github.io/Azure-Verified-Modules/) templates, but it hasn't been completed yet, so feel free to replace or add in your own modules and create your own AZD template! Start from your application code and build it out from there by testing the deployment with AZD to an Azure Function or Container App.
+* Keep an eye on the Pull Requests and [GitHub repo](https://github.com/Azure/azure-dev/) for the latest updates and changes, and join in on the latest [discussions and community calls](https://github.com/Azure/azure-dev/discussions).
+
+Hopefully, this has given you enough of a view of some of the great functionality of Azure Developer CLI (azd) and how you can use it to deploy your applications to Azure and innovate and learn quickly.
