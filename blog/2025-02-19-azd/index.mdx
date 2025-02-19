@@ -202,8 +202,8 @@ Manage your application environments. With this command group, you can create a 
 
   • An Application can have multiple environments (ex: dev, test, prod).
   • Each environment may have a different configuration (that is, connectivity information) for accessing Azure resources.
-  • You can find all environment configurations under the .azure/<environment-name> folder.
-  • The environment name is stored as the AZURE_ENV_NAME environment variable in the .azure/<environment-name>/.env file.
+  • You can find all environment configurations under the `.azure/<environment-name>` folder.
+  • The environment name is stored as the AZURE_ENV_NAME environment variable in the `.azure/<environment-name>/.env` file.
 
 Usage
   azd env [command]
@@ -232,7 +232,7 @@ This will output the environment variables; each solution may be different, but 
 
 ![azd env get-values](/images/demo-azdgetenvvalues.gif)
 
-These values are also stored in the .azure/<environment-name>/.env file.
+These values are also stored in the `.azure/<environment-name>/.env` file.
 
 So we have an environment named: testdeploy, lets see if we can create a new environment, and switch to it.
 
