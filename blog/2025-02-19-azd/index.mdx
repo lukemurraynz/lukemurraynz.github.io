@@ -193,7 +193,7 @@ As you can see, AZD went through a build phase to package and build the docker c
 
 ### 🌍 Environment management (azd env)
 
-Now we have a fully deployed application using `azd up`, lets discuss about environment management.
+Now we have a fully deployed application using `and up` let's discuss environment management.
 
 `azd env` is a command that allows you to manage your environments. You can create, list, delete, and switch between environments using this command, so you can easily manage different environments, such as development, staging, and production, without affecting each one.
 
@@ -205,6 +205,7 @@ Manage your application environments. With this command group, you can create a 
   • You can find all environment configurations under the `.azure/<environment-name>` folder.
   • The environment name is stored as the AZURE_ENV_NAME environment variable in the `.azure/<environment-name>/.env` file.
 
+```text
 Usage
   azd env [command]
 
@@ -224,6 +225,7 @@ Global Flags
         --docs          : Opens the documentation for azd env in your web browser.
     -h, --help          : Gets help for env.
         --no-prompt     : Accepts the default value instead of prompting, or it fails if there is no default.
+```
 :::
 
 The first thing we can do is the environment variables of our environments by running `azd env get-values`.
@@ -291,6 +293,7 @@ Manage integrating your application with deployment pipelines. (Beta)
   • After creating a pipeline definition file, running pipeline config will help configure your deployment pipeline to connect securely to Azure.
   • For more information on how to use azd in your pipeline, go to: https://aka.ms/azure-dev/pipeline.
 
+```text
 Usage
   azd pipeline [command]
 
@@ -309,6 +312,7 @@ Use azd pipeline [command] --help to view examples and more information about a 
 Examples
   Walk through the steps required to set up your deployment pipeline.
     azd pipeline config
+```
 :::
 
 ![azd pipeline config](/images/demo-pipelineconfig.gif)
