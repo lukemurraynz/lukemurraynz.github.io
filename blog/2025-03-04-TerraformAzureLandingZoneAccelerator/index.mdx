@@ -1,0 +1,86 @@
+---
+title: 
+metaDescription: 
+date: 
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: azure/
+keywords:
+  - Azure
+description: 
+---
+
+As part of the [Azure Back to School](https://azurebacktoschool.github.io/) event for 2025, we are here to take a look at [Azure Landing Zones](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796), specifically [Platform Landing Zones](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796#platform-landing-zones-vs-application-landing-zones), and the deployment of the Platform Landing Zone, using an [accelerator](https://azure.github.io/Azure-Landing-Zones/accelerator/) and Azure DevOps for the CI/CD.
+
+![azd](images/AzureBacktoSchool_Logo.png)
+
+{/* truncate */}
+
+## Introduction to Azure Landing Zones
+
+Azure Landing Zones provide a structured approach for designing and implementing cloud environments in Azure. They are essential for organizations looking to migrate, modernize, and innovate their applications at scale1.
+
+## Understanding Azure Landing Zone Accelerators
+Azure Landing Zone Accelerators are automation frameworks designed to expedite the deployment of Azure Landing Zone architecture2. They come in two flavors:
+
+* Bicep Accelerator
+* Terraform Accelerator
+
+Both accelerators reached version 1.0 milestone, marking their general availability2.
+
+Key Components of Azure Landing Zones
+Platform Landing Zone: Shared services like identity, connectivity, and management1
+
+Application Landing Zone: Specific environments for particular applications or workloads1
+
+###  Benefits of Using Azure Landing Zone Accelerators
+Rapid deployment of Azure Landing Zone architecture
+
+Adherence to best practices
+
+Customizable to meet specific organizational needs
+
+Minimizes effort in analyzing and creating deployment strategies2
+
+## Deploying Azure Landing Zones with Terraform
+
+### Azure Landing Zone Accelerator for Terraform
+
+Pre-requisites: Configure credentials and subscriptions
+
+Bootstrap: Set up CI/CD pipelines (supports GitHub and Azure DevOps)
+
+Run: Deploy the Azure Landing Zone architecture2
+
+Terraform Landing Zone Vending Module
+Designed for deploying individual landing zones
+
+Capabilities include:
+
+Subscription creation and management group placement
+
+Networking (hub & spoke, vWAN, mesh peering)
+
+Role assignments
+
+Resource provider registration
+
+Resource group creation
+
+User-assigned managed identity creation3
+
+## Best Practices for Azure Landing Zone Implementation
+
+Start with the Azure Landing Zone Accelerator for most scenarios
+
+Consider multiple-region deployments for resilience
+
+Implement centralized logging and monitoring
+
+Utilize management groups and Azure Policy for governance
+
+Regularly review and update your landing zone configuration6
