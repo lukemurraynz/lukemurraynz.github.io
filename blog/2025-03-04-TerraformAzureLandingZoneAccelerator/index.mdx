@@ -71,9 +71,38 @@ To bootstrap, we will make use of the:[ALZ-PowerShell-Module](https://github.com
 
 The bootstrap for Azure DevOps, also includes self-hosted agents _(Container Apps or Container Instances)_ as optional, and preconfigured pipelines, including validation and branch policies with approval steps, so a great foundational platform to then work towards.
 
+Here’s the information you provided, organized into an easy-to-read table format:
+
+| **Platform**        | **Component**                                                       | 
+| **Azure DevOps**    | **Azure Resources**                                                 |                                                                                                   |
+|                     | Resource Group for State                                            | Terraform only                                                                                   |
+|                     | Storage Account and Container for State                             | Terraform only                                                                                   |
+|                     | Resource Group for Identity                                         |                                                                                                   |
+|                     | User Assigned Managed Identities (UAMI) with Federated Credentials  | For Plan and Apply                                                                                |
+|                     | Permissions for the UAMI                                            | On state storage container, subscriptions, and management groups                                  |
+|                     | [Optional] Container Registry for Azure DevOps Agent Image          |                                                                                                   |
+|                     | [Optional] Container Instances hosting Azure DevOps Agents          |                                                                                                   |
+|                     | [Optional] Virtual network, subnets, private DNS zone, and private endpoint |                                                                                                   |
+|                     | **Azure DevOps Resources**                                          |                                                                                                   |
+|                     | Project (can be supplied or created)                                |                                                                                                   |
+|                     | Repository for the Module                                           |                                                                                                   |
+|                     | Repository for the Pipeline Templates                               |                                                                                                   |
+|                     | Starter Terraform module with tfvars                                |                                                                                                   |
+|                     | Branch policy                                                       |                                                                                                   |
+|                     | Pipeline for Continuous Integration                                 |                                                                                                   |
+|                     | Pipeline for Continuous Delivery                                    |                                                                                                   |
+|                     | Environment for Plan                                                |                                                                                                   |
+|                     | Environment for Apply                                               |                                                                                                   |
+|                     | Variable Group for Backend                                          |                                                                                                   |
+|                     | Service Connections with Workload identity federation for Plan and Apply |                                                                                                   |
+|                     | Service Connection Approvals, Template Validation, and Concurrency Control |                                                                                                   |
+|                     | Group and Members for Apply Approval                                |                                                                                                   |
+|                     | [Optional] Agent Pool                                              |                                                                                                   |
+
+
 
 :::tip
-Make sure you checkout the following resources for more information on the Azure Landing Zone Accelerator and Azure Landing Zone Library, these are your soureces of truth:
+Make sure you checkout the following resources for more information on the Azure Landing Zone Accelerator and Azure Landing Zone Library, these are your sources of truth:
 
 * [Azure Landing Zones Documentation](https://aka.ms/alz/acc)
 * [Azure Landing Zones Library](https://azure.github.io/Azure-Landing-Zones-Library/)
@@ -81,7 +110,19 @@ Make sure you checkout the following resources for more information on the Azure
 If you have issues, you can also raise them on the [ALZ-PowerShell-Module](https://github.com/Azure/ALZ-PowerShell-Module/issues) GitHub repository.
 :::
 
-Before we get started 
+Before we get started we need some pre-requisites 
+
+* 3 Azure subscriptions _(1 for Connectivity, 1 for Identity and 1 for Connectivity) - (for the purposes of this demo, I will be using a single subscription)_ we will also need the IDs for the bootstrap and Terraform deployment.
+Permissions Required for Management Group and Subscriptions:
+
+* Owner on your chosen parent management group:
+
+The owner account will grant permissions to the identities running the management group deployment. These identities will have least privilege permissions. Owner on each of your 3 Azure landing zone subscriptions.
+
+* A PAT token for the creation of a Service Connection in Azure DevOps _(Agent Pools (Read & manage)_, Build _(Read & execute)_, Code _(Full)_, Environment _(Read & manage)_, Graph _(Read & manage)_, Pipeline Resources _(Use & manage)_, Project and Team _(Read, write & manage)_, Service Connections _(Read, query & manage)_, and Variable Groups _(Read, create & manage)_.)_  Thjis token is only needed for the duration needed to bootstrap the environment and can be revoked after.
+
+
+
 ---
 
 
@@ -118,4 +159,5 @@ Implement centralized logging and monitoring
 
 Utilize management groups and Azure Policy for governance
 
-Regularly review and update your landing zone configuration6
+Regularly review and update your landing zone configuration6ddssffrrtggwyyrtest llold
+sdsdggrerrsswwwsffggthhhyrtestgbfsfgbsfghgththrthjjytrssdf
