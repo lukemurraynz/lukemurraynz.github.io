@@ -78,33 +78,34 @@ To bootstrap, we will make use of the:[ALZ-PowerShell-Module](https://github.com
 
 ![Azure Landing Zones - Customer Journey](images/ALZAccelerator_CICDComponents.JPG)
 
-The bootstrap for Azure DevOps includes self-hosted agents _(Container Apps or Container Instances)_ as optional, and preconfigured pipelines, including validation and branch policies with approval steps, so a foundational platform to work towards.
+The bootstrap for Azure DevOps includes [self-hosted agents](https://learn.microsoft.com/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=yaml%2Cbrowser&WT.mc_id=AZ-MVP-5004796#self-hosted-agents) _([Container Apps](https://learn.microsoft.com/azure/container-apps/overview?WT.mc_id=AZ-MVP-5004796) or [Container Instances](https://learn.microsoft.com/azure/container-instances/container-instances-overview?WT.mc_id=AZ-MVP-5004796))_ as optional, and preconfigured pipelines, including validation and branch policies with approval steps, so a foundational platform to work towards.
 
-| **Platform**        | **Component**                                                       | 
-| **Azure DevOps**    | **Azure Resources**                                                 |                                                                                                   |
-|                     | Resource Group for State                                            | Terraform only                                                                                   |
-|                     | Storage Account and Container for State                             | Terraform only                                                                                   |
-|                     | Resource Group for Identity                                         |                                                                                                   |
-|                     | User Assigned Managed Identities (UAMI) with Federated Credentials  | For Plan and Apply                                                                                |
-|                     | Permissions for the UAMI                                            | On state storage container, subscriptions, and management groups                                  |
-|                     | [Optional] Container Registry for Azure DevOps Agent Image          |                                                                                                   |
-|                     | [Optional] Container Instances hosting Azure DevOps Agents          |                                                                                                   |
-|                     | [Optional] Virtual network, subnets, private DNS zone, and private endpoint |                                                                                                   |
-|                     | **Azure DevOps Resources**                                          |                                                                                                   |
-|                     | Project (can be supplied or created)                                |                                                                                                   |
-|                     | Repository for the Module                                           |                                                                                                   |
-|                     | Repository for the Pipeline Templates                               |                                                                                                   |
-|                     | Starter Terraform module with tfvars                                |                                                                                                   |
-|                     | Branch policy                                                       |                                                                                                   |
-|                     | Pipeline for Continuous Integration                                 |                                                                                                   |
-|                     | Pipeline for Continuous Delivery                                    |                                                                                                   |
-|                     | Environment for Plan                                                |                                                                                                   |
-|                     | Environment for Apply                                               |                                                                                                   |
-|                     | Variable Group for Backend                                          |                                                                                                   |
-|                     | Service Connections with Workload identity federation for Plan and Apply |                                                                                                   |
-|                     | Service Connection Approvals, Template Validation, and Concurrency Control |                                                                                                   |
-|                     | Group and Members for Apply Approval                                |                                                                                                   |
-|                     | [Optional] Agent Pool                                              |                                                                                                   |
+| Component | Description | Notes |
+|-----------|-------------|-------|
+| **Azure Resources** |||
+| Resource Group for State | | Terraform only |
+| Storage Account and Container for State | | Terraform only |
+| Resource Group for Identity | | |
+| User Assigned Managed Identities (UAMI) with Federated Credentials | | For Plan and Apply |
+| Permissions for the UAMI | | On state storage container, subscriptions, and management groups |
+| [Optional] Container Registry for Azure DevOps Agent Image | | |
+| [Optional] Container Instances hosting Azure DevOps Agents | | |
+| [Optional] Virtual network, subnets, private DNS zone, and private endpoint | | |
+| **Azure DevOps Resources** |||
+| Project (can be supplied or created) | | |
+| Repository for the Module | | |
+| Repository for the Pipeline Templates | | |
+| Starter Terraform module with tfvars | | |
+| Branch policy | | |
+| Pipeline for Continuous Integration | | |
+| Pipeline for Continuous Delivery | | |
+| Environment for Plan | | |
+| Environment for Apply | | |
+| Variable Group for Backend | | |
+| Service Connections with Workload identity federation for Plan and Apply | | |
+| Service Connection Approvals, Template Validation, and Concurrency Control | | |
+| Group and Members for Apply Approval | | |
+| [Optional] Agent Pool | | |
 
 :::tip
 Make sure you check out the following resources for more information on the Azure Landing Zone Accelerator and Azure Landing Zone Library, these are your sources of truth:
@@ -486,5 +487,7 @@ Once your Platform Landing Zone is established, consider these important follow-
 - [Azure Management Guide](https://learn.microsoft.com/azure/cloud-adoption-framework/manage/azure-management-guide/?WT.mc_id=AZ-MVP-5004796)
 - [Azure Verified Modules](https://azure.github.io/Azure-Verified-Modules/)
 - [Enterprise-scale architecture GitHub repo](https://github.com/Azure/Enterprise-Scale)
+
+For the GitHub repos, remember to view the Issues and Pull Requests, you can learn alot from what other people have contributed to the initiatives, and the Issues being raised.
 
 Remember, the Landing Zone is not a one-time deployment but an evolving foundation that grows with your organization's cloud journey. Regular reviews and updates will ensure it continues to support your changing business needs while maintaining security and governance standards, and how the business plans on consuming this - is not to be underestimated in the design and implementation of this.
