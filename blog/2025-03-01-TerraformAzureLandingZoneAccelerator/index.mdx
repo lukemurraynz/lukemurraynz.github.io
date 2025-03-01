@@ -29,7 +29,7 @@ As part of the [Azure Back to School](https://azurebacktoschool.github.io/) even
 
 {/* truncate */}
 
-## Introduction to Azure Landing Zones
+## 🏗️ Introduction to Azure Landing Zones
 
 [Azure Landing Zones](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796) provide a structured approach for designing and implementing cloud environments in Azure. They are essential for organizations looking to migrate, modernize, and innovate their applications at scale, mainly because of the considerations you make in designing and implementating them, considerations such as how your workloads are going to connect to the internet, how each service connects, and importantely, how your organisation will use Cloud - I saw a comment from someone the other day _(Cloud is not WHERE you work, its HOW you work)_. 
 
@@ -43,7 +43,7 @@ An Azure landing zone architecture is scalable and modular to meet various deplo
 
 More information on Azure Landing Zones, can be found in the [Microsoft Cloud Adoption Framework for Azure](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/?WT.mc_id=AZ-MVP-5004796), Landing Zones specifically sits under the Ready phase.
 
-## Understanding Azure Landing Zone Accelerators
+## 🚀 Understanding Azure Landing Zone Accelerators
 
 [Azure Landing Zone Accelerators](https://azure.github.io/Azure-Landing-Zones/accelerator/) are automation frameworks designed to expedite the deployment of Azure Landing Zone architecture. They come in two flavors:
 
@@ -66,9 +66,9 @@ For this article, we will be discussing the:
 
 ![Azure Landing Zones - Customer Journey](images/ALZAccelerator_SampleLandingZoneDeployment.JPG)
 
-## Deploying Azure Landing Zones with Terraform
+## 🔄 Deploying Azure Landing Zones with Terraform
 
-### Bootstrap
+### 🛠️ Bootstrap
 
 It begins with a Bootstrap process, which is the initial setup of the Azure DevOps environment, including creating a new project, repository, and service connection. This process is automated using a mix of PowerShell and Terraform.
 
@@ -134,14 +134,13 @@ I recommend starting with the [Azure Landing Zone Accelerator Checklist](https:/
 ![Azure Landing Zones - Customer Journey](images/ALZ_Bootstrap_Checklist.jpg)
 :::
 
-
 We will bootstrap the environment, to create our Azure DevOps environment, and then deploy the base components for a [Platform Landing Zone](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796#platform-landing-zones-vs-application-landing-zones) and the associated [archetypes](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/tailoring-alz?WT.mc_id=AZ-MVP-5004796#what-is-a-landing-zone-archetype-in-azure-landing-zones) for the fictional company of Contoso. To do this, we will be using the Terraform - Azure Verified Modules for [Platform Landing Zone (ALZ) starter modules](https://azure.github.io/Azure-Landing-Zones/accelerator/startermodules/terraform-platform-landing-zone/) and configuration in the Australia East Azure region.
 
 :::info
 Before you start, make sure you request a parallelism grant for Azure DevOps, by default, Azure DevOps has a limit of 1 concurrent job, to request a free parallelism grant, please fill out the following form https://aka.ms/azpipelines-parallelism-request
 :::
 
-### Bootstrap Process
+### 📋 Bootstrap Process
 
 1. First login to Azure 'az login' and then run the following commands:
 2. Next we need the ALZ PowerShell Module, so we will install that:
@@ -461,6 +460,31 @@ You can rerun the Continuous Delivery pipeline, and select Destroy if you want t
 ![Azure DevOps Azure Landing Zone Pipelines](images/ALZAccelerator_DepoloyedLandingZoneDeployment.JPG)
 ![Azure DevOps Azure Landing Zone Pipelines](images/ALZAccelerator_DepoloyedLandingZoneDeploymentResources.JPG)
 
-Hopefully this has given you a good overview of the Azure Landing Zone Accelerator, and how you can deploy a Platform Landing Zone using Terraform and Azure DevOps, and the benefits of Infrastructure as Code, and creating a foundation to work from, and adjust as needed.
+## ✅ Conclusion
 
+The [Azure Landing Zone Terraform Accelerator](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-landing-zones-accelerators-for-bicep-and-terraform-announcing-general-avai/4029866?WT.mc_id=AZ-MVP-5004796) offers a powerful foundation for organizations looking to implement a well-architected Azure environment. 
 
+Through this article, we've explored how to:
+
+1. Bootstrap your environment with automation using the [ALZ PowerShell module](https://github.com/Azure/ALZ-PowerShell-Module)
+2. Configure and deploy [Platform Landing Zone components](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796#platform-landing-zones-vs-application-landing-zones) using Infrastructure as Code _([Terraform](https://www.terraform.io/))_
+3. Establish governance through management groups, policies, and controlled [Azure DevOps pipelines](https://learn.microsoft.com/azure/devops/pipelines/get-started/what-is-azure-pipelines?view=azure-devops&WT.mc_id=AZ-MVP-5004796).
+
+### Next Steps After Deployment
+
+Once your Platform Landing Zone is established, consider these important follow-up activities:
+
+- **Document your environment**: Create detailed documentation explaining your Landing Zone design choices and customizations _(make sure to checkout [alzlibtool](https://github.com/Azure/alzlib/tree/main))
+- **Establish operational procedures**: Define processes for managing the environment, including approvals and adjustments to platform
+- **Plan your Application Landing Zones**: Design the specific landing zones for your workloads based on your organization's needs and investigate [Subscription vending](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/subscription-vending?WT.mc_id=AZ-MVP-5004796).
+
+### Resources for Continued Learning
+
+- [AWESOME Azure Architecture](http://aka.ms/AwesomeAzureArchitecture)
+- [Azure Landing Zones Library](https://azure.github.io/Azure-Landing-Zones-Library/)
+- [Azure landing zone design areas and conceptual architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-areas?WT.mc_id=AZ-MVP-5004796)
+- [Azure Management Guide](https://learn.microsoft.com/azure/cloud-adoption-framework/manage/azure-management-guide/?WT.mc_id=AZ-MVP-5004796)
+- [Azure Verified Modules](https://azure.github.io/Azure-Verified-Modules/)
+- [Enterprise-scale architecture GitHub repo](https://github.com/Azure/Enterprise-Scale)
+
+Remember, the Landing Zone is not a one-time deployment but an evolving foundation that grows with your organization's cloud journey. Regular reviews and updates will ensure it continues to support your changing business needs while maintaining security and governance standards, and how the business plans on consuming this - is not to be underestimated in the design and implementation of this.
