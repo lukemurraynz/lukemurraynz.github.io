@@ -34,9 +34,9 @@ As part of the [Azure Back to School](https://azurebacktoschool.github.io/) even
 [Azure Landing Zones](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796) provide a structured approach for designing and implementing cloud environments in Azure. They are essential for organizations looking to migrate, modernize, and innovate their applications at scale, mainly because of the considerations you make in designing and implementating them, considerations such as how your workloads are going to connect to the internet, how each service connects, and importantely, how your organisation will use Cloud - I saw a comment from someone the other day _(Cloud is not WHERE you work, its HOW you work)_. 
 
 :::info
-An Azure landing zone is an environment that follows key design principles across eight design areas. These design principles accommodate all application portfolios and enable application migration, modernization, and innovation at scale. An Azure landing zone uses subscriptions to isolate and scale application resources and platform resources. Subscriptions for application resources are called application landing zones, and subscriptions for platform resources are called platform landing zones.
+An Azure landing zone is an environment that follows key design principles across eight design areas. These design principles accommodate all application portfolios and enable application migration, modernization, and innovation at scale. An Azure landing zone uses subscriptions to isolate and scale application and platform resources. Subscriptions for application resources are called application landing zones, and subscriptions for platform resources are called platform landing zones.
 
-An Azure landing zone architecture is scalable and modular to meet various deployment needs. The repeatable infrastructure allows you to apply configurations and controls to every subscription consistently. Modules make it easy to deploy and modify specific Azure landing zone architecture components as your requirements evolve.
+An Azure landing zone architecture is scalable and modular to meet various deployment needs. The repeatable infrastructure allows you to consistently apply configurations and controls to every subscription. Modules make deploying and modifying specific Azure landing zone architecture components easy as your requirements evolve.
 
 ![Azure Landing Zones](images/azure-landing-zone-architecture-diagram-hub-spoke.png)
 :::
@@ -62,7 +62,7 @@ With Landing Zones, theres the Platform Landing Zone and the Application Landing
 For the purpose of this article, we will be discussing the:
 
 * Bootstrap of our environment (into Azure DevOps)
-* Deploy of Azure platform Landing Zone componnets using Terraform
+* Deployment of Azure platform Landing Zone components using Terraform
 
 ![Azure Landing Zones - Customer Journey](images/ALZAccelerator_SampleLandingZoneDeployment.JPG)
 
@@ -70,15 +70,15 @@ For the purpose of this article, we will be discussing the:
 
 ### Bootstrap
 
-It begins with a Bootstrap process, which is the initial setup of the Azure DevOps environment, including the creation of a new project, repository, and service connection. This process is automated using a mix of PowerShell and Terraform.
+It begins with a Bootstrap process, which is the initial setup of the Azure DevOps environment, including creating a new project, repository, and service connection. This process is automated using a mix of PowerShell and Terraform.
 
 ![Azure Landing Zones - Customer Journey](images/ALZAccelerator_Components.JPG)
 
-To bootstrap, we will make use of the:[ALZ-PowerShell-Module](https://github.com/Azure/ALZ-PowerShell-Module), this script will help bring together the different depdencies and Terraform bootstraping to setup our Azure DevOps environment, Terraform state storage account and bring in the necessary Platform Landing Zone library files for our deployment.
+To bootstrap, we will make use of the:[ALZ-PowerShell-Module](https://github.com/Azure/ALZ-PowerShell-Module), this script will help bring together the different dependencies and Terraform bootstraping to setup our Azure DevOps environment, Terraform state storage account and bring in the necessary Platform Landing Zone library files for our deployment.
 
 ![Azure Landing Zones - Customer Journey](images/ALZAccelerator_CICDComponents.JPG)
 
-The bootstrap for Azure DevOps, also includes self-hosted agents _(Container Apps or Container Instances)_ as optional, and preconfigured pipelines, including validation and branch policies with approval steps, so a great foundational platform to then work towards.
+The bootstrap for Azure DevOps includes self-hosted agents _(Container Apps or Container Instances)_ as optional, and preconfigured pipelines, including validation and branch policies with approval steps, so a foundational platform to work towards.
 
 | **Platform**        | **Component**                                                       | 
 | **Azure DevOps**    | **Azure Resources**                                                 |                                                                                                   |
@@ -107,7 +107,7 @@ The bootstrap for Azure DevOps, also includes self-hosted agents _(Container App
 |                     | [Optional] Agent Pool                                              |                                                                                                   |
 
 :::tip
-Make sure you checkout the following resources for more information on the Azure Landing Zone Accelerator and Azure Landing Zone Library, these are your sources of truth:
+Make sure you check out the following resources for more information on the Azure Landing Zone Accelerator and Azure Landing Zone Library, these are your sources of truth:
 
 * [Azure Landing Zones Documentation](https://aka.ms/alz/acc)
 * [Azure Landing Zones Library](https://azure.github.io/Azure-Landing-Zones-Library/)
@@ -115,18 +115,18 @@ Make sure you checkout the following resources for more information on the Azure
 If you have issues, you can also raise them on the [ALZ-PowerShell-Module](https://github.com/Azure/ALZ-PowerShell-Module/issues) GitHub repository.
 :::
 
-Before we get started we need some pre-requisites 
+Before we get started, we need some pre-requisites 
 
-* 3 Azure subscriptions _(1 for Connectivity, 1 for Identity and 1 for Connectivity) - (for the purposes of this demo, I will be using a single subscription)_ we will also need the IDs for the bootstrap and Terraform deployment.
+* 3 Azure subscriptions _(1 for Connectivity, 1 for Identity, and 1 for Connectivity) - (for this demo, I will be using a single subscription)_ we will also need the IDs for the bootstrap and Terraform deployment.
 Permissions Required for Management Group and Subscriptions:
 
 * Owner on your chosen parent management group:
 
-The owner account will grant permissions to the identities running the management group deployment. These identities will have least privilege permissions. Owner on each of your 3 Azure landing zone subscriptions.
+The owner account will grant permissions to the identities running the management group deployment. Owner on each of your 3 Azure landing zone subscriptions.
 
-* A PAT token for the creation of a Service Connection in Azure DevOps _(Agent Pools (Read & manage)_, Build _(Read & execute)_, Code _(Full)_, Environment _(Read & manage)_, Graph _(Read & manage)_, Pipeline Resources _(Use & manage)_, Project and Team _(Read, write & manage)_, Service Connections _(Read, query & manage)_, and Variable Groups _(Read, create & manage)_.)_  Thjis token is only needed for the duration needed to bootstrap the environment and can be revoked after.
+* A PAT token for the creation of a Service Connection in Azure DevOps _(Agent Pools (Read & manage)_, Build _(Read & execute)_, Code _(Full)_, Environment _(Read & manage)_, Graph _(Read & manage)_, Pipeline Resources _(Use & manage)_, Project and Team _(Read, write & manage)_, Service Connections _(Read, query & manage)_, and Variable Groups _(Read, create & manage)_.)_  This token is only needed for the duration required to bootstrap the environment and can be revoked after.
 
-Once we have those pre-requisites, we can then proceed with the bootstrapping process. 
+Once we have those pre-requisites, we can proceed with the bootstrapping process. 
 
 :::tip
 I recommend starting with the [Azure Landing Zone Accelerator Checklist](https://azure.github.io/Azure-Landing-Zones/examples/tf/accelerator/config/checklist.xlsx), this will help you understand the requirements and dependencies for the deployment, and ensure you have everything you need before you start the process.
@@ -138,7 +138,7 @@ I recommend starting with the [Azure Landing Zone Accelerator Checklist](https:/
 We will bootstrap the environment, to create our Azure DevOps environment, and then deploy the base components for a [Platform Landing Zone](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796#platform-landing-zones-vs-application-landing-zones) and the associated [archetypes](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/tailoring-alz?WT.mc_id=AZ-MVP-5004796#what-is-a-landing-zone-archetype-in-azure-landing-zones) for the fictional company of Contoso. To do this, we will be using the Terraform - Azure Verified Modules for [Platform Landing Zone (ALZ) starter modules](https://azure.github.io/Azure-Landing-Zones/accelerator/startermodules/terraform-platform-landing-zone/) and configuration in the Australia East Azure region.
 
 :::info
-Before you start, make sure you request a parallelism grant for Azure DevOps, by default, Azure DevOps has a limit of 1 concurrent job,to request a free parallelism grant, please fill out the following form https://aka.ms/azpipelines-parallelism-request
+Before you start, make sure you request a parallelism grant for Azure DevOps, by default, Azure DevOps has a limit of 1 concurrent job, to request a free parallelism grant, please fill out the following form https://aka.ms/azpipelines-parallelism-request
 :::
 
 ### Bootstrap Process
@@ -164,7 +164,7 @@ if ($null -eq $module) {
 ![Azure Landing Zones - Customer Journey](images/ALZ_InstallPshModule.gif)
 
 :::info
-There are 3 sets of configuration that can be supplied to the accelerator to pre-configure it.
+3 sets of configuration can be supplied to the accelerator to pre-configure it.
 
 The available configuration inputs are:
 
@@ -175,7 +175,7 @@ The available configuration inputs are:
 
 We will start with th bootstrap configuration file, this will be used to create the Azure DevOps environment, and the Terraform state storage account and container, then we adjust the Platform Landing Zone configuration file to control what Azure resources we will need to deploy _(ie Hub and Spoke, or Virtual WAN, Bastion etc)_ and the Platform Landing Zone library folder, which will contain the Archetype definitions and policy assignments for greater flexibility.
 
-3. Lets create the local configuration files for the bootstrap and Platform Landing Zone deployment:
+3. Let's create the local configuration files for the bootstrap and Platform Landing Zone deployment:
 
 ```powershell
 New-Item -ItemType "file" c:\Code\accelerator\config\inputs.yaml -Force
@@ -186,7 +186,7 @@ New-Item -ItemType "directory" c:\Code\accelerator\output
 
 4. Now we need to open the inputs.yaml file and add the following configuration found here: [inputs-azure-devops.yaml](https://raw.githubusercontent.com/Azure/alz-terraform-accelerator/refs/heads/main/templates/platform_landing_zone/examples/bootstrap/inputs-azure-devops.yaml).
 
-It should look somethng like below:
+It should look something like below:
 
 ```yaml
 # For detailed instructions on using this file, visit:
@@ -233,7 +233,7 @@ output_folder_path: "c:/Code/accelerator/output"
 For further customisation, make sure you take a look at the [variables.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/main/alz/local/variables.tf) file directly in the accelerator bootstrap modules GitHub, it can show further options that you can add to the bootstrap, such as the storage account replicatin type for your Terraform state files, or additinal custom roles and resource naming.
 :::
 
-Now that we have configured the variables required for our bootstrap, lets define the Terraform variables for the Platform Landing Zone deployment, this will be used to define the Azure resources we will deploy, such as the Hub and Spoke, Virtual WAN, Bastion, etc, and this is the platform-landing-zone.tfvars file. I recommend copying one from one of the [already pre-existing Scenarios](https://azure.github.io/Azure-Landing-Zones/accelerator/startermodules/terraform-platform-landing-zone/scenarios/) and modifying to suit you needs. For my purposes, I will be going with a Single region hub and spoke VNET with [Azure Firewall](https://azure.github.io/Azure-Landing-Zones/accelerator/startermodules/terraform-platform-landing-zone/scenarios/single-region-hub-and-spoke-vnet-with-azure-firewall/).
+Now that we have configured the variables required for our bootstrap, let us define the Terraform variables for the Platform Landing Zone deployment, this will be used to determine the Azure resources we will deploy, such as the Hub and Spoke, Virtual WAN, Bastion, etc, and this is the platform-landing-zone.tfvars file. I recommend copying one from one of the [already pre-existing Scenarios](https://azure.github.io/Azure-Landing-Zones/accelerator/startermodules/terraform-platform-landing-zone/scenarios/) and modifying to suit your needs. For my purposes, I will be going with a Single region hub and spoke VNET with [Azure Firewall](https://azure.github.io/Azure-Landing-Zones/accelerator/startermodules/terraform-platform-landing-zone/scenarios/single-region-hub-and-spoke-vnet-with-azure-firewall/).
 
 5. Open the platform-landing-zone.tfvars file and add the configuration and modify for your needs, for my purposes, I will be using the following configuration:
 
@@ -585,7 +585,7 @@ hub_and_spoke_vnet_virtual_networks = {
 }
 ```
 :::info
-The `platform-landing-zone.tfvars` file is a crucial configuration file for deploying an Azure Landing Zone using the Azure Landing Zones Accelerator with Terraform. This file defines the variables that customize your Azure foundation in accordance with your requirements and this file will be your main configuration file for the deployment of the Platform Landing Zone.
+The `platform-landing-zone.tfvars` file is a crucial configuration for deploying an Azure Landing Zone using the Azure Landing Zones Accelerator with Terraform. This file defines the variables that customize your Azure foundation by your requirements, and this file will be your main configuration file for the deployment of the Platform Landing Zone.
 
 ## Key Components of the File
 
@@ -701,11 +701,11 @@ Also make sure you run a `terraform validate` and `terraform fmt` to validate th
 
 :::
 
-And don't worry if you don't get ths right the first time, you can always adjust and redeploy, this is the beauty of Infrastructure as Code. I work in an ilterative approach, so its always good to get something working, then adjust and improve, rather than trying to get it perfect the first time, and the Terraform plan and validate pipelines help with this approach.
+And don't worry if you don't get this right the first time, you can always adjust and redeploy, this is the beauty of Infrastructure as Code. I work in an iterative approach, so it's always good to get something working, then adjust and improve, rather than trying to get it perfect the first time, and the Terraform plan and validate pipelines help with this approach.
 
-6. We are close, the last thing we will add is a custom library folder. This isn't required for base Platform Landing Zones, however, I recommend adding it in, for additinal flexibility, especially as you start to deploy more complex environments and archetypes within your organisation. You can refer to the [Azure Landing Zones Library](https://azure.github.io/Azure-Landing-Zones-Library/) for more information on how to create your own custom library and additional information but for now we are going to copy the alz folder from the [Azure Landing Zones Library](https://github.com/Azure/Azure-Landing-Zones-Library/tree/main/platform) and place it in the lib folder in our config directory.
+6. We are close, the last thing we will add is a custom library folder. This isn't required for base Platform Landing Zones, however, I recommend adding it in, for additional flexibility, especially as you start to deploy more complex environments and archetypes within your organization. You can refer to the [Azure Landing Zones Library](https://azure.github.io/Azure-Landing-Zones-Library/) for more information on how to create your own custom library and additional information. Still, for now we are going to copy the alz folder from the [Azure Landing Zones Library](https://github.com/Azure/Azure-Landing-Zones-Library/tree/main/platform) and place it in the lib folder in our config directory.
 
-By default, the architecture that will be deloyed will be _(you can also refer to the README file in the lib folder for more information)_:
+By default, the architecture that will be deployed will be _(you can also refer to the README file in the lib folder for more information)_:
 
 ```mermaid
 flowchart TD
@@ -743,13 +743,13 @@ flowchart TD
 You can adujust the Management Group names and parent/child relationships by editing the `alz.alz_architecture_definition.json` file in the lib\architecture_definitions folder, and th architectype definitions allow you to configure the type of policy definitions, role assignments that are deployed to specific Management Groups with a certain archetype, for example you could have workload Landing Zones of 'Workload' archetype with specific policy definitions and role assignments, that may be different from the root or Platform groups, and Management Groups could share this same archetype, so you can have a consistent policy and role assignment across your environment.
 
 :::tip
-Not required, but make e [alzlibtool](https://github.com/Azure/alzlib) tool, this is a tool that can help you create and manage your own custom library for your Azure Landing Zones, and can be used to check policy and azure landing zone architecture definition structure and document your own custom library.
+Not required, but make the [alzlibtool](https://github.com/Azure/alzlib) tool, this is a tool that can help you create and manage your own custom library for your Azure Landing Zones, and can be used to check policy and Azure Landing Zone architecture definition structure, and document your own custom library.
 :::
 
-7. Now that the configuratin files for the bootstrap, Terraform are in place and the architectypes its time to start the bootstrap. Run the following command to start the bootstrap process:
+7. Now that the configuration files for the bootstrap, Terraform are in place, and the architectures, it's time to start the bootstrap. Run the following command to start the bootstrap process:
 
 :::tip
-If you need to make any last minute changes, after the Terraform plan and before the apply, you can make manual changes to the Terraform code, check your local output folder. Its not something I would rely on - ideally the platform tfvars and yaml input file should be updated, but in a pinch, you can make manual changes. I had to do this recently, when deloying a Landing Zone into New Zealand North, and had tomanually update the location of the Log Analytics workspace, as it was not supported in that region yet. Although for Platform resouces, you can also make this change once the code is in the repository.
+If you need to make any last-minute changes, after the Terraform plan and before the application, you can make manual changes to the Terraform code. Check your local output folder. It is not something I would rely on - ideally the platform tfvars and yaml input file should be updated, but in a pinch, you can make manual changes. I had to do this recently, when deloying a Landing Zone into New Zealand North, and had tomanually update the location of the Log Analytics workspace, as it was not supported in that region yet. However, for Platform resources, you can also make this change once the code is in the repository.
 :::
 
 ```powershell
@@ -761,7 +761,7 @@ Deploy-Accelerator `
 
 ![Azure Landing Zones - Customer Journey](images/ALZ_DeployBootstrap.gif)
 
-Once completed, in Azure, you should have 2 resources groups - one for your Managed identities that will be linked to 2 Service Connections in Azure DevOps for Plan and Apply, and one for your Teraform state file.
+Once completed, in Azure, you should have two resource groups - one for your Managed identities that will be linked to 2 Service Connections in Azure DevOps for Plan and Apply, and one for your Terraform state file.
 
 ![Azure Landing Zones - Customer Journey](images/ALZ_Bootstrap_Resource_Deployed.png)
 
@@ -770,30 +770,30 @@ And in Azure DevOps, you should have a new project, repository, and service conn
 ![AzureDevOps Azure Landin Zone Code](images/ALZ_Bootstrap_ADO_Deployed.png)
 
 :::info
-The plz acronymn I am using, is mean't to indicate 'Platform Landing Zone'.
+The plz acronym I am using, is meant to indicate 'Platform Landing Zone'.
 :::
 
-And Pipelines preconfigured - Continous Interation _(ie Terraform Validate and Plan)_ and Continous Delivery _(ie Terraform Apply)_ with the approvers and branch policies in place.
+And Pipelines preconfigured - Continuous Integration _(ie Terraform Validate and Plan)_ and Continuous Delivery _(ie Terraform Apply)_ with the approvers and branch policies in place.
 
 ![Azure DevOps Azure Landing Zone Pipelines](images/ALZ_Bootstrap_ADOPipelines.jpg)
 
 :::tip
-I recommend renaming the pipelines, in Azure DevOps so they are more descriptive, ie 'Terraform Plan' and 'Terraform Apply' - pretty simplified, but can make more sense to people consumping the pipelines.
+I recommend renaming the pipelines, in Azure DevOps, so they are more descriptive, ie, 'Terraform Plan' and 'Terraform Apply' - pretty simplified, but can make more sense to people consuming the pipelines.
 
 ![Azure DevOps Azure Landing Zone Pipelines](images/ALZ_DeployBootstrap_RenameADOPipelines.gif)
 :::
 
-Now, lets run the Continous Integration pipeline to see what the Terraform plan looks like.
+Now, let's run the Continuous Integration pipeline to see what the Terraform plan looks like.
 
 ![Azure DevOps Azure Landing Zone Pipelines](images/ALZ_PLZ_ValidatePlan.gif)
 
 As we can see, it validates and will deploy our full hub and spoke _(both expressroute and VPN gateways)_ so that would need tweaking for my environment, but this is the beauty of Infrastructure as Code, you can see what is going to be deployed before it is deployed, and make the necessary adjustments, by opening up a new branch and adjusting the the platform-landing-zone.auto.tfvars, and run validate and plan on that branch until correct.
 
 
-So, now lets deploy. Once you are happy with the plan, you can run the Continous Delivery pipeline to deploy the Platform Landing Zone. 
+So, now let's deploy. Once you are happy with the plan, you can run the Continuous Delivery pipeline to deploy the Platform Landing Zone. 
 
 :::warning
-Be aware that the initial deployment, could take a while, especially if deploying all the default policies, and DNS zones. As such the full deployment is not shown in the GIF below, but you can see the new Platform Management Groups and core hub resources start to get created.
+Be aware that the initial deployment could take a while, especially if deploying all the default policies, and DNS zones. As such, the full deployment is not shown in the GIF below, but you can see the new Platform Management Groups and core hub resources start to get created.
 :::
 
 ![Azure DevOps Azure Landing Zone Pipelines](images/ALZ_PLZ_Apply.gif)
@@ -802,7 +802,7 @@ Be aware that the initial deployment, could take a while, especially if deployin
 And once completed, you should have a full Platform Landing Zone deployed, with the Management Groups, Policies, and core resources in place.
 
 :::info
-You can rerun the Continous Delivery pipeline, and select Destroy if you want to remove all the platform resources and start your deployment from scratch, in a production scenario I recommend removing that, but not the additional approval step, so you can have a manual check before the Apply stage. The approval is done in Azure DevOps at the Service Connection, under Approval and Checks.
+You can rerun the Continuous Delivery pipeline, and select Destroy if you want to remove all the platform resources and start your deployment from scratch, in a production scenario, I recommend removing that, but not the additional approval step so that you can have a manual check before the Apply stage. The approval is done in Azure DevOps at the Service Connection, under Approval and Checks.
 :::
 
 ![Azure DevOps Azure Landing Zone Pipelines](images/ALZAccelerator_DepoloyedLandingZoneDeployment.JPG)
