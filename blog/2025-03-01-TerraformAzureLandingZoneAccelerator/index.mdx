@@ -240,9 +240,9 @@ Now that we have configured the variables required for our bootstrap, let us def
 :::info
 The `platform-landing-zone.tfvars` file is a crucial configuration for deploying an Azure Landing Zone using the Azure Landing Zones Accelerator with Terraform. This file defines the variables that customize your Azure foundation by your requirements, and this file will be your main configuration file for the deployment of the Platform Landing Zone.
 
-## Key Components of the File
+Key Components of the File
 
-### Built-in Replacements
+**Built-in Replacements**
 
 The file uses a templating system with `$${variable_name}` syntax to reference predefined values, such as:
 
@@ -252,7 +252,7 @@ The file uses a templating system with `$${variable_name}` syntax to reference p
 
 These built-in replacements help maintain consistency throughout the configuration.
 
-### Custom Replacements
+**Custom Replacements**
 
 The configuration defines custom naming patterns and references for:
 
@@ -268,7 +268,7 @@ The configuration defines custom naming patterns and references for:
    - Subnet address prefixes
    - Firewall subnet
 
-### Management Resources
+**Management Resources**
 
 This section configures core management resources including:
 
@@ -277,7 +277,7 @@ This section configures core management resources including:
 - Azure Monitor Agent settings
 - Data Collection Rules for monitoring
 
-### Management Groups and Policy
+**Management Groups and Policy**
 
 The file configures:
 
@@ -285,7 +285,7 @@ The file configures:
 - Policy assignments and overrides, for example Defender for Cloud Settings
 - Subscription placement within management groups
 
-### Connectivity Resources
+**Connectivity Resources**
 
 The hub-and-spoke network topology is defined with:
 
@@ -296,9 +296,9 @@ The hub-and-spoke network topology is defined with:
 - Private DNS zones and resolver
 - Azure Bastion
 
-## How to Modify This File
+**How to Modify This File**
 
-### 1. Customize Basic Information
+1. Customize Basic Information
 
 - **Email Contacts**: Update security contact email addresses
 - **Tags**: Modify organization-specific tags
@@ -312,7 +312,7 @@ tags = {
 }
 ```
 
-### 2. Adjust Network Addressing
+2. Adjust Network Addressing
 
 Modify the IP address ranges to match your organization's network plan:
 
@@ -321,7 +321,7 @@ primary_hub_address_space = "10.100.0.0/16"
 primary_hub_virtual_network_address_space = "10.100.0.0/22"
 ```
 
-### 3. Change Resource Naming
+3. Change Resource Naming
 
 Update naming conventions to align with your organization's standards:
 
@@ -330,7 +330,7 @@ log_analytics_workspace_name = "law-prod-eastus"
 automation_account_name = "aa-prod-eastus"
 ```
 
-### 4. Modify Policy Settings
+4. Modify Policy Settings
 
 Adjust policy enforcement levels for your compliance requirements:
 
@@ -340,7 +340,7 @@ Enable-DDoS-VNET = {
 }
 ```
 
-### 5. Add or Remove Resources
+5. Add or Remove Resources
 
 You can customize which components are deployed by adding or removing sections:
 
@@ -351,7 +351,6 @@ You can customize which components are deployed by adding or removing sections:
 Also make sure you run a `terraform validate` and `terraform fmt` to validate the configuration and the Terraform formatting is correct on the file.
 
 **Make sure to check out the [Options](https://azure.github.io/Azure-Landing-Zones/accelerator/startermodules/terraform-platform-landing-zone/options/) page for the Terraform Platform Landing Zone, as it will give you more information on the common scenarios, such as turning off DDOS protection plans, adding additional IP ranges etc.**
-
 :::
 
 And don't worry if you don't get this right the first time, you can always adjust and redeploy, this is the beauty of Infrastructure as Code. I work in an iterative approach, so it's always good to get something working, then adjust and improve, rather than trying to get it perfect the first time, and the Terraform plan and validate pipelines help with this approach.
