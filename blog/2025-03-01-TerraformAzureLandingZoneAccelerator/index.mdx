@@ -402,7 +402,7 @@ Not required, but make the [alzlibtool](https://github.com/Azure/alzlib) tool, t
 7. Now that the configuration files for the bootstrap, Terraform are in place, and the architectures, it's time to start the bootstrap. Run the following command to start the bootstrap process:
 
 :::tip
-If you need to make any last-minute changes, after the Terraform plan and before the application, you can make manual changes to the Terraform code. Check your local output folder. It is not something I would rely on - ideally the platform tfvars and yaml input file should be updated, but in a pinch, you can make manual changes. I had to do this recently, when deloying a Landing Zone into New Zealand North, and had tomanually update the location of the Log Analytics workspace, as it was not supported in that region yet. However, for Platform resources, you can also make this change once the code is in the repository.
+If you need to make any last-minute changes, you can manually change the Terraform code after the Terraform plan and before the application. Check your local output folder. It is not something I would rely on - ideally the platform tfvars and yaml input file should be updated, but in a pinch, you can make manual changes. I had to do this recently, when deploying a Landing Zone into New Zealand North. I had to manually update the location of the Log Analytics workspace, as it has not been supported in that [region yet](https://learn.microsoft.com/azure/reliability/availability-service-by-category?WT.mc_id=AZ-MVP-5004796). However, for Platform resources, you can also make this change once the code is in the repository.
 :::
 
 ```powershell
@@ -418,7 +418,7 @@ Once completed, in Azure, you should have two resource groups - one for your Man
 
 ![Azure Landing Zones - Customer Journey](images/ALZ_Bootstrap_Resource_Deployed.png)
 
-And in Azure DevOps, you should have a new project, repository, and service connection, with the pipelines and environments setup for the Plan and Apply stages.
+In Azure DevOps, you should have a new project, repository, and service connection, with the pipelines and environments set up for the Plan and Apply stages.
 
 ![AzureDevOps Azure Landin Zone Code](images/ALZ_Bootstrap_ADO_Deployed.png)
 
@@ -446,7 +446,7 @@ As we can see, it validates and will deploy our full hub and spoke _(both expres
 So, now let's deploy. Once you are happy with the plan, you can run the Continuous Delivery pipeline to deploy the Platform Landing Zone. 
 
 :::warning
-Be aware that the initial deployment could take a while, especially if deploying all the default policies, and DNS zones. As such, the full deployment is not shown in the GIF below, but you can see the new Platform Management Groups and core hub resources start to get created.
+Be aware that the initial deployment could take a while, especially if deploying all the default policies, and DNS zones. As such, the entire deployment is not shown in the GIF below, but you can see the new Platform Management Groups and core hub resources that have started to be created.
 :::
 
 ![Azure DevOps Azure Landing Zone Pipelines](images/ALZ_PLZ_Apply.gif)
@@ -463,7 +463,7 @@ You can rerun the Continuous Delivery pipeline, and select Destroy if you want t
 
 ## ✅ Conclusion
 
-The [Azure Landing Zone Terraform Accelerator](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-landing-zones-accelerators-for-bicep-and-terraform-announcing-general-avai/4029866?WT.mc_id=AZ-MVP-5004796) offers a powerful foundation for organizations looking to implement a well-architected Azure environment. 
+The [Azure Landing Zone Terraform Accelerator](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-landing-zones-accelerators-for-bicep-and-terraform-announcing-general-avai/4029866?WT.mc_id=AZ-MVP-5004796) offers a robust foundation for organizations looking to implement a well-architected Azure environment. 
 
 Through this article, we've explored how to:
 
@@ -473,10 +473,10 @@ Through this article, we've explored how to:
 
 ### Next Steps After Deployment
 
-Once your Platform Landing Zone is established, consider these important follow-up activities:
+Once your Platform Landing Zone is established, consider these follow-up activities:
 
 - Document your environment: Create detailed documentation explaining your Landing Zone design choices and customizations _(make sure to checkout [alzlibtool](https://github.com/Azure/alzlib/tree/main))
-- Establish operational procedures: Define processes for managing the environment, including approvals and adjustments to platform
+- Establish operational procedures: Define processes for managing the environment, including approvals and adjustments to the platform
 - Plan your Application Landing Zones: Design the specific landing zones for your workloads based on your organization's needs and investigate [Subscription vending](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/subscription-vending?WT.mc_id=AZ-MVP-5004796).
 
 ### Resources for Continued Learning
@@ -488,6 +488,6 @@ Once your Platform Landing Zone is established, consider these important follow-
 - [Azure Verified Modules](https://azure.github.io/Azure-Verified-Modules/)
 - [Enterprise-scale architecture GitHub repo](https://github.com/Azure/Enterprise-Scale)
 
-For the GitHub repos, remember to view the Issues and Pull Requests, you can learn alot from what other people have contributed to the initiatives, and the Issues being raised. 
+For the GitHub repos, remember to view the Issues and Pull Requests, you can learn a lot from what other people have contributed to the initiatives, and the Issues being raised. 
 
 Remember, the Landing Zone is not a one-time deployment but an evolving foundation that grows with your organization's cloud journey. Regular reviews and updates will ensure it continues to support your changing business needs while maintaining security and governance standards, and how the business plans on consuming this - is not to be underestimated in the design and implementation of this.
