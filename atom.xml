@@ -187,14 +187,14 @@ Permissions Required for Management Group and Subscriptions:</p>
 <li>Configure and deploy <a href="https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796#platform-landing-zones-vs-application-landing-zones" target="_blank" rel="noopener noreferrer">Platform Landing Zone components</a> using Infrastructure as Code <em>(<a href="https://www.terraform.io/" target="_blank" rel="noopener noreferrer">Terraform</a>)</em></li>
 <li>Establish governance through management groups, policies, and controlled <a href="https://learn.microsoft.com/azure/devops/pipelines/get-started/what-is-azure-pipelines?view=azure-devops&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure DevOps pipelines</a>.</li>
 </ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="next-steps-after-deployment">Next Steps After Deployment<a href="https://luke.geek.nz/azure/azure-landing-zone-accelerator/#next-steps-after-deployment" class="hash-link" aria-label="Direct link to Next Steps After Deployment" title="Direct link to Next Steps After Deployment">​</a></h3>
+<p>Next Steps After Deployment</p>
 <p>Once your Platform Landing Zone is established, consider these follow-up activities:</p>
 <ul>
 <li>Document your environment: Create detailed documentation explaining your Landing Zone design choices and customizations _(make sure to checkout <a href="https://github.com/Azure/alzlib/tree/main" target="_blank" rel="noopener noreferrer">alzlibtool</a>)</li>
 <li>Establish operational procedures: Define processes for managing the environment, including approvals and adjustments to the platform</li>
 <li>Plan your Application Landing Zones: Design the specific landing zones for your workloads based on your organization's needs and investigate <a href="https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/subscription-vending?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Subscription vending</a>.</li>
 </ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="resources-for-continued-learning">Resources for Continued Learning<a href="https://luke.geek.nz/azure/azure-landing-zone-accelerator/#resources-for-continued-learning" class="hash-link" aria-label="Direct link to Resources for Continued Learning" title="Direct link to Resources for Continued Learning">​</a></h3>
+<p>Resources for Continued Learning</p>
 <ul>
 <li><a href="http://aka.ms/AwesomeAzureArchitecture" target="_blank" rel="noopener noreferrer">AWESOME Azure Architecture</a></li>
 <li><a href="https://azure.github.io/Azure-Landing-Zones-Library/" target="_blank" rel="noopener noreferrer">Azure Landing Zones Library</a></li>
