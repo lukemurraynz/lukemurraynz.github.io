@@ -83,29 +83,29 @@ The bootstrap for Azure DevOps includes [self-hosted agents](https://learn.micro
 | Component | Description | Notes |
 |-----------|-------------|-------|
 | **Azure Resources** |||
-| Resource Group for State | | Terraform only |
-| Storage Account and Container for State | | Terraform only |
-| Resource Group for Identity | | |
-| User Assigned Managed Identities (UAMI) with Federated Credentials | | For Plan and Apply |
-| Permissions for the UAMI | | On state storage container, subscriptions, and management groups |
-| [Optional] Container Registry for Azure DevOps Agent Image | | |
-| [Optional] Container Instances hosting Azure DevOps Agents | | |
-| [Optional] Virtual network, subnets, private DNS zone, and private endpoint | | |
+| Resource Group for State | Container for Terraform state storage resources | Terraform only |
+| Storage Account and Container for State | Stores Terraform state files securely | Terraform only |
+| Resource Group for Identity | Container for managed identity resources | |
+| User Assigned Managed Identities (UAMI) with Federated Credentials | Identities for secure pipeline execution | For Plan and Apply |
+| Permissions for the UAMI | RBAC assignments needed for deployment | On state storage container, subscriptions, and management groups |
+| [Optional] Container Registry for Azure DevOps Agent Image | Stores custom agent container images | For self-hosted agents |
+| [Optional] Container Instances hosting Azure DevOps Agents | Runs pipeline jobs in your Azure environment | For self-hosted agents |
+| [Optional] Virtual network, subnets, private DNS zone, and private endpoint | Network resources for private connectivity | For enhanced security |
 | **Azure DevOps Resources** |||
-| Project (can be supplied or created) | | |
-| Repository for the Module | | |
-| Repository for the Pipeline Templates | | |
-| Starter Terraform module with tfvars | | |
-| Branch policy | | |
-| Pipeline for Continuous Integration | | |
-| Pipeline for Continuous Delivery | | |
-| Environment for Plan | | |
-| Environment for Apply | | |
-| Variable Group for Backend | | |
-| Service Connections with Workload identity federation for Plan and Apply | | |
-| Service Connection Approvals, Template Validation, and Concurrency Control | | |
-| Group and Members for Apply Approval | | |
-| [Optional] Agent Pool | | |
+| Project (can be supplied or created) | Azure DevOps project for Landing Zone resources | Can use existing or create new |
+| Repository for the Module | Stores Landing Zone Terraform code | Main implementation repository |
+| Repository for the Pipeline Templates | Stores CI/CD pipeline definitions | Enables template reuse |
+| Starter Terraform module with tfvars | Pre-configured Terraform configuration | Customizable baseline |
+| Branch policy | Ensures code quality and reviews | Prevents direct main branch changes |
+| Pipeline for Continuous Integration | Validates and plans Terraform changes | Non-destructive verification |
+| Pipeline for Continuous Delivery | Implements Terraform changes in Azure | Creates/updates resources |
+| Environment for Plan | Isolated context for planning stage | Separates planning permissions |
+| Environment for Apply | Isolated context for apply stage | Separates deployment permissions |
+| Variable Group for Backend | Stores Terraform backend configuration | Used across pipelines |
+| Service Connections with Workload identity federation for Plan and Apply | Securely connects Azure DevOps to Azure | Uses OIDC for enhanced security |
+| Service Connection Approvals, Template Validation, and Concurrency Control | Provides governance for deployments | Ensures controlled changes |
+| Group and Members for Apply Approval | Team responsible for approving changes | Change control mechanism |
+| [Optional] Agent Pool | Collection of build/release agents | For self-hosted agents |
 
 :::tip
 Make sure you check out the following resources for more information on the Azure Landing Zone Accelerator and Azure Landing Zone Library, these are your sources of truth:
@@ -488,6 +488,6 @@ Once your Platform Landing Zone is established, consider these important follow-
 - [Azure Verified Modules](https://azure.github.io/Azure-Verified-Modules/)
 - [Enterprise-scale architecture GitHub repo](https://github.com/Azure/Enterprise-Scale)
 
-For the GitHub repos, remember to view the Issues and Pull Requests, you can learn alot from what other people have contributed to the initiatives, and the Issues being raised.
+For the GitHub repos, remember to view the Issues and Pull Requests, you can learn alot from what other people have contributed to the initiatives, and the Issues being raised. 
 
 Remember, the Landing Zone is not a one-time deployment but an evolving foundation that grows with your organization's cloud journey. Regular reviews and updates will ensure it continues to support your changing business needs while maintaining security and governance standards, and how the business plans on consuming this - is not to be underestimated in the design and implementation of this.
