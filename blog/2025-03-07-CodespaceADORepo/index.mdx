@@ -67,28 +67,11 @@ And the original git repo is ignored.
 For full reference to the devcontainer.json I am using:
 
 ```json
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/universal
+
 {
 	"name": "Default Linux Universal",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/universal:2-linux"
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
-	,"features": {
+	"image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+	"features": {
 		"ghcr.io/microsoft/codespace-features/external-repository:latest": {
 			"cloneUrl": "https://contoso@dev.azure.com/contosoOORG/CodespaceDemo/_git/CodespaceADORepo",
 			"folder": "/workspaces/ado-repos"
