@@ -18,11 +18,11 @@ keywords:
 description: Learn how to connect GitHub Codespaces to external repositories in Azure DevOps using the external-repository feature and devcontainer configuration.
 ---
 
-I've talked about [GitHub Codespaces](https://luke.geek.nz/azure/Getting-Started-with-GitHub-Codespaces/) before, but what I haven't covered - is using a GitHub Codespace to connect to a repository in Azure DevOps. Its classed as as 'Remote Repository' in the Codespace, however its something that can be done.
+I've talked about [GitHub Codespaces](https://luke.geek.nz/azure/Getting-Started-with-GitHub-Codespaces/) before, but what I haven't covered - is using a GitHub Codespace to connect to a repository in Azure DevOps. It's classed as 'Remote Repository' in the Codespace, however, it's something that can be done.
 
 {/* truncate */}
 
-To start with we have a repository in Azure DevOps, and we want to connect to it using a GitHub Codespace. For demo purposes, I've created a repository in Azure DevOps called 'CodespaceADORepo'. This repo, contains 2 files _(README.md and a main.bicep file)_ although it doesn't matter what the repository has.
+To start with, we have a repository in Azure DevOps, and we want to connect to it using a GitHub Codespace. I've created a repository in Azure DevOps called 'CodespaceADORepo' for demo purposes. This repo contains two files _(README.md and a main.bicep file)_ although it doesn't matter what the repository has.
 
 ![Azure DevOps Repo](images/Codespace_ADORepo.jpg)
 
@@ -45,7 +45,7 @@ Then we need to add the URL to the devcontainer.json
 }
 ```
 :::info
-You can add a PAT token to authenicate by adding: "cloneSecret": "ADO_PAT", to the feature settings, but storing your PAT token in plain text in a repo is not recommended.
+You can add a PAT token to authenticate by adding: "cloneSecret": "ADO_PAT", to the feature settings, but storing your PAT token in plain text in a repo is not recommended.
 :::
 
 And then add in: 
@@ -58,7 +58,7 @@ And then add in:
 
 ![Azure DevOps Clone URL](images/Codespace_ADO_AddExternalGitClone.gif)
 
-Once done, its time to run your Codespace, as normal. It will ignore the github repo that you are running it is, then clone the ADO repo, once authenticated - in this case because I haven't specified a PAT token, it will prompt for user authentication, then mount the repo.
+Once done, it's time to run your Codespace, as normal. It will ignore the GitHub repo that you are running it in, then clone the ADO repo, once authenticated - in this case, because I haven't specified a PAT token, it will prompt for user authentication, then mount the repo.
 
 ![Azure DevOps Clone URL](images/Codespace_ADO_RunExternalGit.gif)
 
