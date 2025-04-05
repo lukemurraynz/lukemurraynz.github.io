@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QDLBY7NNN"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-0QDLBY7NNN",{anonymize_ip:!0})</script><link rel="stylesheet" href="/assets/css/styles.a8967c60.css">
-<script src="/assets/js/runtime~main.b4db1e71.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.cc20f5f7.js" defer="defer"></script>
 <script src="/assets/js/main.f7e284ac.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -65,6 +65,7 @@
 <p>We won&#x27;t go into detail about SLO (Service Level Objective) or SLI (Service Level Indicator) in this post, but they are important to understand when assessing the SLA of your workload.</p>
 <p>An SLO is a target for the level of service you want to achieve, and an SLI measures the level of service you are achieving. The SLO and SLI can be used to measure the performance of your workload and help you identify areas for improvement, for Microsoft Azure cloud services, the SLO and SLIs are managed within Microsoft, however if you are looking at offering SLAs to your customers based on the services you are using, you will need to consider the SLO and SLI of the services you are using. How they relate to the SLA of your workload, the same is true in the context of OLAs <em>(Organisation Level Agreements)</em>.</p>
 <p><img decoding="async" loading="lazy" alt="Workload SLO" src="/assets/images/workload-slaslo-bec35d48417f8c7a73760815ed3e0785.JPG" width="1280" height="720" class="img_ev3q"></p>
+<p>![CLSA](images/csla-in-app diagrams.jpg)</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-composite-slas">🧩 Composite SLAs<a href="#-composite-slas" class="hash-link" aria-label="Direct link to 🧩 Composite SLAs" title="Direct link to 🧩 Composite SLAs">​</a></h2>
 <p>What we will touch on is <a href="https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics?WT.mc_id=AZ-MVP-5004796#define-composite-slo-targets" target="_blank" rel="noopener noreferrer">Composite SLAs</a>, which are a combination of the SLAs of the individual resources that make up your workload. For example, if you have a web app that is using an SQL database, the SLA for the web app and the SLA for the SQL database will determine the overall SLA for your workload. The composite SLA is calculated by multiplying the individual SLAs together. For example, if the web app has an SLA of 99.95% and the SQL database has an SLA of 99.99%, the composite SLA for the workload would be 99.94% <em>(Maximum acceptable downtime /Year: 315m 33s)</em>.
 That&#x27;s lower than the individual SLAs, which isn&#x27;t surprising because an application that relies on multiple services has more potential failure points.</p>
@@ -73,7 +74,6 @@ That&#x27;s lower than the individual SLAs, which isn&#x27;t surprising because 
 <li><a href="https://slaestimator.aztoso.com/" target="_blank" rel="noopener noreferrer">Azure Composite SLA Estimator</a></li>
 <li><a href="https://wiki.unosd.com/slacalculator/" target="_blank" rel="noopener noreferrer">SLA Calculator</a></li>
 </ul>
-<p>![CLSA](images/csla-in-app diagrams.jpg)</p>
 <p>For more Active/Active workloads, you can have a parallel SLA <em>(Parallel SLA = 100% - (ServiceA unavailability * ServiceB unavailability))</em>.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-regions-and-availability-zones">🌐 Regions and Availability Zones<a href="#-regions-and-availability-zones" class="hash-link" aria-label="Direct link to 🌐 Regions and Availability Zones" title="Direct link to 🌐 Regions and Availability Zones">​</a></h2>
 <p>I&#x27;ve alluded to it but not touched on it - let us discuss <a href="https://learn.microsoft.com/azure/reliability/regions-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Regions</a> and <a href="https://learn.microsoft.com/azure/reliability/availability-zones-overview?tabs=azure-cli&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Avaliability Zones</a>, which are key considerations when looking at how your Azure Cloud workloads are architected.</p>
