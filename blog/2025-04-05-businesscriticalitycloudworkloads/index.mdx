@@ -86,7 +86,7 @@ An SLO is a target for the level of service you want to achieve, and an SLI meas
 
 ## 🧩 Composite SLAs
 
-What we will touch on is Composite SLAs (https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics?WT.mc_id=AZ-MVP-5004796#define-composite-slo-targets), which are a combination of the SLAs of the individual resources that make up your workload. For example, if you have a web app that is using an SQL database, the SLA for the web app and the SLA for the SQL database will determine the overall SLA for your workload. The composite SLA is calculated by multiplying the individual SLAs together. For example, if the web app has an SLA of 99.95% and the SQL database has an SLA of 99.99%, the composite SLA for the workload would be 99.94% _(Maximum acceptable downtime /Year: 315m 33s)_.
+What we will touch on is [Composite SLAs](https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics?WT.mc_id=AZ-MVP-5004796#define-composite-slo-targets), which are a combination of the SLAs of the individual resources that make up your workload. For example, if you have a web app that is using an SQL database, the SLA for the web app and the SLA for the SQL database will determine the overall SLA for your workload. The composite SLA is calculated by multiplying the individual SLAs together. For example, if the web app has an SLA of 99.95% and the SQL database has an SLA of 99.99%, the composite SLA for the workload would be 99.94% _(Maximum acceptable downtime /Year: 315m 33s)_.
 That's lower than the individual SLAs, which isn't surprising because an application that relies on multiple services has more potential failure points.
 
 A few resources that are useful for working out Composite SLA's are:
