@@ -14,7 +14,7 @@
         <link href="https://luke.geek.nz/azure/mcp-acs-email-integration/"/>
         <updated>2025-04-07T09:05:54.303Z</updated>
         <summary type="html"><![CDATA[Learn how to use the Model Context Protocol (MCP) to connect GitHub Copilot to Azure Communication Services for sending emails directly from AI interactions.]]></summary>
-        <content type="html"><![CDATA[<p>No doubt, you've heard the acronymn 'MCP' before or <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener noreferrer">Model Context Protocol <em>(MCP)</em></a>, opensourced by Anthropic in November of 2024 it has quickly become the goto standard for connecting AI assistants to systems of various types.</p>
+        <content type="html"><![CDATA[<p>You've probably heard the acronym 'MCP' before or <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener noreferrer">Model Context Protocol <em>(MCP)</em></a>. Open-sourced by Anthropic in November 2024, it has quickly become the go-to standard for connecting AI assistants to systems of various types.</p>
 <blockquote>
 <p>The Model Context Protocol is an open standard that enables developers to build secure, two-way connections between their data sources and AI-powered tools. The architecture is straightforward: Developers can expose their data through MCP servers or build AI applications (MCP clients) that connect to these servers.</p>
 </blockquote>
@@ -25,18 +25,18 @@
 <li>Stdio transport: This is the default transport layer. It uses standard input and output to communicate between the MCP client and server. This is useful for local development and testing.</li>
 <li>HTTP transport: This transport layer uses HTTP to communicate between the MCP client and server. This is useful for production environments where the MCP client and server run on different machines.</li>
 </ul>
-<p>In our usecase, we are going to use the Stdio transport layer. This is because we are running both the MCP client and server on the same machine (GitHub Codespace).</p>
+<p>In our use case, we will use the Stdio transport layer because we are running the MCP client and server on the same machine (GitHub Codespace).</p>
 <p>There are also different types of primitives that an MCP server can expose:</p>
 <ul>
 <li>Resources are a core primitive in the Model Context Protocol (MCP) that allows servers to expose data and content that clients can read and use as context for LLM interactions.</li>
-<li>Prompts enable servers to define reusable prompt templates and workflows that clients can easily surface to users and LLMs. They provide a powerful way to standardize and share common LLM interactions.</li>
+<li>Prompts enable servers to define reusable prompt templates and workflows that clients can quickly surface to users and LLMs. They provide a powerful way to standardize and share common LLM interactions.</li>
 <li>Tools are a powerful primitive in the Model Context Protocol (MCP) that enable servers to expose executable functionality to clients. Through tools, LLMs can interact with external systems, perform computations, and take actions in the real world.</li>
 </ul>
 <p><img decoding="async" loading="lazy" alt="Model Context Protocol (MCP) Explained" src="https://luke.geek.nz/assets/images/MCPClearlyExplained-63b1db26cb3ef86366c4b367fa411856.gif" width="1086" height="1280" class="img_ev3q">
 <em>(Image credit: <a href="https://blog.dailydoseofds.com/p/visual-guide-to-model-context-protocol" target="_blank" rel="noopener noreferrer">blog.dailydoseofds.com</a>)</em></p>
-<p>We are going to use the <code>Tool</code> primitive to expose a tool for sending emails using Azure Communication Services. The MCP server will expose the tool, which the MCP client will use to send the email when prompted in the GitHub Copilot chat.</p>
+<p>We will use the <code>Tool</code> primitive to expose a tool for sending emails using Azure Communication Services. The MCP server will expose the tool, which the MCP client will use to send the email when prompted in the GitHub Copilot chat.</p>
 <p>The MCP server will run on a GitHub Codespace and send an email using Azure Communication Services. The MCP client will run on the same Codespace and send the email using GPT-4o.</p>
-<p>Using Python, we are going to use the <a href="https://github.com/modelcontextprotocol/python-sdk" target="_blank" rel="noopener noreferrer">MCP Python SDK</a> to do a lot of the heavy lifting for us. The SDK is a wrapper around the MCP protocol and allows us to create an MCP server easily, and thanks to a recent update by <a href="https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/#model-context-protocol-mcp-is-now-available-in-public-preview" target="_blank" rel="noopener noreferrer">GitHub Model Context Protocol (MCP) is now avaliable in Public preview in GitHub Copilot</a>, which allows us us to use the MCP protocol straight from GitHub Copilot chat without needing Claude Desktop for example, installed.</p>
+<p>Using Python, we will use the <a href="https://github.com/modelcontextprotocol/python-sdk" target="_blank" rel="noopener noreferrer">MCP Python SDK</a> to do a lot of the heavy lifting for us. The SDK is a wrapper around the MCP protocol and allows us to create an MCP server quickly, and thanks to a recent update by <a href="https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/#model-context-protocol-mcp-is-now-available-in-public-preview" target="_blank" rel="noopener noreferrer">GitHub Model Context Protocol (MCP) is now avaliable in Public preview in GitHub Copilot</a>, which allows us us to use the MCP protocol straight from GitHub Copilot chat without needing Claude Desktop for example, installed.</p>
 <p>We are going to create three tools:</p>
 <ol>
 <li>send_email
