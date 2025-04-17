@@ -173,10 +173,9 @@ Now let's run the workflow:
 az acr supply-chain workflow create -r myRegistry -g myResourceGroup -t continuouspatchv1 --config ./continuouspatching.json --schedule 14d --run-immediately --verbose
 ```
 
-:::info
-If you get the following error: `Failed to push OCI artifact to ACR: Issue retrieving session url: {'errors': [{'code': 'UNAUTHORIZED', 'message': 'authentication required, visit https://aka.ms/acr/authorization for more information.', 'detail': [{'Type': 'repository', 'Name': 'csscpolicies/patchpolicy', 'Action': 'pull'}, {'Type': 'repository', 'Name': 'csscpolicies/patchpolicy', 'Action': 'push'}]}]}`
+:::warning
+If you get the following warning: 
 
-or
 `Failed to validate and deploy template: (DeploymentFailed) At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.
 Code: DeploymentFailed
 Message: At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.
@@ -187,9 +186,15 @@ Exception Details:      (RoleAssignmentUpdateNotPermitted) Tenant ID, applicatio
         Code: RoleAssignmentUpdateNotPermitted
         Message: Tenant ID, application ID, principal ID, and scope are not allowed to be updated.`
 
-Then you need to run the following command to give your ACR the correct permissions:
+It may mean that the Tasks have existed before, but if the Tasks were deleted in the portal, then it won't have removed the permission assignments.
+
+You can check the permissions in the Access control (IAM) portal, and if they exist, you can delete them manually from the portal. 
+
+If you run the following workflow delete command _(preferred)_, it will delete the assigned RBAC permissions as well:
 
 ```bash
+az acr supply-chain workflow delete -r myRegistry -g myResourceGroup -t continuouspatchv1 --yes --verbose
+```
 :::
 
 
