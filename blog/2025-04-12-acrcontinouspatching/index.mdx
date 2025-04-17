@@ -165,8 +165,6 @@ When you add the `--run-immediately` flag, a patch happens right away, and then 
 
 Remember: The schedule always resets at the beginning of each month. So if your last patch in January was on the 29th with a `7d` schedule, the next one will be on February 1st, not February 5th.
 
- 
-
 Now let's run the workflow:
 
 ```bash
@@ -182,9 +180,7 @@ Message: At least one resource deployment operation failed. Please list deployme
 Target: /subscriptions/11b74992-d520-46e1-a9e9-b55c57d2e890/resourceGroups/acrcontinuouspatchingtest/providers/Microsoft.Resources/deployments/continuouspatchingdeployment
 Exception Details:      (RoleAssignmentUpdateNotPermitted) Tenant ID, application ID, principal ID, and scope are not allowed to be updated.
         Code: RoleAssignmentUpdateNotPermitted
-        Message: Tenant ID, application ID, principal ID, and scope are not allowed to be updated.      (RoleAssignmentUpdateNotPermitted) Tenant ID, application ID, principal ID, and scope are not allowed to be updated.
-        Code: RoleAssignmentUpdateNotPermitted
-        Message: Tenant ID, application ID, principal ID, and scope are not allowed to be updated.`
+        Message: Tenant ID, application ID, principal ID, and scope are not allowed to be updated.      (RoleAssignmentUpdateNotPermitted) Tenant ID, application ID, principal ID, and scope are not allowed to be updated.`
 
 It may mean that the Tasks have existed before, but if the Tasks were deleted in the portal, then it won't have removed the permission assignments.
 
@@ -200,4 +196,24 @@ az acr supply-chain workflow delete -r myRegistry -g myResourceGroup -t continuo
 :::tip
 You can add the `--verbose` flag to the command to get more detailed output during the workflow creation process and the `--debug` flag to get even more detailed output, including the HTTP requests and responses sent to Azure.
 :::
+
+Now that the Tasks have been created, you can see them in the Azure Portal.
+
+![Image - ACR Continous Patching](images/ContinousPatching_ACR_Run_TasksAzurePortal.jpg)
+
+You can also run the following command to see the state of the workflows:
+
+```bash
+az acr supply-chain workflow show -r azcontainerregistrytest -g azcontainerregtestaue -t continuouspatchv1  -o table
+```
+
+The workflow creates three tasks in your Azure Container Registry:
+
+| Task Name | Description | Purpose |
+|-----------|-------------|---------|
+| **cssc-trigger-workflow** | Triggers the continuous patching workflow based on your configured schedule | This is the main scheduler that runs on your defined schedule (every 14 days in our example). It checks which repositories match your configuration and initiates the scanning process. |
+| **cssc-scan-image** | Performs vulnerability scanning using Trivy | This task scans your container images for OS-level vulnerabilities. If vulnerabilities are found, it automatically triggers the patching task. |
+| **cssc-patch-image** | Applies security patches using Copacetic | This task does the actual patching work, fixing OS vulnerabilities in your container images without needing to rebuild them from source. |
+
+These three tasks work together to form a complete patching pipeline: the trigger starts on schedule, the scanner identifies vulnerabilities, and the patcher fixes them automatically.
 
