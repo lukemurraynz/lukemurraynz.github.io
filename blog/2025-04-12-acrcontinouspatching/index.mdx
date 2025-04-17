@@ -193,11 +193,11 @@ You can check the permissions in the Access control (IAM) portal, and if they ex
 If you run the following workflow delete command _(preferred)_, it will delete the assigned RBAC permissions as well:
 
 ```bash
-az acr supply-chain workflow delete -r myRegistry -g myResourceGroup -t continuouspatchv1 --yes --verbose
+az acr supply-chain workflow delete -r myRegistry -g myResourceGroup -t continuouspatchv1 --yes
 ```
 :::
 
+:::tip
+You can add the `--verbose` flag to the command to get more detailed output during the workflow creation process and the `--debug` flag to get even more detailed output, including the HTTP requests and responses sent to Azure.
+:::
 
-```bash
-
-az acr supply-chain workflow create -r acrcontinuouspatchingtest -g acrcontinuouspatchingtest -t continuouspatchv1 --config ./continuouspatching.json --schedule 14d --run-immediately --verbose
