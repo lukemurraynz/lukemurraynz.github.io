@@ -1,0 +1,21 @@
+---
+title: 
+metaDescription: 
+date: 
+tags:
+    - Azure
+categories:
+    - Azure
+authors:
+    - Luke
+slug: azure
+keywords:
+    - Azure
+description: 
+---
+
+
+Today, we are going to use the [Azure Storage SFTP functionality](https://learn.microsoft.com/azure/storage/blobs/secure-file-transfer-protocol-support?WT.mc_id=AZ-MVP-5004796) and an [Event Hub](https://learn.microsoft.com/azure/event-hubs/event-hubs-about?WT.mc_id=AZ-MVP-5004796) to trigger an [Azure Function](https://learn.microsoft.com/azure/azure-functions/functions-overview?WT.mc_id=AZ-MVP-5004796). The Azure Function will then process the Write Logs, and output the File name, SFTP Local User name, Agent header and the SFTP Client IP address to the host, from there you can do whatever you want with the data.
+
+{/* truncate */}
+
