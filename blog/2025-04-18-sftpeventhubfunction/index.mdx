@@ -35,11 +35,11 @@ Today, we are going to use the [Azure Storage SFTP functionality](https://learn.
 
 ## 🏗️ Environment Overview
 
-So for my environment I have a:
+So for my environment, I have a:
 
-- A SFTP Hierarchical namespace enabled storage account
+- A SFTP Hierarchical namespace-enabled storage account
 - A Flex Consumption Azure Function App
-- A Standard Event Hub Namespace with a event hub instance with 1 partition and 1 consumer group
+- A Standard Event Hub Namespace with an event hub instance with 1 partition and 1 consumer group
 
 These resources are hosted in the New Zealand North Azure region.
 
@@ -62,7 +62,7 @@ flowchart LR
     class User client;
 ```
 
-So i've already precreated these resources, but is some more information of the resource configuration, that you can follow along with.
+So I've already pre-created these resources, but is there some more information about the resource configuration that you can follow along with?
 
 ## 📦 Storage Account Configuration
 
@@ -139,13 +139,13 @@ For processing the SFTP events from the Event Hub, I've set up an Azure Function
 
 ## 🔒 Authentication Setup
 
-The Function App connects to the Event Hub namespace the System Managed Identity of the Function App, which is granted the `Azure Event Hubs Data Receiver` role on the Event Hub namespace.
+The Function App connects to the Event Hub namespace using the System Managed Identity of the Function App, which is granted the `Azure Event Hubs Data Receiver` role on the Event Hub namespace.
 
 ![Function App Configuration](images/Function_SMI_EventHubDataReceiver.jpg)
 
 ## 🛠️ Function App Settings
 
-In order to use the Event Hub trigger in the Azure Function with Managed Identity authentication, you need to add the following settings to the Function App settings :
+To use the Event Hub trigger in the Azure Function with Managed Identity authentication, you need to add the following settings to the Function App settings :
 
 ```json
 {
@@ -158,7 +158,7 @@ In order to use the Event Hub trigger in the Azure Function with Managed Identit
 
 ## 📋 Function Configuration File
 
-The namespace, Consumer Group and identity type will need to be updated to the function.json file.
+The namespace, Consumer Group, and identity type will need to be updated in the function.json file.
 
 ```json
 {
@@ -236,7 +236,7 @@ You can find the Function App code in the [GitHub repository - lukemurraynz/SFTP
 
 ## 🔍 See it in Action!
 
-So lets take a look at it in action!
+So let us take a look at it in action!
 
 ![Azure SFTP Blob Write Run](images/SFTPEventHubFunctionRun.gif)
 
@@ -248,4 +248,4 @@ _(On average, I have seen this take about 2 minutes, from the initial file uploa
 
 ## 🚀 Next Steps and Extensions
 
-Hopefully thats given you the base to work from, you could potentially add logic around if file from x user, do this, or notify user of receipt based on a map lookup etc
+Hopefully, that's given you the base to work from; you could potentially add logic around if a file from x user, do this, or notify the user of receipt based on a map lookup, etc.
