@@ -85,21 +85,61 @@ overflow-x: hidden; /_ hide horizontal scrollbar _/
 <h2>Some of the technology areas I work with:</h2> <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '15px' }}> <span style={{ background: '#0078D4', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Application PaaS</span> <span style={{ background: '#3CCBF4', color: 'black', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure AI Services</span> <span style={{ background: '#0078D7', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>DevOps</span> <span style={{ background: '#104581', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Compute Infrastructure</span> <span style={{ background: '#50E6FF', color: 'black', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Cost, Resource & Configuration Management</span> <span style={{ background: '#7FBA00', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Hybrid & Migration</span> <span style={{ background: '#FFB900', color: 'black', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Infrastructure as Code</span> <span style={{ background: '#F25022', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Innovation Hub</span> <span style={{ background: '#00A4EF', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Integration PaaS</span> <span style={{ background: '#326CE5', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Kubernetes and Open Source</span> <span style={{ background: '#737373', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Networking</span> <span style={{ background: '#181717', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Virtual Desktop</span> <span style={{ background: '#E00B1C', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Storage</span> <span style={{ background: '#A4262C', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Well-Architected, Resiliency & Observability</span> <span style={{ background: '#012456', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>PowerShell</span> <span style={{ background: '#6B69D6', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Microsoft Defender for Cloud</span> <span style={{ background: '#0F6CBD', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Entra ID</span> <span style={{ background: '#005B9F', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Microsoft Sentinel</span> </div>
 
 <h2>Community Contributions</h2>
-<ul>
-  <li>Azure Architecture Center contributor</li>
-  <li>Cloud Adoption contributor</li>
-  <li>Open source projects on GitHub</li>
-  <li>Youtube videos</li>
-  <li>Contributor to open-source projects</li>
-  <li>Product feedback to Microsoft product teams</li>
-  <li>Microsoft Startup Expert</li>
-  <li>Mentorship to students around technology and career</li>
-  <li>Speaker and organizer at community and Microsoft Learning Room events</li>
-  <li>Moderator and online support on forums</li>
-  <li>Technical blog author with 10+ years of sharing knowledge</li>
-</ul>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
+  {/* Content Creation */}
+  <div>
+    <h3 style={{ borderBottom: '2px solid #0078D4', paddingBottom: '5px' }}>Content Creation</h3>
+    <ul style={{ listStyleType: 'none', padding: 0 }}>
+      <li style={{ margin: '10px 0', display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginRight: '10px', color: '#0078D4' }}>📝</span> Technical blog author with 10+ years of sharing knowledge
+      </li>
+      <li style={{ margin: '10px 0', display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginRight: '10px', color: '#0078D4' }}>📚</span> Azure Architecture Center contributor
+      </li>
+      <li style={{ margin: '10px 0', display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginRight: '10px', color: '#0078D4' }}>📋</span> Cloud Adoption contributor
+      </li>
+      <li style={{ margin: '10px 0', display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginRight: '10px', color: '#0078D4' }}>▶️</span> YouTube videos creator
+      </li>
+    </ul>
+  </div>
+  
+  {/* Open Source & Development */}
+  <div>
+    <h3 style={{ borderBottom: '2px solid #7FBA00', paddingBottom: '5px' }}>Open Source & Development</h3>
+    <ul style={{ listStyleType: 'none', padding: 0 }}>
+      <li style={{ margin: '10px 0', display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginRight: '10px', color: '#7FBA00' }}>💻</span> Open source projects on GitHub
+      </li>
+      <li style={{ margin: '10px 0', display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginRight: '10px', color: '#7FBA00' }}>🔄</span> Contributor to open-source projects
+      </li>
+      <li style={{ margin: '10px 0', display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginRight: '10px', color: '#7FBA00' }}>💡</span> Product feedback to Microsoft product teams
+      </li>
+    </ul>
+  </div>
+  
+  {/* Community Support */}
+  <div>
+    <h3 style={{ borderBottom: '2px solid #FFB900', paddingBottom: '5px' }}>Community Support</h3>
+    <ul style={{ listStyleType: 'none', padding: 0 }}>
+      <li style={{ margin: '10px 0', display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginRight: '10px', color: '#FFB900' }}>🎤</span> Speaker and organizer at community and Microsoft Learning Room events
+      </li>
+      <li style={{ margin: '10px 0', display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginRight: '10px', color: '#FFB900' }}>🚀</span> Microsoft Startup Expert
+      </li>
+      <li style={{ margin: '10px 0', display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginRight: '10px', color: '#FFB900' }}>🧠</span> Mentorship to students around technology and career
+      </li>
+      <li style={{ margin: '10px 0', display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginRight: '10px', color: '#FFB900' }}>🛡️</span> Moderator and online support on forums
+      </li>
+    </ul>
+  </div>
 </div>
-</section>
 
 <h2>Achievements and Certifications</h2>
 <section className="carousel">
