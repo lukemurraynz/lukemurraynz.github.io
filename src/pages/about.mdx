@@ -23,47 +23,47 @@ export default function About() {
 }
 
 .image-container, .content-container {
-width: 45%; /_ reduced width to create some space between the containers _/
+width: 45%; /* reduced width to create some space between the containers */
 margin: 20px;
 }
 
 .image-container img {
 width: 100%;
-border-radius: 5%; /_ make the image corners slightly rounded _/
-transition: transform 0.3s ease-in-out; /_ smooth transition _/
+border-radius: 5%; /* make the image corners slightly rounded */
+transition: transform 0.3s ease-in-out; /* smooth transition */
 }
 
 .image-container img:hover {
-transform: scale(2); /_ zoom in to 200% _/
+transform: scale(2); /* zoom in to 200% */
 }
 .content-container {
-line-height: 1.6; /_ improve readability _/
+line-height: 1.6; /* improve readability */
 }
 
 .carousel {
-width: 100%; /_ fit within the parent container _/
+width: 100%; /* fit within the parent container */
 display: grid;
-grid-template-columns: repeat(5, 1fr); /_ create 5 columns _/
-grid-auto-rows: auto; /_ rows will adjust to the content size _/
-grid-gap: 10px; /_ space between images _/
-overflow-x: auto; /_ allow horizontal scrolling _/
+grid-template-columns: repeat(5, 1fr); /* create 5 columns */
+grid-auto-rows: auto; /* rows will adjust to the content size */
+grid-gap: 10px; /* space between images */
+overflow-x: auto; /* allow horizontal scrolling */
 margin-top: 40px;
 }
 
 .carousel img {
-width: 150px; /_ image will take up the full width of its grid cell _/
-height: 150px; /_ maintain aspect ratio _/
-object-fit: cover; /_ cover the container without squishing _/
+width: 150px; /* image will take up the full width of its grid cell */
+height: 150px; /* maintain aspect ratio */
+object-fit: cover; /* cover the container without squishing */
 transition: transform 0.3s ease;
 }
 
 .carousel img:hover {
-transform: scale(1.5); /_ zoom in on hover _/
+transform: scale(1.5); /* zoom in on hover */
 }
 body {
-overflow-x: hidden; /_ hide horizontal scrollbar _/
+overflow-x: hidden; /* hide horizontal scrollbar */
 }
-`}</style>
+      `}</style>
 
       <header>
         <h1>About Me</h1>
@@ -78,43 +78,58 @@ overflow-x: hidden; /_ hide horizontal scrollbar _/
           <h2>My name is <strong>Luke Murray</strong>... so who am I?</h2>
           <p>I'm an ISM (Infrastructure, Security and Modern Workplace) Service Lead at HSO, focusing on the Microsoft ecosystem. As a <a href="https://mvp.microsoft.com/mvp/profile/d34dd21d-04c6-ec11-a7b5-0022482d3c49?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener">Microsoft MVP in Azure</a> and a Microsoft Learn Expert, I help organizations design and implement secure, scalable cloud solutions.</p>
 
-<p>
-  With over a decade of experience in IT, I specialize in Microsoft
-  technologies, cloud architecture, automation, Infrastructure as Code, and
-  DevOps practices. I'm passionate about sharing knowledge through my blog,
-  community contributions, and technical presentations.
-</p>
-<p>
-  I hold multiple Microsoft Azure certifications and am recognized for my
-  expertise in patterns and practices, cloud native solutions and general
-  solution architecture and delivery.
-</p>
-<p>I live and work in Hamilton, New Zealand.</p>
-<p>
-  <strong>
-    Want to connect? Feel free to{" "}
-    <a
-      href="https://www.linkedin.com/in/ljmurray/"
-      target="_blank"
-      rel="noopener"
-    >
-      connect on LinkedIn
-    </a>{" "}
-    or reach me through any of the social media links in the navbar!
-  </strong>
-</p>
+          <p>
+            With over a decade of experience in IT, I specialize in Microsoft
+            technologies, cloud architecture, automation, Infrastructure as Code, and
+            DevOps practices. I'm passionate about sharing knowledge through my blog,
+            community contributions, and technical presentations.
+          </p>
+          <p>
+            I hold multiple Microsoft Azure certifications and am recognized for my
+            expertise in patterns and practices, cloud native solutions and general
+            solution architecture and delivery.
+          </p>
+          <p>I live and work in Hamilton, New Zealand.</p>
+          <p>
+            <strong>
+              Want to connect? Feel free to{' '}
+              <a
+                href="https://www.linkedin.com/in/ljmurray/"
+                target="_blank"
+                rel="noopener"
+              >
+                connect on LinkedIn
+              </a>{' '}
+              or reach me through any of the social media links in the navbar!
+            </strong>
+          </p>
 
           <h2>Some of the technology areas I work with:</h2>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '15px' }}>
-            <span style={{ background: '#0078D4', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Application PaaS</span> <span style={{ background: '#3CCBF4', color: 'black', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure AI Services</span> <span style={{ background: '#0078D7', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>DevOps</span> <span style={{ background: '#104581', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Compute Infrastructure</span> <span style={{ background: '#50E6FF', color: 'black', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Cost, Resource & Configuration Management</span> <span style={{ background: '#7FBA00', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Hybrid & Migration</span> <span style={{ background: '#FFB900', color: 'black', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Infrastructure as Code</span> <span style={{ background: '#F25022', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Innovation Hub</span> <span style={{ background: '#00A4EF', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Integration PaaS</span> <span style={{ background: '#326CE5', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Kubernetes and Open Source</span> <span style={{ background: '#737373', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Networking</span> <span style={{ background: '#181717', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Virtual Desktop</span> <span style={{ background: '#E00B1C', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Storage</span> <span style={{ background: '#A4262C', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Well-Architected, Resiliency & Observability</span> <span style={{ background: '#012456', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>PowerShell</span> <span style={{ background: '#6B69D6', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Microsoft Defender for Cloud</span> <span style={{ background: '#0F6CBD', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Entra ID</span> <span style={{ background: '#005B9F', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Microsoft Sentinel</span> </br>
+            <span style={{ background: '#0078D4', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Application PaaS</span>
+            <span style={{ background: '#3CCBF4', color: 'black', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure AI Services</span>
+            <span style={{ background: '#0078D7', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>DevOps</span>
+            <span style={{ background: '#104581', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Compute Infrastructure</span>
+            <span style={{ background: '#50E6FF', color: 'black', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Cost, Resource & Configuration Management</span>
+            <span style={{ background: '#7FBA00', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Hybrid & Migration</span>
+            <span style={{ background: '#FFB900', color: 'black', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Infrastructure as Code</span>
+            <span style={{ background: '#F25022', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Innovation Hub</span>
+            <span style={{ background: '#00A4EF', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Integration PaaS</span>
+            <span style={{ background: '#326CE5', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Kubernetes and Open Source</span>
+            <span style={{ background: '#737373', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Networking</span>
+            <span style={{ background: '#181717', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Virtual Desktop</span>
+            <span style={{ background: '#E00B1C', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Storage</span>
+            <span style={{ background: '#A4262C', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Well-Architected, Resiliency & Observability</span>
+            <span style={{ background: '#012456', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>PowerShell</span>
+            <span style={{ background: '#6B69D6', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Microsoft Defender for Cloud</span>
+            <span style={{ background: '#0F6CBD', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Entra ID</span>
+            <span style={{ background: '#005B9F', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Microsoft Sentinel</span>
           </div>
-
 
           <h2>Community Contributions</h2>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '15px' }}>
             <span style={{ background: '#0078D4', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Azure Architecture Center contributor</span>
             <span style={{ background: '#0F6CBD', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Cloud Adoption contributor</span>
-            <span style={{ background: '#181717', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Open source projects on GitHub</span>
             <span style={{ background: '#FF0000', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>YouTube videos</span>
             <span style={{ background: '#46783E', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Open-source contributor</span>
             <span style={{ background: '#00A4EF', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Product feedback contributor</span>
@@ -122,34 +137,34 @@ overflow-x: hidden; /_ hide horizontal scrollbar _/
             <span style={{ background: '#5E397A', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Mentorship</span>
             <span style={{ background: '#6B69D6', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Community speaker & organizer</span>
             <span style={{ background: '#505050', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Forum moderator & support</span>
-            <span style={{ background: '#2A5E91', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Blog author</span> </br>
-          </div> 
+            <span style={{ background: '#2A5E91', color: 'white', padding: '5px 10px', borderRadius: '15px', fontSize: '0.9em' }}>Blog author</span>
+          </div>
 
           <h2>Achievements and Certifications</h2>
           <section className="carousel">
             <img src="/img/aboutpage/AIMVPSummit_2024.png" alt="AI MVP Summit Badge" />
-<img src="/img/aboutpage/ArchitectureCenter_Leader.png" alt="Azure Architecture Center badge" />
-<img src="/img/aboutpage/ArchitectureCenter_Collaborator.png" alt="Architecture Center Collaborator Badge" />
-<img src="/img/aboutpage/AzureAdministratoAssociateBadge.png" alt="Azure AzureAdministratoAssociateBadge" />
-<img src="/img/aboutpage/AzureBadger_ContentHero_Badge.png" alt="AzureBadger_ContentHero" />
-<img src="/img/aboutpage/AzureDeveloperAssociateBadge.png" alt="AzureDeveloperAssociateBadge" />
-<img src="/img/aboutpage/AzureIdentityAndAccessManagementContributor_Badge.png" alt="AzureIdentityAndAccessManagementContributor_Badge" />
-<img src="/img/aboutpage/AzureNetworkEngineer_Badge.png" alt="AzureNetworkEngineer_Badge" />
-<img src="/img/aboutpage/AzureSecuriyEngineerBadge.png" alt="AzureSecuriyEngineerBadge" />
-<img src="/img/aboutpage/AzureSolutionsArchitectBadge.png" alt="AzureSolutionsArchitectBadge" />
-<img src="/img/aboutpage/AzureVirtualDesktopSpecialtyBadge.png" alt="AzureVirtualDesktopSpecialtyBadge" />
-<img src="/img/aboutpage/CyberSecurityArchitectBadge.png" alt="CyberSecurityArchitectBadge" />
-<img src="/img/aboutpage/DevPostAILearningHackathon_2024.png" alt="Microsoft Developers AI Learning Hackathon" />
-<img src="/img/aboutpage/FinOpsCertifiedPractitioner.png" alt="FinOpsCertifiedPractitioner" />
-<img src="/img/aboutpage/KustoDetectiveAgencyCase2Limited.png" alt="Kusto Detective Agency Case 2 Limited Badge" />
-<img src="/img/aboutpage/LinuxFoundationScalingCloudNativeAppswithKEDA.png" alt="Linux Foundation Scaling Cloud Native Apps with KEDA" />
-<img src="/img/aboutpage/MentorMVPFY25MicrosoftSkillsBootcampContributor.png" alt="Microsoft Skills Bootcamp 2024" />
-<img src="/img/aboutpage/MicrosoftAISkillsFestGWRAttemptBadge.png" alt="Microsoft AI SKills Fest" />
-<img src="/img/aboutpage/microsoft-global-hackathon-2024.png" alt="Microsoft Global Hackathon 2024" />
-<img src="/img/aboutpage/MVP2024Badge.png" alt="MVP2024Badge" />
-<img src="/img/aboutpage/MVP2023Badge.png" alt="MVP2023Badge" />
-<img src="/img/aboutpage/SpektraSystemsAzureExpert.png" alt="Azure Expert Badge" />
-<img src="/img/aboutpage/WindowsCustomerConnectionProgramCommunityBadge.png" alt="WindowsCustomerConnectionProgramCommunityBadge" />
+            <img src="/img/aboutpage/ArchitectureCenter_Leader.png" alt="Azure Architecture Center badge" />
+            <img src="/img/aboutpage/ArchitectureCenter_Collaborator.png" alt="Architecture Center Collaborator Badge" />
+            <img src="/img/aboutpage/AzureAdministratoAssociateBadge.png" alt="Azure Administrator Associate Badge" />
+            <img src="/img/aboutpage/AzureBadger_ContentHero_Badge.png" alt="Azure Badger Content Hero" />
+            <img src="/img/aboutpage/AzureDeveloperAssociateBadge.png" alt="Azure Developer Associate Badge" />
+            <img src="/img/aboutpage/AzureIdentityAndAccessManagementContributor_Badge.png" alt="Azure Identity and Access Management Contributor Badge" />
+            <img src="/img/aboutpage/AzureNetworkEngineer_Badge.png" alt="Azure Network Engineer Badge" />
+            <img src="/img/aboutpage/AzureSecuriyEngineerBadge.png" alt="Azure Security Engineer Badge" />
+            <img src="/img/aboutpage/AzureSolutionsArchitectBadge.png" alt="Azure Solutions Architect Badge" />
+            <img src="/img/aboutpage/AzureVirtualDesktopSpecialtyBadge.png" alt="Azure Virtual Desktop Specialty Badge" />
+            <img src="/img/aboutpage/CyberSecurityArchitectBadge.png" alt="Cybersecurity Architect Badge" />
+            <img src="/img/aboutpage/DevPostAILearningHackathon_2024.png" alt="Microsoft Developers AI Learning Hackathon" />
+            <img src="/img/aboutpage/FinOpsCertifiedPractitioner.png" alt="FinOps Certified Practitioner" />
+            <img src="/img/aboutpage/KustoDetectiveAgencyCase2Limited.png" alt="Kusto Detective Agency Case 2 Limited Badge" />
+            <img src="/img/aboutpage/LinuxFoundationScalingCloudNativeAppswithKEDA.png" alt="Linux Foundation Scaling Cloud Native Apps with KEDA" />
+            <img src="/img/aboutpage/MentorMVPFY25MicrosoftSkillsBootcampContributor.png" alt="Microsoft Skills Bootcamp 2024" />
+            <img src="/img/aboutpage/MicrosoftAISkillsFestGWRAttemptBadge.png" alt="Microsoft AI Skills Fest" />
+            <img src="/img/aboutpage/microsoft-global-hackathon-2024.png" alt="Microsoft Global Hackathon 2024" />
+            <img src="/img/aboutpage/MVP2024Badge.png" alt="MVP 2024 Badge" />
+            <img src="/img/aboutpage/MVP2023Badge.png" alt="MVP 2023 Badge" />
+            <img src="/img/aboutpage/SpektraSystemsAzureExpert.png" alt="Azure Expert Badge" />
+            <img src="/img/aboutpage/WindowsCustomerConnectionProgramCommunityBadge.png" alt="Windows Customer Connection Program Community Badge" />
           </section>
         </div>
       </section>
