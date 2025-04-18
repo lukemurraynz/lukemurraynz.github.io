@@ -1,22 +1,39 @@
 ---
-title:
-metaDescription:
-date:
+title: Processing SFTP Events with Azure Function and Event Hub
+metaDescription: Learn how to use Azure Storage SFTP functionality with Event Hub to trigger Azure Functions for processing file uploads
+date: 2025-04-18T02:13:25.749Z
 tags:
-  - Azure
+    - Azure
 categories:
-  - Azure
+    - Azure
 authors:
-  - Luke
-slug: azure
+    - Luke
+slug: azure/sftp-event-hub-function
 keywords:
-  - Azure
-description:
+    - Azure
+    - SFTP
+    - Event Hub
+    - Azure Functions
+    - PowerShell
+    - Serverless
+    - File Transfer
+    - Event-driven
+    - Storage Account
+    - Integration
+    - Monitoring
+    - Data Processing
+    - Blob Storage
+    - Cloud Functions
+description: A practical guide to setting up Azure Storage SFTP with Event Hub and Azure Functions to monitor and process file uploads
 ---
+
+# 🚀 Processing SFTP Events with Azure Functions and Event Hub
 
 Today, we are going to use the [Azure Storage SFTP functionality](https://learn.microsoft.com/azure/storage/blobs/secure-file-transfer-protocol-support?WT.mc_id=AZ-MVP-5004796) and an [Event Hub](https://learn.microsoft.com/azure/event-hubs/event-hubs-about?WT.mc_id=AZ-MVP-5004796) to trigger an [Azure Function](https://learn.microsoft.com/azure/azure-functions/functions-overview?WT.mc_id=AZ-MVP-5004796). The Azure Function will then process the Write Logs, and output the File name, SFTP Local User name, Agent header and the SFTP Client IP address to the host, from there you can do whatever you want with the data.
 
 {/* truncate */}
+
+## 🏗️ Environment Overview
 
 So for my environment I have a:
 
@@ -47,7 +64,7 @@ flowchart LR
 
 So i've already precreated these resources, but is some more information of the resource configuration, that you can follow along with.
 
-## Storage Account Configuration
+## 📦 Storage Account Configuration
 
 For the Azure Storage account with SFTP enabled, I'm using the following configuration:
 
@@ -79,7 +96,7 @@ The hierarchical namespace (HNS) is a prerequisite for SFTP support in Azure Sto
 
 With SFTP and local users enabled, you can create local SFTP users that can authenticate with password and/or SSH key authentication, and assign them permissions to specific containers and directories within your storage account.
 
-## Event Hub Namespace Configuration
+## 📡 Event Hub Namespace Configuration
 
 For receiving and processing the Azure Storage SFTP events, I've set up an Event Hub Namespace with the following configuration:
 
@@ -100,7 +117,7 @@ Within this namespace, I've created an Event Hub instance with a single partitio
 
 ![Event Hub Namespace Configuration](images/EventHubNSConfig.jpg)
 
-## Function App Configuration
+## ⚙️ Function App Configuration
 
 For processing the SFTP events from the Event Hub, I've set up an Azure Function App with the following configuration:
 
@@ -120,21 +137,26 @@ For processing the SFTP events from the Event Hub, I've set up an Azure Function
   - Public network access: Enabled
   - Client certificate mode: Required
 
+## 🔒 Authentication Setup
+
 The Function App connects to the Event Hub namespace the System Managed Identity of the Function App, which is granted the `Azure Event Hubs Data Receiver` role on the Event Hub namespace.
 
 ![Function App Configuration](images/Function_SMI_EventHubDataReceiver.jpg)
+
+## 🛠️ Function App Settings
 
 In order to use the Event Hub trigger in the Azure Function with Managed Identity authentication, you need to add the following settings to the Function App settings :
 
 ```json
 {
   "EventHubConnection__credential": managedIdentity,
-  "EventHubConnection__fullyQualifiedNamespace": "<Your Event Hub Namespace>.servicebus.windows.net",
-
+  "EventHubConnection__fullyQualifiedNamespace": "<Your Event Hub Namespace>.servicebus.windows.net"
 }
 ```
 
 ![Event Hub App setting](images/Function_AppSetting.jpg)
+
+## 📋 Function Configuration File
 
 The namespace, Consumer Group and identity type will need to be updated to the function.json file.
 
@@ -155,6 +177,8 @@ The namespace, Consumer Group and identity type will need to be updated to the f
   ]
 }
 ```
+
+## 💻 PowerShell Code
 
 Here is my run.ps1 file for the Azure Function:
 
@@ -210,12 +234,18 @@ $eventHubMessages | ForEach-Object {
 You can find the Function App code in the [GitHub repository - lukemurraynz/SFTPEventHubFunction](https://github.com/lukemurraynz/SFTPEventHubFunction) for this blog post.
 :::
 
+## 🔍 See it in Action!
+
 So lets take a look at it in action!
 
 ![Azure SFTP Blob Write Run](images/SFTPEventHubFunctionRun.gif)
+
+## ⏱️ Performance Considerations
 
 _(On average, I have seen this take about 2 minutes, from the initial file upload, to the Function execution)_.
 
 ![SFTP Function execution](images/SFTPFuncExecuteTime.jpg)
 
-Hopefully thats given you the base to work from, you could potentially add logic around if file from x user, do this, or notify user of receipt based on a map lookup ecosystem
+## 🚀 Next Steps and Extensions
+
+Hopefully thats given you the base to work from, you could potentially add logic around if file from x user, do this, or notify user of receipt based on a map lookup etc
