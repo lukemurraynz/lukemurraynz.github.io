@@ -19,3 +19,194 @@ Today, we are going to use the [Azure Storage SFTP functionality](https://learn.
 
 {/* truncate */}
 
+So for my environment I have a:
+
+* A SFTP Hierarchical namespace enabled storage account
+* A Flex Consumption Azure Function App
+* A Standard Event Hub Namespace with a event hub instance with 1 partition and 1 consumer group
+
+These resources are hosted in the New Zealand North Azure region.
+
+```mermaid
+flowchart LR
+    User[SFTP Client]-->|Uploads File|Storage[(Azure Storage SFTP)]
+    Storage-->|Sends Event|EventHubNS[Event Hub Namespace]
+    subgraph EventHubNS[Event Hub Namespace]
+        EventHub[Event Hub]
+        ConsumerGroup[Consumer Group]
+    end
+    EventHub-->ConsumerGroup
+    ConsumerGroup-->|Triggers|Function[Azure Function]
+    Function-->|Processes|Output[File Details Output]
+    
+    classDef azure fill:#0072C6,stroke:#0072C6,color:white;
+    classDef client fill:#5C2D91,stroke:#5C2D91,color:white;
+    
+    class Storage,EventHubNS,EventHub,EventHub,ConsumerGroup,Function azure;
+    class User client;
+```
+
+So i've already precreated these resources, but is some more information of the resource configuration,  that you can follow along with.
+
+## Storage Account Configuration
+
+For the Azure Storage account with SFTP enabled, I'm using the following configuration:
+
+* **Name**: sftptestluketest
+* **Location**: New Zealand North
+* **Performance**: Standard
+* **Redundancy**: Locally-redundant storage (LRS)
+* **Account kind**: StorageV2 (general purpose v2)
+* **Access tier**: Hot
+* **Key features enabled**:
+  * Hierarchical namespace (HNS) ✅
+  * SFTP support ✅
+  * Local user authentication ✅
+* **Security settings**:
+  * Minimum TLS version: 1.2
+  * Public blob access: Disabled
+  * Network access: Public (default action: Allow)
+  * HTTPS only: Enabled
+  * Azure services bypass: Enabled
+  * Shared key access: Enabled
+* **Diagnostic settings**:
+  * StorageWrite logs sent to Event Hub Namespace
+  * Configured to capture StorageWrite logs for all blob operations
+
+  ![Azure Storage SFTP Blob Diagnostic](images/AzureSFTPBlogStorageDiagEH.jpg)
+
+The hierarchical namespace (HNS) is a prerequisite for SFTP support in Azure Storage. This enables the directory and subdirectory structure that SFTP clients expect when connecting.
+
+With SFTP and local users enabled, you can create local SFTP users that can authenticate with password and/or SSH key authentication, and assign them permissions to specific containers and directories within your storage account.
+
+## Event Hub Namespace Configuration
+
+For receiving and processing the Azure Storage SFTP events, I've set up an Event Hub Namespace with the following configuration:
+
+* **Name**: sftpeventhub
+* **Location**: New Zealand North
+* **Pricing tier**: Standard
+* **Throughput capacity**: 1 throughput unit (base capacity)
+* **Key features**:
+  * Auto-inflate enabled ✅
+  * Maximum throughput units: 5 (scales automatically as needed)
+  * Zone redundant ✅
+  * Kafka support enabled ✅
+* **Security settings**:
+  * Minimum TLS version: 1.2
+  * Network access: Public
+
+Within this namespace, I've created an Event Hub instance with a single partition and a dedicated consumer group that will be used by the Azure Function to process SFTP events.
+
+![Event Hub Namespace Configuration](images/EventHubNSConfig.jpg)
+
+## Function App Configuration
+
+For processing the SFTP events from the Event Hub, I've set up an Azure Function App with the following configuration:
+
+* **Name**: sftptest
+* **Location**: Australia East (Different from Storage and Event Hub to demonstrate cross-region capability)
+* **Hosting plan**: FlexConsumption (serverless)
+* **Runtime stack**: PowerShell 7.4
+* **Operating system**: Linux
+* **Key features**:
+  * Application Insights enabled ✅
+  * HTTPS only ✅
+  * System-assigned managed identity ✅
+* **Scaling configuration**:
+  * Maximum instance count: 100
+  * Instance memory: 2048 MB
+* **Security settings**:
+  * Public network access: Enabled
+  * Client certificate mode: Required
+
+The Function App connects to the Event Hub namespace the System Managed Identity of the Function App, which is granted the `Azure Event Hubs Data Receiver` role on the Event Hub namespace.
+
+![Function App Configuration](images/Function_SMI_EventHubDataReceiver.jpg)
+
+In order to use the Event Hub trigger in the Azure Function with Managed Identity authentication, you need to add the following settings to the Function App settings    :
+
+```json
+{
+  "EventHubConnection__credential": managedIdentity,
+  "EventHubConnection__fullyQualifiedNamespace": "<Your Event Hub Namespace>.servicebus.windows.net",
+
+}
+```
+
+![Event Hub App setting](images/Function_AppSetting.jpg)
+
+The namespace, Consumer Group and identity type will need to be updated to the function.json file.
+
+```json
+{
+  "bindings": [
+    {
+      "type": "eventHubTrigger",
+      "name": "eventHubMessages",
+      "direction": "in",
+      "eventHubName": "sftp",
+      "connection": "EventHubConnection",
+      "cardinality": "many",
+      "consumerGroup": "$Default",
+      "identity": "SystemAssigned",
+      "fullyQualifiedNamespace": "sftpeventhub.servicebus.windows.net"
+    }
+  ]
+}
+```
+Here is my run.ps1 file for the Azure Function:
+
+```powershell
+param($eventHubMessages, $TriggerMetadata)
+
+Write-Host "PowerShell SFTP event hub trigger function called"
+
+# Process each message
+$eventHubMessages | ForEach-Object {
+    # Get the records array from the message
+    if ($_ -is [System.Management.Automation.OrderedHashtable] -or $_ -is [hashtable]) {
+        if ($_.ContainsKey('records')) {
+            Write-Host "Processing SFTP Storage events..."
+            
+            # Filter for StorageWrite operations with status code 200
+            $filteredRecords = $_.records | Where-Object { 
+                $_.category -eq "StorageWrite" -and $_.statusCode -eq 200 -and $_.operationName -eq "SftpCreate"
+            }
+            
+            Write-Host "Found $($filteredRecords.Count) StorageWrite 200 operations"
+            
+            # Display only the requested information
+            foreach ($record in $filteredRecords) {
+                $output = [ordered]@{
+                    'Operation'     = $record.operationName
+                    'FileName'      = if ($record.properties.objectKey -match '^(?:[^/]*/){3}(.*)$') { $matches[1] } else { $record.properties.objectKey }
+                    'UserID'        = $record.identity.requester.objectId
+                    'UserIPAddress' = $record.callerIpAddress
+                    'UserAgent'     = $record.properties.userAgentHeader
+                    'Time'          = $record.time
+                }
+                
+                # Output in a clean table format
+                Write-Host "----------------------------------------"
+                foreach ($key in $output.Keys) {
+                    Write-Host "$($key.PadRight(12)): $($output[$key])"
+                }
+            }
+            
+            if ($filteredRecords.Count -gt 0) {
+                Write-Host "----------------------------------------"
+            }
+        }
+    }
+    else {
+        Write-Host "Message wasn't in the expected format"
+    }
+}
+```
+:::info
+You can find the Function App code in the [GitHub repository - lukemurraynz/SFTPEventHubFunction](https://github.com/lukemurraynz/SFTPEventHubFunction) for this blog post.
+:::
+
+So lets take a look at it in action!
+
