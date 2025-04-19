@@ -31,7 +31,7 @@ As part of the [Azure Spring Clean 2025](https://www.azurespringclean.com/) even
 
 ## 🏗️ Introduction to Azure Landing Zones
 
-[Azure Landing Zones](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796) provide a structured approach for designing and implementing cloud environments in Azure. They are essential for organizations looking to migrate, modernize, and innovate their applications at scale, mainly because of the considerations you make in designing and implementating them, considerations such as how your workloads are going to connect to the internet, how each service connects, and importantely, how your organisation will use Cloud - I saw a comment from someone the other day _(Cloud is not WHERE you work, its HOW you work)_. 
+[Azure Landing Zones](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796) provide a structured approach for designing and implementing cloud environments in Azure. They are essential for organizations looking to migrate, modernize, and innovate their applications at scale, mainly because of the considerations you make in designing and implementing them, considerations such as how your workloads are going to connect to the internet, how each service connects, and importantly, how your organisation will use Cloud - I saw a comment from someone the other day _(Cloud is not WHERE you work, its HOW you work)_. 
 
 :::info
 An Azure landing zone is an environment that follows key design principles across eight design areas. These design principles accommodate all application portfolios and enable application migration, modernization, and innovation at scale. An Azure landing zone uses subscriptions to isolate and scale application and platform resources. Subscriptions for application resources are called application landing zones, and subscriptions for platform resources are called platform landing zones.
@@ -51,11 +51,11 @@ More information on Azure Landing Zones, can be found in the [Microsoft Cloud Ad
 * Terraform Accelerator
 * Portal Accelerator
 
-These Accelerators, adopt a best-practice approach _(but also opinionated)_ to deploy an Azure Landing Zone, from scratch, whether Brownfield _(already existing)_ or Greenfield _(new)_, and they have been going through a transformation, from previous accelerators _(marked as vNext)_ to adopt a more moduler approach with both Bicep and Terraform deployments aligned to [Azure Verified Modules](https://azure.github.io/Azure-Verified-Modules/). These Accelerators are what Microsoft would run in a VBD workshop _(I believe they would use the Portal accelerator)_.
+These Accelerators, adopt a best-practice approach _(but also opinionated)_ to deploy an Azure Landing Zone, from scratch, whether Brownfield _(already existing)_ or Greenfield _(new)_, and they have been going through a transformation, from previous accelerators _(marked as vNext)_ to adopt a more modular approach with both Bicep and Terraform deployments aligned to [Azure Verified Modules](https://azure.github.io/Azure-Verified-Modules/). These Accelerators are what Microsoft would run in a VBD workshop _(I believe they would use the Portal accelerator)_.
 
-I want to make clear, these just like the Cloud Adoption Framework, are best pratices but also gernalized to support multiple types of organisations, so make sure you adjust them to suit your needs and organisations, or even mark it as a northstar to aim towards, but not necessary what you need in that moment, but also consider strategically where you want to go, ie platform engineering, de-centralized or centralized operations, all these decisions will determine how your Landing Zone structure is based and used _(ie if you don't like the word Online, change it to Public, your business needs to understand where to put workloads and how they will work _(not spending the time fighing over what something is named)_)_.
+I want to make clear, these just like the Cloud Adoption Framework, are best practices but also generalized to support multiple types of organisations, so make sure you adjust them to suit your needs and organisations, or even mark it as a northstar to aim towards, but not necessary what you need in that moment, but also consider strategically where you want to go, ie platform engineering, de-centralized or centralized operations, all these decisions will determine how your Landing Zone structure is based and used _(ie if you don't like the word Online, change it to Public, your business needs to understand where to put workloads and how they will work _(not spending the time fighing over what something is named)_)_.
 
-With Landing Zones, theres the Platform Landing Zone and the Application Landing Zone, the Platform Landing Zone is the shared services like identity, connectivity, and management, where as the Application Landing Zone is specific environments for particular applications or workloads _(consider Arc, maybe APIM, anything generazlied - this is really where your business logic and IP sits)_.
+With Landing Zones, there's the Platform Landing Zone and the Application Landing Zone, the Platform Landing Zone is the shared services like identity, connectivity, and management, whereas the Application Landing Zone is specific environments for particular applications or workloads _(consider Arc, maybe APIM, anything generalized - this is really where your business logic and IP sits)_.
 
 ![Azure Landing Zones - Customer Journey](images/ALZAccelerator_CustomerJourney.JPG)
 
@@ -74,7 +74,7 @@ It begins with a Bootstrap process, which is the initial setup of the Azure DevO
 
 ![Azure Landing Zones - Customer Journey](images/ALZAccelerator_Components.JPG)
 
-To bootstrap, we will make use of the:[ALZ-PowerShell-Module](https://github.com/Azure/ALZ-PowerShell-Module), this script will help bring together the different dependencies and Terraform bootstraping to setup our Azure DevOps environment, Terraform state storage account and bring in the necessary Platform Landing Zone library files for our deployment.
+To bootstrap, we will make use of the:[ALZ-PowerShell-Module](https://github.com/Azure/ALZ-PowerShell-Module), this script will help bring together the different dependencies and Terraform bootstrapping to setup our Azure DevOps environment, Terraform state storage account and bring in the necessary Platform Landing Zone library files for our deployment.
 
 ![Azure Landing Zones - Customer Journey](images/ALZAccelerator_CICDComponents.JPG)
 
@@ -118,7 +118,7 @@ If you have issues, you can also raise them on the [ALZ-PowerShell-Module](https
 
 Before we get started, we need some pre-requisites 
 
-* 3 Azure subscriptions _(1 for Connectivity, 1 for Identity, and 1 for Connectivity) - (for this demo, I will be using a single subscription)_ we will also need the bootstrap and Terraform deployment IDs.
+* 3 Azure subscriptions _(1 for Connectivity, 1 for Identity, and 1 for Management) - (for this demo, I will be using a single subscription)_ we will also need the bootstrap and Terraform deployment IDs.
 Permissions Required for Management Group and Subscriptions:
 
 * Owner on your chosen parent management group:
@@ -230,7 +230,7 @@ output_folder_path: "c:/Code/accelerator/output"
 ```
 
 :::tip
-For further customisation, make sure you take a look at the [variables.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/main/alz/local/variables.tf) file directly in the accelerator bootstrap modules GitHub, it can show further options that you can add to the bootstrap, such as the storage account replicatin type for your Terraform state files, or additinal custom roles and resource naming.
+For further customisation, make sure you take a look at the [variables.tf](https://github.com/Azure/accelerator-bootstrap-modules/blob/main/alz/local/variables.tf) file directly in the accelerator bootstrap modules GitHub, it can show further options that you can add to the bootstrap, such as the storage account replication type for your Terraform state files, or additional custom roles and resource naming.
 :::
 
 Now that we have configured the variables required for our bootstrap, let us define the Terraform variables for the Platform Landing Zone deployment, this will be used to determine the Azure resources we will deploy, such as the Hub and Spoke, Virtual WAN, Bastion, etc, and this is the platform-landing-zone.tfvars file. I recommend copying one from one of the [already pre-existing Scenarios](https://azure.github.io/Azure-Landing-Zones/accelerator/startermodules/terraform-platform-landing-zone/scenarios/) and modifying to suit your needs. For my purposes, I will be going with a Single region hub and spoke VNET with [Azure Firewall](https://azure.github.io/Azure-Landing-Zones/accelerator/startermodules/terraform-platform-landing-zone/scenarios/single-region-hub-and-spoke-vnet-with-azure-firewall/).
