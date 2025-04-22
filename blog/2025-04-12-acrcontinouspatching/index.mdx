@@ -14,7 +14,7 @@ keywords:
 
 description:
 ---
-Last year, I blogged about [Container Patching with Azure DevOps, Trivy and Copacetic](https://luke.geek.nz/azure/automate-container-patching-with-trivy-copacetic-azure-devops/), and how to use Azure DevOps to automate the patching of your container images using Trivy and Copacetic. This was a great solution, but it required a lot of manual work to set up and maintain. Today I am going to take a look at Continuous Patching with Azure Container Registry (ACR) and how to use it to automate the patching of your container images.
+Last year, I blogged about [Container Patching with Azure DevOps, Trivy and Copacetic](https://luke.geek.nz/azure/automate-container-patching-with-trivy-copacetic-azure-devops/), and how to use Azure DevOps to automate the patching of your container images using Trivy and Copacetic. This was a great solution, but it required a lot of manual work to set up and maintain. Today, I am going to take a look at Continuous Patching with Azure Container Registry (ACR) and how to use it to automate the patching of your container images.
 
 {/* truncate */}
 
@@ -216,4 +216,11 @@ The workflow creates three tasks in your Azure Container Registry:
 | **cssc-patch-image** | Applies security patches using Copacetic | This task does the actual patching work, fixing OS vulnerabilities in your container images without needing to rebuild them from source. |
 
 These three tasks work together to form a complete patching pipeline: the trigger starts on schedule, the scanner identifies vulnerabilities, and the patcher automatically fixes them.
+
+You can check the logs of the run by looking up the recent Runs:
+
+```bash
+az acr task logs --registry myRegistry
+``````
+
 
