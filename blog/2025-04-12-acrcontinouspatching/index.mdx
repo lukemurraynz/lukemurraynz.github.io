@@ -39,7 +39,7 @@ Here are a few scenarios to use Continuous Patching:
 
 In my testing, I am going to use the [api-firewall](https://hub.docker.com/_/api-firewall) image, version [0.6.7 _(3 years old)_](https://hub.docker.com/layers/library/api-firewall/0.6.7/images/sha256-eb916dab11928d8fdf8207c2e7d8a936a70055e219d9e92807315fb4c4380ba9) that I have pushed to my Azure Container Registry.
 
-![Image - Azure Container Registry](images/ContinousPatching_ACR_APIFirewallImageBefore.jpg)
+![Image - Azure Container Registry](images/ContinuousPatching_ACR_APIFirewallImageBefore.jpg)
 
 So let us take a look at how this will work.
 
@@ -68,7 +68,7 @@ To start, we need to install the CLI extension for ACR Continuous Patching:
 az extension add --source https://acrcssc.z5.web.core.windows.net/debug/acrcssc-1.0.0b2-py3-none-any.whl
 ```
 
-![Install Custom extension](images/ACR_ContinousPatching_InstallExtension.gif)
+![Install Custom extension](images/ACR_ContinuousPatching_InstallExtension.gif)
 
 Then we need to log in to our Azure Container Registry:
 
@@ -76,7 +76,7 @@ Then we need to log in to our Azure Container Registry:
 az login
 az acr login -n <myRegistry>
 ```
-![Login to ACR](images/ACR_ContinousPatching_LoginAzureACR.gif)
+![Login to ACR](images/ACR_ContinuousPatching_LoginAzureACR.gif)
 
 Now we need to prepare the JSON schema that we will use to configure our Continuous Patching.
 
@@ -131,11 +131,11 @@ Next, we can run a dry run of the supply-chain workflow to validate that our rep
 az acr supply-chain workflow create -r myRegistry -g myResourceGroup -t continuouspatchv1 --config ./continuouspatching.json --schedule 1d --dry-run   
 ```
 
-![Image - ACR Continous Patching](images/ACR_ContinousPatching_DryRun_SupplyChain.gif)
+![Image - ACR Continuous Patching](images/ACR_ContinuousPatching_DryRun_SupplyChain.gif)
 
 You can also view the run in the Azure Portal, and see it pull the cssc _(Microsoft's Containers Secure Supply Chain (CSSC) framework)_ image to run the workflow.
 
-![Image - ACR Continous Patching](images/ContinousPatching_ACR_DryRun_AzurePortal.jpg)
+![Image - ACR Continuous Patching](images/ContinuousPatching_ACR_DryRun_AzurePortal.jpg)
 
 :::tip
 You can use the `az acr supply-chain workflow update` command to update the workflow configuration, if needed at a later stage.
@@ -199,12 +199,12 @@ You can add the `--verbose` flag to the command to get more detailed output duri
 
 Now that the Tasks have been created, you can see them in the Azure Portal.
 
-![Image - ACR Continous Patching](images/ContinousPatching_ACR_Run_TasksAzurePortal.jpg)
+![Image - ACR Continuous Patching](images/ContinuousPatching_ACR_Run_TasksAzurePortal.jpg)
 
 You can also run the following command to see the state of the workflows:
 
 ```bash
-az acr supply-chain workflow show -r myRegistry -g myResourceGroup -t continuouspatchv1  -o table
+az acr supply-chain workflow show -r myRegistry -g myResourceGroup -t Continuouspatchv1  -o table
 ```
 
 The workflow creates three tasks in your Azure Container Registry:
@@ -223,4 +223,9 @@ You can check the logs of the run by looking up the recent Runs:
 az acr task logs --registry myRegistry
 ``````
 
+![Image - ACR Continuous Patching](images/ContinuousPatching_ACR_Logs.jpg)
+
+Now if we go into the repositories in the Azure Portal, we can see that the image has been patched with the incremental tag.
+
+![Image - Azure Container Registry](images/ContinuousPatching_ACR_Patched.jpg)
 
