@@ -11,7 +11,6 @@ authors:
 slug: azure
 keywords:
     - Azure
-
 description:
 ---
 Last year, I blogged about [Container Patching with Azure DevOps, Trivy and Copacetic](https://luke.geek.nz/azure/automate-container-patching-with-trivy-copacetic-azure-devops/), and how to use Azure DevOps to automate the patching of your container images using Trivy and Copacetic. This was a great solution, but it required a lot of manual work to set up and maintain. Today, I am going to take a look at Continuous Patching with Azure Container Registry (ACR) and how to use it to automate the patching of your container images.
@@ -25,7 +24,7 @@ The following limitations apply:
 
 * Windows-based container images aren't supported.
 * Only "OS-level" vulnerabilities that originate from system packages will be patched. This includes system packages in the container image managed by an OS package manager such as "apt” and "yum”. Vulnerabilities that originate from application packages, such as packages used by programming languages like Go, Python, and NodeJS, cannot be patched.
-* End of Service Life (EOSL) images are not supported by Continuous Patching. EOSL images refer to images where the underlying operating system is no longer offering updates, security patches, and technical support. Examples include images based on older operating system versions, such as Debian 8 and Fedora 28. EOSL images will be skipped from the patch despite having vulnerabilities - the recommended approach is to upgrade the underlying operating system of your image to a supported version.
+* End of Service Life (EOSL) images are not supported by Continuous Patching. EOSL images refer to images where the underlying operating system is no longer supported by updates, security patches, or technical support. Examples include images based on older operating system versions, such as Debian 8 and Fedora 28. EOSL images will be skipped from the patch despite having vulnerabilities - the recommended approach is to upgrade the underlying operating system of your image to a supported version.
 :::
 
 :::info
@@ -33,8 +32,8 @@ The following limitations apply:
 
 Here are a few scenarios to use Continuous Patching:
 
-* Enforcing container security and hygiene: Continuous Patching enables users to quickly fix OS container CVEs without the need to fully rebuild from upstream.
-* Speed of Use: Continuous Patching removes the dependency on upstream updates for specific images by updating packages automatically. Vulnerabilities can appear every day, while popular image publishers may only offer a new release once a month. With Continuous Patching, you can ensure that container images within your registry are patched as soon as the newest set of OS vulnerabilities is detected.
+* Enforcing container security and hygiene: Continuous Patching enables users to quickly fix OS container CVEs without the need to rebuild from upstream fully.
+* Speed of Use: Continuous Patching eliminates the dependency on upstream updates for specific images by automatically updating packages. Vulnerabilities can appear every day, while popular image publishers may only release new content once a month. With Continuous Patching, you can ensure that container images within your registry are patched as soon as the latest set of OS vulnerabilities is detected.
 :::
 
 In my testing, I am going to use the [api-firewall](https://hub.docker.com/_/api-firewall) image, version [0.6.7 _(3 years old)_](https://hub.docker.com/layers/library/api-firewall/0.6.7/images/sha256-eb916dab11928d8fdf8207c2e7d8a936a70055e219d9e92807315fb4c4380ba9) that I have pushed to my Azure Container Registry.
@@ -49,18 +48,18 @@ Continuous Patching in ACR creates a new image per patch. ACR relies on a tag co
 | ------- | ------------------- | ---------------- |
 | **How It Works** | Adds numerical suffix (-1, -2, etc.) to original tag | Uses single mutable tag "-patched" that always points to latest version |
 | **Example** | If base is python:3.11:<br>- First patch: python:3.11-1<br>- Second patch: python:3.11-2 | If base is python:3.11:<br>- All patches use: python:3.11-patched |
-| **Special Rules** | - Tags -1 to -999 are considered patch tags<br>- Tags with -x where x > 999 are treated as original tags<br>- Avoid pushing your own tags ending with -1 to -999<br>- Errors if -999 versions are reached | Tag automatically updates with each new patch |
+| **Special Rules** | - Tags -1 to -999 are considered patch tags<br>- Tags with -x where x > 999 are treated as original tags<br>- Avoid pushing your tags ending with -1 to -999<br>- Errors if -999 versions are reached | Tag automatically updates with each new patch |
 | **Version History** | Preserved (each patch gets unique tag) | Not preserved (single tag is updated) |
 
 ![Image - Azure Container Registry](images/patching_timeline_example1.png)
 
-Incremental (default) is great for environments where auditability and rollbacks are critical, since each new patch is clearly identified with a unique tag.
+Incremental (default) is ideal for environments where auditability and rollbacks are crucial, as each new patch is identified by a unique tag.
 
-Floating is ideal if you prefer a single pointer to the latest patch for your CI/CD pipelines. Reduces complexity by removing the need to update references in downstream applications per patch, but sacrifices strict versioning, making it difficult to roll back.
+Floating is ideal if you prefer a single pointer to the latest patch for your CI/CD pipelines. Reduces complexity by eliminating the need to update references in downstream applications with each patch, but sacrifices strict versioning, making it challenging to roll back.
 
-In the demo today, I am going to use the Incremental tagging method.
+In today's demo, I will be using the Incremental tagging method.
 
-So let us get started. To start with, I am going to use my [Codespace_IaC_Coding](https://github.com/lukemurraynz/Codespace_IaC_Coding) Codespace configuration, which already has the prerequisites I need - ie, [Azure CLI](https://learn.microsoft.com/cli/azure/what-is-azure-cli?WT.mc_id=AZ-MVP-5004796).
+So let us get started. To start with, I will use my [Codespace_IaC_Coding](https://github.com/lukemurraynz/Codespace_IaC_Coding) Codespace configuration, which already has the prerequisites I need, i.e., [Azure CLI](https://learn.microsoft.com/cli/azure/what-is-azure-cli?WT.mc_id=AZ-MVP-5004796).
 
 To start, we need to install the CLI extension for ACR Continuous Patching:
 
@@ -133,12 +132,12 @@ az acr supply-chain workflow create -r myRegistry -g myResourceGroup -t continuo
 
 ![Image - ACR Continuous Patching](images/ACR_ContinuousPatching_DryRun_SupplyChain.gif)
 
-You can also view the run in the Azure Portal, and see it pull the cssc _(Microsoft's Containers Secure Supply Chain (CSSC) framework)_ image to run the workflow.
+You can also view the run in the Azure Portal, and see it pull the CSSC _(Microsoft's Containers Secure Supply Chain (CSSC) framework)_ image to run the workflow.
 
 ![Image - ACR Continuous Patching](images/ContinuousPatching_ACR_DryRun_AzurePortal.jpg)
 
 :::tip
-You can use the `az acr supply-chain workflow update` command to update the workflow configuration, if needed at a later stage.
+You can use the `az acr supply-chain workflow update` command to update the workflow configuration, if needed, at a later stage.
 :::
 
 Now let us run the workflow for real.
@@ -225,7 +224,6 @@ az acr task logs --registry myRegistry
 
 ![Image - ACR Continuous Patching](images/ContinuousPatching_ACR_Logs.jpg)
 
-Now if we go into the repositories in the Azure Portal, we can see that the image has been patched with the incremental tag.
+Now, if we go into the repositories in the Azure Portal, we can see that the image has been patched with the incremental tag.
 
 ![Image - Azure Container Registry](images/ContinuousPatching_ACR_Patched.jpg)
-
