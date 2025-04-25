@@ -61,8 +61,8 @@ Continuous Patching in ACR creates a new image per patch. ACR relies on a tag co
 | Feature | Incremental Tagging | Floating Tagging |
 | ------- | ------------------- | ---------------- |
 | **How It Works** | Adds numerical suffix (-1, -2, etc.) to original tag | Uses single mutable tag "-patched" that always points to latest version |
-| **Example** | If base is python:3.11:<br>- First patch: python:3.11-1<br>- Second patch: python:3.11-2 | If base is python:3.11:<br>- All patches use: python:3.11-patched |
-| **Special Rules** | - Tags -1 to -999 are considered patch tags<br>- Tags with -x where x > 999 are treated as original tags<br>- Avoid pushing your tags ending with -1 to -999<br>- Errors if -999 versions are reached | Tag automatically updates with each new patch |
+| **Example** | If base is python:3.11:- First patch: python:3.11-1- Second patch: python:3.11-2 | If base is python:3.11:- All patches use: python:3.11-patched |
+| **Special Rules** | - Tags -1 to -999 are considered patch tags- Tags with -x where x > 999 are treated as original tags- Avoid pushing your tags ending with -1 to --999- Errors if -999 versions are reached | Tag automatically updates with each new patch |
 | **Version History** | Preserved (each patch gets unique tag) | Not preserved (single tag is updated) |
 
 ![Image - Azure Container Registry](images/patching_timeline_example1.png)
