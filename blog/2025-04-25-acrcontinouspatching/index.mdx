@@ -34,7 +34,7 @@ The following limitations apply:
 
 * Windows-based container images aren't supported.
 * Only "OS-level" vulnerabilities that originate from system packages will be patched. This includes system packages in the container image managed by an OS package manager such as "apt” and "yum”. Vulnerabilities that originate from application packages, such as packages used by programming languages like Go, Python, and NodeJS, cannot be patched.
-* End of Service Life (EOSL) images are not supported by Continuous Patching. EOSL images refer to images where the underlying operating system is no longer supported by updates, security patches, or technical support. Examples include images based on older operating system versions, such as Debian 8 and Fedora 28. EOSL images will be skipped from the patch despite having vulnerabilities - the recommended approach is to upgrade the underlying operating system of your image to a supported version.
+* End of Service Life (EOSL) images are not supported by Continuous Patching. EOSL images refer to images where updates, security patches, or technical support are no longer available for the underlying operating system. Examples include images based on older operating system versions, such as Debian 8 and Fedora 28. EOSL images will be skipped from the patch, despite having vulnerabilities. The recommended approach is to upgrade the underlying operating system of your image to a supported version.
 :::
 
 :::info
@@ -54,7 +54,7 @@ In my testing, I am going to use the [api-firewall](https://hub.docker.com/_/api
 
 ## ⚙️ How Continuous Patching Works
 
-So let us take a look at how this will work.
+Let's take a look at how this will work.
 
 Continuous Patching in ACR creates a new image per patch. ACR relies on a tag convention to version and identify patched images. The two main approaches are incremental and floating.
 
@@ -67,13 +67,13 @@ Continuous Patching in ACR creates a new image per patch. ACR relies on a tag co
 
 ![Image - Azure Container Registry](images/patching_timeline_example1.png)
 
-Incremental (default) is ideal for environments where auditability and rollbacks are crucial, as each new patch is identified by a unique tag.
+Incremental (default) is ideal for environments where auditability and rollbacks are crucial, as a unique tag identifies each new patch.
 
 Floating is ideal if you prefer a single pointer to the latest patch for your CI/CD pipelines. Reduces complexity by eliminating the need to update references in downstream applications with each patch, but sacrifices strict versioning, making it challenging to roll back.
 
 ## 🚀 Getting Started with Continuous Patching
 
-So let us get started. To start with, I will use my [Codespace_IaC_Coding](https://github.com/lukemurraynz/Codespace_IaC_Coding) Codespace configuration, which already has the prerequisites I need, i.e., [Azure CLI](https://learn.microsoft.com/cli/azure/what-is-azure-cli?WT.mc_id=AZ-MVP-5004796).
+So let us get started. To begin, I will utilize my [Codespace_IaC_Coding](https://github.com/lukemurraynz/Codespace_IaC_Coding) Codespace configuration, which already meets the prerequisites I need, specifically [Azure CLI](https://learn.microsoft.com/cli/azure/what-is-azure-cli?WT.mc_id=AZ-MVP-5004796).
 
 ### 📦 Installing the Required Extension
 
