@@ -5,12 +5,19 @@ date: 2025-05-05T06:25:14.434Z
 tags:
   - Azure
 categories:
-  - Azure
+  - Misc
 authors:
   - Luke
 slug: misc/codespace-secrets
 keywords:
-  - Azure
+  - GitHub
+  - Codespaces
+  - DevContainer
+  - Secrets
+  - Environment Variables
+  - Development Environment
+  - Azure OpenAI
+  - Security
 description: Learn how to set up, configure, and use GitHub Codespace secrets.
 ---
 
@@ -20,9 +27,9 @@ Today, we are going to look at Codespace Secrets.
 
 GitHub Codespaces secrets are environment variables that are securely stored in your GitHub account and made available to your Codespace environment. They help you manage sensitive information without hardcoding it in your repository.
 
-This is a root level configuration, so its at the same level as features.
+This is a root-level configuration, so it's at the same level as features.
 
-These are [account specific secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces).
+These are [account-specific secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces).
 
 You can configure them from your [Codespace account settings](https://github.com/settings/codespaces) and allow them for specific repositories.
 
@@ -43,7 +50,7 @@ You can configure the name of these secrets in your devcontainer.json file, as b
 	},
 ```
 
-This is a root level configuration, just like Features and customizations so sits at the same level, like below:.
+This is a root-level configuration, just like Features and customizations, so it sits at the same level, like below:.
 
 ```json
 {
@@ -57,19 +64,19 @@ This is a root level configuration, just like Features and customizations so sit
 }
 ```
 
-This actually allows you to prompt for the secrets as part of the Codespace build.
+This allows you to prompt for the secrets as part of the Codespace build.
 
 ![Codespace Secret Configuration Test](images/GitHubCodespace_CodespaceSettingTest.gif)
 
-And is accessed normally through the environment variables as well:
+It is accessed normally through the environment variables as well:
 
 ![Codespace Secret Configuration Test](images/GitHubCodespace_CodespaceSettingTestEnv.gif)
 
-For those with the keen eye, will also realise that the environment variables are now entered into your Secrets Account settings scoped to your repository:
+For those with a keen eye, will also realise that the environment variables are now entered into your Secrets Account settings, scoped to your repository:
 
 ![Codespace Secrets](images/GitHubCodespace_SecretsAfterCodespace.jpg)
 
-From there you can change the value.
+From there, you can change the value.
 
 Then you can use a link like below _(replace your repo with your own)_ to point users directly to your Codespace, with the Secret field:
 
@@ -80,7 +87,7 @@ Then you can use a link like below _(replace your repo with your own)_ to point 
 Then you can call the values in your script and applications as needed.
 
 :::warning
-These are not encrypted, even though they are scoped to your account only if you output these in text, it will be shown so be careful with their use in your application.
+These are not encrypted, even though they are scoped to your account only. If you output these in text, they will be shown, so be careful with their use in your application.
 :::
 
 PowerShell example:
