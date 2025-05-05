@@ -1,0 +1,103 @@
+---
+title: GitHub Codespace Secrets
+metaDescription: Learn how to set up, configure, and use GitHub Codespace secrets.
+date: 2025-05-05T06:25:14.434Z
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: misc/codespace-secrets
+keywords:
+  - Azure
+description: Learn how to set up, configure, and use GitHub Codespace secrets.
+---
+
+Today, we are going to look at Codespace Secrets.
+
+{/* truncate */}
+
+GitHub Codespaces secrets are environment variables that are securely stored in your GitHub account and made available to your Codespace environment. They help you manage sensitive information without hardcoding it in your repository.
+
+This is a root level configuration, so its at the same level as features.
+
+These are [account specific secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces).
+
+You can configure them from your [Codespace account settings](https://github.com/settings/codespaces) and allow them for specific repositories.
+
+![GitHub - Codespace Secrets](images/GitHubCodespace_Secrets.jpg)
+
+And when you open up a Codespace, and run a command like 'printenv' you can see the value as environment variables, you can then call.
+
+![GitHub Codespace](images/GitHubCodespace_SecretAccountSettingTest.gif)
+
+However, thats not scalable, as it requires everyone to add in the secrets to their secrets ahead of time. 
+
+You can configure the name of these secrets in your devcontainer.json file, as below:
+
+```json
+"secrets": {
+		"AZURE_OPENAI_ENDPOINT": {},
+		"AZURE_OPENAI_KEY": {}
+	},
+```
+
+This is a root level configuration, just like Features and customizations so sits at the same level, like below:.
+
+```json
+{
+	"name": "Python 3",
+	"image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
+	"secrets": {
+		"AZURE_OPENAI_ENDPOINT": {},
+		"AZURE_OPENAI_KEY": {}
+	},
+	 "features": {}
+}
+```
+
+This actually allows you to prompt for the secrets as part of the Codespace build.
+
+![Codespace Secret Configuration Test](images/GitHubCodespace_CodespaceSettingTest.gif)
+
+And is accessed normally through the environment variables as well:
+
+![Codespace Secret Configuration Test](images/GitHubCodespace_CodespaceSettingTestEnv.gif)
+
+For those with the keen eye, will also realise that the environment variables are now entered into your Secrets Account settings scoped to your repository:
+
+![Codespace Secrets](images/GitHubCodespace_SecretsAfterCodespace.jpg)
+
+From there you can change the value.
+
+Then you can use a link like below _(replace your repo with your own)_ to point users directly to your Codespace, with the Secret field:
+
+[https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=lukemurraynz/CodespaceSecret&machine=basicLinux32gb&devcontainer_path=.devcontainer%2Fdevcontainer.json](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=lukemurraynz/CodespaceSecret&machine=basicLinux32gb&devcontainer_path=.devcontainer%2Fdevcontainer.json)
+
+![Codespace Link](images/GitHubCodespace_SecretsAfterCodespaceLink.jpg)
+
+Then you can call the values in your script and applications as needed.
+
+:::warning
+These are not encrypted, even though they are scoped to your account only if you output these in text, it will be shown so be careful with their use in your application.
+:::
+
+PowerShell example:
+
+```PowerShell
+# Get environment variables for AZURE_OPENAI_KEY and AZURE_OPENAI_ENDPOINT
+$azureOpenAiEndpoint = $env:AZURE_OPENAI_ENDPOINT
+$azureOpenAiKey = $env:AZURE_OPENAI_KEY
+Write-Host "AZURE_OPENAI_ENDPOINT: $azureOpenAiEndpoint"
+Write-Host "AZURE_OPENAI_KEY: $azureOpenAiKey"
+```
+Python example: 
+
+```python
+import os
+azure_openai_endpoint = os.environ.get("AZURE_OPENAI_ENDPOINT")
+azure_openai_key = os.environ.get("AZURE_OPENAI_KEY")
+print(f"AZURE_OPENAI_ENDPOINT: {azure_openai_endpoint}")
+print(f"AZURE_OPENAI_KEY: {azure_openai_key}")
+```
