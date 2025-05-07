@@ -136,3 +136,91 @@ Invoke-KubeBuddy -AKS -SubscriptionId $subscriptionId -ResourceGroup $resourceGr
 Detects hidden problems like misconfigurations, security risks, and resource failures in seconds.
 
 Now that we have scanned our cluster and retrieved the reports, its time to review and analyse the issues we have encountered.
+
+:::tip
+You can do a compare of 2 different reports to see if you are going up and down:
+
+For example, if you run the following command to do the output as a text file:
+
+```powershell
+Invoke-KubeBuddy -txtReport -Aks -SubscriptionId $SubscriptionId -ResourceGroup $ResourceGroup -ClusterName $ClusterName
+```
+
+Then run a script similar to below to create a comparison file:
+
+```powershell
+# =========================
+
+# Variables (snake_case)
+
+# =========================
+
+$report_path_1 = "./kubebuddy-report-20250508-082143.txt"
+$report_path_2 = "./kubebuddy-report-20250507-181629.txt"
+$output_diff_path = "./kubebuddy-report-diff.txt"
+
+# =========================
+
+# Parameters (camelCase)
+
+# =========================
+
+param(
+[string]$reportFile1 = $report_path_1,
+    [string]$reportFile2 = $report_path_2,
+    [string]$outputFile = $output_diff_path
+)
+
+# =========================
+
+# Helper Functions
+
+# =========================
+
+function Validate-FileExists {
+param(
+[string]$filePath,
+        [string]$paramName
+)
+if (-not (Test-Path $filePath)) {
+        throw "File '$filePath' specified by '$paramName' does not exist."
+}
+}
+
+# =========================
+
+# Main Logic
+
+# =========================
+
+try { # Validate input files
+Validate-FileExists -filePath $reportFile1 -paramName "reportFile1"
+Validate-FileExists -filePath $reportFile2 -paramName "reportFile2"
+
+    # Compare files (ignoring whitespace differences)
+    $diff = Compare-Object `
+        -ReferenceObject (Get-Content $reportFile1) `
+        -DifferenceObject (Get-Content $reportFile2) `
+        -IncludeEqual:$false
+
+    if ($diff) {
+        $diff | Out-File -FilePath $outputFile
+        Write-Host "Differences found. See $outputFile for details."
+    } else {
+        Write-Host "No differences found between the reports."
+    }
+
+}
+catch {
+Write-Error $\_.Exception.Message
+exit 1
+}
+```
+
+This will generate a diff file, which then you can pass into something like Copilot or another script to do something like this:
+
+![KubeBuddy](images/CompareKubeBuddyRuns.gif)
+
+:::
+
+You can following the recommendations, ie [Use a managed identity in Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/aks/use-managed-identity?WT.mc_id=AZ-MVP-5004796) that the reports give you. Be aware that some of the issues can only be resolved during the cluster creation. So ideally you would run this report as early in the lifecycle as possible, during the proof of technology phase, and take the recommendations into account as part of provisioning any UAT or Production workloads.
