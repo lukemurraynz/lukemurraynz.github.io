@@ -127,7 +127,7 @@ Invoke-KubeBuddy -HtmlReport
 
 We can see that my Kubernetes cluster is not healthy. The AKS cluster has issues, and the HTML report includes recommended actions.
 
-::warning
+:::warning
 So far, the alerts and reports are only Kubernetes-based for the HTML reports. If we are using Docker, we will have to authenticate using a Service Principal for the Aks health checks, but with the PowerShell method, we are already authenticated, so we can simply add the Aks switch.
 :::
 
