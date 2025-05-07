@@ -40,7 +40,7 @@ KubeBuddy uses your existing kubeconfig to scan your cluster externally, no agen
 
 I have an AKS cluster. This AKS cluster is deployed in the Australia East region, it has a System Node Pool size of Standard_DS2_v2, and a User Node Pool size of: Standard_D4as_v5. I will be running this on a GitHub Codespace, running Ubuntu 20.04.6 LTS and PowerShell 7.5.1 with kubectl and Azure CLI installed.
 
-First up - lets install the KubeBuddy module.
+First up - let's install the KubeBuddy module.
 
 ```powershell
 Install-Module -Name KubeBuddy -Scope CurrentUser -Force -AllowClobber
@@ -115,19 +115,10 @@ Invoke-KubeBuddy -HtmlReport
 
 ![KubeBuddy HTML Report](images/KubeBuddyHTMLReport.gif)
 
-We can clearly see that my Kubernetes cluster is not healthy. We can see that there are issues with the AKS cluster, and we can see the issues in the HTML report, including recommended actions.
+We can clearly see that my Kubernetes cluster is not healthy. There are issues with the AKS cluster, and the HTML report includes recommended actions.
 
-Now if we want AKS checks as well, then we can run the following command:
-
-```powershell
-$resourceGroup      = "aksdrasi-mvp-vscode"
-$clusterName        = "drasiaksmvp"
-$subscriptionId     = "11b74992-d520-46e1-a9e9-b55c57d2e890"
-Invoke-KubeBuddy -SubscriptionId $subscriptionId -ResourceGroup $resourceGroup -ClusterName $clusterName -HtmlReport
-```
-
-:::warning
-So far, the alerts and reports are only Kubernetes based for the HTML reports, unlike the interactive mode earlier that allowed us to run AKS specific health check. To do this, we need to authenticate to the cluster using a Service Principal. For AKS clusters, you need a Service Principal (SPN) with permissions to read cluster metadata and all Kubernetes resources, including secrets.
+::warning
+So far, the alerts and reports are only Kubernetes-based for the HTML reports, unlike the interactive mode earlier that allowed us to run an AKS-specific health check. To do this, we must authenticate to the cluster using a Service Principal. For AKS clusters, you need a Service Principal (SPN) with permissions to read cluster metadata and all Kubernetes resources, including secrets.
 :::
 
 So lets run through the process of configuring the Service Principal (SPN) for the AKS cluster, for our Report.
@@ -141,7 +132,7 @@ Save these values for later use, be wary of the secure nature of the password:
 * password
 * tenant
 
-Now we need to create a Custom Role, that we will assign to the Service Principal (SPN). **Make sure to update the subscription ID with your own subscription where the AKS Cluster is held**.
+Now we need to create a Custom Role that we will assign to the Service Principal (SPN). **Make sure to update the subscription ID with your own subscription where the AKS Cluster is held**.
 
 ```PowerShell
 $kubeBuddyReaderJson = @'
