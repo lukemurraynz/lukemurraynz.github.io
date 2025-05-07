@@ -1,6 +1,6 @@
 ---
-title:
-metaDescription:
+title: Scan Your Kubernetes Cluster with KubeBuddy
+metaDescription: Scan your AKS cluster with KubeBuddy to detect hidden issues and generate actionable reports for better operations.
 tags:
   - Azure
   - Misc
@@ -8,10 +8,18 @@ categories:
   - Misc
 authors:
   - Luke
-slug: azure/
+slug: azure/kubebuddy-scanning-clusters
 keywords:
   - Azure
-description:
+  - Kubernetes
+  - AKS
+  - KubeBuddy
+  - Cluster Scanning
+  - Kubernetes Diagnostics
+  - Cluster Health
+  - PowerShell
+description: Scan your AKS cluster with KubeBuddy to detect issues and generate actionable reports for better operations.
+date: 2025-05-07T21:47:58.518Z
 ---
 
 Today, we are going to look at [KubeBuddy](https://kubebuddy.kubedeck.io/).
@@ -24,7 +32,7 @@ The tag line of KubeBuddy is:
 
 ## Overview
 
-Developed by Microsoft Azure MVP, Richard Hooper - let us take a look at KubeBuddy against an [Azure Kubernetes Cluster _(AKS)_](https://learn.microsoft.com/azure/aks/what-is-aks?WT.mc_id=AZ-MVP-5004796).
+Developed by Microsoft Azure MVP, [Richard Hooper](https://www.linkedin.com/in/%E2%98%81-richard-hooper/) - let us take a look at KubeBuddy against an [Azure Kubernetes Cluster _(AKS)_](https://learn.microsoft.com/azure/aks/what-is-aks?WT.mc_id=AZ-MVP-5004796).
 
 {/* truncate */}
 
@@ -224,3 +232,5 @@ This will generate a diff file, which then you can pass into something like Copi
 :::
 
 You can following the recommendations, ie [Use a managed identity in Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/aks/use-managed-identity?WT.mc_id=AZ-MVP-5004796) that the reports give you. Be aware that some of the issues can only be resolved during the cluster creation. So ideally you would run this report as early in the lifecycle as possible, during the proof of technology phase, and take the recommendations into account as part of provisioning any UAT or Production workloads.
+
+Give [KubeBuddy](https://kubebuddy.kubedeck.io/) a go today!
