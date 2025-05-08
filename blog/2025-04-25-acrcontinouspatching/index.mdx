@@ -21,6 +21,7 @@ keywords:
   - DevSecOps
 description: Learn how to use Azure Container Registry's Continuous Patching to detect and fix vulnerabilities in container images with Trivy and Copa.
 ---
+
 Last year, I blogged about [Container Patching with Azure DevOps, Trivy and Copacetic](https://luke.geek.nz/azure/automate-container-patching-with-trivy-copacetic-azure-devops/), and how to use Azure DevOps to automate the patching of your container images using Trivy and Copacetic. This was a great solution, but it required a lot of manual work to set up and maintain. Today, I am going to take a look at Continuous Patching with Azure Container Registry (ACR) and how to use it to automate the patching of your container images.
 
 {/* truncate */}
@@ -32,19 +33,19 @@ At the time of writing, this is a **Preview feature**, so the experience we run 
 
 The following limitations apply:
 
-* Windows-based container images aren't supported.
-* Only "OS-level" vulnerabilities that originate from system packages will be patched. This includes system packages in the container image managed by an OS package manager such as "apt” and "yum”. Vulnerabilities that originate from application packages, such as packages used by programming languages like Go, Python, and NodeJS, cannot be patched.
-* End of Service Life (EOSL) images are not supported by Continuous Patching. EOSL images refer to images where updates, security patches, or technical support are no longer available for the underlying operating system. Examples include images based on older operating system versions, such as Debian 8 and Fedora 28. EOSL images will be skipped from the patch, despite having vulnerabilities. The recommended approach is to upgrade the underlying operating system of your image to a supported version.
-:::
+- Windows-based container images aren't supported.
+- Only "OS-level" vulnerabilities that originate from system packages will be patched. This includes system packages in the container image managed by an OS package manager such as "apt” and "yum”. Vulnerabilities that originate from application packages, such as packages used by programming languages like Go, Python, and NodeJS, cannot be patched.
+- End of Service Life (EOSL) images are not supported by Continuous Patching. EOSL images refer to images where updates, security patches, or technical support are no longer available for the underlying operating system. Examples include images based on older operating system versions, such as Debian 8 and Fedora 28. EOSL images will be skipped from the patch, despite having vulnerabilities. The recommended approach is to upgrade the underlying operating system of your image to a supported version.
+  :::
 
 :::info
 [Azure Container Registry](https://learn.microsoft.com/azure/container-registry/container-registry-intro?WT.mc_id=AZ-MVP-5004796)'s Continuous Patching feature automates the detection and remediation of operating system(OS) level vulnerabilities in container images. By scheduling regular scans with [Trivy](https://trivy.dev/) and applying security fixes using [Copa](https://project-copacetic.github.io/copacetic/website/), you can maintain secure, up-to-date images in your registry, without requiring access to source code or build pipelines. Simply customize the schedule and target images to keep your Azure Container Registry(ACR) environment safe and compliant.
 
 Here are a few scenarios to use Continuous Patching:
 
-* Enforcing container security and hygiene: Continuous Patching enables users to quickly fix OS container CVEs without the need to rebuild from upstream fully.
-* Speed of Use: Continuous Patching eliminates the dependency on upstream updates for specific images by automatically updating packages. Vulnerabilities can appear every day, while popular image publishers may only release new content once a month. With Continuous Patching, you can ensure that container images within your registry are patched as soon as the latest set of OS vulnerabilities is detected.
-:::
+- Enforcing container security and hygiene: Continuous Patching enables users to quickly fix OS container CVEs without the need to rebuild from upstream fully.
+- Speed of Use: Continuous Patching eliminates the dependency on upstream updates for specific images by automatically updating packages. Vulnerabilities can appear every day, while popular image publishers may only release new content once a month. With Continuous Patching, you can ensure that container images within your registry are patched as soon as the latest set of OS vulnerabilities is detected.
+  :::
 
 ## 🧪 Test Environment Setup
 
@@ -58,12 +59,12 @@ Let's take a look at how this will work.
 
 Continuous Patching in ACR creates a new image per patch. ACR relies on a tag convention to version and identify patched images. The two main approaches are incremental and floating.
 
-| Feature | Incremental Tagging | Floating Tagging |
-| ------- | ------------------- | ---------------- |
-| **How It Works** | Adds numerical suffix (-1, -2, etc.) to original tag | Uses single mutable tag "-patched" that always points to latest version |
-| **Example** | If base is python:3.11:- First patch: python:3.11-1- Second patch: python:3.11-2 | If base is python:3.11:- All patches use: python:3.11-patched |
-| **Special Rules** | - Tags -1 to -999 are considered patch tags- Tags with -x where x > 999 are treated as original tags- Avoid pushing your tags ending with -1 to --999- Errors if -999 versions are reached | Tag automatically updates with each new patch |
-| **Version History** | Preserved (each patch gets unique tag) | Not preserved (single tag is updated) |
+| Feature             | Incremental Tagging                                                                                                                                                                        | Floating Tagging                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
+| **How It Works**    | Adds numerical suffix (-1, -2, etc.) to original tag                                                                                                                                       | Uses single mutable tag "-patched" that always points to latest version |
+| **Example**         | If base is python:3.11:- First patch: python:3.11-1- Second patch: python:3.11-2                                                                                                           | If base is python:3.11:- All patches use: python:3.11-patched           |
+| **Special Rules**   | - Tags -1 to -999 are considered patch tags- Tags with -x where x > 999 are treated as original tags- Avoid pushing your tags ending with -1 to --999- Errors if -999 versions are reached | Tag automatically updates with each new patch                           |
+| **Version History** | Preserved (each patch gets unique tag)                                                                                                                                                     | Not preserved (single tag is updated)                                   |
 
 ![Image - Azure Container Registry](images/patching_timeline_example1.png)
 
@@ -80,7 +81,7 @@ So let us get started. To begin, I will utilize my [Codespace_IaC_Coding](https:
 To start, we need to install the CLI extension for ACR Continuous Patching:
 
 ```bash
-az extension add --source https://acrcssc.z5.web.core.windows.net/debug/acrcssc-1.0.0b2-py3-none-any.whl
+az extension add -n acrcssc
 ```
 
 ![Install Custom extension](images/ACR_ContinuousPatching_InstallExtension.gif)
@@ -91,6 +92,7 @@ Then we need to log in to our Azure Container Registry:
 az login
 az acr login -n <myRegistry>
 ```
+
 ![Login to ACR](images/ACR_ContinuousPatching_LoginAzureACR.gif)
 
 ### 📝 Configuring the Continuous Patching Schema
@@ -101,12 +103,12 @@ This schema defines which repositories and tags to patch, when to patch them, an
 
 The schema includes these key components:
 
-* `version` - Used by the ACR team to track schema versions. Don't modify this unless instructed.
-* `tag-convention` - Optional field that specifies the tagging method. Values can be "incremental" (default) or "floating".
-* `repositories` - An array of objects containing:
-  * `repository` - The name of the repository to patch
-  * `tags` - Array of specific tags to patch (use wildcard `*` to include all tags)
-  * `enabled` - Boolean (true/false) to enable or disable patching for this repository
+- `version` - Used by the ACR team to track schema versions. Don't modify this unless instructed.
+- `tag-convention` - Optional field that specifies the tagging method. Values can be "incremental" (default) or "floating".
+- `repositories` - An array of objects containing:
+  - `repository` - The name of the repository to patch
+  - `tags` - Array of specific tags to patch (use wildcard `*` to include all tags)
+  - `enabled` - Boolean (true/false) to enable or disable patching for this repository
 
 For example:
 
@@ -147,7 +149,7 @@ EOF
 Next, we can run a dry run of the supply-chain workflow to validate that our repository and tags are correct:
 
 ```bash
-az acr supply-chain workflow create -r myRegistry -g myResourceGroup -t continuouspatchv1 --config ./continuouspatching.json --schedule 1d --dry-run   
+az acr supply-chain workflow create -r myRegistry -g myResourceGroup -t continuouspatchv1 --config ./continuouspatching.json --schedule 1d --dry-run
 ```
 
 ![Image - ACR Continuous Patching](images/ACR_ContinuousPatching_DryRun_SupplyChain.gif)
@@ -172,13 +174,13 @@ For example, if you choose `--schedule 7d`, patching will run on the 1st, 8th, 1
 
 Here's what happens with different schedule values:
 
-| Schedule | Runs on these days each month | Example |
-|----------|-------------------------------|---------|
-| `1d` | Every day | Patches run daily |
-| `3d` | 1st, 4th, 7th, 10th, 13th, 16th, 19th, 22nd, 25th, 28th, 31st | If today is the 5th, next run is on the 7th |
-| `7d` | 1st, 8th, 15th, 22nd, 29th | If today is the 10th, next run is on the 15th |
-| `14d` | 1st, 15th, 29th | If today is the 20th, next run is on the 29th |
-| `30d` | 1st, 31st (if month has 31 days) | Runs at the beginning and end of the month |
+| Schedule | Runs on these days each month                                 | Example                                       |
+| ---      | ------------------------------------------------------------- | --------------------------------------------- |
+| `1d`     | Every day                                                     | Patches run daily                             |
+| `3d`     | 1st, 4th, 7th, 10th, 13th, 16th, 19th, 22nd, 25th, 28th, 31st | If today is the 5th, next run is on the 7th   |
+| `7d`     | 1st, 8th, 15th, 22nd, 29th                                    | If today is the 10th, next run is on the 15th |
+| `14d`    | 1st, 15th, 29th                                               | If today is the 20th, next run is on the 29th |
+| `30d`    | 1st, 31st (if month has 31 days)                              | Runs at the beginning and end of the month    |
 
 When you add the `--run-immediately` flag, a patch happens right away, and then the next one follows the regular schedule.
 
@@ -193,7 +195,7 @@ az acr supply-chain workflow create -r myRegistry -g myResourceGroup -t continuo
 ```
 
 :::warning
-If you get the following warning: 
+If you get the following warning:
 
 `Failed to validate and deploy template: (DeploymentFailed) At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-deployment-operations for usage details.
 Code: DeploymentFailed
@@ -205,13 +207,14 @@ Exception Details:      (RoleAssignmentUpdateNotPermitted) Tenant ID, applicatio
 
 It may mean that the Tasks have existed before, but if the Tasks were deleted in the portal, then it won't have removed the permission assignments.
 
-You can check the permissions in the Access control (IAM) portal, and if they exist, you can delete them manually from the portal. 
+You can check the permissions in the Access control (IAM) portal, and if they exist, you can delete them manually from the portal.
 
 If you run the following workflow delete command _(preferred)_, it will delete the assigned RBAC permissions as well:
 
 ```bash
 az acr supply-chain workflow delete -r myRegistry -g myResourceGroup -t continuouspatchv1 --yes
 ```
+
 :::
 
 :::tip
@@ -232,11 +235,11 @@ az acr supply-chain workflow show -r myRegistry -g myResourceGroup -t Continuous
 
 The workflow creates three tasks in your Azure Container Registry:
 
-| Task Name | Description | Purpose |
-|-----------|-------------|---------|
+| Task Name                 | Description                                                                 | Purpose                                                                                                                                                                                 |
+| ------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **cssc-trigger-workflow** | Triggers the continuous patching workflow based on your configured schedule | This is the main scheduler that runs on your defined schedule (every 14 days in our example). It checks which repositories match your configuration and initiates the scanning process. |
-| **cssc-scan-image** | Performs vulnerability scanning using Trivy | This task scans your container images for OS-level vulnerabilities. If vulnerabilities are found, it automatically triggers the patching task. |
-| **cssc-patch-image** | Applies security patches using Copacetic | This task does the actual patching work, fixing OS vulnerabilities in your container images without needing to rebuild them from source. |
+| **cssc-scan-image**       | Performs vulnerability scanning using Trivy                                 | This task scans your container images for OS-level vulnerabilities. If vulnerabilities are found, it automatically triggers the patching task.                                          |
+| **cssc-patch-image**      | Applies security patches using Copacetic                                    | This task does the actual patching work, fixing OS vulnerabilities in your container images without needing to rebuild them from source.                                                |
 
 These three tasks work together to form a complete patching pipeline: the trigger starts on schedule, the scanner identifies vulnerabilities, and the patcher automatically fixes them.
 
@@ -246,7 +249,7 @@ You can check the logs of the run by looking up the recent Runs:
 
 ```bash
 az acr task logs --registry myRegistry
-``````
+```
 
 ![Image - ACR Continuous Patching](images/ContinuousPatching_ACR_Logs.jpg)
 
