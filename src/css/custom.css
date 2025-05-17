@@ -6,42 +6,39 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  /* Azure Light Mode Colors */
-  --ifm-color-primary: #0078d4; /* Azure Blue */
-  --ifm-color-primary-dark: #005a9e;
-  --ifm-color-primary-darker: #004578;
-  --ifm-color-primary-darkest: #00335a;
-  --ifm-color-primary-light: #2899f5;
-  --ifm-color-primary-lighter: #3aa0f3;
-  --ifm-color-primary-lightest: #c7e0f4;
-  --ifm-background-color: #f4fafd;
-  --ifm-font-family-base: 'Segoe UI', 'Arial', sans-serif;
-  --ifm-heading-font-family: 'Segoe UI', 'Arial', sans-serif;
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: #e5f1fb;
-  --ifm-link-color: #005a9e;
-  --ifm-link-hover-color: #0078d4;
-  --ifm-navbar-background-color: #f4fafd;
-  --ifm-footer-background-color: #f4fafd;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
+/* For readability concerns, you should choose a lighter palette in dark mode.
 [data-theme='dark'] {
-  /* Azure Dark Mode Colors */
-  --ifm-color-primary: #3aa0f3;
-  --ifm-color-primary-dark: #2899f5;
-  --ifm-color-primary-darker: #0078d4;
-  --ifm-color-primary-darkest: #005a9e;
-  --ifm-color-primary-light: #6cb8f6;
-  --ifm-color-primary-lighter: #c7e0f4;
-  --ifm-color-primary-lightest: #e5f1fb;
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+ */
+
+ [data-theme='dark'] {
+  --ifm-color-primary: #80d9ff;
+  --ifm-color-primary-dark: #5aceff;
+  --ifm-color-primary-darker: #47c8ff;
+  --ifm-color-primary-darkest: #0db7ff;
+  --ifm-color-primary-light: #a6e4ff;
+  --ifm-color-primary-lighter: #b9eaff;
+  --ifm-color-primary-lightest: #f7fdff;
   --ifm-background-color: #1b1b1d;
-  --ifm-font-family-base: 'Segoe UI', 'Arial', sans-serif;
-  --ifm-heading-font-family: 'Segoe UI', 'Arial', sans-serif;
-  --docusaurus-highlighted-code-line-bg: #00335a;
-  --ifm-link-color: #3aa0f3;
-  --ifm-link-hover-color: #6cb8f6;
-  --ifm-navbar-background-color: #1b1b1d;
-  --ifm-footer-background-color: #1b1b1d;
 }
 
 /* Links */
@@ -61,46 +58,4 @@
 html[data-theme="dark"] .header-rss-link:before {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/%3E%3C/svg%3E")
     no-repeat;
-}
-
-/* Modern readable blog styles */
-.blog-list-page .blog-list__title, .blog-post-page h1, .blog-post-page h2, .blog-post-page h3, .blog-post-page h4 {
-  font-family: 'Segoe UI', 'Arial', sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-.blog-post-page {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-  background: var(--ifm-background-color);
-  border-radius: 12px;
-  box-shadow: 0 2px 16px 0 rgba(0,120,212,0.08);
-}
-
-.blog-post-page p, .blog-post-page li {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: var(--ifm-font-color-base, #222);
-}
-
-.blog-post-page pre, .blog-post-page code {
-  font-family: 'Cascadia Code', 'Fira Mono', 'Consolas', monospace;
-  font-size: 1em;
-  background: var(--docusaurus-highlighted-code-line-bg);
-  border-radius: 6px;
-}
-
-.blog-post-page img {
-  max-width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px 0 rgba(0,120,212,0.10);
-}
-
-/* Responsive improvements */
-@media (max-width: 900px) {
-  .blog-post-page {
-    padding: 1rem 0.5rem;
-  }
 }
