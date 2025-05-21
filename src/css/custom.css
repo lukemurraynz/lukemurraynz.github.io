@@ -87,6 +87,81 @@
   transition: all 0.2s ease;
 }
 
+/* Typography improvements */
+html {
+  --ifm-heading-font-weight: 600;
+  --ifm-h1-font-size: 2.5rem;
+  --ifm-h2-font-size: 2rem;
+  --ifm-h3-font-size: 1.5rem;
+  --ifm-h4-font-size: 1.25rem;
+  --ifm-line-height-base: 1.65;
+}
+
+/* Content width maintained but optimize readability */
+article {
+  line-height: 1.7;
+}
+
+/* Improve table styling */
+table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background-color: var(--ifm-color-primary-lightest);
+  color: var(--ifm-font-color-base);
+  font-weight: 600;
+}
+
+[data-theme='dark'] th {
+  background-color: var(--ifm-color-primary-darkest);
+  color: var(--ifm-color-white);
+}
+
+/* Improve blockquote styling */
+blockquote {
+  border-left: 3px solid var(--ifm-color-primary);
+  background-color: var(--ifm-code-background);
+  margin: 0 0 1rem 0;
+  padding: 1rem;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Custom styles for announcement bar */
+div[class^=announcementBar] {
+  font-weight: bold;
+  font-size: 16px;
+  padding: 8px;
+}
+
+[data-theme='dark'] div[class^=announcementBar] {
+  color: #ffffff;
+  background-color: #0078D4 !important;
+}
+
+/* Footer styling */
+.footer {
+  padding: 2rem 0;
+}
+
+[data-theme='dark'] .footer {
+  background-color: #0d0d0d;
+}
+
+/* Improve navbar */
+.navbar {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .navbar {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
 /* Links */
 .header-rss-link:hover {
   opacity: 0.6;
