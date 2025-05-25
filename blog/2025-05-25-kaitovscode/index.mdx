@@ -1,20 +1,24 @@
 ---
-title: Deploy and Test KAITO straight from VS Code
-metaDescription: 
+title: Deploy & Test KAITO on AKS with Visual Studio Code
+metaDescription: Deploy and test KAITO on Azure Kubernetes Service (AKS) using Visual Studio Code and the AKS extension for a streamlined AI setup.
 tags:
   - Azure
 categories:
   - Azure
 authors:
   - Luke
-slug: azure/k
+slug: azure/aks-kaito-vscode-deployment
 keywords:
-  - Azure
-  - Kubernetes
+  - Azure Kubernetes Service
   - AKS
   - KAITO
-description: 
-date: 
+  - Visual Studio Code
+  - AI Toolchain Operator
+  - Kubernetes AI
+  - AKS extension
+  - Azure deployment
+description: Deploy and test KAITO on Azure Kubernetes Service (AKS) using Visual Studio Code and the AKS extension for a streamlined AI setup.
+date: 2025-05-25T05:59:41.451Z
 ---
 
 Today, we will look at deploying Kubernetes AI Toolchain Operator _(KAITO)_ straight from Visual Studio Code
@@ -66,11 +70,3 @@ Once completed, you will see the deployment in the AKS extension view, and you c
 Now - let us test.
 
 ![Test KAITO Workspace](images/InstallKAITOTestAksExtension.gif)
-
-Now lets test outside of Visual Studio Code. We can use the [kubectl](https://learn.microsoft.com/azure/aks/ai-toolchain-operator-cli?WT.mc_id=AZ-MVP-5004796) to interact with the KAITO workspace.
-
-```bash
-kubectl get svc workspace-phi-3-mini-4k-instruct -o jsonpath='{.spec.clusterIP}'
-export SERVICE_IP=$(kubectl get svc workspace-phi-3-mini-4k-instruct -o jsonpath='{.spec.clusterIP}')
-kubectl run -it --rm --restart=Never curl --image=curlimages/curl -- curl -X POST http://$SERVICE_IP/chat -H "accept: application/json" -H "Content-Type: application/json" -d "{\"prompt\":\"What is your favorite ice cream flavor?\"}"
-```
