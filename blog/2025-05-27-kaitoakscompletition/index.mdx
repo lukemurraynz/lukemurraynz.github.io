@@ -1,0 +1,88 @@
+---
+title: Test KAITO Model Completion on AKS with kubectl & curl
+metaDescription: Learn how to test the KAITO model's completion endpoint on Azure Kubernetes Service (AKS) using kubectl and curl.
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: azure/aks-kaito-completion
+keywords:
+  - Azure
+  - AKS
+  - KAITO
+  - kubectl
+  - curl
+  - Model Completion
+  - Azure Kubernetes Service
+  - Endpoint Testing
+description: Learn to test the KAITO model's completion endpoint on AKS using kubectl and curl for real-time text generation.
+date: 2025-05-26T22:51:04.732Z
+---
+
+The other day, I wrote an article about [Deploy & Test KAITO on AKS with Visual Studio Code](https://luke.geek.nz/azure/aks-kaito-vscode-deployment/). One of the areas I showcased was testing the completion of the KAITO model within Visual Studio Code; however, I didn't touch on how to use the completion endpoint directly.
+
+{/* truncate */}
+
+In this example, we are going to connect to the cluster, grab the workspace, and then run a curl container to test the completion endpoint of the KAITO model:
+
+![KAITO Completion Response](images/KAITOAKSEndpointTest.gif)
+
+```bash
+az aks get-credentials --resource-group kaitovscodetest --name kaitocodetest --overwrite-existing
+```
+
+Once connected to the AKS cluster, we can retrieve the service IP of the `workspace-phi-3-mini-4k-instruct` service, where the KAITO model is running. This workplace may change depending on the deployment, so you may need to adjust the service name accordingly.
+
+You can find the service name by running:
+
+```bash
+ kubectl get svc
+ ```
+
+ Then you can run the following command to test the completion endpoint of the KAITO model using a curl container. This command will send a POST request with a prompt to the KAITO model and return the generated text.
+
+```bash
+export SERVICE_IP=$(kubectl get svc workspace-phi-3-mini-4k-instruct -o jsonpath='{.spec.clusterIP}')
+
+kubectl run -it --rm --restart=Never curl --image=curlimages/curl -- curl -X POST \
+    -H "accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "prompt": "You are a technical writer. Draft a markdown-formatted introduction for a blog post titled \"🍦 The Science and Art of Ice Cream\". Use an engaging, approachable tone and provide a brief overview of why understanding the science behind ice cream leads to better flavors and textures.",
+        "return_full_text": false,
+        "clean_up_tokenization_spaces": false,
+        "prefix": null,
+        "handle_long_generation": null,
+        "generate_kwargs": {
+            "max_length": 5000,
+            "min_length": 0,
+            "do_sample": true,
+            "early_stopping": false,
+            "num_beams": 1,
+            "num_beam_groups": 1,
+            "diversity_penalty": 0.0,
+            "temperature": 1.0,
+            "top_k": 10,
+            "top_p": 1,
+            "typical_p": 1,
+            "repetition_penalty": 1,
+            "length_penalty": 1,
+            "no_repeat_ngram_size": 0,
+            "encoder_no_repeat_ngram_size": 0,
+            "bad_words_ids": null,
+            "num_return_sequences": 1,
+            "output_scores": false,
+            "return_dict_in_generate": false,
+            "forced_bos_token_id": null,
+            "forced_eos_token_id": null,
+            "remove_invalid_values": null
+        }
+    }' \
+    "http://$SERVICE_IP/v1/completions"
+```
+
+This command will run a curl container and send a POST request to the completion endpoint of the KAITO model, passing in the prompt and other parameters. The response will be printed to the console, allowing you to see the generated text.
+
+You can adjust the `prompt` and other parameters in the JSON payload to test different inputs and configurations.
