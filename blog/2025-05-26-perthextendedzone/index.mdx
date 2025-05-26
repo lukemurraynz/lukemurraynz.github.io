@@ -67,13 +67,7 @@ This command will return the details of the Extended Zones in Perth, including t
 Before we can deploy a resource into the Extended Zone, we first need to register the Extended Zone in our subscription. We can do this by running the following command:
 
 ```powershell
-Register-AzEdgeZonesExtendedZone -Name 'perth'
-```
-
-![Register Extended Zone](images/RegisterAzEdgeZonesExtendedZone.gif)
-
-:::warning
-You may have to wait a few minutes for the registration to complete,  you can run a `Get-AzEdgeZonesExtendedZone -Name 'Perth' | Select-Object RegistrationState` command to check the status of the registration.
+Register-AzEdgeZonesExtendedZone -Name 'Perth'
 Once the registration is complete, you will see the `RegistrationState` change to `Registered`.
 :::
 
