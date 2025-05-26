@@ -21,11 +21,11 @@ description: Learn to test the KAITO model's completion endpoint on AKS using ku
 date: 2025-05-26T22:51:04.732Z
 ---
 
-The other day I wrote an article about [Deploy & Test KAITO on AKS with Visual Studio Code](https://luke.geek.nz/azure/aks-kaito-vscode-deployment/) and one of the areas I showcased was testing the completion of the KAITO model within Visual Studio Code, however I didn't touch on how to use the compeition endpoint directly.
+The other day, I wrote an article about [Deploy & Test KAITO on AKS with Visual Studio Code](https://luke.geek.nz/azure/aks-kaito-vscode-deployment/). One of the areas I showcased was testing the completion of the KAITO model within Visual Studio Code; however, I didn't touch on how to use the competition endpoint directly.
 
 {/* truncate */}
 
-In this example, we are gong to connect to the cluster, grab the worksplace, and then run a curl container to test the completion endpoint of the KAITO model:
+In this example, we are going to connect to the cluster, grab the workspace, and then run a curl container to test the completion endpoint of the KAITO model:
 
 ![KAITO Completion Response](images/KAITOAKSEndpointTest.gif)
 
@@ -33,7 +33,7 @@ In this example, we are gong to connect to the cluster, grab the worksplace, and
 az aks get-credentials --resource-group kaitovscodetest --name kaitocodetest --overwrite-existing
 ```
 
-Once connected to the AKS cluster, we can retrieve the service IP of the `workspace-phi-3-mini-4k-instruct` service, which is where the KAITO model is running. This worksplace may change depending on the deployment, so you may need to adjust the service name accordingly.
+Once connected to the AKS cluster, we can retrieve the service IP of the `workspace-phi-3-mini-4k-instruct` service, where the KAITO model is running. This workplace may change depending on the deployment, so you may need to adjust the service name accordingly.
 
 You can find the service name by running:
 
