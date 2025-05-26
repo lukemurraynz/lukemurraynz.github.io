@@ -22,7 +22,7 @@ description: Discover Azure Extended Zones in Perth—low latency, data residenc
 date: 2025-05-26T06:20:51.457Z
 ---
 
-[Azure Extended Zones](https://learn.microsoft.com/azure/extended-zones/overview?WT.mc_id=AZ-MVP-5004796) are small-footprint extensions of Azure placed in metros, industry centers, or a specific jurisdiction to serve low latency and data residency workloads. Azure Extended Zones supports virtual machines (VMs), containers, storage, and a selected set of Azure services and can run latency-sensitive and throughput-intensive applications close to end users and within approved data residency boundaries.
+[Azure Extended Zones](https://learn.microsoft.com/azure/extended-zones/overview?WT.mc_id=AZ-MVP-5004796) are small-footprint extensions of Azure placed in metros, industry centers, or a specific jurisdiction to serve low-latency and data-residency workloads. Azure Extended Zones supports virtual machines (VMs), containers, storage, and a selected set of Azure services and can run latency-sensitive and throughput-intensive applications close to end users and within approved data residency boundaries.
 
 Recently announced [Azure Extended Zones in Perth, Australia](https://azure.microsoft.com/en-gb/updates?id=492737?WT.mc_id=AZ-MVP-5004796), provide a new option for customers to run their workloads _(**make note only a subset of [resources are compatible](https://learn.microsoft.com/en-us/azure/extended-zones/overview?WT.mc_id=AZ-MVP-5004796#service-offerings-for-azure-extended-zones)**)_ closer to home. 
 
@@ -34,31 +34,31 @@ This is particularly beneficial for industries that require low latency and data
 
 # 🏙️ Azure Extended Zones in Perth: Details
 
-So lets dig a bit deeper into the details of Azure Extended Zones in Perth, Australia.
+So let us dig a bit deeper into the details of Azure Extended Zones in Perth, Australia.
 
-Located in Perth _(location undisclosed)_, the Azure Extended Zones in Perth are designed to provide low latency and high availability for applications that require data residency within Australia. The zones are connected to the Azure backbone network, ensuring fast and reliable connectivity to other Azure regions, however they are not self-sufficient and require a connection to an Azure region _(classed as the parent region)_.
+Located in Perth _(location undisclosed)_, the Azure Extended Zones in Perth are designed to provide low latency and high availability for applications that require data residency within Australia. The zones are connected to the Azure backbone network, ensuring fast and reliable connectivity to other Azure regions. However, they are not self-sufficient and require a connection to an Azure region _(classed as the parent region)_.
 
 ![Extended Zones in Perth](images/AzureExtendedZones-Perth.JPG)
 
-The parent region for the Extended Zones in Perth is the Australia East region, which is located in Sydney. This means that the Extended Zones in Perth are connected to the Australia East region, allowing customers to take advantage of the full range of Azure services available in that region - it means that the metadata for the resources in the Extended Zones will be stored in the Australia East region, however the data itself will remain in the Extended Zones in Perth.
+The parent region for the Extended Zones in Perth is the Australia East region, which is located in Sydney. This means that the Extended Zones in Perth are connected to the Australia East region, allowing customers to take advantage of the full range of Azure services available in that region. The metadata for the resources in the Extended Zones will be stored in the Australia East region, but the data itself will remain in the Extended Zones in Perth.
 
 # 🌐 Where Are Azure Extended Zones Available?
 
-At the moment there are 2 Extended Zones:
+At the moment, there are 2 Extended Zones:
 
 * Los Angeles
 * Perth
 
 # 🛠️ Viewing Extended Zone Details
 
-If we run a `Get-AzEdgeZonesExtendedZone` command we can see the details of the Extended Zones in Perth:
+If we run a `Get-AzEdgeZonesExtendedZone` command, we can see the details of the Extended Zones in Perth:
 
 ```powershell
 Get-AzEdgeZonesExtendedZone | fl 
 ```
 ![Extended Zones in Perth](images/GetAzEdgeZonesExtendedZone.gif)
 
-This command will return the details of the Extended Zones in Perth, including the name, location, and parent _(Home)_ region, including the longitude and latitude.
+This command will return the details of the Extended Zones in Perth, including the name, location, parent _(Home)_ region, longitude, and latitude.
 
 ![Extended Zones in Perth Map](images/AzureExtendedZonePerthMap.jpg)
 
@@ -79,7 +79,7 @@ Once the registration is complete, you will see the `RegistrationState` change t
 
 # 📦 Deploying Resources to Perth Extended Zone
 
-Once deployed, you can create resources in the Extended Zone using the Azure portal, Azure CLI, or Azure PowerShell. For our purposes, we will use Azure PowerShell to create a Storage account in Perth Extended Zone.
+Once deployed, you can create resources in the Extended Zone using the Azure portal, Azure CLI, or Azure PowerShell. For our purposes, we will use Azure PowerShell to create a Storage account in the Perth Extended Zone.
 
 ```powershell
 $rgName = 'perth-extended-zone-rg'
@@ -88,7 +88,7 @@ $storageAccountName = 'perthextendedzone'
 New-AzStorageAccount -ResourceGroupName $rgName -Name $storageAccountName -Location 'Australia East' -SkuName Premium_LRS -EdgeZone 'Perth'
 ``` 
 
-Once created we can run a `Get-AzStorageAccount` command to see the details of the Storage account:
+Once created, we can run a `Get-AzStorageAccount` command to see the details of the Storage account:
 
 ```powershell
 Get-AzStorageAccount -ResourceGroupName $rgName -Name $storageAccountName | Select-Object Location, @{Name='ExtendedLocation';Expression={$_.ExtendedLocation.Name}}
@@ -102,10 +102,10 @@ If we view the storage account in the portal, we can see that the storage accoun
 
 # ⚠️ Important Considerations
 
-Its worth noting, that if there is an issue in the Australia East region, the Extended Zones in Perth will not be affected, as they are self-sufficient and can continue to operate independently, however you may not be able to create or manage resources in the Extended Zones until the issue is resolved in the Australia East region.
+It's worth noting that if there is an issue in the Australia East region, the Extended Zones in Perth will not be affected, as they are self-sufficient and can continue to operate independently. However, you may not be able to create or manage resources in the Extended Zones until the issue is resolved in the Australia East region.
 
 Also worth noting, that the Extended Zones in Perth are not a replacement for the Azure regions in Australia, but rather an extension of the Azure regions to provide low latency and data residency for applications that require it - for example The Extended Zones in Perth are not designed to be used as a disaster recovery site for the Azure regions in Australia - note that the Storage account in the Extended Zone is not geo-replicated or zone-resilient, so consider resiliency and availability when deploying resources in the Extended Zones.
 
 # 🏁 Conclusion
 
-In conclusion, Azure Extended Zones in Perth, Australia provide a new option for customers to run their workloads closer to home, with low latency and data residency. The Extended Zones are connected to the Azure backbone network, ensuring fast and reliable connectivity to other Azure regions, however they are not self-sufficient and require a connection to an Azure region _(classed as the parent region)_.
+In conclusion, Azure Extended Zones in Perth, Australia, provide a new option for customers to run their workloads closer to home, with low latency and data residency. The Extended Zones are connected to the Azure backbone network, ensuring fast and reliable connectivity to other Azure regions. However, they are not self-sufficient and require a connection to an Azure region (classed as the parent region).
