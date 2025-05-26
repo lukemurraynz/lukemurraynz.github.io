@@ -106,7 +106,7 @@ Creating a Resource in the Azure Portal is simple: select a supported resource, 
 
 # ⚠️ Important Considerations
 
-It's worth noting that if there is an issue in the Australia East region, the Extended Zones in Perth will not be affected, as they are self-sufficient and can continue to operate independently. However, you may not be able to create or manage resources in the Extended Zones until the issue is resolved in the Australia East region.
+It's worth noting that if there is an issue in the Australia East region, the Extended Zones in Perth may continue to operate temporarily for existing workloads. However, they are not fully self-sufficient and rely on a connection to the Australia East region for resource creation and management. Until the issue in the Australia East region is resolved, you may face limitations in creating or managing resources in the Extended Zones.
 
 Also worth noting, that the Extended Zones in Perth are not a replacement for the Azure regions in Australia, but rather an extension of the Azure regions to provide low latency and data residency for applications that require it - for example The Extended Zones in Perth are not designed to be used as a disaster recovery site for the Azure regions in Australia - note that the Storage account in the Extended Zone is not geo-replicated or zone-resilient, so consider resiliency and availability when deploying resources in the Extended Zones.
 
