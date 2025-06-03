@@ -16,7 +16,7 @@ keywords:
   - Maintenance Window
   - Azure DevOps
   - Cloud Reliability
-description: null
+description: Learn how to configure planned maintenance windows for Azure Container Apps using Bicep, minimizing downtime and ensuring application reliability with step-by-step guidance.
 date: 2025-06-03T00:52:39.592Z
 ---
 
@@ -41,8 +41,9 @@ You can use the [Azure CLI](https://learn.microsoft.com/azure/container-apps/pla
 * You can only have one maintenance window per environment.
 * The minimum duration for a maintenance window is 8 hours.
 * Planned maintenance is an optional, best-effort feature that is ideal for environments with interdependent applications seeking added resiliency. When critical updates are available, Container Apps can apply them outside of the maintenance window to ensure the security and reliability of the platform and your applications.
-* Support for maintenance windows is supported in all container apps and jobs, except when they run on consumption workload profiles.
+* Maintenance windows are available in all container apps and jobs, except when they run on consumption workload profiles.
 :::
+
 
 In my demo, I have an existing Container Apps environment (a Consumption environment with one Container App), so I will be adding a maintenance window to that. If you are creating a new environment, you can add the maintenance window as part of the environment creation.
 
