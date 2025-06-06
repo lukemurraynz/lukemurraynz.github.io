@@ -1,0 +1,53 @@
+---
+title: 
+metaDescription: 
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: azure/
+keywords:
+  - Azure
+  - Cloud Reliability
+description: 
+date: 
+---
+
+[Reliability](https://learn.microsoft.com/azure/well-architected/reliability/?WT.mc_id=AZ-MVP-5004796) _(Resiliency, availability, recovery)_ is part of one of the main pillars of the [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/?WT.mc_id=AZ-MVP-5004796). It is essential for ensuring that applications and services remain operational and performant, even in the face of failures or unexpected events. Reliability encompasses various aspects, including fault tolerance, disaster recovery, and high availability.
+
+Reliability is also a shared responsibility between the cloud provider _(ie Microsoft)_ and the customer. While Azure provides a robust infrastructure and services designed for reliability, customers must also implement best practices and strategies to ensure their applications are resilient and can recover from failures.
+
+![ReliabilitySharedResponsibility](images/ReliabilitySharedResponsibility.png)
+
+But a key question arises: **How do we check the reliability _(in this example Zone redundancy of our Workload)_ ?**
+
+One of the tools we can use for this is the: `az zones` command line tool.
+
+{/* truncate */}
+
+:::info
+I just want to that Resiliency is not just about the infrastructure, but also about the application design and architecture. It is important to consider how your application will handle failures and how it will recover from them - and there are a lot of layers to take into consideration when running technology.
+
+![ImportanceReliability](images/ImportanceReliability.png)
+
+However, the resiliency platform capabilities, although sometimes not directly visible, are essential for the reliability of your application. They provide the foundation upon which your workload sits.
+:::
+
+Before we go into the details of the `az zones` command line tool, I want to touch on what the tool will be highlighting for us.
+
+If we go into what an region consists of, we can see that it is made up of multiple availability zones. An availability zone is a physically separate zone within an Azure region, designed to be isolated from failures in other zones. Each availability zone _(one ore more datacenters)_ has its own power, cooling, and networking infrastructure, ensuring that if one zone experiences an outage, the others remain operational.
+
+![Azure Availability Zones](images/AvailabilityZones.jpg)
+
+When designing your workloads for reliability within Azure, it is crucial to consider the availability zones. By deploying resources across multiple availability zones, you can achieve higher levels of fault tolerance and availability. This means that even if one zone goes down, your application can continue to function using resources in other zones.
+
+:::tip
+If your interested in more about Workload criticality, refer to a previous blog post I did: [Understanding Workload Criticality in the Cloud
+](https://luke.geek.nz/azure/business-critical-workloads/). This goes a bit deeper into SLA, SLO, and composite SLAs
+:::
+
+So how do you know, that your workload is zone redundant? This is where the `az zones` command line tool comes in handy.
+
+Currently in Preview, 
