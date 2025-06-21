@@ -39,14 +39,14 @@ date: 2025-06-21T13:25:24.603Z
 
 [Drasi](https://drasi.io/) _(named after the Greek word for 'Action')_ is a change data processing platform that automates real-time detection, evaluation, and meaningful reaction to events in complex, event-driven systems, created as part of the [Azure Incubation Teams, Drasi](https://azure.microsoft.com/blog/drasi-microsofts-newest-open-source-project-simplifies-change-detection-and-reaction-in-complex-systems/?WT.mc_id=AZ-MVP-5004796) was accepted in to the [Cloud Native Computing Foundation, at the Sandbox Maturity level in January of 2025](https://www.cncf.io/projects/drasi/).
 
-I was luckily enough to get shown a demo of this in action, and wondered how I might learn how to use Drasi with something I am familiar with - the Microsoft Azure ecosystem - the Azure Role Assignment Monitor with Drasi was born.
+I was fortunate enough to witness a demo of this in action and wondered how I might learn to use Drasi with something I am familiar with - the Microsoft Azure ecosystem. The Azure Role Assignment Monitor with Drasi was born.
 
 {/* truncate */}
 
 ## 🚀 Introduction to Drasi
 
 :::info
-[Drasi](https://drasi.io/) is a Data Change Processing platform that makes it easier to build dynamic solutions that detect and react to data changes that occur in existing databases and software systems (i.e. not only new systems built using Drasi). Drasi’s change detection capabilities go beyond simply reporting add, update, and delete operations, as you would typically get from database transaction/change logs and message-based change notification solutions. Instead, Drasi’s low-code query-based approach enables you to write rich graph queries through which you can express sophisticated rules describing the types of changes you want to detect and the data you want to distribute about those changes to downstream systems.
+[Drasi](https://drasi.io/) is a Data Change Processing platform that makes it easier to build dynamic solutions that detect and react to data changes that occur in existing databases and software systems (i.e., not only new systems built using Drasi). Drasi’s change detection capabilities extend beyond simply reporting add, update, and delete operations, as typically provided by database transaction/change logs and message-based change notification solutions. Instead, Drasi’s low-code query-based approach enables you to write rich graph queries through which you can express sophisticated rules describing the types of changes you want to detect and the data you want to distribute about those changes to downstream systems.
 
 Here are some examples of scenarios where Drasi’s functionality can be applied to existing systems to detect and react to changing data:
 
@@ -65,7 +65,7 @@ The power of Drasi is the components:
 * Continuous queries
 * Reactions
 
-You can have one more more multiple sources, which are the data sources that Drasi monitors for changes. These can be databases, message queues, or any other system that can provide change data, a number of provided sources exist out of the box - CosmosDB, MySQL, PostreSQL, Event Hub, SQL Server, Kubernetes, Dataverse.
+You can have multiple sources, which are the data sources that Drasi monitors for changes. These can be databases, message queues, or any other system that can provide change data. A number of provided sources exist out of the box - CosmosDB, MySQL, PostgreSQL, Event Hub, SQL Server, Kubernetes, Dataverse.
 
 These [sources](https://drasi.io/concepts/sources/) are monitored for changes, and when a change is detected, it is processed by a continuous query. Sources act like skilled translators. They watch a system’s native log or feed, convert inserts/updates/deletes into a consistent graph form, and push only the meaningful deltas to the engine.
 A [continuous query](https://drasi.io/concepts/continuous-queries/) is a query that runs continuously and processes the changes detected by the source. The continuous query can be used to filter, transform, and aggregate the data from the source. Drasi leverages a subset of the Cypher graph query language because it excels at expressing patterns—entities and relationships—across multiple data sources. You write a one-time MATCH/WHERE/RETURN query that continually runs under the covers.
@@ -75,14 +75,14 @@ Imagine a smart-building scenario:
 
 * Source: Drasi watches Azure Cosmos DB for room-temperature updates and PostgreSQL for occupancy schedules.
 * Continuous Query: A single Cypher query joins rooms, sensors, and schedules to detect “occupied room < 18°C” conditions.
-* Reaction: When that condition appears in the CQ’s result set, a Reactions module fires a heating command via MQTT; when it no longer applies, another Reactions module stops the heater.
+* Reaction: When that condition appears in the CQ’s result set, a Reaction module fires a heating command via MQTT; when it no longer applies, another Reaction module stops the heater.
 
 Because Sources supply clean graph events, the CQ keeps an always-correct view without heavy polling, and Reactions act on precise change notifications, the entire pipeline runs at low latency and minimal operational overhead. No custom glue code. No brittle cron jobs.
 :::
 
 ## 🎯 Our Azure Bastion Automation Scenario
 
-In my scenario, I wanted to monitor the Azure Role Assignments in my Azure Subscription, my example is the use of the [Azure Bastion](https://learn.microsoft.com/azure/bastion/bastion-overview?WT.mc_id=AZ-MVP-5004796) Service, this services allows secure RDP and SSH connectivity to virtual machines in your Azure Virtual Network without the need for a public IP address on the virtual machine. This is a great service, it does require a role assignment to be able to use it, and its a pay as you go service - so I may not necessarily need it running all the time, wasting cost, and because I might require this service very ad-hoc I couldn't rely on a schedule type system i'd usually use _(ie Tag the resource with the schedule, have an Azure runbook create and delete the resource)_. There are other ways to monitor Azure Role Assignments, but I wanted to use Drasi to monitor the changes in real-time and react to them, in a way that could be expanded.
+In my scenario, I wanted to monitor the Azure Role Assignments in my Azure Subscription, my example is the use of the [Azure Bastion](https://learn.microsoft.com/azure/bastion/bastion-overview?WT.mc_id=AZ-MVP-5004796) Service, this services allows secure RDP and SSH connectivity to virtual machines in your Azure Virtual Network without the need for a public IP address on the virtual machine. This is a great service, it does require a role assignment to be able to use it, and its a pay as you go service - so I may not necessarily need it running all the time, wasting cost. Because I might require this service very ad-hoc, I couldn't rely on a schedule-type system I'd usually use _(ie, tag the resource with the schedule, have an Azure runbook create and delete the resource)_. There are other ways to monitor Azure Role Assignments, but I wanted to use Drasi to monitor the changes in real-time and react to them, in a way that could be expanded.
 
 So my scenario is: 
 
@@ -107,15 +107,15 @@ Bastion Management: Creates or removes Azure Bastion hosts as needed
 ![Drasi](images/drasi-simple-end-to-end.png)
 
 :::warning
-There is a delay between the diagnostic logs being written to the Event Hub, it can take a few minutes for the role assignment changes to be logged. This is not a Drasi issue, but an Azure Event Hub/Azure Monitor export issue, it can take up to 5 minutes for the logs to be written to the Event Hub _(but once they are, Drasi picks it up within seconds)_. In my testing, I was able to fasttrack my testing by publishing the Event Hub message directly into the Event Hub data explorer, without needing to go and and manually wait for the role assignment to be created or deleted.
+There is a delay between the diagnostic logs being written to the Event Hub; it can take a few minutes for the role assignment changes to be logged. This is not a Drasi issue, but an Azure Event Hub/Azure Monitor export issue, it can take up to 5 minutes for the logs to be written to the Event Hub _(but once they are, Drasi picks it up within seconds)_. In my testing, I was able to fast-track my testing by publishing the Event Hub message directly into the Event Hub data explorer, without needing to go and manually wait for the role assignment to be created or deleted.
 :::
 
 ## 🛠️ Setting Up Drasi Environment
 
-So - first things first - let us get [Drasi](https://drasi.io/) up and running! To do this, I am going to use a [GitHub Codespace](https://github.com/features/codespaces) - you can find my devcontainer setup [here](https://github.com/lukemurraynz/Drasi-RoleAssignmentMonitor/blob/main/.devcontainer/devcontainer.json) - this will allow me to run Drasi in a container via docker if I want, but the main part is - it will already install the latest Drasi CLI, and have all the dependencies I need to deploy Drasi to my Azure Kubernetes Service, and manage it - such as the [Drasi Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=DrasiProject.drasi) - all the code in this example is in this repository as well _(ie Drasi query, Function App)_.
+So, first things first, let's get [Drasi](https://drasi.io/) up and running! To do this, I am going to use a [GitHub Codespace](https://github.com/features/codespaces) - you can find my devcontainer setup [here](https://github.com/lukemurraynz/Drasi-RoleAssignmentMonitor/blob/main/.devcontainer/devcontainer.json) - this will allow me to run Drasi in a container via docker if I want, but the main part is - it will already install the latest Drasi CLI, and have all the dependencies I need to deploy Drasi to my Azure Kubernetes Service, and manage it - such as the [Drasi Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=DrasiProject.drasi) - all the code in this example is in this repository as well _(ie Drasi query, Function App)_.
 
 
-To do this, I am going to deploy to an Azure Kubernetes Service cluster. The size of the cluster will depend on your use case, for my purposes I am going with the following resources:
+To do this, I am going to deploy to an Azure Kubernetes Service cluster. The size of the cluster will depend on your use case. For my purposes, I am going with the following resources:
 
 ## 🏗️ Azure Resources Required
 
@@ -134,13 +134,13 @@ To do this, I am going to deploy to an Azure Kubernetes Service cluster. The siz
 - **AKS VM Sizing**: If you encounter errors with the Drasi API and query host starting, check your User pool VM size. Standard_D4s_v5 works well, but smaller sizes may cause issues with Drasi and Dapr runtime.
 - **Workload Identity**: The AKS cluster must have [Workload identity enabled](https://learn.microsoft.com/azure/aks/workload-identity-deploy-cluster?WT.mc_id=AZ-MVP-5004796) for proper authentication.
 
-I won't go through the creation of these resources individually, only how they are used in relation to our Drasi Azure Role Assignment Monitor setup.
+I won't go through the creation of these resources individually; instead, I will focus on how they are used in relation to our Drasi Azure Role Assignment Monitor setup.
 
 ## 🚀 Installing Drasi on AKS
 
-So how we have our Azure resources created, we can now deploy Drasi to our AKS cluster. To do this, we will use the [Drasi CLI](https://drasi.io/docs/cli/) - which is installed in the devcontainer I mentioned earlier, or you can install it locally if you prefer.
+So we have our Azure resources created, and we can now deploy Drasi to our AKS cluster. To do this, we will use the [Drasi CLI](https://drasi.io/docs/cli/), which is installed in the devcontainer I mentioned earlier. Alternatively, you can install it locally if you prefer.
 
-First we will connect to our AKS cluster, and confirm we can see the namespace, before running the drasi init command to deploy Drasi to our AKS cluster:
+First, we will connect to our AKS cluster and confirm we can see the namespace before running the drasi init command to deploy Drasi to our AKS cluster:
 
 
 ```bash
@@ -151,7 +151,7 @@ sudo az aks install-cli
 az login
 az aks get-credentials --resource-group <your-resource-group> --name <your-cluster-name>
 
-# Check drasi version
+# Check Drasi version
 drasi version
 
 # Initialize Drasi on Kubernetes
@@ -165,9 +165,9 @@ kubectl get pods -n drasi-system
 
 ## 📊 Configuring Azure Activity Logs
 
-Now that we have Drasi running in our AKS cluster, we can start the additional configuration. Let us configure our Azure Activity Logs to be sent to our Event Hub, so that Drasi can monitor them for changes. To do this, we will need to create a diagnostic setting on our subscription, and configure it to send the Activity Logs to our Event Hub.
+Now that we have Drasi running in our AKS cluster, we can start the additional configuration. Let us configure our Azure Activity Logs to be sent to our Event Hub, so that Drasi can monitor them for changes. To do this, we will need to create a diagnostic setting on our subscription and configure it to send the Activity Logs to our Event Hub.
 
-Role Based Assignments are an Administrative category, so we will need to select the `Administrative` category when creating the diagnostic setting. You can do this via the Azure Portal by navigating to your subscription, selecting Activity Log, select Export Activity Logs, and then selecting the Event Hub you created earlier.
+Role-based assignments are an Administrative category, so we will need to select the `Administrative` category when creating the diagnostic setting. You can do this via the Azure Portal by navigating to your subscription, selecting Activity Log, select Export Activity Logs, and then selecting the Event Hub you created earlier.
 
 ![Azure Activity Log Diagnostic Setting](images/AzureActivityLogExportEventHub.gif)
 
@@ -175,11 +175,11 @@ Once you have created the diagnostic setting, you can verify that the logs are b
 
 ## 🔐 Setting Up Authentication with Workload Identity
 
-Next, its time to configure our Drasi source to read from the Event Hub. We are going to use Entra ID authentication to authenticate Drasi to the Event Hub, this is where the Workload Identity we created earlier comes in. We will need to create a User Assigned Managed Identity, and assign it the `Azure Event Hubs Data Receiver` role on the Event Hub namespace.
+Next, it's time to configure our Drasi source to read from the Event Hub. We are going to use Entra ID authentication to authenticate Drasi to the Event Hub, and this is where the Workload Identity we created earlier comes in. We will need to create a User Assigned Managed Identity and assign it the `Azure Event Hubs Data Receiver` role on the Event Hub namespace.
 
 ![User Assigned Managed Identity](images/AzureEventHubsDataReceiver_UIM.jpg)
 
-Now we need to grab the Issuer URL and Client ID of the User Assigned Managed Identity, we will need these to configure our federated credential, and configure out federated credential. Make sure to update for your own environment, the source needs name needs to align to your source name and service account to your namespace.
+Now we need to grab the Issuer URL and Client ID of the User Assigned Managed Identity, we will need these to configure our federated credential, and configure out federated credential. Make sure to update for your own environment, the source name needs to align with your source name, and the service account to your namespace.
 
 ```bash
 # Variables
@@ -242,9 +242,9 @@ drasi list source
 
 ## 🔍 Building the Continuous Query
 
-Now that we have our source configured. Its time to create our Continuous Query. This is the query that will filter the Azure Activity Logs for the role assignment events we care about. We will use the Cypher query language to do this. Its worth noting that [Drasi uses a subset of the Cypher query language](https://drasi.io/reference/query-language/), so not all Cypher queries will work. 
+Now that we have our source configured. It's time to create our Continuous Query. This is the query that will filter the Azure Activity Logs for the role assignment events we care about. We will use the Cypher query language to do this. It's worth noting that Drasi uses a subset of the Cypher query language (https://drasi.io/reference/query-language/), so not all Cypher queries will work. 
 
-Make sure to update to the source name to match your source name, and the label to match the label _(ie the name of the Event Hub (the hub, not the namespace))_ you want to use for the role assignment events.
+Make sure to update to the source name to match your source name, and the label to match the label _(ie, the name of the Event Hub (the hub, not the namespace))_ you want to use for the role assignment events.
 
 ```yaml title="azure-role-change-vmadminlogin.yaml"
 kind: ContinuousQuery
@@ -376,23 +376,23 @@ drasi list reaction
 
 ## 🔧 Building the Azure Function App
 
-Now we have our Drasi source, continuous query, and reaction configured, its time to move to our Azure Function. This function will be triggered by the Event Grid notification when a role assignment event is detected that matches our query. The function will then create or delete the Azure Bastion host based on the role assignment event.
-The Azure Function is written in PowerShell, and uses the Azure PowerShell module to create and delete the Azure Bastion host. The function will check the operation type of the role assignment event, and if it is a `WRITE` operation, it will create the Azure Bastion host. If it is a `DELETE` operation, it will delete the Azure Bastion host. You can add some additional logic here around additional checks, such as checking if the role assignment is for a specific user or add additional roles.
+Now we have our Drasi source, continuous query, and reaction configured, it's time to move to our Azure Function. This function will be triggered by the Event Grid notification when a role assignment event is detected that matches our query. The function will then create or delete the Azure Bastion host based on the role assignment event.
+The Azure Function is written in PowerShell and uses the Azure PowerShell module to create and delete the Azure Bastion host. The function will check the operation type of the role assignment event, and if it is a `WRITE` operation, it will create the Azure Bastion host. If it is a `DELETE` operation, it will delete the Azure Bastion host. You can add some additional logic here around additional checks, such as checking if the role assignment is for a specific user, or adding additional roles.
 
-The Function App code is configured to use the system managed identity of the Function App, which is assigned the `Contributor` role on the Subscription where the Azure Bastion host will be created. This allows the function to create and delete the Azure Bastion host without needing to store any credentials in the function code.
+The Function App code is configured to use the system-managed identity of the Function App, which is assigned the `Contributor` role on the Subscription where the Azure Bastion host will be created. This allows the function to create and delete the Azure Bastion host without needing to store any credentials in the function code.
 
 The Function App is configured to be expandable:
 
 ## 📝 Function App Architecture
 
-- The entry point is `run.ps1`, receives Event Grid results and orchestrates the response.
-- It then parses it to an `EventProcessor.ps1` which then handles the event processing logic.
+- The entry point is `run.ps1`, receives Event Grid results, and orchestrates the response.
+- It then parses it to an `EventProcessor.ps1`, which then handles the event processing logic.
 - After the logic matches the event, it calls `ActionHandlers.ps1` to create or delete the Azure Bastion host.
 
-With a config.json file to store the configuration settings for the Function App, such as the Azure Bastion host name, resource group name, and location and subscription to target, these values will be used by the ActionHandlers to create/delete the Bastion resource in the specific subscription/resource group you want.
+With a config.json file to store the configuration settings for the Function App, such as the Azure Bastion host name, resource group name, location, and subscription to target, these values will be used by the ActionHandlers to create/delete the Bastion resource in the specific subscription/resource group you want.
 
 :::info
-You can full the complete code for the Function App and Drasi queries here: [lukemurraynz/Drasi-RoleAssignmentMonitor](https://github.com/lukemurraynz/Drasi-RoleAssignmentMonitor).
+You can find the complete code for the Function App and Drasi queries here: [lukemurraynz/Drasi-RoleAssignmentMonitor](https://github.com/lukemurraynz/Drasi-RoleAssignmentMonitor).
 :::
 
 import Tabs from '@theme/Tabs';
@@ -2001,14 +2001,14 @@ If you get [Error] ERROR: The member 'FormatsToProcess' in the module manifest i
 
 ## 🧪 Testing the Complete System
 
-Now - lets test it, by assigning myself the Virtual Machine Administrator Login role, which will then create an [Azure Activity Log](https://learn.microsoft.com/azure/azure-monitor/platform/activity-log-insights?WT.mc_id=AZ-MVP-5004796) entry, which will get pushed to the Event Hub, which will then be picked up by Drasi, processed and flicked through to Event Grid for my [Function App](https://learn.microsoft.com/azure/azure-functions/functions-overview?WT.mc_id=AZ-MVP-5004796) to process. Make sure you set the [RBAC assignment](https://learn.microsoft.com/azure/role-based-access-control/overview?WT.mc_id=AZ-MVP-5004796) to the Subscription scope that is directing its logs to the [Event Hub](https://learn.microsoft.com/azure/event-hubs/event-hubs-about?WT.mc_id=AZ-MVP-5004796), or it will never be picked up, you can have multiple subscriptions sending logs to the same Event Hub _(and the Region doesn't matter). Remember there can be a delay before the event  makes it into the Event Hub, so be patient. I watch the Event Hub in the Azure Portal to see when the event arrives, through the [Azure Event Hub Data Explorer](https://learn.microsoft.com/azure/event-hubs/event-hubs-data-explorer?WT.mc_id=AZ-MVP-5004796). 
+Now - lets test it, by assigning myself the Virtual Machine Administrator Login role, which will then create an [Azure Activity Log](https://learn.microsoft.com/azure/azure-monitor/platform/activity-log-insights?WT.mc_id=AZ-MVP-5004796) entry, which will get pushed to the Event Hub, which will then be picked up by Drasi, processed and flicked through to Event Grid for my [Function App](https://learn.microsoft.com/azure/azure-functions/functions-overview?WT.mc_id=AZ-MVP-5004796) to process. Make sure you set the [RBAC assignment](https://learn.microsoft.com/azure/role-based-access-control/overview?WT.mc_id=AZ-MVP-5004796) to the Subscription scope that is directing its logs to the [Event Hub](https://learn.microsoft.com/azure/event-hubs/event-hubs-about?WT.mc_id=AZ-MVP-5004796), or it will never be picked up, you can have multiple subscriptions sending logs to the same Event Hub _(and the Region doesn't matter). Remember, there can be a delay before the event  makes it into the Event Hub, so be patient. I watch the Event Hub in the Azure Portal to see when the event arrives, through the [Azure Event Hub Data Explorer](https://learn.microsoft.com/azure/event-hubs/event-hubs-data-explorer?WT.mc_id=AZ-MVP-5004796). 
 
-You can always push through an example log entry through the Event Hub directly directly, especially if you have a previous WRITE or DELETE event you can copy and resend to fastrack your testing. Its worth noting that Bastion can take a few minutes to create itself, be patient, but you can check the status of it in the Azure Portal, you could do something like trigger a Teams notification from the Azure Function once completed.
+You can always push through an example log entry through the Event Hub directly, especially if you have a previous WRITE or DELETE event you can copy and resend to fast-track your testing. It's worth noting that Bastion can take a few minutes to create itself, be patient, but you can check its status in the Azure Portal. You could do something like trigger a Teams notification from the Azure Function once it's completed.
 
 ![Assign VM Admin Role](images/AssignVMAdminRole.gif)
 
 !![Azure Function Created Bastion](images/FunctionCreatedBastion.jpg)
 
-Now if we remove the old, the DELETE event will be picked up by Drasi, and the Function App will process it, removing the Bastion host and Public IP address.
+Now, if we remove the old, the DELETE event will be picked up by Drasi, and the Function App will process it, removing the Bastion host and Public IP address.
 
 ![Azure Function Removed Bastion](images/RemoveVMAdminRole.gif)
