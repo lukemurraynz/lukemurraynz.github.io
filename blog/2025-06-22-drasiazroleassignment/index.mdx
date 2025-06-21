@@ -1987,11 +1987,11 @@ function New-Action {
 
 ## 🚀 Deploying the Function App
 
-Now lets deploy our Function App to Azure. I am just going to do a publish directly from VS Code.
+Now let's deploy our Function App to Azure. I am just going to publish directly from VS Code.
 
 ![Push Azure Function App](images/PushDrasiReactionAzureFunctionApp.gif)
 
-Once pushed, we need to make sure the Trigger is configured to the Event Grid topic, by creating a Subscription. I will do this in the Azure Portal.
+Once pushed, we need to make sure the Trigger is configured to the Event Grid topic by creating a Subscription. I will do this in the Azure Portal.
 
 ![Create Event Grid Subscription](images/CreateEventGridSubscription.gif)
 
@@ -2001,9 +2001,9 @@ If you get [Error] ERROR: The member 'FormatsToProcess' in the module manifest i
 
 ## 🧪 Testing the Complete System
 
-Now - lets test it, by assigning myself the Virtual Machine Administrator Login role, which will then create an [Azure Activity Log](https://learn.microsoft.com/azure/azure-monitor/platform/activity-log-insights?WT.mc_id=AZ-MVP-5004796) entry, which will get pushed to the Event Hub, which will then be picked up by Drasi, processed and flicked through to Event Grid for my [Function App](https://learn.microsoft.com/azure/azure-functions/functions-overview?WT.mc_id=AZ-MVP-5004796) to process. Make sure you set the [RBAC assignment](https://learn.microsoft.com/azure/role-based-access-control/overview?WT.mc_id=AZ-MVP-5004796) to the Subscription scope that is directing its logs to the [Event Hub](https://learn.microsoft.com/azure/event-hubs/event-hubs-about?WT.mc_id=AZ-MVP-5004796), or it will never be picked up, you can have multiple subscriptions sending logs to the same Event Hub _(and the Region doesn't matter). Remember, there can be a delay before the event  makes it into the Event Hub, so be patient. I watch the Event Hub in the Azure Portal to see when the event arrives, through the [Azure Event Hub Data Explorer](https://learn.microsoft.com/azure/event-hubs/event-hubs-data-explorer?WT.mc_id=AZ-MVP-5004796). 
+Now - lets test it, by assigning myself the Virtual Machine Administrator Login role, which will then create an [Azure Activity Log](https://learn.microsoft.com/azure/azure-monitor/platform/activity-log-insights?WT.mc_id=AZ-MVP-5004796) entry, which will get pushed to the Event Hub, which will then be picked up by Drasi, processed and flicked through to Event Grid for my [Function App](https://learn.microsoft.com/azure/azure-functions/functions-overview?WT.mc_id=AZ-MVP-5004796) to process. Make sure you set the [RBAC assignment](https://learn.microsoft.com/azure/role-based-access-control/overview?WT.mc_id=AZ-MVP-5004796) to the Subscription scope that is directing its logs to the [Event Hub](https://learn.microsoft.com/azure/event-hubs/event-hubs-about?WT.mc_id=AZ-MVP-5004796), or it will never be picked up, you can have multiple subscriptions sending logs to the same Event Hub _(and the Region doesn't matter). Remember, there may be a delay before the event is added to the Event Hub, so please be patient. I monitor the Event Hub in the Azure Portal to track when the event arrives, using the [Azure Event Hub Data Explorer](https://learn.microsoft.com/azure/event-hubs/event-hubs-data-explorer?WT.mc_id=AZ-MVP-5004796). 
 
-You can always push through an example log entry through the Event Hub directly, especially if you have a previous WRITE or DELETE event you can copy and resend to fast-track your testing. It's worth noting that Bastion can take a few minutes to create itself, be patient, but you can check its status in the Azure Portal. You could do something like trigger a Teams notification from the Azure Function once it's completed.
+You can always push through an example log entry through the Event Hub directly, especially if you have a previous WRITE or DELETE event you can copy and resend to fast-track your testing. It's worth noting that Bastion can take a few minutes to create itself, be patient, but you can check its status in the Azure Portal. You could trigger a Teams notification from the Azure Function once it's completed.
 
 ![Assign VM Admin Role](images/AssignVMAdminRole.gif)
 
