@@ -28,7 +28,7 @@ Resources are a core primitive in the Model Context Protocol _(MCP)_ that allows
 Prompts enable servers to define reusable prompt templates and workflows that clients can quickly surface to users and LLMs. They provide a powerful way to standardize and share everyday LLM interactions.
 Tools are a powerful primitive in the Model Context Protocol _(MCP)_ that enable servers to expose executable functionality to clients. Through tools, LLMs can interact with external systems, perform computations, and take actions in the real world.
 
-So in our demo, our client is going to be [Visual Studio Code](https://code.visualstudio.com/), connecting to a MCP server over https to utilize the document search tool, that allows us to get the duplicate content, that services such as Copilot for Azure, has to the Microsoft Learn semantic search index, allowing us to ground our responses in the current documentation, that will know things like Azure Active Directory is now Entra ID, or the services that are generally available within a specific region.
+In our demo, the client will be [Visual Studio Code](https://code.visualstudio.com/). It will connect to an MCP server over HTTPS to utilize the document search tool. This tool allows us to retrieve duplicate content that services like Copilot for Azure have access to in the Microsoft Learn semantic search index. By using this index, we can ground our responses in the current documentation. For example, the system will know that Azure Active Directory is now called Entra ID or which services are generally available within a specific region.
 
 For the [Docs MCP server](https://github.com/MicrosoftDocs/mcp) itself:
 
