@@ -30,6 +30,8 @@ Tools are a powerful primitive in the Model Context Protocol _(MCP)_ that enable
 
 In our demo, the client will be [Visual Studio Code](https://code.visualstudio.com/). It will connect to an MCP server over HTTPS to utilize the document search tool. This tool allows us to retrieve duplicate content that services like Copilot for Azure have access to in the Microsoft Learn semantic search index. By using this index, we can ground our responses in the current documentation. For example, the system will know that Azure Active Directory is now called Entra ID or which services are generally available within a specific region.
 
+{/* truncate */}
+
 For the [Docs MCP server](https://github.com/MicrosoftDocs/mcp) itself:
 
 - High-Quality Content Retrieval: Search and retrieve relevant content from Microsoft Learn, Azure documentation, Microsoft 365 documentation, and other official Microsoft sources.
@@ -38,8 +40,6 @@ For the [Docs MCP server](https://github.com/MicrosoftDocs/mcp) itself:
 - Real-time Updates: Access the latest Microsoft documentation as it's published.
 
 Its worth noting as we go into the demo, that MCP servers, expose the tools and resources, but do not run any reasoning logic themselves, the host application and LLM decides when and how to use the tools that are exposed, you can control this behaviour in the description of your MCP servers, and the crafting of your system and user prompt, you will see some of this in our demo shortly.
-
-{/* truncate */}
 
 ![Model Context Protocol _(MCP)_](images/mcp.jpg)
 
