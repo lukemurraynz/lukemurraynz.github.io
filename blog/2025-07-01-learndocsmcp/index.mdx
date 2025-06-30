@@ -23,12 +23,12 @@ date: 2025-06-30T22:32:59.580Z
 
 The Model Context Protocol is an open standard that enables developers to build secure, two-way connections between their data sources and AI-powered tools. The architecture is straightforward: Developers can expose their data through MCP servers or build AI applications (MCP clients) that connect to these servers.
 
-There are different types of primitives that an MCP server can expose, that extend the ability of your AI applications and clients to create, read:
+There are different types of primitives that an MCP server can expose, which extend the ability of your AI applications and clients to create, read:
 Resources are a core primitive in the Model Context Protocol _(MCP)_ that allows servers to expose data and content that clients can read and use as context for LLM interactions.
-Prompts enable servers to define reusable prompt templates and workflows that clients can quickly surface to users and LLMs. They provide a powerful way to standardize and share common LLM interactions.
+Prompts enable servers to define reusable prompt templates and workflows that clients can quickly surface to users and LLMs. They provide a powerful way to standardize and share everyday LLM interactions.
 Tools are a powerful primitive in the Model Context Protocol _(MCP)_ that enable servers to expose executable functionality to clients. Through tools, LLMs can interact with external systems, perform computations, and take actions in the real world.
 
-So in our demo, our client is going to be [Visual Studio Code](https://code.visualstudio.com/), connecting to a MCP server over https to utilize the document search tool, that allows us to get the same content, that services such as Copilot for Azure, has to the Microsoft Learn semantic search index, allowing us to ground our responses in the current documentation, that will know things like Azure Active Directory is now Entra ID, or the services that are generally available within a specific region.
+So in our demo, our client is going to be [Visual Studio Code](https://code.visualstudio.com/), connecting to a MCP server over https to utilize the document search tool, that allows us to get the duplicate content, that services such as Copilot for Azure, has to the Microsoft Learn semantic search index, allowing us to ground our responses in the current documentation, that will know things like Azure Active Directory is now Entra ID, or the services that are generally available within a specific region.
 
 For the [Docs MCP server](https://github.com/MicrosoftDocs/mcp) itself:
 
@@ -43,14 +43,14 @@ Its worth noting as we go into the demo, that MCP servers, expose the tools and 
 
 ![Model Context Protocol _(MCP)_](images/mcp.jpg)
 
-So - lets get started, first thing we are going to do is add the [Docs MCP server](https://github.com/MicrosoftDocs/mcp) itself, then we will do some testing and then follow it up with a custom Github Copilot Chat Mode.
+So, let's get started. First, we will add the [Docs MCP server](https://github.com/MicrosoftDocs/mcp) itself. Then, we will conduct some testing, followed by a custom GitHub Copilot Chat Mode.
 
-First thing, let us start with a Visual Studio Code instance, we will click on GitHub Copilot, select Agent Mode, click on the Configure Tools, and scroll down the bottom for Add MCP server.
-Add HTTP server, and add `https://learn.microsoft.com/api/mcp` and specify a name \_(for example: `microsoft.docs.mcp`).
+First thing, let us start with a Visual Studio Code instance. We will click on GitHub Copilot, select Agent Mode, click on the Configure Tools, and scroll to the bottom for Add MCP server.
+Add an HTTP server, and add `https://learn.microsoft.com/api/mcp` and specify a name \_(for example: `microsoft.docs.mcp`).
 
 ![Configure Learn MCP](images/ConfigureLearnMCPVSCode.gif)
 
-You willl end up with an mcp.json file that looks something like this:
+You will end up with an mcp.json file that looks something like this:
 
 ```json
 {
@@ -71,17 +71,17 @@ You willl end up with an mcp.json file that looks something like this:
 
 Now we can use the MCP to ground our data based on the current Learn semantic search index, so we can do a test such as:
 
-- Using Microsoft docs, is Azure Kubernetes Service avaliable in New Zealand North?
+- Using Microsoft Docs, is Azure Kubernetes Service available in New Zealand North?
 
-Because I have been specific about my prompt _(ie use Microsoft docs)_ Copilot was able to determine that it should call the Microsoft Learn Docs MCP to ground the data with the response.
+Because I have been specific about my prompt _(ie, use Microsoft Docs)_ Copilot was able to determine that it should call the Microsoft Learn Docs MCP to ground the data with the response.
 
 ![AKS New Zealand North](images/TestLearnMCPVSCodeAKSNZN.gif)
 
-Now that we have the Learn MCP server configured, and tested. I want to take this a step forward, with [Chat Modes](https://aka.ms/vscode-ghcp-custom-chat-modes). Chat modes are predefined configurations that enable you to tailor the AI chat behavior in Visual Studio Code for specific tasks, such as asking questions, making code edits, or performing autonomous coding tasks. Switch between chat modes at any time in the Chat view, depending on the task you want to accomplish. Chat Modes allow us to customise the response we get back from GitHub Copilot and be more specific about the tools we use and call.
+Now that we have the Learn MCP server configured and tested. I want to take this a step forward, with [Chat Modes](https://aka.ms/vscode-ghcp-custom-chat-modes). Chat modes are predefined configurations that enable you to tailor the AI chat behavior in Visual Studio Code for specific tasks, such as asking questions, making code edits, or performing autonomous coding tasks. Switch between chat modes at any time in the Chat view, depending on the task you want to accomplish. Chat Modes allow us to customise the response we get back from GitHub Copilot and be more specific about the tools we use and call.
 
 Very much like [custom Copilot Instructions](https://docs.github.com/en/copilot/how-tos/custom-instructions/adding-repository-custom-instructions-for-github-copilot), which can work alongside the custom chatmodes, the chatmodes allow more specific structure, ie you could have a chatmode that acts with a certain persona, for example I have one based on Steve Balmer _(with Windows 95 launch energy)_ and Mark Russinovich (CTO of Azure) to help with review - I have also a chatmode based on myself, the structure and response from each of these chatmodes is different, and this is where you can add alot more information about how the prompts and tools can be called, ie without having to specific Microsoft Docs in each prompt, you can specify the chatmode that all questions related to Microsoft Azure for example are to use the search tool.
 
-So let us add an example, in Visual Studio Code, in the GitHub Copilot blade, select the slider button 'thingy' and select Modes, select Create Custom Chat Mode Chat. You can specify a User Data folder, or you can specify a `.github/` location - which is preferred for me, as I like to keep the chatmodes specific to my repository, but it will mean that they could be shared with multiple users if commited to a git repository, then specify a name the filename needs to end with `.chatmode.md` so `example.chatmode.md`.
+So let us add an example, in Visual Studio Code, in the GitHub Copilot blade, select the slider button 'thingy' and select Modes, select Create Custom Chat Mode. You can specify a User Data folder, or you can specify a `.github/` location, which is preferred for me, as I like to keep the chat modes specific to my repository. It will mean that they can be shared with multiple users if committed to a Git repository. Then, specify a name; the filename needs to end with `.chatmode.md`, so `example.chatmode.md`.
 
 ```markdown title="luke_murray_mentor.chatmode.md
 ---
@@ -380,7 +380,7 @@ tools:
 - Use `azure_get_deployment_best_practices` for infrastructure advice AFTER the 'microsoft.docs.mcp' tool
 - Use `websearch` for community resources and latest updates
 - Use `codebase` and `editFiles` when helping with specific implementations
-- Use the `websearch` tool on [Product Availability by Region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/table?WT.mc_id=AZ-MVP-5004796) for guidance around Azure product and service avaliability IF the `microsoft.docs.mcp` tool is unsure.
+- Use the `websearch` tool on [Product Availability by Region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/table?WT.mc_id=AZ-MVP-5004796) for guidance around Azure product and service availability IF the `microsoft.docs.mcp` tool is unsure.
 
 ## Final Notes
 
