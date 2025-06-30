@@ -20,6 +20,7 @@ Resources are a core primitive in the Model Context Protocol <em>(MCP)</em> that
 Prompts enable servers to define reusable prompt templates and workflows that clients can quickly surface to users and LLMs. They provide a powerful way to standardize and share everyday LLM interactions.
 Tools are a powerful primitive in the Model Context Protocol <em>(MCP)</em> that enable servers to expose executable functionality to clients. Through tools, LLMs can interact with external systems, perform computations, and take actions in the real world.</p>
 <p>In our demo, the client will be <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">Visual Studio Code</a>. It will connect to an MCP server over HTTPS to utilize the document search tool. This tool allows us to retrieve duplicate content that services like Copilot for Azure have access to in the Microsoft Learn semantic search index. By using this index, we can ground our responses in the current documentation. For example, the system will know that Azure Active Directory is now called Entra ID or which services are generally available within a specific region.</p>
+<!-- -->
 <p>For the <a href="https://github.com/MicrosoftDocs/mcp" target="_blank" rel="noopener noreferrer">Docs MCP server</a> itself:</p>
 <ul>
 <li>High-Quality Content Retrieval: Search and retrieve relevant content from Microsoft Learn, Azure documentation, Microsoft 365 documentation, and other official Microsoft sources.</li>
@@ -28,7 +29,6 @@ Tools are a powerful primitive in the Model Context Protocol <em>(MCP)</em> that
 <li>Real-time Updates: Access the latest Microsoft documentation as it's published.</li>
 </ul>
 <p>Its worth noting as we go into the demo, that MCP servers, expose the tools and resources, but do not run any reasoning logic themselves, the host application and LLM decides when and how to use the tools that are exposed, you can control this behaviour in the description of your MCP servers, and the crafting of your system and user prompt, you will see some of this in our demo shortly.</p>
-<!-- -->
 <p><img decoding="async" loading="lazy" alt="Model Context Protocol (MCP)" src="https://luke.geek.nz/assets/images/mcp-4271e667cf138aeedd20bb8dbadd8ae0.jpg" width="1280" height="720" class="img_ev3q"></p>
 <p>So, let's get started. First, we will add the <a href="https://github.com/MicrosoftDocs/mcp" target="_blank" rel="noopener noreferrer">Docs MCP server</a> itself. Then, we will conduct some testing, followed by a custom GitHub Copilot Chat Mode.</p>
 <p>First thing, let us start with a Visual Studio Code instance. We will click on GitHub Copilot, select Agent Mode, click on the Configure Tools, and scroll to the bottom for Add MCP server.
