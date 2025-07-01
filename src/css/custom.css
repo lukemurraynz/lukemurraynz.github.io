@@ -136,12 +136,35 @@ blockquote {
 div[class^=announcementBar] {
   font-weight: bold;
   font-size: 16px;
-  padding: 8px;
+  padding: 12px 24px;
+  border-left: none !important;
+  background-image: none !important;
+  margin-left: 0 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-radius: 8px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 [data-theme='dark'] div[class^=announcementBar] {
   color: #ffffff;
-  background-color: #0078D4 !important;
+  border-left: none !important;
+  background-image: none !important;
+  margin-left: 0 !important;
+  box-shadow: none !important;
+  border-radius: 8px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 /* Footer styling */
