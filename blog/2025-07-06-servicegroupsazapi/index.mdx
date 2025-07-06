@@ -53,7 +53,7 @@ As someone who works with complex environments every day, I see Service Groups a
 
 You can find my Terraform code for deploying Service Groups in Azure [lukemurraynz/terraform-azapi-servicegroups](https://github.com/lukemurraynz/terraform-azapi-servicegroups).
 
-Aimed at a draft Platform Engineering team, this example shows how to use Service Groups to create a clear, manageable structure for your Azure resources, the Root Service Group is created by default, however like Management Groups, you can specify a nested structure in my example I have:
+Aimed at a draft Platform Engineering team, this example shows how to use Service Groups to create a clear, manageable structure for your Azure resources; the Root Service Group is created by default, however, like Management Groups, you can specify a nested structure in my example I have:
 
 Root (Tenant ID)
 ├── Platform Engineering
@@ -70,7 +70,7 @@ Root (Tenant ID)
 └── Security & Compliance
     └── Identity & Access Management
 
-With Service Group members being created for each of the service groups, in this example I have created a Storage Account as a member of Identity and Access management Service Group, and a Resource Group called openai as a member of E-commerce Platform _(which includes resources inside that group by default)_.
+With Service Group members being created for each of the service groups, in this example, I have created a Storage Account as a member of the Identity and Access Management Service Group and a Resource Group called open as a member of the E-commerce Platform _(which includes resources inside that group by default)_.
 
 
 ```hcl
@@ -348,3 +348,10 @@ resource "azapi_resource" "resourcegroup_ecommerce_member" {
 ```
 
 This code creates a structured hierarchy of service groups, each representing a logical grouping of resources based on their function or ownership. The `azapi_resource` blocks define the service groups, while the `azapi_resource` blocks with type `Microsoft.Relationships/serviceGroupMember` establish relationships between specific Azure resources and the service groups.
+
+## 📚 Additional Resources
+
+- [Azure Service Groups Documentation](https://learn.microsoft.com/azure/governance/service-groups/?WT.mc_id=AZ-MVP-5004796)
+- [Platform Engineering Best Practices](https://learn.microsoft.com/platform-engineering/?WT.mc_id=AZ-MVP-5004796)
+- [Team Topologies](https://teamtopologies.com/)
+- [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/?WT.mc_id=AZ-MVP-5004796)
