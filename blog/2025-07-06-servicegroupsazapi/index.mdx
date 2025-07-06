@@ -74,6 +74,7 @@ Root (Tenant ID)
 
 With Service Group members being created for each of the service groups, in this example, I have created a Storage Account as a member of the Identity and Access Management Service Group and a Resource Group called open as a member of the E-commerce Platform _(which includes resources inside that group by default)_.
 
+![Azure Portal view of provisioned service groups](images/ServiceGroupsAzurePortal_Provisioned.jpg)
 
 ```hcl
 # Azure Service Groups configuration following Platform Engineering best practices
@@ -350,6 +351,10 @@ resource "azapi_resource" "resourcegroup_ecommerce_member" {
 ```
 
 This code creates a structured hierarchy of service groups, each representing a logical grouping of resources based on their function or ownership. The `azapi_resource` blocks define the service groups, while the `azapi_resource` blocks with type `Microsoft.Relationships/serviceGroupMember` establish relationships between specific Azure resources and the service groups.
+
+![Service Groups provisioned](images/ServiceGroupsAzurePortal_RelationshipsResourceGroup.jpg)
+
+![Service Groups provisioned](images/ServiceGroupsAzurePortal_RelationshipsStorageAccount.jpg)
 
 ## 📚 Additional Resources
 
