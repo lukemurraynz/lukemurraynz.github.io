@@ -55,6 +55,7 @@ You can find my Terraform code for deploying Service Groups in Azure [lukemurray
 
 Aimed at a draft Platform Engineering team, this example shows how to use Service Groups to create a clear, manageable structure for your Azure resources; the Root Service Group is created by default, however, like Management Groups, you can specify a nested structure In my example, I have:
 
+```
 Root (Tenant ID)
 ├── Platform Engineering
 │   ├── Platform Infrastructure
@@ -69,6 +70,7 @@ Root (Tenant ID)
 │       └── Human Resources
 └── Security & Compliance
     └── Identity & Access Management
+```
 
 With Service Group members being created for each of the service groups, in this example, I have created a Storage Account as a member of the Identity and Access Management Service Group and a Resource Group called open as a member of the E-commerce Platform _(which includes resources inside that group by default)_.
 
