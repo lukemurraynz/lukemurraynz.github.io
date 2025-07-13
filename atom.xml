@@ -26,20 +26,7 @@
             <name>Luke Murray</name>
             <uri>https://luke.geek.nz</uri>
         </author>
-        <category label="AI Chat Behavior" term="AI Chat Behavior"/>
-        <category label="Authoring Best Practices" term="Authoring Best Practices"/>
-        <category label="Azure Developers" term="Azure Developers"/>
-        <category label="Chatmode" term="Chatmode"/>
-        <category label="Community Contributions" term="Community Contributions"/>
-        <category label="Contributor" term="Contributor"/>
-        <category label="Documentation" term="Documentation"/>
-        <category label="Documentation Standards." term="Documentation Standards."/>
-        <category label="GitHub Workflows" term="GitHub Workflows"/>
-        <category label="Markdown Formatting" term="Markdown Formatting"/>
-        <category label="Microsoft Learn" term="Microsoft Learn"/>
-        <category label="Microsoft Writing Style Guide" term="Microsoft Writing Style Guide"/>
-        <category label="Technical Writing" term="Technical Writing"/>
-        <category label="Visual Studio Code" term="Visual Studio Code"/>
+        <category label="Azure" term="Azure"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Deploying Azure Service Groups with Terraform AzAPI]]></title>
