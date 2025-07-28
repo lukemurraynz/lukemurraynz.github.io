@@ -16,7 +16,7 @@ keywords:
   - Entra ID
   - Bulk Partner ID Linking
 description: Use the PAL Tool to quickly link your Microsoft Partner ID to all Azure Entra tenants and manage partner recognition.
-date: 2025-07-28T20:38:00.907Z
+date: 2025-07-28T20:41:05.264Z
 ---
 
 Partner Admin Link (PAL) tool is a .NET application that helps Microsoft partners link their [Partner Admin Link (PAL)](https://learn.microsoft.com/azure/cost-management-billing/manage/link-partner-id?WT.mc_id=AZ-MVP-5004796) to all accessible Microsoft Entra tenants, enabling proper partner recognition and revenue attribution.
@@ -50,11 +50,11 @@ Then login
 
 Once authenticated, you will have the following:
 
-?? Discovery tenants
-?? Link Partner ID to All tenants
-?? Show Current Status
-? About Partner Admin Link (PAL)
-? Exit
+* ?? Discovery tenants
+* ?? Link Partner ID to All tenants
+* ?? Show Current Status
+* ? About Partner Admin Link (PAL)
+* ? Exit
 
 Discover tenants, simply does a lookup of the TenantIDs you have access to, this could be useful as a quick check to determine if there are any tenants you are also a Guest of, and it can be a good way to get MFA and authentication for other tenants done.
 Link Parter ID to All tenants, is where you can specify a new PartnerID to add, and then you can overwrite existing ones - which is useful if you are doing a partnerID move. It will go through and call the Azure Management APIs to add in the PartnerID.
