@@ -28,9 +28,9 @@ description: Learn to host a VNC server with DOSBox in Azure Container Apps, ena
 date: 2025-08-03T23:33:09.321Z
 ---
 
-Today we are going to look at hosting a Container in Container Apps, that is used to host a Container, that has VNC server installed, running DOSBox.
+Today we are going to look at hosting a Container in Container Apps, which is used to host a Container that has a VNC server installed, running DOSBox.
 
-Why would you do this? Could be a few reasons, but common reasons might be, looking at running legacy applications that require a GUI (Graphical User Interface) in a more modern and isolated environment, allow for quick internal access to resources -  or just for fun.
+Why would you do this? Could be a few reasons, but common reasons might be looking at running legacy applications that require a GUI (Graphical User Interface) in a more modern and isolated environment, allowing for quick internal access to resources, or just for fun.
 
 {/* truncate */}
 
@@ -40,13 +40,13 @@ In this guide, we will walk through the process of setting up a VNC server with 
 
 ## Solution Architecture
 
-The solution consists of an Azure Container Registry, an Azure Container Apps environment, and an Azure Container App. The Container App will be running a container that has a VNC server installed, and the DOSBox application.
+The solution consists of an Azure Container Registry, an Azure Container Apps environment, and an Azure Container App. The Container App will be running a container that has a VNC server installed and the DOSBox application.
 
 ### Configuration Details
 
-My scaling configuration for Azure Container Apps, is set to a minimum of 1 instance, and a maximum of 10 replicas. This is because I want to ensure that the VNC server is always available, and I don't need to scale out for this use case, however my scale out settings were set to 10 concurrent requests.
+My scaling configuration for Azure Container Apps is set to a minimum of 1 instance and a maximum of 10 replicas. This is because I want to ensure that the VNC server is always available, and I don't need to scale out for this use case; however, my scale-out settings were set to 10 concurrent requests.
 
-Ingress was configured, HTTP with the target port of 6080 _(VNC uses port 5900 internally, but its not exposed as we are publishing the noVNC web client on port 6080, which then talks to VNC server on port 5900 internally)_.
+Ingress was configured, HTTP with the target port of 6080 _(VNC uses port 5900 internally, but it's not exposed as we are publishing the noVNC web client on port 6080, which then talks to the VNC server on port 5900 internally)_.
 
 ```mermaid
 graph TB
@@ -91,7 +91,7 @@ So the steps to get this working are as follows:
 
 ## Step 1: Creating the Container Image
 
-I have already completed, Task 1 - creating the container image with VNC and DOSBox, and pushed it to Azure Container Registry. The Dockerfile for this image is as follows:
+I have already completed Task 1 - creating the container image with VNC and DOSBox, and pushed it to Azure Container Registry. The Dockerfile for this image is as follows:
 
 ```dockerfile
 # Dockerfile for VNC + DOSBox
@@ -223,7 +223,7 @@ az acr build --registry vncappsdemocr --image vncappsdemo:latest .
 
 ## Step 3: Deploying to Azure Container Apps
 
-After the Container is built, its time to deploy it to Azure Container Apps. You can do this using the Azure CLI as well:
+After the Container is built, it's time to deploy it to Azure Container Apps. You can do this using the Azure CLI as well:
 
 ```bash
 # Create the Container Apps environment 
@@ -232,7 +232,7 @@ az containerapp env create --name ContainerAppsEnvVNCDemo --resource-group vnccn
 # Enable admin user on ACR (if not already enabled)
 az acr update --name vncappsdemocr --admin-enabled true
 
-# Create container app with ACR admin credentials
+# Create a container app with ACR admin credentials
 az containerapp create --name vncappsdemo --resource-group vnccnappsdemo --image vncappsdemocr-ctb0aqa3dkhtd2e6.azurecr.io/vncappsdemo:latest --target-port 6080 --ingress external --cpu 0.5 --memory 1.0Gi --min-replicas 1 --max-replicas 10 --environment ContainerAppsEnvVNCDemo --registry-server vncappsdemocr-ctb0aqa3dkhtd2e6.azurecr.io --registry-username vncappsdemocr --registry-password $(az acr credential show --name vncappsdemocr --query "passwords[0].value" -o tsv)
 ```
 
@@ -240,7 +240,7 @@ az containerapp create --name vncappsdemo --resource-group vnccnappsdemo --image
 
 ## Testing the Solution
 
-Finally - lets test!
+Finally - let's test!
 
 ![Test VNC Container Apps](images/TestContainerNoVNCCAppsDemo.gif)
 
