@@ -11,8 +11,25 @@ Crawl-delay: 1
 Allow: /blog/
 Allow: /tags/
 Allow: /archive/
+Allow: /about/
 
 # Disallow admin and internal paths
 Disallow: /admin/
 Disallow: /*.json$
 Disallow: /*?*
+Disallow: /page/
+Disallow: /.docusaurus/
+Disallow: /node_modules/
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Allow crawling of images
+User-agent: *
+Allow: /img/
+Allow: /images/
+Allow: /static/
