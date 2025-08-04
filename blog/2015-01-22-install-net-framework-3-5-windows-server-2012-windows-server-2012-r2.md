@@ -1,5 +1,6 @@
 ---
 title: How to install .NET Framework 3.5 on Windows Server 2012 and Windows Server 2012 R2
+description: ".NET Framework 3.5 needs the source files off the Windows Server 2012 DVD in order to install. You can do this online and without needing a restart usin..."
 tags:
   - Windows
 date: 2015-01-22 00:00:00 +1300

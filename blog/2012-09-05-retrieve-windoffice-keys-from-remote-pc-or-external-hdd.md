@@ -1,5 +1,6 @@
 ---
 title: Retrieve Windows/Office Keys from Remote PC or External HDD
+description: "Using a Windows utility called ProduKey you can retrieve the product keys for Microsoft Windows and Office."
 date: 2012-09-05T11:00:38+00:00
 authors: [Luke]
 tags:

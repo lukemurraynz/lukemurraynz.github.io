@@ -1,5 +1,6 @@
 ---
 title: 'Acronis Snap Deploy spwizimg.dll error'
+description: "Attempting to install Acronis Snap Deploy and getting the “spwizimg.dll” error? Follow the guide below to repair."
 date: 2012-11-13 00:00:00 +1300
 authors: [Luke]
 tags:

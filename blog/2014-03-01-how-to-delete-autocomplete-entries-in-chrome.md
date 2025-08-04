@@ -1,11 +1,11 @@
 ---
 title: How to delete Autocomplete entries in Chrome
+description: "Deleting the Auto Complete entries in Google Chrome is very useful – especially if you are like me and wasn't paying attention and misspelt a username t..."
 tags:
   - Mac OSX
   - Windows
 date: 2014-03-01 00:00:00 +1300
 ---
-
 Deleting the Auto Complete entries in Google Chrome is very useful – especially if you are like me and wasn't paying attention and misspelt a username that would have forever been popping up in the login field.
 
   1. Open Chrome

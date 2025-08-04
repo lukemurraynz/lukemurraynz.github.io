@@ -1,5 +1,6 @@
 ---
 title: Empowering Resilience with Azure backup services
+description: "This article is part of Azure Back to School - 2023 event! Make sure to check out the fantastic content created by ..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
 date: 2023-09-23 00:00:00 +1300
 slug: azure/Empowering-Resilience-with-Azure-backup-services
 ---
-
 This article is part of [Azure Back to School](https://azurebacktoschool.github.io/) - 2023 event! Make sure to check out the fantastic content created by the community!
 
 ![Empowering Resilience with Azure backup services](/images/posts/Header-Blog-AzureBackup_Services_Innovations.gif)

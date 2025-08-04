@@ -1,5 +1,6 @@
 ---
 title: How to leave the Microsoft Security Essentials Customer Experience Program
+description: "Follow the instructions below to leave the Customer Experience program for Security Essentials"
 date: 2012-08-30T16:47:20+00:00
 authors: [Luke]
 layout: post

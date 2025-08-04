@@ -1,5 +1,6 @@
 ---
 title: 'Internet Explorer & Firefox Webpage display issues'
+description: "Missing buttons and getting weird colours in both Internet Explorer & Firefox? Try the following:"
 date: 2012-08-24T13:59:53+00:00
 authors: [Luke]
 tags:

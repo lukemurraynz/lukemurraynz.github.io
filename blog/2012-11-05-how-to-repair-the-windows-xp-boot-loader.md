@@ -1,11 +1,11 @@
 ---
 title: How to repair the Windows XP boot loader
+description: "Windows XP CD doesn’t matter whether Home or Professional"
 date: 2012-11-05 00:00:00 +1300
 authors: [Luke]
 tags:
   - Windows
 ---
-
 What you need.
 
 * Windows XP CD _(doesn’t matter whether Home or Professional)_

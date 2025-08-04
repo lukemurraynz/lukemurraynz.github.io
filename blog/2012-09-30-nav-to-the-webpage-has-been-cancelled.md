@@ -1,5 +1,6 @@
 ---
 title: Navigation to the webpage has been cancelled
+description: "Reopen Internet Explorer and attempt to load the webpage again."
 date: 2012-09-30T17:33:17+00:00
 authors: [Luke]
 tags:

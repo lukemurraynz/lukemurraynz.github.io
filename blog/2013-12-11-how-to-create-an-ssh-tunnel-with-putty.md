@@ -1,5 +1,6 @@
 ---
 title: How to create an SSH tunnel with PuTTY
+description: "Create a new PuTTY session to the remote server"
 tags:
   - Windows
 date: 2013-12-11 00:00:00 +1300

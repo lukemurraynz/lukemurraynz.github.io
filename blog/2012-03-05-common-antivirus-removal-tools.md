@@ -1,5 +1,6 @@
 ---
 title: Common Antivirus Removal Tools
+description: "Ever had problems trying to get rid of Antivirus applications and some little part that causes problems remain? Below is a list to the websites containi..."
 tags:
   - Windows
 date: 2012-03-05 00:00:00 +1300

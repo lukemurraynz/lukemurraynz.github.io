@@ -1,6 +1,7 @@
 ---
 date: '2023-01-18 00:00:00 +1300'
 title: 'You Can''t Touch This: How to Make Your Azure Backup Immutable and Secure'
+description: "With immutable vaults id=AZ-MVP-5..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: /uploads/can-ttouchthis_immutability.png
 
 ---
-
 With [immutable vaults](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept?tabs=recovery-services-vault&WT.mc_id=AZ-MVP-5004796 "Immutable vault for Azure Backup"), Azure Backup ensures that recovery points that are once created cannot be deleted before their intended expiry time. Azure Backup does this by preventing any operations which could lead to the loss of backup data.
 
 Hence, this helps you protect your backups against ransomware attacks and malicious actors by disallowing operations such as deleting backups or reducing retention in backup policies.

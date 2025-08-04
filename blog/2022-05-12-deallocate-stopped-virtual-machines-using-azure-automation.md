@@ -1,6 +1,7 @@
 ---
 date: '2022-05-12 00:00:00 +1200'
 title: Deallocate 'Stopped' Virtual Machines using Azure Automation
+description: "Virtual Machines id=AZ-MVP-5004796 overview \\\" What is a virtual machine VM ?..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: images/iazure-marketplace-banner.png
 
 ---
-
 [Virtual Machines](https://azure.microsoft.com/en-us/overview/what-is-a-virtual-machine/?WT.mc_id=AZ-MVP-5004796#overview " What is a virtual machine (VM)?") in Microsoft Azure have different states and, depending on what state the Virtual Machine is in, will determine whether you get billed or not _(for the Compute, storage and network adapters are still billed)_.
 
 | Power state | Description | Billing |

@@ -1,5 +1,6 @@
 ---
 title: How to fix Telecom T-Stick/Vodafone Vodem Initializing issues
+description: "Make sure you have credit on your Vodem/T-Stick. This is the common cause of why the modems will not load webpages."
 date: 2012-08-22T10:29:18+00:00
 authors: [Luke]
 tags:

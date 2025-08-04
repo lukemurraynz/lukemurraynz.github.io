@@ -1,5 +1,6 @@
 ---
 title: How to reset Ventrillo settings back to default
+description: "Name it something different like ventlol"
 date: 2012-09-28T10:41:34+00:00
 authors: [Luke]
 tags:

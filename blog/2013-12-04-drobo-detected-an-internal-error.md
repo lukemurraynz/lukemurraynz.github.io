@@ -1,5 +1,6 @@
 ---
 title: Drobo Detected an Internal Error
+description: "If you just had this error and are GASPING like I was at 10PM at night – never fear there is still hope!"
 tags:
   - Misc
 date: 2013-12-04 00:00:00 +1300

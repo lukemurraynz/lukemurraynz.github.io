@@ -1,5 +1,6 @@
 ---
 title: Enable Windows Automatic Updates
+description: "Click \\\" Check for updates but let me choose whether to download and install them \\\""
 layout: post
 permalink: /win/enable-windows-automatic-updates/
 tags:

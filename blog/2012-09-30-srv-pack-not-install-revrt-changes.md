@@ -1,5 +1,6 @@
 ---
 title: Service Pack did not install. Reverting changes
+description: "This usually happens when a service that is required, the Trusted Installer is not running. Follow the instructions below to repair this."
 date: 2012-09-30T14:55:20+00:00
 authors: [Luke]
 tags:

@@ -1,5 +1,6 @@
 ---
 title: No Sound in Chrome
+description: "In the address bar the area you put a website address in type in: chrome://plugins/"
 date: 2012-09-30T14:25:00+00:00
 authors: [Luke]
 tags:

@@ -1,5 +1,6 @@
 ---
 title: Diablo 3 Corrupted Update
+description: "Trying to either install Diablo 3 or update it and you are getting an error \\\"appears to be corrupt\\\" that is preventing the game from installing or updat..."
 permalink: /misc/diablo-3-corrupted-update/
 tags:
   - Misc

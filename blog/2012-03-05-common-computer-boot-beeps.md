@@ -1,5 +1,6 @@
 ---
 title: Common Computer Boot Beeps
+description: "Beep Code: Description of Problem:"
 permalink: /misc/common-computer-boot-beeps/
 tags:
   - Misc

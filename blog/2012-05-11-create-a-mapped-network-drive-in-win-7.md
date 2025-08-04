@@ -1,5 +1,6 @@
 ---
 title: How to create a mapped Network drive in Windows 7
+description: "Follow the instructions to create a mapped network drive in Windows 7 without windows indexing like a local folder?"
 permalink: /win/create-a-mapped-network-drive-in-win-7/
 tags:
   - Windows

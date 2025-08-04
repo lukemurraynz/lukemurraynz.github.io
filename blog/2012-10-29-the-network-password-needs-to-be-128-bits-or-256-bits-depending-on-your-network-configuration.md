@@ -1,5 +1,6 @@
 ---
 title: The network password needs to be 128 bits or 256 bits depending on your network configuration
+description: "Attempting to enter in your wireless passkey and getting “The network password needs to be 128bits or 256bits depending on your network configuration “e..."
 date: 2012-10-29 00:00:00 +1300
 authors: [Luke]
 tags:

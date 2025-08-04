@@ -1,5 +1,6 @@
 ---
 title: How to increase posts displayed in WordPress All Post page
+description: "Do you want to display more then 20 posts in the All Posts list within WordPress? Follow the guide below to reveal the rest."
 date: 2013-02-17 00:00:00 +1300
 authors: [Luke]
 tags:

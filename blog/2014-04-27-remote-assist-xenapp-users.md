@@ -1,5 +1,6 @@
 ---
 title: Remote assist Xenapp users
+description: "Due to inconsistencies in Microsoft’s remote assistance and dual monitor technologies – there is an incompatibility between Server 2008 R2 and some Wind..."
 tags:
   - Windows
 date: 2014-04-27 00:00:00 +1300

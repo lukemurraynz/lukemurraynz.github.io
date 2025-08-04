@@ -1,5 +1,6 @@
 ---
 title: Cannot open applications downloaded from the Internet
+description: "Click Apple logo top left hand side"
 date: 2012-08-31T20:52:49+00:00
 authors: [Luke]
 tags:

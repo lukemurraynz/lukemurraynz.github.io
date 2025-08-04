@@ -1,6 +1,7 @@
 ---
 date: '2022-06-05 00:00:00 +1200'
 title: Turn on a Azure Virtual Machine using Azure Automation
+description: "Turning off a Virtual Machine in Microsoft Azure on a schedule can quickly be done using the built-in Shutdown controls in the Virtual Machine blade par..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: images/iazure-marketplace-banner.png
 slug: azure/turn-on-a-azure-virtual-machine-using-azure-automation
 ---
-
 Turning off a Virtual Machine in Microsoft Azure on a schedule can quickly be done using the built-in Shutdown controls in the Virtual Machine blade _(part of_ [_Azure Lab Services_](https://azure.microsoft.com/en-us/services/lab-services/?WT.mc_id=AZ-MVP-5004796 " Azure Lab Services")_, but not a requirement)_, but what about starting it?
 
 You have a few options, Logic Apps, PowerShell, Functions and Runbooks; most of the time, these will run on a standard 7 AM to 5 PM Monday to Friday schedule _(meaning the Virtual Machine is off during off-peak hours and weekends, reducing compute cost)_.

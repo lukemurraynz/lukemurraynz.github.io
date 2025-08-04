@@ -1,5 +1,6 @@
 ---
 title: My thoughts on Razers Project Christine
+description: "Razer – a company well known for its PC gaming peripherals."
 tags:
   - Misc
 date: 2014-01-08 00:00:00 +1300

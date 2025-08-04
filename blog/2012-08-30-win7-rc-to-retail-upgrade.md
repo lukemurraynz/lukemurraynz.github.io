@@ -1,5 +1,6 @@
 ---
 title: Windows 7 RC to Retail Upgrade
+description: "Extract the contents of your Windows DVD onto a folder you can easily get to onto the release candidate machine."
 date: 2012-08-30T14:59:55+00:00
 authors: [Luke]
 tags:

@@ -1,5 +1,6 @@
 ---
 title: Deposit all Collectibles in Guild Wars 2 at the same time
+description: "Your inventory full of crafting materials & sick of right clicking sending to collection? There is an easy way of doing this."
 date: 2012-09-03T08:30:34+00:00
 authors: [Luke]
 tags:

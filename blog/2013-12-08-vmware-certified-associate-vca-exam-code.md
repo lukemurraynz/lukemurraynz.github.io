@@ -1,10 +1,10 @@
 ---
 title: VMWare Certified Associate (VCA) Exam Code
+description: "VMWare have launched a campaign to show off their new 3 VMWare Certified Associate exams."
 tags:
   - Misc
 date: 2013-12-08 00:00:00 +1300
 ---
-
 VMWare have launched a campaign to show off their new 3 [VMWare Certified Associate](http://mylearn.vmware.com/portals/certification/) exams.
 
 * VMWare Certified Associate – Workforce Mobility

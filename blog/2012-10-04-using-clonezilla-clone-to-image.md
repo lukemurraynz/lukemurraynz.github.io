@@ -1,5 +1,6 @@
 ---
 title: 'Using Clonezilla &#8211; Clone to Image'
+description: "Select Clonezilla VGA mode top option"
 date: 2012-10-04T15:19:09+00:00
 authors: [Luke]
 tags:

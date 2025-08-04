@@ -1,5 +1,6 @@
 ---
 title: Alureon.E removal
+description: "First update and scan your computer doing a Full scan with your Antivirus to remove all traces of all infections."
 layout: post
 permalink: /win/alureon-e-removal/
 tags:

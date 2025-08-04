@@ -1,5 +1,6 @@
 ---
 title: Fedora “No More Mirrors” error
+description: "Type: yum clean all Press Enter"
 permalink: /linux/fedora-no-more-mirrors-error/
 tags:
   - Linux

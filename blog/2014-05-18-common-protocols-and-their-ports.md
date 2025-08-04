@@ -1,5 +1,6 @@
 ---
 title: Common Protocols and their ports
+description: "Networking is a marvel of interconnected devices and languages – part of that inter connectivity is allowing devices to talk to one another without gett..."
 tags:
   - Misc
 date: 2014-05-18 00:00:00 +1300

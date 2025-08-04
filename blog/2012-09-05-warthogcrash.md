@@ -1,5 +1,6 @@
 ---
 title: DCS A10 C Warthog Crashing Windows Vista/Windows 7
+description: "Having random crashes on DCS A10 C Warthog? With Texture mismatches and Runtime errors? This is usually due to security permissions inside Windows."
 date: 2012-09-05T17:58:26+00:00
 authors: [Luke]
 tags:

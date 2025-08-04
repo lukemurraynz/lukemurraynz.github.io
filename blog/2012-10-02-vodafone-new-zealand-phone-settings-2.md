@@ -1,5 +1,6 @@
 ---
 title: Vodafone New Zealand Phone Settings
+description: "These settings are used for setting up Chinese/foreign phones onto the Vodafone NZ network."
 date: 2012-10-02T10:52:04+00:00
 authors: [Luke]
 tags:

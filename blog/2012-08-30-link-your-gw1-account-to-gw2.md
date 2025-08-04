@@ -1,5 +1,6 @@
 ---
 title: How to link your Guild Wars 1 account to Guild Wars 2
+description: "Follow the instructions below to link your Guild Wars 1 account to Guild Wars 2"
 date: 2012-08-30T19:11:28+00:00
 authors: [Luke]
 tags:

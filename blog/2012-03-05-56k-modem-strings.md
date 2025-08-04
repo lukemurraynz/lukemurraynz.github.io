@@ -1,8 +1,15 @@
 ---
 title: 56k Modem Strings
+description: "Learn how to adjust your 56k dial-up modem volume and connection settings. Step-by-step guide to modify modem options and strings in Windows."
 tags:
   - Windows
 date: 2012-03-05 00:00:00 +1300
+keywords:
+  - 56k modem
+  - dial-up
+  - modem volume
+  - modem strings
+  - windows
 ---
 Want to lower the volume of your 56k Dial-up connection when connecting? You can adjust the modem options. Follow these instructions.
 

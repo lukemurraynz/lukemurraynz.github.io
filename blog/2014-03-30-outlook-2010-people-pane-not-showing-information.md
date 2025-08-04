@@ -1,10 +1,10 @@
 ---
 title: Outlook 2010 People Pane not showing information
+description: "This fix is usually valid for an Exchange domain setup. The fix is to enable Cached mode on the Outlook client."
 tags:
   - Windows
 date: 2014-03-30 00:00:00 +1300
 ---
-
 This fix is usually valid for an Exchange domain setup. The fix is to enable Cached mode on the Outlook client.
 
   1. Open Outlook

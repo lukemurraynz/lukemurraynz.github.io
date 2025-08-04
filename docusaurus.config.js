@@ -35,13 +35,105 @@ const config = {
     defaultLocale: "en",
     locales: ["en"],
   },
+  
+  // Enhanced SEO configuration
+  headTags: [
+    // Enhanced Open Graph tags
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:type',
+        content: 'website',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:site_name',
+        content: 'luke.geek.nz',
+      },
+    },
+    // Twitter Card tags
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:site',
+        content: '@lukemurraynz',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'twitter:creator',
+        content: '@lukemurraynz',
+      },
+    },
+    // Additional SEO meta tags
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'author',
+        content: 'Luke Murray',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'robots',
+        content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+      },
+    },
+    // Schema.org JSON-LD for website
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'application/ld+json',
+      },
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "luke.geek.nz",
+        "description": "Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.",
+        "url": "https://luke.geek.nz",
+        "author": {
+          "@type": "Person",
+          "name": "Luke Murray",
+          "url": "https://luke.geek.nz/about",
+          "sameAs": [
+            "https://twitter.com/lukemurraynz",
+            "https://www.linkedin.com/in/ljmurray/",
+            "https://aus.social/@lukemurray",
+            "https://bsky.app/profile/lukemurraynz.bsky.social"
+          ]
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Luke Murray"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://luke.geek.nz/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }),
+    },
+  ],
   themes: ["@docusaurus/theme-mermaid"],
   markdown: {
     mermaid: true,
     format: "detect",
   },
 
-  plugins: ["plugin-image-zoom"],
+  plugins: [
+    "plugin-image-zoom",
+  ],
 
   presets: [
     [
@@ -61,11 +153,28 @@ const config = {
           feedOptions: {
             type: "all",
             copyright: `Copyright © ${new Date().getFullYear()} luke.geek.nz.`,
+            createFeedItems: async (params) => {
+              const {blogPosts, defaultCreateFeedItems, ...rest} = params;
+              return defaultCreateFeedItems({
+                // Keep only the 10 most recent blog posts in the feed
+                blogPosts: blogPosts.filter((item, index) => index < 10),
+                ...rest,
+              });
+            },
           },
+          // Add reading time calculation
+          readingTime: ({content, frontMatter, defaultReadingTime}) =>
+            defaultReadingTime({content, options: {wordsPerMinute: 200}}),
         },
 
         theme: {
           customCss: "./src/css/custom.css",
+        },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**', '/page/**'],
+          filename: 'sitemap.xml',
         },
         gtag: {
           trackingID: "G-0QDLBY7NNN",

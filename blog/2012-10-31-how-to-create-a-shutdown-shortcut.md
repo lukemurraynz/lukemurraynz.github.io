@@ -1,5 +1,6 @@
 ---
 title: How to create a shutdown shortcut
+description: "This tip is useful if you don’t want to go through the hassle of clicking Start, Shutdown."
 date: 2012-10-31 00:00:00 +1300
 authors: [Luke]
 tags:

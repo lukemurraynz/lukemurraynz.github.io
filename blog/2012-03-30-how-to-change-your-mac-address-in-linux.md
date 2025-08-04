@@ -1,5 +1,6 @@
 ---
 title: How to change your MAC address in Linux
+description: "Type: ifconfig eth0 hw ether THISISWHEREYOUENTERNEWMACADDRESS"
 permalink: /linux/how-to-change-your-mac-address-in-linux/
 tags:
   - Linux

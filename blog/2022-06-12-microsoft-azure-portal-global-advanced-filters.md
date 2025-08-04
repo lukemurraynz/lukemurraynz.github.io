@@ -1,5 +1,6 @@
 ---
 title: Microsoft Azure Portal - Global & Advanced Filters
+description: "We've all been there! In the Azure portal, looking for a resource or subscription and cannot find it! Once permissions are ruled out, you are left with ..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: /uploads/azureportal_advanced_subscription_filter.png
 slug: azure/microsoft-azure-portal-global-advanced-filters
 ---
-
 We've all been there! In the Azure portal, looking for a resource or subscription and cannot find it! Once permissions are ruled out, you are left with the Portal itself, and the filter.
 
 You may see a checkbox or message like the below:

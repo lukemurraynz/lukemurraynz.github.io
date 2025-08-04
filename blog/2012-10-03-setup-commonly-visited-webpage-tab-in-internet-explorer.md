@@ -1,5 +1,6 @@
 ---
 title: Setup commonly visited webpage Tab in Internet Explorer
+description: "Click on Tools small gear top right"
 date: 2012-10-03T11:40:48+00:00
 authors: [Luke]
 tags:

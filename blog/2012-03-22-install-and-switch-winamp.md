@@ -1,5 +1,6 @@
 ---
 title: How to Install and Switch Winamp Player skins
+description: "Ever found a great Winamp Skin, But you did not know how to install it? This tutorial will explain how."
 permalink: /win/install-and-switch-winamp/
 tags:
   - Windows

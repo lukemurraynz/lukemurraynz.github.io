@@ -1,12 +1,12 @@
 ---
 title: Windows Mail not displaying contacts
+description: "This happens when Windows Mail is using a different contacts list to the Windows Contacts – such as a newsgroup."
 date: 2013-02-12 00:00:00 +1300
 authors: [Luke]
 tags:
   - Misc
   - Windows
 ---
-
 This happens when Windows Mail is using a different contacts list to the Windows Contacts – such as a newsgroup.
 
   1. Open **Windows Mail**

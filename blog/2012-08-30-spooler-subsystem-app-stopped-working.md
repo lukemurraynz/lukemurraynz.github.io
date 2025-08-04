@@ -1,5 +1,6 @@
 ---
 title: Spooler SubSystem App Stopped Working
+description: "Follow the guides below to fix the spooler issues:"
 date: 2012-08-30T11:57:54+00:00
 authors: [Luke]
 tags:

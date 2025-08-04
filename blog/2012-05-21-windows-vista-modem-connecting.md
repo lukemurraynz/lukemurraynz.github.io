@@ -1,5 +1,6 @@
 ---
 title: Windows Vista Modem Connecting
+description: "This usually occurs Operator Assisted Dialing is enabled for the Dialup connection, to disable follow the instructions below:"
 layout: post
 permalink: /win/windows-vista-modem-connecting/
 tags:

@@ -1,5 +1,6 @@
 ---
 title: ntdll.dll Windows Explorer
+description: "Having problems with Windows Explorer with the “ntdll.dll” error? This usually occurs when you are running an AMD system."
 date: 2012-09-30T13:42:29+00:00
 authors: [Luke]
 tags:

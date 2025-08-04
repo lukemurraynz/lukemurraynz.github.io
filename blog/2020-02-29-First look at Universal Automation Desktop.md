@@ -1,12 +1,12 @@
 ---
 date: "2020-02-29"
 title: First look at Universal Automation Desktop
+description: "There are many ways to do automation scheduling – whether its Jenkins or even"
 authors: [Luke]
 tags:
   - Azure
   - PowerShell
 ---
-
 There are many ways to do automation scheduling – whether its Jenkins or even
 Windows Task Scheduler. Each toolset has its place or specialization
 today we are looking at the son of Ironman Software’s PowerShell [Universal

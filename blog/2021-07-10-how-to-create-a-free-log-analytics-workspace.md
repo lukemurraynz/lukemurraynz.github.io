@@ -1,5 +1,6 @@
 ---
 title: How to create a Free Azure Log Analytics Workspace using PowerShell
+description: "When you create a Log Analytics workspace using the Azure Portal, you only get the Pricing or 'Pay-as-you-go' tiers to select."
 authors: [Luke]
 tags:
   - Azure

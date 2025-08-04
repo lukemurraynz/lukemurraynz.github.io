@@ -1,10 +1,10 @@
 ---
 title: How to re enable gadgets in Windows 7
+description: "This will now launch the installed programs list"
 tags:
   - Windows
 date: 2014-03-01 00:00:00 +1300
 ---
-
   1. Click Start
   2. Click Control Panel
   3. Click Program and Features

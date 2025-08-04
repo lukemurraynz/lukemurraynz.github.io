@@ -1,5 +1,6 @@
 ---
 title: How to move an inserted image anywhere in Word
+description: "Right click the Picture you would like to move"
 date: 2012-09-30T14:21:44+00:00
 authors: [Luke]
 tags:

@@ -1,5 +1,6 @@
 ---
 title: Using Define Word extension to search Auction Websites
+description: "Using the Define Word extension, you can select it to search Auction sites such as Trademe by hi-lighting a word."
 permalink: /misc/search_auction_firefox/
 tags:
   - Misc

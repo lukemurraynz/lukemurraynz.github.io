@@ -1,5 +1,6 @@
 ---
 title: Ejecting CD/DVD stuck in an iMac
+description: "CD/DVD stuck in your iMac? Try the options below to force it to eject."
 tags:
   - Mac OSX
 date: 2012-03-05 00:00:00 +1300

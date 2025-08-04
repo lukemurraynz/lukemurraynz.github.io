@@ -3,7 +3,7 @@ title: Getting Started with Azure Elastic SAN
 authors: [Luke]
 tags:
   - Azure
-description: Deployment and look into Azure Elastic SAN
+description: "Deployment and look into Azure Elastic SAN"
 toc: 'True'
 header:
   teaser: /images/posts/BytesBlocksAzureElasticSAN_Blog_Heading.gif

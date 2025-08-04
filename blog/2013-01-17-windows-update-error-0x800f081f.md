@@ -1,11 +1,11 @@
 ---
 title: Windows Update Error 0x800f081f
+description: "This problem is generally caused by corrupted/damaged DNS Cache. Follow the instructions below to repair."
 date: 2013-01-17 00:00:00 +1300
 authors: [Luke]
 tags:
   - Windows
 ---
-
 This problem is generally caused by corrupted/damaged DNS Cache. Follow the instructions below to repair.
 
   1. Click Start

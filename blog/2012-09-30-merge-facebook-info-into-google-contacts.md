@@ -1,5 +1,6 @@
 ---
 title: How to Merge Facebook Info into Google Contacts
+description: "First we use a web-based tool called “Friends To Gmail” which collates the data from your Facebook friends such as Name, Birthday and Biography informat..."
 date: 2012-09-30T15:16:50+00:00
 authors: [Luke]
 tags:

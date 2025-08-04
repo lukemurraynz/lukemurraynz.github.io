@@ -1,5 +1,6 @@
 ---
 title: Spotify Crashes Randomly
+description: "Having issues with Spotify? Few minutes or seconds after opening it crashes, follow the prompts below to repair:"
 date: 2012-08-24T19:53:23+00:00
 authors: [Luke]
 tags:

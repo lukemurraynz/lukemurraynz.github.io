@@ -1,5 +1,6 @@
 ---
 title: Nvlddmkm.sys/dxgkrnl.sys/dxgmms1.sys Issues
+description: "These issues are usually caused by damage and/or faulty nVidia drivers and DirectX components within Windows. Follow the instructions below to repair:"
 date: 2012-10-01T09:35:59+00:00
 authors: [Luke]
 tags:

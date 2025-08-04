@@ -12,7 +12,7 @@ keywords:
   - azure
   - powershell
   - landing zones
-description: Delve into the common ways to work with Microsoft Azure, using PowerShell.
+description: "Delve into the common ways to work with Microsoft Azure, using PowerShell."
 slug: azure/powershell/azure-management-powershell
 ---
 

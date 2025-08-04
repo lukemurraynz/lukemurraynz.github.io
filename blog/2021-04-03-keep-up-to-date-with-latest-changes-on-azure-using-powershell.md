@@ -1,5 +1,6 @@
 ---
 title: Keep up to date with Azure changes using PowerShell
+description: "Keeping up with what is happening with changes and previews in Microsoft Azure is difficult, change happens all the time - and being able to stay inform..."
 authors: [Luke]
 tags:
     - Misc

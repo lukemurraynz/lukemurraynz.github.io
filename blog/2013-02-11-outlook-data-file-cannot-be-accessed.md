@@ -1,12 +1,12 @@
 ---
 title: Outlook Data File Cannot be accessed
+description: "I have found this issue occurs commonly when upgrading from Outlook 2007 to 2010."
 authors: [Luke]
 date: 2013-02-11 00:00:00 +1300
 tags:
   - Misc
   - Windows
 ---
-
 I have found this issue occurs commonly when upgrading from Outlook 2007 to 2010.
 
 &nbsp;

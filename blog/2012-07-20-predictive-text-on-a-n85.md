@@ -1,5 +1,6 @@
 ---
 title: Enable Predictive Text on a Nokia N85
+description: "Learn about enable predictive text on a nokia n85. Step-by-step guide and solutions."
 layout: post
 permalink: /mob/predictive-text-on-a-n85/
 tags:

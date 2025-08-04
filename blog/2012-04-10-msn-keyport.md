@@ -1,5 +1,6 @@
 ---
 title: MSN Keyport
+description: "Learn about msn keyport. Step-by-step guide and solutions."
 permalink: /win/msn-keyport/
 tags:
   - Windows

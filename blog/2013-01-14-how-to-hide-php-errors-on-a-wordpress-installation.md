@@ -1,11 +1,11 @@
 ---
 title: How to hide PHP errors on a WordPress installation
+description: "Using an FTP client – such as Filezilla log in to your website."
 date: 2013-01-14 00:00:00 +1300
 authors: [Luke]
 tags:
   - Misc
 ---
-
   1. Using an FTP client – such as <a title="FileZilla" href="http://filezilla-project.org/" target="_blank">Filezilla</a> log in to your website.
   2. Navigate to your WordPress directory
   3. Right click **_wp-config.php_**

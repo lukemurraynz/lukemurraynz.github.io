@@ -1,5 +1,6 @@
 ---
 title: Black Screen of Death Windows Vista/7 NETIO.SYS
+description: "Caused when your network driver has become corrupted or changed for NetBIOs with an incompatible version from either Windows Updates or a filter from yo..."
 permalink: /win/bsod-win-vista7-netio-sys/
 tags:
   - Windows

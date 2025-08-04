@@ -1,5 +1,6 @@
 ---
 title: How to enable numlock on startup in Windows 8
+description: "If you are like me – you rely heavily on the Num Lock key and having it disabled on boot is extremely annoying – using a quick registry change you can e..."
 tags:
   - Windows
 date: 2014-04-28 00:00:00 +1300

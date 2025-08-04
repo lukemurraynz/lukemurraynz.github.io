@@ -1,5 +1,6 @@
 ---
 title: How to remove Applications from the application list on the Play Store
+description: "On your Android – open the Play Store."
 layout: post
 tags:
   - Mobile

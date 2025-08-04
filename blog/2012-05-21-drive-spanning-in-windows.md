@@ -1,5 +1,6 @@
 ---
 title: Setup Drive Spanning in Windows
+description: "Make sure you have no data available on the partitions, as this will erase everything"
 layout: post
 permalink: /win/drive-spanning-in-windows/
 tags:

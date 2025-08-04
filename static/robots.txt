@@ -1,5 +1,18 @@
 User-agent: *
 Allow: /
-Disallow: /tags/
 
+# Sitemap
 Sitemap: https://luke.geek.nz/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Allow search engines to find important content
+Allow: /blog/
+Allow: /tags/
+Allow: /archive/
+
+# Disallow admin and internal paths
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*?*

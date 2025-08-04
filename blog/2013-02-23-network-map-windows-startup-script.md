@@ -1,5 +1,6 @@
 ---
 title: Network Map Windows startup Script
+description: "net use z: \\\\\"192.168.1.1share\\\\\" /y"
 authors: [Luke]
 tags:
   - Windows

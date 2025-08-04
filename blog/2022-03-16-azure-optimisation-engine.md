@@ -1,5 +1,6 @@
 ---
 title: Azure Optimization Engine
+description: "This post is a part of Azure Spring Clean , which is a community event focused on Azure management topics from March 1..."
 authors: [Luke]
 tags:
   - Azure
@@ -8,7 +9,6 @@ toc: true
 header:
   teaser: /uploads/azurespringclean_2022_aoe.png
 ---
-
 This post is a part of [Azure Spring Clean](https://www.azurespringclean.com/), which is a community event focused on Azure management topics from March 14-18, 2022. 
 
 Thanks to [Joe Carlyle](https://twitter.com/wedoazure) and [Thomas Thornton](https://twitter.com/tamstar1234) for putting in the time and organising this event.

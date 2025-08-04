@@ -1,5 +1,6 @@
 ---
 title: How to contribute to Microsoft documentation
+description: "Did you know you can contribute to Microsoft documentation ms docs ?"
 authors: [Luke]
 tags:
   - Misc
@@ -8,7 +9,6 @@ toc: false
 header:
   teaser: /uploads/msdocs_contribute_issue.png
 ---
-
 Did you know you can contribute to Microsoft documentation _(ms docs)_?
 
 Suppose you see something not quite right, technically or even if the document's readability doesn't look right! Then, in true community style, you can contribute!

@@ -1,5 +1,6 @@
 ---
 title: Google Cheatsheet
+description: "Show a list of definitions for phrase"
 layout: post
 permalink: /misc/google-cheatsheet/
 tags:

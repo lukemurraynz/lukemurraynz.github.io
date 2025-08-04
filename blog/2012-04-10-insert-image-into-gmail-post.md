@@ -1,5 +1,6 @@
 ---
 title: How to Insert Image into Gmail Post
+description: "Click on the Gear Underneath your profile picture to the right"
 permalink: /misc/insert-image-into-gmail-post/
 tags:
   - Misc

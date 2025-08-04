@@ -1,5 +1,6 @@
 ---
 title: Countdown Shopping App List Share
+description: "To send other people your Countdown Shopping list, do the following:"
 date: 2012-09-30T08:49:51+00:00
 authors: [Luke]
 tags:

@@ -1,5 +1,6 @@
 ---
 title: Raspberry Pi Media Centre
+description: "First off, you need a Raspberry Pi and an SD Card/Reader"
 date: 2012-08-20T15:48:34+00:00
 authors: [Luke]
 tags:

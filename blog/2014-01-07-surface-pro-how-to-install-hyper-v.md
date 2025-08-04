@@ -1,10 +1,10 @@
 ---
 title: Surface Pro – How to install Hyper-V
+description: "Bring up the Metro Windows 8 interface"
 tags:
   - Windows
 date: 2014-01-07 00:00:00 +1300
 ---
-
   1. Bring up the Metro Windows 8 interface
   2. Type in: Programs & Features
   3. Select Turn Windows Features on or off on the left hand side menu

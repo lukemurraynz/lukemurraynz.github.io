@@ -1,5 +1,6 @@
 ---
 title: Reset Windows 7 Security Permissions
+description: "Navigate to Programs/Accessories"
 date: 2012-09-30T15:12:42+00:00
 authors: [Luke]
 tags:

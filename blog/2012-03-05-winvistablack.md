@@ -1,10 +1,10 @@
 ---
 title: 'Windows Vista Black Screen &#038; Slow to Boot Repair'
+description: "Ever had the problem where Windows Vista has a Black screen, while trying to boot? I have. This is how I fixed it For Advanced users only ."
 permalink: /win/winvistablack/
 tags:
   - Windows
 ---
-
 Ever had the problem where Windows Vista has a Black screen, while trying to boot? I have. This is how I fixed it (For Advanced users only).
 
   1. Delete the following folders/files

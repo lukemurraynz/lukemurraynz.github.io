@@ -1,5 +1,6 @@
 ---
 title: Acronis 2014 How to setup email notifications
+description: "To configure the email notifications in Acronis:"
 tags:
   - Windows
 date: 2014-04-20 00:00:00 +1300

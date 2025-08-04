@@ -1,5 +1,6 @@
 ---
 title: x800703F0 installing Vista SP1
+description: "Trying to install Service Pack 1 for Windows Vista and getting “x800703F0” error? Follow the guides below to fix it."
 date: 2012-10-02T13:06:32+00:00
 authors: [Luke]
 tags:

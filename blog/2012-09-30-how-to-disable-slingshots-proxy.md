@@ -1,5 +1,6 @@
 ---
 title: How to disable Slingshots Proxy
+description: "First you need to head to \\\" Slingshot \\\""
 date: 2012-09-30T11:34:48+00:00
 authors: [Luke]
 tags:

@@ -1,5 +1,6 @@
 ---
 title: Unable to Remote Desktop into Computer
+description: "There can be various reasons why people are unable to Remote Desktop into a Computer – one of the reasons could be they are not in the Remote Desktop us..."
 tags:
   - Windows
 date: 2014-04-27 00:00:00 +1300

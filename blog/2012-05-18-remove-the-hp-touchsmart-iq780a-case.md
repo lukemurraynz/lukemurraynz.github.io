@@ -1,5 +1,6 @@
 ---
 title: How to remove the HP TouchSmart IQ780a case
+description: "Face the back of the computer towards you."
 layout: post
 permalink: /misc/remove-the-hp-touchsmart-iq780a-case/
 tags:

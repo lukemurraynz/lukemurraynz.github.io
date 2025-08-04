@@ -1,5 +1,6 @@
 ---
 title: How to remove the Clock in Windows 7
+description: "Down by the time click the little notification arrow."
 date: 2012-08-06T09:08:41+00:00
 authors: [Luke]
 tags:

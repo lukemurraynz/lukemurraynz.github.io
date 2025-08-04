@@ -1,5 +1,6 @@
 ---
 title: Post to Facebook at the same time as Google+
+description: "Ever wanted to post on Google+ and have it automatic post Facebook as well? This is how you can do it."
 permalink: /misc/post-to-facebook-at-the-same-time-as-google/
 tags:
   - Misc

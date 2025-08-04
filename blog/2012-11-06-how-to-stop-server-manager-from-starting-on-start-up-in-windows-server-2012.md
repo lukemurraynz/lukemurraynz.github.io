@@ -1,5 +1,6 @@
 ---
 title: How to stop Server Manager from starting on start-up in Windows Server 2012
+description: "Click Server Manager Properties"
 date: 2012-11-06 00:00:00 +1300
 authors: [Luke]
 tags:

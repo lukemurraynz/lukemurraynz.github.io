@@ -1,12 +1,12 @@
 ---
 title: Excel – Add a space in a column of data.
+description: "Ever had a bunch of next and numbers in a column and needed to separate them with a space? Follow this guide."
 date: 2012-11-12 00:00:00 +1300
 authors: [Luke]
 tags:
   - Misc
   - Windows
 ---
-
 Ever had a bunch of next and numbers in a column and needed to separate them with a space? Follow this guide.
 
   1. Find the column you want to add a space to and right click the column heading.

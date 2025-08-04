@@ -1,5 +1,6 @@
 ---
 title: You have exceeded your profile space in Windows XP
+description: "You need to make a registry file and load it to fix the issues causing this problem, follow the instructions below:"
 permalink: /win/exceeded-your-profile-space-in-win-xp/
 tags:
   - Windows

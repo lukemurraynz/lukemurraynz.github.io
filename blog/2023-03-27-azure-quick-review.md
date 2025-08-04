@@ -1,6 +1,7 @@
 ---
 date: 2023-03-27T00:00:00.000+13:00
 title: Azure Quick Review
+description: "There are a lot of workbooks that help with Microsoft Azure cost optimization, but when having discussions and looking into SLA/ SLO"
 authors: [Luke]
 tags:
   - Azure

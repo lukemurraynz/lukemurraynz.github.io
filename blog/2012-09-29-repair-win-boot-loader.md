@@ -1,5 +1,6 @@
 ---
 title: How to repair Windows Boot Loader
+description: "First things first! In order to repair the Windows boot loaders you need the appropriate Windows CD/DVD for example: Windows XP Home/Professional CD for..."
 date: 2012-09-29T09:03:55+00:00
 authors: [Luke]
 tags:

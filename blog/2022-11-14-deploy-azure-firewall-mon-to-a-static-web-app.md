@@ -1,6 +1,7 @@
 ---
 date: '2022-11-14 00:00:00 +1300'
 title: Deploy Azure-Firewall-mon to a Static Web App
+description: "Azure-Firewall-mon \\\"Azure-Firewall-mon\\\" is a near real-time Azure Firewall"
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: /uploads/azfirewallmon.png
 slug: azure/deploy-azure-firewall-mon-to-a-static-web-app
 ---
-
 [Azure-Firewall-mon](https://github.com/nicolgit/azure-firewall-mon "Azure-Firewall-mon") is a near real-time [Azure Firewall](https://learn.microsoft.com/en-us/azure/firewall/overview?WT.mc_id=AZ-MVP-5004796 "What is Azure Firewall?") log viewer.
 
 > Azure-Firewall-mon provides an _alternative_and_opinable_ 😊 way to access and inspect Azure Firewall logs. The recommended approach for analysing Azure Firewall logs is to set up a Log Analytics Workspace to collect all the data and use Kusto _(KQL)_ queries to check what's happening.

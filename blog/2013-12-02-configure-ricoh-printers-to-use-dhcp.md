@@ -1,5 +1,6 @@
 ---
 title: Configure Ricoh printers to use DHCP
+description: "Go to: User Tools/Counter top left"
 authors: [Luke]
 date: 2013-12-02 00:00:00 +1300
 tags:

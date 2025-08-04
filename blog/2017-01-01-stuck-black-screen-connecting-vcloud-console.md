@@ -1,11 +1,11 @@
 ---
 title: Stuck at a Black Screen and Connecting on a vCloud console
+description: "On a computer running Windows 7 x64 SP1 Enterprise running Internet Explorer 11 browser, I had issues connecting to the console of Virtual Machines host..."
 image: /wp-content/uploads/2016/12/123116_0852_StuckataBla1.jpg
 tags:
   - Windows
 date: 2017-01-01 00:00:00 +1300
 ---
-
 On a computer running Windows 7 x64 SP1 Enterprise running Internet Explorer 11 browser, I had issues connecting to the console of Virtual Machines hosted by VMWare vCloud.
 
 <img class="alignnone" src="https://i1.wp.com/luke.geek.nz/wp-content/uploads/2016/12/123116_0852_StuckataBla1.jpg?resize=636%2C572&#038;ssl=1" alt="vCloud Console black screen" width="636" height="572" data-recalc-dims="1" />

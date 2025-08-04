@@ -1,11 +1,11 @@
 ---
 title: How to open a Brother DP-550CJ Printer
+description: "Undo the clips at the front, one on each side and lift the plastic panel up slightly."
 date: 2012-10-23 00:00:00 +1300
 authors: [Luke]
 tags:
   - Misc
 ---
-
 _What you will need_
 
 * Small Flat-Head Screwdriver

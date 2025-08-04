@@ -1,5 +1,6 @@
 ---
 title: Cleanup your unwanted Azure resources on a schedule
+description: "Cleanup your unwanted Azure resources on a schedule"
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
 date: '2023-06-06 00:00:00 +1300'
 slug: azure/Cleanup-your-unwanted-Azure-resources-on-a-schedule
 ---
-
 Cleanup your unwanted Azure resources on a schedule
 
 Every few months, I get that dreaded email "Your Microsoft Azure subscription has been suspended" - this is due to creating resources, and leaving them provisioned, so I needed a method of deleting the resources I didn't need, or wanted to spin up for a few days. I also needed away to creating resources that can stay, either for learning or a demo, independent of how the resources were deployed into the environment *(via the Azure Portal, Terraform, Bicep)*.

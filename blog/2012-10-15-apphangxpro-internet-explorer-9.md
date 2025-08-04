@@ -1,5 +1,6 @@
 ---
 title: AppHangXPro Internet Explorer 9
+description: "This issue commonly occurs on websites such as Facebook and Internet Explorer 9"
 date: 2012-10-15T08:55:11+00:00
 authors: [Luke]
 tags:

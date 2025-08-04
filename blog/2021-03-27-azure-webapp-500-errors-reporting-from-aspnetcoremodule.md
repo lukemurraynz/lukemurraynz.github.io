@@ -1,6 +1,7 @@
 ---
 date: 2021-03-27 00:00:00 +1300
 title: Azure WebApp 500 Errors reporting from AspNetCoreModule
+description: "Intermittent issues with Azure WebApp constantly stop functioning, a Stop/Start operation brings it back online."
 authors: [Luke]
 tags:
   - Azure

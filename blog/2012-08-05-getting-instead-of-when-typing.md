@@ -1,11 +1,11 @@
 ---
 title: Getting “ Instead of @ When Typing
+description: "This happens when the keyboard region has changed to UK instead of the usual standard US layout."
 date: 2012-08-05 00:00:00 +1300
 authors: [Luke]
 tags:
   - Windows
 ---
-
 _This happens when the keyboard region has changed to UK instead of the usual standard US layout._
 
 <ol start="1">

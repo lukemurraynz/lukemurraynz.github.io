@@ -1,5 +1,6 @@
 ---
 title: Enable Javascript in Internet Explorer
+description: "Problems running Javascript and want to enable it? This is how you do it."
 date: 2012-09-06T08:42:19+00:00
 authors: [Luke]
 tags:

@@ -1,6 +1,7 @@
 ---
 date: '2022-01-28 00:00:00 +1300'
 title: Just in Time access to Azure Virtual Machines
+description: "Microsoft Defender for Cloud offers advanced security features, combining functions such as adaptive application controls application whitelisting , net..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: images/iazure-marketplace-banner.png
 
 ---
-
 Microsoft Defender for Cloud offers advanced security features, combining functions such as adaptive application controls _(application whitelisting)_, networking hardening _(machine learning that learns the traffic passing through your network security group, which helps you create more restricted rules)_ and advanced antivirus and threat protection; however, a hidden gem of this suite is: Just in Time VM Access.
 
 For a [fee](https://azure.microsoft.com/en-us/pricing/details/defender-for-cloud/?WT.mc_id=AZ-MVP-5004796 " Microsoft Defender for Cloud pricing") for Microsoft Defender for Cloud, you can use Just In Time or JIT to lock down inbound traffic to your Azure Virtual Machines when you only need it.

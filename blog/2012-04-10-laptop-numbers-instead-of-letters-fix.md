@@ -1,5 +1,6 @@
 ---
 title: Laptop Typing Numbers instead of Letters Fix
+description: "If you find that your Laptop s letters have started to type numbers, the fix for this is quite simple."
 permalink: /misc/laptop-numbers-instead-of-letters-fix/
 tags:
   - Misc

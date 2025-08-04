@@ -1,5 +1,6 @@
 ---
 title: “Out of Memory” Fix when Upgrading to Windows 2000 from Windows 98SE
+description: "Type : msconfig If for some reason you do have have this download it and copy to c:WindowsSystem"
 date: 2012-09-30T17:19:54+00:00
 authors: [Luke]
 tags:

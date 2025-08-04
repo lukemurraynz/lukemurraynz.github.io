@@ -1,5 +1,6 @@
 ---
 title: Windows 7 – Authentication prompt for cached credentials in a domain environment
+description: "In order to fix this – you need to close all Internet Explorer windows."
 tags:
   - Windows
 date: 2013-12-23 00:00:00 +1300

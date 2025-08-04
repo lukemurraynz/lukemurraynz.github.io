@@ -1,5 +1,6 @@
 ---
 title: Turning On/Off Windows 7 Accessibility Options
+description: "If your like me and get annoyed with the virtual keyboard popping up out of nowhere follow the instructions below, or maybe you just want to enable them..."
 date: 2012-08-15T08:20:22+00:00
 authors: [Luke]
 tags:

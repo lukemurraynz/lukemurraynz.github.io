@@ -1,6 +1,7 @@
 ---
 date: 2021-06-13 00:00:00 +1200
 title: Add Log Analytics to Monitoring Agent with PowerShell
+description: "Have you ever wanted to add a Log Analytics workspace to multiple Microsoft Monitoring Agent MMA 's before?"
 authors: [Luke]
 Tags:
  - PowerShell

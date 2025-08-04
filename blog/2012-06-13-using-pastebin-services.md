@@ -1,5 +1,6 @@
 ---
 title: Using Pastebin Services
+description: "Pastebin service allows people to upload text, code for public viewing. Very handy when you want someone s opinion on something you have written or havi..."
 layout: post
 permalink: /misc/using-pastebin-services/
 tags:

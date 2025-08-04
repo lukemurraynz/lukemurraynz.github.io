@@ -1,5 +1,6 @@
 ---
 title: Power Calibration Error when attempting to burn CD/DVD
+description: "Look for the \\\" IMAPI CD-Burning COM Service \\\""
 layout: post
 permalink: /misc/power-calibration-burn/
 tags:

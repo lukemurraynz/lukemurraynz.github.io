@@ -1,5 +1,6 @@
 ---
 title: Icons missing in Windows 7
+description: "Open Task Manager Ctrl+Shift+Esc"
 permalink: /win/icons-missing-in-windows-7/
 tags:
   - Windows

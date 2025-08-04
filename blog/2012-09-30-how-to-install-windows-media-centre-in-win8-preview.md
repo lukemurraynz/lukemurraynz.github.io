@@ -1,5 +1,6 @@
 ---
 title: How to install Windows Media Centre in Windows 8 Preview
+description: "Windows 8 Consumer preview does not have the Windows Media Centre installed by default most likely because this will be an Add-on for purchase on release"
 date: 2012-09-30T10:21:03+00:00
 authors: [Luke]
 tags:

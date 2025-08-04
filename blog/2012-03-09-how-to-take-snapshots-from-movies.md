@@ -1,5 +1,6 @@
 ---
 title: How to take Snapshots from Movies
+description: "Ever wanted to capture that perfect scene from a movie or video clip? Heres how to do it."
 permalink: /win/how-to-take-snapshots-from-movies/
 tags:
   - Windows

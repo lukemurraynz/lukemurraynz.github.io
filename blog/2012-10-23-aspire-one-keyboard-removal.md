@@ -1,5 +1,6 @@
 ---
 title: Aspire One Keyboard Removal
+description: "Unplug the Aspire One battery to avoid any chances of the laptop turning on while you are working on it ."
 date: 2012-10-23 00:00:00 +1300
 authors: [Luke]
 tags:

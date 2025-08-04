@@ -1,5 +1,6 @@
 ---
 title: Can’t establish a reliable data connection to the server
+description: "Trying to add your Google Account to your Android phone and it s coming up with the error \\\"Can’t establish a reliable data connection to the server\\\" try..."
 layout: post
 permalink: /mob/cant-establish-a-reliable-data-connection-to-the-server/
 tags:

@@ -1,11 +1,11 @@
 ---
 title: How to import a CSV into iMail
+description: "First – make sure iMail is closed."
 date: 2013-01-14 00:00:00 +1300
 authors: [Luke]
 tags:
   - Mac OSX
 ---
-
 _First – make sure iMail is closed._
 
   1. Open **Finder**

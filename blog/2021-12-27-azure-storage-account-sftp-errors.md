@@ -1,5 +1,6 @@
 ---
 title: Azure Storage Account SFTP errors
+description: "As part of standing up and using an Azure Storage account as an SFTP service, I ran into a few issues. This blog post is merely intended to show my find..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: images/iazure-marketplace-banner.png
 slug: azure/azure-storage-account-sftp-errors
 ---
-
 As part of standing up and using an Azure Storage account as an SFTP service, I ran into a few issues. This blog post is merely intended to show my findings in case others run into similar issues.
 
 #### PTY allocation request failed on channel 0

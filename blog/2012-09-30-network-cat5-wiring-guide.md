@@ -1,5 +1,6 @@
 ---
 title: Network Cat5 Wiring Guide
+description: "Learn about network cat5 wiring guide. Step-by-step guide and solutions."
 date: 2012-09-30T20:16:28+00:00
 authors: [Luke]
 tags:

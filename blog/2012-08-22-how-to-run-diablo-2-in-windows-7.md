@@ -1,5 +1,6 @@
 ---
 title: How to run Diablo 2 in Windows 7
+description: "First things first, make sure you have Diablo 2 installed."
 date: 2012-08-22T09:54:48+00:00
 authors: [Luke]
 tags:

@@ -1,5 +1,6 @@
 ---
 title: Laptop Stuck on Zz Light
+description: "This usually occurs when the laptop has problems coming out of standby mode."
 permalink: /misc/laptop-stuck-on-zz-light/
 tags:
   - Misc

@@ -1,12 +1,11 @@
 ---
-
 title: How to lock a workstation in a Remote Desktop session
+description: "How to lock a Windows workstation while connected via Remote Desktop, by creating a shortcut to LockWorkStation."
 authors: [Luke]
 tags:
   - Windows
 date: 2013-12-02 00:00:00 +1300
 ---
-
   1. Right click on the remote desktop>
   2. Point to New and click Shortcut.
   3. In the Create Shortcut dialog box, type in the following:

@@ -1,11 +1,11 @@
 ---
 title: How to do a colour adjustment on a Sharp MX-4101N
+description: "How to do a colour adjustment on a Sharp MX-4101N"
 date: 2012-11-26 00:00:00 +1300
 authors: [Luke]
 tags:
   - Misc
 ---
-
 _How to do a colour adjustment on a Sharp MX-4101N_
 
 &nbsp;

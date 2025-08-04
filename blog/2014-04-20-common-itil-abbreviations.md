@@ -1,10 +1,10 @@
 ---
 title: Common ITIL V3 Abbreviations
+description: "ITIL Information Technology Infrastructure Library and IT Information Technology in general is filled with lots of abbreviations which sometimes get ahe..."
 tags:
   - Misc
 date: 2014-04-20 00:00:00 +1300
 ---
-
 ITIL _(Information Technology Infrastructure Library)_ and IT _(Information Technology)_ in general is filled with lots of abbreviations which sometimes get ahead of you &#8211; I have combined a useful list of ITIL abbreviations for quickly determining what something means. Use CTRL+F to quickly open the Find dialog of your internet browser and type in the abbreviation to display the meaning.
 
 **ACD** automatic call distribution

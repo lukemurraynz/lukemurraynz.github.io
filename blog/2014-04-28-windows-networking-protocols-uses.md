@@ -1,5 +1,6 @@
 ---
 title: Windows Networking Protocols and their uses
+description: "Networking is a marvel of interconnected devices and languages Windows networking protocols help that happen by making sure 2 devices are sharing the sa..."
 tags:
   - Windows
 date: 2014-04-28 00:00:00 +1300

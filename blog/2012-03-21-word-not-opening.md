@@ -1,5 +1,6 @@
 ---
 title: Howto Fix Word not opening
+description: "Having problems opening Word? This usually occurs when the template that it uses to generate a new fresh page is corrupted. Follow the instructions belo..."
 permalink: /win/word-not-opening/
 tags:
   - Windows

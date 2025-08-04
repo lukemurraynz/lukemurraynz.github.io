@@ -1,5 +1,6 @@
 ---
 title: Share files on a Mac with Windows
+description: "Share files on a Mac with Windows can be extremely useful and luckily for us extremely easy to setup and manage."
 tags:
   - Mac OSX
 date: 2014-04-20 00:00:00 +1300

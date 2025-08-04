@@ -1,5 +1,6 @@
 ---
 title: HP Laserjet 3390 Usage Page
+description: "Use the arrow buttons to select \\\" Reports \\\""
 permalink: /misc/hp-laserjet-3390-usage-page/
 tags:
   - Misc

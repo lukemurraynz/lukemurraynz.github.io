@@ -11,7 +11,7 @@ keywords:
   - azure
   - monitor
   - landing zones
-description: Monitor your Azure Landing Zone with Azure Monitor Baseline Alerts (AMBA).
+description: "Monitor your Azure Landing Zone with Azure Monitor Baseline Alerts (AMBA)."
 slug: azure/Monitor-Azure-LandingZones-with-AMBA
 ---
 

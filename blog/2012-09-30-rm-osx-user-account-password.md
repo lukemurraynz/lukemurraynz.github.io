@@ -1,5 +1,6 @@
 ---
 title: How to remove OSX User Account Password
+description: "Put your OSX CD/DVD into your optical drive."
 date: 2012-09-30T10:42:21+00:00
 authors: [Luke]
 tags:

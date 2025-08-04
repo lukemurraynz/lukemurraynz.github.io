@@ -1,10 +1,10 @@
 ---
 title: How to point Active Directory Administrative Center to another domain in Server 2012
+description: "Click Active Directory Administrative Center"
 tags:
   - Windows
 date: 2014-04-05 00:00:00 +1300
 ---
-
   1. Click **Start**
   2. Click **Administrative Tools**
   3. Click **Active Directory Administrative Center**

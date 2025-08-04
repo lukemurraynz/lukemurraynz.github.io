@@ -1,5 +1,6 @@
 ---
 title: Google Apps – Share documents outside domain
+description: "Login to your Google Apps admin"
 date: 2012-10-02T12:49:32+00:00
 authors: [Luke]
 tags:

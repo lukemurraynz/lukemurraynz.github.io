@@ -1,5 +1,6 @@
 ---
 title: Cannot delete Slingshot Webmail Quota filled
+description: "Click on Deleting and Moving Messages"
 date: 2012-09-30T16:54:44+00:00
 authors: [Luke]
 tags:

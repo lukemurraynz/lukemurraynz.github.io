@@ -1,5 +1,6 @@
 ---
 title: How to install a Wifi Max Wifi dongle in Windows Vista
+description: "How to install a Wifi Max Wifi dongle in Windows Vista"
 permalink: /win/wifimax-vista/
 tags:
   - Windows

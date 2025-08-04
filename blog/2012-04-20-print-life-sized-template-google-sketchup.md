@@ -1,5 +1,6 @@
 ---
 title: How to Print life Sized Template From Google Sketchup
+description: "Make sure that the Sketchup Camera mode is set to Parallel Projection and make sure that the all the standard Camera views are displayed without these s..."
 permalink: /misc/print-life-sized-template-google-sketchup/
 tags:
   - Misc

@@ -1,10 +1,10 @@
 ---
 title: Help Manual How to publish to epub
+description: "Help & Manual allows documents to be published to multiple formats – such as ePub & CHM easily."
 tags:
   - Windows
 date: 2014-01-12 00:00:00 +1300
 ---
-
 Help & Manual allows documents to be published to multiple formats – such as ePub & CHM easily.
 
   1. First open the Project you want to publish _(in this guide I am using the Get\_Me\_Started example project).

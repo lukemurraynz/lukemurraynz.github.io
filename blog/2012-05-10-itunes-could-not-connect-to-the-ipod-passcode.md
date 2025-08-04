@@ -1,5 +1,6 @@
 ---
 title: iTunes could not connect to the iPod Because It is locked with a Passcode.
+description: "Plug the iPod USB cable into the computer"
 permalink: /osx/itunes-could-not-connect-to-the-ipod-passcode/
 tags:
   - Mac OSX

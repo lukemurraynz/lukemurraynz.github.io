@@ -1,5 +1,6 @@
 ---
 title: How to change Windows Live Mail Message Store Location
+description: "Follow the instructions below to change the Windows Live Mail message store."
 date: 2012-08-30T14:20:37+00:00
 authors: [Luke]
 layout: post

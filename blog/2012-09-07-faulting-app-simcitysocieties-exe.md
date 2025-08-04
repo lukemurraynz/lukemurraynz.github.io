@@ -1,5 +1,6 @@
 ---
 title: 'Faulting application name: SimCitySocieties.exe'
+description: "Getting the \\\"Faulting application name: SimCitySocieties.exe, version: 1.0.4.243\\\" and cannot play your game? Try the fix below."
 date: 2012-09-07T06:26:44+00:00
 authors: [Luke]
 tags:

@@ -1,10 +1,10 @@
 ---
 title: How to repair an App-V application
+description: "In Windows – click on the notification tray by the time."
 tags:
   - Windows
 date: 2013-12-17 00:00:00 +1300
 ---
-
   1. In Windows – click on the notification tray by the time.
   2. Double click on the Microsoft Application Virtualization (App-V) client
   3. You will be greeted with the Virtual Application Management dialog – press VIRTUAL APPS

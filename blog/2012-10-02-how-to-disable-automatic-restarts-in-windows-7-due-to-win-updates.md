@@ -1,5 +1,6 @@
 ---
 title: How to disable automatic restarts in Windows 7 due to Windows Updates
+description: "In the search field type : regedit"
 date: 2012-10-02T03:47:38+00:00
 authors: [Luke]
 tags:

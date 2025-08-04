@@ -1,5 +1,6 @@
 ---
 title: How to Backup/Import Vivotech Camera Settings
+description: "Wishing to backup or import your configuration settings for your Vivotech cameras, follow the instructions below:"
 date: 2012-09-30T14:27:43+00:00
 authors: [Luke]
 tags:

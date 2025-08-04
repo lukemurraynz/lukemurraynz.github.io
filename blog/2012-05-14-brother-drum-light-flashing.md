@@ -1,5 +1,6 @@
 ---
 title: Brother Drum Light Flashing
+description: "To repair this follow the guide below:"
 permalink: /misc/brother-drum-light-flashing/
 tags:
   - Misc

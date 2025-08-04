@@ -1,5 +1,6 @@
 ---
 title: Microsoft Azure - ZonalAllocationFailed
+description: "> Error code : AllocationFailed or ZonalAllocationFailed"
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: /uploads/zonalallocationfailed.png
 slug: azure/microsoft-azure-zonalallocationfailed
 ---
-
 > **Error code**: AllocationFailed or ZonalAllocationFailed
 >
 > **Error message**: "Allocation failed. We do not have sufficient capacity for the requested VM size in this region. Read more about improving likelihood of allocation success at [https://aka.ms/allocation-guidance](https://aka.ms/allocation-guidance?WT.mc_id=AZ-MVP-5004796 "https://aka.ms/allocation-guidance")"

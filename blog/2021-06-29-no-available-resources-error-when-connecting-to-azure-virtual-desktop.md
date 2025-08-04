@@ -1,8 +1,7 @@
 ---
 date: 2021-06-28T12:00:00.000Z
-title: >-
-  No Available Resources Error when attempting to connect to Azure Virtual
-  Desktop
+title: "No Available Resources Error when attempting to connect to Azure Virtual Desktop"
+description: "When connecting to Azure Virtual Desktop, you may get a \"We couldn't connect because there are currently no available resources. Try again later or cont...\""
 authors: [Luke]
 tags:
   - Azure
@@ -11,7 +10,6 @@ header:
   teaser: images/iazure-marketplace-banner.png
 slug: azure/no-available-resources-error-when-connecting-to-azure-virtual-desktop
 ---
-
 When connecting to Azure Virtual Desktop, you may get a _"We couldn't connect because there are currently no available resources. Try again later or contact tech support for help if this keeps happening."_
 
 ![We couldn't connect because there are currently no available resources.](/uploads/noresourcesavd.png "We couldn't connect because there are currently no available resources.")

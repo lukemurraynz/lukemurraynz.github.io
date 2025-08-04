@@ -1,5 +1,6 @@
 ---
 title: Limit the bandwidth speed of Dropbox
+description: "This is how to limit the bandwidth speed of both your Uploads & Downloads for Dropbox"
 date: 2012-08-14T11:47:20+00:00
 authors: [Luke]
 layout: post

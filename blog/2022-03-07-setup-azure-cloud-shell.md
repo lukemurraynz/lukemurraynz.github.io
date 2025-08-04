@@ -1,6 +1,7 @@
 ---
 date: '2022-03-07 00:00:00 +1300'
 title: Setup Azure Cloud Shell
+description: "The Azure Cloud Shell allows connectivity to Microsoft Azure using an authenticated, browser-based shell experience that’s hosted in the cloud and acces..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: uploads/cloudshell.png
 slug: azure/setup-azure-cloud-shell
 ---
-
 The Azure Cloud Shell allows connectivity to Microsoft Azure using an authenticated, browser-based shell experience that’s hosted in the cloud and accessible from virtually anywhere as long as you have access to your favourite browser!
 
 Azure Cloud Shell is assigned per unique user account and automatically authenticated with each session.

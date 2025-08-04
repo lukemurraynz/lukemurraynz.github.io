@@ -1,5 +1,6 @@
 ---
 title: How to set-up your own Action bar in Diablo 3
+description: "Playing Diablo 3 and want to use abilities that are on the same tree and change the ability locations? Here is how you can do it."
 date: 2012-08-26T19:20:18+00:00
 authors: [Luke]
 tags:

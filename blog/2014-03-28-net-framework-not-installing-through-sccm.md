@@ -1,11 +1,11 @@
 ---
 title: .NET Framework not installing through SCCM
+description: "Click Run and type in: services.msc"
 tags:
   - Windows
 authors: [Luke]
 date: 2014-03-28 00:00:00 +1300
 ---
-
 1. Click **Start**
 2. Click **Run** and type in: **services.msc**
 3. **Stop** the **Automatic Update** service

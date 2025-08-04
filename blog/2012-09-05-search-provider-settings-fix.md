@@ -1,5 +1,6 @@
 ---
 title: A program on your computer has corrupted IE8 default search provider settings fix
+description: "Nothing causes more frustration, then when your favorite Internet Explorer search engine keeps resetting. This is how you fix it."
 date: 2012-09-05T18:09:37+00:00
 tags:
   - Windows

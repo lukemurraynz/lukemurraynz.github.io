@@ -1,5 +1,6 @@
 ---
 title: 'Plug & Play Software Enumerator No Sound Win XP'
+description: "Now we need to change to it type: Type : cd temp | press Enter"
 date: 2012-10-01T01:52:56+00:00
 authors: [Luke]
 tags:

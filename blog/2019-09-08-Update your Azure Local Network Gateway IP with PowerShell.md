@@ -1,6 +1,7 @@
 ---
 date: 2019-09-08
 title: Update your Azure Local Network Gateway IP with PowerShell
+description: "One of the issues you face with setting up an Azure Site to Site VPN"
 authors: [Luke]
 tags:
   - Azure

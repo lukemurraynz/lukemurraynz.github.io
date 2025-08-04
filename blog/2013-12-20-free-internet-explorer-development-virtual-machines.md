@@ -1,10 +1,10 @@
 ---
 title: Free Internet Explorer – Development Virtual Machines
+description: "I have recently found a good web resource – 90 day restricted Virtual Machines, compatible with Hyper-V/VMWare & Virtual box that I thought I would share."
 tags:
   - Misc
 date: 2013-12-20 00:00:00 +1300
 ---
-
 I have recently found a good web resource – 90 day restricted Virtual Machines, compatible with Hyper-V/VMWare & Virtual box that I thought I would share.
 
 These Virtual Machines are intended for web development testing and include Windows XP machines running Internet Explorer 6 to Windows 8.1 machines running Internet Explorer 11 _(as of this post)_.

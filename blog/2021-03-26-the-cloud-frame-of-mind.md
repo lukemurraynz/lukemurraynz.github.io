@@ -1,5 +1,6 @@
 ---
 title: The Cloud Frame of Mind
+description: "> Note: Warning buzzwords to follow. Yes, it's that type of article. The views expressed are purely my own."
 authors: [Luke]
 tags:
   - Misc
@@ -8,7 +9,6 @@ toc: false
 header: 
   teaser: "images/iazure-marketplace-banner.png"
 ---
-
 > Note: Warning buzzwords to follow. Yes, it's that type of article. The views expressed are purely my own.
 
 We are at a turning point in history, where technology is enabling us to do more with less and faster, human life expectancy is longer than what it has ever been, and the world has never been as connected - We are in the 4th industrial revolution.

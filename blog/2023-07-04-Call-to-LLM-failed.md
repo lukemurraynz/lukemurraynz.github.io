@@ -1,5 +1,6 @@
 ---
 title: Azure OpenAI - Call to LLM failed
+description: "I recently, ran into an error when attempting to use Azure OpenAI and custom data, in the Chat Playground."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
 date: '2023-07-04 00:00:00 +1300'
 slug: azure/Call-to-LLM-failed
 ---
-
 I recently, ran into an error  when attempting to use Azure OpenAI and custom data, in the Chat Playground.
 The error I was getting was:
 
