@@ -6,9 +6,7 @@ metaDescription: Discover how to use Azure DevOps Demo Generator to create pre-p
 authors: [Luke]
 tags:
   - Azure
-  - Azure DevOps
-  - Cloud Adoption Framework
-  - Migration
+  - Service Management
 toc: false
 header:
   teaser: images/iazure-marketplace-banner.png

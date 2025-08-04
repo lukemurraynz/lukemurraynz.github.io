@@ -1,22 +1,93 @@
 version: 2
 updates:
+  # GitHub Actions dependencies
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
       interval: weekly
-    open-pull-requests-limit: 10
+      day: monday
+      time: "09:00"
+      timezone: "Pacific/Auckland"  # New Zealand timezone
+    open-pull-requests-limit: 5
     labels:
       - 'pr: dependencies'
+      - 'github-actions'
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    groups:
+      github-actions-minor:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # NPM dependencies (Docusaurus and related)
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'daily'
-    # Disable version updates for npm dependencies
-    # https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates#overriding-the-default-behavior-with-a-configuration-file
-    open-pull-requests-limit: 10
+      interval: 'weekly'  # Changed from daily - more appropriate for blog
+      day: tuesday
+      time: "09:00"
+      timezone: "Pacific/Auckland"
+    open-pull-requests-limit: 8
     labels:
       - 'pr: dependencies'
+      - 'npm'
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    versioning-strategy: increase-if-necessary
+    groups:
+      docusaurus-core:
+        patterns:
+          - "@docusaurus/*"
+        update-types:
+          - "minor"
+          - "patch"
+      react-ecosystem:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@mdx-js/*"
+        update-types:
+          - "minor"
+          - "patch"
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+      production-minor:
+        dependency-type: "production"
+        exclude-patterns:
+          - "@docusaurus/*"
+          - "react"
+          - "react-dom"
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      # Ignore major version updates for core dependencies to prevent breaking changes
+      - dependency-name: "@docusaurus/*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+
+  # Development containers
   - package-ecosystem: "devcontainers"
     directory: "/"
     schedule:
       interval: weekly
+      day: wednesday
+      time: "09:00"
+      timezone: "Pacific/Auckland"
+    open-pull-requests-limit: 5
+    labels:
+      - 'pr: dependencies'
+      - 'devcontainer'
+    commit-message:
+      prefix: "devcontainer"
