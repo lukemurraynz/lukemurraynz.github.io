@@ -1,6 +1,6 @@
 ---
 title: How to lock a workstation in a Remote Desktop session
-description: "Right click on the remote desktop>"
+description: "How to lock a Windows workstation while connected via Remote Desktop, by creating a shortcut to LockWorkStation."
 authors: [Luke]
 tags:
   - Windows
