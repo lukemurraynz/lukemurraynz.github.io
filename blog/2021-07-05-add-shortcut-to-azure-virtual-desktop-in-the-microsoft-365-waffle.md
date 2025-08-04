@@ -1,16 +1,13 @@
 ---
 date: '2021-07-05 00:00:00 +1200'
-title: >-
+title: "Add a shortcut to the Azure Virtual Desktop Web Client to the Microsoft 365 waffle"
 description: "If you are like me, you use the application launchers in the Microsoft 365 waffle daily, if not hourly! Then having it as a single pane of glass to acce..."
-  Add a shortcut to the Azure Virtual Desktop Web Client to the Microsoft 365
-  waffle
 authors: [Luke]
 tags:
   - Azure
 toc: false
 header:
   teaser: /uploads/m365_pin.png
-
 ---
 If you are like me, you use the application launchers in the Microsoft 365 waffle daily, if not hourly! Then having it as a single pane of glass to access all your applications is a no-brainer!
 

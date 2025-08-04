@@ -4,9 +4,7 @@ authors: [Luke]
 toc: false
 tags:
   - PowerShell
-description: ""
-  Open multiple Microsoft Team instances, for access to multiple accounts with
-  PowerShell
+description: "Open multiple Microsoft Team instances, for access to multiple accounts with PowerShell"
 header:
   teaser: /images/posts/MS_Teams_logo_ws.png
 date: 2023-05-03 00:00:00 +1300

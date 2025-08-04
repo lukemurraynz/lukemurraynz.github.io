@@ -1,6 +1,7 @@
 ---
 title: Create VHD in Windows 7
 description: "Want to create a VHD in Windows 7? Why? You may ask... would you use a VHD?"
+tags:
   - Windows
 date: 2014-04-28 00:00:00 +1300
 ---

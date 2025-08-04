@@ -1,6 +1,6 @@
 ---
 title: Hidden Tags in Azure
-description: "Tags id=AZ-MVP-5004796 \\\"Use tags to organize you..."
+description: "Tags id=AZ-MVP-5004796 \\\\\"Use tags to organize you..."
 authors: [Luke]
 tags:
   - Azure

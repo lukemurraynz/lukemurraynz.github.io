@@ -1,16 +1,13 @@
 ---
 date: '2023-01-09 00:00:00 +1300'
-title: >-
+title: "Export icons to SVG from the Microsoft Azure Portal using Amazing Icon Downloader"
 description: "Have you ever wanted to export an icon from the Microsoft Azure Portal but found yourself having to screenshot the icon at a low definition to include i..."
-  Export icons to SVG from the Microsoft Azure Portal using Amazing Icon
-  Downloader
 authors: [Luke]
 tags:
   - Azure
 toc: false
 header:
   teaser: /uploads/azure-icon-downloader.png
-
 ---
 Have you ever wanted to export an icon from the Microsoft Azure Portal but found yourself having to screenshot the icon at a low definition to include in your documentation or presentations?
 

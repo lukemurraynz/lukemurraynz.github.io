@@ -1,6 +1,6 @@
 ---
 title: Outlook 2010 – Cannot process RSS Feed
-description: "Navigate to: HKCU\\Software\\Microsoft\\Office\\12.0\\Outlook\\Options\\RSS"
+description: "Navigate to: HKCU\\\\Software\\\\Microsoft\\\\Office\\\\12.0\\\\Outlook\\\\Options\\\\RSS"
 tags:
   - Windows
 date: 2013-12-03 00:00:00 +1300
