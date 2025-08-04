@@ -144,8 +144,8 @@ const config = {
         blog: {
           routeBasePath: "/", // Serve the blog at the site's root
           showReadingTime: true,
-          blogTitle: "Lukes Tech Blog - Unleashing the power of the cloud and other technologies!",
-          blogDescription: "Embark on a tech journey with Luke, a Microsoft Azure MVP, as he delves into the cutting-edge realm of Microsoft and Azure Cloud technologies. Explore, learn, and stay ahead in the dynamic world of cloud computing!",
+          blogTitle: "Luke's Tech Blog - Unleashing the power of the cloud and other technologies!",
+          blogDescription: "Follow Luke, Microsoft Azure MVP, on a journey through the latest Microsoft and Azure Cloud innovations. Learn, explore, and stay ahead in the fast-moving world of cloud computing.",
           postsPerPage: 5,
           onUntruncatedBlogPosts: 'ignore',
           blogSidebarTitle: "Recent posts",
