@@ -1,6 +1,6 @@
 ---
 title: How to adjust line spacing in Word 2010
-description: "Click the little \\\"enlarge icon\\\""
+description: "Click the Paragraph dialog box launcher (small arrow icon) in the Paragraph section of the Home tab."
 date: 2013-12-01 00:00:00 +1300
 authors: [Luke]
 tags:
