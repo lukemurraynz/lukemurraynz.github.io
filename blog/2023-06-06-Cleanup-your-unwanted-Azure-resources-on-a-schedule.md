@@ -79,7 +79,7 @@ As below, you can see the Resource Groups get removed (at the time of this recor
 ![Remove Azure Resoure Groups](/images/posts/Remove_AzResource.gif "Remove Azure Resoure Groups")
 
 ```powershell title="Initiate-DakaraSuperWeapon.ps1"
-# This runbook deletes all resource groups under a management group except for the ones with a specific tag.
+## This runbook deletes all resource groups under a management group except for the ones with a specific tag.
 <#
 .SYNOPSIS
 Deletes all resource groups under a management group except for the ones with a specific tag.
@@ -127,24 +127,24 @@ param (
     [switch][bool]$DeleteSubRoleAssignments = $false
 )
 
-# Convert string values to boolean values
+## Convert string values to boolean values
 $RemoveResourceGroups = [System.Boolean]::Parse($RemoveResourceGroups)
 $DeletePolicyAssignments = [System.Boolean]::Parse($DeletePolicyAssignments)
 $DeleteSubRoleAssignments = [System.Boolean]::Parse($DeleteSubRoleAssignments)
 
-# Ensures you do not inherit an AzContext in your runbook
+## Ensures you do not inherit an AzContext in your runbook
 Disable-AzContextAutosave -Scope Process
 
 #Toggle to stop warnings with regards to Breaking Changes in Azure PowerShell
 Set-Item -Path Env:\SuppressAzurePowerShellBreakingChangeWarnings -Value $true
 
-# Connect to Azure with system-assigned managed identity
+## Connect to Azure with system-assigned managed identity
 (Connect-AzAccount -Identity).context
 
-# Write an initial log message
+## Write an initial log message
 Write-Output "Initilizing superweapon...."
 
-# Get the subscription IDs under the specified management group AND child management groups
+## Get the subscription IDs under the specified management group AND child management groups
 function Get-AzSubscriptionsFromManagementGroup {
     param($ManagementGroupName)
     $mg = Get-AzManagementGroup -GroupId $ManagementGroupName -Expand
@@ -162,7 +162,7 @@ $mgid = Get-AzManagementGroup -GroupId $ManagementGroupID -Expand
 $subIds = (Get-AzSubscriptionsFromManagementGroup -ManagementGroupName $mgid.DisplayName).id
 
 
-# Delete the policy assignments
+## Delete the policy assignments
 
 if ($DeletePolicyAssignments -eq $true) {
     Write-Output "Deleting management group policy assignments..."
@@ -181,7 +181,7 @@ else {
     Write-Output "Skipping policy assignment deletion..."
 }
 
-# Delete the resource groups
+## Delete the resource groups
 if ($RemoveResourceGroups -eq $true) {
     Write-Output "Deleting resource groups..."
 

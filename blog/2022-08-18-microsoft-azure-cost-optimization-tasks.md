@@ -14,7 +14,7 @@ The [Microsoft Azure](https://azure.microsoft.com/en-us/?WT.mc_id=AZ-MVP-5004796
 
 There are no one-size-fits when it comes to cost optimization, but some general tasks can be done or considered on a Monthly/Quarterly/Annual basis to keep on top of the resources you are running in Azure and to keep them lean.
 
-#### Overview
+## Overview
 
 Although Microsoft takes a lot of traditional infrastructure management and security concerns off your hand, you are still responsible for the spending and ensuring the value of the technologies and services you consume match your business goals and agility.
 

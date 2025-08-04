@@ -14,7 +14,7 @@ Azure Blob storage (Platform-as-a-service (PaaS)) is used for streaming and stor
 
 As of January 2021, Blob storage now supports the Network File System (NFS) 3.0 protocol. This support provides Linux file system compatibility at object storage scale and prices and enables Linux clients to [mount a container](https://learn.microsoft.com/en-us/azure/storage/blobs/network-file-system-protocol-support?WT.mc_id=AZ-MVP-5004796 "Network File System (NFS) 3.0 protocol support in Azure Blob storage (preview)") in Blob storage from an Azure Virtual Machine (VM) or a computer on-premises.
 
-# First up what is a Blob?
+## First up what is a Blob?
 
 Blobs - _“Highly scalable, REST-based cloud object store”_
 
@@ -23,7 +23,7 @@ Blobs - _“Highly scalable, REST-based cloud object store”_
 * Page Blobs: Optimized for random access and can be up to 8 TB in size. IaaS VM OS & data disks and backups are of this type.
 * Append Blobs: Like block blobs and optimized for append operations. Ideal for logging scenarios and total size can be up to 195 GB.
 
-# Aren’t there only 2 access tiers?
+## Aren’t there only 2 access tiers?
 
 When you create an Azure Storage account, you get presented with 2 options for the Access Tier:
 
@@ -55,7 +55,7 @@ Data must remain in the archive tier for at least 180 days or be subject to an e
 
 While a blob is in archive storage, the blob data is offline and cannot be read or modified. To read or download a blob in the archive, you must first rehydrate it to an online tier.
 
-# How is this charged?
+## How is this charged?
 
 Depending on which tier your data is in, depends on the costs, Azure Blob Storage is charged on Read/Write and list operation and other factors, for example:
 
@@ -67,7 +67,7 @@ Depending on which tier your data is in, depends on the costs, Azure Blob Storag
 
 More information here: [https://azure.microsoft.com/en-us/pricing/details/storage/blobs/](https://azure.microsoft.com/en-us/pricing/details/storage/blobs/?WT.mc_id=AZ-MVP-5004796 "Azure Blobs")
 
-# What is data lifecycle management?
+## What is data lifecycle management?
 
 There are many versions of it, but at its core, there are 5 stages to simple data lifecycle management:
 
@@ -77,7 +77,7 @@ There are many versions of it, but at its core, there are 5 stages to simple dat
 * **Archival** – When the data is not as useful, but still helpful to have around due to knowledge or legal requirements.
 * **Destruction** – When the data is completely irrelevant and there is no need to store or use it anymore.
 
-# Right... so, tell me more about the Azure Blob Lifecycle Management?
+## Right... so, tell me more about the Azure Blob Lifecycle Management?
 
 Azure Blob Storage has a lifecycle management feature built-in. Azure Blob Storage lifecycle management offers a rich, rule-based policy for General Purpose v2 and blob (and Premium Block blob) storage accounts.
 
@@ -89,7 +89,7 @@ Azure Blob Storage has a lifecycle management feature built-in. Azure Blob Stora
 
 Microsoft Azure and Lifecycle Management for Blob Storage automate the entire lifecycle for you.
 
-# How do I enable or configure Azure Blob Lifecycle Management?
+## How do I enable or configure Azure Blob Lifecycle Management?
 
 1. Log in to the [Azure Portal](https://portal.azure.com/#home "Azure Portal")
 2. Find the Azure storage account you want to configure Lifecycle Management on

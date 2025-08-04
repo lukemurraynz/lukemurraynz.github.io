@@ -14,7 +14,7 @@ You might access resources such as [Azure SQL databases](https://azure.microsoft
 
 This is not sustainable, not scalable, and you might end up throwing your hands in the air and switching back to public-facing services and just whitelisting other users' Public IPs to gain access to Azure resources - which can lead to its own set of issues, such as unmanaged IPs left with access to resources after contractors or users leave or have finished their work, IP address changes if not managed correctly can allow any user or company to have a direct line of sight to your company resources.
 
-### Overview
+## Overview
 
 > Today we will concentrate on DNS resolution of Private Endpoints, using [Azure DNS Private Resolver](https://learn.microsoft.com/azure/dns/dns-private-resolver-overview?WT.mc_id=AZ-MVP-5004796 "What is Azure DNS Private Resolver?") as a DNS proxy when connecting to Azure using a [Point to Site VPN](https://learn.microsoft.com/azure/vpn-gateway/point-to-site-about?WT.mc_id=AZ-MVP-5004796 "About Point-to-Site VPN").
 

@@ -33,7 +33,7 @@ This is where using a third party timezone API like '[AbstractApi](https://www.a
 
 I have written a base runbook that does precisely that, every time the runbook runs, it checks if it is a public Holiday. If it is - then the Virtual Machine isn't started; if it isn't, then the virtual machine is started.
 
-### Overview
+## Overview
 
 Today, we are going to set up an Azure Automation runbook, triggered by a scheduled will go through the following steps:
 

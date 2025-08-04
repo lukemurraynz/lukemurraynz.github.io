@@ -14,7 +14,7 @@ Students learn in different ways through many possible avenues and experiences. 
 
 This article aims to help to make access to student resources clearer.
 
-#### Skilling Journey
+## Skilling Journey
 
 ![MS Student Developer - Skilling Journey](/uploads/student_developer_skillingjourney.png)
 

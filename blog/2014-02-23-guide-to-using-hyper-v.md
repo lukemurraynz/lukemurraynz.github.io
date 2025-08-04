@@ -6,7 +6,7 @@ tags:
   - Windows
 date: 2014-02-23 00:00:00 +1300
 ---
-### Introduction to Hyper-V
+## Introduction to Hyper-V
 
 Hyper-V is an emulation/hyper-visor Microsoft developed technology – similar to VMWare Workstation or ESXI that allows you to run Virtual Machines and different workloads simultaneously. Hyper-V is currently available in Windows 8, Windows Server 2008, Windows Server 2008 R2, Windows 8.1 & Windows Server 2012, Windows Server 2012 R2. The Hyper-V hypervisor allows multiple workloads to run on the same physical hardware that in the past would have otherwise only been suitable for one workload – allowing for power and resource efficiency.
 

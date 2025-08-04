@@ -36,7 +36,7 @@ The Azure Cloud Shell is very easy to set up and get going, but in this article,
 
 By default, CloudShell creates a new Resource Group, Storage account, Fileshare in the Southeast Asia region.
 
-### To set up Azure Cloud Shell
+## To set up Azure Cloud Shell
 
 1. Navigate to the [**Azure Portal**](https://portal.azure.com/#home "Microsoft Azure - Portal")
 2. Click on the little **Terminal/PowerShell icon** in the upper navigation bar

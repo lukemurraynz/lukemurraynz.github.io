@@ -22,7 +22,7 @@ So, how can we change the default Management Group, that new Subscriptions go in
 
 Lets take a look at the different ways we could use to update the default management group, that new subscriptions go into.
 
-### Configure using Azure Portal
+## Configure using Azure Portal
 
 1. Use the search bar to search for and select 'Management groups'.
 1. On the root management group, select details next to the name of the management group.

@@ -11,7 +11,7 @@ Supported by Windows 7/Windows 8 & Server 2008 R2/Server 2012 – Branchcache is
 
 First off – Branchcache is a method of &#8220;transparent caching&#8221; popular files from a network share to a more locally centralized – to the requesting computer – without increasing network bandwidth for a file that continuously gets pulled from a fileserver.
 
-#### Hosted
+## Hosted
 
 Branchcache hosted is a method of actually having a Branchcache server &#8211; on an actual physical remote site away from the main fileserver.
 

@@ -24,7 +24,7 @@ You can download this script from: [https://aka.ms/avd-collect](https://aka.ms/a
 
 A lot of the information below is contained in the script readme _(including a list of the extensive diagnostics and log locations)_ and changelog; however, I am supplying this article for reference and to help share this nifty tool.
 
-### Script pre-requisites
+## Script pre-requisites
 
 1. The script must be run with elevated permissions to collect all required data.
 2. All collected data will be archived into a .zip file located in the same folder as the script itself.

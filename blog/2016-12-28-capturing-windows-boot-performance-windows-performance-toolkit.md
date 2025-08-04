@@ -36,7 +36,7 @@ The Windows Performance Toolkit, developed by Microsoft has 3 separate tools and
   </ul>
 </div>
 
-### <span id="Download_Windows_Performance_Toolkit">Download Windows Performance Toolkit</span>
+## <span id="Download_Windows_Performance_Toolkit">Download Windows Performance Toolkit</span>
 
 This can be downloaded by going to the Microsoft website and looking for the latest Windows Assessment and Deployment Toolkit for the operating system you want to analyze – for example: Windows 10
 

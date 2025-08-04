@@ -37,7 +37,7 @@ Using the Providers is not a full-proof way of comparing the regions; however, f
 The PowerShell script can be found below:
 
 ```powershell title="RegionProvider_Compare.ps1"
-# Get the current date in an easy-to-read format
+## Get the current date in an easy-to-read format
 $currentDate = Get-Date -Format "MMMM dd, yyyy"
 
 [string]$location1 = "New Zealand North"
@@ -101,7 +101,7 @@ function Create-ComparisonTable {
     return $table
 }
 
-# Generate the HTML report with the date in the title
+## Generate the HTML report with the date in the title
 function Generate-HTMLReport {
     param (
         [array]$comparisonTable,
@@ -193,7 +193,7 @@ function Generate-HTMLReport {
     return $html
 }
 
-# Main script execution
+## Main script execution
 try {
     Write-Host "Fetching provider namespaces for $location1 and $location2 ..." -ForegroundColor Green
 

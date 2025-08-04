@@ -26,7 +26,7 @@ Using an Azure DevOps pipeline and repository and Azure Bicep, we will deploy an
 
 ![Azure Bicep - Pipeline High Level](/uploads/azurebicep_dns_hld.png "Azure Bicep - Pipeline High Level")
 
-### Create Azure Public DNS as Code
+## Create Azure Public DNS as Code
 
 #### Prerequisites
 
@@ -242,10 +242,10 @@ To add the Azure Bicep file into Azure DevOps, you can commit it into the git re
 Now that we have the initial Azure Bicep file, it's time to create our pipeline that will do the heavy lifting. I have created the base pipeline that you can download, and we will import it into Azure DevOps.
 
 ```yml title="azure-pipelines.yml"
-# Variable 'location' was defined in the Variables tab
-# Variable 'PrimaryDNSZone' was defined in the Variables tab
-# Variable 'ResourceGroupName' was defined in the Variables tab
-# Variable 'SPN' is defined in the Variables tab
+## Variable 'location' was defined in the Variables tab
+## Variable 'PrimaryDNSZone' was defined in the Variables tab
+## Variable 'ResourceGroupName' was defined in the Variables tab
+## Variable 'SPN' is defined in the Variables tab
 trigger:
   branches:
     include:
@@ -336,7 +336,7 @@ _Note: You can expand the Agent Job to see the steps of the job, I hid it as it 
 
 Remember to update your nameserver records for your domain to point towards the nameserver entries in the Azure DNS zone resource, to use Azure DNS!
 
-#### Edit the Bicep file
+## Edit the Bicep file
 
 Now that you have successfully deployed your Azure Bicep file, you can go into the Azure Bicep and update the A, CNAME records to match your own environment - any new change to this repository will automatically trigger Continous Integration and deployment, you can override this behaviour by editing the Pipeline, clicking Edit Trigger and unselect 'Enable; continuous integration
 

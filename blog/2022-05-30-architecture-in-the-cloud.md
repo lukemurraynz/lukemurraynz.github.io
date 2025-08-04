@@ -20,7 +20,7 @@ Running a solution in the cloud does not reduce the need for requirements to be 
 
 ![Requirements and Architecture](/uploads/requirementsandarchitecture.png "Requirements and Architecture")
 
-#### Non-functional requirements _(NFRs)_
+## Non-functional requirements _(NFRs)_
 
 Below is a short list of NFRs (not exhaustive) that may be provided by the business to help inform the design of a solution.
 

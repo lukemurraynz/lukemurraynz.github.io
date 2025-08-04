@@ -15,7 +15,7 @@ In early February 2022, Azure Bastion Preview support for the [native Windows SS
 
 Let’s test the native RDP client through a secure connection using Azure Bastion!
 
-### Prerequisites
+## Prerequisites
 
 * This configuration requires the [Standard](https://learn.microsoft.com/en-us/azure/bastion/configuration-settings?WT.mc_id=AZ-MVP-5004796 "Azure Bastion documentation") tier for Azure Bastion.
 * A Virtual Machine(s) to connect

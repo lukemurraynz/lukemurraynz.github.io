@@ -20,7 +20,7 @@ Microsoft has now added a built-in Monitoring workbook for Azure Virtual Desktop
 
 To configure, we first need to create a Log Analytics workspace that both the Host Pool and Workspace will connect to.
 
-### Create a Log Analytics workspace
+## Create a Log Analytics workspace
 
 You can use a Log Analytics workspace if it already exists; if not, we will have to create one.
 

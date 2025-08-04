@@ -21,7 +21,7 @@ In my case, the issue wasn't due to [IKEv2 Fragmentation](https://directaccess.r
 
 This matched my issue; I had never seen more than 2 connections at once.
 
-### Increase Ports
+## Increase Ports
 
  1. Open **Routing and Remote Access**
  2. **Click** on your Routing and **Remote Access server**

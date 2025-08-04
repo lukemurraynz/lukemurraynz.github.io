@@ -22,7 +22,7 @@ This is because the Microsoft Azure portal has a default filter, which is very h
 
 The following Microsoft document '[Manage Azure portal settings and preferences](https://learn.microsoft.com/en-us/azure/azure-portal/set-preferences?WT.mc_id=AZ-MVP-5004796 "Manage Azure portal settings and preferences")' is a great place to start, but let us take a look ourselves.
 
-### Azure Portal Filters
+## Azure Portal Filters
 
 #### Global Subscription Filter
 

@@ -140,7 +140,7 @@ param (
     [switch]$autoApprove
 )
 
-# Function to ensure Terraform is installed
+## Function to ensure Terraform is installed
 function Install-Terraform {
     param (
         [string]$version,
@@ -184,7 +184,7 @@ function Install-Terraform {
     $env:PATH = "$extractPath;$env:PATH"
 }
 
-# Function to run Terraform commands
+## Function to run Terraform commands
 function Invoke-Terraform {
     param (
         [string]$workingDirectory,
@@ -227,7 +227,7 @@ function Invoke-Terraform {
     }
 }
 
-# Main script
+## Main script
 try {
     # Create required directories
     if (!(Test-Path $configPath)) {

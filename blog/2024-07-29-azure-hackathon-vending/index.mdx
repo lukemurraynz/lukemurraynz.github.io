@@ -110,7 +110,7 @@ Team5,uksouth,hackathon,AI,"AI Hackathon for luke.geek.nz."
 Using this and the [AzureRM](https://registry.terraform.io/providers/hashicorp/azurerm/latest) Terraform provider, we can create the Resource Groups and assign the Access Packages to them.
 
 ```hcl
-# Define an Azure Resource Group resource named "rg".
+## Define an Azure Resource Group resource named "rg".
 resource "azurerm_resource_group" "rg" {
   # Create one resource group for each entry in the csv_data list.
   count    = length(local.csv_data)
@@ -135,7 +135,7 @@ You will create a Resource Group, such as below, for each team based on the CSV 
 Now we can create the Groups and assign the permissions:
 
 ```hcl
-# Define an Azure AD Group resource named "ad_group".
+## Define an Azure AD Group resource named "ad_group".
 resource "azuread_group" "ad_group" {
   # Create one Azure AD group for each entry in the csv_data list.
   count            = length(local.csv_data)
@@ -149,7 +149,7 @@ resource "azuread_group" "ad_group" {
   security_enabled = true
 }
 
-# Define an Azure Role Assignment resource named "role_assignment".
+## Define an Azure Role Assignment resource named "role_assignment".
 resource "azurerm_role_assignment" "role_assignment" {
   # Create one role assignment for each entry in the csv_data list.
   count                = length(local.csv_data)
@@ -167,7 +167,7 @@ resource "azurerm_role_assignment" "role_assignment" {
 So now, we have created the Resource Groups and Entra ID groups and assigned Owner permissions to the Resource Groups for each Team in the CSV file; it is time to deploy a base resource - such as Azure OpenAI, which those hackathon teams can use, to get going! [Azure OpenAI models are deployed to various regions](https://learn.microsoft.com/azure/ai-services/openai/concepts/models?WT.mc_id=AZ-MVP-5004796) and have token limits constrained to the region, so we need to consider how heavily these endpoints will be hit - which is why you may have noticed in the CSV, that the location of each Resource Group is different, so we want to use that to make sure that our Azure OpenAI resources are deployed in the same region as the Resource Group, to help balance.
 
 ```hcl
-# This resource block defines an Azure Cognitive Account resource named "openai"
+## This resource block defines an Azure Cognitive Account resource named "openai"
 resource "azurerm_cognitive_account" "openai" {
   # The for_each argument is used to iterate over a map created from local.csv_data.
   # Each entry in the map is identified by an index (idx) and its corresponding value (val).
@@ -243,7 +243,7 @@ resource "azuread_access_package_catalog" "Sandbox" {
   published    = true
 }
 
-# Define an Azure AD Access Package resource named "access_package"
+## Define an Azure AD Access Package resource named "access_package"
 resource "azuread_access_package" "access_package" {
   # The count parameter determines how many instances of this resource to create based on the length of the csv_data list.
   count = length(local.csv_data)
@@ -258,7 +258,7 @@ resource "azuread_access_package" "access_package" {
   description = "Access package for ${local.csv_data[count.index].Team}-${local.csv_data[count.index].Environment}-${local.csv_data[count.index].Notes}"
 }
 
-# Assign all groups we have created to our catalog
+## Assign all groups we have created to our catalog
 resource "azuread_access_package_resource_catalog_association" "CloudSandbox_Groups" {
   # The count parameter determines how many instances of this resource to create based on the length of the csv_data list.
   count = length(local.csv_data)
@@ -517,7 +517,7 @@ The Terraform backend settings look like this, with the state file stored in an 
   use_oidc = true
 }
 
-# Configure the Azure Provider with the features block
+## Configure the Azure Provider with the features block
 provider "azurerm" {
 
   skip_provider_registration = true

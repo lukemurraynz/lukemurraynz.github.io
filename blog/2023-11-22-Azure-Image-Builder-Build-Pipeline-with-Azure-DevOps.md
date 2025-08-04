@@ -578,21 +578,21 @@ output customizationsOutput array = customizations
 ### azure-pipelines.yml
 
 ```yaml title="azure-pipelines.yml"
-# Define the pipeline name and trigger
+## Define the pipeline name and trigger
 name: Azure Image Builder - Build and Publish Image Template
 trigger:
 - main
 
-# Define pipeline variables
+## Define pipeline variables
 variables:
   serviceconnection: azserviceconnections
   overwrite: false
 
-# Define the VM image for the pipeline
+## Define the VM image for the pipeline
 pool:
   vmImage: ubuntu-latest
 
-# Define the stages of the pipeline
+## Define the stages of the pipeline
 stages:
 
   # First stage: Deploy Azure Storage Account
@@ -651,7 +651,7 @@ stages:
                     --resource-group $(resourceGroupName) `
                     --parameters location=$(location) imagetemplatename=$(imagetemplatename) stgaccountname=$(storageaccountname) # Add more parameters as needed
 
-# Second stage: Run Azure Image Builder Template Build
+## Second stage: Run Azure Image Builder Template Build
 - stage: ImageBuilderRun
   jobs:
   - job: ImageBuilderRun

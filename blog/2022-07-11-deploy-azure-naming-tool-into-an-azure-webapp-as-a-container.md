@@ -25,7 +25,7 @@ With rules around naming resources that are Global, specific to Resource Groups 
 
 This is where the Azure Naming Tool, as part of the Microsoft Cloud Adoption framework, comes into play.
 
-### Overview
+## Overview
 
 The Naming Tool _(v2 as of June 2022)_ was developed using a naming pattern based on [Microsoft's best practices](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging). Once the organisational components have been defined by an administrator, users can use the tool to generate a name for the desired Azure resource.
 

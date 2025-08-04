@@ -24,7 +24,7 @@ These tips, also apply to the 'Following SKUs have failed for Capacity Restricti
 
 This error could also be caused by a parameter issue with your Infrastructure as Code deployments, if you are to restrictive and it attempts to create a resource that isn't supported - an example is a SKU that doesn't support Accelerated Networking, or an attempt to deploy an Ultra SSD disk for a SKU that doesn't deploy it.
 
-#### **Waiting for more Compute to be added to the Azure server clusters may not be an option, so what can you do?**
+## **Waiting for more Compute to be added to the Azure server clusters may not be an option, so what can you do?**
 
 ##### Raise a Support Case
 

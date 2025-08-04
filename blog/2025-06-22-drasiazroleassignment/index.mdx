@@ -144,20 +144,20 @@ First, we will connect to our AKS cluster and confirm we can see the namespace b
 
 
 ```bash
-# Install kubectl if not already installed
+## Install kubectl if not already installed
 sudo az aks install-cli
 
-# Login to Azure and get cluster credentials
+## Login to Azure and get cluster credentials
 az login
 az aks get-credentials --resource-group <your-resource-group> --name <your-cluster-name>
 
-# Check Drasi version
+## Check Drasi version
 drasi version
 
-# Initialize Drasi on Kubernetes
+## Initialize Drasi on Kubernetes
 drasi init --namespace drasi-system --version 0.3.4
 
-# Verify installation
+## Verify installation
 kubectl get pods -n drasi-system
 ``` 
 
@@ -182,7 +182,7 @@ Next, it's time to configure our Drasi source to read from the Event Hub. We are
 Now we need to grab the Issuer URL and Client ID of the User Assigned Managed Identity, we will need these to configure our federated credential, and configure out federated credential. Make sure to update for your own environment, the source name needs to align with your source name, and the service account to your namespace.
 
 ```bash
-# Variables
+## Variables
 AKS_NAME="drasi-azroleassignment-aks"
 RG_NAME="drasi-azrolemonitor-rg"
 MI_NAME="drasi-mi"
@@ -190,10 +190,10 @@ FC_NAME="drasi-eventhub"
 SUBJECT="system:serviceaccount:drasi-system:source.azure-role-eventhub-source"
 AUDIENCE="api://AzureADTokenExchange"
 
-# Get the OIDC issuer URL for the AKS cluster
+## Get the OIDC issuer URL for the AKS cluster
 ISSUER_URL=$(az aks show --name "$AKS_NAME" --resource-group "$RG_NAME" --query "oidcIssuerProfile.issuerUrl" -o tsv)
 
-# Create federated credential
+## Create federated credential
 az identity federated-credential create \
     --name "$FC_NAME" \
     --identity-name "$MI_NAME" \
@@ -235,7 +235,7 @@ Then check the status of the source:
 
 ```bash
 drasi list source
-# Output should show the source is Available.
+## Output should show the source is Available.
 ```
 
 ![Drasi Source](images/AddEHDrasiSource.gif)
@@ -336,7 +336,7 @@ Then check the status of the query:
 
 ```bash
 drasi list query
-# Output should show the query is Running. Any errors, such as syntax in the query, will be displayed here in the Error Message column.
+## Output should show the query is Running. Any errors, such as syntax in the query, will be displayed here in the Error Message column.
 ```
 
 ![Drasi Continuous Query](images/AddEHDrasiContinousQuery.gif)
@@ -369,7 +369,7 @@ Then check the status of the query:
 
 ```bash
 drasi list reaction
-# Output should show the query is Available. 
+## Output should show the query is Available. 
 ```
 
 ![Drasi Reaction](images/AddEHDrasiEGReaction.gif)
@@ -448,7 +448,7 @@ import TabItem from '@theme/TabItem';
 ```powershell title="run.ps1"
 param($eventGridEvent, $TriggerMetadata)
 
-# Handle Drasi.ControlSignal events
+## Handle Drasi.ControlSignal events
 if ($eventGridEvent.type -eq 'Drasi.ControlSignal') {
     $payload = $eventGridEvent.data.payload
     $kind = $payload.kind
@@ -592,9 +592,9 @@ Write-Host "=== Drasi RBAC Action Handler Complete ==="
 <TabItem value="eventprocessor" label="EventProcessor.ps1">
 
 ```powershell title="EventProcessor.ps1"
-# Modular action handlers for Azure resource automation
+### Modular action handlers for Azure resource automation
 
-# Configuration management class
+## Configuration management class
 class ConfigurationManager {
     [hashtable]$Config
     [string]$ConfigPath
@@ -659,7 +659,7 @@ class ConfigurationManager {
 }
 }
 
-# Event parsing function for Drasi events
+## Event parsing function for Drasi events
 function Parse-DrasiEvent {
     param([hashtable]$eventGridEvent)
     $result = @{
@@ -758,7 +758,7 @@ function Parse-DrasiEvent {
     }
 }
 
-# Action orchestrator class
+## Action orchestrator class
 class ActionOrchestrator {
     [ConfigurationManager]$ConfigManager
     
@@ -1407,7 +1407,7 @@ class CleanupBastionAction : BaseAction {
     }
 }
 
-# Action factory function
+### Action factory function
 function New-Action {
     param(
         [string]$ActionName,

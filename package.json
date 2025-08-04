@@ -11,7 +11,11 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "seo:check-headings": "node scripts/check-headings.js",
+    "seo:fix-headings": "node scripts/check-headings.js --fix",
+    "seo:analyze-images": "node scripts/image-optimizer.js",
+    "seo:all": "npm run seo:check-headings && npm run seo:analyze-images"
   },
   "dependencies": {
     "@docusaurus/core": "3.8.1",

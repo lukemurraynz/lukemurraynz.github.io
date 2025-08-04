@@ -28,7 +28,7 @@ This guide will concentrate on setting up WebJEA for self-service Azure VM manag
 
 We will use a Windows Server 2019, running in Microsoft Azure, to run WebJEA from.
 
-### Prerequisites
+## Prerequisites
 
 * Domain Joined server running Windows 2016+ Core/Full with PowerShell 5.1
 * The server must have permission to go out over the internet to Azure and download PowerShell modules.

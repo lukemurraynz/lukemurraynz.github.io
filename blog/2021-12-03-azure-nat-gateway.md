@@ -20,7 +20,7 @@ Tunnelling outbound traffic through to a specific IP address or IP addresses to 
 
 "The Azure NAT gateway is a fully managed, highly resilient service built into the Azure fabric, which can be associated with one or more subnets in the same Virtual Network, that ensures that all outbound Internet-facing traffic will be routed through the gateway. As a result, the NAT gateway gives you a predictable public IP for outbound Internet-facing traffic. It also significantly increases the available [SNAT ports](https://learn.microsoft.com/en-us/azure/app-service/troubleshoot-intermittent-outbound-connection-errors?WT.mc_id=AZ-MVP-5004796) in scenarios where you have a high number of concurrent connections to the same public address/port combination."
 
-### My Testing
+## My Testing
 
 Now lets get testing the Azure NAT Gateway! To test the gateway, I created:
 

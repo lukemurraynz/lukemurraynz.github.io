@@ -24,7 +24,7 @@ Although mainly occurring in the older versions of Windows I have seen this erro
   </ul>
 </div>
 
-#### <span id="Fixing_this_error_in_Windows_7">Fixing this error in Windows 7</span>
+## <span id="Fixing_this_error_in_Windows_7">Fixing this error in Windows 7</span>
 
   1. Click Start
   2. Click Control Panel

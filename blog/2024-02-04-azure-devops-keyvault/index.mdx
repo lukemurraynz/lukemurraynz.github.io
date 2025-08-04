@@ -62,10 +62,10 @@ The keyVaultName is the name of the keyVault you want to access.
 
 Note: The condition criteria is set to succeed or fail so that the task will run regardless of whether previous tasks have succeeded or failed.
 
-# Add Agent IP to KeyVault Firewall
+## Add Agent IP to KeyVault Firewall
 
 ```yaml title="AzureCLI@2.yml"
-# This task uses Azure CLI to add the IP address of the Azure DevOps agent to the firewall of an Azure Key Vault.
+## This task uses Azure CLI to add the IP address of the Azure DevOps agent to the firewall of an Azure Key Vault.
 - task: AzureCLI@2  # Specifies the task to use Azure CLI version 2.
   displayName: Add Agent IP From Key Vault  # The name displayed for this task in the Azure DevOps pipeline.
   condition: succeededOrFailed()  # This task will run regardless of whether previous tasks have succeeded or failed.
@@ -79,10 +79,10 @@ Note: The condition criteria is set to succeed or fail so that the task will run
       az keyvault network-rule add --name "${{ parameters.keyVaultName }}" --ip-address "$agentIP" --only-show-errors  # Uses the Azure CLI to add the IP address of the Azure DevOps agent to the firewall of the Azure Key Vault specified by the keyVaultName parameter. The --only-show-errors option means that the command will only output information if an error occurs.
 ```
 
-# Remove Agent IP to KeyVault Firewall after your other tasks
+## Remove Agent IP to KeyVault Firewall after your other tasks
 
 ```yaml title="AzureCLI@2.yml"
-# This task uses Azure CLI to remove the IP address of the Azure DevOps agent from the firewall of an Azure Key Vault.
+## This task uses Azure CLI to remove the IP address of the Azure DevOps agent from the firewall of an Azure Key Vault.
 - task: AzureCLI@2  # Specifies the task to use Azure CLI version 2.
   displayName: Remove Agent IP From Key Vault  # The name displayed for this task in the Azure DevOps pipeline.
   condition: succeededOrFailed()  # This task will run regardless of whether previous tasks have succeeded or failed.

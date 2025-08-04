@@ -31,7 +31,7 @@ This is a host-level setting, so setting 'Start VM on Connect' will affect all s
 
 Follow the guide below to implement; the Microsoft documentation is pretty good but hoping this might fill in a few gaps for people.
 
-### Create a Custom Role for "Windows Virtual Desktop"
+## Create a Custom Role for "Windows Virtual Desktop"
 
 For the "Windows Virtual Desktop" service principal (this should already exist, it is an inbuilt SPN created by the Azure infrastructure, it is currently called Windows Virtual Desktop but expect this name to be updated in the future) to have the ability to Start a Virtual Machine, we first need to give it rights. You could give it Contributor or Virtual Machine Contributor rights but want to go with the least privileged to create a custom role.
 

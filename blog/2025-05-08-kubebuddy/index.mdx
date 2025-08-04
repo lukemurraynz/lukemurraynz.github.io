@@ -59,21 +59,21 @@ Install-Module -Name KubeBuddy -Scope CurrentUser -Force -AllowClobber
 Once installed, we need to log in to Azure using the Azure CLI and then connect to the AKS cluster.
 
 ```powershell
-# =========================
-# Variables
+##################### =========================
+### Variables
 # =========================
 $resourceGroup      = "akscluster-rg"
 $clusterName        = "lukesakscluster"
 $subscriptionId     = "7a30b0c4-5b48-419e-8e57-439b127b69d2"
 # =========================
-# Helper Functions
+#### Helper Functions
 # =========================
 function Write-Log {
     param([string]$message)
     Write-Host "$(Get-Date -Format o): $message"
 }
 # =========================
-# Main Logic
+#### Main Logic
 # =========================
 Write-Log "Setting Azure subscription context..."
 az account set --subscription $subscriptionId
@@ -159,7 +159,7 @@ Then run a script similar to the one below to create a comparison file:
 ```powershell
 # =========================
 
-# Variables (snake_case)
+## Variables (snake_case)
 
 # =========================
 
@@ -169,7 +169,7 @@ $output_diff_path = "./kubebuddy-report-diff.txt"
 
 # =========================
 
-# Parameters (camelCase)
+## Parameters (camelCase)
 
 # =========================
 

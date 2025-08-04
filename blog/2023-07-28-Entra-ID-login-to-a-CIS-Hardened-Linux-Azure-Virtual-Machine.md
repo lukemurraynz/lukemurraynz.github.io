@@ -43,7 +43,7 @@ So after your CIS Hardened Image, in my case I am using Ubuntu 20.04 has been de
 
 You will need to make sure you have a few prerequsites.
 
-### Prerequisites
+## Prerequisites
 
 #### Network
 
@@ -83,7 +83,7 @@ The minimum version required for the extension is 0.1.4.
 
 Make sure the Virtual Machine is on, for the extension to install.
 
-##### Install using the Azure Portal
+#### Install using the Azure Portal
 
 Once the pre-requsites have been met, it is time to install the extension.
 

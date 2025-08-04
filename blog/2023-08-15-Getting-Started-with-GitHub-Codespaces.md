@@ -21,7 +21,7 @@ Github Codespaces does this by leveraging the power of the Cloud and GitHub to r
 
 Let's delve into [Github Codespaces](https://github.com/features/codespaces) a bit more!
 
-#### Introduction
+## Introduction
 
 GitHub Codespaces is a cloud-based development environment provided by GitHub, designed to enhance the coding experience and streamline collaboration for developers. It allows you to create, manage, and access your development environments directly from your web browser. With GitHub Codespaces, you can code, build, test, and debug your projects without setting up complex local development environments on your machine.
 

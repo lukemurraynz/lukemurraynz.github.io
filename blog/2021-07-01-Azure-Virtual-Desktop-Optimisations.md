@@ -14,7 +14,7 @@ If you are running Azure Virtual Desktop, you want to get the most performance a
 
 These are a few recommended policies and optimisations to apply to your Azure Virtual Desktop setup. These are in no particular order; they are just recommendations.
 
-### Configure Timezone Redirection
+## Configure Timezone Redirection
 
 Timezone redirection will allow you to pass through the time from the local device to the Azure Virtual Desktop host. This is useful to keep the consistent time between the device you are connecting from and the session host, and by default, the timezone in Azure is UTC.
 

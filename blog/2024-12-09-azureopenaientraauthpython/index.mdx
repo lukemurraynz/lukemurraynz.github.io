@@ -47,7 +47,7 @@ The Python code is as follows:
 
 ```python
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-# Load environment variables from OS and .env file
+## Load environment variables from OS and .env file
 ENV = {var: os.getenv(var) for var in ["AZURE_OPENAI_ENDPOINT", "AZURE_OPENAI_KEY", "AZURE_OPENAI_API_VERSION", "AZURE_OPENAI_CHATGPT_DEPLOYMENT"]}
 if any(value is None for value in ENV.values()):
     ENV.update({k: v for k, v in dotenv.dotenv_values("azureopenai.env").items() if k not in ENV or ENV[k] is None})
@@ -57,7 +57,7 @@ missing_vars = [var for var in required_env_vars if not ENV.get(var)]
 if missing_vars:
     raise KeyError(f"Missing required environment variables: {', '.join(missing_vars)}")
 
-# Check if the Authentication environment variable is set to Azure
+## Check if the Authentication environment variable is set to Azure
 if os.getenv("AUTHENTICATION") == "AZURE":
     token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
     client = AzureOpenAI(

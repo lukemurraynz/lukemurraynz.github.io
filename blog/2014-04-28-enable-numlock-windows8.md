@@ -22,7 +22,7 @@ If you are like me – you rely heavily on the Num Lock key and having it disabl
   </ul>
 </div>
 
-#### <span id="HOW_TO_enableNUMLOCK_ON_STARTUP">HOW TO enable NUMLOCK ON STARTUP</span>
+## <span id="HOW_TO_enableNUMLOCK_ON_STARTUP">HOW TO enable NUMLOCK ON STARTUP</span>
 
   1. Press the Windows Key to open the Tile (Metro) screen
   2. Type: regedit to search for the Windows Registry Editor and press Enter.

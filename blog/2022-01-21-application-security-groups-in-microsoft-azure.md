@@ -27,7 +27,7 @@ In my example, I have a single virtual network, with 2 subnets _(one subnet, has
 
 ![High Level  - Diagram ASG](/uploads/highleveldiagram_asg.png "High Level  - Diagram ASG")
 
-#### Create Application Security Group
+## Create Application Security Group
 
 Let's get started by creating an Application Security Group.
 

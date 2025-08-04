@@ -16,7 +16,7 @@ In my tests – I have a single resource group named: AzPolicy-Test. This resour
 
 Now that we have a Resource Group to use in our testing, I need a policy – to keep things simple, I am going use the built-in policy of: [AllowedLocations](https://www.azadvertizer.net/azpolicyadvertizer/e56962a6-4747-49cd-b67b-bf8b01975c4c.html). This policy will allow us to control which region we can deploy our Azure resources into.
 
-##### **Scenario #1 – Policy assigned to the subscription with Allow Australia East ONLY**
+## **Scenario #1 – Policy assigned to the subscription with Allow Australia East ONLY**
 
 I have assigned my Azure Policy to a Subscription, that contains my AzPolicy-Test Resource Group. I have set the Allowed Locations to: Australia East.
 

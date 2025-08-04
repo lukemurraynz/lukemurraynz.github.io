@@ -70,7 +70,7 @@ There are some settings that you might need to change in your system to run **ma
 
 In other cases the file opens with the following message, which prevents you from being able to load the checklist items:
 
-### Unblock file or add an exception to Windows Security
+## Unblock file or add an exception to Windows Security
 
 1. You might need to unblock the file from the file properties in the Windows File Explorer, so that you can use the macros required to import the checklist content from github.com:
 2. Additionally, you might want to add the folder where you cloned this repo to the list of exceptions in Windows Security (in the Virus & Threat Protection section):

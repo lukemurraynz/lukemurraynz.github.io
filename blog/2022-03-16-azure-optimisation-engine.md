@@ -19,7 +19,7 @@ Today I will be covering the [Azure Optimization Engine](https://github.com/held
 
 ![#AzureSpringClean - Azure Optimization Engine](/uploads/azurespringclean_2022_aoe.png "#AzureSpringClean - Azure Optimization Engine")
 
-### Overview
+## Overview
 
 > The Azure Optimization Engine _(AOE)_ is an extensible solution designed to generate optimization recommendations for your Azure environment, like a fully customizable Azure Advisor.
 >
@@ -342,7 +342,7 @@ When we set up the Azure SQL database earlier, as part of the Azure Optimisation
 
 It's worth noting, that because Azure Optimization Engine stores its data into Log Analytics and SQL, you can use languages such as KQL directly on the Log Analytics workspace to pull out any information you might need and develop integration into other toolsets.
 
-##### Workbooks
+#### Workbooks
 
 There are x3 Azure Log Analytics workbooks included in the Azure Optimization Engine, these are as follows:
 

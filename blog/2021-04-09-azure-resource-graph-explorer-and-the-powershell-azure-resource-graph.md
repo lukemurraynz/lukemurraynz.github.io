@@ -16,7 +16,7 @@ The idea was to create an export of Azure Recommendations, directly from the Azu
 * Azure Resource Graph Explorer
 * The [Az.ResourceGraph](https://learn.microsoft.com/en-us/azure/governance/resource-graph/first-query-powershell?WT.mc_id=AZ-MVP-5004796) PowerShell module
 
-### Azure Graph Resource Explorer
+## Azure Graph Resource Explorer
 
 The Azure Graph Resource Explorer is built into the Azure Portal, it can be found by going to [https://portal.azure.com/#blade/HubsExtension/ArgQueryBlade](https://portal.azure.com/#blade/HubsExtension/ArgQueryBlade "https://portal.azure.com/#blade/HubsExtension/ArgQueryBlade")
 or by logging into the [Azure Portal](https://portal.azure.com) and typing in 'Resource Graph' and select Explorer.
@@ -148,7 +148,7 @@ First things first you need to install the Az.ResourceGraph module, then you can
   # Install the Resource Graph module from PowerShell Gallery
 Install-Module -Name Az.ResourceGraph -Scope CurrentUser
 
-# Imports the Resource Graph module into the PowerShell session
+## Imports the Resource Graph module into the PowerShell session
 Import-Module -Name Az.ResourceGraph
 
 #Connects to Microsoft Azure

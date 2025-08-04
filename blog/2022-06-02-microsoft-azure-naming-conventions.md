@@ -30,7 +30,7 @@ The use of these limitations and scopes have been used to determine the followin
 | --- | --- |
 | Lowercase | {organizationName}-{component}-{resourceTypeshortCode}-{regionShortCode}-{environmentlongcode} |
 
-### Naming Convention Examples
+## Naming Convention Examples
 
 | Environment | Application Name | Azure Region | Azure Service | Example Name |
 | --- | --- | --- | --- | --- |

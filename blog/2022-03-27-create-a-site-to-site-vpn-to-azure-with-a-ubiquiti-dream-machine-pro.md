@@ -22,7 +22,7 @@ My address range is as follows _(so make sure you adjust to match your setup and
 | --- | --- |
 | 192.168.1.0/24 | 10.0.0.0/16 |
 
-#### Prerequisites
+## Prerequisites
 
 * The latest [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-7.1.0?WT.mc_id=AZ-MVP-5004796) modules and [Azure Bicep/Azure CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install?WT.mc_id=AZ-MVP-5004796) for local editing
 * An Azure subscription that you have at least contributor rights to

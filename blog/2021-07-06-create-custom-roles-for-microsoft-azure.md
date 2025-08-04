@@ -34,7 +34,7 @@ Custom Roles can give people or objects JUST the right amount of permissions to 
 
 I will run through a few things to help arm you understand and build your own Custom Roles, primarily using PowerShell.
 
-### Install the Azure PowerShell Modules
+## Install the Azure PowerShell Modules
 
 As a pre-requisite for the following, you need to install the Azure (Az) PowerShell Module. You can skip this section if you already have the PowerShell modules installed.
 

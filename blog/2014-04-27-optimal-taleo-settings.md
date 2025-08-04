@@ -40,7 +40,7 @@ date: 2014-04-27 00:00:00 +1300
   </ul>
 </div>
 
-#### <span id="Magnification">Magnification</span>
+## <span id="Magnification">Magnification</span>
 
 The magnification level of your Internet browser must be set to 100%.
   

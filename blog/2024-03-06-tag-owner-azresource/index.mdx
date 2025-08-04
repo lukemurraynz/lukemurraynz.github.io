@@ -79,11 +79,11 @@ Disable-AzContextAutosave -Scope Process | Out-Null;
 #Toggle to stop warnings with regard to Breaking Changes in Azure PowerShell
 Set-Item -Path Env:\SuppressAzurePowerShellBreakingChangeWarnings -Value $true
 
-# Import the required modules
+## Import the required modules
 Import-Module Az.Accounts
 Import-Module Az.Resources
 
-# Define the tag name as a variable
+## Define the tag name as a variable
 $tagName = "Createdby"
 
 #Adjust to suit your management group; this is the top scope that the Script will run under
@@ -96,7 +96,7 @@ Connect-AzAccount -Identity
 
 
 
-# Get the subscription IDs under the specified management group AND child management groups
+## Get the subscription IDs under the specified management group AND child management groups
 function Get-AzSubscriptionsFromManagementGroup {
     param($ManagementGroupName)
     $mg = Get-AzManagementGroup -GroupId $ManagementGroupName -Expand

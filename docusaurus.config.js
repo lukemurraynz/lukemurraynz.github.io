@@ -38,6 +38,35 @@ const config = {
   
   // Enhanced SEO configuration
   headTags: [
+    // Security headers for better SEO and security
+    {
+      tagName: 'meta',
+      attributes: {
+        httpEquiv: 'Content-Security-Policy',
+        content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com;",
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        httpEquiv: 'X-Content-Type-Options',
+        content: 'nosniff',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        httpEquiv: 'X-Frame-Options',
+        content: 'DENY',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        httpEquiv: 'Referrer-Policy',
+        content: 'strict-origin-when-cross-origin',
+      },
+    },
     // Enhanced Open Graph tags
     {
       tagName: 'meta',

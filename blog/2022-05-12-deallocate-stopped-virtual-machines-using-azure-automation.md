@@ -29,7 +29,7 @@ However, you need to know this, and those new to Microsoft Azure, or users who d
 
 Our solution can help; by triggering an Alert when a Virtual Machine becomes unavailable due to a user-initiated shutdown, we can then start an [Azure Automation](https://learn.microsoft.com/en-us/azure/automation/overview?WT.mc_id=AZ-MVP-5004796) runbook to deallocate the Virtual Machine.
 
-### Overview
+## Overview
 
 Today, we are going to set up an Azure Automation runbook, triggered by a Resource Health alert that will go through the following steps:
 
@@ -169,7 +169,7 @@ param (
 Import-Module Az.AlertsManagement
 $ErrorActionPreference = 'stop'
 
-# Get the data object from WebhookData
+## Get the data object from WebhookData
 $WebhookData = $WebhookData.RequestBody
 Write-Output -InputObject $WebhookData 
 $Schema = $WebhookData | ConvertFrom-Json
@@ -178,7 +178,7 @@ $Schema = $WebhookData | ConvertFrom-Json
 $Essentials = [object] ($Schema.data).essentials
 Write-Output -InputObject $Essentials 
 
-# Get the first target only as this script doesn't handle multiple and and export variables for the resource.
+## Get the first target only as this script doesn't handle multiple and and export variables for the resource.
 $alertIdArray = (($Essentials.alertId)).Split('/')
 $alertTargetIdArray = (($Essentials.alertTargetIds)[0]).Split('/')
 $alertid =  ($alertIdArray)[6]
@@ -256,7 +256,7 @@ else {
 15. Click **Publish** _(so the runbook is actually in production and can be used)_
 16. You can select View or Edit at any stage, but you have now imported the Azure Automation runbook!
 
-##### Setup Webhook
+## Setup Webhook
 
 Now that the Azure runbook has been imported, we need to set up a Webhook for the Alert to trigger and start the runbook.
 

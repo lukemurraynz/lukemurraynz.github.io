@@ -55,15 +55,15 @@ Command.ps1 will call the other scripts.
 So let us take a look at those:
 
 ```powershell title="command.ps1"
-# Check if the Az.Accounts module is installed
+## Check if the Az.Accounts module is installed
 $module = Get-Module -ListAvailable -Name Az.Accounts
 
-# If the module is not installed, install it
+### If the module is not installed, install it
 if ($null -eq $module) {
     Install-Module -Name Az.Accounts -Scope CurrentUser -Force
 }
 
-# Check if the Az.Resources module is installed
+## Check if the Az.Resources module is installed
 $module = Get-Module -ListAvailable -Name Az.Resources
 
 # If the module is not installed, install it
@@ -71,28 +71,28 @@ if ($null -eq $module) {
     Install-Module -Name Az.Resources -Scope CurrentUser -Force
 }
 
-# Connect-AzAccount -UseDeviceAuthentication
+## Connect-AzAccount -UseDeviceAuthentication
 
-# Import the Request-ResourceName function
+## Import the Request-ResourceName function
 . .\Request-ResourceName.ps1
 
-# Define the API key and the Azure Naming Tool site name
+## Define the API key and the Azure Naming Tool site name
 $API = ''
 $AzNamingToolSiteName = ''
 
-# Call the function with some example parameters
+## Call the function with some example parameters
 $storageAccountName = Request-ResourceName -API $API -AzNamingToolSiteName $AzNamingToolSiteName -resourceEnvironment 'dev'  -resourceInstance '1' -resourceLocation 'aue'  -resourceType 'st' -createdBy 'me' -resourceProjAppSvc 'spa' | Select-Object -ExpandProperty resourceName
 
-# Define the resource group and location
+## Define the resource group and location
 $resourceGroupName = 'stgaccount_rg'
 
-# Create the resource group if it doesn't exist
+## Create the resource group if it doesn't exist
 $resourceGroup = Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
 if ($null -eq $resourceGroup) {
     New-AzResourceGroup -Name $resourceGroupName -Location 'australiaeast'
 }
 
-# Deploy the Bicep file
+## Deploy the Bicep file
 New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile './main.bicep' -storageAccountName $storageAccountName
 ```
 
@@ -115,7 +115,7 @@ resource storageacc 'Microsoft.Storage/storageAccounts@2023-01-01' = {
 ```
 ```powershell title="Request-ResourceName.ps1"
 
-# Define the function that requests a resource name
+## Define the function that requests a resource name
 function Request-ResourceName {
     # Define the parameters that the function accepts
     param (

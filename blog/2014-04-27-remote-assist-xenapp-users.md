@@ -28,7 +28,7 @@ A way around this is to – publish Remote Assistance for Helpdesk and System ad
   </ul>
 </div>
 
-#### <span id="Configure_Remote_Assistance_in_XenApp">Configure Remote Assistance in XenApp</span>
+## <span id="Configure_Remote_Assistance_in_XenApp">Configure Remote Assistance in XenApp</span>
 
 
   1. Lal Mohan (<a title="Configure-windows-remote-assistance-in-citrix-xenapp-6-5" href="http://lalmohan.co.nz/2013/07/02/configure-windows-remote-assistance-in-citrix-xenapp-6-5-for-multi-monitor-shadowing/" target="_blank">http://lalmohan.co.nz/2013/07/02/configure-windows-remote-assistance-in-citrix-xenapp-6-5-for-multi-monitor-shadowing/</a> ) has written a great blog post on setting this up – just follow the guide to configure Remote Assistance in the XenApp environment.

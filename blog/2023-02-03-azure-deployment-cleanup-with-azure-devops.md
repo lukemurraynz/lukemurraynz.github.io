@@ -32,7 +32,7 @@ For this article, I will assume you have an Azure DevOps repository setup and th
 
 > Note: Scripts and pipeline are "[here](https://github.com/lukemurraynz/AzDeploymeantCleanup "lukemurraynz / AzDeploymeantCleanup")".
 
-#### Deploy and Configure
+## Deploy and Configure
 
 ##### Create Service Prinicipal
 

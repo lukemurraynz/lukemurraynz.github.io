@@ -93,7 +93,7 @@ And inside my update_env.sh script, I have the following:
 #!/bin/bash
 set -e
 
-# Fetch the Function App name and Resource Group from azd environment
+## Fetch the Function App name and Resource Group from azd environment
 AZD_VALUES=$(azd env get-values --output json)
 echo "AZD_VALUES: $AZD_VALUES"
 
@@ -104,14 +104,14 @@ FUNCTION_APP_URL=$(echo $AZD_VALUES | jq -r '.AZURE_FUNCTION_URI')
 echo "Function App Name: $FUNCTION_APP_NAME"
 echo "Resource Group: $RESOURCE_GROUP"
 
-# Get the Function App URL
+## Get the Function App URL
 echo "Function App URL: $FUNCTION_APP_URL"
 
-# Get the Function App key
+## Get the Function App key
 FUNCTION_APP_KEY=$(az functionapp keys list --name $FUNCTION_APP_NAME --resource-group $RESOURCE_GROUP --query functionKeys.default -o tsv)
 echo "Function App Key: $FUNCTION_APP_KEY"
 
-# Update the .env.production file
+## Update the .env.production file
 sed -i "s|^REACT_APP_API_URL=.*|REACT_APP_API_URL=$FUNCTION_APP_URL/api|" ../web/.env.production
 
 echo "Function App Name: $FUNCTION_APP_NAME"

@@ -94,22 +94,22 @@ So the steps to get this working are as follows:
 I have already completed Task 1 - creating the container image with VNC and DOSBox, and pushed it to Azure Container Registry. The Dockerfile for this image is as follows:
 
 ```dockerfile
-# Dockerfile for VNC + DOSBox
+## Dockerfile for VNC + DOSBox
 
 FROM ubuntu:22.04
 
-# Metadata
+## Metadata
 LABEL maintainer="Luke Murray" \
       description="VNC Server with DOSBox"
 
-# Environment setup
+## Environment setup
 ENV DEBIAN_FRONTEND=noninteractive \
     DISPLAY=:1 \
     VNC_RESOLUTION=1024x768 \
     USER=vncuser \
     TZ=Pacific/Auckland
 
-# Install packages
+## Install packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     tigervnc-standalone-server \
     tigervnc-common \
@@ -136,58 +136,58 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Create user
+## Create user
 RUN groupadd -r vncuser && \
     useradd -r -g vncuser -d /home/vncuser -s /bin/bash vncuser && \
     mkdir -p /home/vncuser/.vnc /home/vncuser/Desktop && \
     chown -R vncuser:vncuser /home/vncuser && \
     chmod 700 /home/vncuser/.vnc
 
-# Switch to non-root user
+## Switch to non-root user
 USER vncuser
 WORKDIR /home/vncuser
 
-# Setup startup script
+## Setup startup script
 RUN echo '#!/bin/bash\n\
 export DISPLAY=:1\n\
 export USER=$(whoami)\n\
 export HOME=/home/vncuser\n\
 export SDL_VIDEODRIVER=x11\n\
 \n\
-# Create VNC startup script\n\
+## Create VNC startup script\n\
 cat > ~/.vnc/xstartup << EOF\n\
 #!/bin/bash\n\
 unset SESSION_MANAGER DBUS_SESSION_BUS_ADDRESS\n\
-# Start D-Bus session\n\
+## Start D-Bus session\n\
 export \$(dbus-launch)\n\
 export DBUS_SESSION_BUS_ADDRESS\n\
-# Basic X11 setup\n\
+## Basic X11 setup\n\
 setxkbmap -layout us\n\
 xset s off -dpms s noblank\n\
-# Start XFCE components in order\n\
+## Start XFCE components in order\n\
 xfsettingsd &\n\
 sleep 1\n\
-# Disable screen savers (ignore errors)\n\
+## Disable screen savers (ignore errors)\n\
 xfconf-query -c xfce4-screensaver -p /saver/enabled -s false 2>/dev/null || true\n\
 xfconf-query -c xfce4-screensaver -p /lock/enabled -s false 2>/dev/null || true\n\
-# Start thunar without desktop management to avoid errors\n\
+## Start thunar without desktop management to avoid errors\n\
 thunar --daemon &\n\
 sleep 1\n\
-# Start XFCE session\n\
+## Start XFCE session\n\
 exec startxfce4\n\
 EOF\n\
 chmod +x ~/.vnc/xstartup\n\
 \n\
-# Create VNC password\n\
+## Create VNC password\n\
 echo "vncpassword" | tigervncpasswd -f > ~/.vnc/passwd\n\
 chmod 600 ~/.vnc/passwd\n\
 \n\
-# Start services\n\
+## Start services\n\
 vncserver :1 -geometry ${VNC_RESOLUTION:-1024x768} -depth 24 -localhost\n\
 sleep 5\n\
 websockify --web=/usr/share/novnc 6080 localhost:5901 &\n\
 \n\
-# Keep alive\n\
+## Keep alive\n\
 while true; do\n\
     if ! ps aux | grep -q "[X]tigervnc"; then\n\
         vncserver :1 -geometry ${VNC_RESOLUTION:-1024x768} -depth 24 -localhost\n\
@@ -196,7 +196,7 @@ while true; do\n\
 done\n\
 ' > /home/vncuser/start.sh && chmod +x /home/vncuser/start.sh
 
-# DOSBox setup
+## DOSBox setup
 RUN mkdir -p dosbox && \
     echo '[sdl]\nfullscreen=false\noutput=surface\nusescancodes=false\n[dosbox]\nmachine=svga_s3\nmemsize=16\n[mixer]\nnosound=true\n[dos]\nkeyboardlayout=us\n[autoexec]\nmount c /home/vncuser/dosbox\nc:' > .dosboxrc && \
     echo '[Desktop Entry]\nVersion=1.0\nType=Application\nName=DOSBox\nComment=DOS Emulator\nExec=dosbox\nIcon=dosbox\nTerminal=false\nCategories=Game;Emulator;\nStartupNotify=false' > Desktop/dosbox.desktop && \
@@ -226,13 +226,13 @@ az acr build --registry vncappsdemocr --image vncappsdemo:latest .
 After the Container is built, it's time to deploy it to Azure Container Apps. You can do this using the Azure CLI as well:
 
 ```bash
-# Create the Container Apps environment 
+## Create the Container Apps environment 
 az containerapp env create --name ContainerAppsEnvVNCDemo --resource-group vnccnappsdemo --location australiaeast
 
-# Enable admin user on ACR (if not already enabled)
+## Enable admin user on ACR (if not already enabled)
 az acr update --name vncappsdemocr --admin-enabled true
 
-# Create a container app with ACR admin credentials
+## Create a container app with ACR admin credentials
 az containerapp create --name vncappsdemo --resource-group vnccnappsdemo --image vncappsdemocr-ctb0aqa3dkhtd2e6.azurecr.io/vncappsdemo:latest --target-port 6080 --ingress external --cpu 0.5 --memory 1.0Gi --min-replicas 1 --max-replicas 10 --environment ContainerAppsEnvVNCDemo --registry-server vncappsdemocr-ctb0aqa3dkhtd2e6.azurecr.io --registry-username vncappsdemocr --registry-password $(az acr credential show --name vncappsdemocr --query "passwords[0].value" -o tsv)
 ```
 

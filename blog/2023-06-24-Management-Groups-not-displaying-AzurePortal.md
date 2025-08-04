@@ -16,7 +16,7 @@ When logging into the Microsoft Azure Portal, to view your [Management Group](ht
 
 It looks like a potential bug in the Portal interface, especially  if you have the correct permissions to see those Management Groups. Here is a few things to look for:
 
-### Elevated rights - Global Administrator
+## Elevated rights - Global Administrator
 
 By default, if you are a Global Administrator, it does not allow you to see Azure Resources and manage Azure management groups.
 

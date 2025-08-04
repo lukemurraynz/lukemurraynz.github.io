@@ -14,7 +14,7 @@ When connecting to Azure Virtual Desktop, you may get a _"We couldn't connect be
 
 ![We couldn't connect because there are currently no available resources.](/uploads/noresourcesavd.png "We couldn't connect because there are currently no available resources.")
 
-### Check your Max Session Count
+## Check your Max Session Count
 
 On your Azure Virtual Desktop Host Pool, check your Max Session Count, which hasn't been exceeded. 
 

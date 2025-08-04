@@ -18,7 +18,7 @@ I am going to assume you already have an Azure Virtual Desktop farm _(and Azure 
 
 This article will be based on the Azure Virtual Desktop farm created in a previous article, however, you can just still along and replace the resource names and groups with your own.
 
-### Setup Storage Account
+## Setup Storage Account
 
  1. Log in to the **Azure Portal**
  2. Click on **Create a resource**

@@ -20,7 +20,7 @@ Each Azure region features data centres deployed within a latency-defined perime
 >
 > With availability zones, you can design and operate applications and databases that automatically transition between zones without interruption. Azure availability zones are highly available, fault tolerant, and more scalable than traditional single or multiple datacenter infrastructures.
 
-#### Availability Zone peering
+## Availability Zone peering
 
 Today we are going to look into Availability Zone peering:
 

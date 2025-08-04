@@ -96,7 +96,7 @@ python-dotenv
 Assuming you have the Azure Communication Services Email resource created, and the connection string saved in a `.env` file in the root of your project. The connection string should look something like this:
 
 ```txt
-# Azure Communication Services credentials
+## Azure Communication Services credentials
 ACS_CONNECTION_STRING=endpoint='https://azcommunicationservicestest.australia.communication.azure.com/;accesskey=FPipiKEH95KCHYQnJOxqMV0P7ZpP3qcKWZHaAhulbKCWI3fPyQZQJQQJ99BDACULyCphGPgtAAAAAZCS58g3'
 ACS_SENDER_ADDRESS='DoNotReply@58b87ce7-7f73-444a-ba0b-d754677503cf.azurecomm.net'
 ```
@@ -105,7 +105,7 @@ The `ACS_SENDER_ADDRESS` is the email address that will be used to send the emai
 The Python code for the MCP server is as follows:
 
 ```python
-# basic import 
+## basic import 
 from mcp.server.fastmcp import FastMCP
 import logging
 from azure.communication.email import EmailClient
@@ -113,21 +113,21 @@ import os
 from dotenv import load_dotenv
 from typing import Dict, Any, Optional
 
-# Configure logging
+## Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger("acs-email-sender")
 
-# Load environment variables
+## Load environment variables
 load_dotenv()
 
-# Azure Communication Services configuration
+## Azure Communication Services configuration
 ACS_CONNECTION_STRING = os.getenv("ACS_CONNECTION_STRING")
 ACS_SENDER_ADDRESS = os.getenv("ACS_SENDER_ADDRESS")
 
-# Validation at startup
+## Validation at startup
 def validate_config() -> bool:
     """Validate the required configuration is present"""
     if not ACS_CONNECTION_STRING or ACS_CONNECTION_STRING == "your_acs_connection_string_here":
@@ -141,7 +141,7 @@ def validate_config() -> bool:
     logger.info(f"Email configuration validated. Sender: {ACS_SENDER_ADDRESS}")
     return True
 
-# Cache the email client to avoid recreating it for each request
+## Cache the email client to avoid recreating it for each request
 _email_client: Optional[EmailClient] = None
 
 def get_email_client() -> Optional[EmailClient]:
@@ -156,10 +156,10 @@ def get_email_client() -> Optional[EmailClient]:
             return None
     return _email_client
 
-# instantiate an MCP server client
+## instantiate an MCP server client
 mcp = FastMCP("Email Sender")
 
-# DEFINE TOOLS
+## DEFINE TOOLS
 
 @mcp.tool(name="send_email")  
 def send_email(recipient: str, subject: str, content: str) -> str:
@@ -381,7 +381,7 @@ def create_bulk_email_message(recipients: list, subject: str, content: str) -> D
     }
 
 
-# execute and return the stdio output
+## execute and return the stdio output
 if __name__ == "__main__":
     # Validate configuration at startup
     if not validate_config():

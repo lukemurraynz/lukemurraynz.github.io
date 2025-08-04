@@ -32,7 +32,7 @@ Today, we are going to use the [Azure Storage SFTP functionality](https://learn.
 
 {/* truncate */}
 
-# 🚀 Processing SFTP Events with Azure Functions and Event Hub
+## 🚀 Processing SFTP Events with Azure Functions and Event Hub
 
 ## 🏗️ Environment Overview
 
@@ -188,7 +188,7 @@ param($eventHubMessages, $TriggerMetadata)
 
 Write-Host "PowerShell SFTP event hub trigger function called"
 
-# Process each message
+## Process each message
 $eventHubMessages | ForEach-Object {
     # Get the records array from the message
     if ($_ -is [System.Management.Automation.OrderedHashtable] -or $_ -is [hashtable]) {

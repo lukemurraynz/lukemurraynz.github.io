@@ -11,7 +11,7 @@ header:
 ---
 [Azure Arc Bridge](https://learn.microsoft.com/en-us/azure/azure-arc/resource-bridge/overview?WT.mc_id=AZ-MVP-5004796 "What is Azure Arc resource bridge ")_(currently in preview)_ is part of the core Azure Arc Hybrid Cloud platform.
 
-### Overview
+## Overview
 
 The Azure Arc resource bridge allows for VM _(Virtual Machine)_ self-servicing and managing on-premises Azure Stack HCI and VMWare virtualised workloads, supporting Linux and Windows.
 

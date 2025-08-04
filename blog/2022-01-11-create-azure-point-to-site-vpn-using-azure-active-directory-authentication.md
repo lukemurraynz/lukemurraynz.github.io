@@ -28,7 +28,7 @@ A note about Gateway SKUs _(apart from Basic)_ you can resize in the same genera
 
 You can read more about the Virtual Network Gateways and VPN SKUs at the official Microsoft documentation [here](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways?WT.mc_id=AZ-MVP-5004796); your Gateway SKU may differ depending on your requirements.
 
-### Create Azure Point to Site VPN using Microsoft Entra ID authentication
+## Create Azure Point to Site VPN using Microsoft Entra ID authentication
 
 #### Prerequisites
 

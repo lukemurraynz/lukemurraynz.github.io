@@ -122,11 +122,11 @@ Once the file is downloaded, you can run the Data Analyzer script to create the 
 
 ```powershell
 https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/raw/main/tools/2_wara_data_analyzer.ps1
-# Define the URL of the file to be downloaded
+## Define the URL of the file to be downloaded
 $url = "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/raw/main/tools/2_wara_data_analyzer.ps1"
-# Define the path where the file will be saved
+## Define the path where the file will be saved
 $outputPath = "d:\APRL\"
-# Use Invoke-WebRequest to download the file
+## Use Invoke-WebRequest to download the file
 Invoke-WebRequest -Uri $url -OutFile $outputPath
 ```
 
@@ -154,7 +154,7 @@ You should now have an Excel Action Plan with the data from the JSON file, inclu
 
 > There will be resources that are not supported by the Resource Graph queries, so you will need to check these manually. Could you remove or add any recommendations based on your analysis before generating reports?
 
-### 📝 Create the report
+## 📝 Create the report
 
 The Report Generator PowerShell script is the final script in the Azure Proactive Resiliency Library (APRL) tooling suite. Its goal is to generate a Word and PowerPoint report based on the data collected and analyzed by the Collector and Data Analyzer scripts.
 

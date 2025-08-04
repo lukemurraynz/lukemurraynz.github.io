@@ -99,16 +99,16 @@ Make sure you update the parameters, and Service Principal variable name with th
 You can also find the full pipeline code at the following gist: [lukemurraynz/copacetic.yml](https://gist.github.com/lukemurraynz/ea00bc9c6b6a9468a82f3b679c40a220).
 
 ```yaml copacetic.yml
-# The name of the pipeline, including the date and a revision number
+## The name of the pipeline, including the date and a revision number
 name: copa_$(Date:yyyyMMdd)_$(Rev:r)
 
-# This pipeline is not triggered automatically by any event
+## This pipeline is not triggered automatically by any event
 trigger: none
 
-# This pipeline is not triggered automatically by any pull request
+## This pipeline is not triggered automatically by any pull request
 pr: none
 
-# Parameters for the pipeline
+## Parameters for the pipeline
 parameters:
   # The Docker image to be patched
   # This parameter specifies the Docker image that will be patched by the pipeline.
@@ -141,7 +141,7 @@ parameters:
     type: string
     default: '0.15.0'
 
-# Variables for the pipeline
+## Variables for the pipeline
 variables:
   # The port on which BuildKit will run
   buildkit.port: "8888"
@@ -290,7 +290,7 @@ stages:
 
 For demo purposes, I am using an older version of the [api-firewall](https://hub.docker.com/_/api-firewall) image, which has known vulnerabilities that must be patched.
 
-### ✅Deployment results
+## ✅Deployment results
 
 Let's look at the image in Azure Container Registry before the patch.
 

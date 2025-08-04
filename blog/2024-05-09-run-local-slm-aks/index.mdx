@@ -157,10 +157,10 @@ The application has the following services:
 2. Now, we need to prep for the Azure Developer CLI deployment, which will use Terarform (a random pet name module for a unique name) to deploy our AKS cluster in our specified region. So, let's log in to Azure.
 
 ```bash
-# login to Azure CLI
+## login to Azure CLI
 az login --use-device-code
 
-# login to Azure Developer CLI
+## login to Azure Developer CLI
 azd auth login
 ```
 
@@ -209,7 +209,7 @@ This will take a few minutes to complete. Once it's done, you will see the terra
 ```bash
 eval "$(azd env get-values)"
 ```
-### 🧪 Test the Pet-store app
+## 🧪 Test the Pet-store app
 
 Now, lets test that its working, by taking a look at the pet store admin public endpoint.
 

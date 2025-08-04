@@ -20,7 +20,7 @@ This causes issues when the software is licensed to a specific MAC address; you 
 
 You can easily [create a new Network Interface](https://learn.microsoft.com/en-us/azure/virtual-network/network-overview?WT.mc_id=AZ-MVP-5004796#network-interfaces "Network interfaces") from the Azure Portal and then attach it to the Virtual Machine (_the virtual machine needs to be off to allow the NIC to be attached)_.
 
-##### Change Network Adapter MAC using PowerShell
+## Change Network Adapter MAC using PowerShell
 
 Once the NIC is created and attached, run the following PowerShell command in the Azure Virtual Virtual machine _(assuming this is a Windows OS, but the same process should work for_ [_Linux_](https://www.linuxshelltips.com/change-mac-address-linux/ "How to Change Network MAC Address in Linux")_)_:
 

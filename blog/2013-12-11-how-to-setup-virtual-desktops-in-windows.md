@@ -16,7 +16,7 @@ First you need a third party utility called – Dexpot. This utility is free for
   7. On your Taskbar you will now have 4 Virtual Desktops – you can select each one to navigate back & forth between them.
   9. You are now running Virtual Desktops!
 
-### Dexpot Configuration
+## Dexpot Configuration
   
   1. In the notification tray – right click the Dexpot logo.
   2. Select Settings

@@ -14,7 +14,7 @@ With over 70+ Microsoft Azure [regions](https://azure.microsoft.com/en-us/global
 
 Migrating resources between regions is something that you may want to consider. Let's look at migrating workloads between them, by using [Azure Resource Mover](https://learn.microsoft.com/en-us/azure/resource-mover/overview?WT.mc_id=AZ-MVP-5004796 "What is Azure Resource Mover?").
 
-### Overview
+## Overview
 
 ![Azure Resource Mover](/uploads/azureresourcemover_header.png "Keep calm and migrate it in Azure")
 

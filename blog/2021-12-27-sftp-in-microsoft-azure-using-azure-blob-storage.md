@@ -28,7 +28,7 @@ You can connect to the SFTP storage account by using local _(to the SFTP storage
 
 ![SFTP Azure Storage Account - High Level Diagram](/images/posts/SFTP_Azure_HLDiagram.png "SFTP Azure Storage Account - High Level Diagram")
 
-### Creating an Azure Storage account for SFTP
+## Creating an Azure Storage account for SFTP
 
 This article assumes you have an Azure subscription and rights to create a new Storage account resource, however if you have an already existing storage account the following pre-requisites are required:
 

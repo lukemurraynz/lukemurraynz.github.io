@@ -161,31 +161,31 @@ export MANIFEST_DIGEST=sha256:b1ae8b5bfaa9afa86b50c2a151a442d832c4449cf3731bddf8
 export REPOSITORY=debian
 export REGISTRY=$ACR_NAME.azurecr.io
 
-# Get the Entra ID access token
+## Get the Entra ID access token
 export EID_ACCESS_TOKEN=$(az account get-access-token --query accessToken -o tsv)
 
-# Exchange the AAD access token for an ACR refresh token
+## Exchange the AAD access token for an ACR refresh token
 export ACR_REFRESH_TOKEN=$(curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=access_token&service=$REGISTRY&access_token=$EID_ACCESS_TOKEN" \
   https://$REGISTRY/oauth2/exchange \
   | jq -r '.refresh_token')
 
-# Create the repo-level scope
+## Create the repo-level scope
 SCOPE="repository:$REPOSITORY:pull,metadata_write"
 
-# Get the ACR access token using the refresh token
+## Get the ACR access token using the refresh token
 export ACR_ACCESS_TOKEN=$(curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=refresh_token&service=$REGISTRY&scope=$SCOPE&refresh_token=$ACR_REFRESH_TOKEN" \
   https://$REGISTRY/oauth2/token \
   | jq -r '.access_token')
 
-# Check if the access token is null
+## Check if the access token is null
 if [ "$ACR_ACCESS_TOKEN" == "null" ]; then
   echo "Failed to retrieve access token. Please check your credentials and scope."
   exit 1
 fi
 
-# Use the ACR access token in the curl command
+## Use the ACR access token in the curl command
 curl -v -X PATCH \
   -H "Authorization: Bearer $ACR_ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
@@ -197,7 +197,7 @@ curl -v -X PATCH \
 ```
 ![Remove Quarantine](images/ACR_RemoveQuarantine.gif)
 
-### 📦Stage 2: Catalog
+## 📦Stage 2: Catalog
 
 The [Catalog](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/catalog-overview?WT.mc_id=AZ-MVP-5004796) stage is the second step in the container supply chain. It involves storing and managing container images in a central repository, where they can be easily accessed and deployed.
 
@@ -225,12 +225,12 @@ It can also be valid to move images from the Catalog back to the Quarantine regi
 You can use the following Azure CLI command to move an image between the Quarantine and Catalog registries.
 
 ```bash
-# Variables
+## Variables
 SOURCE_REGISTRY="acrqr"
 TARGET_REGISTRY="acrcatalog"
 IMAGE_NAME="debian:v1"
 
-# Import image from source registry to target registry
+## Import image from source registry to target registry
 az acr import --name $TARGET_REGISTRY --source $SOURCE_REGISTRY.azurecr.io/$IMAGE_NAME --image $IMAGE_NAME
 ```
 
@@ -240,7 +240,7 @@ We can see the image now in our Catalog registry. The image is left in the Quara
 
 ![Azure Container Registry - Catalog](images/ContainerSupplyFramework_Catalog_debianimage.PNG)
 
-### 🛠️Stage 3: Build
+## 🛠️Stage 3: Build
 
 The [Build](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/build-overview?WT.mc_id=AZ-MVP-5004796) step is the third step in the container supply chain. It involves building container images from source code and ensuring that they meet security and compliance requirements, whereas previous steps were more aligned with container images that were sourced externally. However, the following practices can be applied to both.
 

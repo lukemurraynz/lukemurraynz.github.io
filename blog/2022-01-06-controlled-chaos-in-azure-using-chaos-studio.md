@@ -44,7 +44,7 @@ In my test setup, I have the following already pre-created that I will be runnin
 
 The currently supported resource types of Azure Chaos Studio can be found '[here](https://learn.microsoft.com/en-us/azure/chaos-studio/chaos-studio-fault-providers?WT.mc_id=AZ-MVP-5004796)'.
 
-### Setup Azure Chaos Studio
+## Setup Azure Chaos Studio
 
 #### Create Managed Identity
 

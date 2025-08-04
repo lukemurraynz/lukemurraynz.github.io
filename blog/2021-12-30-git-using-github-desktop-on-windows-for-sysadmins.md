@@ -31,7 +31,7 @@ This article assumes that you have a Git repository initialized already; you can
 
 ![Git High level workflow](/images/posts/HLGit_Workflow.png "Git High level workflow")
 
-### Install Github Desktop
+## Install Github Desktop
 
 Installation of Github Desktop is pretty simple, but assuming you have rights to install the software:
 

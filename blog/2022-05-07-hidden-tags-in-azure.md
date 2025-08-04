@@ -25,7 +25,7 @@ Examples are:
 | hidden-title | Web Server |
 | hidden-ShutdownAutomation | Yes |
 
-### hidden-title
+## hidden-title
 
 As I mentioned above, every tag with 'hidden-' in front of it will be hidden in the Azure Portal. However, 'hidden-title' behaves differently.
 

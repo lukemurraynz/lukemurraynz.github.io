@@ -55,7 +55,7 @@ $ErrorActionPreference = 'Stop'
 [string]$ResourceGroup = 'z_Network'
 [string]$LocalNetworkGateway = 'Prod-SiteToSite-VLAN-LNGateway'
 
-# Use the application ID as the username, and the secret as password
+## Use the application ID as the username, and the secret as password
 $azureAplicationId ="Azure AD Application Id"
 $azureTenantId= "Your Tenant Id"
 $azureAPI = "Your API Key"

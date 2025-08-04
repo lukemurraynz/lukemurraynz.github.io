@@ -77,11 +77,11 @@ With Service Group members being created for each of the service groups, in this
 ![Azure Portal view of provisioned service groups](images/ServiceGroupsAzurePortal_Provisioned.jpg)
 
 ```hcl
-# Azure Service Groups configuration following Platform Engineering best practices
-# This configuration demonstrates a typical enterprise structure with:
-# - Platform Engineering teams managing infrastructure and shared services
-# - Application teams organized by business domains
-# - Clear separation of concerns and hierarchical governance
+## Azure Service Groups configuration following Platform Engineering best practices
+## This configuration demonstrates a typical enterprise structure with:
+## - Platform Engineering teams managing infrastructure and shared services
+## - Application teams organized by business domains
+## - Clear separation of concerns and hierarchical governance
 
 terraform {
   required_providers {
@@ -95,13 +95,13 @@ terraform {
 
 provider "azapi" {}
 
-# Local variables for configuration
+## Local variables for configuration
 locals {
   # Tenant ID - used as the root service group ID (automatically created by Azure)
   tenant_id = var.tenant_id
 }
 
-# Platform Engineering - Top-level service group for platform teams
+## Platform Engineering - Top-level service group for platform teams
 resource "azapi_resource" "platform_engineering" {
   type      = "Microsoft.Management/serviceGroups@2024-02-01-preview"
   name      = "platform-engineering"
@@ -117,7 +117,7 @@ resource "azapi_resource" "platform_engineering" {
   }
 }
 
-# Platform Infrastructure - Core infrastructure services
+## Platform Infrastructure - Core infrastructure services
 resource "azapi_resource" "platform_infrastructure" {
   type      = "Microsoft.Management/serviceGroups@2024-02-01-preview"
   name      = "platform-infrastructure"
@@ -133,7 +133,7 @@ resource "azapi_resource" "platform_infrastructure" {
   }
 }
 
-# Platform DevOps - CI/CD, deployment automation, and developer tooling
+## Platform DevOps - CI/CD, deployment automation, and developer tooling
 resource "azapi_resource" "platform_devops" {
   type      = "Microsoft.Management/serviceGroups@2024-02-01-preview"
   name      = "platform-devops"
@@ -149,7 +149,7 @@ resource "azapi_resource" "platform_devops" {
   }
 }
 
-# Platform Data - Data platform and analytics services
+## Platform Data - Data platform and analytics services
 resource "azapi_resource" "platform_data" {
   type      = "Microsoft.Management/serviceGroups@2024-02-01-preview"
   name      = "platform-data"
@@ -165,7 +165,7 @@ resource "azapi_resource" "platform_data" {
   }
 }
 
-# Application Teams - Top-level service group for application teams
+## Application Teams - Top-level service group for application teams
 resource "azapi_resource" "application_teams" {
   type      = "Microsoft.Management/serviceGroups@2024-02-01-preview"
   name      = "application-teams"
@@ -181,7 +181,7 @@ resource "azapi_resource" "application_teams" {
   }
 }
 
-# Customer Experience - Customer-facing applications
+## Customer Experience - Customer-facing applications
 resource "azapi_resource" "customer_experience" {
   type      = "Microsoft.Management/serviceGroups@2024-02-01-preview"
   name      = "customer-experience"
@@ -197,7 +197,7 @@ resource "azapi_resource" "customer_experience" {
   }
 }
 
-# E-commerce Platform - E-commerce specific applications
+## E-commerce Platform - E-commerce specific applications
 resource "azapi_resource" "ecommerce_platform" {
   type      = "Microsoft.Management/serviceGroups@2024-02-01-preview"
   name      = "ecommerce-platform"
@@ -213,7 +213,7 @@ resource "azapi_resource" "ecommerce_platform" {
   }
 }
 
-# Customer Support - Customer support applications
+## Customer Support - Customer support applications
 resource "azapi_resource" "customer_support" {
   type      = "Microsoft.Management/serviceGroups@2024-02-01-preview"
   name      = "customer-support"
@@ -229,7 +229,7 @@ resource "azapi_resource" "customer_support" {
   }
 }
 
-# Internal Operations - Internal business applications
+## Internal Operations - Internal business applications
 resource "azapi_resource" "internal_operations" {
   type      = "Microsoft.Management/serviceGroups@2024-02-01-preview"
   name      = "internal-operations"
@@ -245,7 +245,7 @@ resource "azapi_resource" "internal_operations" {
   }
 }
 
-# Finance Systems - Financial applications
+## Finance Systems - Financial applications
 resource "azapi_resource" "finance_systems" {
   type      = "Microsoft.Management/serviceGroups@2024-02-01-preview"
   name      = "finance-systems"
@@ -261,7 +261,7 @@ resource "azapi_resource" "finance_systems" {
   }
 }
 
-# Human Resources - HR applications
+## Human Resources - HR applications
 resource "azapi_resource" "human_resources" {
   type      = "Microsoft.Management/serviceGroups@2024-02-01-preview"
   name      = "human-resources"
@@ -277,7 +277,7 @@ resource "azapi_resource" "human_resources" {
   }
 }
 
-# Security and Compliance - Cross-cutting security services
+## Security and Compliance - Cross-cutting security services
 resource "azapi_resource" "security_compliance" {
   type      = "Microsoft.Management/serviceGroups@2024-02-01-preview"
   name      = "security-compliance"
@@ -293,7 +293,7 @@ resource "azapi_resource" "security_compliance" {
   }
 }
 
-# Identity and Access Management
+## Identity and Access Management
 resource "azapi_resource" "identity_access" {
   type      = "Microsoft.Management/serviceGroups@2024-02-01-preview"
   name      = "identity-access"
@@ -309,7 +309,7 @@ resource "azapi_resource" "identity_access" {
   }
 }
 
-# Service Group Member - Storage Account for Security & Compliance
+## Service Group Member - Storage Account for Security & Compliance
 resource "azapi_resource" "storage_account_member" {
   type      = "Microsoft.Relationships/serviceGroupMember@2023-09-01-preview"
   name      = "storage-security-member"
@@ -329,7 +329,7 @@ resource "azapi_resource" "storage_account_member" {
   ]
 }
 
-# Service Group Member - Resource Group for E-commerce Platform
+## Service Group Member - Resource Group for E-commerce Platform
 resource "azapi_resource" "resourcegroup_ecommerce_member" {
   type      = "Microsoft.Relationships/serviceGroupMember@2023-09-01-preview"
   name      = "openai-rg-ecommerce-member"

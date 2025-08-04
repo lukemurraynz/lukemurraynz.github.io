@@ -47,7 +47,7 @@ We will use the following tools to provision and configure our services:
 1. PowerShell [(Az Modules)](https://learn.microsoft.com/powershell/azure/install-azure-powershell?WT.mc_id=AZ-MVP-5004796)
 1. [AzCopy](https://learn.microsoft.com/azure/storage/common/storage-use-azcopy-v10?WT.mc_id=AZ-MVP-5004796)
 
-### Download Azure Documents
+## Download Azure Documents
 
 First, we will need the Azure documents to add to our blob storage.
 

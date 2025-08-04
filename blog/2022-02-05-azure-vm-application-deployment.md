@@ -12,7 +12,7 @@ slug: azure/azure-vm-application-deployment
 ---
 The Azure Compute Gallery _(superseded the Shared Image Gallery)_ offers more than just Azure Image management and replication, and you can deploy Applications to your Virtual Machines.
 
-### Overview
+## Overview
 
 > An Azure Compute Gallery helps you build structure and organization around your Azure resources, like images and [applications](https://learn.microsoft.com/en-us/azure/virtual-machines/vm-applications?WT.mc_id=AZ-MVP-5004796). An Azure Compute Gallery provides:
 >
