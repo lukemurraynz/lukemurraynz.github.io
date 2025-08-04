@@ -1,6 +1,7 @@
 ---
 date: '2022-07-11 00:00:00 +1200'
 title: Deploy Azure Naming Tool into an Azure WebApp as a container
+description: "Organising your cloud workloads to support governance, operational management, and accounting requirements can take a lot of effort before the first res..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: /uploads/azurenamingtool_referencepage.png
 slug: azure/deploy-azure-naming-tool-into-an-azure-webapp-as-a-container
 ---
-
 Organising your cloud workloads to support governance, operational management, and accounting requirements can take a lot of effort before the first resource is created.
 
 Well-defined naming and metadata tagging conventions help to locate and manage resources quickly. These conventions also help associate cloud usage costs with business teams via chargeback and show-back accounting mechanisms, along with rapidly identifying what services are used across services.

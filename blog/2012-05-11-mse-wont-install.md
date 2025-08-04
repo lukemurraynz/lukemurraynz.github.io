@@ -1,5 +1,6 @@
 ---
 title: 'Microsoft Security Essentials won&#8217;t install'
+description: "Having problems and your trying to install Microsoft Security Essentials and it just won t install? I have ran into this issue and this is how I repaire..."
 permalink: /win/mse-wont-install/
 tags:
   - Windows

@@ -1,6 +1,7 @@
 ---
 date: '2023-03-02 00:00:00 +1300'
 title: Azure for Students
+description: "Students learn in different ways through many possible avenues and experiences. Microsoft has assets to help students navigate through their journey."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: /uploads/student_developer_skillingjourney.png
 slug: azure/microsoft-student-education-hub
 ---
-
 Students learn in different ways through many possible avenues and experiences. Microsoft has assets to help students navigate through their journey.
 
 This article aims to help to make access to student resources clearer.

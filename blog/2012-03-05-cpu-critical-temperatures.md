@@ -1,9 +1,9 @@
 ---
 title: CPU Critical Temperatures
+description: "AMD Athlon socket up to 1Ghz 90°C"
 tags:
   - Misc
 ---
-
 **AMD**
 
 _**AMD Athlon Series**_

@@ -1,5 +1,6 @@
 ---
 title: Fix iPad Wifi Issues
+description: "Issues with your iPad s wireless? Try the following tips below, these can also be used for just normal Wireless issues."
 permalink: /osx/fix-ipad-wifi-issues/
 tags:
   - Mac OSX

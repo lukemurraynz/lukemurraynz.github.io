@@ -1,5 +1,6 @@
 ---
 title: How to add Album Art to iTunes
+description: "Sometimes Album art may not be avaliable or you would like to add your own here is how you do it."
 date: 2012-09-30T00:57:23+00:00
 authors: [Luke]
 tags:

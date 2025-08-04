@@ -1,5 +1,6 @@
 ---
 title: Failed to install catalog files
+description: "Getting the Failed to install catalog files error? This is how you fix it. The issue is related to registry key security settings."
 layout: post
 permalink: /win/failed-to-install-catalog-files/
 tags:

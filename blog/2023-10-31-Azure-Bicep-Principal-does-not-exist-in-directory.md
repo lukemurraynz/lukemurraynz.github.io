@@ -12,7 +12,7 @@ keywords:
   - bicep
   - identity
   - PrincpalNotFound
-description: PrincpalNotFound when doing Role Assignment of a User Assigned Managed identity
+description: "PrincpalNotFound when doing Role Assignment of a User Assigned Managed identity"
 slug: azure/PrincpalNotFound-bicep-roleassignment
 ---
 

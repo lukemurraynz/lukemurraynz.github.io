@@ -1,5 +1,6 @@
 ---
 title: Remove Sidebar ads on Handycafe Client
+description: "In order to remove the Ads on the sidebar, we need to block them using an inbuilt list called the HOST file."
 date: 2012-09-13T10:39:52+00:00
 authors: [Luke]
 tags:

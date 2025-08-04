@@ -1,9 +1,9 @@
 ---
 title: Disable New Hardware Wizard in Windows XP to Enable Automatic Device Driver Installation
+description: "Want to skip straight to automatic hardware installation? Follow the instructions below to edit the registry."
 tags:
   - Windows
 ---
-
 Want to skip straight to automatic hardware installation? Follow the instructions below to edit the registry.
 
   1. Click **Start**

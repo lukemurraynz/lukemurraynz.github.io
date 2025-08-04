@@ -1,11 +1,11 @@
 ---
 title: How to adjust line spacing in Word 2010
+description: "Click the little \\\"enlarge icon\\\""
 date: 2013-12-01 00:00:00 +1300
 authors: [Luke]
 tags:
   - Windows
 ---
- 
 <span style="font-family:Times New Roman;font-size:12pt"><br /> </span>
 
 <p style="margin-left: 36pt">

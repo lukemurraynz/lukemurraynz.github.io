@@ -1,5 +1,6 @@
 ---
 title: OSX Freezing when accessing Network Preferences
+description: "This usually happens, when some of the OSX settings become corrupted. OSX can regenerate new settings, which should resolve your problem. Follow the set..."
 permalink: /osx/osx-freezing-accessing-network/
 tags:
   - Mac OSX

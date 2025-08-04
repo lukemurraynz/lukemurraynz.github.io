@@ -1,5 +1,6 @@
 ---
 title: How to repair Minda Home/Professional
+description: "Basically you need to download the latest version of Minda from LIC lic.co.nz and in order to do this you need your PART participant code and your Minda..."
 date: 2012-10-04 00:00:00 +1300
 authors: [Luke]
 tags:

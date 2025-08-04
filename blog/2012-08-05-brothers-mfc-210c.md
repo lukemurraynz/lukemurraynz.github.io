@@ -1,5 +1,6 @@
 ---
 title: Brother MFC-210C Reset Page count
+description: "Follow the instructions below to reset your page counter on the Brother MFC-210C"
 date: 2012-08-05T18:05:35+00:00
 authors: [Luke]
 tags:

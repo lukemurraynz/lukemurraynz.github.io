@@ -1,5 +1,6 @@
 ---
 title: 'Google Apps &#8211; How to add pages to headings'
+description: "To add a page to the top navigation tabs following the instructions below:"
 date: 2012-10-08T09:47:05+00:00
 authors: [Luke]
 tags:

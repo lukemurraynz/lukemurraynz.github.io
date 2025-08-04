@@ -1,5 +1,6 @@
 ---
 title: How to replace the LCD on a Compaq CQ57
+description: "Using a flathead screwdriver or razor blade gently lift the little plastic covers on the lower right and left of the panel casing covering screws ."
 date: 2012-11-05 00:00:00 +1300
 authors: [Luke]
 tags:

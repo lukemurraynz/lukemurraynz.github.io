@@ -1,12 +1,12 @@
 ---
 title: Capturing Windows boot performance with the Windows Performance Toolkit
+description: "The Windows Performance Toolkit, developed by Microsoft has 3 separate tools and are key to solving a lot of boot and general performance issues:"
 image: /wp-content/uploads/2016/12/122816_0751_Howtocaptur5.png
 tags:
   - Windows
 date: 2016-12-28 00:00:00 +1300
 slug: win/capturing-windows-boot-performance-windows-performance-toolkit
 ---
-
 The Windows Performance Toolkit, developed by Microsoft has 3 separate tools and are key to solving a lot of boot and general performance issues:
 
 •    Windows Performance Recorder

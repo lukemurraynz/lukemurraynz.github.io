@@ -1,5 +1,6 @@
 ---
 title: Openoffice – There is nothing to print.
+description: "This issue occurs when the print range for the document has inadvertently changed. Follow the guides below to fix:"
 date: 2012-08-14T11:39:48+00:00
 authors: [Luke]
 tags:

@@ -1,11 +1,11 @@
 ---
 title: Using phpmyadmin to remove WordPress posts
+description: "Warning: This will remove all posts on your wordpress installation. Make sure you have a backup or simply don’t want them anymore... when they are gone ..."
 date: 2013-02-25 00:00:00 +1300
 authors: [Luke]
 tags:
   - Misc
 ---
-
 Warning:  _This will remove all posts on your wordpress installation. Make sure you have a backup or simply don’t want them anymore&#8230; when they are gone they are gone!_
 
   1. Login to PHPMyAdmin

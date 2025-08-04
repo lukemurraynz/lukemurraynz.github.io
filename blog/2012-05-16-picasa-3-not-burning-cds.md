@@ -1,5 +1,6 @@
 ---
 title: Picasa 3 Not Burning CDs
+description: "First you need to uninstall Picasa, follow the guide below to do this:"
 permalink: /win/picasa-3-not-burning-cds/
 tags:
   - Windows

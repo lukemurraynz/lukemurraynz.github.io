@@ -1,6 +1,7 @@
 ---
 date: '2022-06-02 00:00:00 +1200'
 title: Microsoft Azure Naming Conventions
+description: "Accurately representing and naming your resources is essential for security purposes."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: /uploads/azurenaming.png
 slug: azure/microsoft-azure-naming-conventions
 ---
-
 Accurately representing and naming your resources is essential for security purposes.
 
 In a security incident, it is critical to identify affected systems quickly, what functions those systems support, and the potential business impact.

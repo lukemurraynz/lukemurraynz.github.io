@@ -1,5 +1,6 @@
 ---
 title: Change the Windows 7 Logon Background
+description: "Want to know how to change your Windows 7 Logon background to something a bit more modern/fancy? Follow the options below."
 permalink: /win/win7_logon_back/
 tags:
   - Windows

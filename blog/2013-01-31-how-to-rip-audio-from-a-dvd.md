@@ -1,11 +1,11 @@
 ---
 title: How to rip Audio from a DVD
+description: "In this guide I am using a media player called: VLC VideoLAN to do the conversion – it can be downloaded free “ here ”."
 authors: [Luke]
 tags:
   - Windows
 date: 2013-01-31 00:00:00 +1300
 ---
-
 In this guide I am using a media player called: VLC (VideoLAN) to do the conversion – it can be downloaded free “<a title="VLC Media Player" href="http://www.videolan.org/vlc/download-windows.html" target="_blank">here</a>”.
 
   1. Once installed – open VLC media player

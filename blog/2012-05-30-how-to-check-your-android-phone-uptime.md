@@ -1,5 +1,6 @@
 ---
 title: How to check your android phone uptime
+description: "Want to check how long your phone has been on for? Follow the instructions below."
 layout: post
 permalink: /mob/how-to-check-your-android-phone-uptime/
 tags:

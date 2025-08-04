@@ -1,5 +1,6 @@
 ---
 title: Vodafone NZ APN Settings
+description: "For use setting up Phones, inc iPhones to the Vodafone network"
 date: 2012-08-20T13:24:47+00:00
 authors: [Luke]
 tags:

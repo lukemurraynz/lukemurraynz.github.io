@@ -1,5 +1,6 @@
 ---
 title: The settings saved on this computer do not match the requirements of the network
+description: "Open Network and Sharing Center"
 date: 2012-11-12 00:00:00 +1300
 authors: [Luke]
 tags:

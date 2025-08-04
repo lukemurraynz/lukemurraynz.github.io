@@ -1,5 +1,6 @@
 ---
 title: RAGE Game Save Location
+description: "Retail: C:\\Users\\ your user name \\Saved Game\\sid Software\\Rage\\base\\savegame"
 permalink: /misc/rage-game-save-location/
 tags:
   - Misc

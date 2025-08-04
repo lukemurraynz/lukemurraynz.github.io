@@ -1,5 +1,6 @@
 ---
 title: 'How To: Fix &#8216;Cryptographic Service&#8217; error when installing Windows XP Updates'
+description: "Open a command prompt window click Start, Run, type cmd and hit Enter and then type the following commands:"
 permalink: /win/how-to-fix-cryptographic-service-error-when-installing-windows-xp-updates/
 tags:
   - Windows

@@ -1,5 +1,6 @@
 ---
 title: Advpack.dll Not Found
+description: "Advpack.dll Not Found is only one version of the error messages that Advpack.dll can create – “& 8221;This application failed to start because advpack.d..."
 tags:
   - Windows
 date: 2012-03-05 00:00:00 +1300

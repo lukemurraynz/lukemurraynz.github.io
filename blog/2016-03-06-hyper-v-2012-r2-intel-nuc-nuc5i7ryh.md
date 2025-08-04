@@ -1,10 +1,10 @@
 ---
 title: Hyper-V 2012 R2 on an Intel NUC (NUC5i7RYH)
+description: "One of the problems with Hyper-V 2012 R2 on an Intel NUC NUC5i7RYH was because of the Client network card chipset. Windows Server 2012 would not install..."
 tags:
   - Windows
 date: 2016-04-30 00:00:00 +1300
 ---
-
 One of the problems with Hyper-V 2012 R2 on an Intel NUC &#8211; NUC5i7RYH was because of the &#8216;Client&#8217; network card chipset. Windows Server 2012 would not install the Ethernet Adapter for the Server operating system.
 
 Once I made the manual adjustments to the Network drivers to get this going, I then slipstreamed the drivers and Server 2012 R2 updates (as of Feb 2016) into a Hyper-V 2012 R2 ISO which can then be made bootable for future Hyper-V installations.

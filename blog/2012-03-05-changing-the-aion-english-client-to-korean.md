@@ -1,5 +1,6 @@
 ---
 title: Changing the Aion English Client to Korean
+description: "Right-click on Aion in your Launcher game list"
 tags:
   - Misc
   - Windows

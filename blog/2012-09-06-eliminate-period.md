@@ -1,5 +1,6 @@
 ---
 title: Eliminate period after each word in letter
+description: "Getting a period after each word in Microsoft Office? That is due to formatting marks, being enabled. To disable them follow the instructions below:"
 date: 2012-09-06T06:36:34+00:00
 authors: [Luke]
 tags:

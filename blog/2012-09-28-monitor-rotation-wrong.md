@@ -1,5 +1,6 @@
 ---
 title: Monitor rotation wrong
+description: "Having problems where your monitor rotation is wrong, such as the start menu ending up upside down at the top of the screen? Follow the instructions bel..."
 date: 2012-09-28T09:49:26+00:00
 authors: [Luke]
 tags:

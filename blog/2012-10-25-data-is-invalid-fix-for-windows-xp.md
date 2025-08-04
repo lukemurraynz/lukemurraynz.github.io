@@ -1,5 +1,6 @@
 ---
 title: Data Is Invalid fix for Windows XP
+description: "Having issues trying to install device drivers in Windows XP and its stopping half way through and giving you the “Data is Invalid” error? Following the..."
 date: 2012-10-25 00:00:00 +1300
 authors: [Luke]
 tags:

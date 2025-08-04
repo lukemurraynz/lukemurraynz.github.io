@@ -1,5 +1,6 @@
 ---
 title: Windows Live Mail/Windows Calendar 0x8E5E0247
+description: "Click this “ Intel Rapid Storage Technology Driver ”"
 date: 2012-08-14T12:18:06+00:00
 authors: [Luke]
 tags:

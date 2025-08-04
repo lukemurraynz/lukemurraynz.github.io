@@ -1,7 +1,7 @@
 ---
 date: '2021-04-17 00:00:00 +1200'
 title: Azure DevOps and creating your Cloud Adoption Framework
-description: Learn how to create a comprehensive Cloud Adoption Framework using Azure DevOps Demo Generator. Get started with Azure migration planning, governance, and Azure Virtual Desktop deployment templates.
+description: "Learn how to create a comprehensive Cloud Adoption Framework using Azure DevOps Demo Generator. Get started with Azure migration planning, governance, a..."
 metaDescription: Discover how to use Azure DevOps Demo Generator to create pre-populated Cloud Adoption Framework projects for Azure migration, governance, and Virtual Desktop planning.
 authors: [Luke]
 tags:

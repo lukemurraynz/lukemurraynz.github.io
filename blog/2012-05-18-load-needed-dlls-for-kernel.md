@@ -1,5 +1,6 @@
 ---
 title: Load needed DLLs for Kernel
+description: "First thing you need to have a Windows XP CD"
 layout: post
 tags:
   - Windows

@@ -1,5 +1,6 @@
 ---
 title: Unblock Programs/Services in Windows Firewall
+description: "Click Network and Internet Connections"
 layout: post
 permalink: /win/unblock_apps_winfirewall/
 tags:

@@ -1,5 +1,6 @@
 ---
 title: Loading pbr for descriptor 2
+description: "This issue usually occurs on Dell machines and it mostly caused by the Windows Boot Loader becoming infected or corrupted."
 layout: post
 permalink: /win/loading-pbr-for-descriptor-2/
 tags:

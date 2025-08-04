@@ -1,5 +1,6 @@
 ---
 title: How to rename multiple files in Windows XP
+description: "First make sure all the files are in the same folder"
 date: 2012-10-01T09:44:02+00:00
 authors: [Luke]
 tags:

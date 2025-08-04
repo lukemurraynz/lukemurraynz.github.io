@@ -1,5 +1,6 @@
 ---
 title: Set the Macbook Keyboard Back-light to be on permanently
+description: "Navigate to: Users/YourUser/NameHere/Library/Preferences"
 date: 2012-08-21T11:56:34+00:00
 authors: [Luke]
 tags:

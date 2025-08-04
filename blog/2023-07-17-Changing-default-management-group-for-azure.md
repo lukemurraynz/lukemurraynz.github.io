@@ -1,5 +1,6 @@
 ---
 title: Changing the default Management Group in Azure
+description: "By default, when a Management Group id=AZ-MVP-5004796 gets created, it goe..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
 date: '2023-07-17 00:00:00 +1300'
 slug: azure/Changing-default-management-group-for-azure
 ---
-
 By default, when a [Management Group](https://learn.microsoft.com/azure/governance/management-groups/overview?WT.mc_id=AZ-MVP-5004796) gets created, it goes under the Root Management Group, the same is true for [Subscriptions](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/organize-subscriptions?WT.mc_id=AZ-MVP-5004796).
 
 This works fine, when you have a simple Microsoft Azure environment, but as soon as you start expanding into areas such as [Subscription vending](https://learn.microsoft.com/azure/architecture/landing-zones/subscription-vending?WT.mc_id=AZ-MVP-5004796) or limited access to who can see the Root Management Group and start to look into Visual Studio Enterprise subscriptions, you may want to consider moving new subscriptions, under its own Management Group, away from any policies or RBAC controls, essentially into a Management Group that acts as a shopping cart, to then be picked up and moved later.

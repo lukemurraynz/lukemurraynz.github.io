@@ -1,6 +1,7 @@
 ---
 date: 2021-07-01 00:00:00 +1200
 title: Azure Virtual Desktop Optimisations
+description: "If you are running Azure Virtual Desktop, you want to get the most performance and stability out of them as possible, to reduce cost and increase user e..."
 authors: [Luke]
 tags:
   - Azure

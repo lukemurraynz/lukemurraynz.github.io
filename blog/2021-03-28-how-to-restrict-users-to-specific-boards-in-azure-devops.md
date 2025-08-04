@@ -1,6 +1,7 @@
 ---
 date: 2021-03-28 00:00:00 +1300
 title: How to restrict users to specific boards in Azure DevOps
+description: "Do you ever want to add external Microsoft Entra ID or other users to specific boards in a project, but not want to give them access to the entire Azure..."
 authors: [Luke]
 tags:
   - Azure

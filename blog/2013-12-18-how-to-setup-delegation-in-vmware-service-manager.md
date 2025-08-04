@@ -1,10 +1,10 @@
 ---
 title: How to setup delegation in VMWare Service Manager
+description: "Open the managers People record"
 tags:
   - Windows
 date: 2013-12-18 00:00:00 +1300
 ---
-
   1. Open VMWare Service Manager
   2. Open the managers People record
   3. On the left hand menu select Delegation

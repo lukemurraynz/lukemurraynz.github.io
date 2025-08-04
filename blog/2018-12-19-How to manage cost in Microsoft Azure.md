@@ -1,6 +1,7 @@
 ---
 date: 2018-12-19
 title: How to manage cost in Microsoft Azure
+description: "Microsoft has built up the Microsoft Azure ecosystem to offer scale and performance as and when needed; this gives customers the ability to not only rem..."
 authors: [Luke]
 tags:
   - Azure

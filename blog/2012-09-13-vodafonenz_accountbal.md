@@ -1,5 +1,6 @@
 ---
 title: How to check Vodafone NZ Account Balance
+description: "These instructions differ slightly depending on your phones make/model. Please adjust accordingly."
 date: 2012-09-13T08:27:21+00:00
 authors: [Luke]
 tags:

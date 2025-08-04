@@ -1,5 +1,6 @@
 ---
 title: Blank webpage with Windows Genuine Advantage
+description: "Trying to install Microsoft Security Essentials and it is complaining about not having genuine Windows? Attempting to run the Windows Genuine Advantage ..."
 date: 2012-09-30T11:13:05+00:00
 authors: [Luke]
 tags:

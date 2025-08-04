@@ -1,11 +1,11 @@
 ---
 title: How to disable password complexity requirements in Windows Server 2012
+description: "Navigate to Account Policies/ Password Policy"
 authors: [Luke]
 tags:
   - Windows
 date: 2012-11-06 00:00:00 +1300
 ---
-
   1.  **Open** Server **Manager**
   2. Click **Tools** _(top right)_
   3. Click **Local Security Policy**

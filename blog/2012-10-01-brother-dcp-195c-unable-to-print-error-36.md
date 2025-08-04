@@ -1,5 +1,6 @@
 ---
 title: Brother DCP 195C Unable to Print Error 36
+description: "In order to fix this issue you need to reset the Ink Waste counter, which is an ink counter that monitors how many prints that it has available on that ..."
 date: 2012-10-01T10:05:01+00:00
 authors: [Luke]
 tags:

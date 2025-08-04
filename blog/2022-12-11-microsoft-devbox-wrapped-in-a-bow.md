@@ -1,6 +1,7 @@
 ---
 date: '2022-12-11 00:00:00 +1300'
 title: Microsoft Dev Box wrapped in a bow
+description: "! Festive Tech Calender - Microsoft Dev Box /uploads/festivetechcalendar2022.png \\\"Festive Tech Calender - Microsoft Dev Box\\\""
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: /uploads/festivetechcalendar2022.png
 
 ---
-
 **![Festive Tech Calender - Microsoft Dev Box](/uploads/festivetechcalendar2022.png "Festive Tech Calender - Microsoft Dev Box")**
 
 It's that time of year again! The time to be jolly and experience the Month of December by looking at the [Festive Tech Calendar](https://festivetechcalendar.com/ "Festive Tech Calender")!

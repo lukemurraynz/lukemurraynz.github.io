@@ -1,5 +1,6 @@
 ---
 title: Make your Windows XP Desktop Icons Background transparent.
+description: "Right Click an empty space on the Desktop"
 tags:
   - Windows
 ---

@@ -1,6 +1,7 @@
 ---
 date: 2022-06-01T12:00:00.000Z
 title: Microsoft Azure Tagging Conventions
+description: "Organizing cloud-based resources is a crucial task for IT unless you only have simple deployments. Use naming and tagging standards to organize your res..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: images/iazure-marketplace-banner.png
 slug: azure/microsoft-azure-tagging-conventions
 ---
-
 Organizing cloud-based resources is a crucial task for IT unless you only have simple deployments. Use naming and tagging standards to organize your resources for these reasons:
 
 * **Resource management**: Your IT teams will need to quickly locate resources associated with specific workloads, environments, ownership groups, or other important information. Organizing resources is critical to assigning organizational roles and access permissions for resource management.

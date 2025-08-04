@@ -1,5 +1,6 @@
 ---
 title: How to download or print a Microsoft exam certificate
+description: "This was asked in the Microsoft forums; with the change of platform from being able to see and download certificates for the competition of your Microso..."
 authors: [Luke]
 tags:
   - Misc
@@ -7,7 +8,6 @@ toc: false
 date: 2022-09-07 00:00:00 +1300
 slug: misc/how-to-download-a-microsoft-exam-certificate
 ---
-
 This was asked in the Microsoft forums; with the change of platform from being able to see and download certificates for the competition of your Microsoft exam with Pearsonvue to the new Microsoft Learn experience, you might find yourself lost when attempting to view _(and print)_ your hard-earned Microsoft certificate!
 
 The certificate format has also been refreshed.

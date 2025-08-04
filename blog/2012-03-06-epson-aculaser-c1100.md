@@ -1,5 +1,6 @@
 ---
 title: Epson Aculaser C1100 Printing Darker on Left
+description: "Blue lever on right side of printer move in and out completely several times."
 permalink: /misc/epson-aculaser-c1100/
 tags:
   - Misc

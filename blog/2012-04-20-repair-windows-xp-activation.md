@@ -1,5 +1,6 @@
 ---
 title: Repair Windows XP Activation
+description: "Type in: regsvr32.exe regwizc.dll"
 permalink: /win/repair-windows-xp-activation/
 tags:
   - Windows

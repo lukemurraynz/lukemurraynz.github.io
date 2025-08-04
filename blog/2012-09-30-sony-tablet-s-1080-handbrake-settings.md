@@ -1,5 +1,6 @@
 ---
 title: Sony Tablet S 1080 Handbrake Settings
+description: "Make sure the video file you would like to convert is selected ."
 date: 2012-09-30T14:35:20+00:00
 authors: [Luke]
 tags:

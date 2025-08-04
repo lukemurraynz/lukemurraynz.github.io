@@ -1,5 +1,6 @@
 ---
 title: How to connect a Kindle to Wifi
+description: "Here you can either select a pre-selected Bookmark or enter the URL of an address you want to go to."
 date: 2012-12-27 00:00:00 +1300
 authors: [Luke]
 tags:

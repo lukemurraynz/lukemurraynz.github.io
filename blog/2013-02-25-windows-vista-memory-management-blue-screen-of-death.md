@@ -1,5 +1,6 @@
 ---
 title: Windows Vista Memory Management Blue Screen of Death
+description: "The Windows Vista Memory Management BSOD Blue Screen Of Death is usually caused by a faulty RAM Random Access Memory module or a RAM module that has an ..."
 authors: [Luke]
 tags:
   - Windows

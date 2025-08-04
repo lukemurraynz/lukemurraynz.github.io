@@ -1,5 +1,6 @@
 ---
 title: The application failed to initialize properly (0x0000135)
+description: "Having issues opening an application and getting “ 0x0000135 ” error?"
 date: 2012-08-30T14:45:11+00:00
 authors: [Luke]
 tags:

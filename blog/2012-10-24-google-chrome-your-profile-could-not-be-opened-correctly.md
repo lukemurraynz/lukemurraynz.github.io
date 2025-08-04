@@ -1,5 +1,6 @@
 ---
 title: Google Chrome – Your Profile Could Not Be Opened Correctly
+description: "Every time you open Google Chrome you’re getting the “Your profile could not be opened correctly” error? This is how I fixed it."
 date: 2012-10-24 00:00:00 +1300
 authors: [Luke]
 tags:

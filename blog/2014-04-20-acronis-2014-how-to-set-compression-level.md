@@ -1,10 +1,10 @@
 ---
 title: Acronis 2014 How to set compression level
+description: "On the Performance tab you can configure the following settings:"
 tags:
   - Windows
 date: 2014-04-20 00:00:00 +1300
 ---
-
 On the Performance tab you can configure the following settings:
 
 Compression level

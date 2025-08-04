@@ -1,5 +1,6 @@
 ---
 title: Mastering CIDRs With Azure Bicep
+description: "Classless Inter-Domain Routing Inter-Domain Routing CIDR is a method of allocating IP addresses and routing Inte..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
 date: 2023-11-18 00:00:00 +1300
 slug: azure/Working-with-CIDR-Azure-Bicep
 ---
-
 [Classless Inter-Domain Routing](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) *(CIDR)* is a method of allocating IP addresses and routing Internet Protocol *(IP)* packets.
 
 ![Mastering CIDRs With Azure Bicep](/images/posts/BlogHeading_Mastering-CIDRs-with-Azure-Bicep.gif)

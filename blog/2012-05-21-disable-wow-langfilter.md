@@ -1,5 +1,6 @@
 ---
 title: How to disable World of Warcrafts Mature Language Filter
+description: "Learn about how to disable world of warcrafts mature language filter. Step-by-step guide and solutions."
 layout: post
 permalink: /misc/disable-wow-langfilter/
 tags:

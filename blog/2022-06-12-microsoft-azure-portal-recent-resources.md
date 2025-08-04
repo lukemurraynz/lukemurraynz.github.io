@@ -1,5 +1,6 @@
 ---
 title: Microsoft Azure Portal - Recent Resources
+description: "The Microsoft Azure Portal displays a list of Recent resources whether they are subscriptions or Resources you have accessed, usually when you first log..."
 authors: [Luke]
 tags:
   - Azure
@@ -8,7 +9,6 @@ toc: false
 header:
   teaser: images/iazure-marketplace-banner.png
 ---
-
 The Microsoft Azure Portal displays a list of Recent resources _(whether they are subscriptions or Resources)_ you have accessed, usually when you first log in to the portal itself.
 
 This capability makes it quick to access resources you use the most often, but sometimes you may want to view the resources in a list for easy access or clear the recent resources _(ie if you are going to do a presentation)_ - this is how you can do it.

@@ -1,5 +1,6 @@
 ---
 title: Forcefully remove WordPress Posts using PHPMyAdmin
+description: "Launch PHPMyAdmin either directly or through your web hosting control panel doesn t matter ."
 date: 2013-03-29 00:00:00 +1300
 authors: [Luke]
 tags:

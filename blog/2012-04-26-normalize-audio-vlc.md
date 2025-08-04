@@ -1,5 +1,6 @@
 ---
 title: How to Normalize Audio in VLC Media Player
+description: "Select Audio on the left hand settings pane."
 permalink: /win/normalize-audio-vlc/
 tags:
   - Windows

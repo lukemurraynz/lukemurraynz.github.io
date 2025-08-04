@@ -1,6 +1,7 @@
 ---
 date: '2022-05-30 00:00:00 +1200'
 title: Architecture in the Cloud
+description: "Solution architecture is concerned with the planning, design, implementation, and ongoing improvement of a technology system."
 authors: [Luke]
 tags:
   - Azure
@@ -9,8 +10,6 @@ header:
   teaser: /uploads/microsoft_azure.jpg
 slug: azure/architecture-in-the-cloud
 ---
-
-
 Solution architecture is concerned with the planning, design, implementation, and ongoing improvement of a technology system.
 
 The architecture of a system must balance and align the business requirements with the technical capabilities that are needed to execute those requirements.

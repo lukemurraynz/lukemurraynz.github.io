@@ -1,5 +1,6 @@
 ---
 title: Characters deleting in front while typing
+description: "Trying to type up a document or statement and the characters keep writing over ones in front? The fix for this is simple:"
 date: 2012-08-20T14:52:05+00:00
 authors: [Luke]
 tags:

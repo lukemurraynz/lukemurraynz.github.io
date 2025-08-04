@@ -12,7 +12,7 @@ keywords:
   - network
   - security
   - ipv6
-description: Take a look at IPv6 support in Microsoft Azure.
+description: "Take a look at IPv6 support in Microsoft Azure."
 slug: azure/IPv6-on-Azure
 ---
 

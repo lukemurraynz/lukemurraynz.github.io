@@ -1,5 +1,6 @@
 ---
 title: No Sound in Adobe Flash Videos
+description: "Wait for scan to complete, you may need your Windows CD/DVD for this if it needs to copy data from it."
 permalink: /win/no-sound-in-adobe-flash-vids/
 tags:
   - Windows

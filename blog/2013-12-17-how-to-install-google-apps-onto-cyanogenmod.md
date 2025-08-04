@@ -1,5 +1,6 @@
 ---
 title: How to install Google Apps onto CyanogenMod
+description: "Note: This is usually – for the nightly builds. The stable builds seem to have Google integration."
 tags:
   - Mobile
 date: 2013-12-17 00:00:00 +1300

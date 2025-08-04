@@ -1,5 +1,6 @@
 ---
 title: Bring Your Data to Life with Azure OpenAI
+description: "Today, we will look at using Azure OpenAI and 'Bring Your Data' to allow recent documentation to be referenced and bring life and relevance to your data."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
 date: '2023-07-04 15:15:00 +1300'
 slug: azure/Bring-Your-Data-to-Life-with-Azure-OpenAI
 ---
-
 Today, we will look at using Azure OpenAI and 'Bring Your Data' to allow recent documentation to be referenced and bring life (and relevance) to your data.
 
 ![Bring Your Data to Life with Azure OpenAI](/images/posts/Header-BringYourDatatoLifewithAzureOpenAI.gif "Bring Your Data to Life with Azure OpenAI")

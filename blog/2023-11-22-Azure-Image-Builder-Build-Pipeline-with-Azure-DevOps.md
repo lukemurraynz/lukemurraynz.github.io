@@ -1,5 +1,6 @@
 ---
 title: Azure Image Builder Image Build with Bicep and Azure DevOps
+description: "Azure Image Builder id=AZ-MVP-5004796 is an Azure ..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
 date: 2023-11-22 00:00:00 +1300
 slug: azure/Azure-Image-Builder-Build-Pipeline-with-Azure-DevOps
 ---
-
 [Azure Image Builder](https://learn.microsoft.com/azure/virtual-machines/image-builder-overview?tabs=azure-powershell&WT.mc_id=AZ-MVP-5004796) is an Azure managed service *(running [Packer](https://www.packer.io/) underneath)* that allows you to create customised Virtual Machine images.
 
 > By using standardized virtual machine (VM) images, your organization can more easily migrate to the cloud and help ensure consistency in your deployments. Images ordinarily include predefined security, configuration settings, and any necessary software. Setting up your own imaging pipeline requires time, infrastructure, and many other details. With Azure VM Image Builder, you only need to create a configuration that describes your image and submit it to the service where it is built and distributed.

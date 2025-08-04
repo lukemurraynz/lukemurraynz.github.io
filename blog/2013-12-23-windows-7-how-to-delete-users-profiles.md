@@ -1,10 +1,10 @@
 ---
 title: Windows 7 – How to delete users profiles
+description: "Click Advanced System Settings."
 tags:
   - Windows
 date: 2013-12-23 00:00:00 +1300
 ---
-
   1. Click on Start
   2. Right click Computer
   3. Select Properties.

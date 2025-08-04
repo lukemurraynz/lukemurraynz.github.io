@@ -1,10 +1,10 @@
 ---
 title: VMWare Service Manager How to setup Watched Calls
+description: "In VMWare Service Manager you can add a Watched Call; state to an Incident or Service Request. This function allows you to automatically get emailed via..."
 tags:
   - Windows
 date: 2014-01-09 00:00:00 +1300
 ---
-
 In VMWare Service Manager you can add a Watched Call; state to an Incident or Service Request. This function allows you to automatically get emailed (via the email address on your People record) any changes and updates that have happened to the call – this makes keeping up with what is happening in a call extremely useful especially for Service Desk / Help Desk staff.
 
 Note: Putting this watched call state on will not add any history or adjust any of the lifecycle management of the call.

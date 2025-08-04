@@ -1,5 +1,6 @@
 ---
 title: How to install Vinyl Laptop Skins
+description: "Start with a clean laptop and a clean, flat working surface. To clean your laptop s external surface, we recommend a damp lint-free cloth. Basically, yo..."
 layout: post
 permalink: /misc/vinyl-laptop-skins/
 tags:

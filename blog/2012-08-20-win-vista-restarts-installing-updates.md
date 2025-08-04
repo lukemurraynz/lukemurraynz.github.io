@@ -1,5 +1,6 @@
 ---
 title: Windows Vista continuous restarts installing updates
+description: "One of the common causes of Windows Vista problems is due to Windows Updates; especially when it forces the computer to continuously restart follow the ..."
 date: 2012-08-20T15:27:36+00:00
 authors: [Luke]
 tags:

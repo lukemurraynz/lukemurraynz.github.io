@@ -1,6 +1,7 @@
 ---
 date: 2022-01-02T11:00:00.000Z
 title: Microsoft Entra ID Application Proxy Implementation
+description: "Are you running internal web-based applications that you want to give access to users working remotely securely without the need for a VPN or firewall? ..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: uploads/aadproxynetworkdiagram.png
 slug: azure/azure-active-directory-application-proxy-implementation
 ---
-
 Are you running internal web-based applications that you want to give access to users working remotely securely without the need for a VPN or firewall? Do you want to enforce or use Azure Conditional Access policies to protect and manage access?
 
 Let me introduce the Microsoft Microsoft Entra ID Application Proxy...

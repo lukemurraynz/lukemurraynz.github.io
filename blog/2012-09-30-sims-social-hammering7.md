@@ -1,5 +1,6 @@
 ---
 title: Sims Social Practice Hammering 7 Times
+description: "Having problems with the Canvas Stretcher promotion and needing to Practice Hammering 7 Times? The fix for this is simple."
 date: 2012-09-30 00:00:00 +1300
 authors: [Luke]
 tags:

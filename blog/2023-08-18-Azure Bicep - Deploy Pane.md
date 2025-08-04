@@ -1,5 +1,6 @@
 ---
 title: Azure Bicep - Deploy Pane
+description: "Working with Azure Bicep id=AZ-MVP-5004796 using Visual S..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
 date: '2023-08-18 00:00:00 +1300'
 slug: azure/Azure-Bicep-Deploy-Pane
 ---
-
 Working with [Azure Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?tabs=bicep&WT.mc_id=AZ-MVP-5004796) using Visual Studio Code, is as native as an experience as you can get, made even better by the [Bicep Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep).
 
 The Bicep Visual Studio Code extension keeps evolving, with a recent (Experimental) feature being added called the **Deploy Pane**.

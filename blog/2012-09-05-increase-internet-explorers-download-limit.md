@@ -1,5 +1,6 @@
 ---
 title: Increase Internet Explorers Download Limit
+description: "Internet Explorer limits the amount of concurrent downloads. This is how you increase it"
 date: 2012-09-05T21:39:27+00:00
 authors: [Luke]
 tags:

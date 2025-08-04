@@ -1,5 +1,6 @@
 ---
 title: Enable Full KDE Desktop ASUS eeePC
+description: "Open terminal : Tap Ctrl+Alt+T to open the terminal command prompt."
 layout: post
 permalink: /linux/enable-full-kde-desktop-asus-eeepc/
 tags:

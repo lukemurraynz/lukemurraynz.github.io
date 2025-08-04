@@ -1,11 +1,11 @@
 ---
 title: WildStar How to install addons
+description: "As most MMORG out these days; Wildstar allows addons."
 tags:
   - Windows
 authors: [Luke]
 date: 2014-06-02 00:00:00 +1300
 ---
-
 As most MMORG out these days; Wildstar allows addons.
 
   1. The first and easiest way is to use the Curse Gaming Client to install addons.

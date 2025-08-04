@@ -1,6 +1,7 @@
 ---
 date: 2021-03-26 00:00:00 +1300
 title: Allow Azure DevOps Microsoft Hosted Agent to communicate with Azure KeyVault
+description: "It is best practice to lock down Azure resources to be accessible by location and services that is only to what's required and, the Azure Key vault is n..."
 authors: [Luke]
 tags:
   - Azure

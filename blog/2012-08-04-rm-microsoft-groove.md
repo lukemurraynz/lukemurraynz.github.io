@@ -1,5 +1,6 @@
 ---
 title: How to completely remove Microsoft Groove
+description: "Follow the guide below to remove Microsoft Groove from your PC."
 date: 2012-08-04T22:58:44+00:00
 authors: [Luke]
 tags:

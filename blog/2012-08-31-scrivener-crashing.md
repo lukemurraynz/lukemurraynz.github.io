@@ -1,5 +1,6 @@
 ---
 title: Scrivener Crashing
+description: "Attempting to open Scrivener and having the application closing on you, the common way to fix this is adjust the file permissions follow the instruction..."
 date: 2012-08-31T10:58:32+00:00
 authors: [Luke]
 tags:

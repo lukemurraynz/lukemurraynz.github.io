@@ -1,5 +1,6 @@
 ---
 title: How to get emailed hard drive status reports
+description: "Want to get emailed disk status reports of your drives/hard drives and you are using a Windows PC? Using a great tool developed by Acronis you can. Acro..."
 date: 2012-08-20T16:16:36+00:00
 authors: [Luke]
 tags:

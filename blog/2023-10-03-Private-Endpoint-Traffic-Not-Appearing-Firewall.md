@@ -12,7 +12,7 @@ keywords:
   - firewall
   - private endpoint
 slug: azure/private-endpoint-traffic-not-appearing-azure-firewall
-description: Private Endpoint traffic can take a different route than your standard traffic and cause some confusion and dropped packets.
+description: "Private Endpoint traffic can take a different route than your standard traffic and cause some confusion and dropped packets."
 ---
 
 You may have a situation where you have implemented [Private endpoints](https://learn.microsoft.com/azure/private-link/private-endpoint-overview?WT.mc_id=AZ-MVP-5004796) and the traffic from on-premises to those Private Endpoints, either doesn't work, even though on-premises firewalls say otherwise, or is working, but doesn't appear in the Azure Firewall.

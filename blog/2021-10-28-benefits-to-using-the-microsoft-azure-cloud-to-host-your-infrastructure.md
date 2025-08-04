@@ -1,6 +1,7 @@
 ---
 date: 2021-10-28T00:00:00.000+13:00
 title: Benefits to using the Microsoft Azure Cloud to host your Infrastructure
+description: "Cloud computing offers many benefits, from your traditional on-premises infrastructure, ecosystems such as Microsoft Azure, have an underlying fabric bu..."
 authors: [Luke]
 tags:
   - Azure

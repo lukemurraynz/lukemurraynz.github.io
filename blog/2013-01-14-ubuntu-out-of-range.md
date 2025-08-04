@@ -1,11 +1,11 @@
 ---
 title: Ubuntu – Out of range
+description: "This issue is commonly caused by the screen resolution settings in Ubuntu becoming too high for the actual monitor. This guide is written with the Ubunt..."
 date: 2013-01-14T08:40:11+00:00
 authors: [Luke]
 tags:
   - Linux
 ---
-
 This issue is commonly caused by the screen resolution settings in Ubuntu becoming too high for the actual monitor. This guide is written with the Ubuntu Live CD and version 12.10 in mind.
 
   1. During start-up select your language when prompted.

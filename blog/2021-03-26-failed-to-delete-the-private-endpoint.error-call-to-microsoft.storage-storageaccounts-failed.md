@@ -1,6 +1,7 @@
 ---
 date: 2021-03-26 00:00:00 +1300
 title: 'Failed to delete the private endpoint. Error: Call to Microsoft.Storage/storageAccounts
+description: "Failed to delete the private endpoint. Error: Call to Microsoft.Storage/storageAccounts failed"
   failed'
 authors: [Luke]
 tags:

@@ -1,5 +1,6 @@
 ---
 title: Borderlands 2 XINPUT1_3.dll
+description: "“Missing file XINPUT1 3.dll” error while trying to load Borderlands 2 on PC?"
 date: 2012-10-02T11:24:24+00:00
 authors: [Luke]
 tags:

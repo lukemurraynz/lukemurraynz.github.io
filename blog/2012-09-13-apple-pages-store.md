@@ -1,5 +1,6 @@
 ---
 title: Apple Pages File Location
+description: "Apple Pages, stores it s files at the location below:"
 date: 2012-09-13T08:49:10+00:00
 authors: [Luke]
 tags:

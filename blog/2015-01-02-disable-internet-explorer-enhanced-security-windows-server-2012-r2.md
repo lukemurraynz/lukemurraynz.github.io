@@ -1,5 +1,6 @@
 ---
 title: How to disable Internet Explorer Enhanced Security in Windows Server 2012 R2
+description: "Note: This is not best practice and is not recommended to do in a production environment."
 tags:
   - Windows
 date: 2015-01-02 00:00:00 +1300

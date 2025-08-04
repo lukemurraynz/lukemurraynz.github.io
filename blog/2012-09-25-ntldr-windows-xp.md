@@ -1,5 +1,6 @@
 ---
 title: NTLDR Windows XP
+description: "To repair this issue you need to have a Windows XP CD."
 date: 2012-09-25T18:47:01+00:00
 authors: [Luke]
 tags:

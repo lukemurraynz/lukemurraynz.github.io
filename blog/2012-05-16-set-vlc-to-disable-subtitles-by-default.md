@@ -1,5 +1,6 @@
 ---
 title: Set VLC to disable Subtitles by default
+description: "Learn about set vlc to disable subtitles by default. Step-by-step guide and solutions."
 permalink: /misc/set-vlc-to-disable-subtitles-by-default/
 tags:
   - Misc

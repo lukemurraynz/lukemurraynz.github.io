@@ -1,5 +1,6 @@
 ---
 title: Disable Windows 7 Password 30 Timeout
+description: "Type in: net accounts /maxpwage:unlimited"
 date: 2012-09-05T18:25:05+00:00
 authors: [Luke]
 tags:

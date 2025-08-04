@@ -11,7 +11,7 @@ keywords:
   - azure
   - copilot
   - Microsoft Copilot
-description: Microsoft Copilot for Azure is designed to generate the best possible responses within the context it can access. Lets take a look at the Public Preview.
+description: "Microsoft Copilot for Azure is designed to generate the best possible responses within the context it can access. Lets take a look at the Public Preview."
 header:
   teaser: /images/posts/BlobHeading_Microsft_Copilot_Azure_Preview.PNG
 categories:

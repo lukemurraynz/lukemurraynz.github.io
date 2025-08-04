@@ -1,5 +1,6 @@
 ---
 title: Book Review Azure Architecture Explained
+description: "Book review of Azure Architecture Explained: A comprehensive guide to building effective cloud solutions"
 authors: [Luke]
 tags:
   - Azure
@@ -10,7 +11,6 @@ header:
 date: 2023-11-18 00:00:00 +1300
 slug: azure/misc/Book-Review-Azure-architecture-explained
 ---
-
 Book review of [Azure Architecture Explained: A comprehensive guide to building effective cloud solutions](https://www.packtpub.com/product/azure-architecture-explained/9781837634811)
 
 <!-- truncate -->

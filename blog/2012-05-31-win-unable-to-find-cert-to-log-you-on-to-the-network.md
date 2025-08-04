@@ -1,5 +1,6 @@
 ---
 title: Windows was unable to find a certificate to log you on to the network
+description: "Right click on the Wireless network connections icon"
 layout: post
 permalink: /win/win-unable-to-find-cert-to-log-you-on-to-the-network/
 tags:

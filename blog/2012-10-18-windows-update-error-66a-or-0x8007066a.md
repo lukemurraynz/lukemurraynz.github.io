@@ -1,11 +1,11 @@
 ---
 title: Windows Update Error 66a or 0x8007066A
+description: "Click Uninstall a Program /Add and Remove Programs"
 date: 2012-10-18 00:00:00 +1300
 authors: [Luke]
 tags:
   - Windows
 ---
-
   1. Click **Start**
   2. Click **Control Panel**
   3. Click **Uninstall a Program**/Add and Remove Programs

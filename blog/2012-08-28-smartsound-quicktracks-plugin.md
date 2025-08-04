@@ -1,5 +1,6 @@
 ---
 title: SmartSound Quicktracks Plugin Issues
+description: "This issue commonly occurs on DVD Flick installations but also known for other problems that deal with video codecs. Follow the steps below to repair:"
 date: 2012-08-28T12:06:34+00:00
 authors: [Luke]
 tags:

@@ -1,5 +1,6 @@
 ---
 title: Windows 3.1 Nokia n95 Controls
+description: "Running Windows 3.1 on your Nokia phone in DOSBox and forgot how to control it? The guide is below:"
 permalink: /mob/win-3-1-nokia-n95-controls/
 tags:
   - Mobile

@@ -1,5 +1,6 @@
 ---
 title: Azure OpenAI error log summarization with completion 
+description: "I was assisting a user on Microsoft Q&A id=AZ-MVP-5004796 with an issue, that involved lookin..."
 authors: [Luke]
 tags:
   - Azure

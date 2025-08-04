@@ -1,5 +1,6 @@
 ---
 title: How to remove Java from OSX
+description: "Open Terminal /Utilities/Terminal"
 permalink: /osx/how-to-remove-java-from-osx/
 tags:
   - Mac OSX

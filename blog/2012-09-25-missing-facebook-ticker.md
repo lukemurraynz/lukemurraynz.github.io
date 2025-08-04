@@ -1,5 +1,6 @@
 ---
 title: 'Missing Facebook ticker'
+description: "The ticker gets activated once you have reached a certain amount of friends on your Facebook profile who are active. The fix is simply, invite more frie..."
 date: 2012-09-25T21:33:02+00:00
 authors: [Luke]
 layout: post

@@ -1,5 +1,6 @@
 ---
 title: Reset PRAM/NVRAM
+description: "Warning: Resetting the PRAM/NVRAM will cause the Mac to lose operating system settings such as Time and Volume settings."
 date: 2012-08-21T11:30:28+00:00
 authors: [Luke]
 tags:

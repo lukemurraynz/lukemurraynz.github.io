@@ -1,6 +1,7 @@
 ---
 date: '2023-02-03 00:00:00 +1300'
 title: Azure Deployment history cleanup with Azure DevOps
+description: "Microsoft Azure has a limit of 800 deployments per resource group"
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
   teaser: /uploads/azdeploycleanupazdevopsheader.png
 slug: azure/azure-deployment-cleanup-with-azure-devops
 ---
-
 Microsoft Azure has a limit of [800 deployments per resource group](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits?WT.mc_id=AZ-MVP-5004796#resource-group-limits "Resource group limits"). This means that a single resource group can only contain 800 historical deployments at most.
 
 > A deployment in Azure refers to the process of creating or updating resources in a resource group.

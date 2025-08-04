@@ -1,5 +1,6 @@
 ---
 title: XChat Commands
+description: "Enables Auto Rejoin Client wide /set irc\\ auto\\ rejoin 1"
 permalink: /misc/xchat-commands/
 tags:
   - Misc

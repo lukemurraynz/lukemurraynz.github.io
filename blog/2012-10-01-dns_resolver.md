@@ -1,5 +1,6 @@
 ---
 title: Public Alternative DNS Resolvers
+description: "Public Alternative DNS Resolvers"
 date: 2012-10-01T19:30:29+00:00
 authors: [Luke]
 tags:

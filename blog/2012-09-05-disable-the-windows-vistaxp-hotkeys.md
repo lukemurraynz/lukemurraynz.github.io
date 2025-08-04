@@ -1,5 +1,6 @@
 ---
 title: Disable the Windows Vista/XP Hotkeys
+description: "In the Search box type regedit.exe"
 date: 2012-09-05T18:31:58+00:00
 authors: [Luke]
 tags:

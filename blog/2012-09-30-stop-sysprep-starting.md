@@ -1,5 +1,6 @@
 ---
 title: How to stop SysPrep from starting
+description: "Having issues with sysprep popping up all the time? Follow the instructions below to stop that annoyance from happening."
 layout: post
 permalink: /win/stop-sysprep-starting/
 tags:

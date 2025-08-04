@@ -1,5 +1,6 @@
 ---
 title: WWII Battle Tanks T-34 Vs Tiger Crashing
+description: "You need to download 3 DLLs click the links below to download and save them in a place you will remember and have easy access to for example your Deskto..."
 date: 2012-09-30T13:17:00+00:00
 authors: [Luke]
 permalink: /win/wwii-battle-tanks-t-34-vs-tiger-crashing/

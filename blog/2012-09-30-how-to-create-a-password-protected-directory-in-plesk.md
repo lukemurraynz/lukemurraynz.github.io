@@ -1,5 +1,6 @@
 ---
 title: How to create a password protected directory in Plesk
+description: "Click Hide Advanced Options down the bottom"
 date: 2012-09-30T08:37:23+00:00
 authors: [Luke]
 layout: post

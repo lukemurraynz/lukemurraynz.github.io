@@ -1,5 +1,6 @@
 ---
 title: How to Boot from CD/DVD on a Macbook
+description: "Want to boot from CD/DVD on your Macbook but don t know how? The answer is simple!"
 permalink: /osx/boot_macbook/
 tags:
   - Mac OSX

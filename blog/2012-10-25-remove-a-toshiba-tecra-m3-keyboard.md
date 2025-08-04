@@ -1,5 +1,6 @@
 ---
 title: How to remove a Toshiba Tecra M3 Keyboard
+description: "Small Razor Blade/Flat-Head Screwdriver"
 date: 2012-10-25 00:00:00 +1300
 authors: [Luke]
 tags:

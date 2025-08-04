@@ -1,5 +1,6 @@
 ---
 title: Azure Dev/Test Subscription considerations
+description: "When looking at your Dev/Test workloads in Azure, you may be considering the Azure Plan for Dev/Test Enterprise"
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
 date: 2023-12-21 00:00:00 +1300
 slug: azure/Azure-DevTest-Subscription-Considerations
 ---
-
 When looking at your Dev/Test workloads in Azure, you may be considering the [Azure Plan for Dev/Test Enterprise](https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0148p?WT.mc_id=AZ-MVP-5004796) subscription type, available on both the [Microsoft Customer Agreement (MCA)](https://learn.microsoft.com/azure/cost-management-billing/understand/mca-overview?WT.mc_id=AZ-MVP-5004796) and [Enterprise Agreement (EA)](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise?WT.mc_id=AZ-MVP-5004796) billing account types.
 
 <!-- truncate -->

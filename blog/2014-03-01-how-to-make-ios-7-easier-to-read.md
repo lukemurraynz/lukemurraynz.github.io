@@ -1,10 +1,10 @@
 ---
 title: How to make iOS 7 easier to read
+description: "Type option to adjust text size."
 tags:
   - Mac OSX
 date: 2014-03-01 00:00:00 +1300
 ---
-
 1. Open **Settings**
 2. Select **General**
 3. Select **Accessibility

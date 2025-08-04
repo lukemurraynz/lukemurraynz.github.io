@@ -1,5 +1,6 @@
 ---
 title: Shutdown Batch Script
+description: "Save the following into a notepad document and name it with .bat at the end for example shutdown.BAT. You can then either set it to the desktop or add i..."
 date: 2013-01-17 00:00:00 +1300
 authors: [Luke]
 tags:

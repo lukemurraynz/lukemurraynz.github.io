@@ -1,5 +1,6 @@
 ---
 title: Sony Tablet S Not Starting Reset
+description: "Having problems where your Sony S Tablet is getting power from the adapter but actually not turning on? I had this issue and this is how I got it runnin..."
 date: 2012-09-28T09:25:50+00:00
 authors: [Luke]
 tags:

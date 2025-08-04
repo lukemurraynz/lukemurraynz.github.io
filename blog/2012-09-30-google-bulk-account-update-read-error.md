@@ -1,5 +1,6 @@
 ---
 title: 'Google Bulk Account Update &#8220;read error&#8221;'
+description: "Trying to upload a CSV file to get Google to create multiple users with the email address, first name, and last name & password fields and getting the \\\"..."
 date: 2012-09-30T14:01:08+00:00
 authors: [Luke]
 tags:

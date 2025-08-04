@@ -1,11 +1,11 @@
 ---
 title: Visual/HTML Editor stuck in WordPress
+description: "Having problems with creating or editing a post on WordPress and you cannot change between the Visual Editor and HTML Editor?"
 authors: [Luke]
 date: 2013-02-19 00:00:00 +1300
 tags:
   - Misc
 ---
-
 Having problems with creating or editing a post on WordPress and you cannot change between the Visual Editor and HTML Editor?
 
   1. First thing is trying to clearing your browser cache.

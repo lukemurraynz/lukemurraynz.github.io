@@ -1,5 +1,6 @@
 ---
 title: Azure Bicep Deployment with Deployment Stacks
+description: "Deployment Stacks id=AZ-MVP-5004796 ! What ..."
 authors: [Luke]
 tags:
   - Azure
@@ -9,7 +10,6 @@ header:
 date: '2023-08-28 00:00:00 +1300'
 slug: azure/Azure-Bicep-Deployment-with-Deployment-Stacks
 ---
-
 [Deployment Stacks](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deployment-stacks?tabs=azure-powershell&WT.mc*id=AZ-MVP-5004796)! What is it? *insert confused look*
 
 Maybe you have been browsing the Microsoft Azure Portal and noticed a new section in the management blade called: Deployment stacks and wondered what it was, and how you can use it.

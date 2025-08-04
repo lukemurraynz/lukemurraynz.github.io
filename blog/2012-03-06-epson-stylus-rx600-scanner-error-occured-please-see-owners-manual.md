@@ -1,5 +1,6 @@
 ---
 title: 'Epson Stylus RX600 &#8220;scanner error occurred &#8211; please see owners manual&#8221;'
+description: "Epson Stylus Photo RX600 - \\\"scanner error occured please see owners manual\\\""
 permalink: /misc/epson-stylus-rx600-scanner-error-occured-please-see-owners-manual/
 tags:
   - Misc

@@ -1,10 +1,10 @@
 ---
 title: Lync 2013 – Turn on event logging for Windows event viewer
+description: "Change Logging in Lync to: Full"
 tags:
   - Windows
 date: 2013-12-23 00:00:00 +1300
 ---
-
   1. Open Lync 2013
   2. Click Options
   3. Change Logging in Lync to: Full

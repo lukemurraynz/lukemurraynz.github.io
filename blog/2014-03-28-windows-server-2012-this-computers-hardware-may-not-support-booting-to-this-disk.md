@@ -1,5 +1,6 @@
 ---
 title: 'Windows Server 2012 - This computer’s hardware may not support booting to this disk.'
+description: "This usually occurs when you are using a new SATA or solid-state drive that hasn t been initialized yet."
 tags:
   - Windows
 ---

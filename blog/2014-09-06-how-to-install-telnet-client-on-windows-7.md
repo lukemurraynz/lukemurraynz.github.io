@@ -1,10 +1,10 @@
 ---
 title: How to install Telnet client on Windows 7
+description: "Click Turn Windows Features On Or Off."
 tags:
   - Windows
 date: 2014-09-06 00:00:00 +1300
 ---
- 
   1. <span style="color:black;font-family:Arial;font-size:9pt">Click <strong>Start</strong><br /> </span>
   2. <span style="color:black;font-family:Arial;font-size:9pt">Click <strong>Control Panel.</strong><br /> </span>
   3. <span style="color:black;font-family:Arial;font-size:9pt">Click <strong>Programs</strong>.<br /> </span>

@@ -1,5 +1,6 @@
 ---
 title: Windows 8 Hotkeys
+description: "Navigating around Windows 8 can be a lot faster and more efficient with the use of keyboard shortcuts called Hotkeys – the below guide is a list of Wind..."
 tags:
   - Windows
 date: 2014-04-28 00:00:00 +1300

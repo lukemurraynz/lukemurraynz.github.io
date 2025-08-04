@@ -1,5 +1,6 @@
 ---
 title: 'Virtual Box   &#8216;Failed, trying without DKMS&#8221;'
+description: "This means simply, you are missing the dkms package."
 permalink: /linux/virtual-box-failed-trying-without-dkms/
 tags:
   - Linux

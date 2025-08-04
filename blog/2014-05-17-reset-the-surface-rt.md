@@ -1,5 +1,6 @@
 ---
 title: How to reset the Surface RT
+description: "Without any bootable media such as the Windows 8 CD. You have to reset the Surface RT at the operating system level."
 tags:
   - Windows
 date: 2014-05-17 00:00:00 +1300

@@ -1,11 +1,11 @@
 ---
 title: Excel 2010 – Adjusting Trusted Publisher’s and Macro/Visual Basic Scripting
+description: "Check – Enable All macros not recommended; potentially dangerous code can run"
 date: 2013-12-01 00:00:00 +1300
 authors: [Luke]
 tags:
   - Windows
 ---
-
 <ol style="margin-left: 39pt">
   <li>
     <span style="font-family: Trebuchet MS;font-size: 10pt">Open <strong>Excel 2010</strong><br /> </span>

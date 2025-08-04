@@ -1,5 +1,6 @@
 ---
 title: iMac Beep Codes
+description: "1 beep = No RAM installed/detected"
 permalink: /osx/imac-beep-codes/
 tags:
   - Mac OSX

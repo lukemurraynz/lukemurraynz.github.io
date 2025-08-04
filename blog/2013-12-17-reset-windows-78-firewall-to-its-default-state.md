@@ -1,5 +1,6 @@
 ---
 title: Reset Windows 7/8 Firewall to its default state
+description: "Note: You need the rights to be able to run an elevated Command Prompt."
 tags:
   - Windows
 date: 2013-12-17 00:00:00 +1300

@@ -1,5 +1,6 @@
 ---
 title: Windows Media Player burning Audio as MP3 instead of Audio CD
+description: "Trying to burn an Audio CD but Windows Media Player keeps burning them as Data MP3 disks? This is how you fix it."
 layout: post
 permalink: /win/win-media-player-mp3-audio-cd/
 tags:

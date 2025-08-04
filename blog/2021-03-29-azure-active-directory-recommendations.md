@@ -1,5 +1,6 @@
 ---
 title: Microsoft Entra ID Recommendations
+description: "Microsoft Entra ID is the foundation, which Microsoft 365 is built-on."
 authors: [Luke]
 tags:
   - Azure

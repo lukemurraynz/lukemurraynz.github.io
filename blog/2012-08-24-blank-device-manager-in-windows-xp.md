@@ -1,5 +1,6 @@
 ---
 title: Blank Device Manager in Windows XP
+description: "The issue is caused by security permissions in the registry. This is how you fix it."
 date: 2012-08-24T13:41:18+00:00
 authors: [Luke]
 tags:

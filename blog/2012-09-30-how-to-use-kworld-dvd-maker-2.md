@@ -1,5 +1,6 @@
 ---
 title: How to use the KWorld DVD Maker 2
+description: "To operate this device, you need to have to have installed Cyberlink DVD Producer that came on a CD with your device."
 date: 2012-09-30T14:53:44+00:00
 authors: [Luke]
 tags:

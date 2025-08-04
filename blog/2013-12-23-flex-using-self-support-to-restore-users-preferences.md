@@ -1,10 +1,10 @@
 ---
 title: 'Flex+ &#8211; Using Self-Support to restore user’s preferences'
+description: "Now for example –you are having outlook issues – select Microsoft Outlook 2010"
 tags:
   - Windows
 date: 2013-12-23 00:00:00 +1300
 ---
-
 1. Click Start
 2. Select All Programs
 3. Select Immidio Flex+

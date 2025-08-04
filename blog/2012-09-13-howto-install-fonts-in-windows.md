@@ -1,5 +1,6 @@
 ---
 title: How to install Fonts in Windows
+description: "The font dialog box will open. All you need to do now is just drag the font files you want to install into the folder ."
 date: 2012-09-13T08:44:59+00:00
 authors: [Luke]
 tags:

@@ -1,5 +1,6 @@
 ---
 title: Database error when making changes to DHCP reservations
+description: "An error occurred while accessing the DHCP database."
 tags:
   - Windows
 date: 2016-12-28 00:00:00 +1300

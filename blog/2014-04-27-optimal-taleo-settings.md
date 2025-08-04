@@ -1,5 +1,6 @@
 ---
 title: Optimal Taleo Settings
+description: "Taleo is used for many organisations as its tool for managing job applications. These settings are Internet Explorer recommended settings for displaying..."
 tags:
   - Misc
   - Windows

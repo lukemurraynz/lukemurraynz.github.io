@@ -1,5 +1,6 @@
 ---
 title: How to install OSX from a USB Drive (PowerPC)
+description: "First you need the DMG of OSX, which you can either create using the Retail DVD you have Using Disk Utility or acquire through other means. Place the DM..."
 permalink: /osx/how-to-install-osx-from-a-usb-drive-powerpc/
 tags:
   - Mac OSX

@@ -1,11 +1,11 @@
 ---
 title: How to adjust the Server Manager Refresh rate in Windows Server 2012
+description: "Click Server Manager Properties"
 date: 2012-11-06 00:00:00 +1300
 authors: [Luke]
 tags:
   - Windows
 ---
-
   1. Open Server **Manager**
   2. Click **Manage** _(top right)_
   3. Click **Server** **Manager** **Properties**

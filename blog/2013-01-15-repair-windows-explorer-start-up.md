@@ -1,5 +1,6 @@
 ---
 title: Repair Windows Explorer start-up
+description: "This usually occurs if Viruses or Spyware has infected explorer.exe and changed the registry entry to stop it from starting."
 authors: [Luke]
 tags:
   - Windows

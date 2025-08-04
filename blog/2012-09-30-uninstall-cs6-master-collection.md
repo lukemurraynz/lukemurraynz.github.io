@@ -1,5 +1,6 @@
 ---
 title: Uninstall CS6 Master Collection
+description: "Click Add/Remove Programs/Uninstall a Program"
 date: 2012-09-30T14:50:53+00:00
 authors: [Luke]
 tags:

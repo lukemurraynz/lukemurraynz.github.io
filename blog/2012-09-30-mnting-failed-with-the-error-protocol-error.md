@@ -1,5 +1,6 @@
 ---
 title: 'Mounting failed with the error: Protocol error'
+description: "Getting \\\"/sbin/mount.vboxsf: mounting failed with the error: Protocol error\\\" error with Virtualbox?"
 date: 2012-09-30T13:26:58+00:00
 authors: [Luke]
 tags:

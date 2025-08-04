@@ -1,5 +1,6 @@
 ---
 title: 'Google Apps Migration &#8211; Exchange to Google Apps'
+description: "Sample CSV Comma Separated Values File for migration to Google Apps using the Apps Migration tool from Exchange. The bottom is a sample of the heading n..."
 date: 2012-09-30T15:36:33+00:00
 authors: [Luke]
 tags:

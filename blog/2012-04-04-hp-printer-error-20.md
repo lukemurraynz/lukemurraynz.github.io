@@ -1,5 +1,6 @@
 ---
 title: HP Printer Error 20
+description: "Error 20 on Hewlett Packard printers means that the document you are trying to print is usually too large for the printers on board memory, could be bec..."
 permalink: /misc/hp-printer-error-20/
 tags:
   - Misc

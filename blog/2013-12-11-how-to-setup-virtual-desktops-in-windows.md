@@ -1,10 +1,10 @@
 ---
 title: How to setup Virtual Desktops in Windows
+description: "First you need a third party utility called – Dexpot. This utility is free for non-commercial use & can be obtained from: Dexpot.de ."
 tags:
   - Windows
 date: 2013-12-11 00:00:00 +1300
 ---
-
 First you need a third party utility called – Dexpot. This utility is free for non-commercial use & can be obtained from: <a href="http://Dexpot.de" target="_blank">Dexpot.de</a>.
 
   1. Once downloaded – run the installation file to install.

@@ -1,6 +1,7 @@
 ---
 date: "2018-06-10"
 title: Using PowerShell to connect to Microsoft Azure
+description: "Microsoft Azure has a good user portal where you can do most things, however"
 authors: [Luke]
 tags:
   - Azure
@@ -8,7 +9,6 @@ tags:
 header:
   teaser: "images/powershell-blog-feature-banner.png"
 ---
-
 Microsoft Azure has a good user portal where you can do most things, however
 when it comes to automation, gathering a lot of information at once and more
 in-depth scenarios that the Portal doesn’t quite offer – PowerShell is used.

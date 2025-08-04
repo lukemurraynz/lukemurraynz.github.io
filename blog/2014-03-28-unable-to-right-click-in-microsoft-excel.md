@@ -1,5 +1,6 @@
 ---
 title: Unable to right click in Microsoft Excel
+description: "This is fixed by removing the Excel11.xlb excel template file located in the following locations:"
 tags:
   - Windows
 ---

@@ -1,5 +1,6 @@
 ---
 title: Create a Public Holidays API using Microsoft Azure
+description: "Using a previous blog post \\\"Turn on a Azure Virtual Machine using Azu..."
 authors: [Luke]
 tags:
   - Azure
@@ -8,7 +9,6 @@ toc: true
 header:
   teaser: /uploads/azureportal_storagebrowser_api_table.png
 ---
-
 Using a previous [blog post](https://luke.geek.nz/azure/turn-on-a-azure-virtual-machine-using-azure-automation/ "Turn on a Azure Virtual Machine using Azure Automation") I did on using a third-party API _(Application Programming Interface)_ to start a Virtual Machine when it wasn't a Public Holiday, I had a thought on what could be an option if I wanted an API only accessible on an internal network or if I wanted to include custom Holidays such as Star Wars day or company holidays? Could I create and query my API using Microsoft Azure services? You can!
 
 ### Overview

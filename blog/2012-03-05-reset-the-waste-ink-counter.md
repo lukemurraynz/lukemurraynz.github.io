@@ -1,5 +1,6 @@
 ---
 title: Reset the Waste Ink Counter on the Canon Pixma 1200
+description: "Disconnect printer from AC power"
 permalink: /misc/reset-the-waste-ink-counter/
 tags:
   - Misc

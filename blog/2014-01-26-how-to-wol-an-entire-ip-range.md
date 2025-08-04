@@ -1,10 +1,10 @@
 ---
 title: How to WOL an entire IP range
+description: "WOL Wake on Lan functions – can be extremely useful especially in remote management and deployment of resources. I have come across a neat little free u..."
 tags:
   - Windows
 date: 2014-01-26 00:00:00 +1300
 ---
-
 WOL (Wake on Lan) functions – can be extremely useful especially in remote management and deployment of resources. I have come across a neat little free utility named: <a href="http://www.softperfect.com/products/networkscanner/" target="_blank">SoftPerfect Network Scanner</a> which although being freeware comes with a manner of useful functionality from small to large WANs so I recommend to anyone having a flick through the utility. 
 
   1. First download the utility &#8211; <a href="http://www.softperfect.com/products/networkscanner/" target="_blank">SoftPerfect Network Scanner</a> and save to an easily locatable location _– ie Desktop or My Documents/Downloads_. 

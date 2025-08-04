@@ -1,5 +1,6 @@
 ---
 title: Green Line top of Youtube Video
+description: "Getting a green line at the top of each Youtube video? It has recently be caused by a recent Adobe Update, follow the guide below to repair:"
 date: 2012-09-30T11:39:58+00:00
 authors: [Luke]
 tags:

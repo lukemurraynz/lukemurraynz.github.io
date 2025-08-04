@@ -1,5 +1,6 @@
 ---
 title: Install Ubuntu netbook edition
+description: "Note: Be best to be plugged into the Internet through Ethernet to make sure latest updates are installed and downloaded while running the install."
 date: 2012-10-02T12:29:14+00:00
 authors: [Luke]
 tags:

@@ -1,11 +1,11 @@
 ---
 title: iPhone/iPod – App Store is in Chinese
+description: "Select Featured left most option – down bottom"
 date: 2012-12-17 00:00:00 +1300
 authors: [Luke]
 tags:
   - Mobile
 ---
-
   1. Launch **App Store**
   2. Select **Featured** _(left most option – down bottom)_
   3. Scroll to the bottom and select your **account** _(the button is centered and long)_

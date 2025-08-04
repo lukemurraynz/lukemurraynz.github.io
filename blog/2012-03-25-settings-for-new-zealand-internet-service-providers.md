@@ -1,5 +1,6 @@
 ---
 title: Settings for New Zealand Internet Service Providers
+description: "Ignite Communications formerly Data Solutions NZ"
 permalink: /misc/settings-for-new-zealand-internet-service-providers/
 tags:
   - Misc

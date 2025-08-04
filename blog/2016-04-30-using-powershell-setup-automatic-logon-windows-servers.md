@@ -1,5 +1,6 @@
 ---
 title: Using PowerShell to set up Automatic Login on Windows Servers
+description: "Some server based applications require to be logged into a service account to allow an Application or service to run, These applications usually require..."
 tags:
   - Windows
 date: 2016-04-30 00:00:00 +1300

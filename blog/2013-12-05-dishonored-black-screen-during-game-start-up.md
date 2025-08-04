@@ -1,5 +1,6 @@
 ---
 title: Dishonored – Black screen during game start-up
+description: "It runs correctly if you put \\\"-windowed\\\" in the launch options!"
 tags:
   - Windows
 date: 2013-12-05 00:00:00 +1300

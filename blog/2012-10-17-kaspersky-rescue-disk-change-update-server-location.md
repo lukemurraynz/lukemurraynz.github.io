@@ -1,11 +1,11 @@
 ---
 title: Kaspersky Rescue Disk Change Update Server Location
+description: "Note: You can also add Kaspersky update servers by clicking Add if you want to add a custom one."
 date: 2012-10-17 00:00:00 +1300
 authors: [Luke]
 tags:
   - Misc
 ---
-
   1. Click **Settings**
   2. Click **My Update Centre**
   3. Click **Settings**

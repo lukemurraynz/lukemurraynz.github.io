@@ -1,5 +1,6 @@
 ---
 title: Google Calendar Sync Error 1011
+description: "Learn about google calendar sync error 1011. Step-by-step guide and solutions."
 permalink: /misc/google-cal-sync-error-1011/
 tags:
   - Misc

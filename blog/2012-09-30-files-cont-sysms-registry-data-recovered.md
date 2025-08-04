@@ -1,5 +1,6 @@
 ---
 title: One of the files containing the systems registry data had to be recovered
+description: "This can someone be the result of bad RAM or Video RAM. Try to change the video memory in the BIOs from the lower number usually 32MB/64MB to the higher..."
 date: 2012-09-30T15:40:36+00:00
 authors: [Luke]
 layout: post

@@ -1,5 +1,6 @@
 ---
 title: How to access eMachines recovery partition.
+description: "Want to restore a Gateway computer back to factory settings? This is how you access the eMachines recovery partition"
 permalink: /misc/how-to-access-emachines-recovery-partition/
 tags:
   - Misc

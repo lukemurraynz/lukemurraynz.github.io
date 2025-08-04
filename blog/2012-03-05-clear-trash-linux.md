@@ -1,5 +1,6 @@
 ---
 title: How to forcefully clear the Trash in Linux
+description: "The Trash stores your recently deleted files and folders which you can usually Right click and clear to clear the Trash in Linux – however I have ran in..."
 tags:
   - Linux
 date: 2012-03-05 00:00:00 +1300

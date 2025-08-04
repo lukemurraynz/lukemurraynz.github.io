@@ -1,5 +1,6 @@
 ---
 title: Windows XP to format USB Flash drives as NTFS
+description: "Windows XP to format USB Flash drives as NTFS"
 permalink: /win/t-win-xp-format-usbdrive-ntfs/
 tags:
   - Windows
