@@ -186,6 +186,7 @@ Tools are a powerful primitive in the Model Context Protocol <em>(MCP)</em> that
 <li>Semantic search: Uses vector search to retrieve contextually relevant documentation for a given query.</li>
 <li>Optimized Chunking: Returns up to 10 high-quality content chunks <em>(each max 500 tokens)</em>, with article titles, URLs, and self-contained content excerpts.</li>
 <li>Continuously updated content: Access the latest Microsoft documentation as it is published.</li>
+<li>The ability to fetch full pages of documentation using the <code>microsoft_docs_fetch</code> tool, which returns the content as clean markdown with headings, code blocks, tables, and links.</li>
 </ul>
 <p>It's worth noting as we go into the demo that MCP servers expose the tools and resources but do not run any reasoning logic themselves; tool invocation is determined by the host application and model configuration. You can control this behavior in the description of your MCP servers and the crafting of your system and user prompts, you will see some of this in our demo shortly.</p>
 <p><img decoding="async" loading="lazy" alt="Model Context Protocol (MCP)" src="https://luke.geek.nz/assets/images/mcp-4271e667cf138aeedd20bb8dbadd8ae0.jpg" width="1280" height="720" class="img_ev3q"></p>
