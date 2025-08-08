@@ -28,7 +28,7 @@
  Prompts enable servers to define reusable prompt templates and workflows that clients can quickly surface to users and LLMs. They provide a powerful way to standardize and share everyday LLM interactions.
  Tools are a powerful primitive in the Model Context Protocol _(MCP)_ that enable servers to expose executable functionality to clients. Through tools, LLMs can interact with external systems, perform computations, and take actions in the real world.
 
- In our demo, the client will be [Visual Studio Code](https://code.visualstudio.com/). It will connect to an MCP server over HTTPS to utilize the document search tool. This tool retrieves the same content available to services like Copilot for Azure from the Microsoft Learn semantic search index. By using this index, responses can be grounded in the current documentation. For example, grounded results will surface that Azure Active Directory is now called Microsoft Entra ID and indicate which services are generally available within a specific region, based on the returned source content.
+ In our demo, the client will be [Visual Studio Code](https://code.visualstudio.com/). The client connects to an MCP server over HTTPS to call the document search tool. This tool retrieves the same content available to services like Copilot for Azure from the Microsoft Learn semantic search index. By using this index, responses can be better grounded in current documentation. For example, grounded results will surface that Azure Active Directory is now called Microsoft Entra ID and indicate which services are generally available within a specific region, based on the returned source content.
 
  {/* truncate */}
 
@@ -39,7 +39,7 @@
  - Optimized Chunking: Returns up to 10 high-quality content chunks _(each max 500 tokens)_, with article titles, URLs, and self-contained content excerpts.
  - Continuously updated content: Access the latest Microsoft documentation as it is published.
 
- It's worth noting as we go into the demo that MCP servers expose the tools and resources but do not run any reasoning logic themselves; the host application and LLM decide when and how to use the tools that are exposed. You can control this behavior in the description of your MCP servers and the crafting of your system and user prompts—you will see some of this in our demo shortly.
+ It's worth noting as we go into the demo that MCP servers expose the tools and resources but do not run any reasoning logic themselves; tool invocation is determined by the host application and model configuration. You can control this behavior in the description of your MCP servers and the crafting of your system and user prompts—you will see some of this in our demo shortly.
 
  ![Model Context Protocol _(MCP)_](images/mcp.jpg)
 
@@ -73,7 +73,7 @@
 
  - Using Microsoft Docs, is Azure Kubernetes Service available in New Zealand North?
 
- Because the prompt explicitly referenced Microsoft Docs, Copilot routed the request through the Microsoft Learn MCP server to retrieve grounded source content for the response.
+ Because the prompt explicitly referenced Microsoft Docs, the client routed the request via the Microsoft Learn MCP server to retrieve source content for the response.
 
  ![AKS New Zealand North](images/TestLearnMCPVSCodeAKSNZN.gif)
 
@@ -83,7 +83,7 @@
 
  So let us add an example, in Visual Studio Code, in the GitHub Copilot blade, select the slider button 'thingy' and select Modes, select Create Custom Chat Mode. You can specify a User Data folder, or you can specify a `.github/` location, which is preferred for me, as I like to keep the chat modes specific to my repository. It will mean that they can be shared with multiple users if committed to a Git repository. Then, specify a name; the filename needs to end with `.chatmode.md`, so `example.chatmode.md`.
 
- ```markdown title="luke_murray_mentor.chatmode.md
+ ```markdown title="luke_murray_mentor.chatmode.md"
  ---
  description: Mentor as Luke Murray, Microsoft Azure MVP and Cloud Architect.
  tools:
@@ -398,10 +398,20 @@
 
  _"The best way to learn Azure is to build something real. Start small, think big, and don't be afraid to break things in your dev environment! As we say in NZ - 'you can't make an omelette without breaking a few eggs' - same goes for learning cloud tech. Remember, trails need blazers, paths need finders, and dreams need chasers - so be the change maker your organization needs. Kia kaha (stay strong) and keep experimenting!"_
 
-```
+ ```
 
 Once added, you can then call it as another mode, directly from the Copilot Chat user interface.
 
 ![Luke Mentor MCP](images/TestLearnMCPVSCodeLukeMentorNZN.gif)
 
-A recent update to the Microsoft Learn MCP Server
+Now lets look at the latest addition to the Learn MCP Server the: 'microsoft_docs_fetch' tool,
+
+The 'microsoft_docs_fetch' tool allows you to fetch the latest content from Microsoft Learn, Azure documentation, and other official Microsoft sources. This tool is particularly useful for retrieving up-to-date information without needing to specify a search query, and continue to be in your flow of work, this is useful if you want to understand more about the subject matter, instead of getting the perceived answer, that could be split across multiple documents and sources, you can fetch the latest documentation as an entire page, and returns it to the chat interface as clean markdown, with the applicable headings, code blocks, tables and links.
+
+An example of this is:
+
+With a prompt like: Fetch the full AKS Availability Zones page to ground guidance on zone-spanning vs. zone-aligned node pools, storage options (ZRS/LRS), pod topology spread constraints, and load balancer considerations.
+
+You can either use the 'microsoft_docs_fetch' tool directly if you know the URL, or a prompt above will run the 'microsoft_docs_search' tool, to find the relevant pages, and then use the 'microsoft_docs_fetch' tool to fetch the full content of the page.
+
+![Microsoft Learn MCP Fetch Tool](images/microsoft_docs_fetch.jpg "Microsoft Learn MCP Fetch Tool")
