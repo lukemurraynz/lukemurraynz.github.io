@@ -28,7 +28,7 @@
  Prompts enable servers to define reusable prompt templates and workflows that clients can quickly surface to users and LLMs. They provide a powerful way to standardize and share everyday LLM interactions.
  Tools are a powerful primitive in the Model Context Protocol _(MCP)_ that enable servers to expose executable functionality to clients. Through tools, LLMs can interact with external systems, perform computations, and take actions in the real world.
 
- In our demo, the client will be [Visual Studio Code](https://code.visualstudio.com/). It will connect to an MCP server over HTTPS to utilize the document search tool. This tool retrieves the same content available to services like Copilot for Azure from the Microsoft Learn semantic search index. By using this index, responses can be grounded in the current documentation. For example, grounded results will surface that Azure Active Directory is now called Microsoft Entra ID and indicate which services are generally available within a specific region, based on the returned source content.
+ In our demo, the client will be [Visual Studio Code](https://code.visualstudio.com/). The client connects to an MCP server over HTTPS to call the document search tool. This tool retrieves the same content available to services like Copilot for Azure from the Microsoft Learn semantic search index. By using this index, responses can be better grounded in current documentation. For example, grounded results will surface that Azure Active Directory is now called Microsoft Entra ID and indicate which services are generally available within a specific region, based on the returned source content.
 
  {/* truncate */}
 
@@ -39,7 +39,7 @@
  - Optimized Chunking: Returns up to 10 high-quality content chunks _(each max 500 tokens)_, with article titles, URLs, and self-contained content excerpts.
  - Continuously updated content: Access the latest Microsoft documentation as it is published.
 
- It's worth noting as we go into the demo that MCP servers expose the tools and resources but do not run any reasoning logic themselves; the host application and LLM decide when and how to use the tools that are exposed. You can control this behavior in the description of your MCP servers and the crafting of your system and user prompts—you will see some of this in our demo shortly.
+ It's worth noting as we go into the demo that MCP servers expose the tools and resources but do not run any reasoning logic themselves; tool invocation is determined by the host application and model configuration. You can control this behavior in the description of your MCP servers and the crafting of your system and user prompts—you will see some of this in our demo shortly.
 
  ![Model Context Protocol _(MCP)_](images/mcp.jpg)
 
@@ -73,7 +73,7 @@
 
  - Using Microsoft Docs, is Azure Kubernetes Service available in New Zealand North?
 
- Because the prompt explicitly referenced Microsoft Docs, Copilot routed the request through the Microsoft Learn MCP server to retrieve grounded source content for the response.
+ Because the prompt explicitly referenced Microsoft Docs, the client routed the request via the Microsoft Learn MCP server to retrieve source content for the response.
 
  ![AKS New Zealand North](images/TestLearnMCPVSCodeAKSNZN.gif)
 
@@ -398,7 +398,7 @@
 
  _"The best way to learn Azure is to build something real. Start small, think big, and don't be afraid to break things in your dev environment! As we say in NZ - 'you can't make an omelette without breaking a few eggs' - same goes for learning cloud tech. Remember, trails need blazers, paths need finders, and dreams need chasers - so be the change maker your organization needs. Kia kaha (stay strong) and keep experimenting!"_
 
-```
+ ```
 
 Once added, you can then call it as another mode, directly from the Copilot Chat user interface.
 
