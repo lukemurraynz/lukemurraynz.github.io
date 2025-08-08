@@ -39,7 +39,7 @@ date: 2025-06-30T22:32:59.580Z
  - Optimized Chunking: Returns up to 10 high-quality content chunks _(each max 500 tokens)_, with article titles, URLs, and self-contained content excerpts.
  - Continuously updated content: Access the latest Microsoft documentation as it is published.
 
- It's worth noting as we go into the demo that MCP servers expose the tools and resources but do not run any reasoning logic themselves; tool invocation is determined by the host application and model configuration. You can control this behavior in the description of your MCP servers and the crafting of your system and user prompts—you will see some of this in our demo shortly.
+ It's worth noting as we go into the demo that MCP servers expose the tools and resources but do not run any reasoning logic themselves; tool invocation is determined by the host application and model configuration. You can control this behavior in the description of your MCP servers and the crafting of your system and user prompts, you will see some of this in our demo shortly.
 
  ![Model Context Protocol _(MCP)_](images/mcp.jpg)
 
@@ -404,14 +404,14 @@ Once added, you can then call it as another mode, directly from the Copilot Chat
 
 ![Luke Mentor MCP](images/TestLearnMCPVSCodeLukeMentorNZN.gif)
 
-Now lets look at the latest addition to the Learn MCP Server the: 'microsoft_docs_fetch' tool,
+Now lets look at the latest addition to the Learn MCP Server the: `microsoft_docs_fetch` tool,
 
-The 'microsoft_docs_fetch' tool allows you to fetch the latest content from Microsoft Learn, Azure documentation, and other official Microsoft sources. This tool is particularly useful for retrieving up-to-date information without needing to specify a search query, and continue to be in your flow of work, this is useful if you want to understand more about the subject matter, instead of getting the perceived answer, that could be split across multiple documents and sources, you can fetch the latest documentation as an entire page, and returns it to the chat interface as clean markdown, with the applicable headings, code blocks, tables and links.
+The `microsoft_docs_fetch` tool allows you to fetch the latest content from Microsoft Learn, Azure documentation, and other official Microsoft sources. This tool is particularly useful for retrieving up-to-date information without needing to specify a search query, and continue to be in your flow of work, this is useful if you want to understand more about the subject matter, instead of getting the perceived answer, that could be split across multiple documents and sources, you can fetch the latest documentation as an entire page, and returns it to the chat interface as clean markdown, with the applicable headings, code blocks, tables and links.
 
 An example of this is:
 
-With a prompt like: Fetch the full AKS Availability Zones page to ground guidance on zone-spanning vs. zone-aligned node pools, storage options (ZRS/LRS), pod topology spread constraints, and load balancer considerations.
+> With a prompt like: Fetch the full AKS Availability Zones page to ground guidance on zone-spanning vs. zone-aligned node pools, storage options (ZRS/LRS), pod topology spread constraints, and load balancer considerations.
 
-You can either use the 'microsoft_docs_fetch' tool directly if you know the URL, or a prompt above will run the 'microsoft_docs_search' tool, to find the relevant pages, and then use the 'microsoft_docs_fetch' tool to fetch the full content of the page.
+You can either use the `microsoft_docs_fetch` tool directly if you know the URL, or a prompt above will run the 'microsoft_docs_search' tool, to find the relevant pages, and then use the `microsoft_docs_fetch` tool to fetch the full content of the page.
 
 ![Microsoft Learn MCP Fetch Tool](images/microsoft_docs_fetch.jpg "Microsoft Learn MCP Fetch Tool")
