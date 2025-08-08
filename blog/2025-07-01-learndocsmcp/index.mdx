@@ -32,7 +32,7 @@ In our demo, the client will be [Visual Studio Code](https://code.visualstudio.c
 
 {/* truncate */}
 
-For the [Docs MCP server](https://github.com/MicrosoftDocs/mcp) itself:
+For the [Microsoft Learn MCP Server](https://github.com/MicrosoftDocs/mcp) itself:
 
 - High-Quality Content Retrieval: Search and retrieve relevant content from Microsoft Learn, Azure documentation, Microsoft 365 documentation, and other official Microsoft sources.
 - Semantic Understanding: Uses advanced vector search to find the most contextually relevant documentation for any query.
@@ -43,7 +43,7 @@ Its worth noting as we go into the demo, that MCP servers, expose the tools and 
 
 ![Model Context Protocol _(MCP)_](images/mcp.jpg)
 
-So, let's get started. First, we will add the [Docs MCP server](https://github.com/MicrosoftDocs/mcp) itself. Then, we will conduct some testing, followed by a custom GitHub Copilot Chat Mode.
+So, let's get started. First, we will add the [Microsoft Learn MCP Server](https://github.com/MicrosoftDocs/mcp) itself. Then, we will conduct some testing, followed by a custom GitHub Copilot Chat Mode.
 
 First thing, let us start with a Visual Studio Code instance. We will click on GitHub Copilot, select Agent Mode, click on the Configure Tools, and scroll to the bottom for Add MCP server.
 Add an HTTP server, and add `https://learn.microsoft.com/api/mcp` and specify a name \_(for example: `microsoft.docs.mcp`).
@@ -73,7 +73,7 @@ Now we can use the MCP to ground our data based on the current Learn semantic se
 
 - Using Microsoft Docs, is Azure Kubernetes Service available in New Zealand North?
 
-Because I have been specific about my prompt _(ie, use Microsoft Docs)_ Copilot was able to determine that it should call the Microsoft Learn Docs MCP to ground the data with the response.
+Because I have been specific about my prompt _(ie, use Microsoft Docs)_ Copilot was able to determine that it should call the Microsoft Learn MCP Server to ground the data with the response.
 
 ![AKS New Zealand North](images/TestLearnMCPVSCodeAKSNZN.gif)
 
