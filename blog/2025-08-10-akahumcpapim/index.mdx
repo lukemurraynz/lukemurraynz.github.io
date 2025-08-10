@@ -172,12 +172,20 @@ Now you can retest, without needing to add in the Id and Authorization headers, 
 Next up is enabling the MCP server support, so navigate to the API Management instance, and MCP Servers (Preview). 
 
 :::info
-If you do not see this, you may be on an older version and need to enable AI Gateway capabilities, so navigate down to Service Updates (preview), select Update Group ,and select AI Gateway Early
+If you do not see the "MCP Servers (Preview)" option, your Azure API Management instance may be running an older version that does not yet support MCP server features. 
+
+**How to enable AI Gateway capabilities:**
+1. In the Azure portal, navigate to your API Management instance.
+2. Go to **Service Updates (preview)** in the left-hand menu.
+3. Select **Update Group**.
+4. Choose **AI Gateway Early** to opt into the early update group that enables MCP server support.
 
 ![AI Gateway](images/APIM_AIGateway.jpg)
 *Figure: Enabling AI Gateway early update group.*
 
-Also, be wary of the maintenance window; you may need to wait for the maintenance window for the update to take effect, even though MCP Servers may display to allow you to add, it had some weird errors until I retried the following day after my maintenance window had passed, and the service had rolled out.
+> **Note:** The AI Gateway Early update group is typically available for API Management instances running on the Consumption or Developer tier, and may not be available for all regions or SKUs. If you are unsure, check the [Azure API Management release notes](https://learn.microsoft.com/en-us/azure/api-management/release-notes/) for the latest supported features and version information.
+
+Also, be aware of the maintenance window; you may need to wait for the maintenance window for the update to take effect. Even though MCP Servers may display and allow you to add, you may encounter errors until the update is fully rolled out. If you experience issues, try again after your maintenance window has passed.
 :::
 
 Now click Create MCP server, and select Expose an API as an MCP server, and select the API you created earlier, and give it a name, I will call it akahu-nz-mcp, select the API operations that you want to expose into the MCP Server, these will become the Tools that can be called from from a MCP client.
