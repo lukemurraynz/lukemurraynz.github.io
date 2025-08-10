@@ -134,10 +134,6 @@ The Authorization is your user token.</p>
 <p>Note: Large Language Models can produce inaccuracies or outdated interpretations. Treat generated insights as assistive, not authoritative, and apply appropriate governance and compliance controls for any production scenario.</p>
 </blockquote>]]></content:encoded>
             <category>Azure</category>
-            <category>API Management</category>
-            <category>MCP</category>
-            <category>Open Banking</category>
-            <category>Akahu</category>
         </item>
         <item>
             <title><![CDATA[Azure Container Apps with VNC and DOSBox]]></title>

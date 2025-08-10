@@ -137,10 +137,6 @@ The Authorization is your user token.</p>
             <uri>https://luke.geek.nz</uri>
         </author>
         <category label="Azure" term="Azure"/>
-        <category label="API Management" term="API Management"/>
-        <category label="MCP" term="MCP"/>
-        <category label="Open Banking" term="Open Banking"/>
-        <category label="Akahu" term="Akahu"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Azure Container Apps with VNC and DOSBox]]></title>
