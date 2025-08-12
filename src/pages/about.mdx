@@ -23,47 +23,47 @@ export default function About() {
 }
 
 .image-container, .content-container {
-width: 45%; /* reduced width to create some space between the containers */
+width: 45%; /_ reduced width to create some space between the containers _/
 margin: 20px;
 }
 
 .image-container img {
 width: 100%;
-border-radius: 5%; /* make the image corners slightly rounded */
-transition: transform 0.3s ease-in-out; /* smooth transition */
+border-radius: 5%; /_ make the image corners slightly rounded _/
+transition: transform 0.3s ease-in-out; /_ smooth transition _/
 }
 
 .image-container img:hover {
-transform: scale(2); /* zoom in to 200% */
+transform: scale(2); /_ zoom in to 200% _/
 }
 .content-container {
-line-height: 1.6; /* improve readability */
+line-height: 1.6; /_ improve readability _/
 }
 
 .carousel {
-width: 100%; /* fit within the parent container */
+width: 100%; /_ fit within the parent container _/
 display: grid;
-grid-template-columns: repeat(5, 1fr); /* create 5 columns */
-grid-auto-rows: auto; /* rows will adjust to the content size */
-grid-gap: 10px; /* space between images */
-overflow-x: auto; /* allow horizontal scrolling */
+grid-template-columns: repeat(5, 1fr); /_ create 5 columns _/
+grid-auto-rows: auto; /_ rows will adjust to the content size _/
+grid-gap: 10px; /_ space between images _/
+overflow-x: auto; /_ allow horizontal scrolling _/
 margin-top: 40px;
 }
 
 .carousel img {
-width: 150px; /* image will take up the full width of its grid cell */
-height: 150px; /* maintain aspect ratio */
-object-fit: cover; /* cover the container without squishing */
+width: 150px; /_ image will take up the full width of its grid cell _/
+height: 150px; /_ maintain aspect ratio _/
+object-fit: cover; /_ cover the container without squishing _/
 transition: transform 0.3s ease;
 }
 
 .carousel img:hover {
-transform: scale(1.5); /* zoom in on hover */
+transform: scale(1.5); /_ zoom in on hover _/
 }
 body {
-overflow-x: hidden; /* hide horizontal scrollbar */
+overflow-x: hidden; /_ hide horizontal scrollbar _/
 }
-      `}</style>
+`}</style>
 
       <header>
         <h1>About Me</h1>
@@ -161,6 +161,7 @@ overflow-x: hidden; /* hide horizontal scrollbar */
             <img src="/img/aboutpage/LinuxFoundationOpenAIFundamentals.png" alt="Linux Foundation OpenAI Fundamentals Badge" />
             <img src="/img/aboutpage/LinuxFoundationScalingCloudNativeAppswithKEDA.png" alt="Linux Foundation Scaling Cloud Native Apps with KEDA" />
             <img src="/img/aboutpage/MentorMVPFY25MicrosoftSkillsBootcampContributor.png" alt="Microsoft Skills Bootcamp 2024" />
+            <img src="/img/aboutpage/WinterSchool_Contributor_Badge_FY26.png" alt="Winter School Contributor FY26 Badge" />
             <img src="/img/aboutpage/MicrosoftAISkillsFestGWRHolder.png" alt="Microsoft AI Skills Fest - GUINNESS WORLD RECORDS" />
             <img src="/img/aboutpage/microsoft-global-hackathon-2024.png" alt="Microsoft Global Hackathon 2024" />
             <img src="/img/aboutpage/MVP2024Badge.png" alt="MVP 2024 Badge" />
@@ -171,5 +172,6 @@ overflow-x: hidden; /* hide horizontal scrollbar */
         </div>
       </section>
     </main>
-  );
+
+);
 }
