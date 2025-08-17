@@ -63,6 +63,17 @@ The SIRE is designed as a last resort: a place to recover from a catastrophic ev
 
 > Before proceeding further, make sure you read [Ransomware protection in Azure](https://learn.microsoft.com/azure/security/fundamentals/ransomware-protection?WT.mc_id=AZ-MVP-5004796) and [Recommendations for designing a disaster recovery strategy](https://learn.microsoft.com/azure/well-architected/reliability/disaster-recovery?WT.mc_id=AZ-MVP-5004796). This article is primarily focused on the [Containment/Mitigation](https://learn.microsoft.com/en-us/azure/security/fundamentals/ransomware-detect-respond?WT.mc_id=AZ-MVP-5004796#containmentmitigation) aspects.
 
+## 🚀 Getting started: SIRE in 8 steps
+
+1. Create a dedicated SIRE subscription and resource groups (separate from production).
+2. Deploy an isolated virtual network (no peering). Add a firewall/NVA for controlled egress and logging.
+3. Apply Azure Policy: deny VNet peering, require private endpoints for storage/Key Vault, and enforce tags.
+4. Enable Azure Bastion with session recording and monitoring for administrator access.
+5. Prepare identity: SIRE‑only RBAC groups, custom roles scoped to SIRE RGs, PIM JIT, and break‑glass accounts.
+6. Configure immutable backups (WORM) and validate restore points; document restore sources and credentials.
+7. Define restore order by tier (use the criticality table) and schedule quarterly SIRE restore tests.
+8. Automate with PowerShell/Azure CLI/IaC runbooks: create SIRE infra, execute restores, and isolate compromised links (e.g., disable VPN/peering).
+
 ## 🧩 Design principles
 
 * Immutable recovery foundation
