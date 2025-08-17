@@ -16,13 +16,13 @@
             <pubDate>Sun, 17 Aug 2025 09:46:57 GMT</pubDate>
             <description><![CDATA[Explore the Secure Isolated Recovery Environment in Azure to enhance your cybersecurity and ensure business continuity against ransomware attacks.]]></description>
             <content:encoded><![CDATA[<p>Today, we are going to delve into the importance of a Secure Isolated Recovery Environment (SIRE) for Microsoft Azure and why organizations should consider implementing this pattern as a critical component of their cybersecurity and business continuity strategy.</p>
-<p>A SIRE is designed to ensure that, even in the event of a severe cybersecurity incident—such as a ransomware attack—organizations have a secure, isolated space to recover essential systems and data. This approach is increasingly vital given the evolving threat landscape.</p>
+<p>A SIRE is designed to ensure that, even in the event of a severe cybersecurity incident-such as a ransomware attack-organizations have a secure, isolated space to recover essential systems and data. This approach is increasingly vital given the evolving threat landscape.</p>
 <!-- -->
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-why-sire-and-why-now">🔎 Why SIRE, and why now?<a href="https://luke.geek.nz/azure/sire/#-why-sire-and-why-now" class="hash-link" aria-label="Direct link to 🔎 Why SIRE, and why now?" title="Direct link to 🔎 Why SIRE, and why now?">​</a></h2>
 <p><img decoding="async" loading="lazy" alt="Secure Isolated Recovery Environment (SIRE)" src="https://luke.geek.nz/assets/images/sire-conceptual-overview-9644cbcf4b65aa19e76b6efb6dff2f8b.png" width="963" height="591" class="img_ev3q"></p>
 <blockquote>
 <p>According to the <a href="https://www.sophos.com/en-us/content/state-of-ransomware" target="_blank" rel="noopener noreferrer">Sophos 2025 State of Ransomware Report</a>, exploited vulnerabilities remain the most common root cause of ransomware incidents, accounting for 32% of attacks. Compromised credentials and email-based attacks also continue to be significant vectors.</p>
-<p>Notably, while 97% of organizations that had data encrypted were able to recover it, only 54% restored their data using backups—the lowest rate in six years. Nearly half (49%) paid the ransom to regain access, and 29% relied on "other means" such as public decryption keys.</p>
+<p>Notably, while 97% of organizations that had data encrypted were able to recover it, only 54% restored their data using backups-the lowest rate in six years. Nearly half (49%) paid the ransom to regain access, and 29% relied on "other means" such as public decryption keys.</p>
 </blockquote>
 <p>These statistics highlight a critical consideration: traditional recovery methods are becoming less reliable, and the risk of data loss or extended downtime is increasing. By proactively considering a SIRE, organizations can:</p>
 <ul>
@@ -31,10 +31,10 @@
 <li>Strengthen overall resilience against evolving cyber threats.</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-airgapped-backups-in-azure">🧊 Air‑gapped backups in Azure<a href="https://luke.geek.nz/azure/sire/#-airgapped-backups-in-azure" class="hash-link" aria-label="Direct link to 🧊 Air‑gapped backups in Azure" title="Direct link to 🧊 Air‑gapped backups in Azure">​</a></h2>
-<p>It’s worth noting that services such as <a href="https://learn.microsoft.com/azure/backup/backup-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Backup</a> are air-gapped—isolated from customer virtual networks—and can provide a secure recovery option in the event of a ransomware attack.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-what-sire-isand-isnt">🧱 What SIRE is—and isn’t<a href="https://luke.geek.nz/azure/sire/#-what-sire-isand-isnt" class="hash-link" aria-label="Direct link to 🧱 What SIRE is—and isn’t" title="Direct link to 🧱 What SIRE is—and isn’t">​</a></h2>
+<p>It’s worth noting that services such as <a href="https://learn.microsoft.com/azure/backup/backup-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Backup</a> are air-gapped and isolated from customer virtual networks - and can provide a secure recovery option in the event of a ransomware attack.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-what-sire-is-and-isnt">🧱 What SIRE is-and isn’t<a href="https://luke.geek.nz/azure/sire/#-what-sire-is-and-isnt" class="hash-link" aria-label="Direct link to 🧱 What SIRE is-and isn’t" title="Direct link to 🧱 What SIRE is-and isn’t">​</a></h2>
 <p>When we consider a Secure Isolated Recovery Environment (SIRE), we’re talking about a purpose-built environment to facilitate recovery without risk of contamination from the primary environment. At its simplest, it’s a standalone virtual network not peered with anything and created as required. However, there are essential considerations around how it’s implemented and, more importantly, how it’s used.</p>
-<p>The SIRE environment is not your disaster recovery setup in an Active/Passive scenario—whether in the same or a different region. For those scenarios, you should consider <a href="https://learn.microsoft.com/azure/well-architected/reliability/principles?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">reliability</a> in your design based on workload criticality and downtime impact.</p>
+<p>The SIRE environment is not your disaster recovery setup in an Active/Passive scenario, whether in the same or a different region. For those scenarios, you should consider <a href="https://learn.microsoft.com/azure/well-architected/reliability/principles?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">reliability</a> in your design based on workload criticality and downtime impact.</p>
 <p>The SIRE is designed as a last resort: a place to recover from a catastrophic event (for example, a ransomware attack) when the primary environment is compromised. It’s not intended for day-to-day operations. You may replicate critical services to an air‑gapped VNet if required, but you must know the exact moment your environment was compromised, which can be days or even weeks after the initial incident.</p>
 <p><img decoding="async" loading="lazy" alt="Secure Isolated Recovery Environment (SIRE)" src="https://luke.geek.nz/assets/images/sire-conceptual-dr-hld-d26987a2b2587b6e189b95fa6a6b078e.png" width="1602" height="591" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-read-this-first">📚 Read this first<a href="https://luke.geek.nz/azure/sire/#-read-this-first" class="hash-link" aria-label="Direct link to 📚 Read this first" title="Direct link to 📚 Read this first">​</a></h2>
@@ -58,56 +58,56 @@
 <ul>
 <li>Ensure that recovery data is immutable and cannot be altered or deleted by malicious actors. Remember <a href="https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">WORM (Write Once Read Many)</a>.</li>
 <li>Implement versioning and retention policies to maintain a history of recoverable data.</li>
-<li>Infrastructure as Code (IaC) enables consistent, repeatable deployments of both recovery and production environments—preserving the state at the time of the incident.</li>
+<li>Infrastructure as Code (IaC) enables consistent, repeatable deployments of both recovery and production environments-preserving the state at the time of the incident.</li>
 </ul>
 </li>
 <li>Zero Trust security model<!-- -->
 <ul>
-<li>Never trust, always verify — continuous authentication and authorization</li>
-<li>Least privilege access — <a href="https://learn.microsoft.com/azure/role-based-access-control/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">RBAC</a> with <a href="https://learn.microsoft.com/azure/role-based-access-control/pim-integration?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">just‑in‑time access</a></li>
-<li>Continuous monitoring — <a href="https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Defender for Cloud</a> and <a href="https://learn.microsoft.com/azure/sentinel/overview?tabs=defender-portal&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Microsoft Sentinel</a></li>
+<li>Never trust, always verify - continuous authentication and authorization</li>
+<li>Least privilege access - <a href="https://learn.microsoft.com/azure/role-based-access-control/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">RBAC</a> with <a href="https://learn.microsoft.com/azure/role-based-access-control/pim-integration?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">just‑in‑time access</a></li>
+<li>Continuous monitoring - <a href="https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Defender for Cloud</a> and <a href="https://learn.microsoft.com/azure/sentinel/overview?tabs=defender-portal&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Microsoft Sentinel</a></li>
 </ul>
 </li>
 <li>Air‑gapped isolation<!-- -->
 <ul>
-<li><a href="https://learn.microsoft.com/azure/security/fundamentals/isolation-choices?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Network isolation</a> — dedicated VNets with controlled connectivity</li>
-<li><a href="https://learn.microsoft.com/azure/security/fundamentals/isolation-choices?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Data isolation</a> — separate storage with immutable policies</li>
-<li><a href="https://learn.microsoft.com/security/privileged-access-workstations/privileged-access-access-model?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Identity isolation</a> — strict RBAC boundaries and cloud‑only accounts, with clear separation across data, workload, and management planes</li>
+<li><a href="https://learn.microsoft.com/azure/security/fundamentals/isolation-choices?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Network isolation</a> - dedicated VNets with controlled connectivity</li>
+<li><a href="https://learn.microsoft.com/azure/security/fundamentals/isolation-choices?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Data isolation</a> - separate storage with immutable policies</li>
+<li><a href="https://learn.microsoft.com/security/privileged-access-workstations/privileged-access-access-model?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Identity isolation</a> - strict RBAC boundaries and cloud‑only accounts, with clear separation across data, workload, and management planes</li>
 </ul>
 </li>
 <li>Automated recovery orchestration<!-- -->
 <ul>
-<li><a href="https://learn.microsoft.com/azure/site-recovery/site-recovery-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Site Recovery</a> — automated VM and application failover</li>
-<li><a href="https://learn.microsoft.com/azure/business-continuity-center/business-continuity-center-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Business Continuity Center</a> — unified management of protection estate</li>
-<li>Recovery automation — PowerShell/Azure CLI scripts for consistent recovery</li>
+<li><a href="https://learn.microsoft.com/azure/site-recovery/site-recovery-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Site Recovery</a> - automated VM and application failover</li>
+<li><a href="https://learn.microsoft.com/azure/business-continuity-center/business-continuity-center-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Business Continuity Center</a> - unified management of protection estate</li>
+<li>Recovery automation - PowerShell/Azure CLI scripts for consistent recovery</li>
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-sameregion-vs-crossregion">🌍 Same‑region vs. cross‑region<a href="https://luke.geek.nz/azure/sire/#-sameregion-vs-crossregion" class="hash-link" aria-label="Direct link to 🌍 Same‑region vs. cross��‑region" title="Direct link to 🌍 Same‑region vs. cross‑region">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-sameregion-vs-crossregion">🌍 Same‑region vs. cross‑region<a href="https://luke.geek.nz/azure/sire/#-sameregion-vs-crossregion" class="hash-link" aria-label="Direct link to 🌍 Same‑region vs. cross‑region" title="Direct link to 🌍 Same‑region vs. cross‑region">​</a></h2>
 <p>95% of organizations will deploy a SIRE in the same region as their primary environment. This approach enables faster recovery and lower latency by leveraging existing regional capacity and services.</p>
 <blockquote>
-<p>Secure isolation does NOT require cross‑region deployment. Same‑region SIRE provides enterprise‑grade security isolation while maintaining cost efficiency, compliance simplicity, and operational excellence. Secure isolation is achieved through network segmentation, access controls, and infrastructure — NOT geographic separation. Consider the <a href="https://learn.microsoft.com/azure/governance/policy/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure policies</a> that may be deployed in your environment.</p>
+<p>Secure isolation does NOT require cross‑region deployment. Same‑region SIRE provides enterprise‑grade security isolation while maintaining cost efficiency, compliance simplicity, and operational excellence. Secure isolation is achieved through network segmentation, access controls, and infrastructure - NOT geographic separation. Consider the <a href="https://learn.microsoft.com/azure/governance/policy/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure policies</a> that may be deployed in your environment.</p>
 </blockquote>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-sire-architecture-features">🏗️ SIRE architecture features<a href="https://luke.geek.nz/azure/sire/#%EF%B8%8F-sire-architecture-features" class="hash-link" aria-label="Direct link to 🏗️ SIRE architecture features" title="Direct link to 🏗️ SIRE architecture features">​</a></h2>
 <ul>
-<li>Network air‑gap — dedicated VNets with zero connectivity to production</li>
-<li>Identity isolation — strict RBAC boundaries and Conditional Access</li>
-<li>Storage isolation — immutable backup storage with WORM policies</li>
-<li>Compute isolation — dedicated resource groups and virtual machines</li>
-<li>Access isolation — just‑in‑time (JIT) access via privileged identity management</li>
-<li>Zone‑level separation — different availability zones for physical isolation</li>
+<li>Network air‑gap - dedicated VNets with zero connectivity to production</li>
+<li>Identity isolation - strict RBAC boundaries and Conditional Access</li>
+<li>Storage isolation - immutable backup storage with WORM policies</li>
+<li>Compute isolation - dedicated resource groups and virtual machines</li>
+<li>Access isolation - just‑in‑time (JIT) access via privileged identity management</li>
+<li>Zone‑level separation - different availability zones for physical isolation</li>
 </ul>
 <table><thead><tr><th>Isolation Method</th><th>Description / Benefits</th></tr></thead><tbody><tr><td>Network Isolation</td><td>Dedicated VNets, NSGs, zero connectivity to production; prevents lateral movement and external threats.</td></tr><tr><td>Identity Isolation</td><td>Strict RBAC boundaries within tenant or separate Entra ID tenant; limits access to only authorized users.</td></tr><tr><td>Storage Isolation</td><td>Immutable WORM policies, customer-managed key (CMK) encryption; ensures backup integrity and security.</td></tr><tr><td>Access Controls</td><td>JIT access, Privileged Access Management (PAM), Conditional Access; reduces attack surface.</td></tr><tr><td>Infrastructure Isolation</td><td>Dedicated subscriptions/resource groups; isolates resources for better management and security.</td></tr><tr><td>Physical Isolation</td><td>Availability zones (datacenters); resilience against physical failures and localized incidents. Plan quotas/capacity ahead of restore.</td></tr></tbody></table>
 <p>🔒 A compromised admin account can access resources in ANY region if identity controls are weak. Strong same‑region isolation with proper RBAC often provides better protection than weak cross‑region controls. Identities used to stand up and restore to the SIRE must be separate from those used in production.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-identity-and-access-model">👤 Identity and access model<a href="https://luke.geek.nz/azure/sire/#-identity-and-access-model" class="hash-link" aria-label="Direct link to 👤 Identity and access model" title="Direct link to 👤 Identity and access model">​</a></h2>
 <p>Most organizations should implement SIRE within their existing Microsoft Entra ID tenant using strict RBAC boundaries. This provides enterprise‑grade security while maintaining operational simplicity and cost efficiency.</p>
 <ul>
-<li>Dedicated SIRE security groups — separate groups for SIRE administrators, operators, and forensics analysts</li>
-<li>Custom RBAC roles — granular permissions scoped to SIRE resource groups only</li>
-<li>Conditional Access policies — SIRE‑specific access controls with location/device requirements</li>
-<li>Privileged Identity Management (PIM) — just‑in‑time activation for SIRE administrative roles</li>
-<li>Separate service principals — dedicated managed identities for SIRE automation and services</li>
-<li>Emergency access accounts — break‑glass accounts with SIRE‑only permissions</li>
+<li>Dedicated SIRE security groups - separate groups for SIRE administrators, operators, and forensics analysts</li>
+<li>Custom RBAC roles - granular permissions scoped to SIRE resource groups only</li>
+<li>Conditional Access policies - SIRE‑specific access controls with location/device requirements</li>
+<li>Privileged Identity Management (PIM) - just‑in‑time activation for SIRE administrative roles</li>
+<li>Separate service principals - dedicated managed identities for SIRE automation and services</li>
+<li>Emergency access accounts - break‑glass accounts with SIRE‑only permissions</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-network-isolation-design">🔒 Network isolation design<a href="https://luke.geek.nz/azure/sire/#-network-isolation-design" class="hash-link" aria-label="Direct link to 🔒 Network isolation design" title="Direct link to 🔒 Network isolation design">​</a></h2>
 <p><img decoding="async" loading="lazy" alt="Defense in depth" src="https://luke.geek.nz/assets/images/sire-conceptual-defenseindepth-da8b128dfc8237d1c36c76dd5e911b35.png" width="1492" height="561" class="img_ev3q"></p>
@@ -135,20 +135,20 @@
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="-missioncritical-act-first">🚨 Mission‑critical: act first<a href="https://luke.geek.nz/azure/sire/#-missioncritical-act-first" class="hash-link" aria-label="Direct link to 🚨 Mission‑critical: act first" title="Direct link to 🚨 Mission‑critical: act first">​</a></h3>
 <p>These systems trigger immediate action, and the earliest SIRE restores:</p>
 <ul>
-<li>Life safety — Systems that directly impact human safety or emergency response (for example, 111/911 integration, paging/alerting)</li>
-<li>Regulatory compliance — Systems required to meet legal or regulatory obligations (for example, mandated record retention, audit logging)</li>
-<li>Revenue generation — Direct revenue paths and customer‑facing services (for example, checkout APIs, subscription billing jobs)</li>
-<li>Public safety — Services supporting emergency operations or public safety (for example, dispatch, critical notifications)</li>
-<li>Operational dependencies — Foundational platforms, everything else needs (for example, identity, DNS, secrets/keys)</li>
+<li>Life safety - Systems that directly impact human safety or emergency response (for example, 111/911 integration, paging/alerting)</li>
+<li>Regulatory compliance - Systems required to meet legal or regulatory obligations (for example, mandated record retention, audit logging)</li>
+<li>Revenue generation - Direct revenue paths and customer‑facing services (for example, checkout APIs, subscription billing jobs)</li>
+<li>Public safety - Services supporting emergency operations or public safety (for example, dispatch, critical notifications)</li>
+<li>Operational dependencies - Foundational platforms, everything else needs (for example, identity, DNS, secrets/keys)</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="-businesscritical-keep-the-lights-on">🏢 Business‑critical: keep the lights on<a href="https://luke.geek.nz/azure/sire/#-businesscritical-keep-the-lights-on" class="hash-link" aria-label="Direct link to 🏢 Business‑critical: keep the lights on" title="Direct link to 🏢 Business‑critical: keep the lights on">​</a></h3>
 <p>These keep core operations running and follow closely after mission‑critical restores:</p>
 <ul>
-<li>Core business processes — Primary business applications and workflows (for example, ERP, HRIS)</li>
-<li>Customer service — Support, service delivery, and communications (for example, ticketing, contact center)</li>
-<li>Financial operations — Payment processing, financial reporting, and accounting</li>
-<li>Supply chain — Inventory management, logistics, and vendor relationships</li>
-<li>Employee productivity — Essential workforce tools (for example, email, collaboration, endpoint management)</li>
+<li>Core business processes - Primary business applications and workflows (for example, ERP, HRIS)</li>
+<li>Customer service - Support, service delivery, and communications (for example, ticketing, contact center)</li>
+<li>Financial operations - Payment processing, financial reporting, and accounting</li>
+<li>Supply chain - Inventory management, logistics, and vendor relationships</li>
+<li>Employee productivity - Essential workforce tools (for example, email, collaboration, endpoint management)</li>
 </ul>
 <p>Use this tiering to drive SIRE restore order, access controls, and monitoring intensity for the first‑wave applications.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-recovery-playbook">🔁 Recovery playbook<a href="https://luke.geek.nz/azure/sire/#-recovery-playbook" class="hash-link" aria-label="Direct link to 🔁 Recovery playbook" title="Direct link to 🔁 Recovery playbook">​</a></h2>
