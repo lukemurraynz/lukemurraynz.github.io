@@ -1,6 +1,6 @@
 ---
 title: Secure Isolated Recovery Environment in Azure
-metaDescription: Learn how to design a Secure Isolated Recovery Environment (SIRE) in Azure—air‑gapped networks, identity isolation, immutable backups, restore prioritization, and automation.
+metaDescription: Learn how to design a Secure Isolated Recovery Environment (SIRE) in Azure-air‑gapped networks, identity isolation, immutable backups, restore prioritization, and automation.
 tags:
     - Azure
 categories:
@@ -27,7 +27,7 @@ date: 2025-08-17T09:46:57.224Z
 
 Today, we are going to delve into the importance of a Secure Isolated Recovery Environment (SIRE) for Microsoft Azure and why organizations should consider implementing this pattern as a critical component of their cybersecurity and business continuity strategy.
 
-A SIRE is designed to ensure that, even in the event of a severe cybersecurity incident—such as a ransomware attack—organizations have a secure, isolated space to recover essential systems and data. This approach is increasingly vital given the evolving threat landscape.
+A SIRE is designed to ensure that, even in the event of a severe cybersecurity incident-such as a ransomware attack-organizations have a secure, isolated space to recover essential systems and data. This approach is increasingly vital given the evolving threat landscape.
 
 {/* truncate */}
 
@@ -37,7 +37,7 @@ A SIRE is designed to ensure that, even in the event of a severe cybersecurity i
 
 > According to the [Sophos 2025 State of Ransomware Report](https://www.sophos.com/en-us/content/state-of-ransomware), exploited vulnerabilities remain the most common root cause of ransomware incidents, accounting for 32% of attacks. Compromised credentials and email-based attacks also continue to be significant vectors.
 >
-> Notably, while 97% of organizations that had data encrypted were able to recover it, only 54% restored their data using backups—the lowest rate in six years. Nearly half (49%) paid the ransom to regain access, and 29% relied on "other means" such as public decryption keys.
+> Notably, while 97% of organizations that had data encrypted were able to recover it, only 54% restored their data using backups-the lowest rate in six years. Nearly half (49%) paid the ransom to regain access, and 29% relied on "other means" such as public decryption keys.
 
 These statistics highlight a critical consideration: traditional recovery methods are becoming less reliable, and the risk of data loss or extended downtime is increasing. By proactively considering a SIRE, organizations can:
 
@@ -47,13 +47,13 @@ These statistics highlight a critical consideration: traditional recovery method
 
 ## 🧊 Air‑gapped backups in Azure
 
-It’s worth noting that services such as [Azure Backup](https://learn.microsoft.com/azure/backup/backup-overview?WT.mc_id=AZ-MVP-5004796) are air-gapped—isolated from customer virtual networks—and can provide a secure recovery option in the event of a ransomware attack.
+It’s worth noting that services such as [Azure Backup](https://learn.microsoft.com/azure/backup/backup-overview?WT.mc_id=AZ-MVP-5004796) are air-gapped and isolated from customer virtual networks - and can provide a secure recovery option in the event of a ransomware attack.
 
-## 🧱 What SIRE is—and isn’t
+## 🧱 What SIRE is-and isn’t
 
 When we consider a Secure Isolated Recovery Environment (SIRE), we’re talking about a purpose-built environment to facilitate recovery without risk of contamination from the primary environment. At its simplest, it’s a standalone virtual network not peered with anything and created as required. However, there are essential considerations around how it’s implemented and, more importantly, how it’s used.
 
-The SIRE environment is not your disaster recovery setup in an Active/Passive scenario—whether in the same or a different region. For those scenarios, you should consider [reliability](https://learn.microsoft.com/azure/well-architected/reliability/principles?WT.mc_id=AZ-MVP-5004796) in your design based on workload criticality and downtime impact.
+The SIRE environment is not your disaster recovery setup in an Active/Passive scenario, whether in the same or a different region. For those scenarios, you should consider [reliability](https://learn.microsoft.com/azure/well-architected/reliability/principles?WT.mc_id=AZ-MVP-5004796) in your design based on workload criticality and downtime impact.
 
 The SIRE is designed as a last resort: a place to recover from a catastrophic event (for example, a ransomware attack) when the primary environment is compromised. It’s not intended for day-to-day operations. You may replicate critical services to an air‑gapped VNet if required, but you must know the exact moment your environment was compromised, which can be days or even weeks after the initial incident.
 
@@ -79,34 +79,34 @@ The SIRE is designed as a last resort: a place to recover from a catastrophic ev
 * Immutable recovery foundation
   * Ensure that recovery data is immutable and cannot be altered or deleted by malicious actors. Remember [WORM (Write Once Read Many)](https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview?WT.mc_id=AZ-MVP-5004796).
   * Implement versioning and retention policies to maintain a history of recoverable data.
-  * Infrastructure as Code (IaC) enables consistent, repeatable deployments of both recovery and production environments—preserving the state at the time of the incident.
+  * Infrastructure as Code (IaC) enables consistent, repeatable deployments of both recovery and production environments-preserving the state at the time of the incident.
 * Zero Trust security model
-  * Never trust, always verify — continuous authentication and authorization
-  * Least privilege access — [RBAC](https://learn.microsoft.com/azure/role-based-access-control/overview?WT.mc_id=AZ-MVP-5004796) with [just‑in‑time access](https://learn.microsoft.com/azure/role-based-access-control/pim-integration?WT.mc_id=AZ-MVP-5004796)
-  * Continuous monitoring — [Defender for Cloud](https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction?WT.mc_id=AZ-MVP-5004796) and [Microsoft Sentinel](https://learn.microsoft.com/azure/sentinel/overview?tabs=defender-portal&WT.mc_id=AZ-MVP-5004796)
+  * Never trust, always verify - continuous authentication and authorization
+  * Least privilege access - [RBAC](https://learn.microsoft.com/azure/role-based-access-control/overview?WT.mc_id=AZ-MVP-5004796) with [just‑in‑time access](https://learn.microsoft.com/azure/role-based-access-control/pim-integration?WT.mc_id=AZ-MVP-5004796)
+  * Continuous monitoring - [Defender for Cloud](https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction?WT.mc_id=AZ-MVP-5004796) and [Microsoft Sentinel](https://learn.microsoft.com/azure/sentinel/overview?tabs=defender-portal&WT.mc_id=AZ-MVP-5004796)
 * Air‑gapped isolation
-  * [Network isolation](https://learn.microsoft.com/azure/security/fundamentals/isolation-choices?WT.mc_id=AZ-MVP-5004796) — dedicated VNets with controlled connectivity
-  * [Data isolation](https://learn.microsoft.com/azure/security/fundamentals/isolation-choices?WT.mc_id=AZ-MVP-5004796) — separate storage with immutable policies
-  * [Identity isolation](https://learn.microsoft.com/security/privileged-access-workstations/privileged-access-access-model?WT.mc_id=AZ-MVP-5004796) — strict RBAC boundaries and cloud‑only accounts, with clear separation across data, workload, and management planes
+  * [Network isolation](https://learn.microsoft.com/azure/security/fundamentals/isolation-choices?WT.mc_id=AZ-MVP-5004796) - dedicated VNets with controlled connectivity
+  * [Data isolation](https://learn.microsoft.com/azure/security/fundamentals/isolation-choices?WT.mc_id=AZ-MVP-5004796) - separate storage with immutable policies
+  * [Identity isolation](https://learn.microsoft.com/security/privileged-access-workstations/privileged-access-access-model?WT.mc_id=AZ-MVP-5004796) - strict RBAC boundaries and cloud‑only accounts, with clear separation across data, workload, and management planes
 * Automated recovery orchestration
-  * [Azure Site Recovery](https://learn.microsoft.com/azure/site-recovery/site-recovery-overview?WT.mc_id=AZ-MVP-5004796) — automated VM and application failover
-  * [Azure Business Continuity Center](https://learn.microsoft.com/azure/business-continuity-center/business-continuity-center-overview?WT.mc_id=AZ-MVP-5004796) — unified management of protection estate
-  * Recovery automation — PowerShell/Azure CLI scripts for consistent recovery
+  * [Azure Site Recovery](https://learn.microsoft.com/azure/site-recovery/site-recovery-overview?WT.mc_id=AZ-MVP-5004796) - automated VM and application failover
+  * [Azure Business Continuity Center](https://learn.microsoft.com/azure/business-continuity-center/business-continuity-center-overview?WT.mc_id=AZ-MVP-5004796) - unified management of protection estate
+  * Recovery automation - PowerShell/Azure CLI scripts for consistent recovery
 
 ## 🌍 Same‑region vs. cross‑region
 
 95% of organizations will deploy a SIRE in the same region as their primary environment. This approach enables faster recovery and lower latency by leveraging existing regional capacity and services.
 
-> Secure isolation does NOT require cross‑region deployment. Same‑region SIRE provides enterprise‑grade security isolation while maintaining cost efficiency, compliance simplicity, and operational excellence. Secure isolation is achieved through network segmentation, access controls, and infrastructure — NOT geographic separation. Consider the [Azure policies](https://learn.microsoft.com/azure/governance/policy/overview?WT.mc_id=AZ-MVP-5004796) that may be deployed in your environment.
+> Secure isolation does NOT require cross‑region deployment. Same‑region SIRE provides enterprise‑grade security isolation while maintaining cost efficiency, compliance simplicity, and operational excellence. Secure isolation is achieved through network segmentation, access controls, and infrastructure - NOT geographic separation. Consider the [Azure policies](https://learn.microsoft.com/azure/governance/policy/overview?WT.mc_id=AZ-MVP-5004796) that may be deployed in your environment.
 
 ## 🏗️ SIRE architecture features
 
-* Network air‑gap — dedicated VNets with zero connectivity to production
-* Identity isolation — strict RBAC boundaries and Conditional Access
-* Storage isolation — immutable backup storage with WORM policies
-* Compute isolation — dedicated resource groups and virtual machines
-* Access isolation — just‑in‑time (JIT) access via privileged identity management
-* Zone‑level separation — different availability zones for physical isolation
+* Network air‑gap - dedicated VNets with zero connectivity to production
+* Identity isolation - strict RBAC boundaries and Conditional Access
+* Storage isolation - immutable backup storage with WORM policies
+* Compute isolation - dedicated resource groups and virtual machines
+* Access isolation - just‑in‑time (JIT) access via privileged identity management
+* Zone‑level separation - different availability zones for physical isolation
 
 | Isolation Method      | Description / Benefits                                                                                  |
 |----------------------|--------------------------------------------------------------------------------------------------------|
@@ -123,12 +123,12 @@ The SIRE is designed as a last resort: a place to recover from a catastrophic ev
 
 Most organizations should implement SIRE within their existing Microsoft Entra ID tenant using strict RBAC boundaries. This provides enterprise‑grade security while maintaining operational simplicity and cost efficiency.
 
-- Dedicated SIRE security groups — separate groups for SIRE administrators, operators, and forensics analysts
-- Custom RBAC roles — granular permissions scoped to SIRE resource groups only
-- Conditional Access policies — SIRE‑specific access controls with location/device requirements
-- Privileged Identity Management (PIM) — just‑in‑time activation for SIRE administrative roles
-- Separate service principals — dedicated managed identities for SIRE automation and services
-- Emergency access accounts — break‑glass accounts with SIRE‑only permissions
+- Dedicated SIRE security groups - separate groups for SIRE administrators, operators, and forensics analysts
+- Custom RBAC roles - granular permissions scoped to SIRE resource groups only
+- Conditional Access policies - SIRE‑specific access controls with location/device requirements
+- Privileged Identity Management (PIM) - just‑in‑time activation for SIRE administrative roles
+- Separate service principals - dedicated managed identities for SIRE automation and services
+- Emergency access accounts - break‑glass accounts with SIRE‑only permissions
 
 ## 🔒 Network isolation design
 
@@ -177,21 +177,21 @@ I usually operate with the following if an organization doesn’t have a defined
 
 These systems trigger immediate action, and the earliest SIRE restores:
 
-- Life safety — Systems that directly impact human safety or emergency response (for example, 111/911 integration, paging/alerting)
-- Regulatory compliance — Systems required to meet legal or regulatory obligations (for example, mandated record retention, audit logging)
-- Revenue generation — Direct revenue paths and customer‑facing services (for example, checkout APIs, subscription billing jobs)
-- Public safety — Services supporting emergency operations or public safety (for example, dispatch, critical notifications)
-- Operational dependencies — Foundational platforms, everything else needs (for example, identity, DNS, secrets/keys)
+- Life safety - Systems that directly impact human safety or emergency response (for example, 111/911 integration, paging/alerting)
+- Regulatory compliance - Systems required to meet legal or regulatory obligations (for example, mandated record retention, audit logging)
+- Revenue generation - Direct revenue paths and customer‑facing services (for example, checkout APIs, subscription billing jobs)
+- Public safety - Services supporting emergency operations or public safety (for example, dispatch, critical notifications)
+- Operational dependencies - Foundational platforms, everything else needs (for example, identity, DNS, secrets/keys)
 
 ### 🏢 Business‑critical: keep the lights on
 
 These keep core operations running and follow closely after mission‑critical restores:
 
-- Core business processes — Primary business applications and workflows (for example, ERP, HRIS)
-- Customer service — Support, service delivery, and communications (for example, ticketing, contact center)
-- Financial operations — Payment processing, financial reporting, and accounting
-- Supply chain — Inventory management, logistics, and vendor relationships
-- Employee productivity — Essential workforce tools (for example, email, collaboration, endpoint management)
+- Core business processes - Primary business applications and workflows (for example, ERP, HRIS)
+- Customer service - Support, service delivery, and communications (for example, ticketing, contact center)
+- Financial operations - Payment processing, financial reporting, and accounting
+- Supply chain - Inventory management, logistics, and vendor relationships
+- Employee productivity - Essential workforce tools (for example, email, collaboration, endpoint management)
 
 Use this tiering to drive SIRE restore order, access controls, and monitoring intensity for the first‑wave applications.
 
