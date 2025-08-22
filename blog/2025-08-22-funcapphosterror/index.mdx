@@ -1,0 +1,39 @@
+---
+title: Azure Function App Host Runtime Error
+metaDescription: Troubleshoot and resolve Azure Function App host runtime errors like BadGateway and InternalServerError due to storage account issues.
+tags:
+  - Azure
+categories:
+  - Azure
+authors:
+  - Luke
+slug: azure/function-app-host-runtime
+keywords:
+  - Azure
+  - Azure Functions
+  - Function App
+  - Host Runtime Error
+  - BadGateway
+  - InternalServerError
+  - Storage Account
+  - Networking
+  - Private Endpoint
+  - VNET Integration
+description: Learn to resolve Azure Function App host runtime errors like BadGateway, often caused by storage account configuration issues.
+date: 2025-08-22T00:59:05.219Z
+---
+
+You might be deploying to Azure Functions or attempting to retrieve the Function App URL, and you may encounter errors like:
+
+> - `Encountered an error (BadGateway) from host runtime.`
+> - `Encountered an error (InternalServerError) from host runtime.`
+
+{/* truncate */}
+
+![Host runtime](images/FunctionApp_HostRuntimeError.jpg)
+
+I recently encountered an issue with a Function App deployment I was working on. It was working in an Azure CLI deployment, but as part of transitioning the Azure CLI to Bicep, I encountered an error when I noticed that my Timer trigger Function was not firing as expected. After some investigation, I found that the issue was due to the Storage account that the Function App was using. The Storage account was not correctly configured or accessible, which led to the host runtime errors.
+
+> The issue was with the Networking. Although I had deployed the storage account, I had failed to specify whether the storage account was to be publicly accessible or not, i.e., reachable by the Function App. So, Public access was off, and the Function App could not access the Storage account, which was causing the errors.
+
+To remediate this, I enabled the public endpoint, validated it worked, then added the Storage account to a Virtual Network with Private endpoints, and enabled VNET (Virtual Network) integration to the Function App, allowing a secure connection between the function app and the storage account.
