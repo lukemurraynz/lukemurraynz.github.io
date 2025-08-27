@@ -1,17 +1,21 @@
 ---
-title:
-metaDescription:
+title: MCP Server with Azure Functions & Communication Services
+metaDescription: Deploy an MCP server on Azure Functions with Azure Communication Services Email, supporting direct and Entra ID-secured connections
 tags:
   - Azure
 categories:
   - Azure
 authors:
   - Luke
-slug: azure/
+slug: azure/communication-services-mcp-email-server
 keywords:
   - Azure
-description:
-date:
+  - Azure Communication Services Email
+  - MCP server Azure
+  - Azure Functions MCP
+  - API Management Entra ID
+description: Deploy an MCP server on Azure Functions with Azure Communication Services Email, supporting direct and Entra ID-secured connections
+date: 2025-08-27T22:31:25.412Z
 ---
 
 [Azure Communication Services](https://learn.microsoft.com/azure/communication-services/overview?WT.mc_id=AZ-MVP-5004796) can be used to add voice, video, chat, and SMS and email capabilities to applications. It is a fully managed communication platform that enables developers to build rich communication experiences. Today, we will explore the email capability through an MCP (Model Context Protocol) server hosted on Azure Functions, enabling us to send emails from any MCP client.
@@ -65,3 +69,79 @@ First, we will `azd auth login` to log in to Azure with credentials that can
 Then `azd up` to start the deployment.
 
 ![Azure Communication Services](images/mcp-acs-azd-deploy.gif)
+
+Once up and running, its time to test, to do this we will test the 2 scenarios (direct MCP to Function App and MCP with Entra ID through APIM) using two different MCP clients:
+
+* [LM Studio](https://lmstudio.ai/)
+* [Visual Studio Code](https://code.visualstudio.com?WT.mc_id=AZ-MVP-5004796)
+
+Direct MCP to Function App will work on the majority of your MCP clients, as long as you can add in the header API key _(easily done in the `mcp.json` file I will show you shortly)_, however not all clients support Entra ID authentication - but Visual Studio Code with GitHub Copilot does.
+
+In LLM studio, using gpt-oss-20b hosted locally on my computer - I will  add in the following to my mcp.json file:
+
+```json
+{
+  "mcpServers": {
+    "acsemail": {
+      "url": "https://func-acsemailmcpsrv-fje7uzz7l2rbc.azurewebsites.net/mcp",
+      "headers": {
+        "x-functions-key": "Hbuo_sQ-tXt3MobsOGkYDm1G8zVL4Ar2R6vhhJhzkxgTAzFuzpNj0Q=="
+      },
+      "timeout": 30000
+    }
+  }
+}
+```
+
+This is the Function App endpoint and the function key, which you can get from the Azure portal, from the Function App > Functions > Your Function > Function Keys.
+
+![LLM Studio add MCP Server](images/LMStudio_AddMCPServer.gif)
+
+Once that is done, we can do some testing, here I am using the `SendEmail` tool to send an email.
+
+![Test Send Email](images/LMStudio_TestSendEmail.gif)
+
+![LMStudio Test Email received](images/LLMStudioTestEmailReceived.jpg)
+
+Now, lets test the second scenario, using Visual Studio Code with GitHub Copilot with Entra ID authentication through Azure API Management.
+
+Using Visual Studio Code, I will add in the following to my mcp.json file:
+
+```json
+{
+  "servers": {
+    "acs": {
+      "type": "http",
+      "url": "https://https://apim-zhk2vuoady55m.azure-api.net/mcp"
+    }
+  },
+  "inputs": []
+}
+```
+
+As you can see there is no API key, as we will be using Entra ID authentication. Once started, it should prompt you to log in to Entra ID.
+
+![VS Code setup MCP APIM](images/VSCode_SetupAPIMMCP.gif)
+
+The initial login may fail, and the MCP server will stop - this is because, we haven't been able to authorise your account actually has access to the Azure API Management endpoints for the the Azure Communication Services MCP function app server.
+
+What we need to do is to assign your user account access to the Application Registration, that will allow you to authenticate and use the MCP server. To find this, navigate to the API Management service, navigate to Named Values, and find the McpClientId value, copy the value - this is the ID of the Application Registration, now navigate to Entra ID > Application Registrations, and search for this ID, select it, then select Managed application (on ther Overview pane - right hand side), this will take you to the Enterprise Application for this App Registration, then click on Users and groups, then Add users/groups, select your user account, then click Assign.
+
+![ACS VS Code Test](images/VSCode_SetupAPIMMCPAuthTest.gif)
+
+![ACS MCP Email Test](images/VSCodeTestEmailReceived.jpg)
+
+If I wanted to, I could test with a prompt like this:
+
+> send #selection as attachment to luke@luke.geek.nz
+
+![ACS MCP Email Test - attachment](images/VSCode_TestSelectionAttachment.gif)
+
+![ACS MCP Email Test - attachment](images/VSCodeTestEmailReceivedSelectedAttachment.jpg)
+
+Finally, we will use the ListEmailTemplates tool to see what templates are available, and send an IT System Outage email using the SendIncidentEmail tool.
+
+![Send test Incident email](images/VSCode_TestTemplatesIncident.gif)
+
+![Test Incident](images/VSCodeTestEmailReceivedTemplateIncident.jpg)
+
