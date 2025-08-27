@@ -56,8 +56,10 @@ This sample runs the MCP tools by utilising a custom handler.
 
 To deploy this, we will use [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview?tabs=windows&WT.mc_id=AZ-MVP-5004796) to deploy the Azure resources and the function app code directly to our Azure environment.
 
-> You can find the code here: [lukemurraynz/acs-email-mcp-server](https://github.com/lukemurraynz/acs-email-mcp-server).
+:::note
+You can find the code here: [lukemurraynz/acs-email-mcp-server](https://github.com/lukemurraynz/acs-email-mcp-server).
 > I will be running this from the devcontainer, which contains the Azure Developer CLI that I will use to deploy.
+:::
 
 First, we will `azd auth login` to log in to Azure with credentials that can
 Then `azd up` to start the deployment.
