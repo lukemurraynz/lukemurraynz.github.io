@@ -26,7 +26,7 @@ Service Principal vs User‑Assigned Managed Identity? This came up again for me
 
 Now that [Workload Identity Federation (WIF)](https://learn.microsoft.com/entra/workload-id/workload-identity-federation?WT.mc_id=AZ-MVP-5004796) is broadly supported, it’s pretty simple to move a traditional service principal off a client secret and onto federated credentials – or create it that way from day one. So why bother with a user‑assigned managed identity (UAMI)?
 
-Because I’ve formed a preference over the last couple of years: for most DevOps / platform automation scenarios, I’ll reach for a User‑Assigned Managed Identity with WIF before I create (yet another) service principal. This post walks through the why, plus where a service principal still makes sense.
+Because I've formed a preference over the last couple of years: for most DevOps / platform automation scenarios, I'll reach for a User‑Assigned Managed Identity with WIF before I create (yet another) service principal. This post walks through the why, plus where a service principal still makes sense.
 
 {/* truncate */}
 
@@ -89,7 +89,7 @@ Here’s a conceptual high‑level view in a platform engineering/landing zone v
 
 ![User Assigned Managed Identity - Platform](images/uami-platform-hld.png)
 
-In this pattern, a platform‑owned UAMI (in a Management or Platform subscription) is responsible for:
+In this pattern, a platform‑owned UAMI _(in a Management or Platform subscription)_ is responsible for:
 
 - Creating new subscriptions for application landing zones.
 - Creating required RBAC (role-based access control) groups.
