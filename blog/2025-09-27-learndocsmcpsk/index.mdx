@@ -31,11 +31,11 @@ description: Learn how to integrate Microsoft Learn Docs with the Semantic Kerne
 date: 2025-09-27
 ---
 
-I was working on a content discovery app recently and ran into an annoying problem. The AI component needed access to current Microsoft documentation, but I wasn't keen on scraping their site (and dealing with all that maintenance overhead).
+I was recently working on a content discovery app and encountered an annoying problem. The AI component needed access to current Microsoft documentation, but I wasn't keen on scraping their site (and dealing with all that maintenance overhead).
 
 {/* truncate */}
 
-Then I discovered Microsoft's [Model Context Protocol (MCP)](https://learn.microsoft.com/training/support/mcp?WT.mc_id=AZ-MVP-5004796) server for Learn docs. MCP was new to me - it's essentially a standardized way to connect external data sources to AI applications. Microsoft maintains their own MCP server that stays current with their documentation, which solved my problem perfectly.
+Then I discovered Microsoft's [Model Context Protocol (MCP)](https://learn.microsoft.com/training/support/mcp?WT.mc_id=AZ-MVP-5004796) server for Learn docs. MCP was new to me - it's essentially a standardized method for connecting external data sources to AI applications. Microsoft maintains its own MCP server, which stays current with its documentation, and this solved my problem perfectly.
 
 ![Lets Learn MCP](images/Lets-Learn-MCP-2025_MCPDeepDive.jpg "Microsoft Learn MCP")
 
@@ -49,7 +49,7 @@ The setup is fairly simple: React frontend → Semantic Kernel backend on [Azure
 
 Here's what happens:
 1. User: "How do I configure Azure Functions?"
-2. SK: "This needs Microsoft docs, let me call the MCP plugin"
+2. SK: "This needs Microsoft docs, let me call the MCP plugin."
 3. MCP plugin hits Microsoft's server with the search
 4. Fresh documentation comes back
 5. SK combines that with its knowledge to answer
@@ -83,7 +83,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
 ```
 
-The plugin class itself is pretty simple - just needs an HttpClient and some basic setup:
+The plugin class itself is pretty simple - needs an HttpClient and some basic setup:
 ```csharp
 public class MicrosoftLearnMCPPlugin
 {
@@ -175,7 +175,7 @@ public async Task<string> SearchMicrosoftDocsAsync(
 
 ### Getting full pages
 
-Sometimes the search snippets aren't enough and you need the whole article:
+Sometimes the search snippets aren't enough, and you need the whole article:
 
 ```csharp
 [KernelFunction("fetch_microsoft_docs")]
@@ -244,7 +244,7 @@ builder.Services.AddScoped<Kernel>(serviceProvider =>
 
 ## Using it
 
-There are a couple ways to call this thing:
+There are a couple of ways to call this thing:
 
 ### Direct invocation
 
@@ -351,6 +351,7 @@ If you're curious about the protocol details, it's just JSON-RPC 2.0:
 ## Production notes
 
 ### Configuration
+
 Don't hardcode the endpoint URL:
 
 ```json
@@ -433,7 +434,8 @@ Beyond my content discovery use case, this approach works well for:
 - Learning applications requiring up-to-date tutorials
 - Any AI system working with Microsoft technologies
 
-The MCP ecosystem is growing, and I expect more providers will adopt it. The protocol's simplicity makes it easy to support multiple MCP servers in a single application.
+The MCP ecosystem is growing, and I expect more providers will adopt it. The protocol's simplicity enables the support of multiple MCP servers within a single application.
 
-For applications requiring Microsoft documentation, this approach is more reliable than scraping or maintaining local caches. The implementation above should provide a solid starting point.
+For applications requiring Microsoft documentation, this approach is more reliable than scraping or maintaining local caches. The implementation above should provide a solid foundation for further development.
+
 
