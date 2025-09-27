@@ -422,18 +422,6 @@ What happens:
 
 This ensures users get current information rather than potentially outdated training data.
 
-## Gotchas
-
-A few things to watch out for:
-
-**Rate limits** - Don't spam the endpoint. Microsoft is reasonable about limits, but implement retry logic for production use.
-
-**Timeouts** - Some searches can be slow. I use a 30-second timeout to avoid hanging the application.
-
-**Error handling** - Errors might come back in the JSON-RPC response rather than HTTP status codes, so check both.
-
-**Localization** - The `locale` parameter works well - `fr-fr` will return French documentation when available.
-
 
 ## Wrapping up
 
