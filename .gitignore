@@ -20,3 +20,40 @@ yarn-debug.log*
 yarn-error.log*
 build_output.log
 package-lock.json
+
+# Generic logs
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Test coverage / instrumentation
+coverage/
+.nyc_output/
+
+# Lint/format caches
+.eslintcache
+.stylelintcache
+
+# Editors/IDEs
+.vscode/
+.idea/
+
+# OS files (Windows/macOS)
+Thumbs.db
+desktop.ini
+.AppleDouble
+.LSOverride
+
+# Temporary and cache directories
+.cache/
+tmp/
+tmp/**
+.tmp/
+
+# Package manager lockfiles not used in this repo
+pnpm-lock.yaml
+npm-shrinkwrap.json
