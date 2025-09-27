@@ -1,35 +1,40 @@
-User-agent: *
-Allow: /
-
-# Sitemap
+## Sitemap
 Sitemap: https://luke.geek.nz/sitemap.xml
 
-# Crawl-delay for polite crawling
+## Explicitly allow Algolia Crawler
+User-agent: Algolia Crawler
+Allow: /
+# Optional: keep polite crawling
 Crawl-delay: 1
 
-# Allow search engines to find important content
+## Default rules for all crawlers
+User-agent: *
+Allow: /
+# Polite crawling
+Crawl-delay: 1
+
+# Disallow admin and internal paths
+Disallow: /admin/
+Disallow: /.docusaurus/
+Disallow: /node_modules/
+# Avoid crawling pagination index pages
+Disallow: /page/
+# Reduce noise: block JSON endpoints and query-string variants (broad patterns)
+Disallow: /*.json
+Disallow: /*?
+
+# Allow important sections and static assets
 Allow: /blog/
 Allow: /tags/
 Allow: /archive/
 Allow: /about/
+Allow: /img/
+Allow: /images/
+Allow: /static/
 
-# Disallow admin and internal paths
-Disallow: /admin/
-Disallow: /*.json$
-Disallow: /*?*
-Disallow: /page/
-Disallow: /.docusaurus/
-Disallow: /node_modules/
-
-# Specific bot instructions
+## Major search crawlers (explicit allow)
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
-
-# Allow crawling of images
-User-agent: *
-Allow: /img/
-Allow: /images/
-Allow: /static/
