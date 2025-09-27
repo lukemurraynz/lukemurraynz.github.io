@@ -1,19 +1,20 @@
 ---
-title: Integrating Microsoft Learn Docs MCP with Semantic Kernel
-metaDescription: Learn how to integrate Microsoft Learn Docs with the Semantic Kernel for enhanced documentation and AI capabilities.
+title: Integrating Microsoft Learn MCP Server with Semantic Kernel
+metaDescription: Learn how to integrate Microsoft Learn MCP Server with the Semantic Kernel for enhanced documentation and AI capabilities.
 tags:
   - Azure
 categories:
   - Azure
 authors:
   - Luke
-slug: azure/integrating-microsoft-learn-docs-mcp-semantic-kernel/
+slug: azure/learn-mcp-server-semantic-kernel
 keywords:
   - Azure
   - Semantic Kernel
   - Model Context Protocol
   - MCP
   - Microsoft Learn
+  - Microsoft Learn MCP Server
   - AI Integration
   - Content Discovery
   - Azure Container Apps
@@ -27,7 +28,7 @@ keywords:
   - ChatGPT
   - AI Documentation
   - Microsoft Graph
-description: Learn how to integrate Microsoft Learn Docs with the Semantic Kernel for enhanced documentation and AI capabilities.
+description: Learn how to integrate Microsoft Learn MCP Server with the Semantic Kernel for enhanced documentation and AI capabilities.
 date: 2025-09-27
 ---
 
@@ -35,13 +36,13 @@ I was recently working on a content discovery app and encountered an annoying pr
 
 {/* truncate */}
 
-Then I discovered Microsoft's [Model Context Protocol (MCP)](https://learn.microsoft.com/training/support/mcp?WT.mc_id=AZ-MVP-5004796) server for Learn docs. MCP was new to me - it's essentially a standardized method for connecting external data sources to AI applications. Microsoft maintains its own MCP server, which stays current with its documentation, and this solved my problem perfectly.
+Then I discovered the [Microsoft Learn MCP Server](https://learn.microsoft.com/training/support/mcp?WT.mc_id=AZ-MVP-5004796). Model Context Protocol (MCP) was new to me - it's essentially a standardized method for connecting external data sources to AI applications. Microsoft maintains its own Learn MCP Server, which stays current with its documentation, and this solved my problem perfectly.
 
 ![Lets Learn MCP](images/Lets-Learn-MCP-2025_MCPDeepDive.jpg "Microsoft Learn MCP")
 
 The problem was that most [Semantic Kernel](https://learn.microsoft.com/semantic-kernel/overview/?WT.mc_id=AZ-MVP-5004796) examples for [MCP integration](https://learn.microsoft.com/en-us/semantic-kernel/concepts/plugins/adding-mcp-plugins?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796) use Python, but my project is C# (.NET 9). It took a bit of figuring out, but I eventually got it working. Here's the implementation in case it helps someone else.
 
-![Learn MCP](images/MCP.jpg  "Microsoft Learn Docs MCP")
+![Learn MCP](images/MCP.jpg  "Microsoft Learn MCP Server")
 
 ## Architecture overview
 
@@ -49,8 +50,8 @@ The setup is fairly simple: React frontend → Semantic Kernel backend on [Azure
 
 Here's what happens:
 1. User: "How do I configure Azure Functions?"
-2. SK: "This needs Microsoft docs, let me call the MCP plugin."
-3. MCP plugin hits Microsoft's server with the search
+2. SK: "This needs Microsoft docs, let me call the Learn MCP plugin."
+3. Learn MCP plugin hits Microsoft's server with the search
 4. Fresh documentation comes back
 5. SK combines that with its knowledge to answer
 
@@ -111,7 +112,7 @@ public MicrosoftLearnMCPPlugin(
 
 ## The actual plugin code
 
-This is where it gets interesting. The MCP protocol is just JSON-RPC 2.0 over HTTP, so I built a simple wrapper that Semantic Kernel can call:
+This is where it gets interesting. The Learn MCP protocol is just JSON-RPC 2.0 over HTTP, so I built a simple wrapper that Semantic Kernel can call:
 
 ```csharp
 [KernelFunction("search_microsoft_docs")]
@@ -158,9 +159,9 @@ public async Task<string> SearchMicrosoftDocsAsync(
         }
         else
         {
-            _logger.LogWarning("MCP server returned error {StatusCode}: {Content}", response.StatusCode, responseContent);
+            _logger.LogWarning("Learn MCP server returned error {StatusCode}: {Content}", response.StatusCode, responseContent);
             // Note: Return JSON instead of throwing - SK handles this better
-            var fallback = new { success = false, error = $"MCP server error: {response.StatusCode}", query = query };
+            var fallback = new { success = false, error = $"Learn MCP server error: {response.StatusCode}", query = query };
             return JsonSerializer.Serialize(fallback, _jsonOptions);
         }
     }
@@ -234,7 +235,7 @@ builder.Services.AddScoped<Kernel>(serviceProvider =>
         .AddOpenAIChatCompletion("gpt-4", Environment.GetEnvironmentVariable("OPENAI_API_KEY"))
         .Build();
 
-    // Add the MCP plugin to the kernel
+    // Add the Learn MCP plugin to the kernel
     var mcpPlugin = serviceProvider.GetRequiredService<MicrosoftLearnMCPPlugin>();
     kernel.Plugins.AddFromObject(mcpPlugin, "MicrosoftLearnMCP");
 
@@ -288,7 +289,7 @@ Console.WriteLine(response.Content);
 
 ### Working with the response
 
-The MCP server sends back JSON that you can parse if you need to do something specific with the results:
+The Learn MCP server sends back JSON that you can parse if you need to do something specific with the results:
 
 ```csharp
 var searchResult = await kernel.InvokeAsync("MicrosoftLearnMCP", "search_microsoft_docs", 
@@ -372,7 +373,7 @@ ENV MCP_MICROSOFT_LEARN_ENDPOINT=http://your-mcp-server:3000/mcp
 ```
 
 ### Health checks
-Monitor MCP server availability:
+Monitor Learn MCP server availability:
 
 ```csharp
 // In Program.cs
@@ -400,12 +401,12 @@ public class MCPHealthCheck : IHealthCheck
             using var response = await _httpClient.GetAsync($"{endpoint}/health", cancellationToken);
             
             return response.IsSuccessStatusCode 
-                ? HealthCheckResult.Healthy("MCP server is responding")
-                : HealthCheckResult.Unhealthy("MCP server returned non-success status");
+                ? HealthCheckResult.Healthy("Learn MCP server is responding")
+                : HealthCheckResult.Unhealthy("Learn MCP server returned non-success status");
         }
         catch (Exception ex)
         {
-            return HealthCheckResult.Unhealthy($"MCP server check failed: {ex.Message}");
+            return HealthCheckResult.Unhealthy($"Learn MCP server check failed: {ex.Message}");
         }
     }
 }
@@ -417,7 +418,7 @@ Example query: *"How do I scale my Azure Functions based on queue length?"*
 
 What happens:
 1. SK identifies this as an Azure Functions question
-2. Calls the MCP plugin to search for current scaling documentation
+2. Calls the Learn MCP plugin to search for current scaling documentation
 3. Returns up-to-date information from Microsoft Learn
 4. Combines this with the model's existing knowledge
 
@@ -426,7 +427,9 @@ This ensures users get current information rather than potentially outdated trai
 
 ## Wrapping up
 
-This turned out simpler than expected. No scraping, no stale docs, no index maintenance - just direct access to Microsoft's current documentation through their MCP server.
+This turned out simpler than expected. No scraping, no stale docs, no index maintenance - just direct access to Microsoft's current documentation through their Learn MCP server.
+
+To learn more about Microsoft Learn MCP Server and its capabilities, visit [https://aka.ms/MSLearnMCPServer](https://aka.ms/MSLearnMCPServer).
 
 Beyond my content discovery use case, this approach works well for:
 - Support chatbots needing current Azure documentation
@@ -434,7 +437,7 @@ Beyond my content discovery use case, this approach works well for:
 - Learning applications requiring up-to-date tutorials
 - Any AI system working with Microsoft technologies
 
-The MCP ecosystem is growing, and I expect more providers will adopt it. The protocol's simplicity enables the support of multiple MCP servers within a single application.
+The Learn MCP ecosystem is growing, and I expect more providers will adopt it. The protocol's simplicity enables the support of multiple MCP servers within a single application.
 
 For applications requiring Microsoft documentation, this approach is more reliable than scraping or maintaining local caches. The implementation above should provide a solid foundation for further development.
 
