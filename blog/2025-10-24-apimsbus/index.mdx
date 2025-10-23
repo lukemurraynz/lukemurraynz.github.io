@@ -79,7 +79,7 @@ The policy I have applied to this operation is as follows:
 <policies>
     <!-- Throttle, authorize, validate, cache, or transform the requests -->
     <inbound>
-        <send-service-bus-message queue-name="apimsbqueue" namespace="your-namespace.servicebus.windows.net">
+        <send-service-bus-message queue-name="your-queue" namespace="your-namespace.servicebus.windows.net">
             <message-properties>
                 <message-property name="ApiName">@(context.Api?.Name)</message-property>
                 <message-property name="Operation">@(context.Operation?.Name)</message-property>
