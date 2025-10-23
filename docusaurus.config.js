@@ -256,7 +256,7 @@ const config = {
             `,
           },
           {
-            href: "https://bsky.app/profile/lukemurraynz.bsky.social",
+            href: "https://bsky.app/profile/luke.geek.nz",
             position: "right",
             className: "navbar-icon",
             "aria-label": "Bluesky",
