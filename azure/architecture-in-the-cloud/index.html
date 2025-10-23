@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
 <head>
 <meta charset="UTF-8">
-<meta name="generator" content="Docusaurus v3.9.1">
+<meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">Architecture in the Cloud | luke.geek.nz</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://luke.geek.nz/img/social-card.png"><meta data-rh="true" name="twitter:image" content="https://luke.geek.nz/img/social-card.png"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" name="keywords" content="Azure, Azure, Microsoft, Cloud Computing, Technical Blog"><meta data-rh="true" name="author" content="Luke Murray"><meta data-rh="true" property="og:url" content="https://luke.geek.nz/azure/architecture-in-the-cloud"><meta data-rh="true" name="twitter:title" content="Architecture in the Cloud"><meta data-rh="true" name="twitter:description" content="Solution architecture is concerned with the planning, design, implementation, and ongoing improvement of a technology system."><meta data-rh="true" property="og:title" content="Architecture in the Cloud | luke.geek.nz"><meta data-rh="true" name="description" content="Solution architecture is concerned with the planning, design, implementation, and ongoing improvement of a technology system."><meta data-rh="true" property="og:description" content="Solution architecture is concerned with the planning, design, implementation, and ongoing improvement of a technology system."><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2022-05-30T00:00:00.000Z"><meta data-rh="true" property="article:author" content="https://luke.geek.nz"><meta data-rh="true" property="article:tag" content="Azure"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="alternate" href="https://luke.geek.nz/azure/architecture-in-the-cloud/" hreflang="en"><link data-rh="true" rel="alternate" href="https://luke.geek.nz/azure/architecture-in-the-cloud/" hreflang="x-default"><link data-rh="true" rel="canonical" href="https://luke.geek.nz/azure/architecture-in-the-cloud"><link data-rh="true" rel="preconnect" href="https://ZBH2T1WJQD-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Architecture in the Cloud","description":"Solution architecture is concerned with the planning, design, implementation, and ongoing improvement of a technology system.","url":"https://luke.geek.nz/azure/architecture-in-the-cloud","datePublished":"2022-05-30T00:00:00.000Z","dateModified":"2022-05-30T00:00:00.000Z","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about"},"publisher":{"@type":"Organization","name":"luke.geek.nz","logo":{"@type":"ImageObject","url":"https://luke.geek.nz/img/logo.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://luke.geek.nz/azure/architecture-in-the-cloud"},"keywords":"Azure, Azure, Microsoft, Cloud Computing, Technical Blog","articleSection":"Technology","inLanguage":"en-US","image":{"@type":"ImageObject","url":"https://luke.geek.nz/uploads/microsoft_azure.jpg","width":1200,"height":630}}</script><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://luke.geek.nz/azure/architecture-in-the-cloud","mainEntityOfPage":"https://luke.geek.nz/azure/architecture-in-the-cloud","url":"https://luke.geek.nz/azure/architecture-in-the-cloud","headline":"Architecture in the Cloud","name":"Architecture in the Cloud","description":"Solution architecture is concerned with the planning, design, implementation, and ongoing improvement of a technology system.","datePublished":"2022-05-30T00:00:00.000Z","author":{"@type":"Person","name":"Luke Murray","description":"Author","url":"https://luke.geek.nz","image":"https://luke.geek.nz/img/logo.png"},"keywords":[],"isPartOf":{"@type":"Blog","@id":"https://luke.geek.nz/","name":"Luke's Tech Blog - Unleashing the power of the cloud and other technologies!"}}</script><link rel="alternate" type="application/rss+xml" href="/rss.xml" title="luke.geek.nz RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="luke.geek.nz Atom Feed">
 <link rel="alternate" type="application/json" href="/feed.json" title="luke.geek.nz JSON Feed">
@@ -24,9 +24,9 @@
 <meta name="twitter:creator" content="@lukemurraynz">
 <meta name="author" content="Luke Murray">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.89c47968.css">
-<script src="/assets/js/runtime~main.00d14f2a.js" defer="defer"></script>
-<script src="/assets/js/main.d8f90e45.js" defer="defer"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.991ca2b0.css">
+<script src="/assets/js/runtime~main.55e700fc.js" defer="defer"></script>
+<script src="/assets/js/main.bebd5b56.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -59,71 +59,71 @@
 <p>The finished architecture is a balance of risk, cost, and capability throughout the system and its components.</p>
 <p>Running a solution in the cloud does not reduce the need for requirements to be clear. In fact, the flexibility and power provided by the cloud mean that it is even more important to have clear requirements from business stakeholders; otherwise, you could end up solving problems that don&#x27;t exist, missing an important design decision, or going beyond the available budget by adding unnecessary resiliency.</p>
 <p><img decoding="async" loading="lazy" alt="Requirements and Architecture" src="/assets/images/requirementsandarchitecture-bc4f513c2f5b1e235b05504d13422ef8.png" title="Requirements and Architecture" width="903" height="333" class="img_ev3q"></p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="non-functional-requirements-nfrs">Non-functional requirements <em>(NFRs)</em><a href="#non-functional-requirements-nfrs" class="hash-link" aria-label="Direct link to non-functional-requirements-nfrs" title="Direct link to non-functional-requirements-nfrs" translate="no">​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="non-functional-requirements-nfrs">Non-functional requirements <em>(NFRs)</em><a href="#non-functional-requirements-nfrs" class="hash-link" aria-label="Direct link to non-functional-requirements-nfrs" title="Direct link to non-functional-requirements-nfrs" translate="no">​</a></h4>
 <p>Below is a short list of NFRs (not exhaustive) that may be provided by the business to help inform the design of a solution.</p>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="reliability-requirements"><strong>Reliability requirements</strong><a href="#reliability-requirements" class="hash-link" aria-label="Direct link to reliability-requirements" title="Direct link to reliability-requirements" translate="no">​</a></h5>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="reliability-requirements"><strong>Reliability requirements</strong><a href="#reliability-requirements" class="hash-link" aria-label="Direct link to reliability-requirements" title="Direct link to reliability-requirements" translate="no">​</a></h5>
 <ul>
-<li>Service level agreement (SLA)</li>
-<li>Uptime objective</li>
-<li>Recovery time objective (RTO)</li>
-<li>Recovery point objective (RPO)</li>
-<li>Recoverability</li>
+<li class="">Service level agreement (SLA)</li>
+<li class="">Uptime objective</li>
+<li class="">Recovery time objective (RTO)</li>
+<li class="">Recovery point objective (RPO)</li>
+<li class="">Recoverability</li>
 </ul>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="security-requirements"><strong>Security requirements</strong><a href="#security-requirements" class="hash-link" aria-label="Direct link to security-requirements" title="Direct link to security-requirements" translate="no">​</a></h5>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="security-requirements"><strong>Security requirements</strong><a href="#security-requirements" class="hash-link" aria-label="Direct link to security-requirements" title="Direct link to security-requirements" translate="no">​</a></h5>
 <ul>
-<li>Geographical location</li>
-<li>Compliance and legislation</li>
-<li>Identity and access management</li>
-<li>Privacy</li>
-<li>Data Integrity</li>
-<li>Public or private endpoints (or both)</li>
-<li>OWASP</li>
-<li>Hybrid connectivity</li>
-<li>DDOS</li>
+<li class="">Geographical location</li>
+<li class="">Compliance and legislation</li>
+<li class="">Identity and access management</li>
+<li class="">Privacy</li>
+<li class="">Data Integrity</li>
+<li class="">Public or private endpoints (or both)</li>
+<li class="">OWASP</li>
+<li class="">Hybrid connectivity</li>
+<li class="">DDOS</li>
 </ul>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="performance-requirements"><strong>Performance requirements</strong><a href="#performance-requirements" class="hash-link" aria-label="Direct link to performance-requirements" title="Direct link to performance-requirements" translate="no">​</a></h5>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="performance-requirements"><strong>Performance requirements</strong><a href="#performance-requirements" class="hash-link" aria-label="Direct link to performance-requirements" title="Direct link to performance-requirements" translate="no">​</a></h5>
 <ul>
-<li>Peak throughput, e.g., Requests per minute (RPM), active users</li>
-<li>Business plan for growth</li>
-<li>UX metrics (e.g., Page load time)</li>
-<li>Asynchronous vs Synchronous operations</li>
-<li>Workload profile (predictable, unpredictable, peak time of day)</li>
-<li>Scalability</li>
-<li>Data estate size and growth rate</li>
-<li>Time-to-live (TTL) of reports and views (real-time vs eventual consistency)</li>
+<li class="">Peak throughput, e.g., Requests per minute (RPM), active users</li>
+<li class="">Business plan for growth</li>
+<li class="">UX metrics (e.g., Page load time)</li>
+<li class="">Asynchronous vs Synchronous operations</li>
+<li class="">Workload profile (predictable, unpredictable, peak time of day)</li>
+<li class="">Scalability</li>
+<li class="">Data estate size and growth rate</li>
+<li class="">Time-to-live (TTL) of reports and views (real-time vs eventual consistency)</li>
 </ul>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="operational-requirements"><strong>Operational requirements</strong><a href="#operational-requirements" class="hash-link" aria-label="Direct link to operational-requirements" title="Direct link to operational-requirements" translate="no">​</a></h5>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="operational-requirements"><strong>Operational requirements</strong><a href="#operational-requirements" class="hash-link" aria-label="Direct link to operational-requirements" title="Direct link to operational-requirements" translate="no">​</a></h5>
 <ul>
-<li>Prod and non-prod environments (Dev/Test, QA, Pre-prod, Prod)</li>
-<li>Release frequency (hours / days / months)</li>
-<li>Time to onboard (new customer)</li>
-<li>Licensing</li>
-<li>Cost <em>(Management)</em></li>
-<li>Manageability</li>
+<li class="">Prod and non-prod environments (Dev/Test, QA, Pre-prod, Prod)</li>
+<li class="">Release frequency (hours / days / months)</li>
+<li class="">Time to onboard (new customer)</li>
+<li class="">Licensing</li>
+<li class="">Cost <em>(Management)</em></li>
+<li class="">Manageability</li>
 </ul>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="cost-optimization"><strong>Cost optimization</strong><a href="#cost-optimization" class="hash-link" aria-label="Direct link to cost-optimization" title="Direct link to cost-optimization" translate="no">​</a></h5>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="cost-optimization"><strong>Cost optimization</strong><a href="#cost-optimization" class="hash-link" aria-label="Direct link to cost-optimization" title="Direct link to cost-optimization" translate="no">​</a></h5>
 <ul>
-<li>Cost per user</li>
-<li>Target hosting costs as a percentage of revenue</li>
-<li>Pricing model</li>
-<li>Tenancy model</li>
+<li class="">Cost per user</li>
+<li class="">Target hosting costs as a percentage of revenue</li>
+<li class="">Pricing model</li>
+<li class="">Tenancy model</li>
 </ul>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="azure-slas"><strong>Azure SLAs</strong><a href="#azure-slas" class="hash-link" aria-label="Direct link to azure-slas" title="Direct link to azure-slas" translate="no">​</a></h5>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="azure-slas"><strong>Azure SLAs</strong><a href="#azure-slas" class="hash-link" aria-label="Direct link to azure-slas" title="Direct link to azure-slas" translate="no">​</a></h5>
 <ul>
-<li>Familiarize yourself with <a href="https://azure.microsoft.com/en-au/support/legal/sla/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title=" Service-level agreements">Azure service-level agreements</a></li>
-<li>An Azure Service-level Agreement (SLA) can also be read as a minimum service-level objective (SLO).</li>
-<li>An SLA is a financial guarantee, not an absolute guarantee</li>
-<li>Read the SLA details carefully, particularly the definition of &quot;downtime&quot; for each service, which gives important hints about failure modes</li>
+<li class="">Familiarize yourself with <a href="https://azure.microsoft.com/en-au/support/legal/sla/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title=" Service-level agreements" class="">Azure service-level agreements</a></li>
+<li class="">An Azure Service-level Agreement (SLA) can also be read as a minimum service-level objective (SLO).</li>
+<li class="">An SLA is a financial guarantee, not an absolute guarantee</li>
+<li class="">Read the SLA details carefully, particularly the definition of &quot;downtime&quot; for each service, which gives important hints about failure modes</li>
 </ul>
-<p>For example, in the <a href="https://azure.microsoft.com/en-au/support/legal/sla/azure-sql-database/v1_8/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title=" SLA for Azure SQL Database">SLA for Azure SQL Database</a>, &quot;downtime&quot; is defined as:</p>
+<p>For example, in the <a href="https://azure.microsoft.com/en-au/support/legal/sla/azure-sql-database/v1_8/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title=" SLA for Azure SQL Database" class="">SLA for Azure SQL Database</a>, &quot;downtime&quot; is defined as:</p>
 <p><em>&quot;The total accumulated Deployment Minutes across all Databases in a given Microsoft Azure subscription during which the Database is unavailable. A minute is considered unavailable for a given Database if all continuous attempts by Customer to establish a connection to the Database within the minute fail.&quot;</em></p>
 <p>The Azure SQL Database team expect almost all outages to be transient (brief and non-recurring). Therefore, the retry pattern should be used to continuously retry for up to a minute. This is typical in cloud services; retry has been the default behaviour in ADO.NET since .NET Framework 4.6.1.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="external-resources">External Resources<a href="#external-resources" class="hash-link" aria-label="Direct link to External Resources" title="Direct link to External Resources" translate="no">​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="external-resources">External Resources<a href="#external-resources" class="hash-link" aria-label="Direct link to External Resources" title="Direct link to External Resources" translate="no">​</a></h4>
 <p>Finally, resources such as the Azure Architecture Center, Cloud Adoption and Well-Architected Framework can help with thinking around the design and building blocks of your architecture</p>
 <ul>
-<li><a href="https://learn.microsoft.com/en-us/azure/architecture/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title="Azure Architecture Center"><strong>Azure Architecture Center</strong></a></li>
-<li><a href="https://learn.microsoft.com/en-us/azure/architecture/framework/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title="Microsoft Azure Well-Architected Framework"><strong>Microsoft Azure Well-Architected Framework</strong></a></li>
-<li><a href="https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title="Microsoft Cloud Adoption Framework for Azure"><strong>Microsoft Cloud Adoption Framework for Azure</strong></a></li>
+<li class=""><a href="https://learn.microsoft.com/en-us/azure/architecture/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title="Azure Architecture Center" class=""><strong>Azure Architecture Center</strong></a></li>
+<li class=""><a href="https://learn.microsoft.com/en-us/azure/architecture/framework/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title="Microsoft Azure Well-Architected Framework" class=""><strong>Microsoft Azure Well-Architected Framework</strong></a></li>
+<li class=""><a href="https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title="Microsoft Cloud Adoption Framework for Azure" class=""><strong>Microsoft Cloud Adoption Framework for Azure</strong></a></li>
 </ul></div><footer class="docusaurus-mt-lg"><div class="row margin-top--sm theme-blog-footer-edit-meta-row"><div class="col"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a rel="tag" class="tag_zVej tagRegular_sFm0" href="/tags/azure/">Azure</a></li></ul></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/2022/05/31/my-path-to-the-mvp-award/"><div class="pagination-nav__sublabel">Newer post</div><div class="pagination-nav__label">My path to the Microsoft MVP Award</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/2022/05/27/how-to-contribute-to-microsoft-documentation/"><div class="pagination-nav__sublabel">Older post</div><div class="pagination-nav__label">How to contribute to Microsoft documentation</div></a></nav></main><div class="col col--2"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#non-functional-requirements-nfrs" class="table-of-contents__link toc-highlight">Non-functional requirements <em>(NFRs)</em></a><ul><li><a href="#reliability-requirements" class="table-of-contents__link toc-highlight"><strong>Reliability requirements</strong></a></li><li><a href="#security-requirements" class="table-of-contents__link toc-highlight"><strong>Security requirements</strong></a></li><li><a href="#performance-requirements" class="table-of-contents__link toc-highlight"><strong>Performance requirements</strong></a></li><li><a href="#operational-requirements" class="table-of-contents__link toc-highlight"><strong>Operational requirements</strong></a></li><li><a href="#cost-optimization" class="table-of-contents__link toc-highlight"><strong>Cost optimization</strong></a></li><li><a href="#azure-slas" class="table-of-contents__link toc-highlight"><strong>Azure SLAs</strong></a></li></ul></li><li><a href="#external-resources" class="table-of-contents__link toc-highlight">External Resources</a></li></ul></div></div></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 luke.geek.nz. Powered by coffee, clouds and hamsters on wheels!</div></div></div></footer></div>
 </body>
 </html>

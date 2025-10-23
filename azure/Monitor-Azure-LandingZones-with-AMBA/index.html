@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
 <head>
 <meta charset="UTF-8">
-<meta name="generator" content="Docusaurus v3.9.1">
+<meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">Monitor your Azure Landing Zone with Baseline Alerts | luke.geek.nz</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://luke.geek.nz/img/social-card.png"><meta data-rh="true" name="twitter:image" content="https://luke.geek.nz/img/social-card.png"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" name="author" content="Luke Murray"><meta data-rh="true" property="og:url" content="https://luke.geek.nz/azure/Monitor-Azure-LandingZones-with-AMBA"><meta data-rh="true" name="twitter:title" content="Monitor your Azure Landing Zone with Baseline Alerts"><meta data-rh="true" name="twitter:description" content="Monitor your Azure Landing Zone with Azure Monitor Baseline Alerts (AMBA)."><meta data-rh="true" property="og:title" content="Monitor your Azure Landing Zone with Baseline Alerts | luke.geek.nz"><meta data-rh="true" name="description" content="Monitor your Azure Landing Zone with Azure Monitor Baseline Alerts (AMBA)."><meta data-rh="true" property="og:description" content="Monitor your Azure Landing Zone with Azure Monitor Baseline Alerts (AMBA)."><meta data-rh="true" name="keywords" content="azure,monitor,landing zones"><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2023-10-21T00:00:00.000Z"><meta data-rh="true" property="article:author" content="https://luke.geek.nz"><meta data-rh="true" property="article:tag" content="Azure"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="alternate" href="https://luke.geek.nz/azure/Monitor-Azure-LandingZones-with-AMBA/" hreflang="en"><link data-rh="true" rel="alternate" href="https://luke.geek.nz/azure/Monitor-Azure-LandingZones-with-AMBA/" hreflang="x-default"><link data-rh="true" rel="canonical" href="https://luke.geek.nz/azure/Monitor-Azure-LandingZones-with-AMBA"><link data-rh="true" rel="preconnect" href="https://ZBH2T1WJQD-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Monitor your Azure Landing Zone with Baseline Alerts","description":"Monitor your Azure Landing Zone with Azure Monitor Baseline Alerts (AMBA).","url":"https://luke.geek.nz/azure/Monitor-Azure-LandingZones-with-AMBA","datePublished":"2023-10-21T00:00:00.000Z","dateModified":"2023-10-21T00:00:00.000Z","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about"},"publisher":{"@type":"Organization","name":"luke.geek.nz","logo":{"@type":"ImageObject","url":"https://luke.geek.nz/img/logo.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://luke.geek.nz/azure/Monitor-Azure-LandingZones-with-AMBA"},"keywords":"azure, monitor, landing zones, Azure, Azure, Microsoft, Cloud Computing, Technical Blog","articleSection":"Technology","inLanguage":"en-US","image":{"@type":"ImageObject","url":"https://luke.geek.nz/images/posts/BlogHeading_AMBA.gif","width":1200,"height":630}}</script><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://luke.geek.nz/azure/Monitor-Azure-LandingZones-with-AMBA","mainEntityOfPage":"https://luke.geek.nz/azure/Monitor-Azure-LandingZones-with-AMBA","url":"https://luke.geek.nz/azure/Monitor-Azure-LandingZones-with-AMBA","headline":"Monitor your Azure Landing Zone with Baseline Alerts","name":"Monitor your Azure Landing Zone with Baseline Alerts","description":"Monitor your Azure Landing Zone with Azure Monitor Baseline Alerts (AMBA).","datePublished":"2023-10-21T00:00:00.000Z","author":{"@type":"Person","name":"Luke Murray","description":"Author","url":"https://luke.geek.nz","image":"https://luke.geek.nz/img/logo.png"},"keywords":["azure","monitor","landing zones"],"isPartOf":{"@type":"Blog","@id":"https://luke.geek.nz/","name":"Luke's Tech Blog - Unleashing the power of the cloud and other technologies!"}}</script><link rel="alternate" type="application/rss+xml" href="/rss.xml" title="luke.geek.nz RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="luke.geek.nz Atom Feed">
 <link rel="alternate" type="application/json" href="/feed.json" title="luke.geek.nz JSON Feed">
@@ -24,9 +24,9 @@
 <meta name="twitter:creator" content="@lukemurraynz">
 <meta name="author" content="Luke Murray">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.89c47968.css">
-<script src="/assets/js/runtime~main.00d14f2a.js" defer="defer"></script>
-<script src="/assets/js/main.d8f90e45.js" defer="defer"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.991ca2b0.css">
+<script src="/assets/js/runtime~main.55e700fc.js" defer="defer"></script>
+<script src="/assets/js/main.bebd5b56.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -60,27 +60,27 @@
 <p>By setting up alerts, you can proactively monitor your resources and take timely actions to address any issues that may arise.</p>
 <p>Here are the key reasons why configuring alerts is essential:</p>
 <ul>
-<li>Early detection of issues: Alerts enable you to identify potential problems or anomalies in your Azure resources at an early stage. By monitoring key metrics and logs, you can detect high CPU usage, low memory, network connectivity problems, or security breaches. This allows you to take immediate action and prevent any negative impact on your applications or services.</li>
-<li>Reduced downtime: By configuring alerts, you can minimise downtime by being notified of critical events or failures in real time. This allows you to quickly investigate and resolve issues before they escalate, ensuring the availability and reliability of your applications.</li>
-<li>Optimized resource utilisation: Alerts help you optimise resource utilization by providing insights into resource usage patterns and trends. By monitoring metrics such as CPU utilisation, memory consumption, or storage capacity, you can identify opportunities for optimisation and cost savings.</li>
-<li>Compliance and security: Configuring alerts is essential for maintaining compliance with regulatory requirements and ensuring the security of your Azure resources. By monitoring security logs and detecting suspicious activities or unauthorised access attempts, you can immediately mitigate potential risks and protect your data.</li>
-<li>Proactive capacity planning: Alerts provide valuable information for capacity planning and scaling your resources. By monitoring resource utilisation trends over time, you can identify patterns and forecast future resource requirements. This helps you avoid performance bottlenecks and ensure a smooth user experience.&quot;</li>
+<li class="">Early detection of issues: Alerts enable you to identify potential problems or anomalies in your Azure resources at an early stage. By monitoring key metrics and logs, you can detect high CPU usage, low memory, network connectivity problems, or security breaches. This allows you to take immediate action and prevent any negative impact on your applications or services.</li>
+<li class="">Reduced downtime: By configuring alerts, you can minimise downtime by being notified of critical events or failures in real time. This allows you to quickly investigate and resolve issues before they escalate, ensuring the availability and reliability of your applications.</li>
+<li class="">Optimized resource utilisation: Alerts help you optimise resource utilization by providing insights into resource usage patterns and trends. By monitoring metrics such as CPU utilisation, memory consumption, or storage capacity, you can identify opportunities for optimisation and cost savings.</li>
+<li class="">Compliance and security: Configuring alerts is essential for maintaining compliance with regulatory requirements and ensuring the security of your Azure resources. By monitoring security logs and detecting suspicious activities or unauthorised access attempts, you can immediately mitigate potential risks and protect your data.</li>
+<li class="">Proactive capacity planning: Alerts provide valuable information for capacity planning and scaling your resources. By monitoring resource utilisation trends over time, you can identify patterns and forecast future resource requirements. This helps you avoid performance bottlenecks and ensure a smooth user experience.&quot;</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
-<p><a href="https://azure.github.io/azure-monitor-baseline-alerts/welcome/" target="_blank" rel="noopener noreferrer">Azure Monitor Baseline Alerts (AMBA)</a> exists to help you get started with proactive and reactive monitoring straight out of the bat, focused on standard scenarios for your platform and application Landing Zone that are not industry or application-specific.</p>
-<p>Previously under the azure/alz-monitor repository, it is now generally available under the <a href="https://github.com/Azure/azure-monitor-baseline-alerts" target="_blank" rel="noopener noreferrer">Azure/azure-monitor-baseline-alerts</a> GitHub repository.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
+<p><a href="https://azure.github.io/azure-monitor-baseline-alerts/welcome/" target="_blank" rel="noopener noreferrer" class="">Azure Monitor Baseline Alerts (AMBA)</a> exists to help you get started with proactive and reactive monitoring straight out of the bat, focused on standard scenarios for your platform and application Landing Zone that are not industry or application-specific.</p>
+<p>Previously under the azure/alz-monitor repository, it is now generally available under the <a href="https://github.com/Azure/azure-monitor-baseline-alerts" target="_blank" rel="noopener noreferrer" class="">Azure/azure-monitor-baseline-alerts</a> GitHub repository.</p>
 <p>The objectives of AMBA are to:</p>
 <ul>
-<li>Help simplify onboarding to Azure Monitor through a scalable and consistent approach.</li>
-<li>Reduce time to identify failure within Azure tenants and platforms (i.e., outages).</li>
+<li class="">Help simplify onboarding to Azure Monitor through a scalable and consistent approach.</li>
+<li class="">Reduce time to identify failure within Azure tenants and platforms (i.e., outages).</li>
 </ul>
-<p>More documentation can be found on the official Microsoft Learn documentation page: <a href="https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-monitor?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Monitor Azure platform landing zone components</a>.</p>
+<p>More documentation can be found on the official Microsoft Learn documentation page: <a href="https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-monitor?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Monitor Azure platform landing zone components</a>.</p>
 <p><img decoding="async" loading="lazy" alt="Monitor your Azure Landing Zone with Azure Monitor Baseline Alerts" src="/assets/images/BlogHeading_AMBA-4541fb6c736b8f04e653ed4bfa7018fb.gif" width="1200" height="628" class="img_ev3q"></p>
 <blockquote>
 <p>&quot;AMBA Provides best practice guidance around creating and configuring Azure Monitor Alerts for Azure services and workload pattern/scenarios).&quot;</p>
 </blockquote>
 <p>One of the ways that makes Azure Monitor Baseline Alerts (AMBA) so useful is the details around the Alerts.</p>
-<p>Reference: <a href="https://azure.github.io/azure-monitor-baseline-alerts/patterns/alz/Alerts-Details/" target="_blank" rel="noopener noreferrer">Alerts Details</a></p>
+<p>Reference: <a href="https://azure.github.io/azure-monitor-baseline-alerts/patterns/alz/Alerts-Details/" target="_blank" rel="noopener noreferrer" class="">Alerts Details</a></p>
 <p>Out-of-the-box alerts that are part of the base AMBA solution include (but are not limited to) alerts such as:</p>
 
 
@@ -222,30 +222,30 @@
 <table><thead><tr><th><strong>Resource Type</strong></th><th><strong>Name</strong></th><th><strong>Description</strong></th><th><strong>metricName</strong></th></tr></thead><tbody><tr><td>automationAccounts</td><td>TotalJob</td><td>The total number of jobs</td><td>TotalJob</td></tr><tr><td>storageAccounts</td><td>Availability</td><td>The percentage of availability for the storage service or the specified API operation. Availability is calculated by taking the TotalBillableRequests value and dividing it by the number of applicable requests, including those that produced unexpected errors. All unexpected errors result in reduced availability for the storage service or the specified API operation.</td><td>Availability</td></tr><tr><td>virtualMachines</td><td>Available Memory Bytes (MBytes)</td><td>Amount of physical memory, in bytes, immediately available for allocation to a process or for system use in the Virtual Machine</td><td>Available Memory Bytes</td></tr><tr><td>virtualMachineScaleSets</td><td>Percentage CPU</td><td>The percentage of allocated compute units that are currently in use by the Virtual Machine(s)</td><td>Percentage CPU</td></tr><tr><td>virtualMachineScaleSets</td><td>OS Disk IOPS Consumed Percentage</td><td>Percentage of operating system disk I/Os consumed per minute</td><td>OS Disk IOPS Consumed Percentage</td></tr><tr><td>virtualMachineScaleSets</td><td>Data Disk IOPS Consumed Percentage</td><td>Percentage of data disk I/Os consumed per minute</td><td>Data Disk IOPS Consumed Percentage</td></tr><tr><td>virtualMachineScaleSets</td><td>Outbound Flows</td><td>Outbound Flows are number of current flows in the outbound direction (traffic going out of the VM)</td><td>Outbound Flows</td></tr><tr><td>virtualMachineScaleSets</td><td>Inbound Flows</td><td>Inbound Flows are number of current flows in the inbound direction (traffic going into the VM)</td><td>Inbound Flows</td></tr><tr><td>virtualMachineScaleSets</td><td>Available Memory Bytes</td><td>Amount of physical memory, in bytes, immediately available for allocation to a process or for system use in the Virtual Machine</td><td>Available Memory Bytes</td></tr><tr><td>virtualMachineScaleSets</td><td>Network In Total</td><td>The number of bytes received on all network interfaces by the Virtual Machine(s) (Incoming Traffic)</td><td>Network In Total</td></tr><tr><td>virtualMachineScaleSets</td><td>Network Out Total</td><td>The number of bytes out on all network interfaces by the Virtual Machine(s) (Outgoing Traffic)</td><td>Network Out Total</td></tr><tr><td>virtualMachineScaleSets</td><td>VmAvailabilityMetric</td><td>Measure of Availability of Virtual machines over time.</td><td>VmAvailabilityMetric</td></tr><tr><td>virtualMachineScaleSets</td><td>Disk Read Operations/Sec</td><td>Disk Read IOPS</td><td>Disk Read Operations/Sec</td></tr><tr><td>virtualMachineScaleSets</td><td>Disk Write Operations/Sec</td><td>Disk Write IOPS</td><td>Disk Write Operations/Sec</td></tr><tr><td>virtualNetworks</td><td>If Under DDoS Attack</td><td>Metric Alert for VNet DDOS Attack</td><td>ifunderddosattack</td></tr><tr><td>publicIPAddresses</td><td>Bytes In DDoS</td><td>Metric Alert for Public IP Address Bytes IN DDOS</td><td>bytesinddos</td></tr><tr><td>publicIPAddresses</td><td>If Under DDoS Attack</td><td>Metric Alert for Public IP Address Under Attack</td><td>ifunderddosattack</td></tr><tr><td>publicIPAddresses</td><td>Packets In DDoS</td><td>Inbound packets DDoS</td><td>PacketsInDDoS</td></tr><tr><td>publicIPAddresses</td><td>VIP Availability</td><td>Average IP Address availability per time duration</td><td>VipAvailability</td></tr><tr><td>expressRouteCircuits</td><td>ARP Availability</td><td>ARP Availability from MSEE towards all peers.</td><td>ArpAvailability</td></tr><tr><td>expressRouteCircuits</td><td>BGP Availability</td><td>BGP Availability from MSEE towards all peers.</td><td>BgpAvailability</td></tr></tbody></table>
 <p>For:</p>
 <ul>
-<li>Metric Alerts</li>
-<li>Log Alerts</li>
-<li>Activity Logs</li>
-<li>Service health alerts</li>
+<li class="">Metric Alerts</li>
+<li class="">Log Alerts</li>
+<li class="">Activity Logs</li>
+<li class="">Service health alerts</li>
 </ul>
 <p><img decoding="async" loading="lazy" alt="Graph 1" src="/assets/images/AMBA_Graph1-f30bccd2d6df4eab870db69e9e353897.png" width="601" height="402" class="img_ev3q"></p>
 <p><img decoding="async" loading="lazy" alt="Graph 2" src="/assets/images/AMBA_Graph1-f30bccd2d6df4eab870db69e9e353897.png" width="601" height="402" class="img_ev3q"></p>
 <p><img decoding="async" loading="lazy" alt="Monitoring Management Resource Group" src="/assets/images/AMBA_MangementRG-903b2179cc0ace1ffb95df070e136ec1.png" width="903" height="567" class="img_ev3q"></p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="deployment">Deployment<a href="#deployment" class="hash-link" aria-label="Direct link to Deployment" title="Direct link to Deployment" translate="no">​</a></h2>
-<p>The Azure Monitor Baseline Alerts are deployed using Azure Policy <em>(DINE – Deploy If Not Exist)</em> and are included in the <a href="https://github.com/Azure/Enterprise-Scale" target="_blank" rel="noopener noreferrer">Azure Enterprise-Scale landing zone accelerator</a>.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="deployment">Deployment<a href="#deployment" class="hash-link" aria-label="Direct link to Deployment" title="Direct link to Deployment" translate="no">​</a></h2>
+<p>The Azure Monitor Baseline Alerts are deployed using Azure Policy <em>(DINE – Deploy If Not Exist)</em> and are included in the <a href="https://github.com/Azure/Enterprise-Scale" target="_blank" rel="noopener noreferrer" class="">Azure Enterprise-Scale landing zone accelerator</a>.</p>
 <p>Deployment is currently done via an Azure Resource Manager (ARM) template and can be deployed with the following:</p>
 <ul>
-<li>PowerShell</li>
-<li>Azure CLI</li>
-<li>GitHub Actions
+<li class="">PowerShell</li>
+<li class="">Azure CLI</li>
+<li class="">GitHub Actions
 DevOps</li>
 </ul>
 <p>Because the Azure Monitor Baseline alerts are intended to follow the Azure Landing Zone framework, in accordance with the Ready phase of the Cloud Adoption Framework, the deployment can be scaled across multiple Management groups, such as:</p>
 <ul>
-<li>Connectivity</li>
-<li>Identity</li>
-<li>Management</li>
-<li>Service Health</li>
-<li>Landing Zone (i.e., Application)</li>
+<li class="">Connectivity</li>
+<li class="">Identity</li>
+<li class="">Management</li>
+<li class="">Service Health</li>
+<li class="">Landing Zone (i.e., Application)</li>
 </ul>
 <p>Or a single management group/subscription consisting of all features, with Alert processing rules sending relevant subscription alerts to an Action group that will notify by email if an alert is raised.</p>
 <p>For my own Azure environment, I only have 2 Subscriptions that sit under the following Management Group hierarchy:</p>
@@ -253,31 +253,31 @@ DevOps</li>
 <p>We will deploy these initiatives to the MG Management Group, which allows us to then Assign those initiatives to anything beneath it, in our case, the mg-landingzones and trey-platform management groups.</p>
 <p>As part of the deployment, we will adjust the following parameters to match our environment:</p>
 <ul>
-<li>Management groups</li>
-<li>Assignment of PolicySetDefinitions</li>
-<li>Resource Group Name and Tags</li>
-<li>Location</li>
-<li>Action group emails</li>
+<li class="">Management groups</li>
+<li class="">Assignment of PolicySetDefinitions</li>
+<li class="">Resource Group Name and Tags</li>
+<li class="">Location</li>
+<li class="">Action group emails</li>
 </ul>
 <p>We can adjust the alert rule parameters, such as the severity, and change their effect, whether they automitigate or adjust the MonitorDisable tag, which can be used to exclude from alert monitoring; we will leave these to the default.</p>
 <p>Make sure you review and test these policies first! Before proceeding to Production.</p>
-<p>We will deploy the ARM template using the <a href="https://learn.microsoft.com/azure/cloud-shell/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Azure Cloud Shell</a>.</p>
+<p>We will deploy the ARM template using the <a href="https://learn.microsoft.com/azure/cloud-shell/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Cloud Shell</a>.</p>
 <ol>
-<li>
+<li class="">
 <p>Login to the Azure Portal</p>
 </li>
-<li>
+<li class="">
 <p>Click on Cloud Shell <em>(top right)</em></p>
 </li>
-<li>
+<li class="">
 <p>Select your subscription and create a Storage account to host your Cloud Shell drives <em>(if it hasn&#x27;t already been done)</em></p>
 </li>
-<li>
+<li class="">
 <p>I&#x27;m going to adjust the parameters to match my environment by changing the following (these will need to be tuned to your specific environment):.</p>
 </li>
-<li>
+<li class="">
 <p>Type in:</p>
-<p>git clone <a href="https://github.com/Azure/azure-monitor-baseline-alerts" target="_blank" rel="noopener noreferrer">https://github.com/Azure/azure-monitor-baseline-alerts</a></p>
+<p>git clone <a href="https://github.com/Azure/azure-monitor-baseline-alerts" target="_blank" rel="noopener noreferrer" class="">https://github.com/Azure/azure-monitor-baseline-alerts</a></p>
 </li>
 </ol>
 <p>Type in:</p>
@@ -330,33 +330,33 @@ DevOps</li>
 
 
 
-<table><thead><tr><th>Parameters</th><th>Values</th></tr></thead><tbody><tr><td>enterpriseScaleCompanyPrefix</td><td>lukegeeknz</td></tr><tr><td>platformManagementGroup</td><td>trey-platform</td></tr><tr><td>IdentityManagementGroup</td><td>mg-landingzones</td></tr><tr><td>managementManagementGroup</td><td>trey-platform</td></tr><tr><td>connectivityManagementGroup</td><td>trey-platform</td></tr><tr><td>LandingZoneManagementGroup</td><td>mg-landingzones</td></tr><tr><td>ALZMonitorResourceGroupName</td><td>rg-management-monitoring-001</td></tr><tr><td>ALZMonitorResourceGroupLocation</td><td>australiaeast</td></tr><tr><td>ALZMonitorActionGroupEmail</td><td><a href="mailto:email@luke.geek.nz" target="_blank" rel="noopener noreferrer">email@luke.geek.nz</a></td></tr></tbody></table>
+<table><thead><tr><th>Parameters</th><th>Values</th></tr></thead><tbody><tr><td>enterpriseScaleCompanyPrefix</td><td>lukegeeknz</td></tr><tr><td>platformManagementGroup</td><td>trey-platform</td></tr><tr><td>IdentityManagementGroup</td><td>mg-landingzones</td></tr><tr><td>managementManagementGroup</td><td>trey-platform</td></tr><tr><td>connectivityManagementGroup</td><td>trey-platform</td></tr><tr><td>LandingZoneManagementGroup</td><td>mg-landingzones</td></tr><tr><td>ALZMonitorResourceGroupName</td><td>rg-management-monitoring-001</td></tr><tr><td>ALZMonitorResourceGroupLocation</td><td>australiaeast</td></tr><tr><td>ALZMonitorActionGroupEmail</td><td><a href="mailto:email@luke.geek.nz" target="_blank" rel="noopener noreferrer" class="">email@luke.geek.nz</a></td></tr></tbody></table>
 <blockquote>
-<p>If you want the alerts to go to more than one email address, add them as comma-separated (i.e. &quot;<a href="mailto:email1@contos.com" target="_blank" rel="noopener noreferrer">email1@contos.com</a>, <a href="mailto:email2@contoso.com" target="_blank" rel="noopener noreferrer">email2@contoso.com</a>, <a href="mailto:email3@contoso.com" target="_blank" rel="noopener noreferrer">email3@contoso.com</a>&quot;)</p>
+<p>If you want the alerts to go to more than one email address, add them as comma-separated (i.e. &quot;<a href="mailto:email1@contos.com" target="_blank" rel="noopener noreferrer" class="">email1@contos.com</a>, <a href="mailto:email2@contoso.com" target="_blank" rel="noopener noreferrer" class="">email2@contoso.com</a>, <a href="mailto:email3@contoso.com" target="_blank" rel="noopener noreferrer" class="">email3@contoso.com</a>&quot;)</p>
 </blockquote>
 <ol start="8">
-<li>
+<li class="">
 <p>Press Ctrl+X</p>
 </li>
-<li>
+<li class="">
 <p>Press Y to save buffer</p>
 </li>
-<li>
+<li class="">
 <p>Press Enter to overwrite the parameter json file.</p>
 </li>
-<li>
+<li class="">
 <p>Before proceeding to the next step, you can cat the file <em>(cat ./alzArm.param.json)</em> to view it and make sure the parameters are correct and nothing else needs changing.</p>
 </li>
-<li>
+<li class="">
 <p>Now that the parameters are sorted, it is time to deploy:</p>
 <p>$location = &#x27;AustraliaEast&#x27;
 $psedudoRootManagementGroup = &quot;mg&quot;
-New-AzManagementGroupDeployment -ManagementGroupId $psedudoRootManagementGroup -Location $location -TemplateUri  &#x27;<a href="https://raw.githubusercontent.com/Azure/azure-monitor-baseline/alerts/main/patterns/alz/alzArm.json" target="_blank" rel="noopener noreferrer">https://raw.githubusercontent.com/Azure/azure-monitor-baseline/alerts/main/patterns/alz/alzArm.json</a>&#x27; -TemplateParameterFile  &#x27;alzArm.param.json&#x27;</p>
+New-AzManagementGroupDeployment -ManagementGroupId $psedudoRootManagementGroup -Location $location -TemplateUri  &#x27;<a href="https://raw.githubusercontent.com/Azure/azure-monitor-baseline/alerts/main/patterns/alz/alzArm.json" target="_blank" rel="noopener noreferrer" class="">https://raw.githubusercontent.com/Azure/azure-monitor-baseline/alerts/main/patterns/alz/alzArm.json</a>&#x27; -TemplateParameterFile  &#x27;alzArm.param.json&#x27;</p>
 </li>
 </ol>
 <blockquote>
 <p>The ARM template location needs to be internet accessible due to links in the ARM template to dependent resources, although the parameter file can be sourced locally.
-Error: Code=InvalidTemplate; Message=Deployment template validation failed: &#x27;The template variable &#x27;deploymentUris&#x27; is not valid: The language expression property &#x27;templateLink&#x27; doesn&#x27;t exist, available properties are &#x27;template, templateHash, parameters, mode, provisioningState&#x27;.. Please see <a href="https://learn.microsoft.com/azure/azure-resource-manager/templates/template-functions?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">https://aka.ms/arm-functions</a> for usage details.&#x27;</p>
+Error: Code=InvalidTemplate; Message=Deployment template validation failed: &#x27;The template variable &#x27;deploymentUris&#x27; is not valid: The language expression property &#x27;templateLink&#x27; doesn&#x27;t exist, available properties are &#x27;template, templateHash, parameters, mode, provisioningState&#x27;.. Please see <a href="https://learn.microsoft.com/azure/azure-resource-manager/templates/template-functions?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">https://aka.ms/arm-functions</a> for usage details.&#x27;</p>
 </blockquote>
 <p>All going well after a few minutes – your initiatives and policies have been deployed.</p>
 <p><img decoding="async" loading="lazy" alt="Deploy - AMBA" src="/assets/images/AzureCloudShell_DeployAMBA-23886b882c8d0f43f1a06280188e1e3c.gif" width="1911" height="1004" class="img_ev3q"></p>

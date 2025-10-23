@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
 <head>
 <meta charset="UTF-8">
-<meta name="generator" content="Docusaurus v3.9.1">
+<meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">How Microsoft Releases Changes to Azure - Safe Deployment | luke.geek.nz</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://luke.geek.nz/img/social-card.png"><meta data-rh="true" name="twitter:image" content="https://luke.geek.nz/img/social-card.png"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" name="author" content="Luke Murray"><meta data-rh="true" property="og:url" content="https://luke.geek.nz/azure/azure-platform-release-process"><meta data-rh="true" name="twitter:title" content="How Microsoft Releases Changes to Azure - Safe Deployment"><meta data-rh="true" name="twitter:description" content="Learn how Microsoft implements changes daily across Azure using safe deployment practices, quality gates, and automated processes."><meta data-rh="true" property="og:title" content="How Microsoft Releases Changes to Azure - Safe Deployment | luke.geek.nz"><meta data-rh="true" name="description" content="Learn how Microsoft implements changes daily across Azure using safe deployment practices, quality gates, and automated processes."><meta data-rh="true" property="og:description" content="Learn how Microsoft implements changes daily across Azure using safe deployment practices, quality gates, and automated processes."><meta data-rh="true" name="keywords" content="Azure,Azure Platform,Safe Deployment,Azure Quality Gates,Azure Release Process,Azure Well-Architected,Azure Reliability,Change Management,Platform Resiliency,Azure Service Health"><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2025-01-28T06:32:57.324Z"><meta data-rh="true" property="article:author" content="https://luke.geek.nz"><meta data-rh="true" property="article:tag" content="Azure"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="alternate" href="https://luke.geek.nz/azure/azure-platform-release-process/" hreflang="en"><link data-rh="true" rel="alternate" href="https://luke.geek.nz/azure/azure-platform-release-process/" hreflang="x-default"><link data-rh="true" rel="canonical" href="https://luke.geek.nz/azure/azure-platform-release-process"><link data-rh="true" rel="preconnect" href="https://ZBH2T1WJQD-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How Microsoft Releases Changes to Azure - Safe Deployment","description":"Learn how Microsoft implements changes daily across Azure using safe deployment practices, quality gates, and automated processes.","url":"https://luke.geek.nz/azure/azure-platform-release-process","datePublished":"2025-01-28T06:32:57.324Z","dateModified":"2025-01-28T06:32:57.324Z","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about"},"publisher":{"@type":"Organization","name":"luke.geek.nz","logo":{"@type":"ImageObject","url":"https://luke.geek.nz/img/logo.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://luke.geek.nz/azure/azure-platform-release-process"},"keywords":"Azure, Azure Platform, Safe Deployment, Azure Quality Gates, Azure Release Process, Azure Well-Architected, Azure Reliability, Change Management, Platform Resiliency, Azure Service Health, Azure, Azure, Microsoft, Cloud Computing, Technical Blog","articleSection":"Technology","inLanguage":"en-US"}</script><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://luke.geek.nz/azure/azure-platform-release-process","mainEntityOfPage":"https://luke.geek.nz/azure/azure-platform-release-process","url":"https://luke.geek.nz/azure/azure-platform-release-process","headline":"How Microsoft Releases Changes to Azure - Safe Deployment","name":"How Microsoft Releases Changes to Azure - Safe Deployment","description":"Learn how Microsoft implements changes daily across Azure using safe deployment practices, quality gates, and automated processes.","datePublished":"2025-01-28T06:32:57.324Z","author":{"@type":"Person","name":"Luke Murray","description":"Author","url":"https://luke.geek.nz","image":"https://luke.geek.nz/img/logo.png"},"keywords":["Azure","Azure Platform","Safe Deployment","Azure Quality Gates","Azure Release Process","Azure Well-Architected","Azure Reliability","Change Management","Platform Resiliency","Azure Service Health"],"isPartOf":{"@type":"Blog","@id":"https://luke.geek.nz/","name":"Luke's Tech Blog - Unleashing the power of the cloud and other technologies!"}}</script><link rel="alternate" type="application/rss+xml" href="/rss.xml" title="luke.geek.nz RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="luke.geek.nz Atom Feed">
 <link rel="alternate" type="application/json" href="/feed.json" title="luke.geek.nz JSON Feed">
@@ -24,9 +24,9 @@
 <meta name="twitter:creator" content="@lukemurraynz">
 <meta name="author" content="Luke Murray">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.89c47968.css">
-<script src="/assets/js/runtime~main.00d14f2a.js" defer="defer"></script>
-<script src="/assets/js/main.d8f90e45.js" defer="defer"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.991ca2b0.css">
+<script src="/assets/js/runtime~main.55e700fc.js" defer="defer"></script>
+<script src="/assets/js/main.bebd5b56.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -60,66 +60,66 @@
 <p>Would you like to know how Azure releases changes to Production while maintaining high Quality and Agility? Azure implements hundreds of changes daily without customers noticing, yet they benefit from new capabilities swiftly. You can learn about the quality stages for Azure and how they are learning to help ensure Microsoft continuously enhances platform automation and processes to ensure Azure service changes have zero impact on customer workloads.</p>
 </blockquote>
 <!-- -->
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-azure-well-architected-framework-integration">🎯 Azure Well-Architected Framework Integration<a href="#-azure-well-architected-framework-integration" class="hash-link" aria-label="Direct link to 🎯 Azure Well-Architected Framework Integration" title="Direct link to 🎯 Azure Well-Architected Framework Integration" translate="no">​</a></h2>
-<p>The Well-Architected Framework has an entire pillar dedicated to <a href="https://learn.microsoft.com/azure/well-architected/reliability/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Reliability</a> and <a href="https://learn.microsoft.com/azure/well-architected/operational-excellence/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Operational excellence</a>, so let us take a look at how these pillars are adapted to work with the deployment of core Azure platform and service deployments, along with elements of <a href="https://learn.microsoft.com/devops/operate/safe-deployment-practices?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">safe deployment practices</a> that are used to deploy Azure services/payloads at a global scale.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-azure-investment-pillars">🏗️ Azure Investment Pillars<a href="#️-azure-investment-pillars" class="hash-link" aria-label="Direct link to 🏗️ Azure Investment Pillars" title="Direct link to 🏗️ Azure Investment Pillars" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="-azure-well-architected-framework-integration">🎯 Azure Well-Architected Framework Integration<a href="#-azure-well-architected-framework-integration" class="hash-link" aria-label="Direct link to 🎯 Azure Well-Architected Framework Integration" title="Direct link to 🎯 Azure Well-Architected Framework Integration" translate="no">​</a></h2>
+<p>The Well-Architected Framework has an entire pillar dedicated to <a href="https://learn.microsoft.com/azure/well-architected/reliability/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Reliability</a> and <a href="https://learn.microsoft.com/azure/well-architected/operational-excellence/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Operational excellence</a>, so let us take a look at how these pillars are adapted to work with the deployment of core Azure platform and service deployments, along with elements of <a href="https://learn.microsoft.com/devops/operate/safe-deployment-practices?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">safe deployment practices</a> that are used to deploy Azure services/payloads at a global scale.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-azure-investment-pillars">🏗️ Azure Investment Pillars<a href="#️-azure-investment-pillars" class="hash-link" aria-label="Direct link to 🏗️ Azure Investment Pillars" title="Direct link to 🏗️ Azure Investment Pillars" translate="no">​</a></h2>
 <p><img decoding="async" loading="lazy" alt="Azure Investments" src="/assets/images/Azure_SDPInvestment-952dcf94477a589a4bb62026a985d887.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p>Let&#x27;s take a look at the aspiration that Microsoft has with the Azure ecosystem and how they are working to ensure that they can deliver changes to the platform without impacting customers, with the aspiration of &#x27;0 changes impact production, and they cause 0 outages&#x27; as a north star.</p>
 <p>To get there, Microsoft is working on a number of key areas, including the following investment pillars:</p>
 <ul>
-<li>Secure platform</li>
-<li>Service health</li>
-<li>Change management</li>
-<li>Incident management</li>
-<li>Supportability</li>
-<li>Customer resiliency</li>
-<li>Platform resiliency</li>
-<li>Capacity management</li>
+<li class="">Secure platform</li>
+<li class="">Service health</li>
+<li class="">Change management</li>
+<li class="">Incident management</li>
+<li class="">Supportability</li>
+<li class="">Customer resiliency</li>
+<li class="">Platform resiliency</li>
+<li class="">Capacity management</li>
 </ul>
 <p><img decoding="async" loading="lazy" alt="Azure Investments" src="/assets/images/Azure_SDPQualitryPillars-814a549cc6da3a93412115f96488d7ba.PNG" width="4000" height="2250" class="img_ev3q"></p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="️-safe-deployment-practices">🛡️ Safe Deployment Practices<a href="#️-safe-deployment-practices" class="hash-link" aria-label="Direct link to 🛡️ Safe Deployment Practices" title="Direct link to 🛡️ Safe Deployment Practices" translate="no">​</a></h2>
-<p>Lets take a look at how the <a href="https://learn.microsoft.com/devops/operate/safe-deployment-practices?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">safe deployment practices</a> work in the context of the Azure platform, and how they are used to ensure that changes are deployed safely and securely, with 3 key areas of focus:</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-safe-deployment-practices">🛡️ Safe Deployment Practices<a href="#️-safe-deployment-practices" class="hash-link" aria-label="Direct link to 🛡️ Safe Deployment Practices" title="Direct link to 🛡️ Safe Deployment Practices" translate="no">​</a></h2>
+<p>Lets take a look at how the <a href="https://learn.microsoft.com/devops/operate/safe-deployment-practices?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">safe deployment practices</a> work in the context of the Azure platform, and how they are used to ensure that changes are deployed safely and securely, with 3 key areas of focus:</p>
 <ul>
-<li>Prevention</li>
-<li>Protection</li>
-<li>Learn and refine</li>
+<li class="">Prevention</li>
+<li class="">Protection</li>
+<li class="">Learn and refine</li>
 </ul>
 <p><img decoding="async" loading="lazy" alt="Azure Investments" src="/assets/images/Azure_SDP-64627798b54725fb6834f269919f44da.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p>Prevention is about:</p>
 <ul>
-<li>Testing in Production in isolation, with continuous representative workloads and scenarios. </li>
-<li>Having Additional Health gates, pre-deployment reviews, and a Bill of Quality.</li>
-<li>Utilising Canary regions for at-scale pre-prod full E2E validations.</li>
-<li>Having increased scenario coverage through health integrated synthetics and representative workloads.</li>
+<li class="">Testing in Production in isolation, with continuous representative workloads and scenarios. </li>
+<li class="">Having Additional Health gates, pre-deployment reviews, and a Bill of Quality.</li>
+<li class="">Utilising Canary regions for at-scale pre-prod full E2E validations.</li>
+<li class="">Having increased scenario coverage through health integrated synthetics and representative workloads.</li>
 </ul>
 <p>Protection is about:</p>
 <ul>
-<li>Progressive deployments orchestrated by standard tools with adaptable policies and multilayer gating.</li>
-<li>Speed of deployment gated (speed, stops) by risk and health signals.</li>
-<li>Multilayer health monitoring integrated for real-time stops and rollbacks.</li>
-<li>Central correlation and analysis of aggregated health signals.</li>
-<li>Short- and long-range anomaly detection that leverages ML models.</li>
-<li>Real-time impact monitoring.</li>
+<li class="">Progressive deployments orchestrated by standard tools with adaptable policies and multilayer gating.</li>
+<li class="">Speed of deployment gated (speed, stops) by risk and health signals.</li>
+<li class="">Multilayer health monitoring integrated for real-time stops and rollbacks.</li>
+<li class="">Central correlation and analysis of aggregated health signals.</li>
+<li class="">Short- and long-range anomaly detection that leverages ML models.</li>
+<li class="">Real-time impact monitoring.</li>
 </ul>
 <p>Learn and refine is about:</p>
 <ul>
-<li>Continuous refinement and additions of <a href="https://learn.microsoft.com/azure/well-architected/design-guides/health-modeling?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">health signals/SLIs/SLOs</a>.</li>
-<li>Learnings from the smallest outages drive repairs towards minimizing the time for self-detection in pre-prod.</li>
-<li>Enrichment of synthetics shared tests. Injection of gating signals from synthetics and customers.</li>
-<li>Ongoing ML refinements with increased cross-service signals.</li>
+<li class="">Continuous refinement and additions of <a href="https://learn.microsoft.com/azure/well-architected/design-guides/health-modeling?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">health signals/SLIs/SLOs</a>.</li>
+<li class="">Learnings from the smallest outages drive repairs towards minimizing the time for self-detection in pre-prod.</li>
+<li class="">Enrichment of synthetics shared tests. Injection of gating signals from synthetics and customers.</li>
+<li class="">Ongoing ML refinements with increased cross-service signals.</li>
 </ul>
 <p>These areas of focus help to define rollout systems and processes that are used to ensure that changes are deployed safely and securely, with the ability to roll back changes if they are not successful, emphasizing quality and ready-to-deploy validation steps.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-quality-gates-and-release-process">🎯 Quality Gates and Release Process<a href="#-quality-gates-and-release-process" class="hash-link" aria-label="Direct link to 🎯 Quality Gates and Release Process" title="Direct link to 🎯 Quality Gates and Release Process" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="-quality-gates-and-release-process">🎯 Quality Gates and Release Process<a href="#-quality-gates-and-release-process" class="hash-link" aria-label="Direct link to 🎯 Quality Gates and Release Process" title="Direct link to 🎯 Quality Gates and Release Process" translate="no">​</a></h2>
 <p><img decoding="async" loading="lazy" alt="Azure Release quality gates" src="/assets/images/Azure_SDPQualityGates-634e3f439e553e996779cee8c43757a6.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p>Once the quality gates and processes, the rollout of the payload occurs across Canary <em>(no Production workloads)</em>, Pilot regions, Medium and large before being deployed further to the rest of the areas, with 24-hour &#x27;bake time&#x27; before each deployment, with the ability to rollback changes if they are not successful, and the processes and quality gates are started again.</p>
 <p><img decoding="async" loading="lazy" alt="Azure Release stages" src="/assets/images/Azure_SDPQualityGatesRelease-5478538a6300f62e47b6f5ce628b100e.PNG" width="4000" height="2250" class="img_ev3q"></p>
 <p><img decoding="async" loading="lazy" alt="Azure Release triggers" src="/assets/images/AzureSDP_Triggers-7913446967d75c1fbbbefaea2e043606.png" width="1504" height="1627" class="img_ev3q"></p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-references">📚 References<a href="#-references" class="hash-link" aria-label="Direct link to 📚 References" title="Direct link to 📚 References" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="-references">📚 References<a href="#-references" class="hash-link" aria-label="Direct link to 📚 References" title="Direct link to 📚 References" translate="no">​</a></h2>
 <ul>
-<li><a href="https://devblogs.microsoft.com/devops/configuring-your-release-pipelines-for-safe-deployments/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Configuring your release pipelines for safe deployments</a></li>
-<li><a href="https://ignite.microsoft.com/en-US/sessions/BRK243" target="_blank" rel="noopener noreferrer">How Microsoft Azure ensures high-Quality releases with Agility</a></li>
-<li><a href="https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks-mission-critical/mission-critical-deploy-test?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Deployment and testing for mission-critical workloads on Azure</a></li>
-<li><a href="https://azure.microsoft.com/blog/advancing-safe-deployment-practices/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Advancing safe deployment practices</a></li>
+<li class=""><a href="https://devblogs.microsoft.com/devops/configuring-your-release-pipelines-for-safe-deployments/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Configuring your release pipelines for safe deployments</a></li>
+<li class=""><a href="https://ignite.microsoft.com/en-US/sessions/BRK243" target="_blank" rel="noopener noreferrer" class="">How Microsoft Azure ensures high-Quality releases with Agility</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks-mission-critical/mission-critical-deploy-test?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Deployment and testing for mission-critical workloads on Azure</a></li>
+<li class=""><a href="https://azure.microsoft.com/blog/advancing-safe-deployment-practices/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Advancing safe deployment practices</a></li>
 </ul></div><footer class="docusaurus-mt-lg"><div class="row margin-top--sm theme-blog-footer-edit-meta-row"><div class="col"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a rel="tag" class="tag_zVej tagRegular_sFm0" href="/tags/azure/">Azure</a></li></ul></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/azure/azure-developer-cli/"><div class="pagination-nav__sublabel">Newer post</div><div class="pagination-nav__label">Getting Started with Azure Developer CLI (azd)</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/azure/staticwebapp-azd-environment-variables/"><div class="pagination-nav__sublabel">Older post</div><div class="pagination-nav__label">Managing Environment Variables in Azure Static Web Apps with Azure Developer CLI</div></a></nav></main><div class="col col--2"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#-azure-well-architected-framework-integration" class="table-of-contents__link toc-highlight">🎯 Azure Well-Architected Framework Integration</a></li><li><a href="#️-azure-investment-pillars" class="table-of-contents__link toc-highlight">🏗️ Azure Investment Pillars</a></li><li><a href="#️-safe-deployment-practices" class="table-of-contents__link toc-highlight">🛡️ Safe Deployment Practices</a></li><li><a href="#-quality-gates-and-release-process" class="table-of-contents__link toc-highlight">🎯 Quality Gates and Release Process</a></li><li><a href="#-references" class="table-of-contents__link toc-highlight">📚 References</a></li></ul></div></div></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 luke.geek.nz. Powered by coffee, clouds and hamsters on wheels!</div></div></div></footer></div>
 </body>
 </html>

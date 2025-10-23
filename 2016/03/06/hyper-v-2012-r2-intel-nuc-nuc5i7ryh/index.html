@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
 <head>
 <meta charset="UTF-8">
-<meta name="generator" content="Docusaurus v3.9.1">
+<meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">Hyper-V 2012 R2 on an Intel NUC (NUC5i7RYH) | luke.geek.nz</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://luke.geek.nz/img/social-card.png"><meta data-rh="true" name="twitter:image" content="https://luke.geek.nz/img/social-card.png"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" name="keywords" content="Windows, Azure, Microsoft, Cloud Computing, Technical Blog"><meta data-rh="true" name="author" content="Luke Murray"><meta data-rh="true" property="og:url" content="https://luke.geek.nz/2016/03/06/hyper-v-2012-r2-intel-nuc-nuc5i7ryh"><meta data-rh="true" name="twitter:title" content="Hyper-V 2012 R2 on an Intel NUC (NUC5i7RYH)"><meta data-rh="true" name="twitter:description" content="One of the problems with Hyper-V 2012 R2 on an Intel NUC NUC5i7RYH was because of the Client network card chipset. Windows Server 2012 would not install..."><meta data-rh="true" property="og:title" content="Hyper-V 2012 R2 on an Intel NUC (NUC5i7RYH) | luke.geek.nz"><meta data-rh="true" name="description" content="One of the problems with Hyper-V 2012 R2 on an Intel NUC NUC5i7RYH was because of the Client network card chipset. Windows Server 2012 would not install..."><meta data-rh="true" property="og:description" content="One of the problems with Hyper-V 2012 R2 on an Intel NUC NUC5i7RYH was because of the Client network card chipset. Windows Server 2012 would not install..."><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2016-04-30T00:00:00.000Z"><meta data-rh="true" property="article:tag" content="Windows"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="alternate" href="https://luke.geek.nz/2016/03/06/hyper-v-2012-r2-intel-nuc-nuc5i7ryh/" hreflang="en"><link data-rh="true" rel="alternate" href="https://luke.geek.nz/2016/03/06/hyper-v-2012-r2-intel-nuc-nuc5i7ryh/" hreflang="x-default"><link data-rh="true" rel="canonical" href="https://luke.geek.nz/2016/03/06/hyper-v-2012-r2-intel-nuc-nuc5i7ryh"><link data-rh="true" rel="preconnect" href="https://ZBH2T1WJQD-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Hyper-V 2012 R2 on an Intel NUC (NUC5i7RYH)","description":"One of the problems with Hyper-V 2012 R2 on an Intel NUC NUC5i7RYH was because of the Client network card chipset. Windows Server 2012 would not install...","url":"https://luke.geek.nz/2016/03/06/hyper-v-2012-r2-intel-nuc-nuc5i7ryh","datePublished":"2016-04-30T00:00:00.000Z","dateModified":"2016-04-30T00:00:00.000Z","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about"},"publisher":{"@type":"Organization","name":"luke.geek.nz","logo":{"@type":"ImageObject","url":"https://luke.geek.nz/img/logo.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://luke.geek.nz/2016/03/06/hyper-v-2012-r2-intel-nuc-nuc5i7ryh"},"keywords":"Windows, Azure, Microsoft, Cloud Computing, Technical Blog","articleSection":"Technology","inLanguage":"en-US"}</script><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://luke.geek.nz/2016/03/06/hyper-v-2012-r2-intel-nuc-nuc5i7ryh","mainEntityOfPage":"https://luke.geek.nz/2016/03/06/hyper-v-2012-r2-intel-nuc-nuc5i7ryh","url":"https://luke.geek.nz/2016/03/06/hyper-v-2012-r2-intel-nuc-nuc5i7ryh","headline":"Hyper-V 2012 R2 on an Intel NUC (NUC5i7RYH)","name":"Hyper-V 2012 R2 on an Intel NUC (NUC5i7RYH)","description":"One of the problems with Hyper-V 2012 R2 on an Intel NUC NUC5i7RYH was because of the Client network card chipset. Windows Server 2012 would not install...","datePublished":"2016-04-30T00:00:00.000Z","author":[],"keywords":[],"isPartOf":{"@type":"Blog","@id":"https://luke.geek.nz/","name":"Luke's Tech Blog - Unleashing the power of the cloud and other technologies!"}}</script><link rel="alternate" type="application/rss+xml" href="/rss.xml" title="luke.geek.nz RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="luke.geek.nz Atom Feed">
 <link rel="alternate" type="application/json" href="/feed.json" title="luke.geek.nz JSON Feed">
@@ -24,9 +24,9 @@
 <meta name="twitter:creator" content="@lukemurraynz">
 <meta name="author" content="Luke Murray">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.89c47968.css">
-<script src="/assets/js/runtime~main.00d14f2a.js" defer="defer"></script>
-<script src="/assets/js/main.d8f90e45.js" defer="defer"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.991ca2b0.css">
+<script src="/assets/js/runtime~main.55e700fc.js" defer="defer"></script>
+<script src="/assets/js/main.bebd5b56.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -61,82 +61,82 @@
     Table of Contents
   </p>
   <ul class="toc_list">
-    <li>
-      <a href="#Changing_the_Intel_Network_Drivers_Manually"><span class="toc_number toc_depth_1">1</span> Changing the Intel Network Drivers Manually</a>
+    <li class="">
+      <a href="#Changing_the_Intel_Network_Drivers_Manually" class=""><span class="toc_number toc_depth_1">1</span> Changing the Intel Network Drivers Manually</a>
     </li>
-    <li>
-      <a href="#Downloading_Intel_Network_Drivers_8211_NUC5i7RYH_Compatible"><span class="toc_number toc_depth_1">2</span> Downloading Intel Network Drivers – NUC5i7RYH Compatible</a>
+    <li class="">
+      <a href="#Downloading_Intel_Network_Drivers_8211_NUC5i7RYH_Compatible" class=""><span class="toc_number toc_depth_1">2</span> Downloading Intel Network Drivers – NUC5i7RYH Compatible</a>
     </li>
-    <li>
-      <a href="#Intel_NUC5i7RYH_Hyper-V_2012_R2_ISO"><span class="toc_number toc_depth_1">3</span> Intel NUC5i7RYH Hyper-V 2012 R2 ISO</a>
+    <li class="">
+      <a href="#Intel_NUC5i7RYH_Hyper-V_2012_R2_ISO" class=""><span class="toc_number toc_depth_1">3</span> Intel NUC5i7RYH Hyper-V 2012 R2 ISO</a>
     </li>
   </ul>
 </div>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="changing-the-intel-network-drivers-manually"><span id="Changing_the_Intel_Network_Drivers_Manually">Changing the Intel Network Drivers Manually</span><a href="#changing-the-intel-network-drivers-manually" class="hash-link" aria-label="Direct link to changing-the-intel-network-drivers-manually" title="Direct link to changing-the-intel-network-drivers-manually" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="changing-the-intel-network-drivers-manually"><span id="Changing_the_Intel_Network_Drivers_Manually">Changing the Intel Network Drivers Manually</span><a href="#changing-the-intel-network-drivers-manually" class="hash-link" aria-label="Direct link to changing-the-intel-network-drivers-manually" title="Direct link to changing-the-intel-network-drivers-manually" translate="no">​</a></h2>
 <p>7-Zip or WinRAR will be needed to extract the EXE to a folder location. In these examples, I am using 7-Zip.</p>
 <ul>
-<li>
-<p>Download the Intel x64 Network Drivers here: <a href="https://downloadcenter.intel.com/download/23071/Network-Adapter-Driver-for-Windows-8-1-" target="_blank" rel="noopener noreferrer"></a><a href="https://downloadcenter.intel.com/download/23071/Network-Adapter-Driver-for-Windows-8-1-" target="_blank" rel="noopener noreferrer">https://downloadcenter.intel.com/download/23071/Network-Adapter-Driver-for-Windows-8-1-</a></p>
+<li class="">
+<p>Download the Intel x64 Network Drivers here: <a href="https://downloadcenter.intel.com/download/23071/Network-Adapter-Driver-for-Windows-8-1-" target="_blank" rel="noopener noreferrer" class=""></a><a href="https://downloadcenter.intel.com/download/23071/Network-Adapter-Driver-for-Windows-8-1-" target="_blank" rel="noopener noreferrer" class="">https://downloadcenter.intel.com/download/23071/Network-Adapter-Driver-for-Windows-8-1-</a></p>
 <p><em>(20.7 Date: 2/11/2016)</em></p>
 </li>
-<li>
+<li class="">
 <p>Once downloaded. Right click the ‘PROWinx64.exe’ and select 7-Zip and Extract to “PROWinx64&amp;#8221; this will extract the driver executable to a folder</p>
 </li>
 </ul>
 <img decoding="async" loading="lazy" src="https://i2.wp.com/luke.geek.nz/wp-content/uploads/2016/03/030516_2351_HyperV2012R1.png?w=1500" alt="" data-recalc-dims="1" class="img_ev3q">
 <ul>
-<li>Once extracted navigate to: \PROWinx64\PRO1000\Winx64\NDIS64Find ‘e1d64x64.INF’ and right click and select Open to open with Notepad</li>
-<li>Find the Heading ‘[Intel.NTamd64.6.3.1]’ and copy the devices in this section</li>
+<li class="">Once extracted navigate to: \PROWinx64\PRO1000\Winx64\NDIS64Find ‘e1d64x64.INF’ and right click and select Open to open with Notepad</li>
+<li class="">Find the Heading ‘[Intel.NTamd64.6.3.1]’ and copy the devices in this section</li>
 </ul>
 <img decoding="async" loading="lazy" src="https://i0.wp.com/luke.geek.nz/wp-content/uploads/2016/03/030516_2351_HyperV2012R2.png?w=1500" alt="" data-recalc-dims="1" class="img_ev3q">
 <ul>
-<li>Navigate to the Heading ‘[Intel.NTamd64.6.3]’ and paste underneath the Devices (for example – underneath: PCI\VEN\8086&amp;DEV_15B7&amp;SUBSYS_00011179 – the last line):</li>
+<li class="">Navigate to the Heading ‘[Intel.NTamd64.6.3]’ and paste underneath the Devices (for example – underneath: PCI\VEN\8086&amp;DEV_15B7&amp;SUBSYS_00011179 – the last line):</li>
 </ul>
 <p> </p>
 <img decoding="async" loading="lazy" src="https://i0.wp.com/luke.geek.nz/wp-content/uploads/2016/03/030516_2351_HyperV2012R3.png?w=1500" alt="" data-recalc-dims="1" class="img_ev3q">
 <ul>
-<li>So it looks like the below with the devices from the top copied onto the bottom. You may have some duplicate Device IDs on the bottom section, you can remove these if you want to. I left mine in there. Once confirmed, save the file: e1d64x64.INF.</li>
+<li class="">So it looks like the below with the devices from the top copied onto the bottom. You may have some duplicate Device IDs on the bottom section, you can remove these if you want to. I left mine in there. Once confirmed, save the file: e1d64x64.INF.</li>
 </ul>
 <p> </p>
 <img decoding="async" loading="lazy" src="https://i2.wp.com/luke.geek.nz/wp-content/uploads/2016/03/030516_2351_HyperV2012R4.png?w=1500" alt="" data-recalc-dims="1" class="img_ev3q">
 <ul>
-<li>Once completed, copy the: NDIS64 folder to a USB flash drive and plug it into one of the Intel NUCs Flash drive slots.</li>
-<li>Open the command prompt and type the following commands to allow unsigned/driver testing drivers:</li>
+<li class="">Once completed, copy the: NDIS64 folder to a USB flash drive and plug it into one of the Intel NUCs Flash drive slots.</li>
+<li class="">Open the command prompt and type the following commands to allow unsigned/driver testing drivers:</li>
 </ul>
 <!-- -->bcdedit /set LOADOPTIONS DISABLE_INTEGRITY_CHECKS
 bcdedit /set TESTSIGNING ON
 bcdedit /set nointegritychecks ON<!-- -->
 <ul>
-<li>Once ran, restart the NUC.</li>
-<li>Once restarted and logged in navigate back to the Command Prompt again and navigate to your USB Flash drive – time to install the drivers.</li>
-<li>Type in the below and press Enter:</li>
+<li class="">Once ran, restart the NUC.</li>
+<li class="">Once restarted and logged in navigate back to the Command Prompt again and navigate to your USB Flash drive – time to install the drivers.</li>
+<li class="">Type in the below and press Enter:</li>
 </ul>
 <!-- -->pnputil -i -a e1d64x64.inf<!-- -->
 <img decoding="async" loading="lazy" src="https://i0.wp.com/luke.geek.nz/wp-content/uploads/2016/03/030516_2351_HyperV2012R5.png?w=1500" alt="" data-recalc-dims="1" class="img_ev3q">
 <ul>
-<li>Wait a minute while it installs the driver. Once you have the Windows Security Dialog “Windows can’t verify the publisher of this driver software” select “Install this software anyway”</li>
-<li>Once installed. Restart your Hyper-V server the Network Adapter should now be installed.</li>
-<li>You can then disable the unsigned/driver testing drivers if needed in the Command Prompt window:</li>
+<li class="">Wait a minute while it installs the driver. Once you have the Windows Security Dialog “Windows can’t verify the publisher of this driver software” select “Install this software anyway”</li>
+<li class="">Once installed. Restart your Hyper-V server the Network Adapter should now be installed.</li>
+<li class="">You can then disable the unsigned/driver testing drivers if needed in the Command Prompt window:</li>
 </ul>
 <!-- -->bcdedit /set LOADOPTIONS ENABLE_INTEGRITY_CHECKS
 bcdedit /set TESTSIGNING OFF
 bcdedit /set nointegritychecks OFF<!-- -->
 <ul>
-<li>Back at the Server Configuration window <em>(type sconfig in the Command Prompt if missing it)</em> you can now select 8 to configure your Network settings, remember to specify the Computer Name an add it to a Domain if needed.</li>
+<li class="">Back at the Server Configuration window <em>(type sconfig in the Command Prompt if missing it)</em> you can now select 8 to configure your Network settings, remember to specify the Computer Name an add it to a Domain if needed.</li>
 </ul>
 <img decoding="async" loading="lazy" src="https://i0.wp.com/luke.geek.nz/wp-content/uploads/2016/03/030516_2351_HyperV2012R6.png?w=1500" alt="" data-recalc-dims="1" class="img_ev3q">
-<p>References: Thanks to an article written by Jay “<a href="http://jayrbarrios.com/2014/11/19/intel-nuc-d54250wykh-installing-lan-driver-on-windows-hyper-v-server-2012-r2" target="_blank" rel="noopener noreferrer">Intel NUC D54250WYKH: Installing LAN Driver on Windows Hyper-V Server 2012 R2</a>” for a lot of assistance in getting this going, was able to easily adapt it for the NUC5i7RYH.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="downloading-intel-network-drivers--nuc5i7ryh-compatible"><span id="Downloading_Intel_Network_Drivers_8211_NUC5i7RYH_Compatible">Downloading Intel Network Drivers – NUC5i7RYH Compatible</span><a href="#downloading-intel-network-drivers--nuc5i7ryh-compatible" class="hash-link" aria-label="Direct link to downloading-intel-network-drivers--nuc5i7ryh-compatible" title="Direct link to downloading-intel-network-drivers--nuc5i7ryh-compatible" translate="no">​</a></h2>
-<p>I have bundled the tweaked driver packed I used into a ZIP file – You can download it here: <a href="https://mega.nz/#!5ZtQUTqZ!iKWih9idK-jil6dT4Q7C_D16N5MQiCF9vr6qws6CmFc" target="_blank" rel="noopener noreferrer">Intel_NUC_2012R2_NUC5i7RYH_Drivers.zip</a></p>
+<p>References: Thanks to an article written by Jay “<a href="http://jayrbarrios.com/2014/11/19/intel-nuc-d54250wykh-installing-lan-driver-on-windows-hyper-v-server-2012-r2" target="_blank" rel="noopener noreferrer" class="">Intel NUC D54250WYKH: Installing LAN Driver on Windows Hyper-V Server 2012 R2</a>” for a lot of assistance in getting this going, was able to easily adapt it for the NUC5i7RYH.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="downloading-intel-network-drivers--nuc5i7ryh-compatible"><span id="Downloading_Intel_Network_Drivers_8211_NUC5i7RYH_Compatible">Downloading Intel Network Drivers – NUC5i7RYH Compatible</span><a href="#downloading-intel-network-drivers--nuc5i7ryh-compatible" class="hash-link" aria-label="Direct link to downloading-intel-network-drivers--nuc5i7ryh-compatible" title="Direct link to downloading-intel-network-drivers--nuc5i7ryh-compatible" translate="no">​</a></h2>
+<p>I have bundled the tweaked driver packed I used into a ZIP file – You can download it here: <a href="https://mega.nz/#!5ZtQUTqZ!iKWih9idK-jil6dT4Q7C_D16N5MQiCF9vr6qws6CmFc" target="_blank" rel="noopener noreferrer" class="">Intel_NUC_2012R2_NUC5i7RYH_Drivers.zip</a></p>
 <p><em>(20.7 Date: 2/11/2016</em>). This will take you to Step 8 of the guide above. This driver pack should also be able to be used in a normal Windows Server 2012 R2 x64 environment.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="intel-nuc5i7ryh-hyper-v-2012-r2-iso"><span id="Intel_NUC5i7RYH_Hyper-V_2012_R2_ISO">Intel NUC5i7RYH Hyper-V 2012 R2 ISO</span><a href="#intel-nuc5i7ryh-hyper-v-2012-r2-iso" class="hash-link" aria-label="Direct link to intel-nuc5i7ryh-hyper-v-2012-r2-iso" title="Direct link to intel-nuc5i7ryh-hyper-v-2012-r2-iso" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="intel-nuc5i7ryh-hyper-v-2012-r2-iso"><span id="Intel_NUC5i7RYH_Hyper-V_2012_R2_ISO">Intel NUC5i7RYH Hyper-V 2012 R2 ISO</span><a href="#intel-nuc5i7ryh-hyper-v-2012-r2-iso" class="hash-link" aria-label="Direct link to intel-nuc5i7ryh-hyper-v-2012-r2-iso" title="Direct link to intel-nuc5i7ryh-hyper-v-2012-r2-iso" translate="no">​</a></h2>
 <p>As mentioned earlier. I have created an ISO <em>(which I then used to create my Hyper-V server on my NUC)</em> which I have added the recommended <em>(excluding .Net)</em> Windows Updates <em>(as of Feb 2016)</em> and added the Intel NUC drivers too. This allowed me to easily rebuild my Hyper-V server on the Intel NUC NUC5i7RYH a few times during testing, minimizing the need to do the Network drivers manually and reduced the amount of Windows Updates I had to install.</p>
 <p>The ISO I used as a source was Hyper-V Core RTM <em>(9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVERHYPERCORE_EN-US-IRM_SHV_X64FRE_EN-US_DV5)</em> downloaded directly from Microsoft.</p>
 <img decoding="async" loading="lazy" src="https://i0.wp.com/luke.geek.nz/wp-content/uploads/2016/03/030516_2351_HyperV2012R7.png?w=1500" alt="" data-recalc-dims="1" class="img_ev3q">
 <p>I then used a WSUS server to download the 2012 R2 updates and slipstreamed them into the Retail ISO. Then I added the NUC Intel Drivers.</p>
 <p>Other than the above: 2012 R2 Updates, Intel Ethernet Drivers for the Intel NUC and enabling the .Net 3.5 feature this is untouched.</p>
 <img decoding="async" loading="lazy" src="https://i0.wp.com/luke.geek.nz/wp-content/uploads/2016/03/030516_2351_HyperV2012R8.png?w=1500" alt="" data-recalc-dims="1" class="img_ev3q">
-<p>This can be downloaded here: <a href="https://mega.nz/#!wclQwJKB!l6pM0XU5sv63mgSu7rYaPIHvQRYfXaMDvzBBJCVX9Gw" target="_blank" rel="noopener noreferrer">SERVERHYPERVCORE_EN-US-NUC_NUCi57RYH_Feb2016.ISO</a></p>
+<p>This can be downloaded here: <a href="https://mega.nz/#!wclQwJKB!l6pM0XU5sv63mgSu7rYaPIHvQRYfXaMDvzBBJCVX9Gw" target="_blank" rel="noopener noreferrer" class="">SERVERHYPERVCORE_EN-US-NUC_NUCi57RYH_Feb2016.ISO</a></p>
 <p>_README</p>
 <p>_</p>
 <p>_————</p>
@@ -192,7 +192,7 @@ bcdedit /set nointegritychecks OFF<!-- -->
 <p>_Intel® Ethernet Controller I210-CS</p>
 <p>_Note: I take no liability for loss or damage following these guides or using my driver pack or ISO. This is merely intended to help people</p>
 <p>_</p>
-<p>I recommend using <a href="https://rufus.akeo.ie/" target="_blank" rel="noopener noreferrer">Rufus</a> to load the ISO to a USB flash drive using the settings below:</p>
+<p>I recommend using <a href="https://rufus.akeo.ie/" target="_blank" rel="noopener noreferrer" class="">Rufus</a> to load the ISO to a USB flash drive using the settings below:</p>
 <img decoding="async" loading="lazy" src="https://i1.wp.com/luke.geek.nz/wp-content/uploads/2016/03/030516_2351_HyperV2012R9.jpg?w=1500" alt="" data-recalc-dims="1" class="img_ev3q">
 <p>Once completed, put the USB drive into the NUC and restart. On startup press F10 to navigate to the Boot Menu and select the USB drive.</p></div><footer class="docusaurus-mt-lg"><div class="row margin-top--sm theme-blog-footer-edit-meta-row"><div class="col"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a rel="tag" class="tag_zVej tagRegular_sFm0" href="/tags/windows/">Windows</a></li></ul></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/2016/10/29/microsoft-ignite-nz-2016-what-a-blast/"><div class="pagination-nav__sublabel">Newer post</div><div class="pagination-nav__label">Microsoft Ignite NZ 2016! What a blast!</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/2016/04/30/using-powershell-setup-automatic-logon-windows-servers/"><div class="pagination-nav__sublabel">Older post</div><div class="pagination-nav__label">Using PowerShell to set up Automatic Login on Windows Servers</div></a></nav></main><div class="col col--2"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#changing-the-intel-network-drivers-manually" class="table-of-contents__link toc-highlight"><span id="Changing_the_Intel_Network_Drivers_Manually">Changing the Intel Network Drivers Manually</span></a></li><li><a href="#downloading-intel-network-drivers--nuc5i7ryh-compatible" class="table-of-contents__link toc-highlight"><span id="Downloading_Intel_Network_Drivers_8211_NUC5i7RYH_Compatible">Downloading Intel Network Drivers – NUC5i7RYH Compatible</span></a></li><li><a href="#intel-nuc5i7ryh-hyper-v-2012-r2-iso" class="table-of-contents__link toc-highlight"><span id="Intel_NUC5i7RYH_Hyper-V_2012_R2_ISO">Intel NUC5i7RYH Hyper-V 2012 R2 ISO</span></a></li></ul></div></div></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 luke.geek.nz. Powered by coffee, clouds and hamsters on wheels!</div></div></div></footer></div>
 </body>

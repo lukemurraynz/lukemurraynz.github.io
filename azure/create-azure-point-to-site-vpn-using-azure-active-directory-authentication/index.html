@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
 <head>
 <meta charset="UTF-8">
-<meta name="generator" content="Docusaurus v3.9.1">
+<meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">Create Azure Point to Site VPN using Microsoft Entra ID authentication | luke.geek.nz</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://luke.geek.nz/img/social-card.png"><meta data-rh="true" name="twitter:image" content="https://luke.geek.nz/img/social-card.png"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" name="keywords" content="Azure, Azure, Microsoft, Cloud Computing, Technical Blog"><meta data-rh="true" name="author" content="Luke Murray"><meta data-rh="true" property="og:url" content="https://luke.geek.nz/azure/create-azure-point-to-site-vpn-using-azure-active-directory-authentication"><meta data-rh="true" name="twitter:title" content="Create Azure Point to Site VPN using Microsoft Entra ID authentication"><meta data-rh="true" name="twitter:description" content="You may be working remotely or only have a few devices needing access to your resources in Azure; a solution that can be deployed is a point to site con..."><meta data-rh="true" property="og:title" content="Create Azure Point to Site VPN using Microsoft Entra ID authentication | luke.geek.nz"><meta data-rh="true" name="description" content="You may be working remotely or only have a few devices needing access to your resources in Azure; a solution that can be deployed is a point to site con..."><meta data-rh="true" property="og:description" content="You may be working remotely or only have a few devices needing access to your resources in Azure; a solution that can be deployed is a point to site con..."><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2022-01-12T00:00:00.000Z"><meta data-rh="true" property="article:author" content="https://luke.geek.nz"><meta data-rh="true" property="article:tag" content="Azure"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="alternate" href="https://luke.geek.nz/azure/create-azure-point-to-site-vpn-using-azure-active-directory-authentication/" hreflang="en"><link data-rh="true" rel="alternate" href="https://luke.geek.nz/azure/create-azure-point-to-site-vpn-using-azure-active-directory-authentication/" hreflang="x-default"><link data-rh="true" rel="canonical" href="https://luke.geek.nz/azure/create-azure-point-to-site-vpn-using-azure-active-directory-authentication"><link data-rh="true" rel="preconnect" href="https://ZBH2T1WJQD-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Create Azure Point to Site VPN using Microsoft Entra ID authentication","description":"You may be working remotely or only have a few devices needing access to your resources in Azure; a solution that can be deployed is a point to site con...","url":"https://luke.geek.nz/azure/create-azure-point-to-site-vpn-using-azure-active-directory-authentication","datePublished":"2022-01-12T00:00:00.000Z","dateModified":"2022-01-12T00:00:00.000Z","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about"},"publisher":{"@type":"Organization","name":"luke.geek.nz","logo":{"@type":"ImageObject","url":"https://luke.geek.nz/img/logo.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://luke.geek.nz/azure/create-azure-point-to-site-vpn-using-azure-active-directory-authentication"},"keywords":"Azure, Azure, Microsoft, Cloud Computing, Technical Blog","articleSection":"Technology","inLanguage":"en-US","image":{"@type":"ImageObject","url":"https://luke.geek.nzuploads/hl_azurep2s.png","width":1200,"height":630}}</script><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://luke.geek.nz/azure/create-azure-point-to-site-vpn-using-azure-active-directory-authentication","mainEntityOfPage":"https://luke.geek.nz/azure/create-azure-point-to-site-vpn-using-azure-active-directory-authentication","url":"https://luke.geek.nz/azure/create-azure-point-to-site-vpn-using-azure-active-directory-authentication","headline":"Create Azure Point to Site VPN using Microsoft Entra ID authentication","name":"Create Azure Point to Site VPN using Microsoft Entra ID authentication","description":"You may be working remotely or only have a few devices needing access to your resources in Azure; a solution that can be deployed is a point to site con...","datePublished":"2022-01-12T00:00:00.000Z","author":{"@type":"Person","name":"Luke Murray","description":"Author","url":"https://luke.geek.nz","image":"https://luke.geek.nz/img/logo.png"},"keywords":[],"isPartOf":{"@type":"Blog","@id":"https://luke.geek.nz/","name":"Luke's Tech Blog - Unleashing the power of the cloud and other technologies!"}}</script><link rel="alternate" type="application/rss+xml" href="/rss.xml" title="luke.geek.nz RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="luke.geek.nz Atom Feed">
 <link rel="alternate" type="application/json" href="/feed.json" title="luke.geek.nz JSON Feed">
@@ -24,9 +24,9 @@
 <meta name="twitter:creator" content="@lukemurraynz">
 <meta name="author" content="Luke Murray">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.89c47968.css">
-<script src="/assets/js/runtime~main.00d14f2a.js" defer="defer"></script>
-<script src="/assets/js/main.d8f90e45.js" defer="defer"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.991ca2b0.css">
+<script src="/assets/js/runtime~main.55e700fc.js" defer="defer"></script>
+<script src="/assets/js/main.bebd5b56.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <svg style="display: none;"><defs>
@@ -64,147 +64,147 @@
 <p>Azure AD authentication is supported for OpenVPN® protocol connections only and requires the Azure VPN client.</p>
 </blockquote>
 <p>A note about Gateway SKUs <em>(apart from Basic)</em> you can resize in the same generation <em>(i.e. Generation 1 VpnGw1 to VpnGw3, but you can&#x27;t go from Generation 1 VpnGw1 to Generation 2 VpnGw5, in order to upgrade, you have to delete and recreate the Gateway, just keep this in mind when deciding on the SKU of your resources</em>).</p>
-<p>You can read more about the Virtual Network Gateways and VPN SKUs at the official Microsoft documentation <a href="https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">here</a>; your Gateway SKU may differ depending on your requirements.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="create-azure-point-to-site-vpn-using-microsoft-entra-id-authentication">Create Azure Point to Site VPN using Microsoft Entra ID authentication<a href="#create-azure-point-to-site-vpn-using-microsoft-entra-id-authentication" class="hash-link" aria-label="Direct link to Create Azure Point to Site VPN using Microsoft Entra ID authentication" title="Direct link to Create Azure Point to Site VPN using Microsoft Entra ID authentication" translate="no">​</a></h3>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="prerequisites">Prerequisites<a href="#prerequisites" class="hash-link" aria-label="Direct link to Prerequisites" title="Direct link to Prerequisites" translate="no">​</a></h4>
+<p>You can read more about the Virtual Network Gateways and VPN SKUs at the official Microsoft documentation <a href="https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">here</a>; your Gateway SKU may differ depending on your requirements.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-azure-point-to-site-vpn-using-microsoft-entra-id-authentication">Create Azure Point to Site VPN using Microsoft Entra ID authentication<a href="#create-azure-point-to-site-vpn-using-microsoft-entra-id-authentication" class="hash-link" aria-label="Direct link to Create Azure Point to Site VPN using Microsoft Entra ID authentication" title="Direct link to Create Azure Point to Site VPN using Microsoft Entra ID authentication" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="prerequisites">Prerequisites<a href="#prerequisites" class="hash-link" aria-label="Direct link to Prerequisites" title="Direct link to Prerequisites" translate="no">​</a></h4>
 <ul>
-<li>An Azure subscription <em>(that you have at least contributor rights to and the ability to create Users and Groups)</em></li>
-<li>An endpoint device running Windows 10 or 11 that you can install the <a href="https://www.microsoft.com/en-us/p/azure-vpn-client-preview/9np355qt2sqb?rtc=2&amp;activetab=pivot:overviewtab" target="_blank" rel="noopener noreferrer" title=" Azure VPN Client">Azure VPN client</a> onto</li>
+<li class="">An Azure subscription <em>(that you have at least contributor rights to and the ability to create Users and Groups)</em></li>
+<li class="">An endpoint device running Windows 10 or 11 that you can install the <a href="https://www.microsoft.com/en-us/p/azure-vpn-client-preview/9np355qt2sqb?rtc=2&amp;activetab=pivot:overviewtab" target="_blank" rel="noopener noreferrer" title=" Azure VPN Client" class="">Azure VPN client</a> onto</li>
 </ul>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="create-virtual-network">Create Virtual Network<a href="#create-virtual-network" class="hash-link" aria-label="Direct link to Create Virtual Network" title="Direct link to Create Virtual Network" translate="no">​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-virtual-network">Create Virtual Network<a href="#create-virtual-network" class="hash-link" aria-label="Direct link to Create Virtual Network" title="Direct link to Create Virtual Network" translate="no">​</a></h4>
 <p>First things first, let&#x27;s create a Virtual Network.</p>
 <ol>
-<li>Log in to the <a href="https://portal.azure.com/#home" target="_blank" rel="noopener noreferrer" title="Azure Portal"><strong>Azure Portal</strong></a></li>
-<li>Click on <strong>+ Create a resource</strong></li>
-<li>Search for: <strong>Virtual Network</strong> and click on it</li>
-<li>Click <strong>Create</strong></li>
-<li><strong>Select</strong> or create your <strong>Resource Group</strong> that you want your network resource to sit in <em>(I recommend Virtual Network and the gateway resources sit in its own Resource Group away from other resources so that they can be protected by resource locks, RBAC and they are usually classified as a shared resource)</em>.</li>
-<li><img decoding="async" loading="lazy" alt="Azure Virtual Network" src="/assets/images/azureportal-createvirtualnetwork-a1fbd5e45e24eb1276224ba7ce936150.png" title="Azure Virtual Network" width="782" height="481" class="img_ev3q"></li>
-<li>Click <strong>Next: IP Addresses</strong></li>
-<li>Now we need to <strong>define</strong> the <strong>Address space</strong> and subnets; I will leave the Address space as 10.0.0.0/16 but remove the Default subnet <em>(select the checkbox next to the Subnet and select Delete)</em></li>
-<li>Click +<strong>Add Subnet</strong>, and add a new subnet with the name of GatewaySubnet with an IP range of: 10.0.1.0/27 <em>(this Subnet will be used by our Virtual Network Gateway, and the name needs to be exactly GatewaySubnet)</em>.</li>
-<li>Now I will add a subnet named: app servers, for the Virtual Machines I will need to connect to will be placed.</li>
-<li><img decoding="async" loading="lazy" alt="Azure Virtual Network" src="/assets/images/azureportal-createvirtualnetworksubnets-646829ca5d787c48027b5d59962ab0c0.png" title="Azure Virtual Network" width="782" height="493" class="img_ev3q"></li>
-<li>Click <strong>Next: Security</strong></li>
-<li>Leave everything <em>(BastionHost, DDoS Protection Standard, Firewall)</em> as Disabled.</li>
-<li>Click <strong>Next: Tags</strong></li>
-<li>Enter in any tags and click <strong>Review + Create</strong></li>
-<li>Review your configuration and click <strong>Create</strong></li>
+<li class="">Log in to the <a href="https://portal.azure.com/#home" target="_blank" rel="noopener noreferrer" title="Azure Portal" class=""><strong>Azure Portal</strong></a></li>
+<li class="">Click on <strong>+ Create a resource</strong></li>
+<li class="">Search for: <strong>Virtual Network</strong> and click on it</li>
+<li class="">Click <strong>Create</strong></li>
+<li class=""><strong>Select</strong> or create your <strong>Resource Group</strong> that you want your network resource to sit in <em>(I recommend Virtual Network and the gateway resources sit in its own Resource Group away from other resources so that they can be protected by resource locks, RBAC and they are usually classified as a shared resource)</em>.</li>
+<li class=""><img decoding="async" loading="lazy" alt="Azure Virtual Network" src="/assets/images/azureportal-createvirtualnetwork-a1fbd5e45e24eb1276224ba7ce936150.png" title="Azure Virtual Network" width="782" height="481" class="img_ev3q"></li>
+<li class="">Click <strong>Next: IP Addresses</strong></li>
+<li class="">Now we need to <strong>define</strong> the <strong>Address space</strong> and subnets; I will leave the Address space as 10.0.0.0/16 but remove the Default subnet <em>(select the checkbox next to the Subnet and select Delete)</em></li>
+<li class="">Click +<strong>Add Subnet</strong>, and add a new subnet with the name of GatewaySubnet with an IP range of: 10.0.1.0/27 <em>(this Subnet will be used by our Virtual Network Gateway, and the name needs to be exactly GatewaySubnet)</em>.</li>
+<li class="">Now I will add a subnet named: app servers, for the Virtual Machines I will need to connect to will be placed.</li>
+<li class=""><img decoding="async" loading="lazy" alt="Azure Virtual Network" src="/assets/images/azureportal-createvirtualnetworksubnets-646829ca5d787c48027b5d59962ab0c0.png" title="Azure Virtual Network" width="782" height="493" class="img_ev3q"></li>
+<li class="">Click <strong>Next: Security</strong></li>
+<li class="">Leave everything <em>(BastionHost, DDoS Protection Standard, Firewall)</em> as Disabled.</li>
+<li class="">Click <strong>Next: Tags</strong></li>
+<li class="">Enter in any tags and click <strong>Review + Create</strong></li>
+<li class="">Review your configuration and click <strong>Create</strong></li>
 </ol>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="create-virtual-network-gateway">Create Virtual Network Gateway<a href="#create-virtual-network-gateway" class="hash-link" aria-label="Direct link to Create Virtual Network Gateway" title="Direct link to Create Virtual Network Gateway" translate="no">​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-virtual-network-gateway">Create Virtual Network Gateway<a href="#create-virtual-network-gateway" class="hash-link" aria-label="Direct link to Create Virtual Network Gateway" title="Direct link to Create Virtual Network Gateway" translate="no">​</a></h4>
 <p>Now that we have the foundation of our setup - an Azure Virtual Network, it is time to provision the Gateway itself; just a note before we continue, the Gateway can take 30-60 minutes to provision.</p>
 <ol>
-<li>Log in to the <a href="https://portal.azure.com/#home" target="_blank" rel="noopener noreferrer" title="Azure Portal">Azure Portal</a></li>
-<li>Click on <strong>+ Create a resource</strong></li>
-<li>Type in and search for: <strong>Virtual Network Gateway</strong></li>
-<li>Click <strong>Create</strong></li>
-<li>Type in the <strong>name</strong> of your Azure Virtual Network <strong>Gateway</strong></li>
-<li>Select the <strong>region</strong> <em>(it must be the same region as your virtual network)</em></li>
-<li>Select the Gateway Type: <strong>VPN</strong></li>
-<li>The VPN type is: <strong>Route-based</strong></li>
-<li><strong>Select</strong> the <strong>SKU</strong>, in this example - I will be going with VpnGw1</li>
-<li><strong>Select</strong> the <strong>Generation</strong> of the Virtual Network Gateway; I am going with: Generation 1</li>
-<li><strong>Select</strong> the <strong>Virtual Network</strong> that you created earlier, and it will automatically find and assign the Gateway to the Subnet named: GatewaySubnet</li>
-<li><strong>Select</strong> Standard <strong>public IP</strong> address <strong>SKU</strong></li>
-<li><strong>Select Public IP</strong> address and select: <strong>Create new</strong></li>
-<li><strong>Type</strong> in your public IP <strong>name</strong></li>
-<li><strong>Leave</strong> &#x27;Enable active-active mode&#x27; and &#x27;Configure BGP&#x27; as <strong>Disabled</strong>.</li>
-<li>Click <strong>Review + Create</strong></li>
-<li><img decoding="async" loading="lazy" alt="Azure Virtual Network Gateway" src="/assets/images/azureportal-createvnetfgw-5d497c12b28d82b47ebe4cfe171943d6.png" title="Azure Virtual Network Gateway" width="809" height="1004" class="img_ev3q"></li>
-<li><strong>Verify configuration</strong> is correct and clicks <strong>Create</strong></li>
-<li>It can take up to 30-60 minutes for the Virtual Network Gateway to be created.</li>
+<li class="">Log in to the <a href="https://portal.azure.com/#home" target="_blank" rel="noopener noreferrer" title="Azure Portal" class="">Azure Portal</a></li>
+<li class="">Click on <strong>+ Create a resource</strong></li>
+<li class="">Type in and search for: <strong>Virtual Network Gateway</strong></li>
+<li class="">Click <strong>Create</strong></li>
+<li class="">Type in the <strong>name</strong> of your Azure Virtual Network <strong>Gateway</strong></li>
+<li class="">Select the <strong>region</strong> <em>(it must be the same region as your virtual network)</em></li>
+<li class="">Select the Gateway Type: <strong>VPN</strong></li>
+<li class="">The VPN type is: <strong>Route-based</strong></li>
+<li class=""><strong>Select</strong> the <strong>SKU</strong>, in this example - I will be going with VpnGw1</li>
+<li class=""><strong>Select</strong> the <strong>Generation</strong> of the Virtual Network Gateway; I am going with: Generation 1</li>
+<li class=""><strong>Select</strong> the <strong>Virtual Network</strong> that you created earlier, and it will automatically find and assign the Gateway to the Subnet named: GatewaySubnet</li>
+<li class=""><strong>Select</strong> Standard <strong>public IP</strong> address <strong>SKU</strong></li>
+<li class=""><strong>Select Public IP</strong> address and select: <strong>Create new</strong></li>
+<li class=""><strong>Type</strong> in your public IP <strong>name</strong></li>
+<li class=""><strong>Leave</strong> &#x27;Enable active-active mode&#x27; and &#x27;Configure BGP&#x27; as <strong>Disabled</strong>.</li>
+<li class="">Click <strong>Review + Create</strong></li>
+<li class=""><img decoding="async" loading="lazy" alt="Azure Virtual Network Gateway" src="/assets/images/azureportal-createvnetfgw-5d497c12b28d82b47ebe4cfe171943d6.png" title="Azure Virtual Network Gateway" width="809" height="1004" class="img_ev3q"></li>
+<li class=""><strong>Verify configuration</strong> is correct and clicks <strong>Create</strong></li>
+<li class="">It can take up to 30-60 minutes for the Virtual Network Gateway to be created.</li>
 </ol>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="setup-microsoft-entra-id-authentication-on-the-virtual-network-gateway">Setup Microsoft Entra ID authentication on the Virtual Network Gateway<a href="#setup-microsoft-entra-id-authentication-on-the-virtual-network-gateway" class="hash-link" aria-label="Direct link to Setup Microsoft Entra ID authentication on the Virtual Network Gateway" title="Direct link to Setup Microsoft Entra ID authentication on the Virtual Network Gateway" translate="no">​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="setup-microsoft-entra-id-authentication-on-the-virtual-network-gateway">Setup Microsoft Entra ID authentication on the Virtual Network Gateway<a href="#setup-microsoft-entra-id-authentication-on-the-virtual-network-gateway" class="hash-link" aria-label="Direct link to Setup Microsoft Entra ID authentication on the Virtual Network Gateway" title="Direct link to Setup Microsoft Entra ID authentication on the Virtual Network Gateway" translate="no">​</a></h4>
 <p>Now that the Virtual Network has been created, we can now set up Microsoft Entra ID authentication.</p>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="collect-microsoft-entra-id-tenant-id">Collect Microsoft Entra ID Tenant ID<a href="#collect-microsoft-entra-id-tenant-id" class="hash-link" aria-label="Direct link to Collect Microsoft Entra ID Tenant ID" title="Direct link to Collect Microsoft Entra ID Tenant ID" translate="no">​</a></h5>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="collect-microsoft-entra-id-tenant-id">Collect Microsoft Entra ID Tenant ID<a href="#collect-microsoft-entra-id-tenant-id" class="hash-link" aria-label="Direct link to Collect Microsoft Entra ID Tenant ID" title="Direct link to Collect Microsoft Entra ID Tenant ID" translate="no">​</a></h5>
 <p>First, we need to collect the Azure AD Tenancy ID</p>
 <ol>
-<li>Log in to the <a href="https://portal.azure.com/#home" target="_blank" rel="noopener noreferrer" title="Azure Portal"><strong>Azure Portal</strong></a></li>
-<li>Click on <strong>Microsoft Entra ID</strong></li>
-<li>In the Overview pane, <strong>copy</strong> the <strong>Tenant ID</strong> and save this for the next step.</li>
+<li class="">Log in to the <a href="https://portal.azure.com/#home" target="_blank" rel="noopener noreferrer" title="Azure Portal" class=""><strong>Azure Portal</strong></a></li>
+<li class="">Click on <strong>Microsoft Entra ID</strong></li>
+<li class="">In the Overview pane, <strong>copy</strong> the <strong>Tenant ID</strong> and save this for the next step.</li>
 </ol>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="grant-azure-vpn-client-permisisons">Grant Azure VPN Client permisisons<a href="#grant-azure-vpn-client-permisisons" class="hash-link" aria-label="Direct link to Grant Azure VPN Client permisisons" title="Direct link to Grant Azure VPN Client permisisons" translate="no">​</a></h5>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="grant-azure-vpn-client-permisisons">Grant Azure VPN Client permisisons<a href="#grant-azure-vpn-client-permisisons" class="hash-link" aria-label="Direct link to Grant Azure VPN Client permisisons" title="Direct link to Grant Azure VPN Client permisisons" translate="no">​</a></h5>
 <p>Now we need to grant the Azure VPN application permissions.</p>
 <ol>
-<li>
-<p>Log in to the <a href="https://portal.azure.com/#home" target="_blank" rel="noopener noreferrer" title="Azure Portal"><strong>Azure Portal</strong></a></p>
+<li class="">
+<p>Log in to the <a href="https://portal.azure.com/#home" target="_blank" rel="noopener noreferrer" title="Azure Portal" class=""><strong>Azure Portal</strong></a></p>
 </li>
-<li>
+<li class="">
 <p>Open a new window and type in and press Enter:</p>
 <div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">https://login.microsoftonline.com/common/oauth2/authorize?client_id=41b23e61-6c1e-4545-b367-cd054e0ed4b4&amp;response_type=code&amp;redirect_uri=https://portal.azure.com&amp;nonce=1234&amp;prompt=admin_consent</span><br></span></code></pre></div></div>
 </li>
-<li>
+<li class="">
 <p>If you get an error about external identity, then replace /<strong>common</strong>/ with your tenant ID.</p>
 </li>
-<li>
+<li class="">
 <p><img decoding="async" loading="lazy" alt="Azure VPN Permissions" src="/assets/images/azureportal_azurevpnpermissions-4859ac00017f2a1a732286341841759f.png" title="Azure VPN Permissions" width="458" height="588" class="img_ev3q"></p>
 </li>
-<li>
+<li class="">
 <p>Click <strong>Accept</strong></p>
 </li>
-<li>
+<li class="">
 <p>Navigate back to <strong>Microsoft Entra ID</strong></p>
 </li>
-<li>
+<li class="">
 <p>Select <strong>Enterprise Applications</strong></p>
 </li>
-<li>
+<li class="">
 <p>Select <strong>Azure VPN</strong></p>
 </li>
-<li>
+<li class="">
 <p><strong>Copy</strong> the <strong>Application ID</strong> of the Azure VPN enterprise application <em>(you will need both Application ID and tenant ID for the next steps)</em></p>
 </li>
-<li>
+<li class="">
 <p><img decoding="async" loading="lazy" alt="Azure VPN" src="/assets/images/azurevpn_enterpriseappvpn-48f8cda9eb6f9303035c244b742d5c11.png" title="Azure VPN" width="652" height="338" class="img_ev3q"></p>
 </li>
 </ol>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="configure-point-to-site-connection">Configure Point to Site Connection<a href="#configure-point-to-site-connection" class="hash-link" aria-label="Direct link to Configure Point to Site Connection" title="Direct link to Configure Point to Site Connection" translate="no">​</a></h5>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="configure-point-to-site-connection">Configure Point to Site Connection<a href="#configure-point-to-site-connection" class="hash-link" aria-label="Direct link to Configure Point to Site Connection" title="Direct link to Configure Point to Site Connection" translate="no">​</a></h5>
 <p>Now its time to configure the Virtual Network Gateway</p>
 <ol>
-<li>Log in to the <a href="https://portal.azure.com/#home" target="_blank" rel="noopener noreferrer" title="Azure Portal"><strong>Azure Portal</strong></a></li>
-<li><strong>Navigate</strong> to the Virtual Network <strong>Gateway</strong> you created earlier</li>
-<li>Click on <strong>Point-to-site configuration</strong></li>
-<li>Click <strong>Configure now</strong></li>
-<li>Enter in your <strong>address pool</strong> <em>(this is the address pool of the VPN clients, make sure this doesn&#x27;t overlap with any other IP range you use, I will go with: 172.0.0.0/16)</em></li>
-<li>Make sure the Tunnel type is: <strong>OpenVPN (SSL)</strong></li>
-<li>Select <strong>Microsoft Entra ID</strong> for the <strong>Authentication</strong> type</li>
-<li>For <strong>Tenant, ID enter</strong> in: <a href="https://login.microsoftonline.com/**TENANTID**/" target="_blank" rel="noopener noreferrer">https://login.microsoftonline.com/**TENANTID**/</a> and enter in your own Tenant ID.</li>
-<li>For the Audience (this is the users and groups that are assigned to the Enterprise Azure VPN application), put in the Application ID of the Azure VPN.</li>
-<li>For the Issuer, enter in: <a href="https://sts.windows.net/**TENANTID**/" target="_blank" rel="noopener noreferrer">https://sts.windows.net/**TENANTID**/</a></li>
-<li><img decoding="async" loading="lazy" alt="Azure Virtual Network Gateway" src="/assets/images/azure-point-to-site-configuration-14d899979995fe8bec94fe6971233b8e.png" title="Azure Virtual Network Gateway" width="893" height="912" class="img_ev3q"></li>
-<li>Click <strong>Save</strong></li>
-<li>It may take 1-5 minutes to save the configuration</li>
+<li class="">Log in to the <a href="https://portal.azure.com/#home" target="_blank" rel="noopener noreferrer" title="Azure Portal" class=""><strong>Azure Portal</strong></a></li>
+<li class=""><strong>Navigate</strong> to the Virtual Network <strong>Gateway</strong> you created earlier</li>
+<li class="">Click on <strong>Point-to-site configuration</strong></li>
+<li class="">Click <strong>Configure now</strong></li>
+<li class="">Enter in your <strong>address pool</strong> <em>(this is the address pool of the VPN clients, make sure this doesn&#x27;t overlap with any other IP range you use, I will go with: 172.0.0.0/16)</em></li>
+<li class="">Make sure the Tunnel type is: <strong>OpenVPN (SSL)</strong></li>
+<li class="">Select <strong>Microsoft Entra ID</strong> for the <strong>Authentication</strong> type</li>
+<li class="">For <strong>Tenant, ID enter</strong> in: <a href="https://login.microsoftonline.com/**TENANTID**/" target="_blank" rel="noopener noreferrer" class="">https://login.microsoftonline.com/**TENANTID**/</a> and enter in your own Tenant ID.</li>
+<li class="">For the Audience (this is the users and groups that are assigned to the Enterprise Azure VPN application), put in the Application ID of the Azure VPN.</li>
+<li class="">For the Issuer, enter in: <a href="https://sts.windows.net/**TENANTID**/" target="_blank" rel="noopener noreferrer" class="">https://sts.windows.net/**TENANTID**/</a></li>
+<li class=""><img decoding="async" loading="lazy" alt="Azure Virtual Network Gateway" src="/assets/images/azure-point-to-site-configuration-14d899979995fe8bec94fe6971233b8e.png" title="Azure Virtual Network Gateway" width="893" height="912" class="img_ev3q"></li>
+<li class="">Click <strong>Save</strong></li>
+<li class="">It may take 1-5 minutes to save the configuration</li>
 </ol>
-<h5 class="anchor anchorWithStickyNavbar_LWe7" id="install-and-connect-using-the-azure-vpn-client">Install and connect using the Azure VPN client<a href="#install-and-connect-using-the-azure-vpn-client" class="hash-link" aria-label="Direct link to Install and connect using the Azure VPN client" title="Direct link to Install and connect using the Azure VPN client" translate="no">​</a></h5>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="install-and-connect-using-the-azure-vpn-client">Install and connect using the Azure VPN client<a href="#install-and-connect-using-the-azure-vpn-client" class="hash-link" aria-label="Direct link to Install and connect using the Azure VPN client" title="Direct link to Install and connect using the Azure VPN client" translate="no">​</a></h5>
 <p>Now that the Point to Site VPN has been configured it&#x27;s time to connect!</p>
 <ol>
-<li>Click on <strong>Download VPN client</strong> <em>(if it is greyed out, then navigate to the Overview pane, then back to the Point-to-site configuration)</em>.</li>
-<li>Extract the zip file, you will need these files</li>
-<li><strong>Download</strong> the <a href="https://go.microsoft.com/fwlink/?linkid=2117554" target="_blank" rel="noopener noreferrer">Azure VPN Client</a> to your computer.</li>
-<li><img decoding="async" loading="lazy" alt="Azure VPN Client" src="/assets/images/windowsstore-azurevpn-e3c19700463ac2ec4b149f6c5dffffd5.png" title="Azure VPN Client" width="1200" height="929" class="img_ev3q"></li>
-<li>Once, downloaded click <strong>Open.</strong></li>
-<li>Click the <strong>+</strong> sign (lower left)</li>
-<li>Click <strong>Import</strong></li>
-<li><strong>Navigate</strong> to the: <strong>azurevpnconfig.xml</strong> file that you downloaded earlier and click <strong>Open</strong></li>
-<li>You can change the Connection Name to something more user friendly <em>(you can also edit the file directly for when you look at pushing out this to multiple users, but make sure you have a backup of the file)</em></li>
-<li>Click <strong>Save</strong></li>
-<li><img decoding="async" loading="lazy" alt="Azure VPN Connection" src="/assets/images/azurevpnclient-beforeconnection-9c72c647ae6b840531511a45307f43b5.png" title="Azure VPN Connection" width="1160" height="850" class="img_ev3q"></li>
-<li>Click <strong>Connect</strong></li>
-<li>Enter in your Microsoft Entra ID credentials <em>(you may be prompted for MFA, depending on the rules - you can use Azure VPN application under conditional access)</em></li>
-<li><img decoding="async" loading="lazy" alt="Azure VPN Connection" src="/assets/images/azurevpnclient-afterconnection-17f6b2c4077a7fa39392fc321fddb00c.png" title="Azure VPN Connection" width="1160" height="850" class="img_ev3q"></li>
-<li><strong>You should now be connected to the Azure network through a point to site VPN!</strong></li>
-<li>If I run &#x27;ipconfig /all&#x27; on my device, I can see a PPP adapter that is connected and on the VPN address range created earlier: 172.0.0.2</li>
-<li><img decoding="async" loading="lazy" alt="Azure Point to Site Connections" src="/assets/images/azurevpn-ipconfig-2c8c0b092f836ec502ad15d41cc3cc31.png" title="Azure Point to Site Connections" width="564" height="227" class="img_ev3q"></li>
-<li>If I navigate back to the Point-to-site connection in the Azure Portal, I can see, my connection has been allocated:</li>
-<li><img decoding="async" loading="lazy" alt="Azure Point to Site Connections" src="/assets/images/azurevpn-p2sconnections-a5656eeefdd5297cec6ce9c2fef165d7.png" title="Azure Point to Site Connections" width="871" height="552" class="img_ev3q"></li>
-<li>I can now use Remote Desktop to connect to a Virtual Machine, running in my AppServers Subnet, which I am running without the need of a Public IP or bastion/jump host:</li>
-<li><img decoding="async" loading="lazy" alt="Azure Point to Site VPN" src="/assets/images/azurevpn-rdp-1e634ab96e9fa3a4173047be002a127a.png" title="Azure Point to Site VPN" width="1380" height="692" class="img_ev3q"></li>
+<li class="">Click on <strong>Download VPN client</strong> <em>(if it is greyed out, then navigate to the Overview pane, then back to the Point-to-site configuration)</em>.</li>
+<li class="">Extract the zip file, you will need these files</li>
+<li class=""><strong>Download</strong> the <a href="https://go.microsoft.com/fwlink/?linkid=2117554" target="_blank" rel="noopener noreferrer" class="">Azure VPN Client</a> to your computer.</li>
+<li class=""><img decoding="async" loading="lazy" alt="Azure VPN Client" src="/assets/images/windowsstore-azurevpn-e3c19700463ac2ec4b149f6c5dffffd5.png" title="Azure VPN Client" width="1200" height="929" class="img_ev3q"></li>
+<li class="">Once, downloaded click <strong>Open.</strong></li>
+<li class="">Click the <strong>+</strong> sign (lower left)</li>
+<li class="">Click <strong>Import</strong></li>
+<li class=""><strong>Navigate</strong> to the: <strong>azurevpnconfig.xml</strong> file that you downloaded earlier and click <strong>Open</strong></li>
+<li class="">You can change the Connection Name to something more user friendly <em>(you can also edit the file directly for when you look at pushing out this to multiple users, but make sure you have a backup of the file)</em></li>
+<li class="">Click <strong>Save</strong></li>
+<li class=""><img decoding="async" loading="lazy" alt="Azure VPN Connection" src="/assets/images/azurevpnclient-beforeconnection-9c72c647ae6b840531511a45307f43b5.png" title="Azure VPN Connection" width="1160" height="850" class="img_ev3q"></li>
+<li class="">Click <strong>Connect</strong></li>
+<li class="">Enter in your Microsoft Entra ID credentials <em>(you may be prompted for MFA, depending on the rules - you can use Azure VPN application under conditional access)</em></li>
+<li class=""><img decoding="async" loading="lazy" alt="Azure VPN Connection" src="/assets/images/azurevpnclient-afterconnection-17f6b2c4077a7fa39392fc321fddb00c.png" title="Azure VPN Connection" width="1160" height="850" class="img_ev3q"></li>
+<li class=""><strong>You should now be connected to the Azure network through a point to site VPN!</strong></li>
+<li class="">If I run &#x27;ipconfig /all&#x27; on my device, I can see a PPP adapter that is connected and on the VPN address range created earlier: 172.0.0.2</li>
+<li class=""><img decoding="async" loading="lazy" alt="Azure Point to Site Connections" src="/assets/images/azurevpn-ipconfig-2c8c0b092f836ec502ad15d41cc3cc31.png" title="Azure Point to Site Connections" width="564" height="227" class="img_ev3q"></li>
+<li class="">If I navigate back to the Point-to-site connection in the Azure Portal, I can see, my connection has been allocated:</li>
+<li class=""><img decoding="async" loading="lazy" alt="Azure Point to Site Connections" src="/assets/images/azurevpn-p2sconnections-a5656eeefdd5297cec6ce9c2fef165d7.png" title="Azure Point to Site Connections" width="871" height="552" class="img_ev3q"></li>
+<li class="">I can now use Remote Desktop to connect to a Virtual Machine, running in my AppServers Subnet, which I am running without the need of a Public IP or bastion/jump host:</li>
+<li class=""><img decoding="async" loading="lazy" alt="Azure Point to Site VPN" src="/assets/images/azurevpn-rdp-1e634ab96e9fa3a4173047be002a127a.png" title="Azure Point to Site VPN" width="1380" height="692" class="img_ev3q"></li>
 </ol>
 <p>Note: I don&#x27;t have a DNS service running in Azure, but the Azure VPN agent will take DNS from the Virtual Network if you have this configured to point towards a DNS server (Active Directory, or other DNS forwarder (pointing towards Azure DNS IP: 168.63.129.16) such as Azure Firewall DNS proxy; you can set Custom DNS servers by modifying your DNS configuration, or add entries into the host file of the computers.</p>
-<p>You can set your Custom DNS settings (remember to add the DNS suffix if needed) and configure the VPN to automatically connect by following the details on the <a href="https://learn.microsoft.com/en-us/azure/vpn-gateway/openvpn-azure-ad-client#faq" target="_blank" rel="noopener noreferrer" title="Microsoft Entra ID authentication: Configure a VPN client for P2S OpenVPN protocol connections">OpenVPN Azure AD</a> Client page.</p>
+<p>You can set your Custom DNS settings (remember to add the DNS suffix if needed) and configure the VPN to automatically connect by following the details on the <a href="https://learn.microsoft.com/en-us/azure/vpn-gateway/openvpn-azure-ad-client#faq" target="_blank" rel="noopener noreferrer" title="Microsoft Entra ID authentication: Configure a VPN client for P2S OpenVPN protocol connections" class="">OpenVPN Azure AD</a> Client page.</p>
 <p>Using Intune, you can also push this configuration to your Windows 10 and 11 clients</p>
 <ul>
-<li><a href="https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-profile-intune?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer">Create custom Intune profiles to deploy VPN client profiles</a></li>
+<li class=""><a href="https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-profile-intune?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Create custom Intune profiles to deploy VPN client profiles</a></li>
 </ul></div><footer class="docusaurus-mt-lg"><div class="row margin-top--sm theme-blog-footer-edit-meta-row"><div class="col"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a rel="tag" class="tag_zVej tagRegular_sFm0" href="/tags/azure/">Azure</a></li></ul></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/2022/01/16/awesome-azure-architecture-list/"><div class="pagination-nav__sublabel">Newer post</div><div class="pagination-nav__label">AWESOME-Azure-Architecture List</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/2022/01/08/my-website/"><div class="pagination-nav__sublabel">Older post</div><div class="pagination-nav__label">My Website Setup</div></a></nav></main><div class="col col--2"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#create-azure-point-to-site-vpn-using-microsoft-entra-id-authentication" class="table-of-contents__link toc-highlight">Create Azure Point to Site VPN using Microsoft Entra ID authentication</a><ul><li><a href="#prerequisites" class="table-of-contents__link toc-highlight">Prerequisites</a></li><li><a href="#create-virtual-network" class="table-of-contents__link toc-highlight">Create Virtual Network</a></li><li><a href="#create-virtual-network-gateway" class="table-of-contents__link toc-highlight">Create Virtual Network Gateway</a></li><li><a href="#setup-microsoft-entra-id-authentication-on-the-virtual-network-gateway" class="table-of-contents__link toc-highlight">Setup Microsoft Entra ID authentication on the Virtual Network Gateway</a><ul><li><a href="#collect-microsoft-entra-id-tenant-id" class="table-of-contents__link toc-highlight">Collect Microsoft Entra ID Tenant ID</a></li><li><a href="#grant-azure-vpn-client-permisisons" class="table-of-contents__link toc-highlight">Grant Azure VPN Client permisisons</a></li><li><a href="#configure-point-to-site-connection" class="table-of-contents__link toc-highlight">Configure Point to Site Connection</a></li><li><a href="#install-and-connect-using-the-azure-vpn-client" class="table-of-contents__link toc-highlight">Install and connect using the Azure VPN client</a></li></ul></li></ul></li></ul></div></div></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 luke.geek.nz. Powered by coffee, clouds and hamsters on wheels!</div></div></div></footer></div>
 </body>
 </html>
