@@ -28,7 +28,7 @@ Recently Microsoft announced [native Service Bus message publishing from Azure A
 
 :::info
 A client sends a standard HTTP request to your API endpoint in API Management. 
-The policy executes and sends the payload as a message to Service Bus. 
+The policy executes and sends the payload as a message to the Service Bus. 
 Downstream consumers such as Logic Apps, Azure Functions, or microservices process those messages asynchronously. 
 
 ```mermaid
@@ -54,19 +54,18 @@ sequenceDiagram
 All configurations happen in API Management - no code changes or new infrastructure are required.  
 :::
 
-The resources, I am using for this test are as follows:
+The resources I am using for this test are as follows:
 
 * API Management _(Developer tier)_
 * Azure Service Bus Namespace with a Queue
 
 These resources were created in the New Zealand North Azure region.
 
-The API Management instance, has System Managed identity enabled, and that identity has been granted the `Azure Service Bus Data Sender` role on the Service Bus namespace.
+The API Management instance has System Managed identity enabled, and that identity has been granted the `Azure Service Bus Data Sender` role on the Service Bus namespace.
 
 So let us test this out, in my test I have the default `Echo API` enabled in API Management, have created a new API operation called `ServiceBus`, this operation will accept a POST request with a JSON payload, and then publish that payload to the Service Bus queue _(its worth noting there is no backend required for this endpoint as the policy does the heavy lifting here)_.
 
 ![Azure API Management POST Endpoint](images/apimsbpostendpointdesign.jpg)
-
 
 The policy I have applied to this operation is as follows:
 
@@ -105,11 +104,11 @@ The policy I have applied to this operation is as follows:
 </policies>
 ```
 
-Note the queue-name and namespace attributes in the `<send-service-bus-message>` policy, these need to match your Service Bus queue name and namespace. You can also add a connection-string attribute if you want to use a specific connection string rather than the managed identity.
+Note the queue-name and namespace attributes in the `<send-service-bus-message>` policy; these need to match your Service Bus queue name and namespace. You can also add a connection-string attribute if you want to use a specific connection string rather than the managed identity.
 
 You can read more about it here: [Send service bus message](https://learn.microsoft.com/azure/api-management/send-service-bus-message-policy?WT.mc_id=AZ-MVP-5004796).
 
-Now we can test this out, I am using Bruno to send a POST request to the API Management endpoint with a sample JSON payload:
+Now we can test this out. I am using Bruno to send a POST request to the API Management endpoint with a sample JSON payload:
 
 ```json
 {
@@ -127,7 +126,7 @@ Now we can test this out, I am using Bruno to send a POST request to the API Man
 
 ![Azure API Management Service Bus Test](images/apimsbpostendpointbrunotest.jpg)
 
-We can see the message was accepted with a `201 Message Created` response, and if we check the Service Bus queue we can see the message has arrived successfully:
+We can see the message was accepted with a `201 Message Created` response, and if we check the Service Bus queue, we can see the message has arrived successfully:
 
 ![Service Bus Queue - API](images/apimsbpostendpointsbqueue.jpg)
 
