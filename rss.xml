@@ -4,11 +4,79 @@
         <title>luke.geek.nz Blog</title>
         <link>https://luke.geek.nz/</link>
         <description>luke.geek.nz Blog</description>
-        <lastBuildDate>Thu, 23 Oct 2025 21:03:42 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 02 Nov 2025 06:41:56 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>Copyright © 2025 luke.geek.nz.</copyright>
+        <item>
+            <title><![CDATA[Automate Azure Access for GitHub Copilot with AZD]]></title>
+            <link>https://luke.geek.nz/azure/azd-github-copilot-coding-agent-azure-mcp-server/</link>
+            <guid>https://luke.geek.nz/azure/azd-github-copilot-coding-agent-azure-mcp-server/</guid>
+            <pubDate>Sun, 02 Nov 2025 06:41:56 GMT</pubDate>
+            <description><![CDATA[Learn to automate Azure access for GitHub Copilot using Azure Developer CLI, enhancing your coding efficiency and security.]]></description>
+            <content:encoded><![CDATA[<p>I've blogged and talked about <a href="https://learn.microsoft.com/azure/developer/azure-developer-cli/overview?tabs=windows&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Developer CLI</a> before, but this time, I will touch on a functionality as part of the <code>azure.coding-agent</code> extension.</p>
+<p>This extension automates the deployment and configuration to allow the GitHub Copilot Coding Agent access to Azure resources directly through the use of the <a href="https://learn.microsoft.com/azure/developer/azure-mcp-server/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure MCP Server</a> .</p>
+<!-- -->
+<blockquote>
+<p>The extension creates the managed identity, configures the federated credential, and sets up the GitHub Actions workflow in your repository.</p>
+</blockquote>
+<p>You will need to clone the GitHub repository you want the GitHub Coding Agent to access Azure resources from. In my example, I have: <a href="https://github.com/lukemurraynz/AZD_AzureMCP_GitHub_Coding_Agent" target="_blank" rel="noopener noreferrer" class="">AZD_AzureMCP_GitHub_Coding_Agent</a>.
+You will also need to have the <a href="https://learn.microsoft.com/azure/developer/azure-developer-cli/overview?tabs=windows&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Developer CLI</a> installed and authenticated to your Azure subscription.</p>
+<p>First things first - install the <code>azure.coding-agent</code> extension for AZD. Make sure you are running the latest version of Azure Developer CLI, ie to upgrade on your Windows host try: <code>winget upgrade Microsoft.Azd</code>.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">azd extension </span><span class="token function" style="color:rgb(80, 250, 123)">install</span><span class="token plain"> azure.coding-agent</span><br></span></code></pre></div></div>
+<p><img decoding="async" loading="lazy" alt="azd extension install azure.coding-agent" src="https://luke.geek.nz/assets/images/Install_AZD_azure.coding.agent-6e77a93291094a73b3c5cec435da2a16.gif" width="937" height="351" class="img_ev3q"></p>
+<p>Next, navigate to your cloned GitHub repository and run the following command to configure the GitHub Coding Agent with Azure MCP Server:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">azd coding-agent config</span><br></span></code></pre></div></div>
+<p>The AZD Coding Agent configuration process will prompt and help you set up the following:</p>
+<ul>
+<li class="">Azure Authentication: verify your Azure login and select a subscription</li>
+<li class="">Repository Selection: Choose the GitHub repository remote for the coding agent</li>
+<li class="">Managed Identity: create a new user-assigned managed identity or select an existing one</li>
+<li class="">Resource Group: create a new resource group or use an existing one</li>
+<li class="">Role Assignment: configure RBAC roles (defaults to Reader, fully configurable)</li>
+<li class="">Git Operations: create a branch and push the necessary workflow files</li>
+<li class="">MCP Server: copy MCP JSON output to GitHub Copilot coding agent settings</li>
+</ul>
+<p>Things to note:</p>
+<ul>
+<li class="">The configuration sets up least privilege access by default, ie, Reader.</li>
+<li class="">Passwordless authentication by using OpenID Connect federated credentials</li>
+<li class="">No secrets stored in GitHub</li>
+<li class="">Automatic token refresh is configured through the Azure identity platform</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="azd coding-agent config" src="https://luke.geek.nz/assets/images/AZD_Azure_Coding_Agent_Config-70b56eb2e874677c47bb3332dee8ffb6.gif" width="937" height="351" class="img_ev3q"></p>
+<p>If we check the Azure environment, we can see that the Managed Identity has been created and assigned the Reader role to the selected Resource Group.</p>
+<p><img decoding="async" loading="lazy" alt="Managed Identity and Role Assignment" src="https://luke.geek.nz/assets/images/AZDCodingAgentUIMPermissionReader-2f168dcf1272c7c05c4bad25378e57ff.jpg" width="1568" height="360" class="img_ev3q"></p>
+<p>On GitHub, we can see that a new Environment named 'copilot' has been created, with 3 variables.</p>
+<ul>
+<li class="">AZURE_CLIENT_ID</li>
+<li class="">AZURE_SUBSCRIPTION_ID</li>
+<li class="">AZURE_TENANT_ID</li>
+</ul>
+<p>And a new branch is ready to create a Pull Request with the GitHub Actions workflow file to enable the GitHub Copilot Coding Agent to use Azure resources.</p>
+<p><img decoding="async" loading="lazy" alt="AZD GitHub Actions Workflow" src="https://luke.geek.nz/assets/images/AZDCodingAgentGitHubWorkflow-1af8b6ee9151ff8312f638d9f5fde062.jpg" width="1883" height="977" class="img_ev3q"></p>
+<p>Finally, we need to manually copy the MCP Server JSON output from the AZD CLI and paste it into the GitHub Copilot Coding Agent settings for the repository.</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">    </span><span class="token property">"mcpServers"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">        </span><span class="token property">"Azure"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">            </span><span class="token property">"type"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"local"</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">            </span><span class="token property">"command"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"npx"</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">            </span><span class="token property">"args"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">[</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">                </span><span class="token string" style="color:rgb(255, 121, 198)">"-y"</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">                </span><span class="token string" style="color:rgb(255, 121, 198)">"@azure/mcp@latest"</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">                </span><span class="token string" style="color:rgb(255, 121, 198)">"server"</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">                </span><span class="token string" style="color:rgb(255, 121, 198)">"start"</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">            </span><span class="token punctuation" style="color:rgb(248, 248, 242)">]</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">            </span><span class="token property">"tools"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">[</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">                </span><span class="token string" style="color:rgb(255, 121, 198)">"*"</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">            </span><span class="token punctuation" style="color:rgb(248, 248, 242)">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">        </span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain">    </span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#F8F8F2"><span class="token plain"></span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><br></span></code></pre></div></div>
+<p><img decoding="async" loading="lazy" alt="AZD GitHub Coding Agent Config" src="https://luke.geek.nz/assets/images/AZDCodingAgentGitHubCodingAgentConfig-ed2375c9f7e026dcdefa51cbf6df8803.jpg" width="1658" height="1017" class="img_ev3q"></p>
+<p>Now we are all set to use the GitHub Copilot Coding Agent with Azure resources in our repository. The User Assigned Managed identity only has Reader access to the specific Resource Group by default, so you may need to adjust the role assignments based on your requirements. You can apply different roles at the time of configuration by using the <code>--roles</code> parameter with the <code>azd coding-agent config</code> command.</p>
+<p>For the purposes of this demo, I have granted the Managed Identity Owner access to the Subscription to allow the Coding Agent to create resources. Please do not do this in production environments.</p>
+<p>We can see that once we assign the Issue, Copilot will authenticate with Azure using the Azure MCP Server and begin processing the request.</p>
+<p>In my example, I have prompted Copilot to create Resource Groups based on the names of cities in New Zealand, and a Storage account inside each Resource Group—the Azure MCP Server running all necessary tools. In this case, it created Bicep files based on my request, and a deployment script to do the deploy.</p>
+<p><img decoding="async" loading="lazy" alt="GitHub Copilot Coding Agent creating Bicep files" src="https://luke.geek.nz/assets/images/AZD_Azure_Coding_Agent_Run-e6a53d5d6eb4efb4a178e01fa29473ef.gif" width="1871" height="911" class="img_ev3q"></p>
+<p>I forgot to configure the Firewall settings for the GitHub Runner and Coding Agent to communicate with the Azure Management endpoints, so although it configured and validated the Bicep files, it didn't deploy them. After enabling it, I can add a comment to the Pull Request to do just that.</p>
+<p>We can see that it triggers the Azure CLI to start the deployment of the bicep files created by the previous step, if we navigate to Azure, we can see a Deployment has begun, and GitHub Coding Agent does validation of the deployment.</p>
+<p><img decoding="async" loading="lazy" alt="GitHub Copilot Coding Agent deploying Bicep files" src="https://luke.geek.nz/assets/images/AZD_Azure_Coding_Agent_Deploy-9f425b5ce588b5f3a0423a4676607ccf.gif" width="1871" height="911" class="img_ev3q"></p>
+<p>And finally, we can see the resources in the Azure subscription:</p>
+<p><img decoding="async" loading="lazy" alt="GitHub Copilot Coding Agent validate Bicep deploy of Resource groups" src="https://luke.geek.nz/assets/images/AZDCodingAgentRGDeploymentValidate-1d0a78d3d7ee5be5436e386f7cc99009.jpg" width="1216" height="650" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="GitHub Copilot Coding Agent validate Bicep deploy of Storage accounts" src="https://luke.geek.nz/assets/images/AZDCodingAgentRGStgDeploymentValidate-607bfc7478102566c025533ec5710669.jpg" width="798" height="538" class="img_ev3q"></p>
+<p>Hopefully this gives you a good overview of how to get started with the Azure Developer CLI <code>azure.coding-agent</code> extension to enable the GitHub Copilot Coding Agent to access Azure resources securely and efficiently, in my article I showcased how I could use to generate and deploy resources directly in Azure, however this opens up a lot of possibilities for automating and streamlining your Azure development workflows using AI-powered assistance, and can factor in scenarios such as infrastructure as code generation of existing resources, Azure resource reviews, and even troubleshooting assistance directly within your development environment.</p>
+<p>Please be sure to follow best practices for security and access management when configuring the managed identity and role assignments to ensure that your Azure resources remain secure while leveraging the capabilities of the GitHub Copilot Coding Agent. You don't want to give this agent more permissions than it needs for the tasks at hand! Remember to monitor and audit the Coding Agent's activities to maintain compliance and security in your Azure environment.</p>
+<blockquote>
+<p>And remember, "with great power comes great responsibility!"</p>
+</blockquote>]]></content:encoded>
+            <category>Azure</category>
+        </item>
         <item>
             <title><![CDATA[Native Service Bus Publishing from API Management]]></title>
             <link>https://luke.geek.nz/azure/servicebusapimpublish/</link>
@@ -60,7 +128,7 @@ Downstream consumers such as Logic Apps, Azure Functions, or microservices proce
 <table><thead><tr><th>Command</th><th>Description</th><th>Why It's Needed</th></tr></thead><tbody><tr><td><code>/constitution</code></td><td>Create or update project governing principles and development guidelines</td><td>Establishes immutable architectural principles (9 articles) that ensure consistency, simplicity, and quality across all generated code. Acts as the "DNA" of your project, preventing over-engineering and maintaining architectural integrity.</td></tr><tr><td><code>/specify</code></td><td>Define what you want to build (requirements and user stories)</td><td>Transforms vague feature ideas into comprehensive, structured specifications with automatic repository management. Creates feature branches, proper directory structure, and complete PRDs with user stories and acceptance criteria - focusing on WHAT and WHY, not HOW.</td></tr><tr><td><code>/clarify</code></td><td>Clarify underspecified areas (must be run before /plan unless explicitly skipped)</td><td>Identifies and resolves ambiguities marked with <code>[NEEDS CLARIFICATION]</code> tags in specifications. Prevents AI from making incorrect assumptions and ensures all requirements are explicitly defined before technical planning begins.</td></tr><tr><td><code>/plan</code></td><td>Create technical implementation plans with your chosen tech stack</td><td>Converts business requirements into detailed technical architecture and implementation details. Generates supporting documents (data models, API contracts, test scenarios) while ensuring constitutional compliance and architectural principles are followed.</td></tr><tr><td><code>/tasks</code></td><td>Generate actionable task lists for implementation</td><td>Analyzes the implementation plan and converts it into specific, executable tasks. Identifies parallel work streams and creates a structured roadmap that maps directly from specifications to concrete development actions.</td></tr><tr><td><code>/analyze</code></td><td>Cross-artifact consistency &amp; coverage analysis (run after /tasks, before /implement)</td><td>Validates consistency across all specification artifacts, identifies gaps or contradictions, and ensures complete coverage of requirements before implementation begins. Acts as a quality gate to prevent specification drift.</td></tr><tr><td><code>/implement</code></td><td>Execute all tasks to build the feature according to the plan</td><td>Generates working code from the specifications and implementation plans. Follows test-first development (Article III), creates modular libraries (Article I), and ensures all code aligns with the established constitutional principles.</td></tr></tbody></table>
 <p>We will go through the process of creating a new project, defining the constitution, specifying what we want to build, planning the technical implementation, generating tasks, analyzing for consistency, and finally implementing the code for a Platform Landing Zone.</p>
 <p>I love that specification development is front and centre, and that the process encourages you to think about the "why" and "what" before jumping into the "how". This is a great way to ensure that the result is actually what was needed, and not just what was easy to implement, so let's get started.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-project-initialization">🏗️ Project Initialization<a href="https://luke.geek.nz/azure/spec-driven-platform-landing-zone-bicep/#%EF%B8%8F-project-initialization" class="hash-link" aria-label="Direct link to 🏗️ Project Initialization" title="Direct link to 🏗️ Project Initialization" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-project-initialization">🏗️ Project Initialization<a href="https://luke.geek.nz/azure/spec-driven-platform-landing-zone-bicep/#%EF%BF%BD%EF%BF%BD%EF%B8%8F-project-initialization" class="hash-link" aria-label="Direct link to 🏗️ Project Initialization" title="Direct link to 🏗️ Project Initialization" translate="no">​</a></h2>
 <p>First, we will initialize our project and create our constitution. The model I will be using throughout this post is GPT-5, specifically for spec-driven development. When it comes to implementation, we will proceed with GPT-5-Codex.</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#F8F8F2;background-color:#282A36"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#F8F8F2"><span class="token plain">specify init </span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">.</span><br></span></code></pre></div></div>
 <p><img decoding="async" loading="lazy" alt="SpecKit_BicepPLZ_Init" src="https://luke.geek.nz/assets/images/SpecKit_BicepPLZ_Init-06434b1281f135d23ad5e5f70ea538bc.gif" width="1838" height="996" class="img_ev3q"></p>
@@ -708,48 +776,6 @@ The Authorization is your user token.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="testing-the-solution">Testing the Solution<a href="https://luke.geek.nz/azure/container-apps-vnc-dosbox/#testing-the-solution" class="hash-link" aria-label="Direct link to Testing the Solution" title="Direct link to Testing the Solution" translate="no">​</a></h2>
 <p>Finally - let's test!</p>
 <p><img decoding="async" loading="lazy" alt="Test VNC Container Apps" src="https://luke.geek.nz/assets/images/TestContainerNoVNCCAppsDemo-3fdeb7859ac85eb79831f1ea7c5f27d7.gif" width="1896" height="932" class="img_ev3q"></p>]]></content:encoded>
-            <category>Azure</category>
-        </item>
-        <item>
-            <title><![CDATA[Bulk Link Partner Admin Link (PAL) to Azure Tenants]]></title>
-            <link>https://luke.geek.nz/azure/partner-admin-link-tool/</link>
-            <guid>https://luke.geek.nz/azure/partner-admin-link-tool/</guid>
-            <pubDate>Mon, 28 Jul 2025 20:41:05 GMT</pubDate>
-            <description><![CDATA[Use the PAL Tool to quickly link your Microsoft Partner ID to all Azure Entra tenants and manage partner recognition.]]></description>
-            <content:encoded><![CDATA[<p>Partner Admin Link (PAL) tool is a .NET application that helps Microsoft partners link their <a href="https://learn.microsoft.com/azure/cost-management-billing/manage/link-partner-id?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Partner Admin Link (PAL)</a> to all accessible Microsoft Entra tenants, enabling proper partner recognition and revenue attribution.</p>
-<p><a href="https://learn.microsoft.com/azure/cost-management-billing/manage/link-partner-id?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Partner Admin Link (PAL)</a> enables Microsoft to identify and recognize partners who drive Azure customer success. By linking your <a href="https://partner.microsoft.com/en-nz/explore?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Microsoft AI Cloud Partner Program</a> (Associated PartnerID) to customer tenants, Microsoft can:</p>
-<p>✅ Attribute revenue from your customers' Azure consumption to your organization
-✅ Recognize your impact on customer success and business outcomes
-✅ Provide insights into your partner engagement effectiveness
-✅ Enable partner incentives based on customer growth</p>
-<!-- -->
-<p>This tool has been written for exactly that, scanning the Entra ID tenants you have access to and using the Azure Management APIs to add in the PAL link where needed, or overwrite the existing ones:</p>
-<p>🔐 Multiple Authentication Methods: Support for both Interactive and Device Code Flow authentication
-🔍 Automatic Tenant Discovery: Finds all Microsoft Entra tenants you have access to
-🔗 Bulk Partner ID Linking: Link your Partner ID to multiple tenants at once
-📊 Progress Tracking: Real-time progress feedback during bulk operations
-🎨 Modern Console UI: Beautiful text-based interface using Spectre.Console</p>
-<blockquote>
-<p>You can find the tool in my GitHub here: <a href="https://github.com/lukemurraynz/Partner-Admin-Link-Tool" target="_blank" rel="noopener noreferrer" class="">lukemurraynz/Partner-Admin-Link-Tool</a></p>
-</blockquote>
-<p>Then you can grab the compiled published executable from <a href="https://github.com/lukemurraynz/Partner-Admin-Link-Tool/releases" target="_blank" rel="noopener noreferrer" class="">releases</a>.</p>
-<p>This application isn't signed, so will you get a warning, from Microsoft Defender. You can click More Info, and Run anyway.</p>
-<p>Then log in to the PAL Tool using your credentials.</p>
-<p><img decoding="async" loading="lazy" alt="PAL Tool" src="https://luke.geek.nz/assets/images/PALToolLogin-6fbda54891affade1d7e408e141797c1.jpg" width="1185" height="677" class="img_ev3q"></p>
-<p>Once authenticated, you will have the following:</p>
-<ul>
-<li class="">?? Discovery tenants</li>
-<li class="">?? Link Partner ID to All tenants</li>
-<li class="">?? Show Current Status</li>
-<li class="">? About Partner Admin Link (PAL)</li>
-<li class="">? Exit</li>
-</ul>
-<p>Discover tenants, simply does a lookup of the TenantIDs you have access to, this could be useful as a quick check to determine if there are any tenants you are also a Guest of, and it can be a good way to get MFA and authentication for other tenants done.
-Link Partner ID to All tenants, is where you can specify a new PartnerID to add, and then you can overwrite existing ones - which is useful if you are doing a partnerID move. It will go through and call the Azure Management APIs to add in the PartnerID.
-Show Current Status, will do a lookup and show the current partnerID associated with each tenant, this could be useful to assess current state, and find out if you even need to run a PartnerID link.
-Finally, About Partner Admin Link, gives you an information screen to describe a bit more about PAL and Exit will close the application, if you are Authenticated, Sign Out will appear, which will keep the PAL Tool open, but sign you out of Entra ID. Useful if you wanted to switch accounts.</p>
-<p>During the Discovery Tenants or Link Partner ID to All Tenants process, there may be issues with authenticating to some tenants, so after 5 seconds the console will prompt whether or not you want to continue to wait, ie if you have just authenticated or still waiting on the interactive authentication prompt, or skip as it could be a tenant that you may not have access to anymore.</p>
-<p>Hopefully the PAL Tool is useful, feel free to contribute, open issues and let me know how you get on using it.</p>]]></content:encoded>
             <category>Azure</category>
         </item>
     </channel>
