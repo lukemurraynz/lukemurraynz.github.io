@@ -25,7 +25,7 @@ keywords:
 description: Learn to automate Azure access for GitHub Copilot using Azure Developer CLI, enhancing your coding efficiency and security.
 date: 2025-11-02T06:41:56.875Z
 ---
-I've blogged and talked about [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview?tabs=windows&WT.mc_id=AZ-MVP-5004796) before, but this time - I will touch on a functionality as part of the `azure.coding-agent` extension.
+I've blogged and talked about [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview?tabs=windows&WT.mc_id=AZ-MVP-5004796) before, but this time, I will touch on a functionality as part of the `azure.coding-agent` extension.
 
 This extension automates the deployment and configuration to allow the GitHub Copilot Coding Agent access to Azure resources directly through the use of the [Azure MCP Server](https://learn.microsoft.com/azure/developer/azure-mcp-server/overview?WT.mc_id=AZ-MVP-5004796) .
 
@@ -33,10 +33,10 @@ This extension automates the deployment and configuration to allow the GitHub Co
 
 > The extension creates the managed identity, configures the federated credential, and sets up the GitHub Actions workflow in your repository.
 
-You will a GitHub repository cloned that you want to enable for the GitHub Coding Agent to access Azure resources. In my example I have: [AZD_AzureMCP_GitHub_Coding_Agent](https://github.com/lukemurraynz/AZD_AzureMCP_GitHub_Coding_Agent).
+You will need to clone the GitHub repository you want the GitHub Coding Agent to access Azure resources from. In my example, I have: [AZD_AzureMCP_GitHub_Coding_Agent](https://github.com/lukemurraynz/AZD_AzureMCP_GitHub_Coding_Agent).
 You will also need to have the [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview?tabs=windows&WT.mc_id=AZ-MVP-5004796) installed and authenticated to your Azure subscription.
 
-First thing is first  - install the `azure.coding-agent` extension for AZD. Make sure you are running the latest version of Azure Developer CLI, ie to upgrade on your Windows host try: `winget upgrade Microsoft.Azd`.
+First things first - install the `azure.coding-agent` extension for AZD. Make sure you are running the latest version of Azure Developer CLI, ie to upgrade on your Windows host try: `winget upgrade Microsoft.Azd`.
 
 ```bash
 azd extension install azure.coding-agent
@@ -52,7 +52,7 @@ azd coding-agent config
 The AZD Coding Agent configuration process will prompt and help you set up the following:
 
 * Azure Authentication: verify your Azure login and select a subscription
-* Repository Selection: choose the GitHub repository remote for the coding agent
+* Repository Selection: Choose the GitHub repository remote for the coding agent
 * Managed Identity: create a new user-assigned managed identity or select an existing one
 * Resource Group: create a new resource group or use an existing one
 * Role Assignment: configure RBAC roles (defaults to Reader, fully configurable)
@@ -61,18 +61,18 @@ The AZD Coding Agent configuration process will prompt and help you set up the f
 
 Things to note: 
 
-* The configuration sets up least privilege access by default, ie Reader.
+* The configuration sets up least privilege access by default, ie, Reader.
 * Passwordless authentication by using OpenID Connect federated credentials
 * No secrets stored in GitHub
-* Automatic token refresh is configured through Azure identity platform
+* Automatic token refresh is configured through the Azure identity platform
 
 ![azd coding-agent config](images/AZD_Azure_Coding_Agent_Config.gif)
 
-If we check the Azure environment, we can see that the Managed Identity has been created, and assigned with the Reader role to the selected Resource Group.
+If we check the Azure environment, we can see that the Managed Identity has been created and assigned the Reader role to the selected Resource Group.
 
 ![Managed Identity and Role Assignment](images/AZDCodingAgentUIMPermissionReader.jpg)
 
-In GitHub, we can see a new Environment has been created named: copilot, with 3 variables.
+On GitHub, we can see that a new Environment named 'copilot' has been created, with 3 variables.
 
 * AZURE_CLIENT_ID
 * AZURE_SUBSCRIPTION_ID
@@ -82,7 +82,7 @@ And a new branch is ready to create a Pull Request with the GitHub Actions workf
 
 ![AZD GitHub Actions Workflow](images/AZDCodingAgentGitHubWorkflow.jpg)
 
-Finally, we need to manually, copy the MCP Server JSON output from the AZD CLI and paste it into the GitHub Copilot Coding Agent settings for the repository.
+Finally, we need to manually copy the MCP Server JSON output from the AZD CLI and paste it into the GitHub Copilot Coding Agent settings for the repository.
 
 ```json
 {
@@ -106,19 +106,19 @@ Finally, we need to manually, copy the MCP Server JSON output from the AZD CLI a
 
 ![AZD GitHub Coding Agent Config](images/AZDCodingAgentGitHubCodingAgentConfig.jpg)
 
-Now we are all set to use the GitHub Copilot Coding Agent with Azure resources in our repository. Remember, that the User Assigned Managed identity only has Reader access to the specific Resource Group by default, so you may need to adjust the role assignments based on your requirements. You can apply different roles at the time of configuration by using the `--roles` parameter with the `azd coding-agent config` command.
+Now we are all set to use the GitHub Copilot Coding Agent with Azure resources in our repository. The User Assigned Managed identity only has Reader access to the specific Resource Group by default, so you may need to adjust the role assignments based on your requirements. You can apply different roles at the time of configuration by using the `--roles` parameter with the `azd coding-agent config` command.
 
-For the purposes of this demo, I have granted the Managed Identity Owner access to the Subscription to allow the Coding Agent to create resources, please do not do this in production environments.
+For the purposes of this demo, I have granted the Managed Identity Owner access to the Subscription to allow the Coding Agent to create resources. Please do not do this in production environments.
 
-We can see that once, we assign the Issue, Copilot will authenticate to Azure using the Azure MCP Server and start to process the request.
+We can see that once we assign the Issue, Copilot will authenticate with Azure using the Azure MCP Server and begin processing the request.
 
-In my example, I have prompted Copilot to Resource Groups, based on the names of cities in New Zealand, and a Storage account inside each Resource Group - the Azure MCP Server, running all necessary tools, in this case it created Bicep files based off my request, and a deployment script to do the deploy.
+In my example, I have prompted Copilot to create Resource Groups based on the names of cities in New Zealand, and a Storage account inside each Resource Group—the Azure MCP Server running all necessary tools. In this case, it created Bicep files based on my request, and a deployment script to do the deploy.
 
 ![GitHub Copilot Coding Agent creating Bicep files](images/AZD_Azure_Coding_Agent_Run.gif)
 
-I forgot to configure the Firewall settings for the GitHub Runner and Coding Agent to communicate out to the Azure Management endpoints, so although it configured and validated the Bicep files, it didn't deploy it - but after enabling it, I can add a comment to the Pull Request to do just that.
+I forgot to configure the Firewall settings for the GitHub Runner and Coding Agent to communicate with the Azure Management endpoints, so although it configured and validated the Bicep files, it didn't deploy them. After enabling it, I can add a comment to the Pull Request to do just that.
 
-We can see that it triggers the Azure CLI to start the deployment of the bicep files created by the previous step, if we navigate to Azure, we can see a Deployment has started, and GitHub Coding Agent does validation of the deployment.
+We can see that it triggers the Azure CLI to start the deployment of the bicep files created by the previous step, if we navigate to Azure, we can see a Deployment has begun, and GitHub Coding Agent does validation of the deployment.
 
 ![GitHub Copilot Coding Agent deploying Bicep files](images/AZD_Azure_Coding_Agent_Deploy.gif)
 
@@ -130,6 +130,6 @@ And finally, we can see the resources in the Azure subscription:
 
 Hopefully this gives you a good overview of how to get started with the Azure Developer CLI `azure.coding-agent` extension to enable the GitHub Copilot Coding Agent to access Azure resources securely and efficiently, in my article I showcased how I could use to generate and deploy resources directly in Azure, however this opens up a lot of possibilities for automating and streamlining your Azure development workflows using AI-powered assistance, and can factor in scenarios such as infrastructure as code generation of existing resources, Azure resource reviews, and even troubleshooting assistance directly within your development environment.
 
-Please be sure to follow best practices for security and access management when configuring the managed identity and role assignments, to ensure that your Azure resources remain secure while leveraging the capabilities of the GitHub Copilot Coding Agent  - You don't want to give this agent more permissions than it needs for the tasks at hand! Remember to monitor and audit the activities performed by the Coding Agent to maintain compliance and security within your Azure environment.
+Please be sure to follow best practices for security and access management when configuring the managed identity and role assignments to ensure that your Azure resources remain secure while leveraging the capabilities of the GitHub Copilot Coding Agent. You don't want to give this agent more permissions than it needs for the tasks at hand! Remember to monitor and audit the Coding Agent's activities to maintain compliance and security in your Azure environment.
 
-> And remember "with great power, comes great responsibility!"
+> And remember, "with great power comes great responsibility!"
