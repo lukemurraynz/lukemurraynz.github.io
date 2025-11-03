@@ -39,15 +39,17 @@ const config = {
   
   // Enhanced SEO configuration
   headTags: [
-    // Ensure gtag function exists before any plugin code runs
-    {
-      tagName: 'script',
-      attributes: {},
-      innerHTML: `
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
-      `,
-    },
+    // Ensure gtag function exists before any plugin code runs (only in production)
+    ...(isProd
+      ? [{
+          tagName: 'script',
+          attributes: {},
+          innerHTML: `
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+          `,
+        }]
+      : []),
     // Enhanced Open Graph tags
     {
       tagName: 'meta',
