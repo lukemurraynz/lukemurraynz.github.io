@@ -6,6 +6,8 @@
 
 import { themes as prismThemes } from "prism-react-renderer";
 
+const isProd = process.env.NODE_ENV === "production";
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "luke.geek.nz",
@@ -37,6 +39,15 @@ const config = {
   
   // Enhanced SEO configuration
   headTags: [
+    // Ensure gtag function exists before any plugin code runs
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML: `
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+      `,
+    },
     // Enhanced Open Graph tags
     {
       tagName: 'meta',
@@ -178,10 +189,13 @@ const config = {
           ignorePatterns: ['/tags/**', '/page/**'],
           filename: 'sitemap.xml',
         },
-        gtag: {
-          trackingID: "G-0QDLBY7NNN",
-          anonymizeIP: true,
-        },
+        // Enable Google Analytics (gtag) only in production to avoid dev errors and noise
+        gtag: isProd
+          ? {
+              trackingID: "G-0QDLBY7NNN",
+              anonymizeIP: true,
+            }
+          : undefined,
       }),
     ],
   ],
