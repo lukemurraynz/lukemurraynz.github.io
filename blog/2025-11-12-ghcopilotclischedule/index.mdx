@@ -29,11 +29,11 @@ Learn how to automate scheduling of GitHub Coding Agents to run weekly using Git
 
 ## Introduction
 
-Being able to assign [GitHub Coding Agent](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent) to an Issue, is a great way to target a specific task, or issue, but what if you want to run an agent on a schedule? In this post, we will do just that by taking a agent designed to monitors your codebase for performance issues, and then automatically create GitHub issues with any findings - and with [GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) and GitHub Actions, schedule this to run weekly.
+Being able to assign [GitHub Coding Agent](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent) to an Issue is a great way to target a specific task or issue, but what if you want to run an agent on a schedule? In this post, we will do just that by using an agent designed to monitor your codebase for performance issues, automatically creating GitHub issues with any findings, and, with [GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) and GitHub Actions, scheduling it to run weekly.
 
-The test agent we will use is `Performance Regression Detector` - this agent is designed to: analyzes your codebase to identify common performance anti-patterns and made purely as a test, for this blog article.
+The test agent we will use is `Performance Regression Detector`. This agent is designed to analyze your codebase to identify common performance anti-patterns and is intended solely as a test for this blog article.
 
-The agent will run weekly (every Wednesday at 9:00 AM UTC) from a GitHub Actions workflow, and creates a GitHub issue with detailed findings, including code locations, severity levels, and recommended fixes.
+The agent will run weekly (every Wednesday at 9:00 AM UTC) from a GitHub Actions workflow and create a GitHub issue with detailed findings, including code locations, severity levels, and recommended fixes.
 
 ## Prerequisites
 
@@ -42,9 +42,9 @@ We will need a [PAT Fine-grained token (Personal Access Token)](https://docs.git
 * User permissions -  Read access to user copilot requests
 * Repository permissions -   Read access to metadata,  Read and Write access to issues
 
-These permissions will be used by GitHub Copilot CLI to create and view existing issues and run the agent with a copilot request.
+GitHub Copilot CLI will use these permissions to create and view existing issues and run the agent with a Copilot request.
 
-Once the PAT has been created, then add it to the repository secrets named `COPILOT_GITHUB_TOKEN`, the GitHub Action will then load this as an environment variable.
+Once the PAT has been created, add it to the repository secrets named `COPILOT_GITHUB_TOKEN`, and the GitHub Action will then load this as an environment variable.
 
 ## The Performance Detector Agent
 
@@ -307,7 +307,7 @@ With 100 users, this executes 101 queries instead of 2.
 
 ## The GitHub Actions Workflow
 
-The GitHub Copilot CLI, has GitHub MCP server integration built-in, so we can use this to run the agent and create issues directly in the repository, so far you can run the performance detector agent manually from your IDE like Visual Studio Code, or through the GitHub Coding Agent manually, but what if we want this to run on a schedule, lets delve into the core of this solution - the GitHub Actions workflow file - `performance-detector.yml`:
+The GitHub Copilot CLI, has GitHub MCP server integration built-in, so we can use this to run the agent and create issues directly in the repository, so far you can run the performance detector agent manually from your IDE like Visual Studio Code, or through the GitHub Coding Agent, but what if we want this to run on a schedule, lets delve into the core of this solution - the GitHub Actions workflow file - `performance-detector.yml`:
 
 ```yaml title=".github/workflows/performance-detector.yml"
 name: Weekly Performance Regression Detector
@@ -369,19 +369,19 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           # Non-interactive CI mode environment variables:
-          # CI=true: Signals to tools they're running in CI environment
+          # CI=true: Signals to tools they're running in a CI environment
           # NO_COLOR=1: Disables ANSI color codes in output for cleaner logs
-          # TERM=dumb: Indicates terminal doesn't support interactive features
+          # TERM=dumb: Indicates the terminal doesn't support interactive features
           CI: true
           NO_COLOR: 1
           TERM: dumb
 ```
 
-> You may have to add to the copilot run step to to `--allow-all-paths` to disable path verification prompts, as this will run in a non-interactive CI environment, depending on your Agent prompt.
+> You may have to add to the copilot run step to `--allow-all-paths` to disable path verification prompts, as this will run in a non-interactive CI environment, depending on your Agent prompt.
 
 ## Running the Workflow
 
-Now we can either trigger the Action manually, or wait for it to run on the scheduled time, and after a few minutes..
+Now we can either trigger the Action manually or wait for it to run at the scheduled time, and after a few minutes.
 
 ![GitHub Actions Run Log](images/PerformanceGithubActionsCopilotCLIRunLog.jpg)
 
@@ -393,4 +393,4 @@ You should see new issues created in the repository by the agent, like so:
 
 Now you can schedule your own GitHub Coding Agents to run on a schedule using GitHub Copilot CLI and GitHub Actions!
 
-> This article was inspired by [Will Velida](https://www.willvelida.com/) [Cleanup Specialist](https://github.com/willvelida/biotrackr/blob/main/.github/agents/cleanup-specialist.agent.md) agent, which is another great example of a useful Agent, that could be scheduled in a similar way.
+> This article was inspired by [Will Velida](https://www.willvelida.com/) [Cleanup Specialist](https://github.com/willvelida/biotrackr/blob/main/.github/agents/cleanup-specialist.agent.md) agent, which is another example of a helpful Agent that could be scheduled in a similar way.
