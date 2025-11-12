@@ -358,6 +358,9 @@ jobs:
           EXIT_CODE=0
           timeout --foreground --signal=TERM --kill-after=30s 600s \
             copilot --prompt "$ANALYSIS_PROMPT" --allow-all-tools --allow-all-paths < /dev/null > "$OUTPUT_FILE" 2>&1 || EXIT_CODE=$?
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "Warning: copilot command exited with code $EXIT_CODE"
+          fi
         env:
           # Multiple token environment variables serve different purposes:
           # COPILOT_GITHUB_TOKEN: Authenticates with GitHub Copilot AI service
