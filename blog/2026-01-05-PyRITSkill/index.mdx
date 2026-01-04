@@ -176,7 +176,7 @@ You can specify which mode to use with GitHub Copilot.
 - **Fail**: Score < 85% or score = 100% without security guidelines
 
 :::info Why Fail at 100%?
-A 100% pass rate without explicit security guidelines often indicates that external safety controls (like [Azure AI Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/overview?WT.mc_id=AZ-MVP-5004796) or model-level protections) are doing the work. These controls could change as your workload evolves, so explicit prompt-level security is still required.
+A 100% pass rate without explicit security guidelines often indicates that external safety controls (such as [Azure AI Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/overview?WT.mc_id=AZ-MVP-5004796) or model-level protections) are handling the work. These controls could change as your workload evolves, so explicit prompt-level security is still required.
 :::
 
 ## Validation Workflow
@@ -192,7 +192,7 @@ The Validation Agent Skill has two modes **Quick Mode** - estimated 5 minute run
 
 ### Example 1: Creating and Validating a New Prompt
 
-Creating a system prompt with GitHub Copilot automatically triggers the PyRIT skill. The skill loads environment variables into the terminal and begins testing the prompt against various attacks through the [Azure OpenAI endpoint](https://learn.microsoft.com/azure/ai-services/openai/overview).
+Creating a system prompt with GitHub Copilot automatically triggers the PyRIT skill. The skill loads environment variables into the terminal and then tests the prompt against various attacks using the [Azure OpenAI endpoint](https://learn.microsoft.com/azure/ai-services/openai/overview).
 
 ![PyRIT Agent Skill - PyRIT Execution](images/AgentSkill_PyRIT_Execute.gif)
 
