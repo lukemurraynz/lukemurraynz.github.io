@@ -211,6 +211,8 @@ Use GitHub Copilot to format validation results and apply suggested improvements
 ## Conclusion
 
 Leveraging Agent Skills and PyRIT during your development lifecycle helps you secure and red-team your prompts earlier in the development process. By shifting security left, you can identify and fix vulnerabilities before they reach production, reducing risk and improving your AI applications' overall security posture.
+
+```mermaid
 D --> E{Weak Prompt?}
 E -->|Yes| F["Offer Improvements"]
 F --> G["User Applies Changes"]
@@ -231,7 +233,6 @@ R -->|Yes| S["Comprehensive Validation<br/>45+ minutes"]
 S --> K
 R -->|No| T["Production Deployment"]
 M --> T
-
 ```
 
 Execute this using GitHub Copilot to generate a random system prompt and verify it with PyRIT. Creating the prompt triggers the PyRIT skill. Once the Skill loads, it imports the environment variable into the terminal window, which then runs and tests the prompt against various attacks via the Azure OpenAI endpoint.
@@ -245,4 +246,7 @@ As part of our development experience, we may have an existing prompt that we wa
 Use GitHub Copilot and the various models to format the response into something you can use, then validate again:
 
 ![PyRIT Agent Skill - improve existing prompt](images/AgentSkill_PyRIT_TableImproveExistingPrompt.gif)
+
+```
+
 ```
