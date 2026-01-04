@@ -109,10 +109,10 @@ var agent = chatClient.CreateAIAgent(
 
 To use the PyRIT validation skill, you need:
 
-1. **[VS Code Insiders](https://code.visualstudio.com/insiders)** with Agent Skills enabled ([`chat.useAgentSkills`](https://code.visualstudio.com/docs/copilot/customization/agent-skills?WT.mc_id=AZ-MVP-5004796#_settings) setting)
-2. **[Microsoft Foundry - Azure OpenAI](https://learn.microsoft.com/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?view=foundry&preserve-view=true&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai&WT.mc_id=AZ-MVP-5004796)** to access to test prompts against attack methods
-3. **Python environment** for PyRIT execution ([PyRIT install guide](https://azure.github.io/PyRIT/getting_started/install/))
-4. **Environment variables** configured in a `user.env` file (not committed to git):
+1. [VS Code Insiders](https://code.visualstudio.com/insiders) with Agent Skills enabled ([`chat.useAgentSkills`](https://code.visualstudio.com/docs/copilot/customization/agent-skills?WT.mc_id=AZ-MVP-5004796#_settings) setting)
+2. [Microsoft Foundry - Azure OpenAI](https://learn.microsoft.com/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?view=foundry&preserve-view=true&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai&WT.mc_id=AZ-MVP-5004796) to access to test prompts against attack methods
+3. Python environment for PyRIT execution ([PyRIT install guide](https://azure.github.io/PyRIT/)
+4. Environment variable configured in a `user.env` file (not committed to git):
 
 :::warning
 Keep your `user.env` file secure and never commit it to version control. The PyRIT skill loads these values into environment variables for the current terminal session only.
