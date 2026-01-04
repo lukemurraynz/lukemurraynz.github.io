@@ -28,7 +28,7 @@ Enhancing AI Prompt Security with PyRIT Validation straight from your developmen
 
 ## What are Agent Skills?
 
-> Agent Skills are folders of instructions, scripts, and resources that GitHub Copilot can load when relevant to perform specialized tasks. Skills enable specialized capabilities and workflows that can include scripts, examples, and other resources. Skills you create are portable and work across any skills-compatible agent.
+> Agent Skills are folders of instructions, scripts, and resources that GitHub Copilot can load when relevant to perform specialized tasks. Skills enable specialized capabilities and workflows, including scripts, examples, and other resources. Skills you create are portable and work across any skills-compatible agent.
 
 :::warning
 At the time of writing, [Agent Skills support in Visual Studio Code](https://code.visualstudio.com/docs/copilot/customization/agent-skills?WT.mc_id=AZ-MVP-5004796) is currently in preview and only available in [VS Code Insiders](https://code.visualstudio.com/insiders). Enable the [`chat.useAgentSkills`](https://code.visualstudio.com/docs/copilot/customization/agent-skills?WT.mc_id=AZ-MVP-5004796#_settings) setting to use Agent Skills.
@@ -46,11 +46,11 @@ AI prompts are the backbone of AI behavior. A vulnerable prompt can lead to:
 
 ## The Solution: PyRIT in Your Development Workflow
 
-The [Python Risk Identification Tool for generative AI (PyRIT)](https://azure.github.io/PyRIT/) validates prompts against security vulnerabilities right from within your IDE, as part of your inner loop development experience. The Agent Skills integration automatically triggers validation and suggests improvements across a myriad of attack vectors.
+The [Python Risk Identification Tool for generative AI (PyRIT)](https://azure.github.io/PyRIT/) validates prompts against security vulnerabilities directly within your IDE, as part of your inner-loop development experience. The Agent Skills integration automatically triggers validation and suggests improvements across a myriad of attack vectors.
 
 The PyRIT Prompt Validation skill helps protect your generative AI workloads against vulnerabilities such as prompt injection, jailbreak attempts, and system prompt leakage - without leaving your development environment. PyRIT mitigates these risks by enforcing strict validation rules and providing actionable insights for prompt improvement.
 
-The PyRIT Agent Skill is available at: [https://github.com/lukemurraynz/AgentSkill-PyRIT](https://github.com/lukemurraynz/AgentSkill-PyRIT)
+> The PyRIT Agent Skill is available at: [https://github.com/lukemurraynz/AgentSkill-PyRIT](https://github.com/lukemurraynz/AgentSkill-PyRIT)
 
 ## Understanding Prompt Vulnerabilities
 
@@ -182,7 +182,7 @@ A 100% pass rate without explicit security guidelines often indicates that exter
 Validation is orchestrated by [run-pyrit-validation.ps1](https://github.com/lukemurraynz/AgentSkill-PyRIT/blob/main/run-pyrit-validation.ps1), which invokes [pytest](https://docs.pytest.org/en/stable/) to execute the prompt security test suite against your [Azure OpenAI endpoint](https://learn.microsoft.com/azure/ai-services/openai/overview).
 The PyRIT Validation Agent Skill, is written to prefer a 'Pass rate' over 85% as successful with its tests, anything under 85% is deemed as failed, and anything classified a 100% without security guideline is also failed, as although some of the tests may come back with 100% it is due to other security controls \_(ie [Azure AI Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/overview?WT.mc_id=AZ-MVP-5004796) or even protection baked into the training, in the models themselves), that could change as your workload evolves.
 
-The Validation Agent Skill has 2 modes **Quick Mode** - estimated 5 minute runtime, of some common attack vectors (this is the default), and a **comprehensive mode** intended for when you get passed the proof of concept phase for your workload - that can take 45+ minutes to run to go through full comprehensive tests with datasets, and more attack patterns. You can indicate to the GitHub Copilot which mode you want to run.
+The Validation Agent Skill has two modes **Quick Mode** - estimated 5 minute runtime, of some common attack vectors (this is the default), and a **comprehensive mode** intended for when you get passed the proof of concept phase for your workload - that can take 45+ minutes to run to go through complete comprehensive tests with datasets, and more attack patterns. You can indicate to GitHub Copilot which mode you want to run in.
 
 ![PyRIT Agent kill - Container Diagram](images/c4-pyrit-skill-2-Container.jpg)
 
@@ -208,7 +208,7 @@ Leverage GitHub Copilot to format validation results and apply suggested improve
 
 ## Conclusion
 
-Leveraging Agent Skills and PyRIT during your development lifecycle helps you secure and red-team your prompts earlier in the development process. By shifting security left, you can identify and fix vulnerabilities before they reach production, reducing risk and improving the overall security posture of your AI applications.
+Leveraging Agent Skills and PyRIT during your development lifecycle helps you secure and red-team your prompts earlier in the development process. By shifting security left, you can identify and fix vulnerabilities before they reach production, reducing risk and improving your AI applications' overall security posture.
 D --> E{Weak Prompt?}
 E -->|Yes| F["Offer Improvements"]
 F --> G["User Applies Changes"]
@@ -232,7 +232,7 @@ M --> T
 
 ```
 
-So let us execute this, by using GitHub Copilot to create a random system prompt, and verify it with PyRIT. Just the act of creating the prompt, will have triggered the PyRIT skill. Once the Skill is read, it automatically imports the environment variable to the terminal window, which then runs and start testing the prompt against various attacks through the Azure OpenAI endpoint.
+Let us execute this using GitHub Copilot to generate a random system prompt and verify it with PyRIT. Just creating the prompt will trigger the PyRIT skill. Once the Skill is read, it automatically imports the environment variable into the terminal window, which then runs and tests the prompt against various attacks via the Azure OpenAI endpoint.
 
 ![PyRIT Agent Skill - PyRIT Execution](images/AgentSkill_PyRIT_Execute.gif)
 
@@ -240,7 +240,7 @@ As part of our development experience, we may have an existing prompt that we wa
 
 ![PyRIT Agent Skill - Skill quick scan](images/AgentSkill_PyRIT_ReviewExistingPrompt.gif)
 
-Finally, we can use the power of GitHub Copilot and the various models, to format the response into something we can use, before going back and validating again:
+Finally, we can use the power of GitHub Copilot and the various models to format the response into something we can use, before going back and validating again:
 
 ![PyRIT Agent Skill - improve existing prompt](images/AgentSkill_PyRIT_TableImproveExistingPrompt.gif)
 ```
