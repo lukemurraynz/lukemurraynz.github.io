@@ -110,8 +110,7 @@ The PyRIT Validation Agent Skill, is written to prefer a 'Pass rate' over 85% as
 <p>As part of our development experience, we may have an existing prompt that we want to review, and scan against - so lets run a quick scan.</p>
 <p><img decoding="async" loading="lazy" alt="PyRIT Agent Skill - Skill quick scan" src="https://luke.geek.nz/assets/images/AgentSkill_PyRIT_ReviewExistingPrompt-050338ef0cd056bd2ee7cdb038159066.gif" width="1599" height="982" class="img_ev3q"></p>
 <p>Use GitHub Copilot and the various models to format the response into something you can use, then validate again:</p>
-<p><img decoding="async" loading="lazy" alt="PyRIT Agent Skill - improve existing prompt" src="https://luke.geek.nz/assets/images/AgentSkill_PyRIT_TableImproveExistingPrompt-c2746c30b44e94d2dc665d5a50b90fcf.gif" width="905" height="982" class="img_ev3q"></p>
-<pre tabindex="0" class="codeBlockStandalone_MEMb thin-scrollbar codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#F8F8F2;--prism-background-color:#282A36"><code class="codeBlockLines_e6Vv"></code></pre>]]></content:encoded>
+<p><img decoding="async" loading="lazy" alt="PyRIT Agent Skill - improve existing prompt" src="https://luke.geek.nz/assets/images/AgentSkill_PyRIT_TableImproveExistingPrompt-c2746c30b44e94d2dc665d5a50b90fcf.gif" width="905" height="982" class="img_ev3q"></p>]]></content:encoded>
             <category>Azure</category>
         </item>
         <item>
