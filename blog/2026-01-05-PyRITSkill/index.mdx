@@ -28,7 +28,7 @@ Enhancing AI Prompt Security with PyRIT Validation straight from your developmen
 
 ## What are Agent Skills?
 
-> Agent Skills are folders of instructions, scripts, and resources that GitHub Copilot can load when relevant to perform specialized tasks. Skills enable specialized capabilities and workflows, including scripts, examples, and other resources. Skills you create are portable and work across any skills-compatible agent.
+> Agent Skills are folders of instructions, scripts, and resources that GitHub Copilot can load to perform specialized tasks. Skills enable specialized capabilities and workflows, including scripts, examples, and other resources. Skills you create are portable and work across any skills-compatible agent.
 
 :::warning
 At the time of writing, [Agent Skills support in Visual Studio Code](https://code.visualstudio.com/docs/copilot/customization/agent-skills?WT.mc_id=AZ-MVP-5004796) is currently in preview and only available in [VS Code Insiders](https://code.visualstudio.com/insiders). Enable the [`chat.useAgentSkills`](https://code.visualstudio.com/docs/copilot/customization/agent-skills?WT.mc_id=AZ-MVP-5004796#_settings) setting to use Agent Skills.
@@ -166,7 +166,7 @@ The PyRIT Validation Agent Skill offers two modes:
 | **Quick Mode** (default) | ~5 minutes  | Inner loop development    | Common attack vectors                  |
 | **Comprehensive Mode**   | 45+ minutes | Pre-production validation | Full test datasets and attack patterns |
 
-You can specify which mode to use when interacting with GitHub Copilot.
+You can specify which mode to use with GitHub Copilot.
 
 ### Pass/Fail Criteria
 
@@ -190,7 +190,7 @@ The Validation Agent Skill has two modes **Quick Mode** - estimated 5 minute run
 
 ### Example 1: Creating and Validating a New Prompt
 
-Using GitHub Copilot to create a system prompt automatically triggers the PyRIT skill. The skill imports environment variables into the terminal and starts testing the prompt against various attacks through the [Azure OpenAI endpoint](https://learn.microsoft.com/azure/ai-services/openai/overview).
+Creating a system prompt with GitHub Copilot automatically triggers the PyRIT skill. The skill loads environment variables into the terminal and begins testing the prompt against various attacks through the [Azure OpenAI endpoint](https://learn.microsoft.com/azure/ai-services/openai/overview).
 
 ![PyRIT Agent Skill - PyRIT Execution](images/AgentSkill_PyRIT_Execute.gif)
 
@@ -202,7 +202,7 @@ You can review and scan existing prompts using the quick scan mode for rapid fee
 
 ### Example 3: Improving Based on Validation Results
 
-Leverage GitHub Copilot to format validation results and apply suggested improvements, then re-validate to ensure security requirements are met.
+Use GitHub Copilot to format validation results and apply suggested improvements, then re-validate to ensure security requirements are met.
 
 ![PyRIT Agent Skill - Improve Existing Prompt](images/AgentSkill_PyRIT_TableImproveExistingPrompt.gif)
 
@@ -232,7 +232,7 @@ M --> T
 
 ```
 
-Let us execute this using GitHub Copilot to generate a random system prompt and verify it with PyRIT. Just creating the prompt will trigger the PyRIT skill. Once the Skill is read, it automatically imports the environment variable into the terminal window, which then runs and tests the prompt against various attacks via the Azure OpenAI endpoint.
+Execute this using GitHub Copilot to generate a random system prompt and verify it with PyRIT. Creating the prompt triggers the PyRIT skill. Once the Skill loads, it imports the environment variable into the terminal window, which then runs and tests the prompt against various attacks via the Azure OpenAI endpoint.
 
 ![PyRIT Agent Skill - PyRIT Execution](images/AgentSkill_PyRIT_Execute.gif)
 
@@ -240,7 +240,7 @@ As part of our development experience, we may have an existing prompt that we wa
 
 ![PyRIT Agent Skill - Skill quick scan](images/AgentSkill_PyRIT_ReviewExistingPrompt.gif)
 
-Finally, we can use the power of GitHub Copilot and the various models to format the response into something we can use, before going back and validating again:
+Use GitHub Copilot and the various models to format the response into something you can use, then validate again:
 
 ![PyRIT Agent Skill - improve existing prompt](images/AgentSkill_PyRIT_TableImproveExistingPrompt.gif)
 ```
