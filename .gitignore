@@ -33,6 +33,8 @@ package-lock.json
 # Test coverage / instrumentation
 coverage/
 .nyc_output/
+.spec-workflow/
+.frontmatter/
 
 # Lint/format caches
 .eslintcache
