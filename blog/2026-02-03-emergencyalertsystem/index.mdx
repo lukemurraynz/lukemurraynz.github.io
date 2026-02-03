@@ -51,7 +51,7 @@ This is a proof of concept intended to demonstrate architectural patterns - it's
 
 Operators connect to a frontend (running React with Fluent UI) where they can see a list of all current alerts - whether approved for delivery or already delivered. They also have the ability to create new alerts based on a geographical area through the selection of a polygon. The official CAP schema supports this, including geocode. The map is delivered through [Azure Maps](https://learn.microsoft.com/azure/azure-maps/about-azure-maps?WT.mc_id=AZ-MVP-5004796) to the frontend and stored in a PostgreSQL + PostGIS database.
 
-![EmergencyAlertSystemOverview.gif](images/EmergencyAlertSystemOverview.gif)
+![Animated overview of the Emergency Alert System dashboard and alert creation workflow](images/EmergencyAlertSystemOverview.gif)
 
 ### Continuous Queries with Drasi
 
@@ -80,7 +80,7 @@ Create → PendingApproval → Approved → Delivered
                             Expired
 ```
 
-![Alert Lifecycle](images/emergency-alerts-architecture-03-Alert Lifecycle.jpg)
+![Alert Lifecycle](images/emergency-alerts-architecture-03-AlertLifecycle.jpg)
 
 **State Transitions:**
 
@@ -120,7 +120,7 @@ The workloads are separated by namespaces:
 
 - [Source](https://drasi.io/concepts/sources/) (postgres-cdc) - CDC replication from PostgreSQL Flexible Server
 - [Continuous Queries](https://drasi.io/concepts/continuous-queries/) (11) - Monitoring delivery triggers, SLA breaches, approval timeouts, geographic correlations, regional hotspots, severity escalations, duplicate suppression, area expansion suggestions, all-clear suggestions, expiry warnings, and rate spike detection
-- [Reactions](https://drasi.io/concepts/reactions/) (HTTP) - Calling back to the API's /api/v1/drasi/reactions/{query} endpoints when query conditions match
+- [Reactions](https://drasi.io/concepts/reactions/) (HTTP) - Calling back to the API's `/api/v1/drasi/reactions/{query}` endpoints when query conditions match
 
 ### External Azure Services
 
@@ -182,7 +182,7 @@ What makes Drasi particularly powerful for this use case is its temporal query c
 
 ### Handling Reactions
 
-When a continuous query matches, Drasi fires an HTTP POST to my API at `/api/v1/drasi/reactions/{query-name}` with a JSON payload containing the query results. The `DrasiReactionsController` receives these callbacks and routes them to the appropriate handler - whether that's sending an email via Azure Communication Services, updating the dashboard via SignalR, logging a correlation event, or escalating severity.
+When a continuous query matches, Drasi fires an HTTP POST to my API at `/api/v1/drasi/reactions/\{query-name\}` with a JSON payload containing the query results. The `DrasiReactionsController` receives these callbacks and routes them to the appropriate handler - whether that's sending an email via Azure Communication Services, updating the dashboard via SignalR, logging a correlation event, or escalating severity.
 
 The reactions are authenticated using an `X-Reaction-Token` header, with the token stored as a Kubernetes secret and validated by the API.
 
