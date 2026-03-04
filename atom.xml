@@ -15,7 +15,7 @@
         <updated>2026-03-04T21:47:48.105Z</updated>
         <summary type="html"><![CDATA[A practical look at change-driven architecture on Azure with Drasi and PostgreSQL CDC, based on an Emergency Alert System proof of concept.]]></summary>
         <content type="html"><![CDATA[<p>Today, we are going to look at change-driven architecture on Azure using <a href="https://drasi.io/" target="_blank" rel="noopener noreferrer" class="">Drasi</a>, and why it matters from a <a href="https://learn.microsoft.com/azure/well-architected?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Well-Architected</a> perspective.</p>
-<p>If you have ever built a system that polls a database every few seconds, asking, "Has anything changed?" — this one is for you.</p>
+<p>If you have ever built a system that polls a database every few seconds, asking, "Has anything changed?" - this one is for you.</p>
 <blockquote>
 <p>I recently built an <a href="https://github.com/lukemurraynz/EmergencyAlertSystem" target="_blank" rel="noopener noreferrer" class="">Emergency Alert System</a> and <a href="https://github.com/lukemurraynz/SantaDigitalShowcase25" target="_blank" rel="noopener noreferrer" class="">Santa Digital Workshop</a> and <a href="https://luke.geek.nz/azure/drasi-bastion-rbac-automation/" target="_blank" rel="noopener noreferrer" class="">Automate Azure Bastion with Drasi Realtime RBAC Monitoring</a> proof of concepts on Azure that use Drasi for reactive data processing. One of the most interesting things I discovered was that change-driven architecture fundamentally shifts how you think about reliability, cost, and operational efficiency.</p>
 </blockquote>
