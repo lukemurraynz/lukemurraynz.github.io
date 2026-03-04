@@ -82,11 +82,23 @@ spec:
 
 This source watches nine tables. Every change to any of these tables flows into the continuous query engine.
 
+## Which Drasi Mode Should You Use?
+
+One useful design decision early on is picking the right Drasi runtime for your workload. Drasi is available in three forms with the same core model (**Sources → Continuous Queries → Reactions**), but different operational trade-offs.
+
+![Drasi mode comparison across D4K8s, Server, and Library](images/drasi_sku_types.png)
+
+- **[Drasi for Kubernetes (D4K8s)](https://drasi.io/drasi-kubernetes/)** — best for production-scale, cloud-native platforms where you want Kubernetes-native scaling, observability, and operational controls.
+- **[Drasi Server](https://drasi.io/drasi-server/)** — best for local development, Docker Compose, edge, and non-Kubernetes environments where you still want full Drasi capabilities in a single process/container.
+- **[drasi-lib](https://drasi.io/drasi-lib/)** — best when building a Rust app and you want in-process change detection with no separate Drasi infrastructure.
+
+A practical path I have found useful: start with **Server** to iterate quickly, move to **D4K8s** as reliability/scale requirements grow, and choose **drasi-lib** when your change logic should live directly inside a Rust service.
+
 ## Continuous Queries — The Logic Layer
 
 Here is where it gets interesting.
 
-A continuous query is not a one-off SQL statement. It is a standing query that continuously evaluates against the stream of changes  _(it also could be one or across multiple different sources)_.
+A continuous query is not a one-off SQL statement. It is a standing query that continuously evaluates against the stream of changes _(it also could be one or across multiple different sources)_.
 
 For example, the delivery trigger query fires when an alert transitions to `Approved` with a `Pending` delivery status:
 
