@@ -3,9 +3,6 @@ title: Ingress and edge design decisions for API Management
 metaDescription: Design tradeoffs and decisions for ingress patterns in front of Azure API Management, based on implementation and troubleshooting work in this repository.
 tags:
   - Azure
-  - API Management
-  - Front Door
-  - Application Gateway
 categories:
   - Azure
 authors:
@@ -79,20 +76,57 @@ Current guidance for **Front Door Premium -> APIM via Private Link** has two con
 
 For strict private APIM posture, **AFD Premium -> AppGw (Private Link) -> APIM internal** remains the safer and more operable pattern.
 
+## Zone redundancy (ZRS/AZ) and multi-region context
+
+This part matters because "high availability" means different things depending on the service.
+
+### [Azure Front Door (AFD)](https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview?WT.mc_id=AZ-MVP-5004796)
+
+- Front Door is a global edge service by design (POP-based), so you don't configure regional ZRS for Front Door in the same way as regional services.
+- Resiliency is mostly achieved through **origin design**: multiple origins, health probes, and priority/weight routing.
+- If using Private Link origins, include **region-level redundancy** in origin design to reduce dependency on a single regional path.
+
+### [Application Gateway (AppGw) v2](https://learn.microsoft.com/azure/application-gateway/overview-v2?WT.mc_id=AZ-MVP-5004796)
+
+- App Gateway v2 is a **regional** service.
+- In regions with Availability Zones, it supports **zone-redundant deployment** (or zonal pinning if explicitly configured).
+- This improves intra-region resiliency, but it does **not** replace cross-region design.
+
+### [Azure API Management (APIM)](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796)
+
+- **Classic Premium** supports multi-region deployment.
+- **v2 tiers** currently do **not** support multi-region deployment.
+- Premium v2 supports modern platform capabilities, but if strict APIM multi-region is required today, classic Premium remains the stronger fit.
+
+### Design implication for this architecture
+
+If your target is both:
+
+1. strict private APIM posture, and
+2. strong regional plus cross-region resilience,
+
+then the practical pattern remains:
+
+- Front Door for global ingress and failover orchestration,
+- per-region App Gateway (zone-redundant where available), and
+- APIM in a tier/topology that matches required multi-region behavior.
+
+This is why topology decisions here are tightly coupled to SKU capabilities and lifecycle constraints.
+
 ## What I learned when attempting various architectures
 
 ### 1. Complexity concentrates at the private boundary
 
 The hardest part was not APIM policy authoring. It was making ingress topology and private network behavior line up under real conditions.
 
-Most failure patterns occured were around:
+Most failure patterns occurred around:
 
 - DNS alignment
 - private endpoint approval and propagation timing
 - health probe and host-header mismatches
 - certificate subject/SAN assumptions
 
-### 2. To keep APIM private, allow public API access and have APIM zone-redundant - the following architecutre standards: AFD -> AppGw -> APIM (Internal).
+### 2. To keep APIM private while still allowing public API access, use the architecture standard: AFD -> AppGw -> APIM (internal)
 
 This gives clear separation of concerns:
 
