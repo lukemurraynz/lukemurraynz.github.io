@@ -2,12 +2,175 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://luke.geek.nz/</id>
     <title>luke.geek.nz Blog</title>
-    <updated>2026-02-03T04:01:37.229Z</updated>
+    <updated>2026-03-04T06:22:33.272Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://luke.geek.nz/"/>
     <subtitle>luke.geek.nz Blog</subtitle>
     <icon>https://luke.geek.nz/img/favicon.ico</icon>
     <rights>Copyright © 2026 luke.geek.nz.</rights>
+    <entry>
+        <title type="html"><![CDATA[Ingress and edge design decisions for API Management]]></title>
+        <id>https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/</id>
+        <link href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/"/>
+        <updated>2026-03-04T06:22:33.272Z</updated>
+        <summary type="html"><![CDATA[Ingress and edge design decisions for APIM including AFD, App Gateway, private networking constraints, TLS boundaries, and operational lessons learned.]]></summary>
+        <content type="html"><![CDATA[<p>Today, we are going to look at ingress and edge design decisions for <a href="https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure API Management (APIM)</a>.</p>
+<p>This post captures the tradeoffs between three patterns:</p>
+<ol>
+<li class=""><strong><a href="https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Front Door (AFD)</a> + <a href="https://learn.microsoft.com/azure/web-application-firewall/afds/afds-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">WAF</a> -&gt; <a href="https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure API Management (APIM)</a></strong></li>
+<li class=""><strong><a href="https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Front Door (AFD)</a> + <a href="https://learn.microsoft.com/azure/web-application-firewall/afds/afds-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">WAF</a> -&gt; <a href="https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Application Gateway (AppGw)</a> -&gt; <a href="https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure API Management (APIM)</a> (internal)</strong></li>
+<li class=""><strong><a href="https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Application Gateway (AppGw)</a> -&gt; <a href="https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure API Management (APIM)</a></strong></li>
+</ol>
+<p>The goal here is not architecture purity. It is to pick a pattern that survives real operations: DNS behavior, health probes, private-link approval flow, certificate lifecycle, and failure domains.</p>
+<!-- -->
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="scope-and-assumptions">Scope and assumptions<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#scope-and-assumptions" class="hash-link" aria-label="Direct link to Scope and assumptions" title="Direct link to Scope and assumptions" translate="no">​</a></h2>
+<ul>
+<li class=""><a href="https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure API Management (APIM)</a> is the API gateway and policy control plane.</li>
+<li class="">Workloads run in private-first Azure networking patterns.</li>
+<li class="">We need secure public ingress with predictable operations.</li>
+<li class="">We care about clear blast radius when things fail.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-options-we-are-comparing-today">The options we are comparing today:<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#the-options-we-are-comparing-today" class="hash-link" aria-label="Direct link to The options we are comparing today:" title="Direct link to The options we are comparing today:" translate="no">​</a></h2>
+<table><thead><tr><th>Option</th><th>Best for</th><th>Main benefits</th><th>Main costs and risks</th></tr></thead><tbody><tr><td><strong>AFD + WAF -&gt; APIM</strong></td><td>Global edge with fewer components</td><td>Global anycast edge, strong DDoS posture, edge WAF, easier failover pattern</td><td>Can conflict with strict private APIM posture depending on tier and ingress constraints</td></tr><tr><td><strong>AFD + WAF -&gt; AppGw -&gt; APIM (internal)</strong></td><td>Strict private APIM with global edge</td><td>Preserves global edge and WAF, keeps APIM internal, supports private hop pattern</td><td>Highest complexity, more probe/policy coordination, higher cost</td></tr><tr><td><strong>AppGw (+ optional WAF) -&gt; APIM</strong></td><td>Regional ingress use cases</td><td>Simpler than dual-edge, strong regional ingress control</td><td>No global POP acceleration, no native global failover orchestration</td></tr></tbody></table>
+<p><img decoding="async" loading="lazy" alt="AFD+APIM" src="https://luke.geek.nz/assets/images/ingress-edge-options-Option1-AFD+APIM-75435bf27fa2dd471a5f8debfd7ffa6e.jpg" width="1881" height="701" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="AFD + AppGw + API" src="https://luke.geek.nz/assets/images/ingress-edge-options-Option2-AFD+AppGw+APIM-9db3c013b7f67377865511b3f4f5c753.jpg" width="1881" height="492" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="AppGw Only" src="https://luke.geek.nz/assets/images/ingress-edge-options-Option3-AppGwonly-e558dd64597b5f171a8d09ffdbc6e7a5.jpg" width="1881" height="781" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Ingress Decision Guides" src="https://luke.geek.nz/assets/images/ingress-edge-options-Decisionguide-5a1d60f248545d13cf7e984c39b3aaf3.jpg" width="1881" height="491" class="img_ev3q"></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="sku-boundaries-that-matter">SKU boundaries that matter<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#sku-boundaries-that-matter" class="hash-link" aria-label="Direct link to SKU boundaries that matter" title="Direct link to SKU boundaries that matter" translate="no">​</a></h2>
+<table><thead><tr><th>Service</th><th>SKU</th><th>What matters</th><th>Caveat</th></tr></thead><tbody><tr><td>Azure Front Door</td><td>Standard</td><td>Global edge, routing, rules engine, custom domain TLS</td><td>Private Link to origins is not supported in Standard</td></tr><tr><td>Azure Front Door</td><td>Premium</td><td>Private Link to supported origins, WAF, bot protection</td><td>Public and private origins cannot be mixed in the same origin group</td></tr><tr><td>Application Gateway</td><td>Standard_v2</td><td>L7 routing, autoscale, static VIP</td><td>No WAF policy enforcement</td></tr><tr><td>Application Gateway</td><td>WAF_v2</td><td>Standard_v2 + WAF policy</td><td>Needs active tuning to reduce false positives</td></tr><tr><td>APIM (classic)</td><td>Developer</td><td>Internal VNet mode for dev/test</td><td>No SLA, not for production</td></tr><tr><td>APIM (classic)</td><td>Premium</td><td>Internal VNet injection, private endpoint support, multi-region</td><td>Higher cost and ops overhead</td></tr><tr><td>APIM (v2)</td><td>Standard v2 / Premium v2</td><td>Faster deployment/scaling, modernized platform</td><td>Multi-region currently unavailable in v2 tiers</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="apim--front-door-private-link-caveat">APIM + Front Door private-link caveat<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#apim--front-door-private-link-caveat" class="hash-link" aria-label="Direct link to APIM + Front Door private-link caveat" title="Direct link to APIM + Front Door private-link caveat" translate="no">​</a></h3>
+<p>Current guidance for <strong>Front Door Premium -&gt; APIM via Private Link</strong> has two constraints that matter here:</p>
+<ul>
+<li class="">It is <strong>not supported with APIM Premium v2</strong>.</li>
+<li class="">In the referenced guidance for classic tiers, APIM is expected in <strong>public mode</strong> (not internal VNet mode).</li>
+</ul>
+<p>For strict private APIM posture, <strong>AFD Premium -&gt; AppGw (Private Link) -&gt; APIM internal</strong> remains the safer and more operable pattern.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-i-learned-when-attempting-various-architectures">What I learned when attempting various architectures<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#what-i-learned-when-attempting-various-architectures" class="hash-link" aria-label="Direct link to What I learned when attempting various architectures" title="Direct link to What I learned when attempting various architectures" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-complexity-concentrates-at-the-private-boundary">1. Complexity concentrates at the private boundary<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#1-complexity-concentrates-at-the-private-boundary" class="hash-link" aria-label="Direct link to 1. Complexity concentrates at the private boundary" title="Direct link to 1. Complexity concentrates at the private boundary" translate="no">​</a></h3>
+<p>The hardest part was not APIM policy authoring. It was making ingress topology and private network behavior line up under real conditions.</p>
+<p>Most failure patterns occured were around:</p>
+<ul>
+<li class="">DNS alignment</li>
+<li class="">private endpoint approval and propagation timing</li>
+<li class="">health probe and host-header mismatches</li>
+<li class="">certificate subject/SAN assumptions</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-to-keep-apim-private-allow-public-api-access-and-have-apim-zone-redundant---the-following-architecutre-standards-afd---appgw---apim-internal">2. To keep APIM private, allow public API access and have APIM zone-redundant - the following architecutre standards: AFD -&gt; AppGw -&gt; APIM (Internal).<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#2-to-keep-apim-private-allow-public-api-access-and-have-apim-zone-redundant---the-following-architecutre-standards-afd---appgw---apim-internal" class="hash-link" aria-label="Direct link to 2. To keep APIM private, allow public API access and have APIM zone-redundant - the following architecutre standards: AFD -> AppGw -> APIM (Internal)." title="Direct link to 2. To keep APIM private, allow public API access and have APIM zone-redundant - the following architecutre standards: AFD -> AppGw -> APIM (Internal)." translate="no">​</a></h3>
+<p>This gives clear separation of concerns:</p>
+<ul>
+<li class=""><strong>AFD</strong> = global edge + edge WAF + internet entry</li>
+<li class=""><strong>AppGw</strong> = regional ingress bridge into private network</li>
+<li class=""><strong>APIM</strong> = API governance and policy enforcement</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-probe-and-host-header-design-must-be-explicit">3. Probe and host-header design must be explicit<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#3-probe-and-host-header-design-must-be-explicit" class="hash-link" aria-label="Direct link to 3. Probe and host-header design must be explicit" title="Direct link to 3. Probe and host-header design must be explicit" translate="no">​</a></h3>
+<p>Most 5xx incidents we saw were traceable to probe path/protocol mismatch, host-header mismatch, or TLS name-check mismatch.</p>
+<p>In this pattern, probe design is an architecture concern, not a post-deployment tweak.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-operational-sequencing-is-not-optional">4. Operational sequencing is not optional<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#4-operational-sequencing-is-not-optional" class="hash-link" aria-label="Direct link to 4. Operational sequencing is not optional" title="Direct link to 4. Operational sequencing is not optional" translate="no">​</a></h3>
+<p>Private endpoint approval and control-plane propagation timing can block otherwise-correct configurations.</p>
+<p>Pipelines should include checks and retries for pending approvals, health state, and staged route transitions.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="decision-guidance">Decision guidance<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#decision-guidance" class="hash-link" aria-label="Direct link to Decision guidance" title="Direct link to Decision guidance" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="choose-afd--apim-when">Choose AFD + APIM when<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#choose-afd--apim-when" class="hash-link" aria-label="Direct link to Choose AFD + APIM when" title="Direct link to Choose AFD + APIM when" translate="no">​</a></h3>
+<ul>
+<li class="">You need global edge and WAF.</li>
+<li class="">APIM does not need strict internal-only posture.</li>
+<li class="">Your selected APIM tier/topology supports your direct Front Door integration path.</li>
+<li class="">You want fewer moving parts.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="choose-afd--appgw--apim-internal-when">Choose AFD + AppGw + APIM (internal) when<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#choose-afd--appgw--apim-internal-when" class="hash-link" aria-label="Direct link to Choose AFD + AppGw + APIM (internal) when" title="Direct link to Choose AFD + AppGw + APIM (internal) when" translate="no">​</a></h3>
+<ul>
+<li class="">APIM must remain private/internal.</li>
+<li class="">You still need global edge entry and WAF.</li>
+<li class="">You want stronger network boundary control.</li>
+<li class="">Your team accepts higher operational complexity.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="choose-appgw-only-when">Choose AppGw-only when<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#choose-appgw-only-when" class="hash-link" aria-label="Direct link to Choose AppGw-only when" title="Direct link to Choose AppGw-only when" translate="no">​</a></h3>
+<ul>
+<li class="">The system is mainly regional.</li>
+<li class="">Global edge acceleration and failover are not requirements.</li>
+<li class="">Simpler operations are more valuable than global edge capability.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="security-reliability-and-cost-implications">Security, reliability, and cost implications<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#security-reliability-and-cost-implications" class="hash-link" aria-label="Direct link to Security, reliability, and cost implications" title="Direct link to Security, reliability, and cost implications" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="security">Security<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#security" class="hash-link" aria-label="Direct link to Security" title="Direct link to Security" translate="no">​</a></h3>
+<ul>
+<li class="">AFD WAF gives early filtering at global edge.</li>
+<li class="">AppGw adds regional boundary control (and optional second WAF layer with WAF_v2).</li>
+<li class="">APIM remains policy authority (authN/authZ, quotas, transformations, governance).</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="reliability">Reliability<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#reliability" class="hash-link" aria-label="Direct link to Reliability" title="Direct link to Reliability" translate="no">​</a></h3>
+<ul>
+<li class="">AFD improves global client experience and failover orchestration.</li>
+<li class="">AppGw introduces another health domain (more control, more misconfiguration surface).</li>
+<li class="">Internal APIM increases isolation but requires disciplined DNS and connectivity operations.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cost-and-complexity-general">Cost and complexity (general)<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#cost-and-complexity-general" class="hash-link" aria-label="Direct link to Cost and complexity (general)" title="Direct link to Cost and complexity (general)" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>AFD + APIM</strong>: lower complexity than dual-hop.</li>
+<li class=""><strong>AFD + AppGw + APIM</strong>: highest control, highest ops overhead.</li>
+<li class=""><strong>AppGw-only</strong>: lower global capability, often lower cost than dual-hop.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="tls-and-certificate-decisions">TLS and certificate decisions<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#tls-and-certificate-decisions" class="hash-link" aria-label="Direct link to TLS and certificate decisions" title="Direct link to TLS and certificate decisions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="does-front-door-manage-certificates">Does Front Door manage certificates?<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#does-front-door-manage-certificates" class="hash-link" aria-label="Direct link to Does Front Door manage certificates?" title="Direct link to Does Front Door manage certificates?" translate="no">​</a></h3>
+<p>Yes, for <strong>Front Door frontend custom domains</strong>.</p>
+<ul>
+<li class="">Azure-managed certs are supported and auto-rotated when validation conditions are met.</li>
+<li class="">BYOC is supported through Key Vault-backed secrets.</li>
+<li class="">BYOC can auto-rotate when configured to use <code>Latest</code> secret version.</li>
+</ul>
+<p>Important boundary: Front Door-managed certificates do <strong>not</strong> manage certificates on downstream hops.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="certificate-ownership-by-hop">Certificate ownership by hop<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#certificate-ownership-by-hop" class="hash-link" aria-label="Direct link to Certificate ownership by hop" title="Direct link to Certificate ownership by hop" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Client -&gt; Front Door</strong>: AFD managed cert or BYOC</li>
+<li class=""><strong>Front Door -&gt; AppGw</strong>: AppGw origin cert must be valid and host-name aligned</li>
+<li class=""><strong>AppGw -&gt; APIM</strong>: backend cert trust chain and host validation must align</li>
+<li class=""><strong>APIM -&gt; backend</strong>: backend-owned certificates and validation remain backend-side</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="mtls-decisions">mTLS decisions<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#mtls-decisions" class="hash-link" aria-label="Direct link to mTLS decisions" title="Direct link to mTLS decisions" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="client---front-door">Client -&gt; Front Door<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#client---front-door" class="hash-link" aria-label="Direct link to Client -> Front Door" title="Direct link to Client -> Front Door" translate="no">​</a></h3>
+<p>Front Door Standard/Premium does not support client mTLS at edge.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="client---apim">Client -&gt; APIM<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#client---apim" class="hash-link" aria-label="Direct link to Client -> APIM" title="Direct link to Client -> APIM" translate="no">​</a></h3>
+<p>APIM supports client certificate validation via policy (<code>validate-client-certificate</code>) and is the right enforcement point when certificate identity is required.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="apim---backend">APIM -&gt; backend<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#apim---backend" class="hash-link" aria-label="Direct link to APIM -> backend" title="Direct link to APIM -> backend" translate="no">​</a></h3>
+<p>Use certificate-based controls where stronger service-to-service identity is needed.</p>
+<p>Tradeoff: mTLS increases certificate operations overhead but provides stronger identity assurance than token-only patterns.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="practical-policy-for-an-integration-platform">Practical policy for an Integration platform<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#practical-policy-for-an-integration-platform" class="hash-link" aria-label="Direct link to Practical policy for an Integration platform" title="Direct link to Practical policy for an Integration platform" translate="no">​</a></h2>
+<ul>
+<li class="">Use Front Door-managed certificates by default for edge domains where suitable.</li>
+<li class="">Use BYOC when strict CA control, wildcard, or certificate pinning requirements exist.</li>
+<li class="">Keep HTTPS on all hops.</li>
+<li class="">Introduce mTLS at APIM ingress for partner/system integrations requiring certificate identity.</li>
+<li class="">Treat probe host headers, DNS records, and certificate subjects/SANs as one design unit, and validate them together per environment.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="recommendation">Recommendation<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#recommendation" class="hash-link" aria-label="Direct link to Recommendation" title="Direct link to Recommendation" translate="no">​</a></h2>
+<p>Use <strong>AFD + WAF -&gt; AppGw -&gt; APIM (internal)</strong> as the default production pattern while strict private APIM posture remains a requirement.</p>
+<p>Keep APIM as the single API governance control plane, and AppGw as the private ingress bridge.</p>
+<p>If requirements change and strict internal APIM is no longer required, re-evaluate to reduce layers and operational overhead.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="references">References<a href="https://luke.geek.nz/azure/apim-ingress-edge-design-decisions/#references" class="hash-link" aria-label="Direct link to References" title="Direct link to References" translate="no">​</a></h2>
+<ul>
+<li class=""><a href="https://learn.microsoft.com/azure/frontdoor/how-to-enable-private-link-application-gateway?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Connect Azure Front Door Premium to an Azure Application Gateway with Private Link</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/api-management/api-management-howto-integrate-internal-vnet-appgateway?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Integrate API Management in an internal virtual network with Application Gateway</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/frontdoor/web-application-firewall?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Web Application Firewall (WAF) on Azure Front Door</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/frontdoor/create-front-door-cli?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Quickstart: Create an Azure Front Door using Azure CLI</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/frontdoor/domain#certificate-requirements?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Domains in Azure Front Door (certificate requirements)</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/frontdoor/end-to-end-tls?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">TLS encryption with Azure Front Door</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Configure HTTPS on an Azure Front Door custom domain</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/api-management/validate-client-certificate-policy?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Validate client certificate policy (APIM)</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/frontdoor/private-link?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Secure your origin with Private Link in Azure Front Door Premium</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/frontdoor/standard-premium/tier-comparison?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Front Door tier/service comparison</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/application-gateway/overview-v2?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">What is Azure Application Gateway v2?</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/web-application-firewall/ag/ag-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">What is Azure Web Application Firewall on Application Gateway?</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/api-management/api-management-features?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Feature-based comparison of Azure API Management tiers</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/api-management/v2-service-tiers-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure API Management v2 tiers overview</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-enable-private-link-apim?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Connect Azure Front Door Premium to Azure API Management with Private Link</a></li>
+</ul>]]></content>
+        <author>
+            <name>Luke Murray</name>
+            <uri>https://luke.geek.nz</uri>
+        </author>
+        <category label="Azure" term="Azure"/>
+        <category label="API Management" term="API Management"/>
+        <category label="Front Door" term="Front Door"/>
+        <category label="Application Gateway" term="Application Gateway"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Building an Emergency Alert System on Azure with Drasi]]></title>
         <id>https://luke.geek.nz/azure/emergency-alert-system-drasi/</id>
@@ -814,32 +977,6 @@ Then <code>azd up</code> to start the deployment.</p>
 <p>Finally, we will use the ListEmailTemplates tool to view the available templates and send an IT System Outage email using the SendIncidentEmail tool.</p>
 <p><img decoding="async" loading="lazy" alt="Send test Incident email" src="https://luke.geek.nz/assets/images/VSCode_TestTemplatesIncident-88315061b863d1e06ec3283e42739326.gif" width="674" height="701" class="img_ev3q"></p>
 <p><img decoding="async" loading="lazy" alt="Test Incident" src="https://luke.geek.nz/assets/images/VSCodeTestEmailReceivedTemplateIncident-83b2c448ebf93baa54e2f66e9418cb6b.jpg" width="1222" height="875" class="img_ev3q"></p>]]></content>
-        <author>
-            <name>Luke Murray</name>
-            <uri>https://luke.geek.nz</uri>
-        </author>
-        <category label="Azure" term="Azure"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Azure Function App Host Runtime Error]]></title>
-        <id>https://luke.geek.nz/azure/function-app-host-runtime/</id>
-        <link href="https://luke.geek.nz/azure/function-app-host-runtime/"/>
-        <updated>2025-08-22T00:59:05.219Z</updated>
-        <summary type="html"><![CDATA[Learn to resolve Azure Function App host runtime errors like BadGateway, often caused by storage account configuration issues.]]></summary>
-        <content type="html"><![CDATA[<p>You might be deploying to Azure Functions or attempting to retrieve the Function App URL, and you may encounter errors like:</p>
-<blockquote>
-<ul>
-<li class=""><code>Encountered an error (BadGateway) from host runtime.</code></li>
-<li class=""><code>Encountered an error (InternalServerError) from host runtime.</code></li>
-</ul>
-</blockquote>
-<!-- -->
-<p><img decoding="async" loading="lazy" alt="Host runtime" src="https://luke.geek.nz/assets/images/FunctionApp_HostRuntimeError-0de68ffd600f4eca1ecf93d2a68a9afc.jpg" width="1730" height="453" class="img_ev3q"></p>
-<p>I recently encountered an issue with a Function App deployment I was working on. It was working in an Azure CLI deployment, but as part of transitioning the Azure CLI to Bicep, I encountered an error when I noticed that my Timer trigger Function was not firing as expected. After some investigation, I found that the issue was due to the Storage account that the Function App was using. The Storage account was not correctly configured or accessible, which led to the host runtime errors.</p>
-<blockquote>
-<p>The issue was with the Networking. Although I had deployed the storage account, I had failed to specify whether the storage account was to be publicly accessible or not, i.e., reachable by the Function App. So, Public access was off, and the Function App could not access the Storage account, which was causing the errors.</p>
-</blockquote>
-<p>To remediate this, I enabled the public endpoint, validated it worked, then added the Storage account to a Virtual Network with Private endpoints, and enabled VNET (Virtual Network) integration to the Function App, allowing a secure connection between the function app and the storage account.</p>]]></content>
         <author>
             <name>Luke Murray</name>
             <uri>https://luke.geek.nz</uri>
