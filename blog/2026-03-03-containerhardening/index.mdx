@@ -25,7 +25,7 @@ Every time I see a production container running as root, I wince.
 
 It is one of those things that is easy to fix but gets overlooked because the app "works fine" without it. But container security is not just about non-root users. It is about the full stack: image build, runtime configuration, network policy, input validation, and rate limiting.
 
-In this post, I will walk through a checklist I applied when hardening a .NET project that ran on [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/?WT.mc_id=AZ-MVP-5004796).
+In this post, I will walk through a checklist I used to harden a .NET project running on [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/?WT.mc_id=AZ-MVP-5004796).
 
 {/* truncate */}
 
@@ -65,12 +65,12 @@ Key points:
 - Use port `8080` (not 80/443). Non-privileged ports avoid root requirements.
 
 :::warning
-If your application writes to the filesystem (logs, temp files, uploads), make sure you `chown` those directories to `appuser` before switching users.
+If your application writes to the filesystem _(logs, temp files, uploads)_, make sure you `chown` those directories to `appuser` before switching users.
 :::
 
 ## 2. Multi-stage builds
 
-Multi-stage Docker builds keep build tools (SDK, compilers, npm dev dependencies) out of the runtime image. This reduces attack surface and image size.
+Multi-stage Docker builds keep build tools (SDK, compilers, npm dev dependencies) out of the runtime image. This reduces the attack surface and image size.
 
 ```dockerfile
 # Build stage — SDK and build toolchain
@@ -97,7 +97,7 @@ RUN npm ci --only=production
 ```
 
 :::tip
-Use `--only=production` (or `--omit=dev` in npm 9+) in runtime stages so TypeScript, ESLint, Vite, and other dev tooling is not shipped to production.
+Use `--only=production` (or `--omit=dev` in npm 9+) in runtime stages so TypeScript, ESLint, Vite, and other dev tooling are not shipped to production.
 :::
 
 ## 3. Pin base image versions
@@ -120,7 +120,7 @@ Pinning to major.minor gives you a solid balance between stability and patch cad
 
 ## 4. Health probes that bypass auth
 
-Health endpoints should bypass authentication middleware. If readiness requires a JWT, the platform cannot determine service health correctly.
+Health endpoints should bypass authentication middleware. If readiness requires a JWT, the platform cannot accurately determine service health.
 
 ```csharp
 app.MapGet("/health/ready", () => Results.Ok(new
@@ -141,7 +141,7 @@ app.MapGet("/health/live", () => Results.Ok(new
 In practice, map these endpoints before strict authorization rules, or explicitly bypass auth for `/health/*`.
 
 :::note
-Configure both liveness and readiness. Liveness answers "is the process alive?" Readiness answers "can it safely receive traffic?"
+Configure both liveness and readiness. Liveness answers "is the process alive?" Readiness answers "Can it safely receive traffic?"
 :::
 
 ## 5. Rate limiting
@@ -266,5 +266,7 @@ Use this in PR reviews:
 Container security is not a single switch.
 
 It is a set of patterns that compound: non-root containers, deterministic builds, probe hygiene, rate limiting, input validation, and clear auth boundaries. Applied together, they significantly reduce risk for workloads running on Azure Container Apps.
+
+> And don't forget [Azure Container Registry Continuous Patching](https://learn.microsoft.com/azure/container-registry/key-concept-continuous-patching?WT.mc_id=AZ-MVP-5004796) and [Containers Supply Chain Framework](https://learn.microsoft.com/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview?WT.mc_id=AZ-MVP-5004796).
 
 If you want to map this to broader platform guidance, review the [Security pillar of the Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/security/?WT.mc_id=AZ-MVP-5004796).
