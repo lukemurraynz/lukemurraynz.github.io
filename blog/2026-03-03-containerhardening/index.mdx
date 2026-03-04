@@ -41,16 +41,13 @@ The fix is straightforward. In your Dockerfile:
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 WORKDIR /app
 
-# Create a non-root user
-RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
-
 COPY --from=build /app/publish .
 
-ENV ASPNETCORE_URLS=http://+:8080
+ENV ASPNETCORE_HTTP_PORTS=8080
 EXPOSE 8080
 
 # Switch to non-root user
-USER appuser
+USER $APP_UID
 
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
     CMD curl -f http://localhost:8080/health/ready || exit 1
@@ -60,12 +57,14 @@ ENTRYPOINT ["dotnet", "App.ControlPlane.Api.dll"]
 
 Key points:
 
-- `addgroup --system` and `adduser --system` create a system-level identity.
-- Place `USER appuser` after `COPY` so the app files are copied first and then executed as non-root.
-- Use port `8080` (not 80/443). Non-privileged ports avoid root requirements.
+- For [official Microsoft .NET **Linux** images (.NET 8+)](https://devblogs.microsoft.com/dotnet/securing-containers-with-rootless/?WT.mc_id=AZ-MVP-5004796), you do **not** need to create your own user. The images already include a non-root `app` user.
+- Use `USER app` or `USER $APP_UID` (`$APP_UID` is UID `1654`). I prefer `USER $APP_UID` because it also works cleanly with Kubernetes `runAsNonRoot` checks.
+- The image is **non-root capable**, but it is not automatically non-root unless you set `USER` explicitly.
+- Place `USER` after `COPY` so the app files are copied first and then executed as non-root.
+- Use port `8080` (not 80/443). Non-privileged ports avoid root requirements, and moving back to port `80` means you cannot run as non-root.
 
 :::warning
-If your application writes to the filesystem _(logs, temp files, uploads)_, make sure you `chown` those directories to `appuser` before switching users.
+If you are using a base image that does **not** provide a non-root user (or you have custom filesystem write paths), create/chown a dedicated runtime user for those paths before switching away from root.
 :::
 
 ## 2. Multi-stage builds
@@ -235,7 +234,7 @@ If allowed origins are sourced from config, remember most apps load this at star
 For Azure Container Apps, TLS is terminated at ingress. Your container should listen on HTTP internally:
 
 ```dockerfile
-ENV ASPNETCORE_URLS=http://+:8080
+ENV ASPNETCORE_HTTP_PORTS=8080
 EXPOSE 8080
 ```
 
