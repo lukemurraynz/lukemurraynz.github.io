@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunklukemurraynz=globalThis.webpackChunklukemurraynz||[]).push([[34245],{72475(e){e.exports=JSON.parse('{"authors":[{"name":"Luke Murray","title":"Author","url":"https://luke.geek.nz","imageURL":"https://luke.geek.nz/img/logo.png","key":"Luke","page":null,"count":380}]}')}}]);
