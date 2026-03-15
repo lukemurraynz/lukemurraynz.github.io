@@ -25,15 +25,15 @@ date: 2026-03-15T10:24:44.095Z
 
 As the AI Dev Days Hackathon comes to an end, I want to share my submission.
 
-Today, I want to walk through something I have been building over the last wee while — a project called **NimbusIQ**. It is my submission for the [AI Dev Days Hackathon](https://developer.microsoft.com/en-us/reactor/events/26647/), and it sits across the **Best Multi-Agent System** and **Best Enterprise Solution** categories - NimbusIQ.
+Today, I want to walk through something I have been building over the last wee while - a project called **NimbusIQ**. It is my submission for the [AI Dev Days Hackathon](https://developer.microsoft.com/en-us/reactor/events/26647/), and it sits across the **Best Multi-Agent System** and **Best Enterprise Solution** categories - NimbusIQ.
 
 {/* truncate */}
 
 ![NimbusIQ Dashboard](images/NimbusIQDashboard.png)
 
-I spend some time working with Azure environments - helping teams understand their estates, finding configuration drift, catching orphaned resources, and figuring out what to fix first. If you have done any of that work, you will know the pain. Azure gives you no shortage of signals: [Azure Advisor](https://learn.microsoft.com/azure/advisor/advisor-overview?WT.mc_id=AZ-MVP-5004796), [Azure Resource Graph](https://learn.microsoft.com/azure/governance/resource-graph/overview?WT.mc_id=AZ-MVP-5004796), [Cost Management](https://learn.microsoft.com/azure/cost-management-billing/costs/overview-cost-management?WT.mc_id=AZ-MVP-5004796), [PSRule for Azure](https://azure.github.io/PSRule.Rules.Azure/), [Azure Quick Review](https://azure.github.io/azqr/docs/), Policy, Monitor — the list goes on. The problem is not a lack of data. The problem is that all of these signals live in different dashboards, different exports, and different tools. Nobody is joining them up.
+I spend some time working with Azure environments - helping teams understand their estates, finding configuration drift, catching orphaned resources, and figuring out what to fix first. If you have done any of that work, you will know the pain. Azure gives you no shortage of signals: [Azure Advisor](https://learn.microsoft.com/azure/advisor/advisor-overview?WT.mc_id=AZ-MVP-5004796), [Azure Resource Graph](https://learn.microsoft.com/azure/governance/resource-graph/overview?WT.mc_id=AZ-MVP-5004796), [Cost Management](https://learn.microsoft.com/azure/cost-management-billing/costs/overview-cost-management?WT.mc_id=AZ-MVP-5004796), [PSRule for Azure](https://azure.github.io/PSRule.Rules.Azure/), [Azure Quick Review](https://azure.github.io/azqr/docs/), Policy, Monitor - the list goes on. The problem is not a lack of data. The problem is that all of these signals live in different dashboards, different exports, and different tools. Nobody is joining them up.
 
-So I thought to myself: what if I could build something that does the bit that currently requires a human cloud architect? Not the detection — Azure already does that well enough — but the reasoning, prioritisation, and remediation planning that happens after detection - scoped per Azure Service Group.
+So I thought to myself: what if I could build something that does the bit that currently requires a human cloud architect? Not the detection - Azure already does that well enough - but the reasoning, prioritisation, and remediation planning that happens after detection - scoped per Azure Service Group.
 
 > That is what NimbusIQ aimed to do.
 
@@ -48,8 +48,12 @@ It uses:
 - [Azure MCP](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview?WT.mc_id=AZ-MVP-5004796) for grounded Azure capability discovery
 - [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview?WT.mc_id=AZ-MVP-5004796), PostgreSQL, Key Vault, managed identity, and OpenTelemetry for the runtime
 
+:::tip[View the source]
+The full source code is on GitHub: **[github.com/lukemurraynz/NimbusIQ](https://github.com/lukemurraynz/NimbusIQ)** - feel free to explore, fork, or open PRs.
+:::
+
 :::warning
-This was created purely for the Hackathon, with a fair amount of hypervelocity engineering effort, although I have done my best to wrap production logic - ie security and resilience/circuit breakers/fallback endpoints etc. It is missing Entra ID authentication and various other functions - and of course support so use at your own risk. The codebase is open source — feel free to take a look, fork, or open PRs if you feel it is worthwhile.
+This was created purely for the Hackathon, with a fair amount of hypervelocity engineering effort, although I have done my best to wrap production logic - ie security and resilience/circuit breakers/fallback endpoints etc. It is missing Entra ID authentication and various other functions - and of course support so use at your own risk.
 :::
 
 The whole thing deploys with `azd up`.
@@ -73,7 +77,7 @@ NimbusIQ automates that decision-support loop.
 
 ## How NimbusIQ differs from existing tools
 
-I want to be clear — NimbusIQ is not a replacement for Azure Advisor, PSRule for Azure, or Azure Quick Review. Those are solid detection and standards tools, and NimbusIQ actually uses their rule sets internally. What NimbusIQ adds is the orchestration and decision-support layer that sits above them.
+I want to be clear - NimbusIQ is not a replacement for Azure Advisor, PSRule for Azure, or Azure Quick Review. Those are solid detection and standards tools, and NimbusIQ actually uses their rule sets internally. What NimbusIQ adds is the orchestration and decision-support layer that sits above them.
 
 | Capability                                | Azure Advisor | PSRule         | Azure Quick Review | NimbusIQ                 |
 | ----------------------------------------- | ------------- | -------------- | ------------------ | ------------------------ |
@@ -93,18 +97,18 @@ The way I think about it: if Azure Advisor is a dashboard, NimbusIQ is a cloud a
 
 NimbusIQ has three services:
 
-1. **Frontend** — React with [Fluent UI v9](https://storybooks.fluentui.dev/react/), showing a service graph, recommendations, approval workflow, and drift timeline
-2. **Control Plane API** — ASP.NET Core (.NET 10) handling service groups, analysis runs, decisions, and RFC 9457 error responses
-3. **Agent Orchestrator** — a .NET 10 background worker that runs the multi-agent pipeline using [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/overview/?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796)
+1. **Frontend** - React with [Fluent UI v9](https://storybooks.fluentui.dev/react/), showing a service graph, recommendations, approval workflow, and drift timeline
+2. **Control Plane API** - ASP.NET Core (.NET 10) handling service groups, analysis runs, decisions, and RFC 9457 error responses
+3. **Agent Orchestrator** - a .NET 10 background worker that runs the multi-agent pipeline using [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/overview/?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796)
 
-All three run on Azure Container Apps with managed identity everywhere. No secrets in config files — just `DefaultAzureCredential` and RBAC.
+All three run on Azure Container Apps with managed identity everywhere. No secrets in config files - just `DefaultAzureCredential` and RBAC.
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
 │  Frontend (React + Fluent UI v9)                                  │
 │  Service graph · Recommendations · Approval workflow · Timeline   │
 └─────────────────────────┬────────────────────────────────────────┘
-                          │ REST / JWT (Entra ID — planned, not yet implemented)
+                          │ REST / JWT (Entra ID - planned, not yet implemented)
 ┌─────────────────────────▼────────────────────────────────────────┐
 │  Control Plane API (.NET 10 / ASP.NET Core)                       │
 │  Service groups · Analysis runs · Decisions · RFC 9457 errors     │
@@ -196,14 +200,14 @@ _agents = new Dictionary<string, AIAgent>
 The `BestPracticeEngine` sits at the heart of the deterministic layer. It packages over 700 rules sourced from Azure Well-Architected Framework, PSRule for Azure, Azure Quick Review, and the Azure Architecture Centre. The AI agents then reason over those normalised results rather than making things up from scratch.
 
 :::info Why hybrid?
-I deliberately kept four agents as pure rule-based evaluators. Not everything needs an LLM — drift scoring, cloud-native maturity checks, and best-practice rule evaluation are deterministic operations where you want consistent, reproducible results. The AI agents handle the subjective bits: explaining trade-offs, generating narratives, and producing remediation code.
+I deliberately kept four agents as pure rule-based evaluators. Not everything needs an LLM - drift scoring, cloud-native maturity checks, and best-practice rule evaluation are deterministic operations where you want consistent, reproducible results. The AI agents handle the subjective bits: explaining trade-offs, generating narratives, and producing remediation code.
 :::
 
 ![NimbusIQ Conflict and Governance pane](images/NimbusIQConflictGovernancePane.gif)
 
 ## Drift detection
 
-One of the features I spent the most time on is continuous drift detection. NimbusIQ does not just compare two ARM templates — it evaluates the current state of your resources against the full rule set and produces a severity-weighted score.
+One of the features I spent the most time on is continuous drift detection. NimbusIQ does not just compare two ARM templates - it evaluates the current state of your resources against the full rule set and produces a severity-weighted score.
 
 The scoring works like this:
 
@@ -220,14 +224,14 @@ Each analysis run produces a drift snapshot with a score, category breakdown, an
 
 ## IaC generation
 
-When a recommendation is approved, NimbusIQ calls Microsoft Foundry with structured context — the action type, target SKU, cost impact, and confidence — and generates Bicep or Terraform code. A rollback plan is generated alongside every change.
+When a recommendation is approved, NimbusIQ calls Microsoft Foundry with structured context - the action type, target SKU, cost impact, and confidence - and generates Bicep or Terraform code. A rollback plan is generated alongside every change.
 
 ![NimbusIQ Recommendations and approval workflow](images/NimbusIQRecommendationsPane.gif)
 
 If Foundry is unavailable (because these things happen), it falls back to built-in code templates rather than failing silently. Every generated plan goes through the dual-control approval workflow before anything is applied.
 
 :::warning
-NimbusIQ generates IaC and presents it for review. It does not apply changes automatically. Every remediation requires explicit human approval through an idempotent state machine. This is a deliberate design choice — enterprise governance requires that a human is always in the loop for infrastructure changes.
+NimbusIQ generates IaC and presents it for review. It does not apply changes automatically. Every remediation requires explicit human approval through an idempotent state machine. This is a deliberate design choice - enterprise governance requires that a human is always in the loop for infrastructure changes.
 :::
 
 ## Observability
@@ -281,7 +285,7 @@ A few things stood out:
 
 **Microsoft Agent Framework is genuinely useful for orchestration.** The `WorkflowBuilder` pattern gives you a clean way to compose agents with explicit edges and validation. The `InProcessExecution` runner handles the lifecycle well. I would not want to build this kind of multi-agent pipeline without it.
 
-**Microsoft Foundry works well when you scope it tightly.** The key is not giving the LLM free rein — it is providing structured context (rule results, resource metadata, cost data) and asking it to reason over that context. When you do that, the outputs are useful. When you do not, you get platitudes.
+**Microsoft Foundry works well when you scope it tightly.** The key is not giving the LLM free rein - it is providing structured context (rule results, resource metadata, cost data) and asking it to reason over that context. When you do that, the outputs are useful. When you do not, you get platitudes.
 
 **Grounding through Azure MCP makes a real difference.** Without MCP, the LLM would be making recommendations based on its training data, which might be months out of date. With Azure MCP and Learn MCP, the agents can check current Azure capabilities and documentation before recommending changes.
 
