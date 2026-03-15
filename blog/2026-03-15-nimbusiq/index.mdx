@@ -1,215 +1,267 @@
 ---
-title: Change-Driven Architecture on Azure with Drasi
-metaDescription: Why polling falls short for reactive workloads, and how Drasi + PostgreSQL CDC on Azure improves reliability, cost, and operational excellence.
-tags:
+title: Nimbus IQ
+metaDescription: 
   - Azure
 readTime: 12
 authors:
   - Luke
-slug: azure/change-driven-architecture/
+slug: azure/nimbusiq/
 keywords:
   - Azure
-  - Drasi
-  - Change Data Capture
-  - CDC
-  - Well-Architected
-description: A practical look at change-driven architecture on Azure with Drasi and PostgreSQL CDC, based on an Emergency Alert System proof of concept.
-date: 2026-03-04T21:47:48.105Z
+  - Dev
+  - Microsoft Agent Framework
+  - Hackathon
+description: 
+date: 
 ---
+As the AI Dev Days Hackathon comes to an end, I want to share my submission.
 
-Today, we are going to look at change-driven architecture on Azure using [Drasi](https://drasi.io/), and why it matters from a [Well-Architected](https://learn.microsoft.com/azure/well-architected?WT.mc_id=AZ-MVP-5004796) perspective.
-
-If you have ever built a system that polls a database every few seconds, asking, "Has anything changed?" - this one is for you.
-
-> I recently built an [Emergency Alert System](https://github.com/lukemurraynz/EmergencyAlertSystem) and [Santa Digital Workshop](https://github.com/lukemurraynz/SantaDigitalShowcase25) and [Automate Azure Bastion with Drasi Realtime RBAC Monitoring](https://luke.geek.nz/azure/drasi-bastion-rbac-automation/) proof of concepts on Azure that use Drasi for reactive data processing. One of the most interesting things I discovered was that change-driven architecture fundamentally shifts how you think about reliability, cost, and operational efficiency.
+Today, I want to walk through something I have been building over the last wee while — a project called **NimbusIQ**. It is my submission for the [AI Dev Days Hackathon](https://developer.microsoft.com/en-us/reactor/events/26647/), and it sits across the **Best Multi-Agent System** and **Best Enterprise Solution** categories - NimbusIQ.
 
 {/* truncate */}
 
-:::info
-This article explores architectural patterns from a proof of concept. The patterns are production-applicable, but the implementation itself is a learning exercise.
+I spend some time working with Azure environments - helping teams understand their estates, finding configuration drift, catching orphaned resources, and figuring out what to fix first. If you have done any of that work, you will know the pain. Azure gives you no shortage of signals: [Azure Advisor](https://learn.microsoft.com/azure/advisor/advisor-overview?WT.mc_id=AZ-MVP-5004796), [Azure Resource Graph](https://learn.microsoft.com/azure/governance/resource-graph/overview?WT.mc_id=AZ-MVP-5004796), [Cost Management](https://learn.microsoft.com/azure/cost-management-billing/costs/overview-cost-management?WT.mc_id=AZ-MVP-5004796), [PSRule for Azure](https://azure.github.io/PSRule.Rules.Azure/), [Azure Quick Review](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/tools/azqr/), Policy, Monitor — the list goes on. The problem is not a lack of data. The problem is that all of these signals live in different dashboards, different exports, and different tools. Nobody is joining them up.
+
+So I thought to myself: what if I could build something that does the bit that currently requires a human cloud architect? Not the detection — Azure already does that well enough — but the reasoning, prioritisation, and remediation planning that happens after detection.
+
+> Thats what That is what NimbusIQ aimed to do.
+
+## What is NimbusIQ?
+
+In short, NimbusIQ is a multi-agent AI platform that continuously discovers your Azure estate, detects drift and policy violations, reasons across cost, reliability, sustainability, and governance signals, and produces remediation plans that a human can review and approve before anything gets applied.
+
+It uses:
+
+- [Microsoft Agent Framework](https://learn.microsoft.com/microsoft/agents/overview?WT.mc_id=AZ-MVP-5004796) for agent orchestration
+- [Azure AI Foundry](https://learn.microsoft.com/azure/ai-foundry/what-is-azure-ai-foundry?WT.mc_id=AZ-MVP-5004796) (GPT-4) for the reasoning and narrative generation
+- [Azure MCP](https://learn.microsoft.com/azure/developer/azure-mcp-server?WT.mc_id=AZ-MVP-5004796) for grounded Azure capability discovery
+- [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/overview?WT.mc_id=AZ-MVP-5004796), PostgreSQL, Key Vault, managed identity, and OpenTelemetry for the runtime
+
+The whole thing deploys with `azd up`.
+
+## The problem I was trying to solve
+
+If you manage Azure estates at any sort of scale, you have probably lived this loop:
+
+1. Gather evidence from multiple Azure tools
+2. Interpret what actually changed and whether it matters
+3. Decide whether cost, reliability, compliance, or architecture should take priority
+4. Draft a remediation plan
+5. Route it through approval
+6. Hope the action actually improved things
+
+That loop is manual, slow, and happens in spreadsheets or meeting rooms. The tools tell you **what** is wrong, but very few of them can tell you **why** it matters for a specific workload, **what** you should fix first, **how** to remediate it safely, or **whether** the change you made actually delivered value.
+
+NimbusIQ automates that decision-support loop.
+
+## How NimbusIQ differs from existing tools
+
+I want to be clear — NimbusIQ is not a replacement for Azure Advisor, PSRule for Azure, or Azure Quick Review. Those are solid detection and standards tools, and NimbusIQ actually uses their rule sets internally. What NimbusIQ adds is the orchestration and decision-support layer that sits above them.
+
+| Capability                                | Azure Advisor | PSRule         | Azure Quick Review | NimbusIQ                 |
+| ----------------------------------------- | ------------- | -------------- | ------------------ | ------------------------ |
+| Detect configuration violations           | ✓             | ✓              | ✓                  | ✓                        |
+| Continuous drift trending                 | ✗             | ✗              | ✗                  | ✓                        |
+| AI-powered reasoning across signals       | ✗             | ✗              | ✗                  | ✓ (6 LLM agents)         |
+| Workload-scoped analysis                  | ✗             | ✗              | ✗                  | ✓ (Azure Service Groups) |
+| Generate deployable IaC (Bicep/Terraform) | ✗             | ✗              | ✗                  | ✓                        |
+| Dual-control approval workflow            | ✗             | ✗              | ✗                  | ✓                        |
+| Explain WHY issues exist                  | ~Basic        | ~Pattern-based | ~Checklist-based   | ✓ (AI narrative)         |
+| Track value realisation                   | ✗             | ✗              | ✗                  | ✓                        |
+| Auditable agent-to-agent lineage          | ✗             | ✗              | ✗                  | ✓ (A2A tracing)          |
+
+The way I think about it: if Azure Advisor is a dashboard, NimbusIQ is a cloud architect in the loop.
+
+## The architecture
+
+NimbusIQ has three services:
+
+1. **Frontend** — React with [Fluent UI v9](https://react.fluentui.dev/?WT.mc_id=AZ-MVP-5004796), showing a service graph, recommendations, approval workflow, and drift timeline
+2. **Control Plane API** — ASP.NET Core (.NET 10) handling service groups, analysis runs, decisions, and RFC 9457 error responses
+3. **Agent Orchestrator** — a .NET 10 background worker that runs the multi-agent pipeline using [Microsoft Agent Framework](https://learn.microsoft.com/microsoft/agents/overview?WT.mc_id=AZ-MVP-5004796)
+
+All three run on Azure Container Apps with managed identity everywhere. No secrets in config files — just `DefaultAzureCredential` and RBAC.
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│  Frontend (React + Fluent UI v9)                                  │
+│  Service graph · Recommendations · Approval workflow · Timeline   │
+└─────────────────────────┬────────────────────────────────────────┘
+                          │ REST / JWT (Entra ID)
+┌─────────────────────────▼────────────────────────────────────────┐
+│  Control Plane API (.NET 10 / ASP.NET Core)                       │
+│  Service groups · Analysis runs · Decisions · RFC 9457 errors     │
+└──────────┬──────────────────────────────┬────────────────────────┘
+           │ PostgreSQL (EF Core)          │ Agent messages
+┌──────────▼──────────────────────────────▼────────────────────────┐
+│  Agent Orchestrator (.NET 10 background worker)                   │
+│                                                                   │
+│  DiscoveryWorkflow ──► MultiAgentOrchestrator (Microsoft MAF)    │
+│    Resource Graph        │                                        │
+│    Cost Management       ├─ ServiceIntelligenceAgent              │
+│    Log Analytics         ├─ BestPracticeEngine (700+ rules)      │
+│                          ├─ DriftDetectionAgent                   │
+│                          ├─ WellArchitectedAssessmentAgent       │
+│                          ├─ FinOpsOptimizerAgent                 │
+│                          ├─ CloudNativeMaturityAgent             │
+│                          ├─ ArchitectureAgent                    │
+│                          ├─ ReliabilityAgent                     │
+│                          ├─ SustainabilityAgent                  │
+│                          └─ GovernanceNegotiationAgent           │
+│                                                                   │
+│  IacGenerationWorkflow (Foundry-powered Bicep/Terraform)         │
+└──────────────────────────────────────────────────────────────────┘
+           All on Azure Container Apps + PostgreSQL Flexible Server
+           Managed Identity · OpenTelemetry · Key Vault
+```
+
+## The ten agents
+
+This is the bit I am most pleased with. NimbusIQ runs ten specialised agents, each with a distinct responsibility. Six of them use Azure AI Foundry (GPT-4) for reasoning; four are deterministic rule-based evaluators.
+
+Here is how they are wired up using [Microsoft Agent Framework](https://learn.microsoft.com/microsoft/agents/overview?WT.mc_id=AZ-MVP-5004796)'s `WorkflowBuilder`:
+
+```csharp
+WorkflowBuilder builder = new(executorBindings[0]);
+builder.WithName("nimbusiq-sequential");
+builder.WithDescription(
+    "NimbusIQ multi-agent orchestration workflow powered by Microsoft Agent Framework.");
+
+for (var index = 0; index < executorBindings.Count - 1; index++)
+{
+    builder.AddEdge(executorBindings[index], executorBindings[index + 1]);
+}
+
+builder.WithOutputFrom(executorBindings[^1]);
+var workflow = builder.Build(validateOrphans: true);
+
+await using Run run = await InProcessExecution.RunAsync(
+    workflow, executionState, session.SessionId, cancellationToken);
+```
+
+Each agent is registered with a clear name and purpose:
+
+```csharp
+_agents = new Dictionary<string, AIAgent>
+{
+    ["ServiceIntelligence"] = CreateDeterministicAgent(
+        "service-intelligence-agent",
+        "Service Intelligence",
+        "Calculates service-group intelligence scores.",
+        (context, _, _) => Task.FromResult<object>(
+            serviceIntelligenceAgent.CalculateScores(context.Snapshot))),
+
+    ["BestPractice"] = CreateDeterministicAgent(
+        "best-practice-agent",
+        "Best Practice",
+        "Evaluates best-practice rules against discovered resources.",
+        async (context, _, ct) =>
+            await bestPracticeEngine.EvaluateAsync(context.Snapshot, ct)),
+
+    ["DriftDetection"] = CreateDeterministicAgent(
+        "drift-detection-agent",
+        "Drift Detection",
+        "Detects drift across service resources and best-practice violations.",
+        async (context, _, ct) =>
+            await driftDetectionAgent.AnalyzeDriftAsync(context.Snapshot, null, ct)),
+
+    // ... WellArchitected, FinOps, CloudNative, Architecture,
+    //     Reliability, Sustainability, Governance agents follow
+};
+```
+
+The `BestPracticeEngine` sits at the heart of the deterministic layer. It packages over 700 rules sourced from Azure Well-Architected Framework, PSRule for Azure, Azure Quick Review, and the Azure Architecture Centre. The AI agents then reason over those normalised results rather than making things up from scratch.
+
+:::info Why hybrid?
+I deliberately kept four agents as pure rule-based evaluators. Not everything needs an LLM — drift scoring, cloud-native maturity checks, and best-practice rule evaluation are deterministic operations where you want consistent, reproducible results. The AI agents handle the subjective bits: explaining trade-offs, generating narratives, and producing remediation code.
 :::
 
-## The Polling Problem
+## Drift detection
 
-Most event-driven systems I have worked on follow the same pattern: a background service queries the database on a timer, checks for changes, and then acts on them.
+One of the features I spent the most time on is continuous drift detection. NimbusIQ does not just compare two ARM templates — it evaluates the current state of your resources against the full rule set and produces a severity-weighted score.
 
-It works, but it has some well-known problems:
+The scoring works like this:
 
-- **Wasted compute** - 99% of polls return "nothing changed"
-- **Latency** - you only detect changes at the poll interval (1 second, 5 seconds, 30 seconds?)
-- **Race conditions** - if multiple instances poll simultaneously, you need distributed locks
-- **Scaling challenges** - more instances means more database load, not faster detection
+| Severity | Weight |
+| -------- | ------ |
+| Critical | 10     |
+| High     | 5      |
+| Medium   | 2      |
+| Low      | 1      |
 
-From a [Well-Architected Cost Optimization](https://learn.microsoft.com/azure/well-architected/cost-optimization/?WT.mc_id=AZ-MVP-5004796) perspective, polling is paying for compute that mostly does nothing.
+Each analysis run produces a drift snapshot with a score, category breakdown, and trend direction (`stable`, `degrading`, or `improving`). The dashboard shows those trends over time, so you can see whether your estate is getting better or worse.
 
-From a [Reliability](https://learn.microsoft.com/azure/well-architected/reliability/?WT.mc_id=AZ-MVP-5004796) perspective, poll intervals create a detection floor - you simply cannot react faster than your timer.
+## IaC generation
 
-## Enter Change Data Capture
+When a recommendation is approved, NimbusIQ calls Azure AI Foundry with structured context — the action type, target SKU, cost impact, and confidence — and generates Bicep or Terraform code. A rollback plan is generated alongside every change.
 
-[Change Data Capture (CDC)](https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-logical?WT.mc_id=AZ-MVP-5004796) flips this model. Instead of asking the database whether something has changed, the database tells you when it does.
+If Foundry is unavailable (because these things happen), it falls back to built-in code templates rather than failing silently. Every generated plan goes through the dual-control approval workflow before anything is applied.
 
-PostgreSQL Flexible Server _(just one of [Drasi sources](https://drasi.io/concepts/sources/))_ supports logical replication natively, which streams every `INSERT`, `UPDATE`, and `DELETE` as it happens.
-
-Drasi sits on top of this CDC stream and runs [continuous queries](https://drasi.io/concepts/continuous-queries/) - written in Cypher - that evaluate incoming changes against patterns you define. When a pattern matches, Drasi fires a reaction _(in my case, an HTTP callback to an API)_.
-
-The architecture follows a simple flow: **Source → Queries → Reactions**.
-
-![Change-Driven Architecture: Polling vs CDC with Drasi](images/Polling-vs-cdc-architecture-PollingvsCDC.jpg)
-
-```yaml
-# Drasi CDC Source Configuration
-apiVersion: v1
-kind: Source
-name: postgres-alerts
-spec:
-  kind: PostgreSQL
-  properties:
-    host: ${POSTGRES_HOST}
-    port: ${POSTGRES_PORT}
-    user: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
-    database: ${POSTGRES_DATABASE}
-    ssl: true
-    tables:
-      - emergency_alerts.alerts
-      - emergency_alerts.areas
-      - emergency_alerts.recipients
-      - emergency_alerts.delivery_attempts
-      - emergency_alerts.approval_records
-      - emergency_alerts.correlation_events
-      - emergency_alerts.area_signals
-      - emergency_alerts.weather_observations
-      - emergency_alerts.road_maintenance
-```
-
-This source watches nine tables. Every change to any of these tables flows into the continuous query engine.
-
-## Which Drasi Mode Should You Use?
-
-One useful design decision early on is picking the right Drasi runtime for your workload. Drasi is available in three forms with the same core model (**Sources → Continuous Queries → Reactions**), but different operational trade-offs.
-
-![Drasi mode comparison across D4K8s, Server, and Library](images/drasi_sku_types.png)
-
-- **[Drasi for Kubernetes (D4K8s)](https://drasi.io/drasi-kubernetes/)** - best for production-scale, cloud-native platforms where you want Kubernetes-native scaling, observability, and operational controls.
-- **[Drasi Server](https://drasi.io/drasi-server/)** - best for local development, Docker Compose, edge, and non-Kubernetes environments where you still want full Drasi capabilities in a single process/container.
-- **[drasi-lib](https://drasi.io/drasi-lib/)** - best when building a Rust app and you want in-process change detection with no separate Drasi infrastructure.
-
-A practical path I have found useful: start with **Server** to iterate quickly, move to **D4K8s** as reliability/scale requirements grow, and choose **drasi-lib** when your change logic should live directly inside a Rust service.
-
-## Continuous Queries - The Logic Layer
-
-Here is where it gets interesting.
-
-A continuous query is not a one-off SQL statement. It is a standing query that continuously evaluates against the stream of changes (it could be one or across multiple sources).
-
-For example, the delivery trigger query fires when an alert transitions to `Approved` with a `Pending` delivery status:
-
-```yaml
-apiVersion: v1
-kind: ContinuousQuery
-name: delivery-trigger
-spec:
-  mode: query
-  sources:
-    subscriptions:
-      - id: postgres-alerts
-        nodes:
-          - sourceLabel: alerts
-  query: |
-    MATCH (a:alerts)
-    WHERE a.status = 'Approved' AND a.delivery_status = 'Pending'
-    RETURN
-      a.alert_id AS alertId,
-      a.headline AS headline,
-      a.severity AS severity,
-      a.sent_at AS approvedAt,
-      drasi.changeDateTime(a) AS triggeredAt
-```
-
-No polling. No timers.
-
-The moment a row changes in the `alerts` table and matches these conditions, Drasi fires the reaction.
-
-## The Well-Architected Impact
-
-### Reliability
-
-Change-driven architecture eliminates the detection gap.
-
-In a polling model, if your timer runs every 5 seconds, a critical SLA breach might sit undetected for up to 5 seconds. With CDC, detection is near-instantaneous.
-
-In my proof of concept, I run 15+ continuous queries simultaneously - including SLA-breach detection every 60 seconds, approval-timeout detection every 5 minutes, cross-region correlation, and severity-escalation tracking.
-
-Each query runs independently, and if one fails, the others continue operating. This aligns with the Well-Architected [failure mode analysis](https://learn.microsoft.com/azure/well-architected/reliability/failure-mode-analysis?WT.mc_id=AZ-MVP-5004796) guidance - decompose your detection logic so a failure in one area does not cascade.
-
-### Cost Optimization
-
-No idle compute cycles polling an unchanged database.
-
-The compute only activates when data actually changes. For workloads with bursty change patterns _(like an emergency alert system)_, this can significantly reduce steady-state cost compared to a fleet of polling workers.
-
-### Operational Excellence
-
-Each continuous query is a declarative YAML file, version-controlled alongside the infrastructure.
-
-Adding a new detection pattern means writing a new query file and deploying it - no code changes to the application, no new background services, no additional infrastructure.
-
-```text
-infrastructure/drasi/queries/
-├── sla-monitoring/
-│   ├── delivery-sla-breach.yaml
-│   ├── approval-timeout.yaml
-│   └── expiry-warning.yaml
-├── risk-detection/
-│   ├── geographic-correlation.yaml
-│   ├── regional-hotspot.yaml
-│   ├── severity-escalation.yaml
-│   └── duplicate-suppression.yaml
-└── recommendations/
-    ├── delivery-trigger.yaml
-    ├── all-clear-suggestion.yaml
-    └── area-expansion-suggestion.yaml
-```
-
-## When to Use This Pattern
-
-Change-driven architecture is a good fit when:
-
-- **Low-latency detection matters** - SLA monitoring, fraud detection, security alerts
-- **Multiple detection rules run in parallel** - you need 10+ independent queries watching the same data
-- **The write-to-read ratio is low** - changes happen infrequently relative to how often you would poll
-- **You already use PostgreSQL or another source containing CDC** - CDC comes free with logical replication
-
-It is less suited for:
-
-- **High-frequency OLTP** - if every row changes every second, you are essentially processing the full table continuously
-- **Simple CRUD** - if you just need "notify me when a row is inserted," a database trigger or Event Grid integration might be simpler
-- **Teams unfamiliar with Cypher** - the learning curve for graph-style queries is real
-
-## Getting Started
-
-If you want to try this pattern, you need:
-
-1. [Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/aks/what-is-aks?WT.mc_id=AZ-MVP-5004796) - Drasi currently runs on Kubernetes _(or a local KIND cluster you can run in a devcontainer for testing)_
-2. [PostgreSQL Flexible Server](https://learn.microsoft.com/azure/postgresql/flexible-server/overview?WT.mc_id=AZ-MVP-5004796) with logical replication enabled
-3. The [Drasi CLI](https://drasi.io/drasi-server/getting-started/) installed in your cluster
-
-The Drasi documentation covers installation well. The key Azure-specific step is to enable logical replication on your PostgreSQL Flexible Server - set `wal_level = logical` and configure `max_replication_slots` to match the number of sources you plan to run.
-
-:::info
-If you are using Bicep to deploy PostgreSQL Flexible Server, set `azure.extensions = postgis` as a server parameter if you need spatial queries. The CDC source does not require PostGIS, but if your queries reference spatial data, the extension must be installed before running migrations.
+:::warning
+NimbusIQ generates IaC and presents it for review. It does not apply changes automatically. Every remediation requires explicit human approval through an idempotent state machine. This is a deliberate design choice — enterprise governance requires that a human is always in the loop for infrastructure changes.
 :::
 
-## Wrapping Up
+## Observability
 
-Change-driven architecture addresses several Well-Architected concerns simultaneously:
+The entire agent pipeline is instrumented with [OpenTelemetry](https://learn.microsoft.com/azure/azure-monitor/app/opentelemetry-overview?WT.mc_id=AZ-MVP-5004796). Every agent step, every Foundry call, every MCP tool invocation gets a trace with correlation IDs. You get traces that look like this:
 
-- It reduces wasted compute (**Cost Optimization**)
-- It eliminates detection gaps (**Reliability**)
-- It keeps detection logic declarative and version-controlled (**Operational Excellence**)
+```
+atlas-control-plane-api
+    └── AnalysisRun: Execute (3200ms)
+         ├── Atlas.AgentOrchestrator.MultiAgent: RunAnalysis (2800ms)
+         │    ├── ServiceIntelligence: CalculateScores (45ms)
+         │    ├── BestPractice: Evaluate (320ms)
+         │    ├── DriftDetection: AnalyzeDrift (180ms)
+         │    ├── WellArchitected: Assess (520ms)
+         │    │    └── Atlas.AgentOrchestrator.Azure.AIFoundry: GenerateNarrative (340ms)
+         │    ├── FinOps: Analyze (410ms)
+         │    └── Governance: Negotiate (290ms)
+         └── Atlas.AgentOrchestrator.DriftPersistence: PersistSnapshot (15ms)
+```
 
-Drasi makes this pattern accessible on Azure without writing custom CDC consumers or managing Kafka/Debezium infrastructure yourself.
+That level of visibility matters. When an agent produces a questionable recommendation, you can trace exactly what data it saw, what rules fired, and what the LLM was asked.
 
-The shift from "ask the database" to "let the database tell you" is subtle, but the architectural implications are significant.
+## Deployment
 
-> You can find the full proof of concept on GitHub: [lukemurraynz/EmergencyAlertSystem](https://github.com/lukemurraynz/EmergencyAlertSystem).
+The whole thing deploys with [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview?WT.mc_id=AZ-MVP-5004796):
+
+```bash
+azd init
+azd env set NIMBUSIQ_POSTGRES_ADMIN_PASSWORD "YourSecurePassword123!"
+azd up
+```
+
+The infrastructure is defined in Bicep using [Azure Verified Modules](https://aka.ms/AVM?WT.mc_id=AZ-MVP-5004796) where available. It provisions:
+
+- Azure Container Apps (all three services)
+- Azure Container Registry
+- PostgreSQL Flexible Server
+- Key Vault
+- Azure AI Foundry with GPT-4 deployment
+- Log Analytics workspace
+- Managed identities with least-privilege RBAC
+- Optional VNet integration and Network Security Perimeter
+
+:::tip
+If you want to try it yourself, clone the repo and run `azd up`. You will need an Azure subscription, Docker Desktop, .NET 10 SDK, and Node.js 20+. The deployment takes about 15–20 minutes.
+:::
+
+## What I learned building this
+
+A few things stood out:
+
+**Microsoft Agent Framework is genuinely useful for orchestration.** The `WorkflowBuilder` pattern gives you a clean way to compose agents with explicit edges and validation. The `InProcessExecution` runner handles the lifecycle well. I would not want to build this kind of multi-agent pipeline without it.
+
+**AMicrosoft Foundry works well when you scope it tightly.** The key is not giving the LLM free reign — it is providing structured context (rule results, resource metadata, cost data) and asking it to reason over that context. When you do that, the outputs are useful. When you do not, you get platitudes.
+
+**Grounding through Azure MCP makes a real difference.** Without MCP, the LLM would be making recommendations based on its training data, which might be months out of date. With Azure MCP and Learn MCP, the agents can check current Azure capabilities and documentation before recommending changes.
+
+**Managed identity simplifies everything.** No connection strings, no key rotation, no secrets in environment variables. Just `DefaultAzureCredential`, RBAC role assignments in Bicep, and everything wires up. This is how Azure services should be connected.
+
+## Wrapping up
+
+NimbusIQ is my attempt at building the thing I wish existed when I am helping teams sort out their Azure estates. Not another dashboard with red/amber/green indicators, but something that actually reasons across the signals, explains what matters and why, and generates remediation plans that a human can review and approve.
+
+> The code is on GitHub: **[github.com/lukemurraynz/NimbusIQ](https://github.com/lukemurraynz/NimbusIQ)**
+
+If you have questions or want to chat about the architecture, feel free to reach out.
