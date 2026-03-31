@@ -56,7 +56,6 @@ function CookieConsent() {
       </p>
       <div className="cookie-consent-actions">
         <button
-        <button
           type="button"
           className="cookie-consent-btn cookie-consent-btn--accept"
           onClick={handleAccept}
@@ -64,7 +63,6 @@ function CookieConsent() {
           Accept
         </button>
         <button
-          type="button"
           type="button"
           className="cookie-consent-btn cookie-consent-btn--decline"
           onClick={handleDecline}
