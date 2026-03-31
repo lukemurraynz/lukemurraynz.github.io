@@ -8,6 +8,8 @@ date: 2014-04-28 00:00:00 +1300
 
 If you are like me – you rely heavily on the Num Lock key and having it disabled on boot is extremely annoying – using a quick registry change you can enable Numlock by default in Windows 8.
 
+<!-- truncate -->
+
 <div id="toc_container" class="no_bullets">
   <p class="toc_title">
     Table of Contents
@@ -15,13 +17,15 @@ If you are like me – you rely heavily on the Num Lock key and having it disabl
   
   <ul class="toc_list">
     <li>
-      <a href="#HOW_TO_enableNUMLOCK_ON_STARTUP"><span class="toc_number toc_depth_1">1</span> HOW TO enable NUMLOCK ON STARTUP</a>
+      <a href="#how-to-enablenumlock-on-startup"><span class="toc_number toc_depth_1">1</span> HOW TO enable NUMLOCK ON STARTUP</a>
     </li>
     <li>
-      <a href="#How_to_disable_Numlock_on_Startup"><span class="toc_number toc_depth_1">2</span> How to disable Numlock on Startup</a>
+      <a href="#how-to-disable-numlock-on-startup"><span class="toc_number toc_depth_1">2</span> How to disable Numlock on Startup</a>
     </li>
   </ul>
 </div>
+
+<span id="how-to-enablenumlock-on-startup"></span>
 
 #### HOW TO enable NUMLOCK ON STARTUP
 
@@ -32,6 +36,8 @@ If you are like me – you rely heavily on the Num Lock key and having it disabl
 5. Locate the InitialKeyboardIndicators entry and right-click it, select Modify.
 6. Enter 2 into the box.
 7. Click OK to save the changes.
+
+<span id="how-to-disable-numlock-on-startup"></span>
 
 #### How to disable Numlock on Startup
 

@@ -10,6 +10,8 @@ Advpack.dll Not Found is only one version of the error messages that Advpack.dll
 
 Although mainly occurring in the older versions of Windows I have seen this error occur from Windows XP through to Windows 7 and is mainly caused by installing the wrong .Net Framework for your computers architecture – for example attempting to install .Net Framework x86 on a 64 bit version of Windows.
 
+<!-- truncate -->
+
 <div id="toc_container" class="no_bullets">
   <p class="toc_title">
     Table of Contents
@@ -17,13 +19,15 @@ Although mainly occurring in the older versions of Windows I have seen this erro
   
   <ul class="toc_list">
     <li>
-      <a href="#Fixing_this_error_in_Windows_7"><span class="toc_number toc_depth_1">1</span> Fixing this error in Windows 7</a>
+      <a href="#fixing-this-error-in-windows-7"><span class="toc_number toc_depth_1">1</span> Fixing this error in Windows 7</a>
     </li>
     <li>
-      <a href="#Fixing_this_error_in_Windows_XP"><span class="toc_number toc_depth_1">2</span> Fixing this error in Windows XP</a>
+      <a href="#fixing-this-error-in-windows-xp"><span class="toc_number toc_depth_1">2</span> Fixing this error in Windows XP</a>
     </li>
   </ul>
 </div>
+
+<span id="fixing-this-error-in-windows-7"></span>
 
 #### Fixing this error in Windows 7
 
@@ -35,6 +39,8 @@ Although mainly occurring in the older versions of Windows I have seen this erro
 6. Restart the Computer.
 
 &nbsp;
+
+<span id="fixing-this-error-in-windows-xp"></span>
 
 #### Fixing this error in Windows XP
 

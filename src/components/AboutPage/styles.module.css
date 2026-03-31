@@ -1,0 +1,137 @@
+.page {
+  display: grid;
+  gap: 3rem;
+}
+
+.hero {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+.portraitColumn {
+  display: flex;
+  justify-content: center;
+}
+
+.portraitCard {
+  width: min(100%, 22rem);
+  padding: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 1.5rem;
+  background: var(--ifm-card-background-color, var(--ifm-background-color));
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.contentColumn {
+  display: grid;
+  gap: 1rem;
+}
+
+.lead {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--ifm-font-color-secondary);
+}
+
+.section {
+  display: grid;
+  gap: 1rem;
+}
+
+.link {
+  font-weight: 600;
+}
+
+.pillList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pill {
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: var(--pill-bg);
+  color: var(--pill-fg);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.badgeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.badgeCard {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 1rem;
+  background: var(--ifm-card-background-color, var(--ifm-background-color));
+  text-align: center;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.badgeCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+}
+
+.badgeImage {
+  width: 100%;
+  max-width: 7rem;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.badgeCaption {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--ifm-font-color-secondary);
+}
+
+@media (min-width: 996px) {
+  .hero {
+    grid-template-columns: minmax(16rem, 22rem) 1fr;
+  }
+
+  .portraitCard {
+    position: sticky;
+    top: calc(var(--ifm-navbar-height) + 1.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    gap: 2.5rem;
+  }
+
+  .contentColumn {
+    gap: 0.85rem;
+  }
+
+  .badgeGrid {
+    grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  }
+}

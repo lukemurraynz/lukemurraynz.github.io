@@ -13,6 +13,8 @@ Upgrading MDT _(Microsoft Deployment Toolkit)_ is generally not an issue – the
 
 Now that we have a backup it is now time to go through the Windows ADK _(Windows Assessment and Deployment Kit)_ upgrade on the MDT server and MDT current branch update. Follow the guide below to complete.
 
+<!-- truncate -->
+
 <div id="toc_container" class="no_bullets">
   <p class="toc_title">
     Table of Contents
@@ -20,13 +22,15 @@ Now that we have a backup it is now time to go through the Windows ADK _(Windows
   
   <ul class="toc_list">
     <li>
-      <a href="#Upgrade_Windows_ADK"><span class="toc_number toc_depth_1">1</span> Upgrade Windows ADK</a>
+      <a href="#upgrade-windows-adk"><span class="toc_number toc_depth_1">1</span> Upgrade Windows ADK</a>
     </li>
     <li>
-      <a href="#Upgrade_MDT"><span class="toc_number toc_depth_1">2</span> Upgrade MDT</a>
+      <a href="#upgrade-mdt"><span class="toc_number toc_depth_1">2</span> Upgrade MDT</a>
     </li>
   </ul>
 </div>
+
+<span id="upgrade-windows-adk"></span>
 
 ## Upgrade Windows ADK
 
@@ -63,6 +67,8 @@ I will be using Windows ADK for Windows 10, version 1607 in my example.
 <img class="alignnone" src="https://i2.wp.com/luke.geek.nz/wp-content/uploads/2016/12/121316_0538_UpgradeMDT27.png?resize=690%2C508" alt="Windows ADK" width="690" height="508" data-recalc-dims="1" />
 
 9. Once the Windows Assessment and Deployment Kit installation has been completed, restart your MDT server (this is not required – but I prefer to do it to make sure any registered DLLs or registry changes have taken affect and it is in a clean state).
+
+<span id="upgrade-mdt"></span>
 
 ## Upgrade MDT
 
