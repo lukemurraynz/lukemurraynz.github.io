@@ -39,7 +39,7 @@ const config = {
   
   // Enhanced SEO configuration
   headTags: [
-    // Ensure gtag function exists before any plugin code runs (only in production)
+    // Ensure gtag + Consent Mode v2 defaults exist before any plugin code runs (production only)
     ...(isProd
       ? [{
           tagName: 'script',
@@ -47,6 +47,18 @@ const config = {
           innerHTML: `
             window.dataLayer = window.dataLayer || [];
             window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+            window.gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              wait_for_update: 500,
+            });
+            if (typeof localStorage !== 'undefined' && localStorage.getItem('cookie-consent') === 'accepted') {
+              window.gtag('consent', 'update', {
+                analytics_storage: 'granted',
+              });
+            }
           `,
         }]
       : []),
