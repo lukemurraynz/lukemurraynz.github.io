@@ -7,6 +7,7 @@ tags:
 date: 2016-12-28 00:00:00 +1300
 slug: win/capturing-windows-boot-performance-windows-performance-toolkit
 ---
+
 The Windows Performance Toolkit, developed by Microsoft has 3 separate tools and are key to solving a lot of boot and general performance issues:
 
 •    Windows Performance Recorder
@@ -36,7 +37,7 @@ The Windows Performance Toolkit, developed by Microsoft has 3 separate tools and
   </ul>
 </div>
 
-### <span id="Download_Windows_Performance_Toolkit">Download Windows Performance Toolkit</span>
+### Download Windows Performance Toolkit
 
 This can be downloaded by going to the Microsoft website and looking for the latest Windows Assessment and Deployment Toolkit for the operating system you want to analyze – for example: Windows 10
 
@@ -49,8 +50,8 @@ Download and run, we only need the Windows Performance Toolkit portion of the AD
 Once installed navigate to: C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit
 
 Tip: You can copy the Redistributables folder if you need to install the Windows Performance Toolkit only on another computer.
-  
-### <span id="Run_Windows_Performance_Recorder">Run Windows Performance Recorder</span>
+
+### Run Windows Performance Recorder
 
 We only need too: WPRUI.EXE – Windows Performance Recorder & WPA.EXE – Windows Performance Analyzer.
 
@@ -68,9 +69,9 @@ _Tip: You can add more: File I/O, Networking I/O, GPU usage etc if you know what
 
 Click Start to select where your boot traces will go and click Ok to start your boot traces, this will restart your computer 3 times.
 
-_Tip: If you need to login, please make sure you login quickly during each trace as the longer you leave it unattended the more data and delay it will collect._ 
+_Tip: If you need to login, please make sure you login quickly during each trace as the longer you leave it unattended the more data and delay it will collect._
 
-### <span id="Run_Windows_Performance_Analyzer">Run Windows Performance Analyzer</span>
+### Run Windows Performance Analyzer
 
 Once the computer has been restarted 3 times and your traces have been complete navigate back to: C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit and click on WPR.EXE to open the Windows Performance Analyzer or click Open in WPA from the Windows Performance Recorder dialog.
 
@@ -86,7 +87,7 @@ I am running this on a 16GB i7 4GHZ machine running on an SSD so it isn&#8217;t 
 
 Hopefully this gets you through the first steps in diagnosis and resolving your performance issues.
 
-### <span id="Useful_resources">Useful resources</span>
+### Useful resources
 
 Troubleshooting Windows Internals when unexpected events happen &#8211; <a href="https://channel9.msdn.com/events/Ignite/New-Zealand-2016/M405" target="_blank">https://channel9.msdn.com/events/Ignite/New-Zealand-2016/M405</a>
 

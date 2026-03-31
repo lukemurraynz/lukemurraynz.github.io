@@ -5,10 +5,11 @@ tags:
   - Windows
 date: 2016-12-13 00:00:00 +1300
 ---
+
 Upgrading MDT _(Microsoft Deployment Toolkit)_ is generally not an issue – the main points are:
 
-  * Upgrade the Windows ADK before upgrading MDT.
-  * Make sure you have a backup _(or can restore to a pre-upgraded MDT)_ of the Deployment Share – the Upgrade will upgrade the schema of the MDT database – including allowing new ADK features for your Deployment Share.
+- Upgrade the Windows ADK before upgrading MDT.
+- Make sure you have a backup _(or can restore to a pre-upgraded MDT)_ of the Deployment Share – the Upgrade will upgrade the schema of the MDT database – including allowing new ADK features for your Deployment Share.
 
 Now that we have a backup it is now time to go through the Windows ADK _(Windows Assessment and Deployment Kit)_ upgrade on the MDT server and MDT current branch update. Follow the guide below to complete.
 
@@ -27,27 +28,27 @@ Now that we have a backup it is now time to go through the Windows ADK _(Windows
   </ul>
 </div>
 
-## <span id="Upgrade_Windows_ADK">Upgrade Windows ADK</span>
+## Upgrade Windows ADK
 
 I will be using Windows ADK for Windows 10, version 1607 in my example.
 
-  1. Download the latest Windows ADK – <a href="https://developer.microsoft.com/en-us/windows/hardware/windows-assessment-deployment-kit" target="_blank">https://developer.microsoft.com/en-us/windows/hardware/windows-assessment-deployment-kit</a> and save the setup file to your MDT server.
+1. Download the latest Windows ADK – <a href="https://developer.microsoft.com/en-us/windows/hardware/windows-assessment-deployment-kit" target="_blank">https://developer.microsoft.com/en-us/windows/hardware/windows-assessment-deployment-kit</a> and save the setup file to your MDT server.
 
 <img class="alignnone" src="https://i0.wp.com/luke.geek.nz/wp-content/uploads/2016/12/121316_0538_UpgradeMDT21.png?resize=624%2C333" alt="Windows ADK" width="624" height="333" data-recalc-dims="1" />
 
-  1. If you try to install the ADK without upgrading, you will get the following error:
+1. If you try to install the ADK without upgrading, you will get the following error:
 
 <img src="https://i0.wp.com/luke.geek.nz/wp-content/uploads/2016/12/121316_0538_UpgradeMDT22.png?w=1500" alt="" data-recalc-dims="1" />
 
-  1. So open Program and Features and select Windows Assessment and Deployment Kit – Windows 10 and select Uninstall to uninstall the old ADK (in this example I am uninstalling the v1511 Windows 10 ADK).
+1. So open Program and Features and select Windows Assessment and Deployment Kit – Windows 10 and select Uninstall to uninstall the old ADK (in this example I am uninstalling the v1511 Windows 10 ADK).
 
 <img src="https://i0.wp.com/luke.geek.nz/wp-content/uploads/2016/12/121316_0538_UpgradeMDT23.png?w=1500" alt="" data-recalc-dims="1" />
 
-  1. Select Yes to uninstall the Windows ADK and Close when the uninstall has been completed
+1. Select Yes to uninstall the Windows ADK and Close when the uninstall has been completed
 
 <img src="https://i0.wp.com/luke.geek.nz/wp-content/uploads/2016/12/121316_0538_UpgradeMDT24.png?w=1500" alt="" data-recalc-dims="1" />
 
-  1. Now that the old Windows ADK has been uninstalled you can now launch the new Windows ADK downloaded in Step 1 and make sure Install the Windows Assessment and Deployment Kit – Windows 10 to this computer is selected and the install path is correct and click Next
+1. Now that the old Windows ADK has been uninstalled you can now launch the new Windows ADK downloaded in Step 1 and make sure Install the Windows Assessment and Deployment Kit – Windows 10 to this computer is selected and the install path is correct and click Next
 
 <img src="https://i2.wp.com/luke.geek.nz/wp-content/uploads/2016/12/121316_0538_UpgradeMDT25.png?w=1500" alt="" data-recalc-dims="1" />
 
@@ -63,7 +64,7 @@ I will be using Windows ADK for Windows 10, version 1607 in my example.
 
 9. Once the Windows Assessment and Deployment Kit installation has been completed, restart your MDT server (this is not required – but I prefer to do it to make sure any registered DLLs or registry changes have taken affect and it is in a clean state).
 
-## <span id="Upgrade_MDT">Upgrade MDT</span>
+## Upgrade MDT
 
 1. Now that the Windows ADK has been updated – it is time to download the Microsoft Deployment Toolkit &#8211; <a href="https://www.microsoft.com/en-us/download/details.aspx?id=54259" target="_blank">https://www.microsoft.com/en-us/download/details.aspx?id=54259</a> by selecting Download
 

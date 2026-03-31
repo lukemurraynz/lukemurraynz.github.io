@@ -6,6 +6,7 @@ tags:
   - Windows
 date: 2014-04-27 00:00:00 +1300
 ---
+
 <p class="Style1">
   Taleo is used for many organisations as its tool for managing job applications. These settings are Internet Explorer recommended settings for displaying Taleo with no problems.
 </p>
@@ -40,142 +41,142 @@ date: 2014-04-27 00:00:00 +1300
   </ul>
 </div>
 
-#### <span id="Magnification">Magnification</span>
+#### Magnification
 
 The magnification level of your Internet browser must be set to 100%.
-  
+
 Using a setting other than 100% might produce less than optimal results depending on the Taleo product you are
-  
+
 using and the action you are performing. For this reason, 100% is the only recommended magnification level.
 
-#### <span id="Configuring_Cookie_Policy_for_Internet_Explorer">Configuring Cookie Policy for Internet Explorer</span>
+#### Configuring Cookie Policy for Internet Explorer
 
 Prerequisite
-  
+
 The default Privacy setting for Internet Explorer is Medium. This setting is normally sufficient to ensure the
-  
+
 proper handling of cookies used by Taleo Enterprise.
-  
+
 Internet Explorer > Tools > Internet Options > Privacy
-  
+
 Steps
-  
+
 1. In the Privacy tab, click Advanced.
-  
+
 2. In the Advanced Privacy Settings window, clear the Override automatic cookie handling option.
-  
+
 3. Click OK.
-  
+
 4. In the Privacy tab, click Sites.
-  
+
 5. In the Per Site Privacy Actions window, add &#8220;taleo.net&#8221; (without quotes) in the Address of Web site field.
-  
+
 6. Click Allow.
-  
+
 7. Click Done.
 
-#### <span id="Enabling_JavaScript">Enabling JavaScript</span>
+#### Enabling JavaScript
 
 JavaScript is required for the proper function and use of Taleo Enterprise.
-  
+
 Prerequisite
-  
+
 Internet Explorer > Tools > Internet Options
-  
+
 Steps
-  
+
 1. In the Security tab, click the Internet icon.
-  
+
 2. Click Default Level.
-  
+
 3. Click OK.
 
-#### <span id="Troubleshooting_JavaScript">Troubleshooting JavaScript</span>
+#### Troubleshooting JavaScript
 
 Allows users to have the application work properly after enabling JavaScript.
-  
+
 Prerequisite
-  
+
 Enabling JavaScript must have been performed.
-  
+
 Internet Explorer > Tools > Internet Options > Security tab
-  
+
 Internet and Browser Settings
 
 Steps
-  
+
 1. In the Security tab, click the Internet icon.
-  
+
 2. Click Custom Level.
-  
+
 3. Under Active Scripting, under the Scripting section, click Enable or Prompt.
-  
+
 4. Click OK.
-  
+
 5. Click Yes.
-  
+
 6. Click OK.
-  
+
 Result
-  
+
 Application should run as expected.
 
-#### <span id="Setting_Browser_to_Cache_Web_Files">Setting Browser to Cache Web Files</span>
+#### Setting Browser to Cache Web Files
 
 Prerequisite
-  
+
 Internet Explorer > Tools > Internet Options > Advanced
-  
+
 Steps
-  
+
 1. Deselect Empty Temporary Internet Files Folder When Browser Is Closed.
-  
+
 2. Deselect Do not save encrypted files to disk.
-  
+
 3. Click OK.
-  
+
 4. Restart browser.
 
-#### <span id="Optimizing_Cache_Settings">Optimizing Cache Settings</span>
+#### Optimizing Cache Settings
 
 Many browsers retain Web site files in the “cache” for a certain period of time. This saves browsing time by
-  
+
 accessing the file directly from your computer&#8217;s hard drive rather than gathering it from the Internet, thereby
-  
+
 increasing overall performance.
-  
+
 Prerequisite
-  
+
 Internet Explorer > Tools > Internet Options > General tab
-  
+
 Steps
-  
+
 1. For Internet Explorer 7 or 8, click Settings under the Browsing History section.
-  
+
 2. In the Temporary Internet and History Settings window, select Automatically, for the Check for newer
-  
+
 version of stored pages option.
-  
+
 3. For the Disk space to use setting, select a value greater than100 MB but less than 500 MB. Setting the
-  
+
 cache size higher than 500 MB might actually reduce performance.
-  
+
 4. Click OK.
-  
+
 5. In the Internet Options window, click OK.
 
-#### <span id="Configuring_the_Printer">Configuring the Printer</span>
+#### Configuring the Printer
 
 Allows users to configure the browser for faster printing results.
-  
+
 Prerequisite
-  
+
 Internet Explorer > Tools > Internet Options > Advanced
-  
+
 Steps
-  
+
 1. Scroll down to the Printing settings.
-  
+
 2. Select Print background colors and images.
-  
+
 3. Click OK.
