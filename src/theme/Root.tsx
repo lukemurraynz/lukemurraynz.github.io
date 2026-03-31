@@ -12,7 +12,11 @@ function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (!localStorage.getItem(CONSENT_KEY)) {
+    try {
+      if (!localStorage.getItem(CONSENT_KEY)) {
+        setVisible(true);
+      }
+    } catch {
       setVisible(true);
     }
   }, []);
@@ -20,7 +24,11 @@ function CookieConsent() {
   if (!visible) return null;
 
   const handleAccept = () => {
-    localStorage.setItem(CONSENT_KEY, "accepted");
+    try {
+      localStorage.setItem(CONSENT_KEY, "accepted");
+    } catch {
+      // Storage blocked; proceed without persisting
+    }
     if (typeof window.gtag === "function") {
       window.gtag("consent", "update", {
         analytics_storage: "granted",
@@ -30,7 +38,11 @@ function CookieConsent() {
   };
 
   const handleDecline = () => {
-    localStorage.setItem(CONSENT_KEY, "declined");
+    try {
+      localStorage.setItem(CONSENT_KEY, "declined");
+    } catch {
+      // Storage blocked; proceed without persisting
+    }
     setVisible(false);
   };
 
@@ -44,12 +56,14 @@ function CookieConsent() {
       </p>
       <div className="cookie-consent-actions">
         <button
+          type="button"
           className="cookie-consent-btn cookie-consent-btn--accept"
           onClick={handleAccept}
         >
           Accept
         </button>
         <button
+          type="button"
           className="cookie-consent-btn cookie-consent-btn--decline"
           onClick={handleDecline}
         >

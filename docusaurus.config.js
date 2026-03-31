@@ -54,10 +54,14 @@ const config = {
               ad_personalization: 'denied',
               wait_for_update: 500,
             });
-            if (typeof localStorage !== 'undefined' && localStorage.getItem('cookie-consent') === 'accepted') {
-              window.gtag('consent', 'update', {
-                analytics_storage: 'granted',
-              });
+            try {
+              if (typeof localStorage !== 'undefined' && localStorage.getItem('cookie-consent') === 'accepted') {
+                window.gtag('consent', 'update', {
+                  analytics_storage: 'granted',
+                });
+              }
+            } catch (e) {
+              // localStorage unavailable (e.g., private browsing with storage blocked)
             }
           `,
         }]
