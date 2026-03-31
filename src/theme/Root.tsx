@@ -77,8 +77,8 @@ function CookieConsent() {
   return (
     <div className="cookie-consent-banner" role="dialog" aria-label="Cookie consent" aria-modal="false">
       <p className="cookie-consent-text">
-        This site uses cookies for analytics.{" "}
-        <a href="/about/" className="cookie-consent-link">
+        This site uses Google Analytics to understand visits.{" "}
+        <a href="/privacy-cookies/" className="cookie-consent-link">
           Learn more
         </a>
       </p>

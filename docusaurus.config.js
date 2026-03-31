@@ -283,6 +283,11 @@ const config = {
             position: "left",
           },
           {
+            label: "Privacy",
+            href: "/privacy-cookies/",
+            position: "left",
+          },
+          {
             href: "https://www.youtube.com/channel/UCUG3TKDTAZz4UXshGrjBBoQ",
             position: "right",
             className: "navbar-icon",
@@ -350,6 +355,21 @@ const config = {
       },
       footer: {
         style: "dark",
+        links: [
+          {
+            title: "Site",
+            items: [
+              {
+                label: "About",
+                href: "/about/",
+              },
+              {
+                label: "Privacy & Cookies",
+                href: "/privacy-cookies/",
+              },
+            ],
+          },
+        ],
         copyright: `Copyright © ${new Date().getFullYear()} luke.geek.nz. Powered by coffee, clouds and hamsters on wheels!`,
       },
       prism: {
