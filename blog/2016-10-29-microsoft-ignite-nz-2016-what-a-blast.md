@@ -5,6 +5,7 @@ tags:
   - Misc
 date: 2016-10-29 00:00:00 +1300
 ---
+
 Microsoft Ignite NZ 2016! What a blast! _#NinjaCat #MSIgniteNZ_
 
 [<img class="alignnone" title="image" src="https://i2.wp.com/luke.geek.nz/wp-content/uploads/2016/10/image_thumb.png?resize=714%2C37" alt="Microsoft Ignite NZ 2016" width="714" height="37" data-recalc-dims="1" />](https://i2.wp.com/luke.geek.nz/wp-content/uploads/2016/10/image.png)
@@ -37,7 +38,7 @@ I was lucky enough to attend Microsoft Ignite this year, so I thought I would do
   </ul>
 </div>
 
-### <span id="Prologue">Prologue:</span>
+### Prologue:
 
 For those that don’t know – Microsoft Ignite NZ is an event hosted by Microsoft for IT Professionals – whether they are System Administrators or Developers – there is stuff for everyone! This event features sessions from key speakers, usually the top of their fields on their respective technologies covering the entire Microsoft stack and soft skill sessions such as dealing with stress etc. You can find out more – at the MS Ignite webpage &#8211; <a href="https://msignite.nz/why-attend" target="_blank">https://msignite.nz/why-attend</a>
 
@@ -45,7 +46,7 @@ This event was held at Sky City in Auckland, New Zealand between the 25<sup>th</
 
 This was an event I had been eager to attend for a few years, so finally being privileged enough to attend and experience it all was well worth the wait!
 
-### <span id="Day_1_Tuesday_25th_October_2016">Day 1 (Tuesday 25<sup>th</sup> October 2016):</span>
+### Day 1 (Tuesday 25th October 2016):
 
 Day 1 consisted of getting to Sky City early for the Exam Cram sessions hosted by Auldhouse _(and of course coffee!)_
 
@@ -60,15 +61,15 @@ After the Exam Cram sessions – was **the Keynote**!
 The keynote was the opening salvo for the rest of the conference! It certainly set the pace and the right attitude!
 
 > _“We are living in one of the most extraordinary times in the history of our planet. Where transformation is at the very heart of the matter. We must transform or we will perish. Our Flame will die! Transform the way we do things, the way we do business, the way we live, the way we create, innovate and inspire&#8221; – Hilary Barry_
-> 
+>
 > _“Our industry does not respect tradition — it only respects innovation” – Hilary Barry/Satya Nadella_
-> 
+>
 > _“The art of the possible” – Hilary Barry_
 
 This keynote featured a few awesome demos – that included but not limited to – The Microsoft Surface Hub – an awesome touch capable ‘whiteboard’ device running a variant of the Windows 10 operating system that leans towards team collaboration and sharing. A presentation by Donovan Brown on DevOps! As a developer he demonstrated Visual Studio and Visual Studio Team Services using the Build and Deploy release management! He was able to add changes to a mobile application _(OS independent)_ _‘People Tracker’_ during the demo and build the new version live – this was awesome and from an IT Professional perspective this was great insight into the DevOps pipeline. This was a great lead up to Regan Murphy from Microsoft New Zealand, displaying the Azure DevTest Lab – using the power of the Azure Cloud to stand up development/test environments in a standard and quick way and they now have automatic shutdown and start up at designated time – saving businesses a lot of money and allowing the environments to be accessible when required. Dona Sarkar the Windows Insider Program Lead from Microsoft Redmond also had a huge section of the Keynote! Her speech was more soft skills then technical but was definitely worth listening too! Dona was very inspiring with “_hustle the humans_” and using words like Experiment and not Project to try out new ideas and add value!
 
 > _“We are all creative!” – Dona Sarkar_
-> 
+>
 > _“The only real failure is not starting at all!” – Dona Sarkar_
 
 <div style="width: 740px" class="wp-caption alignnone">
@@ -87,11 +88,11 @@ As the primary subject matter expert in System Centre Configuration Manager (SCC
 
 After some afternoon tea – my next session was: **Reducing the network impact of Windows 10 feature and quality updates** &#8211; the speaker for this session was Michael Niehaus one of the top experts in Windows deployment and management. This session detailed ‘_Windows as a service_’ Microsoft push with Windows 10 management – in terms of Feature updates and their size, and getting into the rhythm of maintaining and keeping the Windows Desktop and image up to date. With rough Feature update sizes about 3.5GB every 6 months this needs awareness and some changes to SCCM cache size on the endpoint devices – such as changing this to 10GB and using technologies such as Branch Cache Distributed Hosts or Configuration Manager Peer Cache to distribute the updates and allow them to be distributed from endpoint devices to other endpoint devices on the same subnet reducing the hit to the distribution points – which works well with the fluid nature of the SCCM client check-in _(one client will check in and store the update to the local cache, allowing the next client on the subnet that checks in to retrieve the content from that endpoint device without having to connect back to the datacentre and hit the distribution points)_.
 
-### <span id="Day_2_Wednesday_26th_October_2016">Day 2 (Wednesday 26<sup>th</sup> October 2016):</span>
+### Day 2 (Wednesday 26th October 2016):
 
 Day 2 – After the first day – I now knew where the rooms were for the sessions and was able to get myself into the rhythm. With my sessions and their locations added to my Calendar I was easily able to go from session to session without an issue – which was good timing considering this was the first full day of sessions!
 
-I started the day with a soft-skills session &#8211; **Stay in control when everything is out of control, and other brain hacks for techies** this was held in the Sky City Theatre which and was very fascinating! The session revealed a few tricks to do while stress *_breathe_* and ways of thinking such as being the devil’s advocate for yourself as everyone is bias with their own opinions because of their personal and professional experiences, seeing how the other people may think differently and why they may thing differently. An interesting fact – because of the glucose levels – judges were much more likely to accept prisoners’ requests for parole at the beginning of the day than the at end after they had a break or a fresh start!
+I started the day with a soft-skills session &#8211; **Stay in control when everything is out of control, and other brain hacks for techies** this was held in the Sky City Theatre which and was very fascinating! The session revealed a few tricks to do while stress _*breathe*_ and ways of thinking such as being the devil’s advocate for yourself as everyone is bias with their own opinions because of their personal and professional experiences, seeing how the other people may think differently and why they may thing differently. An interesting fact – because of the glucose levels – judges were much more likely to accept prisoners’ requests for parole at the beginning of the day than the at end after they had a break or a fresh start!
 
 Next up was another soft session which was again quite interesting &#8211; **Microsoft&#8217;s trusted and secure cloud services** this session was led by Join Russell Craig, Microsoft NZ National Technology Officer and Michael Brick from Microsoft’s NZ Legal counsel and their discussion revolved around Azure Cloud Security. This was interesting in the development and the security certifications the Microsoft Azure platforms gets audited upon a daily basis. It is aligned to just about all security standards including Cloud Security Alliance and the GCIO and that New Zealand Clinical data was authorized and was getting stored on the Azure datacentres in Australia with the New Zealand government having a ‘_cloud first_’ approach which includes the Azure stack where applicable. This potentially opens up the ability for Office 365 and other Microsoft services for the New Zealand Health Industry outside of just identity management.
 
@@ -127,11 +128,11 @@ Last official session of the day was: **Windows 10 Deployments: What I wish I kn
 
 After that – and the Hub Happy hour – I attended mini session at the Citrix booth that had a demo and slides for using Citrix AppDNA for Application Migration and compatibility testing,
 
-### <span id="Day_3_Thursday_27th_October_2016">Day 3 (Thursday 27<sup>th</sup> October 2016):</span>
+### Day 3 (Thursday 27th October 2016):
 
 This day was an awesome day – I did miss the Windows Device Smack down! session as I was using the session time to catch up with a few people! One of the best things about Microsoft Ignite NZ 2016 was being able to catch up with people – whether they are people you have worked with or vendors! It was definitely a social geek fest! I also missed Demystifying the Windows Firewall – Learn how to irritate attackers without crippling your network because I had to do some work but will definitely check it out later on the Channel9 website once the session has been uploaded _(link is below this post)_!
 
-**Configuring and Deploying Just Enough and Just-In-Time Administration** – ****Awesome session, and was very interesting! The speaker for this session was: Orin Thomas who is an MVP and awesome technical writer (own a few of his books)! This session details using Just in Time Administration – Privileged Access Management which is a technology by Microsoft that utilizes Microsoft Identity Manager, to have a one-way forest trust with a privileged forest. The idea basically is a user goes to the Microsoft Identity Manager webpages and requests access such as ‘Domain Admin’ once that access is approved – MIM elevates a user’s system admin account for a designated time (for example 30 minutes) which then the user does the work and then MIM removes the elevated rights from the user after this time. The idea is no one is a member of an AD group unless they actually need it and then for a certain amount of time. This would work in well with Change Control, as part of the implementation steps you need to figure out how long the Change would be and add in a step to request the specified access for the time of that action that is then automatically removed. PAM supports any Active Directory group which is also handy – it doesn’t have to be an Active Directory Built-in group! Just Enough Administration (JEA) is all about granting a virtual token/account to a user based on a specific role that will only allow them to run very specific PowerShell commands – such as the demo Orin used as the ability to restart DNS servers, add DNS A records but not able to restart any other server or touch them! Very cool technology that I can see becoming the standard in terms of Role Based Access Control and PowerShell! This session gave me some concepts to think over!
+**Configuring and Deploying Just Enough and Just-In-Time Administration** – \*\*\*\*Awesome session, and was very interesting! The speaker for this session was: Orin Thomas who is an MVP and awesome technical writer (own a few of his books)! This session details using Just in Time Administration – Privileged Access Management which is a technology by Microsoft that utilizes Microsoft Identity Manager, to have a one-way forest trust with a privileged forest. The idea basically is a user goes to the Microsoft Identity Manager webpages and requests access such as ‘Domain Admin’ once that access is approved – MIM elevates a user’s system admin account for a designated time (for example 30 minutes) which then the user does the work and then MIM removes the elevated rights from the user after this time. The idea is no one is a member of an AD group unless they actually need it and then for a certain amount of time. This would work in well with Change Control, as part of the implementation steps you need to figure out how long the Change would be and add in a step to request the specified access for the time of that action that is then automatically removed. PAM supports any Active Directory group which is also handy – it doesn’t have to be an Active Directory Built-in group! Just Enough Administration (JEA) is all about granting a virtual token/account to a user based on a specific role that will only allow them to run very specific PowerShell commands – such as the demo Orin used as the ability to restart DNS servers, add DNS A records but not able to restart any other server or touch them! Very cool technology that I can see becoming the standard in terms of Role Based Access Control and PowerShell! This session gave me some concepts to think over!
 
 **Righting the Right Rights &#8211; Active Directory & Domain Security, Administration & Maintenance** was my next session (which was luckily in the same room!) The speaker for this session was Jess Dodson from Australia! An MVP! This was a very fascinating and awesome session regarding Active Directory replication, Active Directory security which included Delegation – being more proactive in terms of AD event log monitoring and collecting and included maintenance and recommendations for Microsoft Entra ID and checking sync replication. This was another of those sessions that I can instantly get the most value from without having to spend money from – well worth a watch!! A Healthy Active Directory – keeps the Users away (I mean happy)!
 
@@ -149,7 +150,7 @@ Thursday night of course – was the MS Ignite New Zealand 2016 party! The food 
   </p>
 </div>
 
-### <span id="Day_4_Friday_28th_October_2016">Day 4 (Friday 28<sup>th</sup> October 2016):</span>
+### Day 4 (Friday 28th October 2016):
 
 Last day! It seemed the week went really quickly and I had mixed feelings about heading back home or wanting to stay! The last day was only a half a day
 
@@ -176,7 +177,7 @@ The last session of the event – was **30 terrible habits of Server and Cloud A
 Useful session that again I can get a lot of value and actions out of straight away!
 
 > _“Builders often live in unfinished houses?” – Orin Thomas_
-> 
+>
 > _“Hack the nerd is simpler and often more effective than hack the system” – Orin Thomas_
 
 After some Lunch – the event was over and was time to head back home! My time at Microsoft Ignite NZ 2016 was fun, valuable, eventful and just all round awesome! I thank Microsoft and all the Speakers and Sponsors for this event! It is good to know that as an IT professional there are others having similar or same issues – the Pale Blue Dot does not look as small as it was a week ago!
