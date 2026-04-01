@@ -12,24 +12,7 @@ Although mainly occurring in the older versions of Windows I have seen this erro
 
 <!-- truncate -->
 
-<div id="toc_container" class="no_bullets">
-  <p class="toc_title">
-    Table of Contents
-  </p>
-  
-  <ul class="toc_list">
-    <li>
-      <a href="#fixing-this-error-in-windows-7"><span class="toc_number toc_depth_1">1</span> Fixing this error in Windows 7</a>
-    </li>
-    <li>
-      <a href="#fixing-this-error-in-windows-xp"><span class="toc_number toc_depth_1">2</span> Fixing this error in Windows XP</a>
-    </li>
-  </ul>
-</div>
-
-<span id="fixing-this-error-in-windows-7"></span>
-
-#### Fixing this error in Windows 7
+## Fixing this error in Windows 7
 
 1. Click Start
 2. Click Control Panel
@@ -40,8 +23,6 @@ Although mainly occurring in the older versions of Windows I have seen this erro
 
 &nbsp;
 
-<span id="fixing-this-error-in-windows-xp"></span>
-
-#### Fixing this error in Windows XP
+## Fixing this error in Windows XP
 
 1. Fixing this error in Windows XP is as usually as easy as downloading the correct one &#8220;[here](https://www.microsoft.com/net)&#8221; and installing it.

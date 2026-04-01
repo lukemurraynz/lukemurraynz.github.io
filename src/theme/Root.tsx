@@ -75,7 +75,12 @@ function CookieConsent() {
   };
 
   return (
-    <div className="cookie-consent-banner" role="dialog" aria-label="Cookie consent" aria-modal="false">
+    <div
+      className="cookie-consent-banner"
+      role="region"
+      aria-label="Cookie consent"
+      aria-live="polite"
+    >
       <p className="cookie-consent-text">
         This site uses Google Analytics to understand visits.{" "}
         <a href="/privacy-cookies/" className="cookie-consent-link">

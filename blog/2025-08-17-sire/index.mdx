@@ -2,25 +2,25 @@
 title: Secure Isolated Recovery Environment in Azure
 metaDescription: Learn how to design a Secure Isolated Recovery Environment (SIRE) in Azure-air‑gapped networks, identity isolation, immutable backups, restore prioritization, and automation.
 tags:
-    - Azure
+  - Azure
 categories:
-    - Azure
+  - Azure
 authors:
-    - Luke
+  - Luke
 slug: azure/sire/
 keywords:
-    - Azure
-    - SIRE
-    - Secure Isolated Recovery Environment
-    - Ransomware
-    - Air‑gapped
-    - Immutable backups
-    - WORM
-    - Zero Trust
-    - RBAC
-    - Microsoft Entra ID
-    - Azure Site Recovery
-    - Disaster Recovery
+  - Azure
+  - SIRE
+  - Secure Isolated Recovery Environment
+  - Ransomware
+  - Air‑gapped
+  - Immutable backups
+  - WORM
+  - Zero Trust
+  - RBAC
+  - Microsoft Entra ID
+  - Azure Site Recovery
+  - Disaster Recovery
 description: Explore the Secure Isolated Recovery Environment in Azure to enhance your cybersecurity and ensure business continuity against ransomware attacks.
 date: 2025-08-17T09:46:57.224Z
 ---
@@ -76,22 +76,22 @@ The SIRE is designed as a last resort: a place to recover from a catastrophic ev
 
 ## 🧩 Design principles
 
-* Immutable recovery foundation
-  * Ensure that recovery data is immutable and cannot be altered or deleted by malicious actors. Remember [WORM (Write Once Read Many)](https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview?WT.mc_id=AZ-MVP-5004796).
-  * Implement versioning and retention policies to maintain a history of recoverable data.
-  * Infrastructure as Code (IaC) enables consistent, repeatable deployments of both recovery and production environments-preserving the state at the time of the incident.
-* Zero Trust security model
-  * Never trust, always verify - continuous authentication and authorization
-  * Least privilege access - [RBAC](https://learn.microsoft.com/azure/role-based-access-control/overview?WT.mc_id=AZ-MVP-5004796) with [just‑in‑time access](https://learn.microsoft.com/azure/role-based-access-control/pim-integration?WT.mc_id=AZ-MVP-5004796)
-  * Continuous monitoring - [Defender for Cloud](https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction?WT.mc_id=AZ-MVP-5004796) and [Microsoft Sentinel](https://learn.microsoft.com/azure/sentinel/overview?tabs=defender-portal&WT.mc_id=AZ-MVP-5004796)
-* Air‑gapped isolation
-  * [Network isolation](https://learn.microsoft.com/azure/security/fundamentals/isolation-choices?WT.mc_id=AZ-MVP-5004796) - dedicated VNets with controlled connectivity
-  * [Data isolation](https://learn.microsoft.com/azure/security/fundamentals/isolation-choices?WT.mc_id=AZ-MVP-5004796) - separate storage with immutable policies
-  * [Identity isolation](https://learn.microsoft.com/security/privileged-access-workstations/privileged-access-access-model?WT.mc_id=AZ-MVP-5004796) - strict RBAC boundaries and cloud‑only accounts, with clear separation across data, workload, and management planes
-* Automated recovery orchestration
-  * [Azure Site Recovery](https://learn.microsoft.com/azure/site-recovery/site-recovery-overview?WT.mc_id=AZ-MVP-5004796) - automated VM and application failover
-  * [Azure Business Continuity Center](https://learn.microsoft.com/azure/business-continuity-center/business-continuity-center-overview?WT.mc_id=AZ-MVP-5004796) - unified management of protection estate
-  * Recovery automation - PowerShell/Azure CLI scripts for consistent recovery
+- Immutable recovery foundation
+  - Ensure that recovery data is immutable and cannot be altered or deleted by malicious actors. Remember [WORM (Write Once Read Many)](https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview?WT.mc_id=AZ-MVP-5004796).
+  - Implement versioning and retention policies to maintain a history of recoverable data.
+  - Infrastructure as Code (IaC) enables consistent, repeatable deployments of both recovery and production environments-preserving the state at the time of the incident.
+- Zero Trust security model
+  - Never trust, always verify - continuous authentication and authorization
+  - Least privilege access - [RBAC](https://learn.microsoft.com/azure/role-based-access-control/overview?WT.mc_id=AZ-MVP-5004796) with [just‑in‑time access](https://learn.microsoft.com/azure/role-based-access-control/pim-integration?WT.mc_id=AZ-MVP-5004796)
+  - Continuous monitoring - [Defender for Cloud](https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction?WT.mc_id=AZ-MVP-5004796) and [Microsoft Sentinel](https://learn.microsoft.com/azure/sentinel/overview?tabs=defender-portal&WT.mc_id=AZ-MVP-5004796)
+- Air‑gapped isolation
+  - [Network isolation](https://learn.microsoft.com/azure/security/fundamentals/isolation-choices?WT.mc_id=AZ-MVP-5004796) - dedicated VNets with controlled connectivity
+  - [Data isolation](https://learn.microsoft.com/azure/security/fundamentals/isolation-choices?WT.mc_id=AZ-MVP-5004796) - separate storage with immutable policies
+  - [Identity isolation](https://learn.microsoft.com/security/privileged-access-workstations/privileged-access-access-model?WT.mc_id=AZ-MVP-5004796) - strict RBAC boundaries and cloud‑only accounts, with clear separation across data, workload, and management planes
+- Automated recovery orchestration
+  - [Azure Site Recovery](https://learn.microsoft.com/azure/site-recovery/site-recovery-overview?WT.mc_id=AZ-MVP-5004796) - automated VM and application failover
+  - [Azure Business Continuity Center](https://learn.microsoft.com/azure/business-continuity-center/business-continuity-center-overview?WT.mc_id=AZ-MVP-5004796) - unified management of protection estate
+  - Recovery automation - PowerShell/Azure CLI scripts for consistent recovery
 
 ## 🌍 Same‑region vs. cross‑region
 
@@ -101,21 +101,21 @@ The SIRE is designed as a last resort: a place to recover from a catastrophic ev
 
 ## 🏗️ SIRE architecture features
 
-* Network air‑gap - dedicated VNets with zero connectivity to production
-* Identity isolation - strict RBAC boundaries and Conditional Access
-* Storage isolation - immutable backup storage with WORM policies
-* Compute isolation - dedicated resource groups and virtual machines
-* Access isolation - just‑in‑time (JIT) access via privileged identity management
-* Zone‑level separation - different availability zones for physical isolation
+- Network air‑gap - dedicated VNets with zero connectivity to production
+- Identity isolation - strict RBAC boundaries and Conditional Access
+- Storage isolation - immutable backup storage with WORM policies
+- Compute isolation - dedicated resource groups and virtual machines
+- Access isolation - just‑in‑time (JIT) access via privileged identity management
+- Zone‑level separation - different availability zones for physical isolation
 
-| Isolation Method      | Description / Benefits                                                                                  |
-|----------------------|--------------------------------------------------------------------------------------------------------|
-| Network Isolation    | Dedicated VNets, NSGs, zero connectivity to production; prevents lateral movement and external threats. |
-| Identity Isolation   | Strict RBAC boundaries within tenant or separate Entra ID tenant; limits access to only authorized users.|
-| Storage Isolation    | Immutable WORM policies, customer-managed key (CMK) encryption; ensures backup integrity and security.  |
-| Access Controls      | JIT access, Privileged Access Management (PAM), Conditional Access; reduces attack surface.             |
-| Infrastructure Isolation | Dedicated subscriptions/resource groups; isolates resources for better management and security.      |
-| Physical Isolation   | Availability zones (datacenters); resilience against physical failures and localized incidents. Plan quotas/capacity ahead of restore. |
+| Isolation Method         | Description / Benefits                                                                                                                 |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Network Isolation        | Dedicated VNets, NSGs, zero connectivity to production; prevents lateral movement and external threats.                                |
+| Identity Isolation       | Strict RBAC boundaries within tenant or separate Entra ID tenant; limits access to only authorized users.                              |
+| Storage Isolation        | Immutable WORM policies, customer-managed key (CMK) encryption; ensures backup integrity and security.                                 |
+| Access Controls          | JIT access, Privileged Access Management (PAM), Conditional Access; reduces attack surface.                                            |
+| Infrastructure Isolation | Dedicated subscriptions/resource groups; isolates resources for better management and security.                                        |
+| Physical Isolation       | Availability zones (datacenters); resilience against physical failures and localized incidents. Plan quotas/capacity ahead of restore. |
 
 🔒 A compromised admin account can access resources in ANY region if identity controls are weak. Strong same‑region isolation with proper RBAC often provides better protection than weak cross‑region controls. Identities used to stand up and restore to the SIRE must be separate from those used in production.
 
@@ -152,11 +152,11 @@ For cloud‑native solutions, follow [secure supply chain frameworks](https://le
 
 When planning Identity and Access Management for your SIRE, consider the following personas:
 
-* Recovery Administrator
-* Forensics Analyst
-* Backup Operator
-* Security Reviewer
-* Application Tester
+- Recovery Administrator
+- Forensics Analyst
+- Backup Operator
+- Security Reviewer
+- Application Tester
 
 Ensure you’ve defined clear roles and responsibilities for each persona, including specific access needs and the resources they’ll interact with during recovery.
 
@@ -166,12 +166,12 @@ You may need to prioritize restoration based on application criticality. A tiere
 
 I usually operate with the following if an organization doesn’t have a defined criticality model:
 
-| Criticality Level   | Business Impact                                         | Availability SLA | RTO Target   | RPO Target   |
-|---------------------|--------------------------------------------------------|------------------|--------------|-------------|
-| Mission-Critical    | Immediate business shutdown, safety risk, or regulatory violation | 99.99%           | ≤ 1 hour     | ≤ 15 minutes|
-| Business-Critical   | Significant business impact, customer service disruption| 99.9%            | 2-8 hours    | 1-4 hours   |
-| Important           | Moderate business impact, operational efficiency reduction| 99.5%           | 8-24 hours   | 4-8 hours   |
-| Non-Critical        | Minimal business impact, administrative convenience     | 99.0%            | 24-72 hours  | 8-24 hours  |
+| Criticality Level | Business Impact                                                   | Availability SLA | RTO Target  | RPO Target   |
+| ----------------- | ----------------------------------------------------------------- | ---------------- | ----------- | ------------ |
+| Mission-Critical  | Immediate business shutdown, safety risk, or regulatory violation | 99.99%           | ≤ 1 hour    | ≤ 15 minutes |
+| Business-Critical | Significant business impact, customer service disruption          | 99.9%            | 2-8 hours   | 1-4 hours    |
+| Important         | Moderate business impact, operational efficiency reduction        | 99.5%            | 8-24 hours  | 4-8 hours    |
+| Non-Critical      | Minimal business impact, administrative convenience               | 99.0%            | 24-72 hours | 8-24 hours   |
 
 ### 🚨 Mission‑critical: act first
 
@@ -201,19 +201,19 @@ Use this tiering to drive SIRE restore order, access controls, and monitoring in
 
 Consider a playbook for service restoration. In the example below, phases run from Phase 1 (Threat detection) through Phase 5 (Service restoration and rebuild):
 
-![](images/sire-conceptual-ransomware-recovery.png)
+![Pattern for SIRE ransomware recovery sequence](images/sire-conceptual-ransomware-recovery.png)
 
 ## ⚖️ Risk assessment
 
 Risk = Probability × Impact
 
-| Risk Category        | Probability | Impact | Mitigation Strategy                                 |
-|----------------------|-------------|--------|-----------------------------------------------------|
-| Ransomware Attack    | High        | High   | SIRE implementation, immutable backups              |
-| Regional Outage      | Medium      | High   | Multi-region deployment, site recovery              |
-| Data Corruption      | Medium      | Medium | Point-in-time recovery, backup validation           |
-| Human Error          | High        | Medium | Role-based access, approval workflows               |
-| Supply Chain Attack  | Low         | High   | Zero Trust, continuous monitoring                   |
+| Risk Category       | Probability | Impact | Mitigation Strategy                       |
+| ------------------- | ----------- | ------ | ----------------------------------------- |
+| Ransomware Attack   | High        | High   | SIRE implementation, immutable backups    |
+| Regional Outage     | Medium      | High   | Multi-region deployment, site recovery    |
+| Data Corruption     | Medium      | Medium | Point-in-time recovery, backup validation |
+| Human Error         | High        | Medium | Role-based access, approval workflows     |
+| Supply Chain Attack | Low         | High   | Zero Trust, continuous monitoring         |
 
 ## 🤖 Automate the playbook
 
