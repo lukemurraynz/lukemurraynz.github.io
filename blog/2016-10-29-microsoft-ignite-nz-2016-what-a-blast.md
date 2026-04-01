@@ -12,7 +12,7 @@ Microsoft Ignite NZ 2016! What a blast! _#NinjaCat #MSIgniteNZ_
 
 I was lucky enough to attend Microsoft Ignite this year, so I thought I would do a high level blog post about my experience at this event.
 
-<!--more-->
+<!-- truncate -->
 
 <div id="toc_container" class="no_bullets">
   <p class="toc_title">
@@ -21,22 +21,24 @@ I was lucky enough to attend Microsoft Ignite this year, so I thought I would do
   
   <ul class="toc_list">
     <li>
-      <a href="#Prologue"><span class="toc_number toc_depth_1">1</span> Prologue:</a>
+      <a href="#prologue"><span class="toc_number toc_depth_1">1</span> Prologue:</a>
     </li>
     <li>
-      <a href="#Day_1_Tuesday_25th_October_2016"><span class="toc_number toc_depth_1">2</span> Day 1 (Tuesday 25th October 2016):</a>
+      <a href="#day-1-tuesday-25th-october-2016"><span class="toc_number toc_depth_1">2</span> Day 1 (Tuesday 25th October 2016):</a>
     </li>
     <li>
-      <a href="#Day_2_Wednesday_26th_October_2016"><span class="toc_number toc_depth_1">3</span> Day 2 (Wednesday 26th October 2016):</a>
+      <a href="#day-2-wednesday-26th-october-2016"><span class="toc_number toc_depth_1">3</span> Day 2 (Wednesday 26th October 2016):</a>
     </li>
     <li>
-      <a href="#Day_3_Thursday_27th_October_2016"><span class="toc_number toc_depth_1">4</span> Day 3 (Thursday 27th October 2016):</a>
+      <a href="#day-3-thursday-27th-october-2016"><span class="toc_number toc_depth_1">4</span> Day 3 (Thursday 27th October 2016):</a>
     </li>
     <li>
-      <a href="#Day_4_Friday_28th_October_2016"><span class="toc_number toc_depth_1">5</span> Day 4 (Friday 28th October 2016):</a>
+      <a href="#day-4-friday-28th-october-2016"><span class="toc_number toc_depth_1">5</span> Day 4 (Friday 28th October 2016):</a>
     </li>
   </ul>
 </div>
+
+<span id="prologue"></span>
 
 ### Prologue:
 
@@ -45,6 +47,8 @@ For those that don’t know – Microsoft Ignite NZ is an event hosted by Micros
 This event was held at Sky City in Auckland, New Zealand between the 25<sup>th</sup> – 28<sup>th</sup> of October 2016.
 
 This was an event I had been eager to attend for a few years, so finally being privileged enough to attend and experience it all was well worth the wait!
+
+<span id="day-1-tuesday-25th-october-2016"></span>
 
 ### Day 1 (Tuesday 25th October 2016):
 
@@ -88,6 +92,8 @@ As the primary subject matter expert in System Centre Configuration Manager (SCC
 
 After some afternoon tea – my next session was: **Reducing the network impact of Windows 10 feature and quality updates** &#8211; the speaker for this session was Michael Niehaus one of the top experts in Windows deployment and management. This session detailed ‘_Windows as a service_’ Microsoft push with Windows 10 management – in terms of Feature updates and their size, and getting into the rhythm of maintaining and keeping the Windows Desktop and image up to date. With rough Feature update sizes about 3.5GB every 6 months this needs awareness and some changes to SCCM cache size on the endpoint devices – such as changing this to 10GB and using technologies such as Branch Cache Distributed Hosts or Configuration Manager Peer Cache to distribute the updates and allow them to be distributed from endpoint devices to other endpoint devices on the same subnet reducing the hit to the distribution points – which works well with the fluid nature of the SCCM client check-in _(one client will check in and store the update to the local cache, allowing the next client on the subnet that checks in to retrieve the content from that endpoint device without having to connect back to the datacentre and hit the distribution points)_.
 
+<span id="day-2-wednesday-26th-october-2016"></span>
+
 ### Day 2 (Wednesday 26th October 2016):
 
 Day 2 – After the first day – I now knew where the rooms were for the sessions and was able to get myself into the rhythm. With my sessions and their locations added to my Calendar I was easily able to go from session to session without an issue – which was good timing considering this was the first full day of sessions!
@@ -128,6 +134,8 @@ Last official session of the day was: **Windows 10 Deployments: What I wish I kn
 
 After that – and the Hub Happy hour – I attended mini session at the Citrix booth that had a demo and slides for using Citrix AppDNA for Application Migration and compatibility testing,
 
+<span id="day-3-thursday-27th-october-2016"></span>
+
 ### Day 3 (Thursday 27th October 2016):
 
 This day was an awesome day – I did miss the Windows Device Smack down! session as I was using the session time to catch up with a few people! One of the best things about Microsoft Ignite NZ 2016 was being able to catch up with people – whether they are people you have worked with or vendors! It was definitely a social geek fest! I also missed Demystifying the Windows Firewall – Learn how to irritate attackers without crippling your network because I had to do some work but will definitely check it out later on the Channel9 website once the session has been uploaded _(link is below this post)_!
@@ -149,6 +157,8 @@ Thursday night of course – was the MS Ignite New Zealand 2016 party! The food 
     Microsoft Ignite NZ 2016 Party!
   </p>
 </div>
+
+<span id="day-4-friday-28th-october-2016"></span>
 
 ### Day 4 (Friday 28th October 2016):
 

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "@docusaurus/router";
 
 declare global {
   interface Window {
@@ -7,18 +8,46 @@ declare global {
 }
 
 const CONSENT_KEY = "cookie-consent";
+const isProduction = process.env.NODE_ENV === "production";
+
+function getConsentValue() {
+  try {
+    return localStorage.getItem(CONSENT_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function updateConsent(analyticsStorage: "granted" | "denied") {
+  if (!isProduction || typeof window === "undefined" || typeof window.gtag !== "function") {
+    return;
+  }
+
+  window.gtag("consent", "update", {
+    analytics_storage: analyticsStorage,
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+}
+
+function trackPageView() {
+  if (!isProduction || typeof window === "undefined" || typeof window.gtag !== "function") {
+    return;
+  }
+
+  window.gtag("event", "page_view", {
+    page_title: document.title,
+    page_location: window.location.href,
+    page_path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
+  });
+}
 
 function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    try {
-      if (!localStorage.getItem(CONSENT_KEY)) {
-        setVisible(true);
-      }
-    } catch {
-      setVisible(true);
-    }
+    setVisible(!getConsentValue());
   }, []);
 
   if (!visible) return null;
@@ -29,11 +58,8 @@ function CookieConsent() {
     } catch {
       // Storage blocked; proceed without persisting
     }
-    if (typeof window.gtag === "function") {
-      window.gtag("consent", "update", {
-        analytics_storage: "granted",
-      });
-    }
+
+    updateConsent("granted");
     setVisible(false);
   };
 
@@ -43,14 +69,21 @@ function CookieConsent() {
     } catch {
       // Storage blocked; proceed without persisting
     }
+
+    updateConsent("denied");
     setVisible(false);
   };
 
   return (
-    <div className="cookie-consent-banner" role="dialog" aria-label="Cookie consent">
+    <div
+      className="cookie-consent-banner"
+      role="region"
+      aria-label="Cookie consent"
+      aria-live="polite"
+    >
       <p className="cookie-consent-text">
-        This site uses cookies for analytics.{" "}
-        <a href="/about/" className="cookie-consent-link">
+        This site uses Google Analytics to understand visits.{" "}
+        <a href="/privacy-cookies/" className="cookie-consent-link">
           Learn more
         </a>
       </p>
@@ -75,6 +108,12 @@ function CookieConsent() {
 }
 
 export default function Root({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+
+  useEffect(() => {
+    trackPageView();
+  }, [location.hash, location.pathname, location.search]);
+
   return (
     <>
       {children}

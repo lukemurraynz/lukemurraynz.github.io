@@ -7,6 +7,7 @@
 import { themes as prismThemes } from "prism-react-renderer";
 
 const isProd = process.env.NODE_ENV === "production";
+const GA_TRACKING_ID = "G-0QDLBY7NNN";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -39,32 +40,62 @@ const config = {
   
   // Enhanced SEO configuration
   headTags: [
-    // Ensure gtag + Consent Mode v2 defaults exist before any plugin code runs (production only)
     ...(isProd
-      ? [{
-          tagName: 'script',
-          attributes: {},
-          innerHTML: `
-            window.dataLayer = window.dataLayer || [];
-            window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
-            window.gtag('consent', 'default', {
-              analytics_storage: 'denied',
-              ad_storage: 'denied',
-              ad_user_data: 'denied',
-              ad_personalization: 'denied',
-              wait_for_update: 500,
-            });
-            try {
-              if (typeof localStorage !== 'undefined' && localStorage.getItem('cookie-consent') === 'accepted') {
-                window.gtag('consent', 'update', {
-                  analytics_storage: 'granted',
-                });
+      ? [
+          {
+            tagName: "link",
+            attributes: {
+              rel: "preconnect",
+              href: "https://www.google-analytics.com",
+            },
+          },
+          {
+            tagName: "link",
+            attributes: {
+              rel: "preconnect",
+              href: "https://www.googletagmanager.com",
+            },
+          },
+          {
+            tagName: "script",
+            attributes: {},
+            innerHTML: `
+              window.dataLayer = window.dataLayer || [];
+              window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+              var consentValue = null;
+              try {
+                consentValue = localStorage.getItem('cookie-consent');
+              } catch (e) {
+                consentValue = null;
               }
-            } catch (e) {
-              // localStorage unavailable (e.g., private browsing with storage blocked)
-            }
-          `,
-        }]
+              window.gtag('consent', 'default', {
+                analytics_storage: consentValue === 'accepted' ? 'granted' : 'denied',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                wait_for_update: consentValue ? 0 : 500,
+              });
+            `,
+          },
+          {
+            tagName: "script",
+            attributes: {
+              async: "true",
+              src: `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`,
+            },
+          },
+          {
+            tagName: "script",
+            attributes: {},
+            innerHTML: `
+              window.gtag('js', new Date());
+              window.gtag('config', '${GA_TRACKING_ID}', {
+                anonymize_ip: true,
+                send_page_view: false,
+              });
+            `,
+          },
+        ]
       : []),
     // Enhanced Open Graph tags
     {
@@ -207,13 +238,6 @@ const config = {
           ignorePatterns: ['/tags/**', '/page/**'],
           filename: 'sitemap.xml',
         },
-        // Enable Google Analytics (gtag) only in production to avoid dev errors and noise
-        gtag: isProd
-          ? {
-              trackingID: "G-0QDLBY7NNN",
-              anonymizeIP: true,
-            }
-          : undefined,
       }),
     ],
   ],
@@ -256,6 +280,11 @@ const config = {
           {
             label: "About",
             href: "/about/",
+            position: "left",
+          },
+          {
+            label: "Privacy",
+            href: "/privacy-cookies/",
             position: "left",
           },
           {
@@ -326,6 +355,21 @@ const config = {
       },
       footer: {
         style: "dark",
+        links: [
+          {
+            title: "Site",
+            items: [
+              {
+                label: "About",
+                href: "/about/",
+              },
+              {
+                label: "Privacy & Cookies",
+                href: "/privacy-cookies/",
+              },
+            ],
+          },
+        ],
         copyright: `Copyright © ${new Date().getFullYear()} luke.geek.nz. Powered by coffee, clouds and hamsters on wheels!`,
       },
       prism: {

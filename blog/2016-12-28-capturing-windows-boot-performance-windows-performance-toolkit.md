@@ -16,6 +16,8 @@ The Windows Performance Toolkit, developed by Microsoft has 3 separate tools and
 
 •    Xperf
 
+<!-- truncate -->
+
 <div id="toc_container" class="no_bullets">
   <p class="toc_title">
     Table of Contents
@@ -23,19 +25,21 @@ The Windows Performance Toolkit, developed by Microsoft has 3 separate tools and
   
   <ul class="toc_list">
     <li>
-      <a href="#Download_Windows_Performance_Toolkit"><span class="toc_number toc_depth_1">1</span> Download Windows Performance Toolkit</a>
+      <a href="#download-windows-performance-toolkit"><span class="toc_number toc_depth_1">1</span> Download Windows Performance Toolkit</a>
     </li>
     <li>
-      <a href="#Run_Windows_Performance_Recorder"><span class="toc_number toc_depth_1">2</span> Run Windows Performance Recorder</a>
+      <a href="#run-windows-performance-recorder"><span class="toc_number toc_depth_1">2</span> Run Windows Performance Recorder</a>
     </li>
     <li>
-      <a href="#Run_Windows_Performance_Analyzer"><span class="toc_number toc_depth_1">3</span> Run Windows Performance Analyzer</a>
+      <a href="#run-windows-performance-analyzer"><span class="toc_number toc_depth_1">3</span> Run Windows Performance Analyzer</a>
     </li>
     <li>
-      <a href="#Useful_resources"><span class="toc_number toc_depth_1">4</span> Useful resources</a>
+      <a href="#useful-resources"><span class="toc_number toc_depth_1">4</span> Useful resources</a>
     </li>
   </ul>
 </div>
+
+<span id="download-windows-performance-toolkit"></span>
 
 ### Download Windows Performance Toolkit
 
@@ -50,6 +54,8 @@ Download and run, we only need the Windows Performance Toolkit portion of the AD
 Once installed navigate to: C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit
 
 Tip: You can copy the Redistributables folder if you need to install the Windows Performance Toolkit only on another computer.
+
+<span id="run-windows-performance-recorder"></span>
 
 ### Run Windows Performance Recorder
 
@@ -71,6 +77,8 @@ Click Start to select where your boot traces will go and click Ok to start your 
 
 _Tip: If you need to login, please make sure you login quickly during each trace as the longer you leave it unattended the more data and delay it will collect._
 
+<span id="run-windows-performance-analyzer"></span>
+
 ### Run Windows Performance Analyzer
 
 Once the computer has been restarted 3 times and your traces have been complete navigate back to: C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit and click on WPR.EXE to open the Windows Performance Analyzer or click Open in WPA from the Windows Performance Recorder dialog.
@@ -86,6 +94,8 @@ I am running this on a 16GB i7 4GHZ machine running on an SSD so it isn&#8217;t 
 <img src="https://i0.wp.com/luke.geek.nz/wp-content/uploads/2016/12/122816_0751_Howtocaptur5.png?w=1500&#038;ssl=1" alt="" data-recalc-dims="1" />
 
 Hopefully this gets you through the first steps in diagnosis and resolving your performance issues.
+
+<span id="useful-resources"></span>
 
 ### Useful resources
 

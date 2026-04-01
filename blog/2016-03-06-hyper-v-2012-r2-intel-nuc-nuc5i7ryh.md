@@ -10,6 +10,8 @@ One of the problems with Hyper-V 2012 R2 on an Intel NUC &#8211; NUC5i7RYH was b
 
 Once I made the manual adjustments to the Network drivers to get this going, I then slipstreamed the drivers and Server 2012 R2 updates (as of Feb 2016) into a Hyper-V 2012 R2 ISO which can then be made bootable for future Hyper-V installations.
 
+<!-- truncate -->
+
 <div id="toc_container" class="no_bullets">
   <p class="toc_title">
     Table of Contents
@@ -17,16 +19,18 @@ Once I made the manual adjustments to the Network drivers to get this going, I t
   
   <ul class="toc_list">
     <li>
-      <a href="#Changing_the_Intel_Network_Drivers_Manually"><span class="toc_number toc_depth_1">1</span> Changing the Intel Network Drivers Manually</a>
+      <a href="#changing-the-intel-network-drivers-manually"><span class="toc_number toc_depth_1">1</span> Changing the Intel Network Drivers Manually</a>
     </li>
     <li>
-      <a href="#Downloading_Intel_Network_Drivers_8211_NUC5i7RYH_Compatible"><span class="toc_number toc_depth_1">2</span> Downloading Intel Network Drivers &#8211; NUC5i7RYH Compatible</a>
+      <a href="#downloading-intel-network-drivers--nuc5i7ryh-compatible"><span class="toc_number toc_depth_1">2</span> Downloading Intel Network Drivers &#8211; NUC5i7RYH Compatible</a>
     </li>
     <li>
-      <a href="#Intel_NUC5i7RYH_Hyper-V_2012_R2_ISO"><span class="toc_number toc_depth_1">3</span> Intel NUC5i7RYH Hyper-V 2012 R2 ISO</a>
+      <a href="#intel-nuc5i7ryh-hyper-v-2012-r2-iso"><span class="toc_number toc_depth_1">3</span> Intel NUC5i7RYH Hyper-V 2012 R2 ISO</a>
     </li>
   </ul>
 </div>
+
+<span id="changing-the-intel-network-drivers-manually"></span>
 
 ## Changing the Intel Network Drivers Manually
 
@@ -42,8 +46,6 @@ Once I made the manual adjustments to the Network drivers to get this going, I t
 
 - Once extracted navigate to: \PROWinx64\PRO1000\Winx64\NDIS64Find &#8216;e1d64x64.INF&#8217; and right click and select Open to open with Notepad
 - Find the Heading &#8216;[Intel.NTamd64.6.3.1]&#8217; and copy the devices in this section
-
-<!--more-->
 
 <img src="https://i0.wp.com/luke.geek.nz/wp-content/uploads/2016/03/030516_2351_HyperV2012R2.png?w=1500" alt="" data-recalc-dims="1" />
 
@@ -88,11 +90,15 @@ bcdedit /set nointegritychecks OFF</pre>
 
 References: Thanks to an article written by Jay &#8220;<a href="http://jayrbarrios.com/2014/11/19/intel-nuc-d54250wykh-installing-lan-driver-on-windows-hyper-v-server-2012-r2" target="_blank">Intel NUC D54250WYKH: Installing LAN Driver on Windows Hyper-V Server 2012 R2</a>&#8221; for a lot of assistance in getting this going, was able to easily adapt it for the NUC5i7RYH.
 
+<span id="downloading-intel-network-drivers--nuc5i7ryh-compatible"></span>
+
 ## Downloading Intel Network Drivers – NUC5i7RYH Compatible
 
 I have bundled the tweaked driver packed I used into a ZIP file – You can download it here: <a href="https://mega.nz/#!5ZtQUTqZ!iKWih9idK-jil6dT4Q7C_D16N5MQiCF9vr6qws6CmFc" target="_blank">Intel_NUC_2012R2_NUC5i7RYH_Drivers.zip</a>
 
 _(20.7 Date: 2/11/2016_). This will take you to Step 8 of the guide above. This driver pack should also be able to be used in a normal Windows Server 2012 R2 x64 environment.
+
+<span id="intel-nuc5i7ryh-hyper-v-2012-r2-iso"></span>
 
 ## Intel NUC5i7RYH Hyper-V 2012 R2 ISO
 
