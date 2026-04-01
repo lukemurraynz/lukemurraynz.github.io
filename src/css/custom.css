@@ -133,7 +133,7 @@ blockquote {
 }
 
 /* Custom styles for announcement bar */
-div[class^=announcementBar] {
+div[class^=announcementBar][role="banner"] {
   font-weight: bold;
   font-size: 16px;
   padding: 12px 24px;
@@ -151,7 +151,7 @@ div[class^=announcementBar] {
   margin-left: auto;
 }
 
-[data-theme='dark'] div[class^=announcementBar] {
+[data-theme='dark'] div[class^=announcementBar][role="banner"] {
   color: #ffffff;
   background-color: #1b1b1d;
   border-left: none !important;
