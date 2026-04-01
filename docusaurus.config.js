@@ -283,11 +283,6 @@ const config = {
             position: "left",
           },
           {
-            label: "Privacy",
-            href: "/privacy-cookies/",
-            position: "left",
-          },
-          {
             href: "https://www.youtube.com/channel/UCUG3TKDTAZz4UXshGrjBBoQ",
             position: "right",
             className: "navbar-icon",

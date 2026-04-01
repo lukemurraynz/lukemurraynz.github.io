@@ -188,16 +188,18 @@ div[class^=announcementBar] {
 /* Links */
 :root a,
 [data-theme='dark'] a {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
+  text-decoration: none;
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
 :root a:hover,
-[data-theme='dark'] a:hover {
+[data-theme='dark'] a:hover,
+:root a:focus-visible,
+[data-theme='dark'] a:focus-visible {
+  text-decoration: underline;
   text-decoration-color: currentColor;
-  opacity: 0.85;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
 }
 
 :root a:visited {
