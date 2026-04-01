@@ -153,6 +153,7 @@ div[class^=announcementBar] {
 
 [data-theme='dark'] div[class^=announcementBar] {
   color: #ffffff;
+  background-color: #1b1b1d;
   border-left: none !important;
   background-image: none !important;
   margin-left: 0 !important;
