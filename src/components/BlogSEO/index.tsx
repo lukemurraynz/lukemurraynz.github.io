@@ -80,6 +80,27 @@ export default function BlogSEO(props: BlogSEOProps) {
     };
   }
 
+  // VideoObject JSON-LD for embedded videos
+  const videoData = frontMatter.video;
+  const videoJsonLd = videoData ? {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": videoData.title,
+    "description": videoData.description,
+    "thumbnailUrl": videoData.thumbnailUrl,
+    "uploadDate": videoData.uploadDate,
+    "contentUrl": videoData.url,
+    "embedUrl": videoData.url?.replace('watch?v=', 'embed/'),
+    "publisher": {
+      "@type": "Organization",
+      "name": "luke.geek.nz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://luke.geek.nz/img/logo.png"
+      }
+    }
+  } : null;
+
   return (
     <Head>
       {/* Enhanced meta tags */}
@@ -121,6 +142,11 @@ export default function BlogSEO(props: BlogSEOProps) {
       {date && (
         <script type="application/ld+json">
           {JSON.stringify(jsonLd)}
+        </script>
+      )}
+      {videoJsonLd && (
+        <script type="application/ld+json">
+          {JSON.stringify(videoJsonLd)}
         </script>
       )}
     </Head>
