@@ -1,5 +1,5 @@
 ---
-date: '2022-07-06 00:00:00 +1200'
+date: "2022-07-06 00:00:00 +1200"
 title: Migrating resources between regions using Azure Resource Mover
 description: "With over 70+ Microsoft Azure regions id=AZ-MVP-5004796 overview \\\" Azure geog..."
 authors: [Luke]
@@ -9,10 +9,19 @@ toc: true
 header:
   teaser: /uploads/azureresourcemover_header.png
 slug: azure/migrating-resources-between-regions-using-azure-resource-mover
+video:
+  url: https://www.youtube.com/watch?v=Y7szAjZu2yc
+  title: Azure Resource Mover Demo - Migrating Resources Between Regions
+  description: Demo video showing how to use Azure Resource Mover to migrate Virtual Machines, Virtual Networks, and Azure SQL Databases between Azure regions.
+  thumbnailUrl: https://img.youtube.com/vi/Y7szAjZu2yc/maxresdefault.jpg
+  uploadDate: "2022-07-06"
 ---
+
 With over 70+ Microsoft Azure [regions](https://azure.microsoft.com/en-us/global-infrastructure/geographies/?WT.mc_id=AZ-MVP-5004796#overview " Azure geographies") across the globe and new regions popping up all the time _(for example new New Zealand North region coming in 2023)_!
 
 Migrating resources between regions is something that you may want to consider. Let's look at migrating workloads between them, by using [Azure Resource Mover](https://learn.microsoft.com/en-us/azure/resource-mover/overview?WT.mc_id=AZ-MVP-5004796 "What is Azure Resource Mover?").
+
+<!-- truncate -->
 
 ### Overview
 
@@ -24,34 +33,34 @@ Azure Resource Mover helps you to move Azure resources between Azure regions, of
 
 Let’s start with why would you migrate resources between regions? Common scenarios include:
 
-* Taking advantage of new Azure region expansions to be closer to customers and reduce latency _(such as migrating from Australia East to New Zealand North)_.
-* Increasing availability and resilience by moving to Azure Availability Zones, from regions that don’t currently support it.
-* Meeting data residential and compliance requirements.
-* Consolidating workloads for mergers and acquisitions.
-* The cost of resources in one region may also be cheaper than in another.
+- Taking advantage of new Azure region expansions to be closer to customers and reduce latency _(such as migrating from Australia East to New Zealand North)_.
+- Increasing availability and resilience by moving to Azure Availability Zones, from regions that don’t currently support it.
+- Meeting data residential and compliance requirements.
+- Consolidating workloads for mergers and acquisitions.
+- The cost of resources in one region may also be cheaper than in another.
 
 #### So, what are the risks of migrating resources?
 
 Whatever your reason, moving your applications from Point A to Point B is often no easy task. Here are common reasons why:
 
-* Moving resources can pose a risk of an outage.
-* Workloads are often made up of multiple services, each requiring its own method and tools to move.
-* Interdependencies are often not understood.
-* Testing and rollback of these complex scenarios can be daunting.
+- Moving resources can pose a risk of an outage.
+- Workloads are often made up of multiple services, each requiring its own method and tools to move.
+- Interdependencies are often not understood.
+- Testing and rollback of these complex scenarios can be daunting.
 
 #### So, what are the benefits of using Azure Resource Mover?
 
 So, what are some of the benefits that Azure Resource Mover offers us?
 
-* The ability to plan with ease, reducing the time and complexity of your move.
-* Streamline your move process by identifying dependencies.
-* Plan and test your move multiple times.
-* Stage your move as part of scheduled downtime.
-* Azure Resource Mover helps you orchestrate seamlessly with a consistent experience across common Azure resources​:
-* Move multiple resources through a single pane of glass.
-* Reduce manual touchpoints, which could increase the change of services being missed.
-* Reduce overall time for your move from months to weeks or days* (based on the service and data being consumed).
-* Azure Resource Mover helps you move with confidence by planning, testing, and moving related resources together and validating and testing your move before final commitment _(by testing your migrated services, while having the peace of mind that your source resources are left intact until you commit to the migration)_.
+- The ability to plan with ease, reducing the time and complexity of your move.
+- Streamline your move process by identifying dependencies.
+- Plan and test your move multiple times.
+- Stage your move as part of scheduled downtime.
+- Azure Resource Mover helps you orchestrate seamlessly with a consistent experience across common Azure resources​:
+- Move multiple resources through a single pane of glass.
+- Reduce manual touchpoints, which could increase the change of services being missed.
+- Reduce overall time for your move from months to weeks or days\* (based on the service and data being consumed).
+- Azure Resource Mover helps you move with confidence by planning, testing, and moving related resources together and validating and testing your move before final commitment _(by testing your migrated services, while having the peace of mind that your source resources are left intact until you commit to the migration)_.
 
 > So to recap, Azure Resource Mover offers you a unified experience to move multiple resource types across regions while validating dependencies between services and giving you the flexibility to adjust resources such as the Names, SKUs and Availability Zones during the migration to the destination region.
 
@@ -59,16 +68,16 @@ So, what are some of the benefits that Azure Resource Mover offers us?
 
 The currently supported resources _(as of July 2022)_ are:
 
-* Azure Virtual Machines
-* Azure SQL Database
-* Azure Virtual Network
-* SQL elastic pools
-* Azure Load balancer
-* Public IP
-* Resource group
-* Network security group
-* Network interfaces
-* Azure Availability Sets
+- Azure Virtual Machines
+- Azure SQL Database
+- Azure Virtual Network
+- SQL elastic pools
+- Azure Load balancer
+- Public IP
+- Resource group
+- Network security group
+- Network interfaces
+- Azure Availability Sets
 
 And Azure Storage account region replication support is scheduled in the next 6-9 months to be released so the storage account migration should be ready by the time the NZ North comes live.
 
@@ -104,9 +113,9 @@ For our demo, we are going to migrate from Australia East to West US3.
 
 So what resources are we going to migrate?
 
-* Virtual Network
-* Azure SQL Database
-* Azure Virtual Machine & associated dependencies _(Resource Groups, Network Interfaces, Managed Disks)._
+- Virtual Network
+- Azure SQL Database
+- Azure Virtual Machine & associated dependencies _(Resource Groups, Network Interfaces, Managed Disks)._
 
 _Note: There is no Audio in the demo video below, but it will guide you through Azure Resource Mover and some of the options._
 
@@ -114,24 +123,24 @@ _Note: There is no Audio in the demo video below, but it will guide you through 
 
 #### Some items to note
 
-* You can't select individual disks as resources to move across regions. However, disks are moved as part of a VM move.
-* You can migrate encrypted Virtual Machines but needs manual intervention to copy the keys
-* You can move resources to another subscription AFTER moving resources to the destination region.
-* You cannot move peered Virtual Networks across subscriptions, you need to remove the peering first, then re-add it back in the destination region.
-* Make sure your quota and required services have been registered and increased for the additional region
-* Azure Resource Mover can be used to migrate Azure Virtual Desktop session hosts across regions.
-* DNS records can be key to reducing the complexity and interruption to end users as part of your migration.
-* There are PowerShell cmdlets _(i.e., New-AzResourceMoverMoveCollection)_
+- You can't select individual disks as resources to move across regions. However, disks are moved as part of a VM move.
+- You can migrate encrypted Virtual Machines but needs manual intervention to copy the keys
+- You can move resources to another subscription AFTER moving resources to the destination region.
+- You cannot move peered Virtual Networks across subscriptions, you need to remove the peering first, then re-add it back in the destination region.
+- Make sure your quota and required services have been registered and increased for the additional region
+- Azure Resource Mover can be used to migrate Azure Virtual Desktop session hosts across regions.
+- DNS records can be key to reducing the complexity and interruption to end users as part of your migration.
+- There are PowerShell cmdlets _(i.e., New-AzResourceMoverMoveCollection)_
 
 ### Additional Resources
 
 To learn more about Azure Resource Mover, visit the Azure Resource Mover page.
 
-* [azure.microsoft.com/services/resource-mover](https://azure.microsoft.com/en-us/services/resource-mover/?WT.mc_id=AZ-MVP-5004796)
+- [azure.microsoft.com/services/resource-mover](https://azure.microsoft.com/en-us/services/resource-mover/?WT.mc_id=AZ-MVP-5004796)
 
 Azure Resource Mover videos:
 
-* [Microsoft Azure Resource Region 2 Region Migration - Luke Murray](https://www.youtube.com/watch?v=Wd1Egke6ESs)
-* [Azure Unblogged - Azure Resource Mover](https://techcommunity.microsoft.com/t5/itops-talk-blog/azure-unblogged-azure-resource-mover/ba-p/2050036?WT.mc_id=AZ-MVP-5004796)
-* [Azure Friday Video](https://twitter.com/azurefriday/status/1388863346255015943?s=20)
-* [Azure Resource Mover - Move resources between regions, subscriptions and resource groups -John Savill](https://www.youtube.com/watch?v=6FslxGE9YJM)
+- [Microsoft Azure Resource Region 2 Region Migration - Luke Murray](https://www.youtube.com/watch?v=Wd1Egke6ESs)
+- [Azure Unblogged - Azure Resource Mover](https://techcommunity.microsoft.com/t5/itops-talk-blog/azure-unblogged-azure-resource-mover/ba-p/2050036?WT.mc_id=AZ-MVP-5004796)
+- [Azure Friday Video](https://twitter.com/azurefriday/status/1388863346255015943?s=20)
+- [Azure Resource Mover - Move resources between regions, subscriptions and resource groups -John Savill](https://www.youtube.com/watch?v=6FslxGE9YJM)
