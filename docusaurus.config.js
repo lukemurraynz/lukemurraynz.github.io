@@ -282,12 +282,12 @@ const config = {
         items: [
           {
             label: "Tags",
-            href: "/tags",
+            href: "/tags/",
             position: "left",
           },
           {
             label: "Blog",
-            href: "/archive",
+            href: "/archive/",
             position: "left",
           },
           {

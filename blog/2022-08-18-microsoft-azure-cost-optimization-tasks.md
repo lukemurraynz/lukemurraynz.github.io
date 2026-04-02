@@ -1,5 +1,5 @@
 ---
-date: '2022-08-18 00:00:00 +1200'
+date: "2022-08-18 00:00:00 +1200"
 title: Microsoft Azure - Operational Cost Optimization Tasks
 description: "The Microsoft Azure id=AZ-MVP-5004796 \\\"Microsoft Azure\\\" platform is not a set-and-forget ecosystem like doing s..."
 authors: [Luke]
@@ -8,8 +8,8 @@ tags:
 toc: true
 header:
   teaser: /uploads/cost_pillar_overview.png
-
 ---
+
 The [Microsoft Azure](https://azure.microsoft.com/en-us/?WT.mc_id=AZ-MVP-5004796 "Microsoft Azure") platform is not a set-and-forget ecosystem like doing service on your car!
 
 There are no one-size-fits when it comes to cost optimization, but some general tasks can be done or considered on a Monthly/Quarterly/Annual basis to keep on top of the resources you are running in Azure and to keep them lean.
@@ -32,7 +32,7 @@ To help get you started, I have put together a list of some optimization opportu
 >
 > If you have other tasks that you run, feel free to share them with the community in the page comments below.
 
-The [Microsoft Graph](https://learn.microsoft.com/en-us/graph/overview?WT.mc_id=AZ-MVP-5004796 "Overview of Microsoft Graph") and [KQL queries](https://luke.geek.nz/azure-resource-graph-explorer-and-the-powershell-azure-resource-graph "Azure Resource Graph Explorer and the PowerShell Azure Resource Graph ") can also be used in conjunction with PowerShell to pull recommendations straight out of Advisor, which can then be fed into reports, and the use of community tools such as the [Azure Optimization Engine](https://luke.geek.nz/azure/azure-optimization-engine "Azure Optimization Engine ") cannot be undervalued.
+The [Microsoft Graph](https://learn.microsoft.com/en-us/graph/overview?WT.mc_id=AZ-MVP-5004796 "Overview of Microsoft Graph") and [KQL queries](https://luke.geek.nz/azure-resource-graph-explorer-and-the-powershell-azure-resource-graph "Azure Resource Graph Explorer and the PowerShell Azure Resource Graph ") can also be used in conjunction with PowerShell to pull recommendations straight out of Advisor, which can then be fed into reports, and the use of community tools such as the [Azure Optimization Engine](https://luke.geek.nz/azure/azure-optimization-engine/ "Azure Optimization Engine ") cannot be undervalued.
 
 #### Design
 
@@ -154,9 +154,9 @@ Examples of budgets that could be configured:
 
 Generally, I recommend that three budgets should be configured to give enough notice:
 
-* 50%
-* 60%
-* 70%
+- 50%
+- 60%
+- 70%
 
 #### Review Tags
 
@@ -164,20 +164,20 @@ You apply tags to your Azure resources, resource groups, and subscriptions to lo
 
 Tags can be used to determine things like:
 
-* Who to bill?
-* Who supports it?
+- Who to bill?
+- Who supports it?
 
 ![Azure Portal - Tags](/uploads/operrationaltasksazuretags.png "Azure Portal - Tags")
 
 The right tags can mean that the right owners get charged internally and have more ownership of their resource costs. Examples below:
 
-| Tag Name | Value | Comment |
-| --- | --- | --- |
-| Dept | Finance | Name of the department who owns the resources. |
-| Environment | UAT | What environment the Resource is used for such as Production, UAT and Development |
-| Application Owner | Luke Murray | The name of the Product Owner for the service sitting inside the Resource Group |
-| Support Team | Platform Team | What team is responsible for the resources/site for support reasons |
-| Billing Code | Operational | Purchase order or project billing code |
+| Tag Name          | Value         | Comment                                                                           |
+| ----------------- | ------------- | --------------------------------------------------------------------------------- |
+| Dept              | Finance       | Name of the department who owns the resources.                                    |
+| Environment       | UAT           | What environment the Resource is used for such as Production, UAT and Development |
+| Application Owner | Luke Murray   | The name of the Product Owner for the service sitting inside the Resource Group   |
+| Support Team      | Platform Team | What team is responsible for the resources/site for support reasons               |
+| Billing Code      | Operational   | Purchase order or project billing code                                            |
 
 For further examples and a base tagging convention, check out a blog article I wrote on [Microsoft Azure Tagging conventions](https://luke.geek.nz/azure/microsoft-azure-tagging-conventions/ "Microsoft Azure Tagging Conventions ").
 
@@ -218,6 +218,7 @@ Backup:
 3. **Sort** the **Backup** items by **Latest Restore Point** _(so the older restore points are at the top)_
 
    Using the Latest Restore Point as a guide, IF any servers can have their Backups deleted:
+
 4. Click on the **Name** of the Backup Item
 5. Click on **Stop Backup**
 6. Select **Delete Backup Data** _(this is non-reversible)_
@@ -249,8 +250,8 @@ An Azure storage account contains all your Azure Storage data objects: blobs, fi
 
 General-purpose storage accounts may be configured for either of the following performance tiers:
 
-* A standard performance tier for storing blobs, files, tables, queues, and Azure virtual machine disks.
-* A premium performance tier for storing unmanaged virtual machine disks. If a Storage account is Premium but only needs to be Standard _(or LRS instead of ZRS)_, this can save some money.
+- A standard performance tier for storing blobs, files, tables, queues, and Azure virtual machine disks.
+- A premium performance tier for storing unmanaged virtual machine disks. If a Storage account is Premium but only needs to be Standard _(or LRS instead of ZRS)_, this can save some money.
 
 Note: In some cases, the Product Owner may need to be consulted before any changes are made, as some of the resources may be inflight projects or required.
 
@@ -270,18 +271,18 @@ Finally, if you prefer this in a more PDF/Visual format - you can download a PDF
 
 This is a very quick example of what an Azure Operational Checklist could look like; if you record what tasks you do, you can look at further automation around implementation and reporting.
 
-| **Azure Checklist**                 | ****   | **** | ****             |
-|-------------------------------------|--------|------|------------------|
+| **Azure Checklist**                 | \*\*\*\*   | \*\*\*\* | \*\*\*\*             |
+| ----------------------------------- | ---------- | -------- | -------------------- |
 | **Action**                          | **Status** | **Date** | **Note/Opportunity** |
-| **Review Azure App Service Plans**  |        |      |                  |
-| **Review shutdown workloads**       |        |      |                  |
-| **Review Azure Advisor**            |        |      |                  |
-| **Review Azure SQL Databases**      |        |      |                  |
-| **Review Azure Reserved Instances** |        |      |                  |
-| **Review unused files and VHDs**    |        |      |                  |
-| **Review budgets**                  |        |      |                  |
-| **Review Tags**                     |        |      |                  |
-| **Review Hub (Hybrid Use Benefit)** |        |      |                  |
-| **Review Backups**                  |        |      |                  |
-| **Review unused Public IPs**        |        |      |                  |
-| **Review Azure Storage Accounts**   |        |      |                  |
+| **Review Azure App Service Plans**  |            |          |                      |
+| **Review shutdown workloads**       |            |          |                      |
+| **Review Azure Advisor**            |            |          |                      |
+| **Review Azure SQL Databases**      |            |          |                      |
+| **Review Azure Reserved Instances** |            |          |                      |
+| **Review unused files and VHDs**    |            |          |                      |
+| **Review budgets**                  |            |          |                      |
+| **Review Tags**                     |            |          |                      |
+| **Review Hub (Hybrid Use Benefit)** |            |          |                      |
+| **Review Backups**                  |            |          |                      |
+| **Review unused Public IPs**        |            |          |                      |
+| **Review Azure Storage Accounts**   |            |          |                      |
