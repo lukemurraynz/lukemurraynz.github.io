@@ -27,7 +27,7 @@
 <meta name="author" content="Luke Murray">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.006b1450.css">
-<script src="/assets/js/runtime~main.14b885c3.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a3716926.js" defer="defer"></script>
 <script src="/assets/js/main.2a1ff694.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -357,110 +357,6 @@ Standard vCPU quotas apply to pay-as-you-go VMs and reserved VM instances. They 
 <p>Once the VPN has been re-established your Custom DNS settings and suffxies should take effect.
 If you included the <alwayson> this will reconnect automatically, after your first connection and after computer reboots.</alwayson></p>
 <p>If you need assistance setting up a Point to Site VPN, check out my article here: <a href="https://luke.geek.nz/azure/create-azure-point-to-site-vpn-using-azure-active-directory-authentication/" target="_blank" rel="noopener noreferrer" class="">Create Azure Point to Site VPN using Microsoft Entra ID authentication </a></p></div><footer class="row docusaurus-mt-lg"><div class="col"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a rel="tag" class="tag_zVej tagRegular_sFm0" href="/tags/azure/">Azure</a></li></ul></div></footer></article><article class="margin-bottom--xl"><header><h2 class="title_f1Hy"><a href="/azure/migrating-resources-between-regions-using-azure-resource-mover/">Migrating resources between regions using Azure Resource Mover</a></h2><div class="container_mt6G margin-vert--md"><time datetime="2022-07-06T00:00:00.000Z">July 6, 2022</time> · <!-- -->7 min read</div><div class="margin-top--md margin-bottom--sm row"><div class="col col--12 authorCol_Hf19"><div class="avatar margin-bottom--sm"><a href="https://luke.geek.nz" target="_blank" rel="noopener noreferrer" class="avatar__photo-link"><img class="avatar__photo authorImage_XqGP" src="https://luke.geek.nz/img/logo.png" alt="Luke Murray"></a><div class="avatar__intro authorDetails_lV9A"><div class="avatar__name"><a href="https://luke.geek.nz" target="_blank" rel="noopener noreferrer"><span class="authorName_yefp" translate="no">Luke Murray</span></a></div><small class="authorTitle_nd0D" title="Author">Author</small><div class="authorSocials_rSDt"></div></div></div></div></div></header><div class="markdown"><p>With over 70+ Microsoft Azure <a href="https://azure.microsoft.com/en-us/global-infrastructure/geographies/?WT.mc_id=AZ-MVP-5004796#overview" target="_blank" rel="noopener noreferrer" title=" Azure geographies" class="">regions</a> across the globe and new regions popping up all the time <em>(for example new New Zealand North region coming in 2023)</em>!</p>
-<p>Migrating resources between regions is something that you may want to consider. Let&#x27;s look at migrating workloads between them, by using <a href="https://learn.microsoft.com/en-us/azure/resource-mover/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title="What is Azure Resource Mover?" class="">Azure Resource Mover</a>.</p>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h3>
-<p><img decoding="async" loading="lazy" alt="Azure Resource Mover" src="/assets/images/azureresourcemover_header-97b9aecb069d2845026cd65d001e0456.png" title="Keep calm and migrate it in Azure" width="972" height="431" class="img_ev3q"></p>
-<p>Azure Resource Mover helps you to move Azure resources between Azure regions, offering a single pane of glass to migrate different resource types, such as Virtual Machines or Azure SQL databases from a single portal without having to know how to migrate the individual underlying resources, or trying to work out the dependencies for each resource.</p>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-would-you-migrate-resources-between-regions">Why would you migrate resources between Regions?<a href="#why-would-you-migrate-resources-between-regions" class="hash-link" aria-label="Direct link to Why would you migrate resources between Regions?" title="Direct link to Why would you migrate resources between Regions?" translate="no">​</a></h4>
-<p>Let’s start with why would you migrate resources between regions? Common scenarios include:</p>
-<ul>
-<li class="">Taking advantage of new Azure region expansions to be closer to customers and reduce latency <em>(such as migrating from Australia East to New Zealand North)</em>.</li>
-<li class="">Increasing availability and resilience by moving to Azure Availability Zones, from regions that don’t currently support it.</li>
-<li class="">Meeting data residential and compliance requirements.</li>
-<li class="">Consolidating workloads for mergers and acquisitions.</li>
-<li class="">The cost of resources in one region may also be cheaper than in another.</li>
-</ul>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="so-what-are-the-risks-of-migrating-resources">So, what are the risks of migrating resources?<a href="#so-what-are-the-risks-of-migrating-resources" class="hash-link" aria-label="Direct link to So, what are the risks of migrating resources?" title="Direct link to So, what are the risks of migrating resources?" translate="no">​</a></h4>
-<p>Whatever your reason, moving your applications from Point A to Point B is often no easy task. Here are common reasons why:</p>
-<ul>
-<li class="">Moving resources can pose a risk of an outage.</li>
-<li class="">Workloads are often made up of multiple services, each requiring its own method and tools to move.</li>
-<li class="">Interdependencies are often not understood.</li>
-<li class="">Testing and rollback of these complex scenarios can be daunting.</li>
-</ul>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="so-what-are-the-benefits-of-using-azure-resource-mover">So, what are the benefits of using Azure Resource Mover?<a href="#so-what-are-the-benefits-of-using-azure-resource-mover" class="hash-link" aria-label="Direct link to So, what are the benefits of using Azure Resource Mover?" title="Direct link to So, what are the benefits of using Azure Resource Mover?" translate="no">​</a></h4>
-<p>So, what are some of the benefits that Azure Resource Mover offers us?</p>
-<ul>
-<li class="">The ability to plan with ease, reducing the time and complexity of your move.</li>
-<li class="">Streamline your move process by identifying dependencies.</li>
-<li class="">Plan and test your move multiple times.</li>
-<li class="">Stage your move as part of scheduled downtime.</li>
-<li class="">Azure Resource Mover helps you orchestrate seamlessly with a consistent experience across common Azure resources​:</li>
-<li class="">Move multiple resources through a single pane of glass.</li>
-<li class="">Reduce manual touchpoints, which could increase the change of services being missed.</li>
-<li class="">Reduce overall time for your move from months to weeks or days* (based on the service and data being consumed).</li>
-<li class="">Azure Resource Mover helps you move with confidence by planning, testing, and moving related resources together and validating and testing your move before final commitment <em>(by testing your migrated services, while having the peace of mind that your source resources are left intact until you commit to the migration)</em>.</li>
-</ul>
-<blockquote>
-<p>So to recap, Azure Resource Mover offers you a unified experience to move multiple resource types across regions while validating dependencies between services and giving you the flexibility to adjust resources such as the Names, SKUs and Availability Zones during the migration to the destination region.</p>
-</blockquote>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-can-azure-resource-mover-move">What can Azure Resource Mover move?<a href="#what-can-azure-resource-mover-move" class="hash-link" aria-label="Direct link to What can Azure Resource Mover move?" title="Direct link to What can Azure Resource Mover move?" translate="no">​</a></h4>
-<p>The currently supported resources <em>(as of July 2022)</em> are:</p>
-<ul>
-<li class="">Azure Virtual Machines</li>
-<li class="">Azure SQL Database</li>
-<li class="">Azure Virtual Network</li>
-<li class="">SQL elastic pools</li>
-<li class="">Azure Load balancer</li>
-<li class="">Public IP</li>
-<li class="">Resource group</li>
-<li class="">Network security group</li>
-<li class="">Network interfaces</li>
-<li class="">Azure Availability Sets</li>
-</ul>
-<p>And Azure Storage account region replication support is scheduled in the next 6-9 months to be released so the storage account migration should be ready by the time the NZ North comes live.</p>
-<p>An updated list of Resources currently supported by Azure Resource Mover can be found here: <a href="https://learn.microsoft.com/en-us/azure/resource-mover/common-questions?WT.mc_id=AZ-MVP-5004796#what-resources-can-i-move-across-regions-using-resource-mover" target="_blank" rel="noopener noreferrer" title="https://learn.microsoft.com/en-us/azure/resource-mover/common-questions?WT.mc_id=AZ-MVP-5004796#what-resources-can-i-move-across-regions-using-resource-mover" class="">What resources can I move across regions using Resource Mover?</a></p>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="azure-resource-mover---the-6-step-process">Azure Resource Mover - The 6-Step Process!<a href="#azure-resource-mover---the-6-step-process" class="hash-link" aria-label="Direct link to Azure Resource Mover - The 6-Step Process!" title="Direct link to Azure Resource Mover - The 6-Step Process!" translate="no">​</a></h4>
-<p><img decoding="async" loading="lazy" alt="Azure Resource Mover - 6 Step Process" src="/assets/images/azure-resource-mover-6-step-process-f8e393e73034dc4555dbea1733a8778f.png" title="Azure Resource Mover - 6 Step Process" width="2268" height="945" class="img_ev3q"></p>
-<p>Azure Resource Mover uses a 6-step process.</p>
-<ol>
-<li class="">The first step is to <strong>select</strong> the <strong>resources</strong> you´d like to transfer! <em>A tip is to just pick the Virtual Machine object if you are migrating Virtual Machines, the dependencies will be identified by the Azure Resource Mover service itself!</em></li>
-<li class="">The <strong>dependency check</strong> will be performed, identifying that you need to move other resources along with your virtual machine <em>(Resource Group, NIC, Managed Disks etc.)</em></li>
-<li class="">Start the <strong>preparation</strong>. This step initiates the preparation while creating a resource group with a dedicated Storage Account and a Recovery Services Vault to perform the move. The prepare step also creates the underlying ARM template deployments for the destination region.</li>
-<li class=""><strong>Move</strong> initiation starts the process of transferring the resources to the target region. Certain dependencies should be &#x27;committed&#x27; before preparation can be initiated, on other resources. If your resource is stateless such as a Network interface, a new ARM deployment will occur, but if your machine is stateful such as a Virtual Machine, Azure Site Recovery will start to copy the disk of your source machine to the target region.<br>
-<strong>ATTENTION! Resources might be temporarily not available – perform these steps out of business hours</strong></li>
-<li class=""><strong>Commit</strong> your move or discard the move! Depending on if you want to complete the move process you can decide whether you want to keep or remove the replicated resources in the destination region.</li>
-<li class=""><strong>Delete</strong> the <strong>source</strong> is the cleanup step required to remove the source resources from the region you have transferred from to finish your migration.</li>
-</ol>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="lets-see-azure-resource-mover-in-action">Let&#x27;s see Azure Resource Mover in action<a href="#lets-see-azure-resource-mover-in-action" class="hash-link" aria-label="Direct link to Let&#x27;s see Azure Resource Mover in action" title="Direct link to Let&#x27;s see Azure Resource Mover in action" translate="no">​</a></h3>
-<p><img decoding="async" loading="lazy" alt="Azure Resource Mover - In Action" src="/assets/images/azure-resource-mover-arm-in-action-34effe8b741e6126e86cc2a7c00c4e45.png" title="Azure Resource Mover - In Action" width="2268" height="945" class="img_ev3q"></p>
-<p>So enough talking, let us see Azure Resource Mover in action?</p>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="demo">Demo<a href="#demo" class="hash-link" aria-label="Direct link to Demo" title="Direct link to Demo" translate="no">​</a></h4>
-<p>For our demo, we are going to migrate from Australia East to West US3.</p>
-<blockquote>
-<p>Make sure you review your <a href="https://learn.microsoft.com/en-us/azure/networking/check-usage-against-limits?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title="Check resource usage against limits" class="">quota and subscription limits</a>, for the other region before you look to migrate them.</p>
-</blockquote>
-<p><img decoding="async" loading="lazy" alt="Azure Regions  - Australia East to West US3" src="/assets/images/azure-resource-mover-australia-to-westus3-b29581637a9b8c7d7f7a3331e93d2477.png" title="Azure Regions  - Australia East to West US3" width="2268" height="945" class="img_ev3q"></p>
-<p>So what resources are we going to migrate?</p>
-<ul>
-<li class="">Virtual Network</li>
-<li class="">Azure SQL Database</li>
-<li class="">Azure Virtual Machine &amp; associated dependencies <em>(Resource Groups, Network Interfaces, Managed Disks).</em></li>
-</ul>
-<p><em>Note: There is no Audio in the demo video below, but it will guide you through Azure Resource Mover and some of the options.</em></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Y7szAjZu2yc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="some-items-to-note">Some items to note<a href="#some-items-to-note" class="hash-link" aria-label="Direct link to Some items to note" title="Direct link to Some items to note" translate="no">​</a></h4>
-<ul>
-<li class="">You can&#x27;t select individual disks as resources to move across regions. However, disks are moved as part of a VM move.</li>
-<li class="">You can migrate encrypted Virtual Machines but needs manual intervention to copy the keys</li>
-<li class="">You can move resources to another subscription AFTER moving resources to the destination region.</li>
-<li class="">You cannot move peered Virtual Networks across subscriptions, you need to remove the peering first, then re-add it back in the destination region.</li>
-<li class="">Make sure your quota and required services have been registered and increased for the additional region</li>
-<li class="">Azure Resource Mover can be used to migrate Azure Virtual Desktop session hosts across regions.</li>
-<li class="">DNS records can be key to reducing the complexity and interruption to end users as part of your migration.</li>
-<li class="">There are PowerShell cmdlets <em>(i.e., New-AzResourceMoverMoveCollection)</em></li>
-</ul>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="additional-resources">Additional Resources<a href="#additional-resources" class="hash-link" aria-label="Direct link to Additional Resources" title="Direct link to Additional Resources" translate="no">​</a></h3>
-<p>To learn more about Azure Resource Mover, visit the Azure Resource Mover page.</p>
-<ul>
-<li class=""><a href="https://azure.microsoft.com/en-us/services/resource-mover/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">azure.microsoft.com/services/resource-mover</a></li>
-</ul>
-<p>Azure Resource Mover videos:</p>
-<ul>
-<li class=""><a href="https://www.youtube.com/watch?v=Wd1Egke6ESs" target="_blank" rel="noopener noreferrer" class="">Microsoft Azure Resource Region 2 Region Migration - Luke Murray</a></li>
-<li class=""><a href="https://techcommunity.microsoft.com/t5/itops-talk-blog/azure-unblogged-azure-resource-mover/ba-p/2050036?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Unblogged - Azure Resource Mover</a></li>
-<li class=""><a href="https://twitter.com/azurefriday/status/1388863346255015943?s=20" target="_blank" rel="noopener noreferrer" class="">Azure Friday Video</a></li>
-<li class=""><a href="https://www.youtube.com/watch?v=6FslxGE9YJM" target="_blank" rel="noopener noreferrer" class="">Azure Resource Mover - Move resources between regions, subscriptions and resource groups -John Savill</a></li>
-</ul></div><footer class="row docusaurus-mt-lg"><div class="col"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a rel="tag" class="tag_zVej tagRegular_sFm0" href="/tags/azure/">Azure</a></li></ul></div></footer></article><nav class="pagination-nav" aria-label="Blog list page navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/tags/azure/page/27/"><div class="pagination-nav__label">Newer entries</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/tags/azure/page/29/"><div class="pagination-nav__label">Older entries</div></a></nav></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Site</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/about/">About</a></li><li class="footer__item"><a class="footer__link-item" href="/privacy-cookies/">Privacy &amp; Cookies</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 luke.geek.nz. Powered by coffee, clouds and hamsters on wheels!</div></div></div></footer></div>
+<p>Migrating resources between regions is something that you may want to consider. Let&#x27;s look at migrating workloads between them, by using <a href="https://learn.microsoft.com/en-us/azure/resource-mover/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" title="What is Azure Resource Mover?" class="">Azure Resource Mover</a>.</p></div><footer class="row docusaurus-mt-lg"><div class="col col--9"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a rel="tag" class="tag_zVej tagRegular_sFm0" href="/tags/azure/">Azure</a></li></ul></div><div class="col text--right col--3"><a aria-label="Read more about Migrating resources between regions using Azure Resource Mover" href="/azure/migrating-resources-between-regions-using-azure-resource-mover/"><b>Read more</b></a></div></footer></article><nav class="pagination-nav" aria-label="Blog list page navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/tags/azure/page/27/"><div class="pagination-nav__label">Newer entries</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/tags/azure/page/29/"><div class="pagination-nav__label">Older entries</div></a></nav></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Site</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/about/">About</a></li><li class="footer__item"><a class="footer__link-item" href="/privacy-cookies/">Privacy &amp; Cookies</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 luke.geek.nz. Powered by coffee, clouds and hamsters on wheels!</div></div></div></footer></div>
 </body>
 </html>
