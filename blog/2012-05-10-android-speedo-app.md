@@ -1,7 +1,7 @@
 ---
 title: Speedometer for your Android Mobile
 description: "Need a Speedometer with Acceleration and GPS info? The Sub Speedo app by AutoRad Industries is what you are after. This is how you can acquire this litt..."
-permalink: /mob/android-speedo-app/
+slug: mob/android-speedo-app
 tags:
   - Mobile
 ---

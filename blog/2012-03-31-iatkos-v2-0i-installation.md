@@ -1,7 +1,7 @@
 ---
 title: iATKOS v2.0i Installation
 description: "Credits goes to Apple and OSX86 community. This is just the instructions for the install."
-permalink: /osx/iatkos-v2-0i-installation/
+slug: osx/iatkos-v2-0i-installation
 tags:
   - Mac OSX
 ---

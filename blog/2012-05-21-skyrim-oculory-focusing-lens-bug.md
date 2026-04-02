@@ -2,7 +2,7 @@
 title: Skyrim Oculory Focusing Lens Bug
 description: "People have reported that using close range Fire and Ice spells while standing in the middle of the Oculory."
 layout: post
-permalink: /misc/skyrim-oculory-focusing-lens-bug/
+slug: misc/skyrim-oculory-focusing-lens-bug
 tags:
   - Misc
   - Windows

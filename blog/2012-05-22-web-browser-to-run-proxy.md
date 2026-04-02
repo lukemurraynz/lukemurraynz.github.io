@@ -2,7 +2,7 @@
 title: How to setup your web browser to run through a proxy
 description: "Click Manual Proxy Configuration"
 layout: post
-permalink: /osx/web-browser-to-run-proxy/
+slug: osx/web-browser-to-run-proxy
 tags:
   - Mac OSX
   - Misc

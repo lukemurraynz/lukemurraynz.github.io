@@ -2,7 +2,7 @@
 title: HP Pavilion Slimline Ram/HDD Replacement
 description: "Remove the casing by removing 3 screws, then slide off the side panel ."
 layout: post
-permalink: /misc/hp-pavilion-slimline-ramhdd-replacement/
+slug: misc/hp-pavilion-slimline-ramhdd-replacement
 tags:
   - Misc
 ---

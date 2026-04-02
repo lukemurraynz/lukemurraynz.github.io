@@ -2,7 +2,7 @@
 title: How to install Appsync on a Jailbroken iOS Device
 description: "Now enter the source:"
 layout: post
-permalink: /mob/appsync-on-a-jailbroken-ios-device/
+slug: mob/appsync-on-a-jailbroken-ios-device
 tags:
   - Mobile
 ---

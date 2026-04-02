@@ -1,7 +1,7 @@
 ---
 title: An error occurred while using SSL configuration for socket address Error
 description: "\\\\\"An error occurred while using SSL configuration for socket address %2. The error status code is contained within the returned data.\\\\\""
-permalink: /win/sslsocket/
+slug: win/sslsocket
 tags:
   - Windows
 ---

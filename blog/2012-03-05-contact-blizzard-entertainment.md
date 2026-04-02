@@ -1,7 +1,7 @@
 ---
 title: How to Contact Blizzard Entertainment
 description: "Live Representatives Available Mon-Fri, 8am to 8pm PST"
-permalink: /misc/contact-blizzard-entertainment/
+slug: misc/contact-blizzard-entertainment
 tags:
   - Misc
 ---

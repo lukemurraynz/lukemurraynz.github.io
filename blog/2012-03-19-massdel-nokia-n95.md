@@ -1,7 +1,7 @@
 ---
 title: How to Mass Delete Text Messages on Nokia n95
 description: "Press \\\" C \\\" or Options, then Delete"
-permalink: /mob/massdel-nokia-n95/
+slug: mob/massdel-nokia-n95
 tags:
   - Mobile
 ---

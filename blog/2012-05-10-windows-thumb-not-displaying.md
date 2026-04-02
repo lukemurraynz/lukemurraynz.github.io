@@ -1,7 +1,7 @@
 ---
 title: Windows Thumbnails not Displaying
 description: "Learn about windows thumbnails not displaying. Step-by-step guide and solutions."
-permalink: /win/windows-thumb-not-displaying/
+slug: win/windows-thumb-not-displaying
 tags:
   - Windows
 ---

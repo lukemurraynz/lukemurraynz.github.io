@@ -1,5 +1,5 @@
 ---
-date: '2021-04-17 00:00:00 +1200'
+date: "2021-04-17 00:00:00 +1200"
 title: Azure DevOps and creating your Cloud Adoption Framework
 description: "Learn how to create a comprehensive Cloud Adoption Framework using Azure DevOps Demo Generator. Get started with Azure migration planning, governance, a..."
 metaDescription: Discover how to use Azure DevOps Demo Generator to create pre-populated Cloud Adoption Framework projects for Azure migration, governance, and Virtual Desktop planning.
@@ -24,7 +24,7 @@ Do you want to make a start on Azure Adoption and Governance, Server Migration o
 
 If you want to create a framework for your cloud adoption or migration plans, you can look at... using [Azure DevOps Demo Generator](https://azuredevopsdemogenerator.azurewebsites.net/ "Azure DevOps Generator")…
 
-Azure DevOps is not only a continuous integration and deployment tool, along with the Repos, Pipelines, Test plans and Artifacts – there is Azure Boards, with Boards you can plan and track your work items and use the Kanban board functionality to easy update or track your work in progress items and add to the backlog, although Agile squads and sprint planning organizations primarily use Azure Boards – it does not have to be. 
+Azure DevOps is not only a continuous integration and deployment tool, along with the Repos, Pipelines, Test plans and Artifacts – there is Azure Boards, with Boards you can plan and track your work items and use the Kanban board functionality to easy update or track your work in progress items and add to the backlog, although Agile squads and sprint planning organizations primarily use Azure Boards – it does not have to be.
 
 The Azure DevOps Board’s come with your MSDN license or free under the Basic plan for the first 5 users.
 
@@ -38,21 +38,21 @@ The ones we are going to concentrate on is the: Cloud Adoption Framework project
 
 ![Azure DevOps Generator - Choose a template](/uploads/AzureDevOpsCloudAdoptionTemplates.png "Azure DevOps Generator - Choose a template")
 
-The following projects are available under the Cloud Adoption Framework heading to help you on your journey *(as of the date this article was published)*:
+The following projects are available under the Cloud Adoption Framework heading to help you on your journey _(as of the date this article was published)_:
 
-| Project | Description |
-| --- | --- |
-| Cloud Adoption Plan | The Cloud Adoption Plan template creates a backlog for managing cloud adoption efforts based on the guidance in the Microsoft Cloud Adoption Framework. |
-| CAF Strategy-Plan-Ready-Gov | In this checklist we share all the decision points needed to successfully build a Cloud Adoption Plan as well as the Landing Zone with Governance |
-| ServerMigration_CAF_DevOps_ProjectTaskList | Server migration has many different activities. In the Azure DevOps Project we will provide the steps necessary to go from zero to a complete Server migration and management. |
-| AKS_CAF_DevOps_Project_TaskList | AKS deployment has many different activities. In the Azure DevOps Project we will provide the steps necessary to go from zero to a complete AKS deployment and management. |
-| SQL Migration | SQL migration has many different activities. In the Azure DevOps Project we will provide the steps necessary to go from zero to a complete SQL migration and management. |
-| Windows Virtual Desktop | Project work plan templates in Azure DevOps that provide the steps necessary to go from zero to a complete WVD deployment with ongoing management |
-| Knowledge Mining | Knowledge project simplifies the process of accessing the latent insights contained within structured and unstructured data. Use this project to help you address all the steps. |
-| Azure Governance Readiness | The standalone Azure governance project provides guidance and tools on how to ensure that your Azure environment is governed in the correct way. |
-| Modern Data Warehouse | Build your modern data warehouse using this ADO checklist of items, in this checklist we have links to assets, code and learning material. |
-| Retail Recommender with Azure Synapse | This Solution Accelerator is an end-to-end example on how to enable personalized customer experiences for retail scenarios by leveraging Azure Synapse Analytics, Azure Machine Learning Services, and other Azure Big Data services. |
-| Modern IOT | Connected sensors, devices, and intelligent operations can transform businesses and enable new growth opportunities. In this project you will get the work items needed to plan and implement your IOT solution using the Azure IoT Platform. |
+| Project                                    | Description                                                                                                                                                                                                                                   |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Cloud Adoption Plan                        | The Cloud Adoption Plan template creates a backlog for managing cloud adoption efforts based on the guidance in the Microsoft Cloud Adoption Framework.                                                                                       |
+| CAF Strategy-Plan-Ready-Gov                | In this checklist we share all the decision points needed to successfully build a Cloud Adoption Plan as well as the Landing Zone with Governance                                                                                             |
+| ServerMigration_CAF_DevOps_ProjectTaskList | Server migration has many different activities. In the Azure DevOps Project we will provide the steps necessary to go from zero to a complete Server migration and management.                                                                |
+| AKS_CAF_DevOps_Project_TaskList            | AKS deployment has many different activities. In the Azure DevOps Project we will provide the steps necessary to go from zero to a complete AKS deployment and management.                                                                    |
+| SQL Migration                              | SQL migration has many different activities. In the Azure DevOps Project we will provide the steps necessary to go from zero to a complete SQL migration and management.                                                                      |
+| Windows Virtual Desktop                    | Project work plan templates in Azure DevOps that provide the steps necessary to go from zero to a complete WVD deployment with ongoing management                                                                                             |
+| Knowledge Mining                           | Knowledge project simplifies the process of accessing the latent insights contained within structured and unstructured data. Use this project to help you address all the steps.                                                              |
+| Azure Governance Readiness                 | The standalone Azure governance project provides guidance and tools on how to ensure that your Azure environment is governed in the correct way.                                                                                              |
+| Modern Data Warehouse                      | Build your modern data warehouse using this ADO checklist of items, in this checklist we have links to assets, code and learning material.                                                                                                    |
+| Retail Recommender with Azure Synapse      | This Solution Accelerator is an end-to-end example on how to enable personalized customer experiences for retail scenarios by leveraging Azure Synapse Analytics, Azure Machine Learning Services, and other Azure Big Data services.         |
+| Modern IOT                                 | Connected sensors, devices, and intelligent operations can transform businesses and enable new growth opportunities. In this project you will get the work items needed to plan and implement your IOT solution using the Azure IoT Platform. |
 
 Once the project has been created, you can go into Azure Board and click on: Work Items.
 
@@ -74,7 +74,7 @@ These are guidelines, and they do not need to be followed to the letter; however
 
 I have extracted the following work items from the projects as CSV, in case you prefer to start with excel or want to take a look at the epics, features and tasks that come with these projects:
 
-* [CAF Strategy-Plan-Ready-Gov Team - Epics](https://luke.geek.nz/uploads/files/AzureDevOpsDemoGenerator/CAF Strategy-Plan-Ready-Gov Team - Epics.csv "CAF Strategy-Plan-Ready-Gov Team - Epics")
-* [Windows Virtual Desktop Guidance](https://luke.geek.nz/uploads/files/AzureDevOpsDemoGenerator/WVD_Guidance.csv "Windows Virtual Desktop Guidance")
-* [Cloud Adoption](https://luke.geek.nz/uploads/files/AzureDevOpsDemoGenerator/CloudAdoption.csv "Cloud Adoption")
-* [SQL Migration](https://luke.geek.nz/uploads/files/AzureDevOpsDemoGenerator/SQLMigration.csv "SQL Migration")
+- [CAF Strategy-Plan-Ready-Gov Team - Epics](https://luke.geek.nz/uploads/files/AzureDevOpsDemoGenerator/CAF%20Strategy-Plan-Ready-Gov%20Team%20-%20Epics.csv "CAF Strategy-Plan-Ready-Gov Team - Epics")
+- [Windows Virtual Desktop Guidance](https://luke.geek.nz/uploads/files/AzureDevOpsDemoGenerator/WVD_Guidance.csv "Windows Virtual Desktop Guidance")
+- [Cloud Adoption](https://luke.geek.nz/uploads/files/AzureDevOpsDemoGenerator/CloudAdoption.csv "Cloud Adoption")
+- [SQL Migration](https://luke.geek.nz/uploads/files/AzureDevOpsDemoGenerator/SQLMigration.csv "SQL Migration")

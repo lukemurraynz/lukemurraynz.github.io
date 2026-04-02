@@ -3,23 +3,25 @@ title: Keep up to date with Azure changes using PowerShell
 description: "Keeping up with what is happening with changes and previews in Microsoft Azure is difficult, change happens all the time - and being able to stay inform..."
 authors: [Luke]
 tags:
-    - Misc
-    - PowerShell
-    - Azure
+  - Misc
+  - PowerShell
+  - Azure
 date: 2021-04-03 00:00:00 +1300
 toc: true
 header:
-    teaser: "images/powershell-blog-feature-banner.png"
+  teaser: "images/powershell-blog-feature-banner.png"
+slug: keep-up-to-date-with-latest-changes-on-azure-using-powershell
 ---
+
 Keeping up with what is happening with changes and previews in Microsoft Azure is difficult, change happens all the time - and being able to stay informed on what is happening with the Azure ecosystem is half the battle, whether it is a new feature or security fix.
 
 Microsoft publishes the latest updates on Azure Products and features to their Azure Updates blog: [https://azure.microsoft.com/en-us/updates/](https://azure.microsoft.com/en-us/updates/ "https://azure.microsoft.com/en-us/updates/?WT.mc_id=AZ-MVP-5004796")
 
 So you can browse the website each week, or... monitor the RSS feeds. Sometimes this isn't enough, you may want to do something with this information such as:
 
-* Create Alerts or Notifications to specific teams who may work with Azure SQL, or Azure Automation and not care about any other product.
-* Not have to go to the website to keep up-to-date with what is happening, maybe your happy with it popping up in your PowerShell session each time you open it.
-* Publish the information to Microsoft Teams channels to keep people informed.
+- Create Alerts or Notifications to specific teams who may work with Azure SQL, or Azure Automation and not care about any other product.
+- Not have to go to the website to keep up-to-date with what is happening, maybe your happy with it popping up in your PowerShell session each time you open it.
+- Publish the information to Microsoft Teams channels to keep people informed.
 
 I have created a basic PowerShell function, that will retrieve the latest updates from the Microsoft Azure Updates RSS Feed and turn it into a PowerShell object you can actually use to keep informed.
 
@@ -37,10 +39,10 @@ function Get-AzureBlogUpdates {
       Retrieves the latest Updates of Azure, from the Azure Blog RSS feed.
       .NOTES
       Version:        1.0
-      Author:         Luke Murray (Luke.Geek.NZ) 
+      Author:         Luke Murray (Luke.Geek.NZ)
       Website: https://luke.geek.nz/keep-up-to-date-with-latest-changes-on-azure-using-powershell
       Creation Date:  03.04.21
-      Purpose/Change: 
+      Purpose/Change:
       03.04.21 - Intital script development
       .EXAMPLE
       Get-AzureBlogUpdate
@@ -58,10 +60,10 @@ function Get-AzureBlogUpdates {
         $PSObject | Add-Member NoteProperty 'Category'  $y.category
         $PSObject | Add-Member NoteProperty 'Description'  $y.content.InnerText
         $PSObject | Add-Member NoteProperty 'Link'   $y.link
-    
-    
+
+
         $Array += $PSObject
-    } 
+    }
     #Some article had multiple categories, to make it easier for reporting, joined the categories together and got rid of duplicates.
 
     $results = @()

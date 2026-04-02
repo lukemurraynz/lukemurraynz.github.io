@@ -1,7 +1,7 @@
 ---
 title: 'Export &#038; Import Windows XP Theme'
 description: "Save the file to the My Documents folder or folder of your choice"
-permalink: /win/export-import-windows-xp-theme/
+slug: win/export-import-windows-xp-theme
 tags:
   - Windows
 ---

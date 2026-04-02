@@ -2,7 +2,7 @@
 title: How to delete your Last.FM account
 description: "Go to your Last.FM Account Settings"
 layout: post
-permalink: /misc/how-to-del-your-fm-account/
+slug: misc/how-to-del-your-fm-account
 tags:
   - Misc
 ---

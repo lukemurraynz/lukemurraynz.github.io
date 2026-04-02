@@ -2,7 +2,7 @@
 title: Cybera – Unlimited time on client and deactivated on host
 description: "This occurs when the client computer is out-of-sync with the Time/Date that the host computer has setup. In order to fix this problem go to the Client P..."
 layout: post
-permalink: /win/cybera-unlmted-time-on-client-deactivated-on-host/
+slug: win/cybera-unlmted-time-on-client-deactivated-on-host
 tags:
   - Windows
 ---

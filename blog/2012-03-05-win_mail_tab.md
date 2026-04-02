@@ -1,7 +1,7 @@
 ---
 title: Windows Mail Connection Tab Frozen
 description: "This usually happens after deleting or renaming Dial-up accounts, especially when the email client is set to check your mail with a certain account."
-permalink: /win/win_mail_tab/
+slug: win/win_mail_tab
 tags:
   - Windows
 ---

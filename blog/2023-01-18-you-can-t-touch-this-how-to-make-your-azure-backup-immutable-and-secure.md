@@ -1,6 +1,6 @@
 ---
-date: '2023-01-18 00:00:00 +1300'
-title: 'You Can''t Touch This: How to Make Your Azure Backup Immutable and Secure'
+date: "2023-01-18 00:00:00 +1300"
+title: "You Can't Touch This: How to Make Your Azure Backup Immutable and Secure"
 description: "With immutable vaults id=AZ-MVP-5..."
 authors: [Luke]
 tags:
@@ -8,8 +8,9 @@ tags:
 toc: false
 header:
   teaser: /uploads/can-ttouchthis_immutability.png
-
+slug: azure/you-can-t-touch-this-how-to-make-your-azure-backup-immutable-and-secure
 ---
+
 With [immutable vaults](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept?tabs=recovery-services-vault&WT.mc_id=AZ-MVP-5004796 "Immutable vault for Azure Backup"), Azure Backup ensures that recovery points that are once created cannot be deleted before their intended expiry time. Azure Backup does this by preventing any operations which could lead to the loss of backup data.
 
 Hence, this helps you protect your backups against ransomware attacks and malicious actors by disallowing operations such as deleting backups or reducing retention in backup policies.
@@ -30,23 +31,23 @@ Enabling immutability for the vault is a reversible operation. However, you can 
 
 The type of operations enabling immutability on the Azure Backup vault can prevent and safeguard from is.
 
-| System | Operation type | Description |
-| --- | --- | --- |
-| Recovery Services Vault & Backup Vault | Stop protection with delete data | A protected item can't have its recovery points deleted before their respective expiry date. However, you can still stop protection of the instances while retaining data forever or until their expiry. |
-| Recovery Services Vault | Modify backup policy to reduce retention | Any actions that reduce the retention period in a backup policy are disallowed on Immutable vault. However, you can make policy changes that result in the increase of retention. You can also make changes to the schedule of a backup policy. |
-| Recovery Services Vault | Change backup policy to reduce retention | Any attempt to replace a backup policy associated with a backup item with another policy with retention lower than the existing one is blocked. However, you can replace a policy with the one that has higher retention. |
+| System                                 | Operation type                           | Description                                                                                                                                                                                                                                     |
+| -------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Recovery Services Vault & Backup Vault | Stop protection with delete data         | A protected item can't have its recovery points deleted before their respective expiry date. However, you can still stop protection of the instances while retaining data forever or until their expiry.                                        |
+| Recovery Services Vault                | Modify backup policy to reduce retention | Any actions that reduce the retention period in a backup policy are disallowed on Immutable vault. However, you can make policy changes that result in the increase of retention. You can also make changes to the schedule of a backup policy. |
+| Recovery Services Vault                | Change backup policy to reduce retention | Any attempt to replace a backup policy associated with a backup item with another policy with retention lower than the existing one is blocked. However, you can replace a policy with the one that has higher retention.                       |
 
 There are three current states for the immutability of the Backup and Recovery Services Vault:
 
-* Disabled
-* Enabled _(soft immutability)_
-* Enabled and locked _(hard immutability)_
+- Disabled
+- Enabled _(soft immutability)_
+- Enabled and locked _(hard immutability)_
 
-| State of Immutable vault setting | Description |
-| --- | --- |
-| Disabled | The vault doesn't have immutability enabled and no operations are blocked. |
-| Enabled | The vault has immutability enabled and doesn't allow operations that could result in loss of backups. However, the setting can be disabled. |
-| Enabled and locked | The vault has immutability enabled and doesn't allow operations that could result in loss of backups. As the Immutable vault setting is now locked, it can't be disabled. Note that immutability locking is irreversible, so ensure that you take a well-informed decision when opting to lock. |
+| State of Immutable vault setting | Description                                                                                                                                                                                                                                                                                     |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Disabled                         | The vault doesn't have immutability enabled and no operations are blocked.                                                                                                                                                                                                                      |
+| Enabled                          | The vault has immutability enabled and doesn't allow operations that could result in loss of backups. However, the setting can be disabled.                                                                                                                                                     |
+| Enabled and locked               | The vault has immutability enabled and doesn't allow operations that could result in loss of backups. As the Immutable vault setting is now locked, it can't be disabled. Note that immutability locking is irreversible, so ensure that you take a well-informed decision when opting to lock. |
 
 Immutable vaults and [multi-user authorization](https://learn.microsoft.com/en-us/azure/backup/multi-user-authorization-concept?tabs=recovery-services-vault&WT.mc_id=AZ-MVP-5004796 "Multi-user authorization using Resource Guard") can safeguard your backups from various human and technological accidents or disruptions.
 
@@ -54,21 +55,21 @@ Immutable vaults will not affect live or hot backups, such as snapshots.
 
 Using the Azure Portal, let us configure immutability on your Azure Backup Vault.
 
- 1. Navigate to your [**Recovery Services Vault**](https://portal.azure.com/#view/HubsExtension/BrowseResource/resourceType/Microsoft.RecoveryServices%2Fvaults "Recovery Services vaults")
- 2. Navigate to **Properties** _(under Settings)_
- 3. ![Recovery Services Vault - Immutability](/uploads/azureportal_rsv_configureimmutable.png "Recovery Services Vault - Immutability")
- 4. Under Immutable vault, select **Settings**
- 5. Click the **box** to enable vault immutability
- 6. ![Enable vault immutability](/uploads/azureportal_rsv_configureimmutablecheck.png "Enable vault immutability")
- 7. Click **Apply**
- 8. The Recovery Services vault will be adjusted, and the status has changed to **Enabled but not locked**; this means that your vault is now immutable and won't allow operations that will result in the loss of backups; however, you can reverse the change by unticking vault immutability.
- 9. ![Immutable vault - soft](/uploads/azureportal_rsv_immutableenabledsoft.png "Immutable vault - soft")
+1.  Navigate to your [**Recovery Services Vault**](https://portal.azure.com/#view/HubsExtension/BrowseResource/resourceType/Microsoft.RecoveryServices%2Fvaults "Recovery Services vaults")
+2.  Navigate to **Properties** _(under Settings)_
+3.  ![Recovery Services Vault - Immutability](/uploads/azureportal_rsv_configureimmutable.png "Recovery Services Vault - Immutability")
+4.  Under Immutable vault, select **Settings**
+5.  Click the **box** to enable vault immutability
+6.  ![Enable vault immutability](/uploads/azureportal_rsv_configureimmutablecheck.png "Enable vault immutability")
+7.  Click **Apply**
+8.  The Recovery Services vault will be adjusted, and the status has changed to **Enabled but not locked**; this means that your vault is now immutable and won't allow operations that will result in the loss of backups; however, you can reverse the change by unticking vault immutability.
+9.  ![Immutable vault - soft](/uploads/azureportal_rsv_immutableenabledsoft.png "Immutable vault - soft")
 10. To hard lock, your vault, navigate back into the Immutable vault settings, toggle Locked, and Apply. **This cannot be undone, so make this decision thought out, as it will stop the ability to reduce retention policies that will cause the deletion of recovery points, which could lead to increased costs in the longer term.**
 
 The Azure Backup vault immutability can also be adjusted using Azure Bicep, reference below.
 
     param vaults_name string = 'rsv'
-    
+
     resource vaults_name_resource 'Microsoft.RecoveryServices/vaults@2022-09-10' = {
       name: vaults_rsv_name
       location: 'australiaeast'
@@ -87,10 +88,10 @@ The Azure Backup vault immutability can also be adjusted using Azure Bicep, refe
 
 The immutabilitySettings states are:
 
-| State | Actions |
-| --- | --- |
+| State    | Actions                  |
+| -------- | ------------------------ |
 | Disabled | Immutability is Disabled |
-| Locked | Enabled but locked |
-| Unlocked | Enabled but unlocked |
+| Locked   | Enabled but locked       |
+| Unlocked | Enabled but unlocked     |
 
 _Note: I was able to delete a Recovery Vault, with locked Immutability successfully, that didn't have any Recovery points._

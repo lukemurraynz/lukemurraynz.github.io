@@ -1,7 +1,7 @@
 ---
 title: How to Guide to using Nero Startsmart to burn CDs and DVDs
 description: "Burning a CD using Nero StartSmart"
-permalink: /win/howto-guide-to-using-nero-startsmart-to-burn-cds-and-dvds/
+slug: win/howto-guide-to-using-nero-startsmart-to-burn-cds-and-dvds
 tags:
   - Windows
 ---

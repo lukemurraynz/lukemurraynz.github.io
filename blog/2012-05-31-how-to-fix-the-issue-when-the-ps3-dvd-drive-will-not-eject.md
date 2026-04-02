@@ -2,7 +2,7 @@
 title: How to fix the issue when the PS3 DVD Drive will not eject
 description: "At the back of the PS3, turn the Power switch OFF"
 layout: post
-permalink: /misc/how-to-fix-the-issue-when-the-ps3-dvd-drive-will-not-eject/
+slug: misc/how-to-fix-the-issue-when-the-ps3-dvd-drive-will-not-eject
 tags:
   - Misc
 ---

@@ -1,7 +1,7 @@
 ---
 title: Deactivating Windows XP
 description: "Deactivating Windows XP can be useful especially when moving the Windows XP install from one computer to another as it makes Windows activation easier a..."
-permalink: /win/deactivating-winxp/
+slug: win/deactivating-winxp
 tags:
   - Windows
 ---

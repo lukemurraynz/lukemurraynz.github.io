@@ -1,7 +1,7 @@
 ---
 title: How to access Gateways recovery partition.
 description: "Want to restore a Gateway computer back to factory settings? This is how you access the Gateway recovery partition."
-permalink: /misc/gateways-recovery-partition/
+slug: misc/gateways-recovery-partition
 tags:
   - Misc
 ---

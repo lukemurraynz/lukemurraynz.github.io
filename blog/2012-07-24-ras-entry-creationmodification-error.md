@@ -2,7 +2,7 @@
 title: RAS Entry Creation/Modification Error
 description: "This usually occurs when you are attempting to connecting to the Internet using a cell phone."
 layout: post
-permalink: /mob/ras-entry-creationmodification-error/
+slug: mob/ras-entry-creationmodification-error
 tags:
   - Mobile
   - Windows

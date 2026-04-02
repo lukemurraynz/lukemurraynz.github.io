@@ -2,7 +2,7 @@
 title: How to import Sketchup Model into ZBrush using 3DS Max
 description: "Open the 3DS model that you saved from Sketchup"
 layout: post
-permalink: /misc/how-to-import-sketchup-model-into-zbrush-using-3ds-max/
+slug: misc/how-to-import-sketchup-model-into-zbrush-using-3ds-max
 tags:
   - Misc
   - Windows

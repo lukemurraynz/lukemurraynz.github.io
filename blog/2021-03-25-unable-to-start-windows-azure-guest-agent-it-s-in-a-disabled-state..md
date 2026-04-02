@@ -6,9 +6,11 @@ tags:
   - Azure
 date: 2021-03-25 00:00:00 +1300
 toc: true
-header: 
+header:
   teaser: "images/iazure-marketplace-banner.png"
+slug: 2021/03/25/unable-to-start-windows-azure-guest-agent-it-s-in-a-disabled-state
 ---
+
 ![Azure Backup Overview](https://csharpcorner.azureedge.net/article/an-overview-of-azure-backup/Images/An%20Overview%20Of%20Azure%20Backup01.png)
 
 ## Issue Description
@@ -35,6 +37,7 @@ Disable WCF profiling:
        cd C:\Windows\Microsoft.NET\Framework\v4.0.30319\Config
 
        copy machine.config machine.config.bak
+
 3\. Run notepad machine.config to edit the file in Notepad.
 
 Remove this text, being careful not to also remove any additional text that may be on the same line:
@@ -49,11 +52,11 @@ Also remove this text, being careful not to also remove any additional text that
 5\. Restart the guest agent services:
 
     net stop Rdagent
-    
+
     net stop WindowsAzureGuestAgent
-    
+
     net stop WindowsAzureTelemetryService
-    
+
     net start Rdagent
 
 6\. In some cases the VM may need to be restarted for the WCF disablement to take effect.
@@ -67,19 +70,19 @@ From time to time the Azure backup agent may fail. Sometimes this will self-reso
 3\. Stop the following services:
 
     net stop rdagent
-    
+
     net stop WindowsAzureGuestAgent
-    
-    net stop WindowsAzureTelemetryService 
+
+    net stop WindowsAzureTelemetryService
 
 4\. Delete all the services of the agent:
 
     sc delete rdagent
-    
+
     sc delete WindowsAzureGuestAgent
-    
-    sc delete WindowsAzureTelemetryService 
-   
+
+    sc delete WindowsAzureTelemetryService
+
 5\. Create a folder called OLD in "C:\ WindowsAzure" and move the old version of the agent to it and the folders that say Packages.
 6\. Install the service again using the link: [https://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409](https://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409?WT.mc_id=AZ-MVP-5004796 "https://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409") or the latest agent available.  
 7\. Restart the server.

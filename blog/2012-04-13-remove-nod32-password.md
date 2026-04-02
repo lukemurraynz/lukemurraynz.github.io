@@ -1,7 +1,7 @@
 ---
 title: Remove NOD32 Password
 description: "Follow the steps below to remove your Nod32 password, useful when trying to uninstall and cannot remember what it is."
-permalink: /win/remove-nod32-password/
+slug: win/remove-nod32-password
 tags:
   - Windows
 ---
