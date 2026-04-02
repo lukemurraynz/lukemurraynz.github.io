@@ -35,6 +35,14 @@ Allow: /static/
 ## Major search crawlers (explicit allow)
 User-agent: Googlebot
 Allow: /
+Disallow: /page/
+Disallow: /admin/
+Disallow: /.docusaurus/
+Disallow: /node_modules/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /page/
+Disallow: /admin/
+Disallow: /.docusaurus/
+Disallow: /node_modules/
