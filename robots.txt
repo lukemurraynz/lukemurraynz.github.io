@@ -19,6 +19,12 @@ Disallow: /.docusaurus/
 Disallow: /node_modules/
 # Avoid crawling pagination index pages
 Disallow: /page/
+# Block tag pagination pages
+Disallow: /tags/*/page/
+# Block authors listing (not real content)
+Disallow: /authors/
+# Block uploaded data files (CSV etc.)
+Disallow: /uploads/
 # Reduce noise: block JSON endpoints and query-string variants (broad patterns)
 Disallow: /*.json
 Disallow: /*?
@@ -35,6 +41,24 @@ Allow: /static/
 ## Major search crawlers (explicit allow)
 User-agent: Googlebot
 Allow: /
+Disallow: /page/
+Disallow: /tags/*/page/
+Disallow: /authors/
+Disallow: /uploads/
+Disallow: /admin/
+Disallow: /.docusaurus/
+Disallow: /node_modules/
+Disallow: /*.json
+Disallow: /*?
 
 User-agent: Bingbot
 Allow: /
+Disallow: /page/
+Disallow: /tags/*/page/
+Disallow: /authors/
+Disallow: /uploads/
+Disallow: /admin/
+Disallow: /.docusaurus/
+Disallow: /node_modules/
+Disallow: /*.json
+Disallow: /*?
