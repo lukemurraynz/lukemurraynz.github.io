@@ -7,12 +7,13 @@ tags:
 toc: false
 header:
   teaser: /images/posts/CleanupyourUnwantedAzureResourcesonaSchedule.png
-date: '2023-06-06 00:00:00 +1300'
-slug: azure/Cleanup-your-unwanted-Azure-resources-on-a-schedule
+date: "2023-06-06 00:00:00 +1300"
+slug: azure/cleanup-your-unwanted-azure-resources-on-a-schedule
 ---
+
 Cleanup your unwanted Azure resources on a schedule
 
-Every few months, I get that dreaded email "Your Microsoft Azure subscription has been suspended" - this is due to creating resources, and leaving them provisioned, so I needed a method of deleting the resources I didn't need, or wanted to spin up for a few days. I also needed away to creating resources that can stay, either for learning or a demo, independent of how the resources were deployed into the environment *(via the Azure Portal, Terraform, Bicep)*.
+Every few months, I get that dreaded email "Your Microsoft Azure subscription has been suspended" - this is due to creating resources, and leaving them provisioned, so I needed a method of deleting the resources I didn't need, or wanted to spin up for a few days. I also needed away to creating resources that can stay, either for learning or a demo, independent of how the resources were deployed into the environment _(via the Azure Portal, Terraform, Bicep)_.
 
 Naturally I went straight to [Azure Automation](https://learn.microsoft.com/azure/automation/?WT.mc_id=AZ-MVP-5004796 "Azure Automation documentation") and using PowerShell.
 
@@ -22,9 +23,9 @@ What I ended up with was a Runbook capable of **EXTREME AZURE DESTRUCTION** whic
 
 I am not going to go into setting up Azure Automation, if interested you can refer to a few of my blog posts I have done previously that goes through the process:
 
-* [Deallocate ‘Stopped’ Virtual Machines using Azure Automation](https://luke.geek.nz/azure/deallocate-stopped-virtual-machines-using-azure-automation/ "Deallocate ‘Stopped’ Virtual Machines using Azure Automation")
-* [Turn on a Azure Virtual Machine using Azure Automation](https://luke.geek.nz/azure/turn-on-a-azure-virtual-machine-using-azure-automation/ "Turn on a Azure Virtual Machine using Azure Automation")
-* [Disable SFTP support on an Azure Storage account on a Schedule](https://luke.geek.nz/azure/disable-sftp-support-on-an-azure-storage-account-on-a-schedule/ "Disable SFTP support on an Azure Storage account on a Schedule")
+- [Deallocate ‘Stopped’ Virtual Machines using Azure Automation](https://luke.geek.nz/azure/deallocate-stopped-virtual-machines-using-azure-automation/ "Deallocate ‘Stopped’ Virtual Machines using Azure Automation")
+- [Turn on a Azure Virtual Machine using Azure Automation](https://luke.geek.nz/azure/turn-on-a-azure-virtual-machine-using-azure-automation/ "Turn on a Azure Virtual Machine using Azure Automation")
+- [Disable SFTP support on an Azure Storage account on a Schedule](https://luke.geek.nz/azure/disable-sftp-support-on-an-azure-storage-account-on-a-schedule/ "Disable SFTP support on an Azure Storage account on a Schedule")
 
 The script named: Invoke-DakaraSuperWeapon, aptly named as a reference to the Dakara weapon from the TV series Stargate SG1 - a weapon if great power.
 
@@ -34,11 +35,11 @@ The script named: Invoke-DakaraSuperWeapon, aptly named as a reference to the Da
 
 Using the latest Windows PowerShell release - 7.2 (Preview), this script is built around the following capabilities:
 
-* **Delete ALL resource groups** (without a specific Tag) **under all subscriptions**, under a specific **Management Group**
-* **Delete all resources** within those resource groups
-* **Delete** Azure **Recovery Vaults** and their backed up items
-* **Delete** any **Azure policy assignments**, assigned directly to any subscription under the Management Group
-* **Delete** any Azure **RBAC role assignments**, assigned directly to any subscription under the Management Group.
+- **Delete ALL resource groups** (without a specific Tag) **under all subscriptions**, under a specific **Management Group**
+- **Delete all resources** within those resource groups
+- **Delete** Azure **Recovery Vaults** and their backed up items
+- **Delete** any **Azure policy assignments**, assigned directly to any subscription under the Management Group
+- **Delete** any Azure **RBAC role assignments**, assigned directly to any subscription under the Management Group.
 
 In my demo environment, I have a range of Management Groups, and 2 Azure subscriptions.
 
@@ -50,7 +51,7 @@ Again - this was created for my own environment - if you decide to run this, TES
 
 The System Identity will be used to execute the runbook.
 
-I also needed a Tag *(ie a Safe word)* to save the Resource Groups that I need to remain, an example is a project I am working on, demo etc. This Tag is in name only - as Tags are Key/Value pairs in Azure - in this case I only cared about the Key (ie NotDelete) - what was in the value, didn't matter.
+I also needed a Tag _(ie a Safe word)_ to save the Resource Groups that I need to remain, an example is a project I am working on, demo etc. This Tag is in name only - as Tags are Key/Value pairs in Azure - in this case I only cared about the Key (ie NotDelete) - what was in the value, didn't matter.
 
 ![NotDelete - Azure Tag](/images/posts/Initiate-DakaraSuperWeapon_SafeWord.png "NotDelete - Azure Tag")
 
@@ -113,13 +114,13 @@ This script requires the Azure PowerShell module to be installed. It also requir
 param (
     [Parameter(Mandatory = $true, HelpMessage = "The ID of the management group to delete resource groups under. WARNING: This script will delete all resource groups under the specified management group except for the ones with the specified tag. Make sure you have specified the correct management group ID, or you may accidentally delete resources that you did not intend to delete.")]
     [string]$ManagementGroupId,
-    
+
     [Parameter(Mandatory = $true, HelpMessage = "The name of the tag to check for. WARNING: This script will delete all resource groups that do not have this tag. Make sure you have specified the correct tag name, or you may accidentally delete resources that you did not intend to delete.")]
     [string]$TagName,
-       
+
     [Parameter(Mandatory = $false)]
     [switch][bool]$RemoveResourceGroups = $false,
-    
+
     [Parameter(Mandatory = $false)]
     [switch][bool]$DeletePolicyAssignments = $false,
 
@@ -205,7 +206,7 @@ if ($RemoveResourceGroups -eq $true) {
                     Set-AzRecoveryServicesVaultProperty -Vault $RV.ID -SoftDeleteFeatureState Disable
                     Set-AzRecoveryServicesVaultContext -Vault $RV
                     $containerSoftDelete = Get-AzRecoveryServicesBackupItem -BackupManagementType AzureVM -WorkloadType AzureVM | Where-Object { $_.DeleteState -eq "ToBeDeleted" }
- 
+
                     foreach ($item in $containerSoftDelete) {
                         Undo-AzRecoveryServicesBackupItemDeletion -Item $item  -Force -Verbose
                     }
@@ -237,7 +238,7 @@ if ($RemoveResourceGroups -eq $true) {
                         Invoke-AzResourceMoverDiscard -ResourceGroupName $RM.ResourceGroupName -MoveResourceInputType $b.Id -MoveResource $b.Name
                         Remove-AzResourceMoverMoveResource -ResourceGroupName $RM.ResourceGroupName -MoveCollectionName $RM.Name -Name $b.Name -Verbose
                     }
-                
+
                     Remove-AzResourceMoverMoveCollection -ResourceGroupName $RM.ResourceGroupName -MoveCollectionName $RM.Name
                 }
 
@@ -248,13 +249,13 @@ if ($RemoveResourceGroups -eq $true) {
                 Remove-AzResourceGroup -Name $_.ResourceGroupName -Force
             } -ThrottleLimit 20 -Verbose
 
-    
+
             # Remove the Network Watcher resource group - if remaining - in some scenarios the script left this RG behind.
             # Get the resource group with the specified tag
             $networkWatcherRG = Get-AzResourceGroup | Where-Object { $_.ResourceGroupName -eq 'NetworkWatcherRG' }
             if ($null -ne $networkWatcherRG -and $null -ne $networkWatcherRG.Tags -and $networkWatcherRG.Tags.ContainsKey($tagName) -eq $false) {
                 Remove-AzResourceGroup -Name $networkWatcherRG.ResourceGroupName -Force -ErrorAction Continue -Verbose
-            }     
+            }
         }
 
         # Write a final log message
@@ -281,7 +282,7 @@ if ($DeleteSubRoleAssignments -eq $true) {
             foreach ($roleAssignment in $roleAssignments) {
                 if ($roleAssignment.Scope -like "/subscriptions/*" -and $null -ne $roleAssignment.ObjectId -and $roleAssignment.ObjectId -ne "") {
                     Write-Output "Deleting role assignment..."
-                    Remove-AzRoleAssignment -Scope $roleAssignment.Scope -ObjectId $roleAssignment.ObjectId -RoleDefinitionName $roleAssignment.RoleDefinitionName -Verbose -ErrorAction Continue 
+                    Remove-AzRoleAssignment -Scope $roleAssignment.Scope -ObjectId $roleAssignment.ObjectId -RoleDefinitionName $roleAssignment.RoleDefinitionName -Verbose -ErrorAction Continue
                 }
             }
             Write-Output "Deleting subscription role assignments..."

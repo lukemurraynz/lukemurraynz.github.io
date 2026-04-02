@@ -1,7 +1,7 @@
 ---
 title: Godaddy Email Settings
 description: "Godaddy and there resellers Wild West Domains resellers use the following servers for incomming and outgoing email, Depending on what datacenter you are in"
-permalink: /misc/godaddy-email-settings/
+slug: misc/godaddy-email-settings
 tags:
   - Misc
 ---

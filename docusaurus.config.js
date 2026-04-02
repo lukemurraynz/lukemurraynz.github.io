@@ -40,6 +40,19 @@ const config = {
   
   // Enhanced SEO configuration
   headTags: [
+    // Strip query parameters (utm_*, ref, etc.) to reduce "Alternate page with proper canonical tag" in Google Search Console
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML: `
+        (function() {
+          if (window.location.search) {
+            var cleanUrl = window.location.protocol + '//' + window.location.host + window.location.pathname + window.location.hash;
+            window.history.replaceState(null, '', cleanUrl);
+          }
+        })();
+      `,
+    },
     ...(isProd
       ? [
           {
@@ -225,8 +238,8 @@ const config = {
             },
           },
           // Add reading time calculation
-          readingTime: ({content, frontMatter, defaultReadingTime}) =>
-            defaultReadingTime({content, options: {wordsPerMinute: 200}}),
+          readingTime: ({content, frontMatter, defaultReadingTime, locale}) =>
+            defaultReadingTime({content, locale, options: {wordsPerMinute: 200}}),
         },
 
         theme: {
@@ -235,7 +248,7 @@ const config = {
         sitemap: {
           changefreq: 'weekly',
           priority: 0.5,
-          ignorePatterns: ['/tags/**', '/page/**'],
+          ignorePatterns: ['/tags/**', '/page/**', '/authors/**'],
           filename: 'sitemap.xml',
         },
       }),
@@ -269,12 +282,12 @@ const config = {
         items: [
           {
             label: "Tags",
-            href: "/tags",
+            href: "/tags/",
             position: "left",
           },
           {
             label: "Blog",
-            href: "/archive",
+            href: "/archive/",
             position: "left",
           },
           {

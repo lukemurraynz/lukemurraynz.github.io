@@ -1,7 +1,7 @@
 ---
 title: Adobe Photoshop CS4 148:3
 description: "This error is caused by the Flexnet Licensing service being disabled. This is how you fix it"
-permalink: /win/photoshop_cs4/
+slug: win/photoshop_cs4
 tags:
   - Windows
 ---

@@ -6,9 +6,11 @@ authors: [Luke]
 tags:
   - Azure
   - PowerShell
-header: 
+header:
   teaser: "images/iazure-marketplace-banner.png"
+slug: Update-your-Azure-Local-Network-Gateway-IP-with-PowerShell
 ---
+
 One of the issues you face with setting up an Azure [Site to Site VPN](https://learn.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal?WT.mc_id=AZ-MVP-5004796) is making sure that your Azure Local Network Gateway always has your Public/On-premises IP.
 
 This setup is fine when used in environments that have Static IPs (and yes if setting this up for a Business or Production, it is highly recommended to have a static IP!).
@@ -21,17 +23,17 @@ Local Network Gateway.
 
 Prerequisites:
 
-* [Az PowerShell Module](https://learn.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-7.5.0&WT.mc_id=AZ-MVP-5004796)
-* [Azure Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal?WT.mc_id=AZ-MVP-5004796) (with Contributor rights to the Azure Local Network Gateway)
+- [Az PowerShell Module](https://learn.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-7.5.0&WT.mc_id=AZ-MVP-5004796)
+- [Azure Service Principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal?WT.mc_id=AZ-MVP-5004796) (with Contributor rights to the Azure Local Network Gateway)
 
 Once you have the Azure Service Principal and Az Module installed, you need to
 edit the following variables to suit your environment:
 
-* $ResourceGroup = 'RESOURCE GROUP OF LOCAL NETWORK GATEWAY'
-* $LocalNetworkGateway = ‘NAME OF AZURE LOCAL NETWORK GATEWAY’
-* $azureAplicationId =’AZURE AD APPLICATION ID’
-* $azureTenantId= ‘AZURE AD TENANCY/DIRECTORY ID’
-* $azureAPI = ‘AZURE AD APPLICATION API/CLIENT SECRET’
+- $ResourceGroup = 'RESOURCE GROUP OF LOCAL NETWORK GATEWAY'
+- $LocalNetworkGateway = ‘NAME OF AZURE LOCAL NETWORK GATEWAY’
+- $azureAplicationId =’AZURE AD APPLICATION ID’
+- $azureTenantId= ‘AZURE AD TENANCY/DIRECTORY ID’
+- $azureAPI = ‘AZURE AD APPLICATION API/CLIENT SECRET’
 
 ```powershell title="Update-LocalNetGatewayIP.ps1"
 
@@ -48,10 +50,10 @@ edit the following variables to suit your environment:
 
   #>
 #---------------------------------------------------------[Initialisations]--------------------------------------------------------
-  
+
 $ErrorActionPreference = 'Stop'
 
-[Object]$PublicIP = (Invoke-WebRequest -Uri 'http://ifconfig.me/ip').Content 
+[Object]$PublicIP = (Invoke-WebRequest -Uri 'http://ifconfig.me/ip').Content
 [string]$ResourceGroup = 'z_Network'
 [string]$LocalNetworkGateway = 'Prod-SiteToSite-VLAN-LNGateway'
 
@@ -61,7 +63,7 @@ $azureTenantId= "Your Tenant Id"
 $azureAPI = "Your API Key"
 $azurePassword = ConvertTo-SecureString "$azureAPI" -AsPlainText -Force
 $psCred = New-Object System.Management.Automation.PSCredential($azureAplicationId , $azurePassword)
-Connect-AzAccount -Credential $psCred -TenantId $azureTenantId  -ServicePrincipal 
+Connect-AzAccount -Credential $psCred -TenantId $azureTenantId  -ServicePrincipal
 
 <#
 
@@ -70,14 +72,14 @@ Before adding the Azure Service Principal in and testing as a Scheduled Task, it
 Connect-AzAccount
 
  #>
-  
-#-----------------------------------------------------------[Execution]------------------------------------------------------------  
 
- 
-  
+#-----------------------------------------------------------[Execution]------------------------------------------------------------
+
+
+
 $a = Get-AzLocalNetworkGateway -ResourceGroupName $ResourceGroup -Name $LocalNetworkGateway
 $GatewayIP = $a.GatewayIpAddress
- 
+
 
 If ($PublicIP -ne $GatewayIP) {
 
@@ -85,11 +87,11 @@ If ($PublicIP -ne $GatewayIP) {
     Set-AzLocalNetworkGateway -LocalNetworkGateway $a
 
 }
-  
+
 Else {
 
    $null
-    
+
 }
 
 ```

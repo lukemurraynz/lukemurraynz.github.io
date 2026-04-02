@@ -1,7 +1,7 @@
 ---
 title: How to disable the Windows XP Boot Disk
 description: "Disable the Windows XP Boot Disk"
-permalink: /win/how-to-disable-the-windows-xp-boot-disk/
+slug: win/how-to-disable-the-windows-xp-boot-disk
 tags:
   - Windows
 ---

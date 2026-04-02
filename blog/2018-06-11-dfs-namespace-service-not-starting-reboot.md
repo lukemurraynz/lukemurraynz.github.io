@@ -6,17 +6,19 @@ tags:
 date: 2018-06-11 00:00:00 +1300
 header:
   teaser: "images/powershell-blog-feature-banner.png"
+slug: win/dfs-namespace-service-not-starting-reboot
 ---
+
 Distributed File System (DFS) has some service dependencies - so if those don't start the DFS Namespace service will also not start.
 
 <img class="alignnone" src="https://i1.wp.com/luke.geek.nz/wp-content/uploads/2016/12/121316_0835_DFSNamespac1.png?resize=584%2C112" alt="DFS Namespace" width="584" height="112" data-recalc-dims="1" />
 
 The dependencies are:
 
- * Remote Registry
- * Security Accounts Manager
- * Server
- * Workstation
+- Remote Registry
+- Security Accounts Manager
+- Server
+- Workstation
 
 I have seen the Remote Registry service become the culprit of the DFS-N service not starting.
 
@@ -24,8 +26,8 @@ In my experience, this had been caused by antivirus software changing the Remote
 
 Remote Registry does not start so if you have issues with the DFS-N service not starting – check the Remote Registry Start-up type is configured to Automatic and click Start to confirm there are no errors and try starting the DFS-N service again.
 
-*Note: RemoteRegistry – although it is Automatic, will only Start when it is being used so don't be alarmed if it is in a 'Stopped' state.*
-  
+_Note: RemoteRegistry – although it is Automatic, will only Start when it is being used so don't be alarmed if it is in a 'Stopped' state._
+
 <img class="alignnone" src="https://i2.wp.com/luke.geek.nz/wp-content/uploads/2016/12/121316_0835_DFSNamespac2.png?resize=377%2C267" alt="Remote Registry" width="377" height="267" data-recalc-dims="1" />
 
 I have also created a PowerShell script to do some general checking for the DFS namespace service – which sets the Remote Registry service to Automatic startup then gets the other DFS dependency services and changes the startup type to Automatic and starts them and finally tries to start the DFS Namespace service.
@@ -39,20 +41,20 @@ I have also created a PowerShell script to do some general checking for the DFS 
   Starts the DFS service
 
 .DESCRIPTION
-  Changes the Remote Registry service to Automatic start-up and Start the DFS NameSpace service dependencies, then start the DFS namespace service. 
+  Changes the Remote Registry service to Automatic start-up and Start the DFS NameSpace service dependencies, then start the DFS namespace service.
   If the service does not start, it will retrieve the last 10 event log items from the DFS log.
 
 .NOTES
   Version:        1.0
   Author:         Luke Murray (Luke.Geek.NZ)
   Creation Date:  20/03/17
-  Purpose/Change: 
+  Purpose/Change:
   20/03/17 - Initial script development
   11/06/18 - Updated script formatting
 
 .EXAMPLE
   ./Start-DFS-Service.ps1
-  
+
 #>
 
 #---------------------------------------------------------[Script Parameters]------------------------------------------------------
@@ -62,11 +64,11 @@ $ErrorActionPreference = 'Stop'
 
 #-----------------------------------------------------------[Execution]------------------------------------------------------------
 
-Try 
+Try
 {
   Get-Service -Name RemoteRegistry | Set-Service -StartupType Automatic
 }
-Catch 
+Catch
 {
   Write-Verbose -Message 'There is an issue changing the Remote Registry Service to Automatic Startup Type' -Verbose
 }
@@ -90,7 +92,7 @@ catch [Microsoft.PowerShell.Commands.ServiceCommandException]
   Write-Verbose -Message 'Opps! There was an error:' -Verbose
   $info
 }
-Catch 
+Catch
 {
   Write-Verbose -Message "There was an issue starting $ServiceName dependencies" -Verbose
 }
@@ -102,7 +104,7 @@ try
     Start-Service -Name $ServiceName
     Write-Verbose -Message "The $ServiceName service has started." -Verbose
   }
-  Catch 
+  Catch
   {
     Get-WinEvent -LogName Microsoft-Windows-DFSN-Server/Operational | Select-Object -Last 10
   }
@@ -124,5 +126,5 @@ catch
 }
 ```
 
-*Note: Script is also hosted on my Github repository. Feel free to
-clone/recommend improvements or fork.*
+_Note: Script is also hosted on my Github repository. Feel free to
+clone/recommend improvements or fork._

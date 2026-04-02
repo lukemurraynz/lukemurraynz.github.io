@@ -8,7 +8,9 @@ tags:
   - PowerShell
 header:
   teaser: "images/powershell-blog-feature-banner.png"
+slug: azure/powershell/Using-PowerShell-to-connect-to-Azure
 ---
+
 Microsoft Azure has a good user portal where you can do most things, however
 when it comes to automation, gathering a lot of information at once and more
 in-depth scenarios that the Portal doesn’t quite offer – PowerShell is used.
@@ -17,7 +19,7 @@ Before you can use PowerShell to connect to Microsoft Azure, you need to install
 the Azure Resource Manager modules first – follow the guide below:
 
 - [Install and configure Azure
-    PowerShell](https://learn.microsoft.com/en-us/powershell/azure/new-azureps-module-az?view=azps-7.5.0&viewFallbackFrom=azps-5.7.0&WT.mc_id=AZ-MVP-5004796)
+  PowerShell](https://learn.microsoft.com/en-us/powershell/azure/new-azureps-module-az?view=azps-7.5.0&viewFallbackFrom=azps-5.7.0&WT.mc_id=AZ-MVP-5004796)
 
 ![Disable SMB1](/images/posts/InstallAzureRMModule.gif)
 
@@ -33,5 +35,5 @@ This function can easily be used in any environment. I have it loaded as part of
 my PowerShell profile script so the function can be run from the second I open
 up a new PowerShell prompt.
 
-*Note: Script is also hosted on my Github repository. Feel free to
-clone/recommend improvements or fork.*
+_Note: Script is also hosted on my Github repository. Feel free to
+clone/recommend improvements or fork._

@@ -8,9 +8,10 @@ tags:
 toc: true
 header:
   teaser: images/iazure-marketplace-banner.png
-
+slug: azure/create-a-azure-virtual-desktop-farm
 ---
-Previously known as Windows Virtual Desktop, [Azure Virtual Desktop](https://learn.microsoft.com/en-us/azure/virtual-desktop/overview?WT.mc_id=AZ-MVP-5004796 "What is Azure Virtual Desktop?") is the successor of Microsoft Remote Desktop; although compatible with Server OS (Operating System), it is the first to support Windows 10_(and soon Windows 11)_ multisession, reducing application compatibility issues and giving consistent user experience.
+
+Previously known as Windows Virtual Desktop, [Azure Virtual Desktop](https://learn.microsoft.com/en-us/azure/virtual-desktop/overview?WT.mc_id=AZ-MVP-5004796 "What is Azure Virtual Desktop?") is the successor of Microsoft Remote Desktop; although compatible with Server OS (Operating System), it is the first to support Windows 10*(and soon Windows 11)* multisession, reducing application compatibility issues and giving consistent user experience.
 
 In this guide, I will run you through creating Azure Virtual Desktop from scratch, along with some prerequisites that will help you manage AVD after you create it.
 
@@ -24,18 +25,18 @@ Assuming you already have an Azure subscription and the appropriate access to cr
 
 ## Create Microsoft Entra ID Domain Services
 
- 1. Log in to the **Azure Portal**
- 2. Click on **Create a resource**
- 3. Search for: **Azure AD Domain Services**. You can change the Publisher Type to Microsoft, so it doesn't display any other marketplace offerings.
+1.  Log in to the **Azure Portal**
+2.  Click on **Create a resource**
+3.  Search for: **Azure AD Domain Services**. You can change the Publisher Type to Microsoft, so it doesn't display any other marketplace offerings.
     ![Azure AD Domain - Marketplace](/uploads/azureaddssearch.png "Azure AD Domain - Marketplace")
     ![Azure AD Domain - Marketplace](/uploads/azureaddsmarketplace.png "Azure AD Domain - Marketplace")
- 4. Click **Create**
- 5. If you already have a **Resource Group**, select it - in this Demo, we are going to create one: aad_prod
- 6. Type in the **DNS** domain **name** - this is the **FQDN** of your **domain**; in my demo, I will choose internal.luke.geek.nz.
- 7. Because I am in New Zealand, the closest region to me is Australia East, so that’s the region I will select. Make sure you **select** the **appropriate region** for where your Azure Virtual Desktop workloads are.
- 8. **Select** the **SKU** and **Resource Type**; you can see the Pricing Calculator and the "Help Me choose.." links to verify your SKU and Forest type _(however, in most cases, such as Azure Virtual Desktop, your Forest Type will be 'User')_.
+4.  Click **Create**
+5.  If you already have a **Resource Group**, select it - in this Demo, we are going to create one: aad_prod
+6.  Type in the **DNS** domain **name** - this is the **FQDN** of your **domain**; in my demo, I will choose internal.luke.geek.nz.
+7.  Because I am in New Zealand, the closest region to me is Australia East, so that’s the region I will select. Make sure you **select** the **appropriate region** for where your Azure Virtual Desktop workloads are.
+8.  **Select** the **SKU** and **Resource Type**; you can see the Pricing Calculator and the "Help Me choose.." links to verify your SKU and Forest type _(however, in most cases, such as Azure Virtual Desktop, your Forest Type will be 'User')_.
     ![Azure AD Domain Services - Basic Config](/uploads/adds_basics.png "Azure AD Domain Services - Basic Config")
- 9. Click **Next**
+9.  Click **Next**
 10. We will set up the **Networking**; if you have an already existing Virtual Network, select it.
     _Azure AD Domain Services uses a dedicated subnet within a virtual network to hold all of its resources. If using an existing network, ensure that the network configuration does not block the ports required for Azure AD Domain Services to run._ [_Learn more_](https://learn.microsoft.com/en-us/azure/active-directory-domain-services/tutorial-create-instance?WT.mc_id=AZ-MVP-5004796)
 11. I will let it create a **Virtual Network** and its Subnet (/24); click **Next**.
@@ -65,16 +66,16 @@ Assuming you already have an Azure subscription and the appropriate access to cr
 
 We need to create a Virtual Machine to help manage the AAD Domain and deploy Group Policies to help manage and configure the Azure Virtual Desktop farm.
 
- 1. Log in to the **Azure Portal**
- 2. Click on **Create a resource.**
- 3. Search for: **Windows Server 2019 Datacenter** and select **Create**
- 4. If you already have a **Resource Group**, select it - in this Demo, we are going to create one: aad_infra
- 5. **Specify** a **name** for the **Virtual Machine** _(I am going to use: UTILITY-P01)_
- 6. **Select** a **Region** _(use the same Region as the Azure AD Domain Services and Azure Virtual Desktop resources)_
- 7. For the **Image**, you can select either Windows Server 2019 Datacenter -Gen 1 or **Gen 2**; in my case, I am going with Gen2 _(although it doesn't matter)_.
- 8. I am a firm believer in **selecting** the **smallest size** possible for the size, then scaling up when/where needed; I am going to go with a Standard_B2ms.
+1.  Log in to the **Azure Portal**
+2.  Click on **Create a resource.**
+3.  Search for: **Windows Server 2019 Datacenter** and select **Create**
+4.  If you already have a **Resource Group**, select it - in this Demo, we are going to create one: aad_infra
+5.  **Specify** a **name** for the **Virtual Machine** _(I am going to use: UTILITY-P01)_
+6.  **Select** a **Region** _(use the same Region as the Azure AD Domain Services and Azure Virtual Desktop resources)_
+7.  For the **Image**, you can select either Windows Server 2019 Datacenter -Gen 1 or **Gen 2**; in my case, I am going with Gen2 _(although it doesn't matter)_.
+8.  I am a firm believer in **selecting** the **smallest size** possible for the size, then scaling up when/where needed; I am going to go with a Standard_B2ms.
     ![Azure - Create VM](/uploads/createvm1.png "Azure - Create VM")
- 9. Now we need to enter in the **Administrator** (local account) **Username** and **Password**.
+9.  Now we need to enter in the **Administrator** (local account) **Username** and **Password**.
 10. Select '**None**' for **Public** inbound **ports**
 11. If you have existing Windows Server licenses, you can select Hybrid Use Benefit; if not, select **Next: Disks**.
     ![Azure - Create VM](/uploads/createvm2.png "Azure - Create VM")
@@ -92,16 +93,16 @@ We need to create a Virtual Machine to help manage the AAD Domain and deploy Gro
 
 Once the VM has been created, we now need to connect to it securely, so we will create a Bastion instance, which will allow us to connect to it without publishing the RDP (Remote Desktop Protocol) over the internet.
 
- 1. Log in to the **Azure Portal**
- 2. Click on **Create a resource**
- 3. Search for: **Bastion**
+1.  Log in to the **Azure Portal**
+2.  Click on **Create a resource**
+3.  Search for: **Bastion**
     ![Azure - Bastion](/uploads/bastionmarketplace.png "Azure - Bastion")
- 4. Click **Create**
- 5. This is a Networking resource to place it in the same Resource Group as my Virtual Network.
- 6. Please type in a **Name** for the **Bastion** instance; I will call mine: Bastion
- 7. **Select** the **Region** that **matches** the Virtual **Network** region
- 8. Select the **Virtual Network**
- 9. It now warns you about creating an: AzureBastionSubnet with a prefix of at least /27, so we need to create one; click on **Manage Subnet Configuration**.
+4.  Click **Create**
+5.  This is a Networking resource to place it in the same Resource Group as my Virtual Network.
+6.  Please type in a **Name** for the **Bastion** instance; I will call mine: Bastion
+7.  **Select** the **Region** that **matches** the Virtual **Network** region
+8.  Select the **Virtual Network**
+9.  It now warns you about creating an: AzureBastionSubnet with a prefix of at least /27, so we need to create one; click on **Manage Subnet Configuration**.
 10. Click **+ Subnet**
 11. For the Name type in: **AzureBastionSubnet**
 12. For the **Subnet** address range: **10.0.1.0/27**
@@ -119,15 +120,15 @@ Once the VM has been created, we now need to connect to it securely, so we will 
 
 Now that we have a Bastion instance, it is time to connect and configure the Utility server and create a new Azure AD user for Azure Virtual Desktop configuration.
 
- 1. First thing I am going to create a separate Azure AD account to manage the Utility server and join the Azure Virtual Desktop session hosts to the domain; this is to separate my own account. Azure AD Domain Services relies on password hash. So you won't be able to log in using Azure AD Domain Services unless you and the people using it have reset their passwords AFTER Azure AD Domain Services has been created.
- 2. Navigate to the Azure Portal and open **Microsoft Entra ID**
- 3. Click on **Users**
- 4. Click on **+ New User**
- 5. **Type** in the **username** of a **user**, I am going to use: 'avdjoin'
- 6. Type in an **easily identifiable name**
- 7. Generate or put in a secure **password**
- 8. **Add** to the **AAD DC Administrators** group
- 9. Click **Ok** to create the user
+1.  First thing I am going to create a separate Azure AD account to manage the Utility server and join the Azure Virtual Desktop session hosts to the domain; this is to separate my own account. Azure AD Domain Services relies on password hash. So you won't be able to log in using Azure AD Domain Services unless you and the people using it have reset their passwords AFTER Azure AD Domain Services has been created.
+2.  Navigate to the Azure Portal and open **Microsoft Entra ID**
+3.  Click on **Users**
+4.  Click on **+ New User**
+5.  **Type** in the **username** of a **user**, I am going to use: 'avdjoin'
+6.  Type in an **easily identifiable name**
+7.  Generate or put in a secure **password**
+8.  **Add** to the **AAD DC Administrators** group
+9.  Click **Ok** to create the user
     ![Azure AD - Users](/uploads/avdjoin.png "Azure AD - Users")
 10. Once the account has been created, make sure to **login** with it **to** the **Azure Portal** or Office portal to **force** a final **password reset**, or you won't be able to use it in the next steps as it will be waiting for a password reset.
 11. Once that account has been created, it's time to **join** your utility **server** to the Microsoft Entra ID **Domain**, navigate to your Utility **server** and click **Connect**.
@@ -154,7 +155,7 @@ Now that we have a Bastion instance, it is time to connect and configure the Uti
 28. **Type** in the following PowerShell **commands**:
 
         Add-WindowsFeature RSAT-Role-Tools
-        
+
         Install-WindowsFeature –Name GPMC
 
 _Note: You can use the little arrows on the left-hand side of your Remote Desktop window to copy and paste text to and from your Bastion connection._
@@ -163,40 +164,40 @@ _Note: You can use the little arrows on the left-hand side of your Remote Deskto
    ![Server Tools](/uploads/utility_servertools.png)
 2. We will now set up some base configurations to **create** a custom **OU** for the Azure Virtual Desktops **hosts** to go into:
 
-* Open **Active Directory Users & Computers**
-* **Expand** out the **Domain** and right-click (at the Top Level)
-* Select **New, Organisational Unit**
+- Open **Active Directory Users & Computers**
+- **Expand** out the **Domain** and right-click (at the Top Level)
+- Select **New, Organisational Unit**
 
 ![Server Tools](/uploads/utility_newou.png)
 
-* Type in: AVD
-* In the AVD OU, **create** a new **OU** called: Hosts
-* Now that we have an OU for the hosts, we will need to tell Azure what OU the hosts go into, so while we have Active Directory Users and Computers open, click on View.
-* Select **Advanced Features**
-* **Right-click** the Hosts **OU**
-* Select **Properties**
-* Click on **Attribute Editor**
-* Find the **distinguishedName attribute**
+- Type in: AVD
+- In the AVD OU, **create** a new **OU** called: Hosts
+- Now that we have an OU for the hosts, we will need to tell Azure what OU the hosts go into, so while we have Active Directory Users and Computers open, click on View.
+- Select **Advanced Features**
+- **Right-click** the Hosts **OU**
+- Select **Properties**
+- Click on **Attribute Editor**
+- Find the **distinguishedName attribute**
 
 ![Server Tools](/uploads/utility_serverdn.png)
 
-* Open and **Copy** the **Value** for future _(in my case: OU=Hosts,OU=AVD,DC=luke,DC=geek,DC=nz)_ for future reference.
-* Now that we have the AVD Hosts OU, you can also open Group Policy Management and create your Computer policies.
+- Open and **Copy** the **Value** for future _(in my case: OU=Hosts,OU=AVD,DC=luke,DC=geek,DC=nz)_ for future reference.
+- Now that we have the AVD Hosts OU, you can also open Group Policy Management and create your Computer policies.
 
 ## Deploy Azure Virtual Desktop
 
 Now we are ready to deploy Azure Virtual Desktop finally!
 
- 1. Log in to the **Azure Portal**
- 2. Click on **Create a resource**
- 3. Find and select **Host pool**
+1.  Log in to the **Azure Portal**
+2.  Click on **Create a resource**
+3.  Find and select **Host pool**
     ![Azure Virtual Desktop - Host Pool](/uploads/avdhostpoolmarketplace.png "Azure Virtual Desktop - Host Pool")
- 4. Click **Create**
- 5. Please **create** a new **Resource Group** to help resources separately, and I am going to name mine: avd_prod
- 6. **Type** in a **Host Pool Name**, I will call mine: avd-pooled
- 7. Please select the **location** of the **Metadata** _(this is NOT the location of your session hosts, it’s the gateway, select the Region closet to you as possible)_
- 8. For **Host Pool Type**, if you want everyone to have a Virtual Machine each, you can select Personal; however, I want people to be shared across my servers, so I will select **Pooled**.
- 9. For the Load balancing algorithm, we can choose to spread people over available hosts or fill up one host before moving connections to the next; we are going with **Breadth-first**.
+4.  Click **Create**
+5.  Please **create** a new **Resource Group** to help resources separately, and I am going to name mine: avd_prod
+6.  **Type** in a **Host Pool Name**, I will call mine: avd-pooled
+7.  Please select the **location** of the **Metadata** _(this is NOT the location of your session hosts, it’s the gateway, select the Region closet to you as possible)_
+8.  For **Host Pool Type**, if you want everyone to have a Virtual Machine each, you can select Personal; however, I want people to be shared across my servers, so I will select **Pooled**.
+9.  For the Load balancing algorithm, we can choose to spread people over available hosts or fill up one host before moving connections to the next; we are going with **Breadth-first**.
 10. Click **Next: Virtual Machines**
     ![Azure Virtual Desktop - Host Pool](/uploads/avdhostpoolsetup1.png "Azure Virtual Desktop - Host Pool")
 11. Now we can **add** your Session **hosts** to the **Pool**.
@@ -225,9 +226,9 @@ Now we are ready to deploy Azure Virtual Desktop finally!
 31. Confirm everything looks ok and click Create
     **Note: This may take 10-20 minutes to create your Azure Virtual Desktop resources:**
 
-* Host Pool
-* Workspace
-* Session hosts
+- Host Pool
+- Workspace
+- Session hosts
 
 1. Once the resources have been created, you should now have an **Application group** for the Session Desktop.
 2. **Open** the Application **Group** and click **Applications**; you should confirm the SessionDesktop application is listed. ![Azure Virtual Desktop - Application Group](/uploads/avdapplications.png "Azure Virtual Desktop - Application Group")
@@ -241,10 +242,9 @@ Now we are ready to deploy Azure Virtual Desktop finally!
 
 ## Additional Configuration
 
-* You can Navigate to your Host Pool; under Settings, you can restrict or allow RDP settings, Device redirections and configure Display sessions.
-* Configure [Start VM On Connect](https://luke.geek.nz/azure/start-vm-on-connect-for-azure-virtual-desktop/ "Start VM on Connect for Azure Virtual Desktop") to help reduce your spend.
-* If you click on Session hosts, you can add additional hosts to your pool or Drain them to prevent logins.
-* If you click Application Groups, you can add RemoteApp groups to allow users to connect directly to an Application versus a Full Desktop.
-* Configure [FSLogix](https://luke.geek.nz/azure/how-to-setup-fslogix-profiles-for-azure-virtual-desktop/ "How to setup FSLogix profiles for Azure Virtual Desktop") profiles for user persistance.
-* Set Disconnected Session Time limits in Group Policy, to automatically log off Disconnected sessions after 'x' period of time.
-
+- You can Navigate to your Host Pool; under Settings, you can restrict or allow RDP settings, Device redirections and configure Display sessions.
+- Configure [Start VM On Connect](https://luke.geek.nz/azure/start-vm-on-connect-for-azure-virtual-desktop/ "Start VM on Connect for Azure Virtual Desktop") to help reduce your spend.
+- If you click on Session hosts, you can add additional hosts to your pool or Drain them to prevent logins.
+- If you click Application Groups, you can add RemoteApp groups to allow users to connect directly to an Application versus a Full Desktop.
+- Configure [FSLogix](https://luke.geek.nz/azure/how-to-setup-fslogix-profiles-for-azure-virtual-desktop/ "How to setup FSLogix profiles for Azure Virtual Desktop") profiles for user persistance.
+- Set Disconnected Session Time limits in Group Policy, to automatically log off Disconnected sessions after 'x' period of time.

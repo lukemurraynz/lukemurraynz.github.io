@@ -1,7 +1,7 @@
 ---
 title: How to remove Windows Live Family Safety
 description: "Having problems getting rid of Windows Live Family Safety? Follow the steps below!"
-permalink: /win/how-to-remove-windows-live-family-safety/
+slug: win/how-to-remove-windows-live-family-safety
 tags:
   - Windows
 ---

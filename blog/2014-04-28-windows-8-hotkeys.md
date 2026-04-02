@@ -1,14 +1,53 @@
 ---
-title: Windows 8 Hotkeys
-description: "Navigating around Windows 8 can be a lot faster and more efficient with the use of keyboard shortcuts called Hotkeys – the below guide is a list of Wind..."
+title: Essential Windows 8 Keyboard Shortcuts (Hotkeys)
+description: "Navigate Windows 8 faster with these essential keyboard shortcuts. A complete reference guide to Windows Key combinations for the Start screen, charms, app switching, and snap views."
 tags:
   - Windows
 date: 2014-04-28 00:00:00 +1300
 ---
-<p class="Style1">
-  Navigating around Windows 8 can be a lot faster and more efficient with the use of keyboard shortcuts called Hotkeys – the below guide is a list of Windows 8 hotkeys for navigating the user interface.
-</p>
 
-<p class="Style1">
-  <b>Windows Key</b> &#8211; Opens the Start screen<br /> <b>Windows Key+Tab</b> &#8211; Metro app switcher<br /> <b>Windows Key+C</b> &#8211; System charms<br /> <b>Windows Key+Z</b> &#8211; Application charms<br /> <b>Windows Key+I</b> &#8211; Settings menu<br /> <b>Windows Key+K</b> &#8211; Devices menu<br /> <b>Windows Key+H</b> &#8211; Share menu<br /> <b>Windows Key+F</b> &#8211; Search files on Start screen<br /> <b>Windows Key+Q</b> &#8211; Application search on Start screen<br /> <b>Windows Key+W</b> &#8211; Settings search on Start screen<br /> <b>Windows Key+. (Period)</b> &#8211; Snap Metro app to the right side of the screen<br /> <b>Windows Key+Shift+. (Period)</b> &#8211; Snap Metro app to the left side of the screen (only works on wide-screen monitors)
-</p>
+Windows 8 introduced a significantly redesigned interface with the Start screen, charms bar, and Metro apps. While these features were designed for touch screens, they can be navigated efficiently on a keyboard using **hotkey combinations**.
+
+Here is a reference guide to the most useful Windows 8 keyboard shortcuts.
+
+## Navigation shortcuts
+
+| Shortcut | Action |
+|---|---|
+| **Windows Key** | Opens the Start screen |
+| **Windows Key + Tab** | Metro app switcher (cycles through open Metro apps) |
+| **Windows Key + D** | Show Desktop |
+| **Windows Key + E** | Open File Explorer |
+| **Windows Key + L** | Lock the computer |
+| **Windows Key + R** | Open the Run dialog |
+| **Windows Key + X** | Open the Quick Link menu (Power User menu) |
+
+## Charms and menus
+
+| Shortcut | Action |
+|---|---|
+| **Windows Key + C** | Open the Charms bar (Search, Share, Start, Devices, Settings) |
+| **Windows Key + I** | Open the Settings charm |
+| **Windows Key + K** | Open the Devices charm |
+| **Windows Key + H** | Open the Share charm |
+| **Windows Key + Z** | Open the app command bar (Application charms) |
+
+## Search shortcuts
+
+| Shortcut | Action |
+|---|---|
+| **Windows Key + F** | Search for files |
+| **Windows Key + Q** | Search for apps |
+| **Windows Key + W** | Search settings |
+
+## Snap and multitasking
+
+| Shortcut | Action |
+|---|---|
+| **Windows Key + . (Period)** | Snap the current Metro app to the right side of the screen |
+| **Windows Key + Shift + . (Period)** | Snap the current Metro app to the left side (works best on widescreen monitors) |
+
+## Tips
+
+- Most of these shortcuts also work in **Windows 8.1** and several carry forward into **Windows 10** and later.
+- The **Windows Key + X** menu is particularly useful as it provides quick access to Device Manager, Disk Management, Command Prompt, and other admin tools without needing to navigate through the Control Panel.

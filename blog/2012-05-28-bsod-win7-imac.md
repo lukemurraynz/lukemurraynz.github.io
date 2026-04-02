@@ -2,7 +2,7 @@
 title: Black Screen on Windows 7 on an iMac
 description: "This usually occurs due to problems with the nVidia drivers. Follow the prompts below to repair this."
 layout: post
-permalink: /osx/bsod-win7-imac/
+slug: osx/bsod-win7-imac
 tags:
   - Mac OSX
 ---

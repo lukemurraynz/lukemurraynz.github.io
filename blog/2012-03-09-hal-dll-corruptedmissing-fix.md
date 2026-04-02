@@ -1,7 +1,7 @@
 ---
 title: hal.dll Corrupted/Missing Fix
 description: "Windows could not start because the following file is missing or corrupt:"
-permalink: /win/hal-dll-corruptedmissing-fix/
+slug: win/hal-dll-corruptedmissing-fix
 tags:
   - Windows
 ---

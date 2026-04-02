@@ -4,18 +4,20 @@ title: Add Log Analytics to Monitoring Agent with PowerShell
 description: "Have you ever wanted to add a Log Analytics workspace to multiple Microsoft Monitoring Agent MMA 's before?"
 authors: [Luke]
 Tags:
- - PowerShell
+  - PowerShell
 toc: false
 header:
   teaser: "images/powershell-blog-feature-banner.png"
+slug: powershell/add-log-analytics-workspace-to-microsoft-monitoring-agent-via-powershell
 ---
-Have you ever wanted to add a Log Analytics workspace to multiple Microsoft Monitoring Agent (MMA)'s before? 
 
-Maybe you are setting up Windows Defender or wanting to redirect to collect event or performance logs. 
+Have you ever wanted to add a Log Analytics workspace to multiple Microsoft Monitoring Agent (MMA)'s before?
+
+Maybe you are setting up Windows Defender or wanting to redirect to collect event or performance logs.
 
 This little quick script will help get you started on automating adding a Log Analytics workspace to the MMA agent, even through a proxy.
 
-_Note:  It is recommended to have the latest MMA Agent installed, this is not compatible with SCOM 2012 R2 agents, but the latest agent is supported by SCOM._
+_Note: It is recommended to have the latest MMA Agent installed, this is not compatible with SCOM 2012 R2 agents, but the latest agent is supported by SCOM._
 
 ```powershell title="Add_LogAnalyticsWorkspace.ps1"
 

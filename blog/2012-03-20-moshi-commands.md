@@ -1,7 +1,7 @@
 ---
 title: Moshi Voice Commands
 description: "This is a list of the Voice Commands for the Moshi voice controlled Alarm clock."
-permalink: /misc/moshi-commands/
+slug: misc/moshi-commands
 tags:
   - Misc
 ---

@@ -38,8 +38,8 @@ function trackPageView() {
 
   window.gtag("event", "page_view", {
     page_title: document.title,
-    page_location: window.location.href,
-    page_path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
+    page_location: `${window.location.origin}${window.location.pathname}`,
+    page_path: window.location.pathname,
   });
 }
 

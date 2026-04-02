@@ -1,7 +1,7 @@
 ---
 title: Handycafe Homepage Firefox
 description: "This usually occurs when HandyCafe uses Firefox permissions/Javascript security to lock the homepage, follow the prompts to repair."
-permalink: /misc/handycafe-homepage-firefox/
+slug: misc/handycafe-homepage-firefox
 tags:
   - Misc
 ---

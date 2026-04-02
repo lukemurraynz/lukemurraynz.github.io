@@ -1,7 +1,7 @@
 ---
 title: How to create a Windows XP Picture Screensaver
 description: "How to create a Windows XP Picture Screensaver"
-permalink: /win/how-to-create-a-windows-xp-picture-screensaver/
+slug: win/how-to-create-a-windows-xp-picture-screensaver
 tags:
   - Windows
 ---

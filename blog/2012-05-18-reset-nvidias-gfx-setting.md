@@ -2,7 +2,7 @@
 title: Reset nVidia Graphics Settings
 description: "Learn about reset nvidia graphics settings. Step-by-step guide and solutions."
 layout: post
-permalink: /win/reset-nvidias-gfx-setting/
+slug: win/reset-nvidias-gfx-setting
 tags:
   - Windows
 ---

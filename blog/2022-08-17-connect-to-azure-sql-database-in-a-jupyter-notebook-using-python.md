@@ -1,5 +1,5 @@
 ---
-date: '2022-08-17 00:00:00 +1200'
+date: "2022-08-17 00:00:00 +1200"
 title: Connect to Azure SQL Database in a Jupyter Notebook using Python
 description: "Jupyter \\\"Jupyter\\\" Notebooks, commonly used by Data Scientists and Students, allow you to run code, such as Python and PowerShell, i..."
 authors: [Luke]
@@ -8,7 +8,9 @@ tags:
 toc: false
 header:
   teaser: /uploads/juptyer_notebook.png
+slug: azure/connect-to-azure-sql-database-in-a-jupyter-notebook-using-python
 ---
+
 [Jupyter](https://jupyter.org/ "Jupyter") Notebooks, commonly used by Data Scientists and Students, allow you to run code, such as Python and PowerShell, inside a Notebook format and display the output inside the notebook; this is useful for teaching a subject or displaying up-to-date information.
 
 I am not a python or Jupyter expert, so this article will be brief on how I was able to connect to an Azure SQL Database using Microsoft Entra ID authentication and run a query.
@@ -19,12 +21,12 @@ However, today I will be using Visual Studio Code with the [Jupyter extension](h
 
 Make sure you install:
 
-* [Python](https://www.python.org/downloads/ "Python")
-* [pyodbc](https://pypi.org/project/pyodbc/ "pyodbc ") library
-* [Microsoft ODBC Driver for SQL Server](https://learn.microsoft.com/en-us/sql/connect/odbc/microsoft-odbc-driver-for-sql-server "Microsoft ODBC Driver for SQL Server") _(has to be v17 or newer to support Microsoft Entra ID authentication)_.
-* [Visual Studio Code](https://code.visualstudio.com/ "Visual Studio Code") + [Jupyter extension](https://code.visualstudio.com/docs/datascience/jupyter-notebooks " Jupyter Notebooks in VS Code")
+- [Python](https://www.python.org/downloads/ "Python")
+- [pyodbc](https://pypi.org/project/pyodbc/ "pyodbc ") library
+- [Microsoft ODBC Driver for SQL Server](https://learn.microsoft.com/en-us/sql/connect/odbc/microsoft-odbc-driver-for-sql-server "Microsoft ODBC Driver for SQL Server") _(has to be v17 or newer to support Microsoft Entra ID authentication)_.
+- [Visual Studio Code](https://code.visualstudio.com/ "Visual Studio Code") + [Jupyter extension](https://code.visualstudio.com/docs/datascience/jupyter-notebooks " Jupyter Notebooks in VS Code")
 
-_Note: Jupyter notebook extensions end in '*.ipynb'._
+_Note: Jupyter notebook extensions end in '\*.ipynb'._
 
 Once all the prerequisites are installed, it's time to create the Notebook.
 
@@ -34,20 +36,20 @@ Once all the prerequisites are installed, it's time to create the Notebook.
 4. Press **+ Code** _(to add a Code snippet)_
 5. First, we need to import the pyodbc library:
 
-       #Libraries
-       import pyodbc
+   #Libraries
+   import pyodbc
 
 Then we need to **add the snippet to connect to the SQL database** _(this can be in a separate Codeblock or the same code block, as long as the import is run before the SQL connection is made - **make sure you update the server and database variables,** to match your environment!)_:
 
     #Connection to SQL database
-    
-    
-    server = 'tcp:SQLSERVER.database.windows.net' 
-    database = 'DBNAME' 
-    username = 'user@contoso.com' 
-    password = 'password' 
-    
-    
+
+
+    server = 'tcp:SQLSERVER.database.windows.net'
+    database = 'DBNAME'
+    username = 'user@contoso.com'
+    password = 'password'
+
+
     connection = pyodbc.connect('Driver={ODBC Driver 18 for SQL Server};Server='+server+',1433;Database='+database+';Uid='+username+';Pwd='+password+';Encrypt=yes;TrustServerCertificate=no;Connection Timeout=180;Authentication=ActiveDirectoryInteractive')
     cursor = connection.cursor()
 

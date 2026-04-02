@@ -6,9 +6,11 @@ tags:
   - Misc
 date: 2021-03-26 00:00:00 +1300
 toc: false
-header: 
+header:
   teaser: "images/iazure-marketplace-banner.png"
+slug: the-cloud-frame-of-mind
 ---
+
 > Note: Warning buzzwords to follow. Yes, it's that type of article. The views expressed are purely my own.
 
 We are at a turning point in history, where technology is enabling us to do more with less and faster, human life expectancy is longer than what it has ever been, and the world has never been as connected - We are in the 4th industrial revolution.
@@ -33,7 +35,7 @@ Information Technology functional requirements have changed from thinking of per
 
 ![Azure DevOps](/uploads/devops.png "Azure DevOps")
 
-Cloud-based thinking is migrating workloads from IaaS (Infrastructure as a Service) to PaaS (Platform as a Service), or from PaaS to SaaS (Software as a Service), instead of you working for the technology, the technology works for you. 
+Cloud-based thinking is migrating workloads from IaaS (Infrastructure as a Service) to PaaS (Platform as a Service), or from PaaS to SaaS (Software as a Service), instead of you working for the technology, the technology works for you.
 
 Those previous Information Technology professionals that once worked till the early hours of the morning replacing hardware, keeping systems up and running, are now free to automate, simplify and understand how the technology can work for the consumer. They can now finally concentrate on helping you to deliver and concentrate on the **Information** that is now at your disposal.
 
@@ -53,34 +55,34 @@ Long story short so, what does this all mean?
 
 In a few bullet points – this is some of what comes to mind when I think of having a Cloud frame of mind means:
 
-* Collaboration across Information Technology professionals (as the enablers) and Business needs have never been so important.
-* Try, Try, Fail and Try again – Experiment!
-* Think outside of the traditional box, into using technology across Cloud ecosystems such as Azure to drive outcomes.
-* Partnerships with Microsoft and other businesses globally are important to learn, adapt and avoid reinventing the wheel.
-* Shift from Captial to Operational expenses, subscription-based modelling and pay for what you use and consume.
-* Enable, Trust and empower employees.
-* Do not aim for perfection before moving forward or you will never get there.
-* Use Analytics, Integration, and Machine Learning engines to help drive data-driven business decisions.
-* Adopt a continuous learning culture.
-* Embrace Chaos
-* Remember that employee Utilisation does not equal maximum throughput.
-* Build what you cannot buy. Buy what you can't live without
-* Log what is useful, monitor what matters, alert on what's actionable.
-* Empower others (ie shift left) while making sure that everything is auditable, standardized.
-* Develop and promote an ‘everything as code’, ‘everything is automated’ mindset.
-* Test and develop roadmaps to get the most out of upcoming Cloud capabilities.
-* Educate employees on Security and the use of technology to get the most out of it.
-* Remember that some of your clients’ employees are not ‘bogged’ down by what they deem as not possible in IT.
-* Take advantage of the variable cost model of the Cloud
-* Design efficient use of resources via such activities as rightsizing (the process of resizing cloud resources to better match the workload requirements), allocating container costs, finding unused storage and compute, and identifying whether spending anomalies are expected.
-* Automate what is trivial, boring, mundane, and belittling.
-* The Cloud can offer cost savings with resiliency, high-availability, and security automation strategies, you just need to take advantage of it.
-* Champion improvements in People/Process and ways of working
-* Using the Cloud, does not always equal cost savings, however the real value is decreased time-to-deployment, increased agility to adapt to changes and opportunies for innovation, security and modernisation.
-* Concentrate and continue on operational improvements, such as Incident and Problem Management
-* Just as you have to have a push of changes, you have to have a pull of changes to keep the environment lean and avoid waste.
+- Collaboration across Information Technology professionals (as the enablers) and Business needs have never been so important.
+- Try, Try, Fail and Try again – Experiment!
+- Think outside of the traditional box, into using technology across Cloud ecosystems such as Azure to drive outcomes.
+- Partnerships with Microsoft and other businesses globally are important to learn, adapt and avoid reinventing the wheel.
+- Shift from Captial to Operational expenses, subscription-based modelling and pay for what you use and consume.
+- Enable, Trust and empower employees.
+- Do not aim for perfection before moving forward or you will never get there.
+- Use Analytics, Integration, and Machine Learning engines to help drive data-driven business decisions.
+- Adopt a continuous learning culture.
+- Embrace Chaos
+- Remember that employee Utilisation does not equal maximum throughput.
+- Build what you cannot buy. Buy what you can't live without
+- Log what is useful, monitor what matters, alert on what's actionable.
+- Empower others (ie shift left) while making sure that everything is auditable, standardized.
+- Develop and promote an ‘everything as code’, ‘everything is automated’ mindset.
+- Test and develop roadmaps to get the most out of upcoming Cloud capabilities.
+- Educate employees on Security and the use of technology to get the most out of it.
+- Remember that some of your clients’ employees are not ‘bogged’ down by what they deem as not possible in IT.
+- Take advantage of the variable cost model of the Cloud
+- Design efficient use of resources via such activities as rightsizing (the process of resizing cloud resources to better match the workload requirements), allocating container costs, finding unused storage and compute, and identifying whether spending anomalies are expected.
+- Automate what is trivial, boring, mundane, and belittling.
+- The Cloud can offer cost savings with resiliency, high-availability, and security automation strategies, you just need to take advantage of it.
+- Champion improvements in People/Process and ways of working
+- Using the Cloud, does not always equal cost savings, however the real value is decreased time-to-deployment, increased agility to adapt to changes and opportunies for innovation, security and modernisation.
+- Concentrate and continue on operational improvements, such as Incident and Problem Management
+- Just as you have to have a push of changes, you have to have a pull of changes to keep the environment lean and avoid waste.
 
-And finally, Revisit, Improve and Reinvest... and enjoy the challenge and opportunities that being in the 4th industrial revolution has to offer! 
+And finally, Revisit, Improve and Reinvest... and enjoy the challenge and opportunities that being in the 4th industrial revolution has to offer!
 
 It is surely an exciting time and is only just the beginning...
 

@@ -1,5 +1,5 @@
 ---
-date: '2021-06-18 00:00:00 +1200'
+date: "2021-06-18 00:00:00 +1200"
 title: Remove old PowerShell modules versions using PowerShell
 description: "Did you know, that if you update PowerShell modules, the old versions can sometimes get left behind?"
 authors: [Luke]
@@ -8,8 +8,9 @@ tags:
 toc: false
 header:
   teaser: images/powershell-blog-feature-banner.png
-
+slug: powershell/remove-old-powershell-modules-versions-using-powershell
 ---
+
 Did you know, that if you update PowerShell modules, the old versions can sometimes get left behind?
 
 This little snippet with remove any old PowerShell modules _(that are not the latest version)_, which are installed.
@@ -23,14 +24,14 @@ This little snippet with remove any old PowerShell modules _(that are not the la
         Version: 0.1
         Purpose: Basic function to remove old PowerShell modules which are installed
     #>
-    
+
       #>
-      $Latest = Get-InstalledModule 
-      foreach ($module in $Latest) { 
-        
+      $Latest = Get-InstalledModule
+      foreach ($module in $Latest) {
+
         Write-Verbose -Message "Uninstalling old versions of $($module.Name) [latest is $( $module.Version)]" -Verbose
-        Get-InstalledModule -Name $module.Name -AllVersions | Where-Object {$_.Version -ne $module.Version} | Uninstall-Module -Verbose 
+        Get-InstalledModule -Name $module.Name -AllVersions | Where-Object {$_.Version -ne $module.Version} | Uninstall-Module -Verbose
       }
     }
-    
+
     Remove-OldModules

@@ -1,7 +1,7 @@
 ---
 title: Logon Process has failed to create the security options dialog
 description: "This will open the System Configuration Utility, click Startup tab up the top"
-permalink: /win/logon-process-failed/
+slug: win/logon-process-failed
 tags:
   - Windows
 ---

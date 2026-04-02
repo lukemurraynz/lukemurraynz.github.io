@@ -1,7 +1,7 @@
 ---
 title: Installing Deki Wiki Skins
 description: "Upload the content of your theme folder to var/www/dekiwikiskins root access required"
-permalink: /misc/installing-deki-wiki-skins/
+slug: misc/installing-deki-wiki-skins
 tags:
   - Misc
 ---

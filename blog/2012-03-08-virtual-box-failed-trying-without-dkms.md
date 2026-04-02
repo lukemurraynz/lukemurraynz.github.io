@@ -1,20 +1,61 @@
 ---
-title: 'Virtual Box   &#8216;Failed, trying without DKMS&#8221;'
-description: "This means simply, you are missing the dkms package."
-permalink: /linux/virtual-box-failed-trying-without-dkms/
+title: Fix VirtualBox "Failed, trying without DKMS" Error on Linux
+description: "If VirtualBox displays a 'Failed, trying without DKMS' error on Linux, it means the DKMS (Dynamic Kernel Module Support) package is missing. Here is how to install it on Ubuntu and Fedora."
+slug: linux/virtual-box-failed-trying-without-dkms
 tags:
   - Linux
 ---
-This means simply, you are missing the <a title="Dynamic Kernel Module Support" href="http://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support" target="_blank">dkms </a>package.
 
-**Ubuntu**
+When you install or start [VirtualBox](https://www.virtualbox.org/) on a Linux distribution, you may encounter the error message **"Failed, trying without DKMS"**. This error indicates that the **DKMS (Dynamic Kernel Module Support)** package is not installed on your system.
 
-  1. **Open** a **Terminal** type: **apt-get install dkms**
-  2. Press **Enter**
-  3. Wait for it to **download** & **install**. Try **opening** **Virtual** **Box** Again
+## What is DKMS?
 
-**Fedora**
+DKMS is a framework that allows kernel modules to be dynamically rebuilt when a new kernel is installed. VirtualBox relies on kernel modules (such as `vboxdrv`) to interface with your hardware. Without DKMS, these modules will not be rebuilt automatically after kernel updates, causing VirtualBox to fail.
 
-  1. **Open** a **Terminal** type: **yum install dkms**
-  2. Press **Enter**
-  3. Wait for it to **download** & **install**. Try **opening** **Virtual** **Box** Again
+## How to fix it
+
+### Ubuntu / Debian
+
+1. Open a **Terminal**.
+2. Run the following command:
+
+   ```bash
+   sudo apt-get install dkms
+   ```
+
+3. Wait for the package to **download and install**.
+4. Try opening **VirtualBox** again.
+
+### Fedora / RHEL
+
+1. Open a **Terminal**.
+2. Run the following command:
+
+   ```bash
+   sudo yum install dkms
+   ```
+
+3. Wait for the package to **download and install**.
+4. Try opening **VirtualBox** again.
+
+## Still not working?
+
+If VirtualBox still fails after installing DKMS, you may also need to install the kernel headers for your running kernel. On Ubuntu, run:
+
+```bash
+sudo apt-get install linux-headers-$(uname -r)
+```
+
+On Fedora:
+
+```bash
+sudo yum install kernel-devel-$(uname -r)
+```
+
+After installing the headers, reconfigure VirtualBox with:
+
+```bash
+sudo /sbin/vboxconfig
+```
+
+This should rebuild the VirtualBox kernel modules and resolve the issue.

@@ -1,7 +1,7 @@
 ---
 title: How to Logout of PSN Network
 description: "Select Sign Out here you can also disable AutoLogon to prevent the play-station network from logging you in automatically"
-permalink: /misc/how-to-log-out-of-psn-network/
+slug: misc/how-to-log-out-of-psn-network
 tags:
   - Misc
 ---

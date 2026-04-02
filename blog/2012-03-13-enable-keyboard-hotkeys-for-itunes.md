@@ -1,7 +1,7 @@
 ---
 title: How to enable Keyboard hotkeys for iTunes
 description: "Check the checkbox titled \\\" Enable Full Keyboard Navigation \\\""
-permalink: /win/enable-keyboard-hotkeys-for-itunes/
+slug: win/enable-keyboard-hotkeys-for-itunes
 tags:
   - Windows
 ---
