@@ -86,7 +86,7 @@ _Runtime config and feature flags are delivered at request time via Front Door, 
 
 ## Why Front Door? Can I Just Use App Configuration Directly?
 
-This is the first question I had. Azure App Configuration already has a JavaScript SDK (`[@azure/app-configuration](https://learn.microsoft.com/javascript/api/overview/azure/app-configuration-readme?view=azure-node-latest&WT.mc_id=AZ-MVP-5004796)`). Why add Front Door in the middle?
+This is the first question I had. Azure App Configuration already has a JavaScript SDK `([@azure/app-configuration](https://learn.microsoft.com/javascript/api/overview/azure/app-configuration-readme?view=azure-node-latest&WT.mc_id=AZ-MVP-5004796))`. Why add Front Door in the middle?
 
 > The answer is authentication. App Configuration requires credentials to access - either a connection string or a Microsoft Entra ID token. An SPA running in a browser cannot securely hold either of these. You cannot embed a connection string in JavaScript that ships to the client. And you cannot run `DefaultAzureCredential` in a browser - there is no managed identity context.
 
