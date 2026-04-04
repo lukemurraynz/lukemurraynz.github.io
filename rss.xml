@@ -10,7 +10,7 @@
         <language>en</language>
         <copyright>Copyright © 2026 luke.geek.nz.</copyright>
         <item>
-            <title><![CDATA[Kill Your Build-Time Environment Variables: Azure App Configuration with Front Door for SPAs]]></title>
+            <title><![CDATA[Remove Build-Time Environment Variables with Azure App Configuration with Front Door for Static Web Apps]]></title>
             <link>https://luke.geek.nz/azure/appconfig-frontdoor-spa/</link>
             <guid>https://luke.geek.nz/azure/appconfig-frontdoor-spa/</guid>
             <pubDate>Sat, 04 Apr 2026 04:11:36 GMT</pubDate>
