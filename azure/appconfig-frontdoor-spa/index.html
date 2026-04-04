@@ -27,7 +27,7 @@
 <meta name="author" content="Luke Murray">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.006b1450.css">
-<script src="/assets/js/runtime~main.45687130.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.0fd76aa9.js" defer="defer"></script>
 <script src="/assets/js/main.2df53168.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -83,7 +83,7 @@
 <p><img decoding="async" loading="lazy" alt="Runtime configuration and feature flags flowing from App Configuration through Front Door to the SPA" src="/assets/images/RuntimeVariablesFeatureFlagAppConfigFrontDoor-cb59cbe87dffac4facada6ae92ffde30.gif" width="1897" height="962" class="img_ev3q"></p>
 <p><em>Runtime config and feature flags are delivered at request time via Front Door, not compiled into the bundle.</em></p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-front-door-can-i-just-use-app-configuration-directly">Why Front Door? Can I Just Use App Configuration Directly?<a href="#why-front-door-can-i-just-use-app-configuration-directly" class="hash-link" aria-label="Direct link to Why Front Door? Can I Just Use App Configuration Directly?" title="Direct link to Why Front Door? Can I Just Use App Configuration Directly?" translate="no">​</a></h2>
-<p>This is the first question I had. Azure App Configuration already has a JavaScript SDK (<code>[@azure/app-configuration](https://learn.microsoft.com/javascript/api/overview/azure/app-configuration-readme?view=azure-node-latest&amp;WT.mc_id=AZ-MVP-5004796)</code>). Why add Front Door in the middle?</p>
+<p>This is the first question I had. Azure App Configuration already has a JavaScript SDK <code>([@azure/app-configuration](https://learn.microsoft.com/javascript/api/overview/azure/app-configuration-readme?view=azure-node-latest&amp;WT.mc_id=AZ-MVP-5004796))</code>. Why add Front Door in the middle?</p>
 <blockquote>
 <p>The answer is authentication. App Configuration requires credentials to access - either a connection string or a Microsoft Entra ID token. An SPA running in a browser cannot securely hold either of these. You cannot embed a connection string in JavaScript that ships to the client. And you cannot run <code>DefaultAzureCredential</code> in a browser - there is no managed identity context.</p>
 </blockquote>
