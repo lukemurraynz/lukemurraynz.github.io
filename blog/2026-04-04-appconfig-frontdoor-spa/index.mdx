@@ -27,9 +27,7 @@ If you have ever had to rebuild a React or Vue app just because the API URL chan
 {/* truncate */}
 
 :::info
-
 This article walks through a proof of concept using preview SDKs. The pattern is production-applicable, but the Azure Front Door integration for App Configuration is currently in [public preview](https://learn.microsoft.com/azure/azure-app-configuration/concept-hyperscale-client-configuration?WT.mc_id=AZ-MVP-5004796). SDK versions and APIs may change before GA.
-
 :::
 
 ## The Problem Everyone Has Hit
@@ -52,7 +50,7 @@ This causes real problems:
 - **CI/CD coupling** - your frontend pipeline needs to know infrastructure details at build time
 - **No runtime changes** - updating a feature flag or API version requires a full rebuild and redeploy
 
-Because of this issue, I had developed my own Copilot skill, dedicated entirely to diagnosing `ERR_NAME_NOT_RESOLVED` errors from wrong build-time URLs. The fact that this needs its own troubleshooting guide tells you something about how often it goes wrong.
+Because of this issue, I developed my own Copilot skill dedicated entirely to diagnosing `ERR_NAME_NOT_RESOLVED` errors caused by incorrect build-time URLs. The fact that this needs its own troubleshooting guide tells you something about how often it goes wrong.
 
 ## What Changed
 
@@ -90,7 +88,7 @@ _Runtime config and feature flags are delivered at request time via Front Door, 
 
 This is the first question I had. Azure App Configuration already has a JavaScript SDK (`[@azure/app-configuration](https://learn.microsoft.com/javascript/api/overview/azure/app-configuration-readme?view=azure-node-latest&WT.mc_id=AZ-MVP-5004796)`). Why add Front Door in the middle?
 
-The answer is authentication. App Configuration requires credentials to access - either a connection string or a Microsoft Entra ID token. A SPA running in a browser cannot hold either of these securely. You cannot embed a connection string in JavaScript that ships to the client. And you cannot run `DefaultAzureCredential` in a browser - there is no managed identity context.
+> The answer is authentication. App Configuration requires credentials to access - either a connection string or a Microsoft Entra ID token. An SPA running in a browser cannot securely hold either of these. You cannot embed a connection string in JavaScript that ships to the client. And you cannot run `DefaultAzureCredential` in a browser - there is no managed identity context.
 
 Front Door solves this by acting as an authentication proxy:
 
@@ -112,7 +110,7 @@ This is not a replacement for server-side App Configuration. It is the missing p
 
 Yes. This is one of the strongest use cases.
 
-[Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview?WT.mc_id=AZ-MVP-5004796) serves pre-built static files from a global CDN. There is no server-side runtime to inject environment variables at request time. Today, if you need different config per environment (staging vs production), you either:
+[Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview?WT.mc_id=AZ-MVP-5004796) serves pre-built static files from a global CDN. There is no server-side runtime to inject environment variables at request time. Today, if you need a different config per environment (staging vs production), you either:
 
 1. Rebuild the app per environment with different `VITE_*` build args
 2. Use a workaround like a `/config.json` file served from the API backend
@@ -129,7 +127,7 @@ The deployment flow becomes:
 ```text
 GitHub Actions → npm run build → deploy to Static Web App (once)
                                         ↓
-              Same artifact serves staging AND production
+              The same artifact serves staging AND production
               Config values differ per App Configuration store/labels
 ```
 
@@ -231,7 +229,7 @@ After creation, note your Front Door endpoint URL from the **Existing endpoints*
 
 ### What This Looks Like in IaC (from my demo repo)
 
-The demo also codifies the App Configuration-to-Front Door relationship in Bicep so it is reproducible across environments. I had to reverse engineer the ARM template here: [App Configuration integration with Azure Front Door](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.appconfiguration/app-configuration-afd).
+The demo also codifies the App Configuration-to-Front Door relationship in Bicep, so it is reproducible across environments. I had to reverse engineer the ARM template here: [App Configuration integration with Azure Front Door](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.appconfiguration/app-configuration-afd).
 
 **1. App Configuration resource linked to Front Door profile** (`infra/main.bicep`):
 
@@ -438,7 +436,7 @@ Build-time environment variable injection for SPAs is a pattern that works until
 
 Azure App Configuration with Front Door moves SPA configuration from compile-time constants to runtime-fetched data, delivered through a CDN. The trade-off is clear: you accept eventual consistency (cache TTL) and a public endpoint (no per-client auth) in exchange for a single build artifact and runtime configuration changes.
 
-The feature is still in preview and the SDK support is limited to JavaScript and .NET. But the architectural pattern - fetch config as data, not compile it as code - is sound and worth exploring now.
+The feature is still in preview, and the SDK support is limited to JavaScript and .NET. But the architectural pattern - fetch config as data, not compile it as code - is sound and worth exploring now.
 
 > Want to deploy this exact walkthrough end-to-end? Start with the companion repo: [lukemurraynz/appconfig-frontdoor-spa-demo](https://github.com/lukemurraynz/appconfig-frontdoor-spa-demo) (includes Bicep, `azd` provisioning, and runtime config/feature-flag demo scripts).
 >
