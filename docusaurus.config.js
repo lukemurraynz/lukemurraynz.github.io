@@ -248,7 +248,7 @@ const config = {
         sitemap: {
           changefreq: 'weekly',
           priority: 0.5,
-          ignorePatterns: ['/tags/**', '/page/**', '/authors/**'],
+          ignorePatterns: ['/tags/*/page/**', '/page/**', '/authors/**'],
           filename: 'sitemap.xml',
         },
       }),
