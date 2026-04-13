@@ -4,6 +4,8 @@ Sitemap: https://luke.geek.nz/sitemap.xml
 ## Explicitly allow Algolia Crawler
 User-agent: Algolia Crawler
 Allow: /
+Allow: /*?
+Allow: /*.json
 # Optional: keep polite crawling
 Crawl-delay: 1
 
