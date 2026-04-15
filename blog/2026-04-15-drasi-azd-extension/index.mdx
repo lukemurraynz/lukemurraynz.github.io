@@ -54,7 +54,7 @@ Drasi deployments are not just "deploy app and move on". You normally need to co
 - Managed identity + Key Vault + diagnostics plumbing
 - Correct deployment order for Drasi components
 
-This is exactly the kind of process that becomes fragile if left to hand-written ad-hoc scripts per repo.
+This is exactly the kind of process that becomes fragile if left to handwritten, ad hoc scripts per repo.
 
 The extension wraps those moving parts into a consistent set of AZD commands, so your Drasi workloads feel like any other `azd` project lifecycle.
 
@@ -117,7 +117,7 @@ azd extension upgrade azure.drasi
 
 ## Quick Start (First Run)
 
-This is the fast path from empty folder to deployed Drasi components:
+This is the fast path from an empty folder to deployed Drasi components:
 
 ```bash
 mkdir my-drasi-app && cd my-drasi-app
@@ -132,19 +132,9 @@ azd drasi deploy
 azd drasi status
 ```
 
-> **Cost note:** `azd drasi provision` can create billable resources (especially AKS and Log Analytics). Use a dedicated dev/test subscription or budget guardrails for experimentation. The below are example costs only to give a view of cost, Azure Developer CLI shines with removal and redeployment of entire environments.
+> **Cost note:** `azd drasi provision` can create billable resources (especially AKS and Log Analytics). Use a dedicated dev/test subscription or budget guardrails for experimentation. The following are example costs only to give a view of cost; Azure Developer CLI shines with the removal and redeployment of entire environments.
 
 The `postgresql-source` template baseline (SKUs as defined in the Bicep: 2× `Standard_D2s_v5` AKS nodes, `Standard_B1ms` PostgreSQL, Standard NAT Gateway + Public IP) — estimated USD, pay-as-you-go, 24 h/day:
-
-**australiaeast**
-
-| Resource | SKU | 1 day | 7 days | 30 days |
-|---|---|---:|---:|---:|
-| AKS nodes ×2 | Standard_D2s_v5 | $5.76 | $40.32 | $172.80 |
-| PostgreSQL compute | Standard_B1ms (Burstable) | $0.62 | $4.37 | $18.72 |
-| NAT Gateway | Standard | $1.08 | $7.56 | $32.40 |
-| Public IP | Standard Static | $0.12 | $0.84 | $3.60 |
-| **Total** | | **$7.58** | **$53.09** | **$227.52** |
 
 **newzealandnorth**
 
@@ -156,17 +146,7 @@ The `postgresql-source` template baseline (SKUs as defined in the Bicep: 2× `St
 | Public IP | Standard Static | $0.12 | $0.84 | $3.60 |
 | **Total** | | **$7.90** | **$55.32** | **$237.10** |
 
-_Key Vault (Standard) and Log Analytics are consumption-based: Key Vault is negligible for dev use; Log Analytics adds ~$3.34/GB (AU East) / $3.51/GB (NZ North) above the 5 GB/day free allowance. VNet and managed identities are free._
-
-If you add an Azure Container Registry (ACR), `australiaeast` and `newzealandnorth` carry identical registry pricing (USD):
-
-| Tier | 1 day | 7 days | 30 days |
-|------|------:|-------:|--------:|
-| Basic | $0.17 | $1.17 | $5.00 |
-| Standard | $0.67 | $4.67 | $20.00 |
-| Premium | $1.67 | $11.67 | $50.00 |
-
-_Data storage adds $0.10/GB per month across all tiers. [Current pricing →](https://azure.microsoft.com/pricing/details/container-registry/?WT.mc_id=AZ-MVP-5004796)_
+_Key Vault (Standard) and Log Analytics are consumption-based: Key Vault is negligible for dev use; Log Analytics adds $3.51/GB (NZ North) above the 5 GB/day free allowance. VNet and managed identities are free._
 
 > **Region note:** If a SKU/offer is restricted in your default location, set a supported region before provisioning. For example:
 
@@ -183,7 +163,7 @@ This flow is intentionally opinionated: validate early, provision once, then dep
 
 ## Common Scenarios
 
-These are the scenarios I hit most often when building demos and internal proof-of-concepts.
+These are the scenarios I hit most often when building demos and internal proofs-of-concept.
 
 ### 1. Scaffold and Start with a Known Pattern
 
@@ -198,7 +178,7 @@ This avoids copy/paste YAML drift and gives you a repeatable baseline across con
 
 ### 2. Validate in CI Before Provision/Deploy
 
-If you want fast feedback in pull requests:
+If you want fast feedback on pull requests:
 
 ```bash
 azd drasi validate --strict
@@ -272,7 +252,7 @@ And a normal `azd down` works:
 Some practical notes after using this in repeated demo cycles:
 
 - Prefer `--environment` consistently, even in dev, so context switching is explicit.
-- Use `--output json` in automation jobs where you need machine-readable state.
+- Use `--output json` in automation jobs where you need a machine-readable state.
 - Keep secrets in Key Vault references and out of repo config.
 - Use `validate --strict` as a pre-deploy gate in CI.
 
@@ -308,4 +288,3 @@ I will add more walkthrough GIFs and scenario demos over time, but the extension
 If you try `azure.drasi`, I’d love your feedback:
 
 - Issues: [Report bugs or request features](https://github.com/lukemurraynz/azd.extensions.drasi/issues)
-
