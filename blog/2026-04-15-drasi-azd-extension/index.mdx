@@ -74,9 +74,7 @@ The current `azure.drasi` extension supports:
 | --- | --- | --- |
 | `blank` | Starting from scratch | Build a custom Drasi topology with your own sources/queries/reactions |
 | `blank-terraform` | Infra-first teams | Use Terraform-based provisioning workflows with Drasi project scaffolding |
-| `cosmos-change-feed` | Change data capture scenarios | React to Azure Cosmos DB changes and project updates downstream |
 | `event-hub-routing` | Streaming/event routing | Ingest from Event Hubs and route/filter events with Drasi queries |
-| `query-subscription` | Read model/materialized view patterns | Attach subscribers to query outputs for downstream processing |
 | `postgresql-source` | Relational CDC demos/POCs | Capture PostgreSQL changes and validate end-to-end Drasi flow quickly |
 
 - **These templates are starting points, not rigid blueprints.** Before you run `azd drasi provision`, you can modify infrastructure settings (for example VM sizes/SKUs, PostgreSQL sizing, networking, and environment parameters) to fit your subscription limits, region availability, and production standards.
@@ -87,7 +85,7 @@ The current `azure.drasi` extension supports:
 - Operations commands for status, logs, and diagnostics
 - Safe teardown and runtime upgrade actions
 
-![Placeholder: azd drasi init template selection](./images/drasiazdextensiotemplateselection.gif)
+![azd drasi init template selection](./images/drasiazdextensiotemplateselection.gif)
 
 ## Installation
 
