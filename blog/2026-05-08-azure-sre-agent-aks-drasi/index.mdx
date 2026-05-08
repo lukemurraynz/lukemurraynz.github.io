@@ -48,7 +48,7 @@ The result is an [Azure SRE Agent with support for Drasi on AKS](https://github.
 
 {/* truncate */}
 
-[Azure SRE Agent Operations Hub](./images/AzureSREAgent_AKSDrasiOperationsHubOverview.png)
+![Azure SRE Agent Operations Hub](./images/AzureSREAgent_AKSDrasiOperationsHubOverview.png)
 
 ## Why I Built This
 
@@ -111,7 +111,7 @@ At a high level, `azd up` gives you:
 - scheduled health probes and daily resilience summaries
 - scoped RBAC for the Drasi resource group and AKS cluster
 
-[Azure Deployed Resources](./images/AzureSREAgent_AzureDeployedResourceOverview.png)
+![Azure Deployed Resources](./images/AzureSREAgent_AzureDeployedResourceOverview.png)
 
 ## Agent Design
 
@@ -136,7 +136,7 @@ So the response plans route by failure phase first:
 | Broad `kubectl` and controller timeouts                       | API server, konnectivity, node/network health               |
 | Only Drasi resources are unhealthy after source/query changes | Drasi lifecycle diagnostics                                 |
 
-[Azure SRE Agent - Agent Canvas View](./images/AzureSREAgent_DrasiAKS_AgentCanvas_TableView.gif)
+![Azure SRE Agent - Agent Canvas View](./images/AzureSREAgent_DrasiAKS_AgentCanvas_TableView.gif)
 
 ## Built-In Skills Still Matter
 
@@ -166,7 +166,7 @@ The setup script applies them on every `azd up` without touching the built-in sk
 
 I kept each evidence bundle deliberately narrow. The Drasi runtime skill, for example, always checks source status before looking at any continuous query — because a stale-looking query usually has a source connection problem behind it. If I left that ordering to the model, it would take longer and sometimes go the wrong way.
 
-[Azure SRE Agent - Skills View](./images/AzureSREAgent_DrasiAKS_SkillsView.gif)
+![Azure SRE Agent - Skills View](./images/AzureSREAgent_DrasiAKS_SkillsView.gif)
 
 ## Connector Lesson: Connected Does Not Always Mean Enabled
 
@@ -194,7 +194,7 @@ Enable-AgentTools -ToolNames @(
 
 After that, the agent had access to current Microsoft documentation and live Drasi docs during investigations.
 
-[Azure SRE Agent Tools](./images/AzureSREAgent_DrasiAKS_ToolsView.gif)
+![Azure SRE Agent Tools](./images/AzureSREAgent_DrasiAKS_ToolsView.gif)
 
 ## Response Plans
 
@@ -253,13 +253,13 @@ That is a bounded, reversible-enough action for my use case. It does not authori
 Autonomy should be route-specific. Do not make the entire agent autonomous, as a single remediation is sufficient for your environment.
 :::
 
-[Azure SRE Agent - Stopped Cluster](./images/AzureSREAgent_DrasiAKS_ShutdownStartupClusterTest.gif)
+![Azure SRE Agent - Stopped Cluster](./images/AzureSREAgent_DrasiAKS_ShutdownStartupClusterTest.gif)
 
 The Alert then changed to Acknowledged, and the Agent will output a Kepner-Tregoe problem management table _(i.e., IS vs IS NOT)_.
 
 We can even have a look at the Trace of the process, to see the steps it took, this can help us improve the Agents and their Skill calling:
 
-[Azure SRE Agent - Stopped Cluster Trace](./images/AzureSREAgent_DrasiAKS_ShutdownStartupClusterTestTrace.gif)
+![Azure SRE Agent - Stopped Cluster Trace](./images/AzureSREAgent_DrasiAKS_ShutdownStartupClusterTestTrace.gif)
 
 ## Session Insights
 
@@ -276,7 +276,7 @@ Each session shows you:
 
 That last part is worth calling out. It is not just tidy output — it forces the agent to be explicit about what is not broken, which is often as useful as knowing what is.
 
-[Azure SRE Agent - Session Insights](./images/AzureSREAgent_DrasiAKS_SessionInsights.gif)
+![Azure SRE Agent - Session Insights](./images/AzureSREAgent_DrasiAKS_SessionInsights.gif)
 
 Because the blueprint wires in Application Insights as a connector, you can query the agent's own telemetry directly:
 
@@ -318,7 +318,7 @@ The 15-minute task checks the cluster power state before trying any Kubernetes c
 
 The daily report is more architectural: recurring risks, noisy components, failed remediations, and follow-up work.
 
-[Azure SRE Agent - Scheduled Tasks](./images/AzureSREAgent_DrasiAKS_ScheduledTasks.gif)
+![Azure SRE Agent - Scheduled Tasks](./images/AzureSREAgent_DrasiAKS_ScheduledTasks.gif)
 
 But you could use this for cost analysis reporting, configuration drift, and more.
 
@@ -356,7 +356,7 @@ Keep it off by default. Turn it on only for validation windows.
 Always-firing synthetic alerts that run continuously will trigger autonomous or review-mode agent runs, burning through tokens and tools. Deploy them, validate them, then delete or disable them.
 :::
 
-[Synthetic Incidents](./images/AzureSREAgent_DrasiAKS_Synthetic_Incidents.gif)
+![Synthetic Incidents](./images/AzureSREAgent_DrasiAKS_Synthetic_Incidents.gif)
 
 ![Azure SRE Agent Canvas View](./images/AzureSREAgent_DrasiAKS_AgentCanvas_CanvasView.png)
 
@@ -392,7 +392,7 @@ aks-monitoring-agent-fault
 
 The SRE Agent correctly diagnosed the missing DCR/DCRA path and proposed re-onboarding Container Insights. That is a sensible fix, but it changes AKS monitoring configuration, so the remediation review skill keeps it as a human approval path.
 
-[Azure SRE Agent - Container Insights Incident](./images/AzureSREAgent_DrasiAKS_ContainerInsightsMissingTest.gif)
+![Azure SRE Agent - Container Insights Incident](./images/AzureSREAgent_DrasiAKS_ContainerInsightsMissingTest.gif)
 
 ## Drasi Example: Source and Query Issues
 
@@ -414,7 +414,7 @@ The correct remediation is not to restart the cluster. It is:
 
 That is the kind of domain-specific behavior that belongs in a Drasi runtime skill, not a generic AKS skill.
 
-[Drasi source fix](./images/AzureSREAgent_DrasiAKS_DrasiIncidentFix.gif)
+![Drasi source fix](./images/AzureSREAgent_DrasiAKS_DrasiIncidentFix.gif)
 
 ## The Deployment Flow
 
