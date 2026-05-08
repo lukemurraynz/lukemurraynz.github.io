@@ -74,7 +74,11 @@ The trick is giving it enough structure so it does not treat every symptom as 'r
 
 ## What this Blueprint Deploys
 
-The [lukemurraynz/drasi-aks-sre-agent](https://github.com/lukemurraynz/drasi-aks-sre-agent/) repository can help you deploy the resources for SRE Agent with Bicep and wire the agent configuration through a post-provision script.
+:::note
+The full source is at [lukemurraynz/drasi-aks-sre-agent](https://github.com/lukemurraynz/drasi-aks-sre-agent/) on GitHub. Everything in this post deploys from that repo with `azd up`.
+:::
+
+The repository deploys the resources for the SRE Agent with Bicep and wires the agent configuration through a post-provision script.
 
 ```text
 drasi-aks-sre-agent/
