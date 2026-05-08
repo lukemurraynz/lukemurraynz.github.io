@@ -286,10 +286,6 @@
 <li class=""><a href="https://drasi.io/" target="_blank" rel="noopener noreferrer" class="">Drasi documentation</a></li>
 </ul>]]></content:encoded>
             <category>Azure</category>
-            <category>AKS</category>
-            <category>Drasi</category>
-            <category>Azure SRE Agent</category>
-            <category>Reliability</category>
         </item>
         <item>
             <title><![CDATA[Deploy Drasi Faster with the Azure Developer CLI Extension]]></title>

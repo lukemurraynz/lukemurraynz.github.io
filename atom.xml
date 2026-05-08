@@ -289,10 +289,6 @@
             <uri>https://luke.geek.nz</uri>
         </author>
         <category label="Azure" term="Azure"/>
-        <category label="AKS" term="AKS"/>
-        <category label="Drasi" term="Drasi"/>
-        <category label="Azure SRE Agent" term="Azure SRE Agent"/>
-        <category label="Reliability" term="Reliability"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Deploy Drasi Faster with the Azure Developer CLI Extension]]></title>
