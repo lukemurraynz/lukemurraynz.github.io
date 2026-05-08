@@ -44,7 +44,7 @@ The goal was simple: build a public, repeatable blueprint that deploys an Azure 
 - MCP connectors for Microsoft Learn and Drasi docs
 - fault-injection tests for AKS and Drasi failure modes
 
-The result is an [Azure SRE Agent with support for Drasi on AKS](https://github.com/lukemurraynz/drasi-aks-sre-agent/), that can be deployed using an `azd up` with an AVM style Bicep module and PowerShell.
+The result is an [Azure SRE Agent with support for Drasi on AKS](https://github.com/lukemurraynz/drasi-aks-sre-agent/) that can be deployed with `azd up` using an AVM-style (Azure Verified Modules) Bicep module and PowerShell.
 
 {/* truncate */}
 
@@ -54,7 +54,7 @@ The result is an [Azure SRE Agent with support for Drasi on AKS](https://github.
 
 [Drasi](https://drasi.io/) is a good workload for this pattern because it sits right on the boundary between application runtime and platform reliability.
 
-When a Drasi query is stale, or a source is not delivering changes, the root cause might be Drasi itself.
+When a Drasi query is stale or a source is not delivering changes, the root cause might be Drasi itself.
 
 But it might also be:
 
@@ -66,7 +66,7 @@ But it might also be:
 - a DCR or DCRA problem
 - a private-cluster operations path issue.
 
-That is where [SRE Agent](https://learn.microsoft.com/azure/sre-agent/overview?tabs=task&WT.mc_id=AZ-MVP-5004796) becomes interesting. I had a lot of fun setting this up, and the mind boggles on what this can do!
+That is where [SRE Agent](https://learn.microsoft.com/azure/sre-agent/overview?tabs=task&WT.mc_id=AZ-MVP-5004796) becomes interesting. I had a lot of fun setting this up, and the mind boggles at what this can do!
 
 The Azure SRE Agent can receive an incident from Azure Monitor, route it to a specialist agent, collect evidence, reason through likely causes, and either propose or execute a remediation depending on the response plan mode.
 
@@ -74,7 +74,7 @@ The trick is giving it enough structure so it does not treat every symptom as 'r
 
 ## What this Blueprint Deploys
 
-The [lukemurraynz/drasi-aks-sre-agent](https://github.com/lukemurraynz/drasi-aks-sre-agent/) repository can help you deploy the resources for SRE Agent with Bicep and wires the agent configuration through a post-provision script.
+The [lukemurraynz/drasi-aks-sre-agent](https://github.com/lukemurraynz/drasi-aks-sre-agent/) repository can help you deploy the resources for SRE Agent with Bicep and wire the agent configuration through a post-provision script.
 
 ```text
 drasi-aks-sre-agent/
@@ -120,7 +120,7 @@ I split the agent capability into four custom agents:
 | `drasi-runtime-diagnostics` | Handles Drasi sources, continuous queries, reactions, Dapr, Redis, Mongo, and Drasi rollout issues. |
 | `drasi-remediation-review`  | Reviews proposed fixes for evidence, risk, rollback, and validation.                                |
 
-I did not want the Drasi runtime agent debugging a cluster-wide scheduling issue. I also do not want the AKS agent deleting Drasi resources because a query or source isn't quite working.
+I did not want the Drasi runtime agent to debug a cluster-wide scheduling issue. I also don't want the AKS agent deleting Drasi resources when a query or source isn't working.
 
 So the response plans route by failure phase first:
 
@@ -140,7 +140,7 @@ One thing I tested was whether custom skills replaced the built-in skills.
 
 They should not.
 
-For [Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/aks/what-is-aks?WT.mc_id=AZ-MVP-5004796), the built-in `aks_general` skill is still useful for generic Kubernetes operations. The custom `aks-platform-diagnostics` skill I added, contains the more local context for Drasi, known false-positive patterns, and our route-specific evidence bundles.
+For [Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/aks/what-is-aks?WT.mc_id=AZ-MVP-5004796), the built-in `aks_general` skill is still useful for generic Kubernetes operations. The custom `aks-platform-diagnostics` skill I added contains the more local context for Drasi, known false-positive patterns, and our route-specific evidence bundles.
 
 The setup script only upserts custom skills and agents. It does not overwrite the built-in SRE Agent skills.
 
@@ -237,7 +237,7 @@ Most routes stay in **Review** mode. One route is intentionally **Autonomous**:
 }
 ```
 
-If the cluster is stopped, the agent is allowed to start the same AKS cluster _(if you grant it permissions to the resource through the User Assigned managed identity to do so)_ otherwise you can have this notify you through email/teams and you can elevate the permissions _(as long as you - yourself has access to do so)_:
+If the cluster is stopped, the agent is allowed to start the same AKS cluster _(if you grant it permissions to the resource through the User Assigned managed identity to do so)_ otherwise, you can have this notify you through email/teams, and you can elevate the permissions _(as long as you yourself have access to do so)_:
 
 ```bash
 az aks start -g <resource-group> -n <aks-cluster-name>
@@ -246,25 +246,25 @@ az aks start -g <resource-group> -n <aks-cluster-name>
 That is a bounded, reversible-enough action for my use case. It does not authorize node-pool scale-out, upgrades, networking changes, add-on changes, or cluster recreation.
 
 :::warning
-Autonomy should be route-specific. Do not make the whole agent autonomous because one remediation is safe enough for your environment.
+Autonomy should be route-specific. Do not make the entire agent autonomous, as a single remediation is sufficient for your environment.
 :::
 
 [Azure SRE Agent - Stopped Cluster](images/AzureSREAgent_DrasiAKS_ShutdownStartupClusterTest.gif)
 
-The Alert then changed to Acknowledged, and the Agent will output a Kepner-Tregoe problem management table _(ie IS vs IS NOT)_.
+The Alert then changed to Acknowledged, and the Agent will output a Kepner-Tregoe problem management table _(i.e., IS vs IS NOT)_.
 
-We can even have a look at the Trace of the process, to see the steps it took, this can help us improve the Agents and its Skill calling:
+We can even have a look at the Trace of the process, to see the steps it took, this can help us improve the Agents and their Skill calling:
 
 [Azure SRE Agent - Stopped Cluster Trace](images/AzureSREAgent_DrasiAKS_ShutdownStartupClusterTestTrace.gif)
 
 ## Session Insights
 
-Every incident creates an investigation session you can open in the portal. I found these worth going back and reading properly after each test run.
+Every incident creates an investigation session that you can open in the portal. I found these worth going back and reading properly after each test run.
 
 Each session shows you:
 
 - the triggering alert and incident metadata
-- which response plan and subagent handled the route
+- Which response plan and subagent handled the route
 - every tool call made during the investigation (Log Analytics queries, `kubectl` commands, Azure REST calls, MCP doc lookups)
 - the evidence collected and how the agent reasoned about it
 - the proposed or executed remediation
@@ -284,12 +284,12 @@ dependencies
 | order by timestamp desc
 ```
 
-That helps surface slow tool calls or failed skill invocations the session view does not always make obvious.
+That helps surface slow tool calls or failed skill invocations that the session view does not always make obvious.
 
 After a real incident, I would go through the session and:
 
 1. Check which tools fired and in what order.
-2. Look for tool calls that did not make it into the reasoning — wasted round trips.
+2. Look for tool calls that did not make it into the reasoning — wasted round-trips.
 3. Look for places where the agent guessed at evidence rather than retrieved it.
 4. Update the skill to tighten the evidence bundle for that route.
 
@@ -297,7 +297,7 @@ After a real incident, I would go through the session and:
 Sessions are the fastest way to improve your agent over time. One review after a real incident is worth more than ten synthetic tests.
 :::
 
-The Trace view shows the order of skill calls and subagent handoffs. If a route touched three agents before finding the right one, the triage logic in `drasi-incident-triage` needs adjusting.
+The Trace view shows the order of skill calls and subagent handoffs. If a route touched three agents before finding the right one, the triage logic in `drasi-incident-triage` needs to be adjusted.
 
 ## Scheduled Tasks
 
@@ -346,10 +346,10 @@ The Bicep also supports this with an opt-in flag:
 param deploySyntheticRouteValidationAlerts bool = false
 ```
 
-Keep it off by default. Turn it on for validation windows only.
+Keep it off by default. Turn it on only for validation windows.
 
 :::danger
-Always-firing synthetic alerts left running permanently will trigger autonomous or review-mode agent runs continuously, burning through token and tool usage. Deploy them, validate, then delete or disable.
+Always-firing synthetic alerts that run permanently will trigger autonomous or review-mode agent runs continuously, burning through tokens and tools. Deploy them, validate them, then delete or disable them.
 :::
 
 [Synthetic Incidents](images/AzureSREAgent_DrasiAKS_Synthetic_Incidents.gif)
@@ -360,7 +360,7 @@ Always-firing synthetic alerts left running permanently will trigger autonomous 
 
 One useful outcome from testing was that the SRE Agent surfaced a real platform issue.
 
-The AKS monitoring add-on was enabled and `ama-logs` pods were running, but Log Analytics had no recent rows in:
+The AKS monitoring add-on was enabled, and `ama-logs` pods were running, but Log Analytics had no recent rows in:
 
 - `KubePodInventory`
 - `ContainerLogV2`
@@ -406,7 +406,7 @@ The correct remediation is not to restart the cluster. It is:
 
 1. Confirm the Source is healthy.
 2. Inspect the Continuous Query status and resource-provider logs.
-3. Delete and recreate only the affected Continuous Query if bootstrap failed.
+3. Delete and recreate only the affected Continuous Query if the bootstrap failed.
 
 That is the kind of domain-specific behavior that belongs in a Drasi runtime skill, not a generic AKS skill.
 
@@ -449,11 +449,11 @@ The reason for the post-provision step is pragmatic: not every SRE Agent object 
 
 A few things stood out.
 
-### 1. Route by failure phase before product
+### 1. Route by failure phase before the product
 
 - Creation-time failures usually mean admission, workload identity, policy, or API-server health.
 - Pending-time failures usually mean scheduling, capacity, subnet, or autoscaler.
-- Metrics blindness usually means metrics API or monitoring pipeline.
+- Metrics blindness usually means the metrics API or the monitoring pipeline.
 
 Only after those are clean should the Drasi specialist take over.
 
@@ -471,11 +471,11 @@ Always-firing metric alerts are great for response-plan validation.
 
 They are terrible as a permanent baseline.
 
-Deploy them behind a flag, run the validation, capture the evidence, delete them.
+Deploy them behind a flag, run the validation, capture the evidence, and delete them.
 
-### 4. "Connected" is not the same as "usable"
+### 4. "Connected" is not the same as "usable."
 
-MCP connectors can be connected and healthy while their tools are not active for the agent.
+MCP connectors can be connected and remain healthy even when their tools are not active for the agent.
 
 Check the actual tool assignment, not just connector health.
 
@@ -487,7 +487,7 @@ That is a reliability incident in its own right.
 
 ## Where This Fits in Well-Architected
 
-From a [Well-Architected Reliability](https://learn.microsoft.com/azure/well-architected/reliability/?WT.mc_id=AZ-MVP-5004796) perspective, this is about reducing detection and diagnosis time without blindly increasing automation risk.
+From a [Well-Architected Reliability](https://learn.microsoft.com/azure/well-architected/reliability/?WT.mc_id=AZ-MVP-5004796) perspective, this is about reducing detection and diagnosis time without blindly increasing the risk of automation.
 
 From an Operational Excellence perspective, it gives you:
 
@@ -498,7 +498,7 @@ From an Operational Excellence perspective, it gives you:
 - scheduled operational review
 - post-incident feedback loops
 
-From a Cost Optimization perspective, it also matters because noisy autonomous agents can burn through token and tool usage quickly. Route narrowly, scope tools, and keep high-impact flows in Review until you have real evidence.
+From a Cost Optimization perspective, it also matters because noisy autonomous agents can quickly burn through tokens and tools. Route narrowly, scope tools, and keep high-impact flows in Review until you have real evidence.
 
 ## Final Thoughts
 
@@ -516,7 +516,7 @@ The value comes from the structure around it:
 
 For AKS and Drasi, that structure matters even more because the symptoms overlap. A Drasi issue can look like a Kubernetes issue, and a Kubernetes issue can make Drasi look broken, but hopefully this gives you enough of a view and scaffold to fit your own purposes.
 
-That is exactly the kind of ambiguity SRE Agent can help with, as long as we give it the right guardrails.
+That is exactly the kind of ambiguity SRE Agents can help with, as long as we give them the right guardrails.
 
 ## References
 
