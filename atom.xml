@@ -21,6 +21,7 @@
 <p>One where AI agents can produce evidence-backed recommendations grounded in historical patterns, high-impact actions always require human approval, every decision is recorded for audit and replay, and the detection logic is deterministic and testable <em>(not buried in a prompt)</em>.</p>
 </blockquote>
 <p>This post covers the Proof of Technology I built to validate an <strong>Agentic Operations Lakehouse</strong> style pattern _(and to be frank, it was a good chance for some fun, tieing these technologies together).</p>
+<!-- -->
 <p>Three Azure/hero technologies each own a distinct part of the problem:</p>
 <blockquote>
 <p><strong><a href="https://drasi.io/" target="_blank" rel="noopener noreferrer" class="">Drasi</a></strong> for live risk detection
