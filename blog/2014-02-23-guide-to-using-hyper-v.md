@@ -1,7 +1,7 @@
 ---
 title: Guide to using Hyper-V
 description: "Hyper-V is an emulation/hyper-visor Microsoft developed technology – similar to VMWare Workstation or ESXI that allows you to run Virtual Machines and d..."
-image: /wp-content/uploads/2014/02/Hyper-V-logo.png
+image: /uploads/Hyper-V-logo.png
 tags:
   - Windows
 date: 2014-02-23 00:00:00 +1300
