@@ -15,11 +15,13 @@
         <updated>2026-06-07T07:54:38.670Z</updated>
         <summary type="html"><![CDATA[Explore how to transition from cloud adoption to realizing true value with Azure, ensuring measurable improvements for your organization.]]></summary>
         <content type="html"><![CDATA[<p>A lot of Azure programmes can answer one question pretty quickly: what did we deploy?</p>
-<p>Landing zone. Done.<br>
-<!-- -->Workloads migrated. Done.<br>
-<!-- -->Monitoring enabled. Done.<br>
-<!-- -->Tags and budgets configured. Done.<br>
-<!-- -->Security baseline applied. Done.</p>
+<ul>
+<li class="">Landing zone. Done.</li>
+<li class="">Workloads migrated. Done.</li>
+<li class="">Monitoring enabled. Done.</li>
+<li class="">Tags and budgets configured. Done.</li>
+<li class="">Security baseline applied. Done.</li>
+</ul>
 <p>Those are all useful things, and I am not downplaying them. They are part of getting cloud adoption right. But they are not the whole story.</p>
 <p>The harder question is usually this one:</p>
 <blockquote>
