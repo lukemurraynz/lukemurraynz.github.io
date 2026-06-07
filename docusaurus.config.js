@@ -13,7 +13,7 @@ const GA_TRACKING_ID = "G-0QDLBY7NNN";
 const config = {
   title: "luke.geek.nz",
   tagline:
-    "Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.detect",
+    "Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -40,15 +40,21 @@ const config = {
   
   // Enhanced SEO configuration
   headTags: [
-    // Strip query parameters (utm_*, ref, etc.) to reduce "Alternate page with proper canonical tag" in Google Search Console
+    // Strip known tracking parameters without touching legitimate params like ?q= or ?ref=.
     {
       tagName: 'script',
       attributes: {},
       innerHTML: `
         (function() {
           if (window.location.search) {
-            var cleanUrl = window.location.protocol + '//' + window.location.host + window.location.pathname + window.location.hash;
-            window.history.replaceState(null, '', cleanUrl);
+            var params = new URLSearchParams(window.location.search);
+            var tracking = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbclid','gclid','mc_cid','mc_eid'];
+            var modified = false;
+            tracking.forEach(function(p) { if (params.has(p)) { params.delete(p); modified = true; } });
+            if (modified) {
+              var newSearch = params.toString() ? '?' + params.toString() : '';
+              window.history.replaceState(null, '', window.location.pathname + newSearch + window.location.hash);
+            }
           }
         })();
       `,
@@ -110,14 +116,9 @@ const config = {
           },
         ]
       : []),
-    // Enhanced Open Graph tags
-    {
-      tagName: 'meta',
-      attributes: {
-        property: 'og:type',
-        content: 'website',
-      },
-    },
+    // Site-wide Open Graph tags. Keep page-specific tags such as og:type out of
+    // headTags because Docusaurus renders headTags after per-page Helmet output
+    // during SSG, so duplicate properties here can override blog article tags.
     {
       tagName: 'meta',
       attributes: {

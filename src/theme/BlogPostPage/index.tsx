@@ -13,6 +13,7 @@ export default function BlogPostPageWrapper(props: Props): ReactNode {
   
   return (
     <>
+      <BlogPostPage {...props} />
       <BlogSEO 
         title={metadata?.title}
         description={metadata?.description}
@@ -22,7 +23,6 @@ export default function BlogPostPageWrapper(props: Props): ReactNode {
         tags={metadata?.tags}
         authors={metadata?.authors}
       />
-      <BlogPostPage {...props} />
     </>
   );
 }
