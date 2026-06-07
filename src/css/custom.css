@@ -193,16 +193,6 @@ div[class^=announcementBar][role="banner"] {
   outline-offset: 2px;
 }
 
-.toc_container,
-.toc_title,
-.toc_list,
-.toc_number,
-.toc_depth_1,
-.toc_depth_2,
-.toc_depth_3 {
-  display: none !important;
-}
-
 .header-rss-link:hover {
   opacity: 0.6;
 }
@@ -280,6 +270,11 @@ div[class^=announcementBar][role="banner"] {
 
 [data-theme='dark'] .cookie-consent-btn--accept {
   color: #121212;
+}
+
+[data-theme='dark'] .cookie-consent-btn--decline {
+  color: #e0e0e0;
+  border-color: #555;
 }
 
 .cookie-consent-btn--decline {
