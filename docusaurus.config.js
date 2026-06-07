@@ -13,7 +13,7 @@ const GA_TRACKING_ID = "G-0QDLBY7NNN";
 const config = {
   title: "luke.geek.nz",
   tagline:
-    "Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.detect",
+    "Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
