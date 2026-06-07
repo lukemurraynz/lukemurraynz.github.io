@@ -40,7 +40,7 @@ const config = {
   
   // Enhanced SEO configuration
   headTags: [
-    // Strip known tracking parameters (utm_*, fbclid, gclid, ref) without touching legitimate params like ?q= used by search
+    // Strip known tracking parameters without touching legitimate params like ?q= or ?ref=.
     {
       tagName: 'script',
       attributes: {},
@@ -116,15 +116,9 @@ const config = {
           },
         ]
       : []),
-    // Enhanced Open Graph tags — og:type defaults to 'website' for all pages;
-    // Docusaurus overrides it with 'article' on individual blog post pages via React Helmet last-wins
-    {
-      tagName: 'meta',
-      attributes: {
-        property: 'og:type',
-        content: 'website',
-      },
-    },
+    // Site-wide Open Graph tags. Keep page-specific tags such as og:type out of
+    // headTags because Docusaurus renders headTags after per-page Helmet output
+    // during SSG, so duplicate properties here can override blog article tags.
     {
       tagName: 'meta',
       attributes: {
