@@ -33,7 +33,8 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.10.1",
     "@docusaurus/types": "3.10.1",
-    "@types/react": "^19.0.0"
+    "@types/react": "^19.0.0",
+    "caniuse-lite": "1.0.30001797"
   },
   "browserslist": {
     "production": [
