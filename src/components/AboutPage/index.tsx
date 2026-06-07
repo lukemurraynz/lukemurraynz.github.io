@@ -24,7 +24,6 @@ const technologyAreas: Pill[] = [
   { label: "Azure Innovation Hub", background: "#F25022", color: "#FFFFFF" },
   { label: "Azure Integration PaaS", background: "#00A4EF", color: "#FFFFFF" },
   { label: "Azure Kubernetes and Open Source", background: "#326CE5", color: "#FFFFFF" },
-  { label: "Azure Kubernetes and Opensource", background: "#326CE5", color: "#FFFFFF" },
   { label: "Azure Networking", background: "#737373", color: "#FFFFFF" },
   { label: "Azure Virtual Desktop", background: "#181717", color: "#FFFFFF" },
   { label: "Azure Storage", background: "#E00B1C", color: "#FFFFFF" },

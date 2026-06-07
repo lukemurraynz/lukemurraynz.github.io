@@ -40,15 +40,21 @@ const config = {
   
   // Enhanced SEO configuration
   headTags: [
-    // Strip query parameters (utm_*, ref, etc.) to reduce "Alternate page with proper canonical tag" in Google Search Console
+    // Strip known tracking parameters (utm_*, fbclid, gclid, ref) without touching legitimate params like ?q= used by search
     {
       tagName: 'script',
       attributes: {},
       innerHTML: `
         (function() {
           if (window.location.search) {
-            var cleanUrl = window.location.protocol + '//' + window.location.host + window.location.pathname + window.location.hash;
-            window.history.replaceState(null, '', cleanUrl);
+            var params = new URLSearchParams(window.location.search);
+            var tracking = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbclid','gclid','ref','mc_cid','mc_eid'];
+            var modified = false;
+            tracking.forEach(function(p) { if (params.has(p)) { params.delete(p); modified = true; } });
+            if (modified) {
+              var newSearch = params.toString() ? '?' + params.toString() : '';
+              window.history.replaceState(null, '', window.location.pathname + newSearch + window.location.hash);
+            }
           }
         })();
       `,
@@ -111,13 +117,6 @@ const config = {
         ]
       : []),
     // Enhanced Open Graph tags
-    {
-      tagName: 'meta',
-      attributes: {
-        property: 'og:type',
-        content: 'website',
-      },
-    },
     {
       tagName: 'meta',
       attributes: {

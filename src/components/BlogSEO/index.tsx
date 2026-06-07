@@ -103,42 +103,16 @@ export default function BlogSEO(props: BlogSEOProps) {
 
   return (
     <Head>
-      {/* Enhanced meta tags */}
-      <meta name="description" content={metaDescription} />
+      {/* Supplemental tags not emitted by Docusaurus natively */}
       <meta name="keywords" content={keywords} />
       <meta name="author" content={author?.name || "Luke Murray"} />
-      
-      {/* Open Graph tags */}
-      <meta property="og:title" content={frontMatter.metaTitle || title} />
-      <meta property="og:description" content={metaDescription} />
-      <meta property="og:url" content={fullUrl} />
-      <meta property="og:type" content="article" />
-      
-      {/* Twitter Card tags */}
-      <meta name="twitter:title" content={frontMatter.metaTitle || title} />
-      <meta name="twitter:description" content={metaDescription} />
-      
-      {/* Image meta tags */}
+
+      {/* twitter:image:alt is not added by Docusaurus */}
       {(frontMatter.image || frontMatter.header?.teaser) && (
-        <>
-          <meta property="og:image" content={
-            (frontMatter.image || frontMatter.header.teaser).startsWith('http') 
-              ? frontMatter.image || frontMatter.header.teaser
-              : `https://luke.geek.nz${frontMatter.image || frontMatter.header.teaser}`
-          } />
-          <meta name="twitter:image" content={
-            (frontMatter.image || frontMatter.header.teaser).startsWith('http') 
-              ? frontMatter.image || frontMatter.header.teaser
-              : `https://luke.geek.nz${frontMatter.image || frontMatter.header.teaser}`
-          } />
-          <meta name="twitter:image:alt" content={title} />
-        </>
+        <meta name="twitter:image:alt" content={title} />
       )}
-      
-      {/* Canonical URL */}
-      <link rel="canonical" href={fullUrl} />
-      
-      {/* JSON-LD structured data */}
+
+      {/* JSON-LD structured data — not provided by Docusaurus */}
       {date && (
         <script type="application/ld+json">
           {JSON.stringify(jsonLd)}
