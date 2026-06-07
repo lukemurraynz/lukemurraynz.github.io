@@ -48,7 +48,7 @@ const config = {
         (function() {
           if (window.location.search) {
             var params = new URLSearchParams(window.location.search);
-            var tracking = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbclid','gclid','ref','mc_cid','mc_eid'];
+            var tracking = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbclid','gclid','mc_cid','mc_eid'];
             var modified = false;
             tracking.forEach(function(p) { if (params.has(p)) { params.delete(p); modified = true; } });
             if (modified) {
@@ -116,7 +116,15 @@ const config = {
           },
         ]
       : []),
-    // Enhanced Open Graph tags
+    // Enhanced Open Graph tags — og:type defaults to 'website' for all pages;
+    // Docusaurus overrides it with 'article' on individual blog post pages via React Helmet last-wins
+    {
+      tagName: 'meta',
+      attributes: {
+        property: 'og:type',
+        content: 'website',
+      },
+    },
     {
       tagName: 'meta',
       attributes: {

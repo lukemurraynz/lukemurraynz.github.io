@@ -105,7 +105,16 @@ export default function BlogSEO(props: BlogSEOProps) {
     <Head>
       {/* Supplemental tags not emitted by Docusaurus natively */}
       <meta name="keywords" content={keywords} />
-      <meta name="author" content={author?.name || "Luke Murray"} />
+      {/* author is already set globally in headTags; only override here when the post has a named author */}
+      {author?.name && <meta name="author" content={author.name} />}
+
+      {/* Override description/og:description when frontMatter.metaDescription is explicitly set */}
+      {frontMatter.metaDescription && (
+        <>
+          <meta name="description" content={frontMatter.metaDescription} />
+          <meta property="og:description" content={frontMatter.metaDescription} />
+        </>
+      )}
 
       {/* twitter:image:alt is not added by Docusaurus */}
       {(frontMatter.image || frontMatter.header?.teaser) && (
