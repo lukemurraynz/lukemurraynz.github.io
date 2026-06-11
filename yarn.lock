@@ -3624,9 +3624,9 @@ baseline-browser-mapping@^2.10.12:
   integrity sha512-I2NkZOOrj2XuguvWCK6OVh9GavsNjZjK908Rq3mIBK25+GD8vPX5w2WdxVqnQ7xx3SrZJiCiZFu+/Oz50oSYSA==
 
 baseline-browser-mapping@^2.10.34:
-  version "2.10.34"
-  resolved "https://registry.yarnpkg.com/baseline-browser-mapping/-/baseline-browser-mapping-2.10.34.tgz#dedb606362446777cfe328d30d4ee15056d06303"
-  integrity sha512-IMDedajPifLnHNY0X9n8hKxRTQ6/eTHwr5bDo04WnuqxyKw6LYtQywCuuqPZwhl3aBXMvQpJov42GLCwRRdQzw==
+  version "2.10.36"
+  resolved "https://registry.yarnpkg.com/baseline-browser-mapping/-/baseline-browser-mapping-2.10.36.tgz#ff3c7c87095c70075b1ac787160fd4fc98750a74"
+  integrity sha512-lVq/Df7LXlO79MVaaUHztSwWiG9oXoWHlgvNS51v8Dpd4+G4/VIy6qYePTw31nAVls33nUtnfezYeLkYAak9dg==
 
 batch@0.6.1:
   version "0.6.1"
