@@ -292,7 +292,7 @@ curl -X POST https://litellm.headinthecloud.co.nz/chat/completions \
   -d '{"model":"azure-gpt-4o","messages":[{"role":"user","content":"hello"}]}'
 
 # Check Prometheus metrics
-curl https://litellm.headinthecloud.co.nz/metrics | Select-String "litellm_"
+(Invoke-WebRequest https://litellm.headinthecloud.co.nz/metrics).Content | Select-String "litellm_"
 
 # Check ingress TLS certificate
 kubectl get certificate -n litellm -o wide
