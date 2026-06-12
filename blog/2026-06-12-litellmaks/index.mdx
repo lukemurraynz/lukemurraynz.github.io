@@ -76,7 +76,7 @@ The VNet is split into three subnets. The CIDR blocks are defined in `infra/core
 | `snet-pe`      | `10.30.2.0/24` | Private endpoints for PostgreSQL, Redis, ACR, Key Vault |
 | `snet-ingress` | `10.30.3.0/24` | Reserved for the NGINX ingress controller               |
 
-Outbound connectivity uses a NAT Gateway attached to the AKS subnet via a dedicated public IP (`pip-nat-vnet-`). The AKS cluster uses `userAssignedNATGateway` as its outbound type, which avoids the SNAT port exhaustion that can happen with `loadBalancer` outbound type at scale.
+Outbound connectivity uses a NAT Gateway attached to the AKS subnet via a dedicated public IP (for example, `pip-nat-vnet-<suffix>`). The AKS cluster uses `userAssignedNATGateway` as its outbound type, which avoids the SNAT port exhaustion that can happen with `loadBalancer` outbound type at scale.
 
 Private endpoint DNS resolution uses four Azure Private DNS zones, each linked to the VNet:
 
