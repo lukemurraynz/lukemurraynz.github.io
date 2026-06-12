@@ -109,8 +109,6 @@ The public ingress path is separate: the NGINX ingress controller gets a public 
 
 One thing I hit early on - the Bicep output `aksClusterName` was captured by azd as an environment variable, but `azure.yaml` was referencing `${AZURE_AKS_CLUSTER_NAME}` which did not exist. A quick fix to `${aksClusterName}` and the deployment ran clean.
 
-I also captured a real deploy and rollout check. This is not a mocked terminal recording - it came from `azd deploy`, `kubectl wait`, and the current HPA state.
-
 ![Terminal demo showing azd deploy completing, LiteLLM pods reaching Ready, and the HPA status](images/litellm-deploy-rollout.gif)
 
 ## The LiteLLM config
@@ -336,17 +334,17 @@ I had a lot of fun setting this up. The mind boggles at what you could do with t
 **Azure Infrastructure & Deployment:**
 
 - [Azure Developer CLI](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/?WT.mc_id=AZ-MVP-5004796)
-- [AKS network concepts and security](https://learn.microsoft.com/en-us/azure/aks/concepts-network)
-- [Bicep language overview](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview)
-- [HTTPS ingress on AKS with cert-manager](https://learn.microsoft.com/en-us/azure/aks/ingress-tls)
+- [AKS network concepts and security](https://learn.microsoft.com/en-us/azure/aks/concepts-network?WT.mc_id=AZ-MVP-5004796)
+- [Bicep language overview](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?WT.mc_id=AZ-MVP-5004796)
+- [HTTPS ingress on AKS with cert-manager](https://learn.microsoft.com/en-us/azure/aks/ingress-tls?WT.mc_id=AZ-MVP-5004796)
 
 **Networking & Private Connectivity:**
 
-- [Azure Private Link and Private Endpoints](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview)
-- [Azure NAT Gateway overview](https://learn.microsoft.com/en-us/azure/nat/nat-overview)
-- [Workload Identity on AKS](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview)
+- [Azure Private Link and Private Endpoints](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview?WT.mc_id=AZ-MVP-5004796)
+- [Azure NAT Gateway overview](https://learn.microsoft.com/en-us/azure/nat/nat-overview?WT.mc_id=AZ-MVP-5004796)
+- [Workload Identity on AKS](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview?WT.mc_id=AZ-MVP-5004796)
 
 **Data Services:**
 
-- [Azure Cache for Redis with private endpoints](https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-how-to-premium-vnet)
-- [PostgreSQL Flexible Server networking](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-networking)
+- [Azure Cache for Redis with private endpoints](https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-how-to-premium-vnet?WT.mc_id=AZ-MVP-5004796)
+- [PostgreSQL Flexible Server networking](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-networking?WT.mc_id=AZ-MVP-5004796)
