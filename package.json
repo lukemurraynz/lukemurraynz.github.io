@@ -22,7 +22,7 @@
     "@giscus/react": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "clsx": "^2.1.1",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^5.0.0",
     "plugin-image-zoom": "^1.2.0",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.0.0",
