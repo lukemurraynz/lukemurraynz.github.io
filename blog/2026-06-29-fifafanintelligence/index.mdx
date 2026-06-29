@@ -81,6 +81,7 @@ New to some of these? Here's what each enables:
 - **[PostDaprPubSub](https://drasi.io/drasi-kubernetes/how-to-guides/configure-reactions/configure-post-pubsub-reaction/)**: A Drasi reaction that publishes deltas to Service Bus without custom code — keeps the event pipeline declarative.
 - **[AKS](https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796)**: Managed Kubernetes cluster that runs the API, web, and event-processing workloads — handles rolling updates, KEDA autoscaling, and workload identity so you don't manage VMs.
 - **[AKS Fleet Manager](https://learn.microsoft.com/azure/kubernetes-fleet/?WT.mc_id=AZ-MVP-5004796)**: Control plane for multi-region Kubernetes clusters — stages updates across regions and provides a single pane of glass for health and rollout progress.
+:::
 
 Skip the details if you're familiar; the architecture works the same. These choices just solve specific pain points (state races, event noise, custom processors, regional orchestration) that show up at tournament scale.
 :::
