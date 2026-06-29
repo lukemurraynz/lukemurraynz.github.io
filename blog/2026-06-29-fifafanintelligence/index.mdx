@@ -31,7 +31,7 @@ This blog articles, covers the architecture, the 12 AI agent types, the Drasi ev
 {/* truncate */}
 
 :::info
-The full codebase is open source and available at [lukemurraynz/WC2026_FanIntelligence](https://github.com/lukemurraynz/WC2026_FanIntelligence) on GitHub. You can explore the source, deploy your own instance, and modify it for your own use cases.
+The full codebase is open source and available at **[lukemurraynz/WC2026_FanIntelligence](https://github.com/lukemurraynz/WC2026_FanIntelligence)** on GitHub. You can explore the source, deploy your own instance, and modify it for your own use cases.
 :::
 
 ## Quick start
@@ -76,11 +76,11 @@ The platform has five layers:
 :::tip Quick primer on key technologies
 New to some of these? Here's what each enables:
 
-- **[Orleans](https://learn.microsoft.com/en-us/dotnet/orleans/overview?pivots=orleans-10-0&WT.mc_id=AZ-MVP-5004796)**: Stateful virtual actors that hold fan state _(preferences, history, rate limits)_ in memory across requests — eliminates distributed cache races and throttling when thousands of goal events fire simultaneously.
-- **[Drasi](https://drasi.io/)**: Continuous Cypher queries that detect only _meaningful_ changes (goals, status shifts) rather than every state update — cuts noise by 90% and routes events to the right AI agent.
-- **[PostDaprPubSub](https://drasi.io/drasi-kubernetes/how-to-guides/configure-reactions/configure-post-pubsub-reaction/)**: A Drasi reaction that publishes deltas to Service Bus without custom code — keeps the event pipeline declarative.
-- **[AKS](https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796)**: Managed Kubernetes cluster that runs the API, web, and event-processing workloads — handles rolling updates, KEDA autoscaling, and workload identity so you don't manage VMs.
-- **[AKS Fleet Manager](https://learn.microsoft.com/azure/kubernetes-fleet/?WT.mc_id=AZ-MVP-5004796)**: Control plane for multi-region Kubernetes clusters — stages updates across regions and provides a single pane of glass for health and rollout progress.
+- **[Orleans](https://learn.microsoft.com/en-us/dotnet/orleans/overview?pivots=orleans-10-0&WT.mc_id=AZ-MVP-5004796)**: Stateful virtual actors that hold fan state _(preferences, history, rate limits)_ in memory across requests - eliminates distributed cache races and throttling when thousands of goal events fire simultaneously.
+- **[Drasi](https://drasi.io/)**: Continuous Cypher queries that detect only _meaningful_ changes (goals, status shifts) rather than every state update - cuts noise by 90% and routes events to the right AI agent.
+- **[PostDaprPubSub](https://drasi.io/drasi-kubernetes/how-to-guides/configure-reactions/configure-post-pubsub-reaction/)**: A Drasi reaction that publishes deltas to Service Bus without custom code - keeps the event pipeline declarative.
+- **[AKS](https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796)**: Managed Kubernetes cluster that runs the API, web, and event-processing workloads - handles rolling updates, KEDA autoscaling, and workload identity so you don't manage VMs.
+- **[AKS Fleet Manager](https://learn.microsoft.com/azure/kubernetes-fleet/?WT.mc_id=AZ-MVP-5004796)**: Control plane for multi-region Kubernetes clusters - stages updates across regions and provides a single pane of glass for health and rollout progress.
 :::
 
 Skip the details if you're familiar; the architecture works the same. These choices just solve specific pain points (state races, event noise, custom processors, regional orchestration) that show up at tournament scale.
