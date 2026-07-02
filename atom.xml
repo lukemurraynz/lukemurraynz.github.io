@@ -44,7 +44,7 @@
 <li class=""><strong><a href="https://drasi.io/" target="_blank" rel="noopener noreferrer" class="">Drasi</a></strong>: Continuous Cypher queries that detect only <em>meaningful</em> changes (goals, status shifts) rather than every state update - cuts noise by 90% and routes events to the right AI agent.</li>
 <li class=""><strong><a href="https://drasi.io/drasi-kubernetes/how-to-guides/configure-reactions/configure-post-pubsub-reaction/" target="_blank" rel="noopener noreferrer" class="">PostDaprPubSub</a></strong>: A Drasi reaction that publishes deltas to Service Bus without custom code - keeps the event pipeline declarative.</li>
 <li class=""><strong><a href="https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">AKS</a></strong>: Managed Kubernetes cluster that runs the API, web, and event-processing workloads - handles rolling updates, KEDA autoscaling, and workload identity so you don't manage VMs.</li>
-<li class=""><strong><a href="https://learn.microsoft.com/azure/kubernetes-fleet/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">AKS Fleet Manager</a></strong>: Control plane for multi-region Kubernetes clusters - stages updates across regions and provides a single pane of glass for health and rollout progress.</li>
+<li class=""><strong><a href="https://learn.microsoft.com/azure/kubernetes-fleet/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Kubernetes Fleet Manager</a></strong>: Control plane for multi-region Kubernetes clusters - stages updates across regions and provides a single pane of glass for health and rollout progress.</li>
 </ul></div></div>
 <p>Skip the details if you're familiar; the architecture works the same. These choices just solve specific pain points (state races, event noise, custom processors, regional orchestration) that show up at tournament scale.
 :::</p>
@@ -97,10 +97,10 @@
 <li class=""><strong>Front Door + AGC</strong> gives controlled ingress with health-probed routing and a single global endpoint. WAF and DDoS controls are at Front Door, while AGC handles Kubernetes Gateway API routing.</li>
 <li class=""><strong>Drasi</strong> turns Cosmos change-feed events into actionable queue messages without custom stream processors.</li>
 <li class=""><strong>AKS</strong> runs the API/web/forwarder workloads with rolling updates, KEDA, and workload identity.</li>
-<li class=""><strong>AKS Fleet Manager</strong> provides a control plane for multi-cluster operations with staged update groups across regions.</li>
+<li class=""><strong>Azure Kubernetes Fleet Manager</strong> provides a control plane for multi-cluster operations with staged update groups across regions.</li>
 </ol>
 <p><img decoding="async" loading="lazy" alt="AGC gateway status showing the gateway programmed and API health probe passing" src="https://luke.geek.nz/assets/images/agc-gateway-status-ace16f8a8e76d41c5f8979ff4addec07.gif" width="1125" height="552" class="img_ev3q">
-<img decoding="async" loading="lazy" alt="AKS Fleet Manager status showing fleet and member health in rg-mvp" src="https://luke.geek.nz/assets/images/aks-fleet-manager-status-48e81aadad4ca17f2b26baf8534858c9.gif" width="1125" height="552" class="img_ev3q">
+<img decoding="async" loading="lazy" alt="Azure Kubernetes Fleet Manager status showing fleet and member health in rg-mvp" src="https://luke.geek.nz/assets/images/aks-fleet-manager-status-48e81aadad4ca17f2b26baf8534858c9.gif" width="1125" height="552" class="img_ev3q">
 <img decoding="async" loading="lazy" alt="AKS Fleet rollout strategy showing staged upgrade flow from primary to secondary" src="https://luke.geek.nz/assets/images/aks-fleet-rollout-status-a2ddbd28355d82a6f4a4e315b34b4e7a.gif" width="1125" height="552" class="img_ev3q"></p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="deployment-model">Deployment model<a href="https://luke.geek.nz/azure/fan-intelligence-world-cup-2026/#deployment-model" class="hash-link" aria-label="Direct link to Deployment model" title="Direct link to Deployment model" translate="no">​</a></h2>
 <p>The platform uses <code>azd</code> with <code>host: aks</code> and Kustomize overlays. Each service has its own overlay directory, so <code>azd deploy api</code> deploys only the API.</p>
@@ -130,7 +130,7 @@
 <li class=""><a href="https://drasi.io/" target="_blank" rel="noopener noreferrer" class="">Drasi</a></li>
 <li class=""><a href="https://learn.microsoft.com/azure/azure-cache-for-redis/managed-redis/managed-redis-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Managed Redis</a></li>
 <li class=""><a href="https://learn.microsoft.com/azure/aks/workload-identity-overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">AKS Workload Identity</a></li>
-<li class=""><a href="https://learn.microsoft.com/azure/kubernetes-fleet/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">AKS Fleet Manager</a></li>
+<li class=""><a href="https://learn.microsoft.com/azure/kubernetes-fleet/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Kubernetes Fleet Manager</a></li>
 </ul>]]></content>
         <category label="Azure" term="Azure"/>
     </entry>
