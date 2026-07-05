@@ -61,8 +61,8 @@ While containers are not always necessary for deploying microservices, they offe
 **Why you may not need containers for microservices:**
 
 * Simplicity: If your microservices are developed using a single programming language or framework and can be easily deployed on traditional servers or virtual machines, containers may not be necessary. In such cases, deploying microservices directly on servers or virtual machines can be simpler and more straightforward.
-* Existing Infrastructure: If you already have a well-established infrastructure with efficient deployment processes and tools in place, containers may not be required. Leveraging your existing infrastructure can save time and effort in adopting and managing container technologies.
-* Resource Constraints: Containers introduce additional overhead in terms of resource utilization. If you have limited resources or strict resource constraints, deploying microservices directly on servers or virtual machines may be more efficient.
+* Existing Infrastructure: If you already have a well-established infrastructure with efficient deployment processes and tools in place, containers may not be required. Using your existing infrastructure can save time and effort in adopting and managing container technologies.
+* Resource Constraints: Containers introduce additional overhead in resource utilization. If you have limited resources or strict resource constraints, deploying microservices directly on servers or virtual machines may be more efficient.
 
 **However, how containers can generally help with microservices:**
 
@@ -98,9 +98,9 @@ Next up is Microservices, a more modular approach to software development.
 
 #### 🏗️ Microservices
 
-At its core, the concept of the microservices architecture is an approach to application development in which a large application is built as a collection of modular and cooperating services. 
+The concept of microservices is an approach to application development in which a large application is built as a collection of modular and cooperating services. 
 
-However, in order to successfully achieve a robust microservices architecture, the underlying infrastructure must also be correctly designed. In fact, due to the distributed nature of the microservices architecture, the line between what used to be separate application details and implementation details grows blurrier.
+However, to achieve a strong microservices architecture, the underlying infrastructure must also be correctly designed. In fact, due to the distributed nature of the microservices architecture, the line between what used to be separate application details and implementation details grows blurrier.
 
 Containers simplify the continuous deployment of microservices.
 
@@ -126,7 +126,7 @@ The deployment of microservices and traditional monolith applications is usually
 
 **So, let's take a look at how Microservices and Containers can work together.**
 
-Let’s delve into the differences between microservices and containers:
+Let’s look at the differences between microservices and containers:
 
 | Aspect | Microservices | Containers |
 |--------|---------------|------------|
@@ -208,7 +208,7 @@ With each of those applications, you can dynamically scale based on:
 Azure customers can easily deploy microservices using either Azure Kubernetes Service for flexible customized container solutions or Azure Container Apps for productivity-optimized, fully-managed serverless container solutions. Azure delivers app portability to support business growth powered by open source in the Kubernetes ecosystem. 
 :::
 
-Azure Container Apps is built on a foundation of powerful open-source technology to deliver the same microservices benefits as Kubernetes as a fully managed and serverless app hosting option. Behind the scenes, every container app runs on Azure Kubernetes Service, with Kubernetes Event Driven Autoscaling (KEDA), Distributed Application Runtime (Dapr), and Envoy deeply integrated in the hosting service. However, developers and operators are not exposed to this underlying Kubernetes infrastructure. The open-source-centric approach enables a path for teams to build microservices without having to overcome the concept and operational overhead of working with Kubernetes directly and enables continued app portability by leveraging open standards and APIs
+Azure Container Apps is built on a foundation of powerful open-source technology to deliver the same microservices benefits as Kubernetes as a fully managed and serverless app hosting option. Behind the scenes, every container app runs on Azure Kubernetes Service, with Kubernetes Event Driven Autoscaling (KEDA), Distributed Application Runtime (Dapr), and Envoy deeply integrated in the hosting service. However, developers and operators are not exposed to this underlying Kubernetes infrastructure. The open-source-centric approach enables a path for teams to build microservices without having to overcome the concept and operational overhead of working with Kubernetes directly and enables continued app portability by using open standards and APIs
 
 ![Azure Conter Apps and AKS](ACA_Overview_UnderstandingAKSACA.PNG)
 
@@ -306,7 +306,7 @@ When a shutdown is initiated, the container host sends a SIGTERM message to your
 
 If your application doesn't respond within 30 seconds to the SIGTERM message, then SIGKILL terminates your container.
 
-Additionally, make sure your application can gracefully handle shutdowns. Containers restart regularly, so don't expect the state to persist inside a container. Instead, use external caches for expensive in-memory cache requirements.
+Make sure your application can gracefully handle shutdowns. Containers restart regularly, so don't expect the state to persist inside a container. Instead, use external caches for expensive in-memory cache requirements.
 
 📖 References: 
 
@@ -335,10 +335,10 @@ These technologies are part of the [Cloud Native Computing Foundation](https://w
 ![Azure Container Apps - Dapr](ACA_Overview_UnderstandingDaprIntegration.PNG)
 
 :::info
-[Dapr](https://techcommunity.microsoft.com/t5/microsoft-developer-community/open-at-microsoft-dapr/ba-p/3857064?WT.mc_id=AZ-MVP-5004796) is a new way to build modern distributed applications. Born at Microsoft in 2019 as an incubation project, it was donated to the Cloud Native Computing Foundation in 2021 and is now a highly successful open-source project. Dapr helps you write flexible and secure microservices that leverage industry-proven best practices to build connected distributed applications faster. By letting Dapr’s sidecar take care of the complex challenges such as service discovery, message broker integration, encryption, observability, and secret management, you can focus on business logic and keep your code simple.
+[Dapr](https://techcommunity.microsoft.com/t5/microsoft-developer-community/open-at-microsoft-dapr/ba-p/3857064?WT.mc_id=AZ-MVP-5004796) is a new way to build modern distributed applications. Born at Microsoft in 2019 as an incubation project, it was donated to the Cloud Native Computing Foundation in 2021 and is now a highly successful open-source project. Dapr helps you write flexible and secure microservices that use industry-proven patterns to build connected distributed applications faster. By letting Dapr’s sidecar take care of the complex challenges such as service discovery, message broker integration, encryption, observability, and secret management, you can focus on business logic and keep your code simple.
 :::
 
-Dapr is a set of integrated APIs with built-in best practices and patterns to build distributed applications. Dapr increases your developer productivity by 20-40% with out-of-the-box features such as workflow, pub/sub, state management, secret stores, external configuration, bindings, actors, distributed lock, and cryptography. You benefit from the built-in security, reliability, and observability capabilities, so you don't need to write boilerplate code to achieve production-ready applications.
+Dapr is a set of integrated APIs with built-in patterns to build distributed applications. Dapr increases your developer productivity by 20-40% with out-of-the-box features such as workflow, pub/sub, state management, secret stores, external configuration, bindings, actors, distributed lock, and cryptography. You benefit from the built-in security, reliability, and observability capabilities, so you don't need to write boilerplate code to achieve production-ready applications.
 Dapr's component model decouples the integrated API with the underlying resources. For instance, when you're using the Dapr publish-subscribe API, you can change the message broker by swapping out a yaml component file to switch from RabbitMQ to Kafka (or any other supported broker) without changing your application code.
 
 ![Dapr High-level](ACA_Overview_UnderstandingDaprIntegrationHigh_Level.PNG)
@@ -369,7 +369,7 @@ KEDA is a Kubernetes-based Event Driven Autoscaler. With KEDA, you can drive the
 
 KEDA (Kubernetes-based Event Driven Autoscaling) is an open-source project that provides event-driven autoscaling for Kubernetes workloads. KEDA can scale any container in response to events from various sources such as Azure Service Bus, Azure Event Hubs, Azure Storage Queues, Azure Storage Blobs, RabbitMQ, Kafka, and more.
 
-An example of KEDA event scaling is being able to scale your Containers based on KEDA scalers, such as Azure DevOps pipelines. You can refer to a previous blog post I did on leveraging KEDA scalers with [Container App Jobs to create Self-Hosted Azure DevOps Agents](https://luke.geek.nz/azure/hosted-agents-container-apps-job/).
+An example of KEDA event scaling is being able to scale your Containers based on KEDA scalers, such as Azure DevOps pipelines. See my earlier post on using KEDA scalers with [Container App Jobs to create Self-Hosted Azure DevOps Agents](https://luke.geek.nz/azure/hosted-agents-container-apps-job/).
 
 KEDA really opens up the possibilities of scaling your Containers, based on events, and is a great addition to Azure Container Apps, and like DAPR KEDA is built-in to Azure Container Apps and managed by Microsoft.
 
@@ -453,7 +453,7 @@ A container app has access to different types of storage. A single app can take 
 
 ## 👀 Observability
 
-Azure Container Apps provides several built-in observability features that together give you a holistic view of your container app’s health throughout its application lifecycle
+Azure Container Apps provides several built-in observability features that together give you a complete view of your container app’s health throughout its application lifecycle
 
 These features help in monitoring and diagnosing the state of the application to improve performance and respond to trends and critical problems.
 
@@ -475,6 +475,6 @@ Azure landing zone accelerators provide architectural guidance, reference archit
 
 This reference architecture can be found on GitHub directly: [Azure/aca-landing-zone-accelerator](https://aka.ms/aca-lza).
 
-Thank you for sticking with me until the end! I hope you found this article useful. As usual, feel free to reach out to me on social media if there's anything you want covered that I may have missed, if you have any queries, or if you want me to cover anything else.
+Thank you for sticking with me until the end. I hope you found this article useful.
 
 **[Get started with Azure Container Apps today](https://learn.microsoft.com/azure/container-apps/overview?WT.mc_id=AZ-MVP-5004796)!**
