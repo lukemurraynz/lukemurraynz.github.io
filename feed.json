@@ -12,10 +12,7 @@
             "summary": "Ringed, multi-region canary deployments with Azure Developer CLI, Bicep, Helm & ArgoRollouts—automated AKS rollouts with health gates and instant rollback.",
             "date_modified": "2026-07-05T00:25:49.199Z",
             "tags": [
-                "Azure",
-                "AKS",
-                "DevOps",
-                "GitOps"
+                "Azure"
             ]
         },
         {
