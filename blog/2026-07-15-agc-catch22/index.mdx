@@ -1,0 +1,127 @@
+---
+title: AKS managed Gateway API blocks the ALB controller
+date: 2026-07-15T00:15:28.536Z
+tags:
+  - Azure
+description: "AKS managed Gateway API's outdated CRDs blocked the ALB controller. Fix: disable add-ons, apply Gateway CRDs v1.2.1, and install the ALB controller via Helm."
+metaDescription: "AKS managed Gateway API's outdated CRDs blocked the ALB controller. Fix: disable add-ons, apply Gateway CRDs v1.2.1, and install the ALB controller via Helm."
+slug: azure/aks-mgtgw-lab
+keywords:
+  - AKS
+  - Azure Kubernetes Service
+  - Application Gateway for Containers
+  - AGC
+  - ALB controller
+  - Gateway API
+  - CRD
+  - ReferenceGrant
+  - Helm
+  - AKS add-on
+  - Kubernetes ingress
+  - Azure Front Door
+  - HTTPRoute
+  - ingress controller
+---
+
+I was setting up Application Gateway for Containers (AGC) as the ingress layer for a project cluster. The AKS add-on makes it look straightforward in Bicep - enable it, deploy your Gateway and HTTPRoute manifests, done. What I ran into instead was a version deadlock between two managed add-ons that left the Gateway stuck at `PROGRAMMED: Unknown` for twelve hours and Front Door returning 504 the whole time.
+
+This is what happened, why, and how I got out of it.
+
+{/* truncate */}
+
+## What I saw
+
+![AGC Gateway showing PROGRAMMED=Unknown and Front Door returning 504](images/agc-gateway-status.gif)
+
+```powershell
+kubectl get gateway -n wc2026
+# NAME             CLASS                ADDRESS   PROGRAMMED   AGE
+# wc2026-gateway   azure-alb-external             Unknown      12h
+```
+
+Front Door endpoint returning 504:
+
+```powershell
+curl -s -o /dev/null -w "%{http_code}" https://wc2026-api-etckbtg6fxesbzgs.z02.azurefd.net/health/ready
+# 504
+```
+
+The gateway existed. The AGC traffic controller was provisioned (`h3gdecakejfnfyfh.fz55.alb.azure.com`). But the ALB controller had never reconciled the Gateway resource - it was sitting there doing nothing.
+
+## How I got here
+
+The deployment sequence looked fine on paper:
+
+```text
+1. Deploy AGC traffic controller via Bicep -- succeeds
+2. Deploy Gateway API + HTTPRoute manifests -- applied
+3. Enable ALB controller add-on: az aks update --enable-application-load-balancer
+4. Error: Preview feature ApplicationLoadBalancerPreview not registered
+5. Register feature, propagate provider -- add-on installs
+6. ALB controller pods crash-loop:
+   "no matches for kind 'ReferenceGrant' in version 'gateway.networking.k8s.io/v1'"
+7. Root cause: ALB controller (v1.11.1) needs Gateway API CRDs v1.2.1
+   (ReferenceGrant graduated to v1 in v1.2.1)
+8. AKS managed Gateway API add-on ships older CRDs
+   (ReferenceGrant only at v1beta1)
+9. Try to upgrade CRDs manually -- denied:
+   "managed Gateway API disallows modifying Gateway CRDs"
+10. Try to disable managed Gateway API to install CRDs manually -- denied:
+    "Application Load Balancer add-on requires managed Gateway API"
+```
+
+That last step is where it locks up completely. The ALB controller needs newer CRDs than the managed Gateway API provides. The managed Gateway API blocks you from upgrading the CRDs yourself. And you cannot remove the managed Gateway API because the ALB controller add-on depends on it.
+
+Every door was closed.
+
+## What I did
+
+The only exit was to pull both managed add-ons out and own the installation via Helm:
+
+```powershell
+# Disable both managed add-ons
+az aks update --resource-group rg-mvp --name wc2026-fanintel-aks \
+  --disable-application-load-balancer
+az aks update --resource-group rg-mvp --name wc2026-fanintel-aks \
+  --disable-gateway-api
+
+# Install Gateway API CRDs v1.2.1 manually
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.2.1/standard-install.yaml
+
+# Install ALB controller via Helm
+helm install alb-controller oci://mcr.microsoft.com/application-lb/charts/alb-controller \
+  --version 1.11.1 \
+  --set cluster.name=wc2026-fanintel-aks \
+  --set cluster.resourceGroup=rg-mvp
+```
+
+With the right CRD version in place, the controller installed cleanly and started reconciling the Gateway resource straight away.
+
+## After the fix
+
+```powershell
+kubectl get pods -n azure-alb-system
+# alb-controller-*   Running
+
+kubectl get gateway -n wc2026
+# wc2026-gateway   azure-alb-external   <ip>   Programmed   True
+
+curl -s -o /dev/null -w "%{http_code}" https://wc2026-api-etckbtg6fxesbzgs.z02.azurefd.net/health/ready
+# 200
+```
+
+Gateway programmed, Front Door responding. The tradeoff is that you are now managing the ALB controller version yourself - no automatic add-on upgrades, and you lose the managed identity wiring the add-on configures for you. Worth keeping in mind when you plan upgrades.
+
+## What I learned
+
+The core problem is a version coupling that Microsoft has not documented clearly. The ALB controller (v1.11.1) requires Gateway API CRDs v1.2.1 because `ReferenceGrant` graduated from `v1beta1` to `v1` in that release. The managed Gateway API add-on ships older CRDs and does not expose a way to upgrade them. The two add-ons are mutually dependent but not mutually compatible at the CRD level.
+
+Until the managed add-on catches up, the Helm path is the reliable installation method for AGC on AKS. If you are starting a new cluster today, install Gateway API CRDs v1.2.1 first, then the ALB controller via Helm - skip the managed add-ons entirely.
+
+Hopefully this saves you a few hours of digging through crash loops and error messages.
+
+## References
+
+- [Application Gateway for Containers documentation](https://learn.microsoft.com/azure/application-gateway/for-containers/overview?WT.mc_id=AZ-MVP-5004796)
+- [ALB controller Helm installation](https://learn.microsoft.com/azure/application-gateway/for-containers/quickstart-deploy-application-gateway-for-containers-alb-controller-helm?tabs=azure-cli%2Cinstall-helm-windows&WT.mc_id=AZ-MVP-5004796)
+- [Gateway API CRDs](https://gateway-api.sigs.k8s.io/)
