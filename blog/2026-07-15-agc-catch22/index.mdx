@@ -3,8 +3,8 @@ title: AKS managed Gateway API blocks the ALB controller
 date: 2026-07-15T00:15:28.536Z
 tags:
   - Azure
-description: "AKS managed Gateway API's outdated CRDs blocked the ALB controller. Fix: disable add-ons, apply Gateway CRDs v1.2.1, and install the ALB controller via Helm."
-metaDescription: "AKS managed Gateway API's outdated CRDs blocked the ALB controller. Fix: disable add-ons, apply Gateway CRDs v1.2.1, and install the ALB controller via Helm."
+description: "AKS managed Gateway API blocked my ALB controller rollout. Use managed add-on pinning for lifecycle safety, or use Helm when you need independent Gateway API + ALB controller versions."
+metaDescription: "AKS managed Gateway API blocked ALB controller rollout in my cluster. Fix path: self-manage Gateway API CRDs and ALB controller via Helm when you need versions independent of AKS add-on pinning."
 slug: azure/aks-mgtgw-lab
 keywords:
   - AKS
@@ -27,6 +27,8 @@ I was setting up Application Gateway for Containers (AGC) as the ingress layer f
 
 This is what happened, why, and how I got out of it.
 
+> **Update (2026-07-23):** Microsoft has clarified the add-on behavior and support matrix. If you use the AKS add-on path, ALB controller versions are pinned by cluster version + Managed Gateway API bundle support. See the official matrix: [Supported Kubernetes versions for Gateway API bundle versions](https://learn.microsoft.com/azure/aks/managed-gateway-api?WT.mc_id=AZ-MVP-5004796#supported-kubernetes-versions-for-gateway-api-bundle-versions).
+
 {/* truncate */}
 
 ## What I saw
@@ -48,7 +50,9 @@ curl -s -o /dev/null -w "%{http_code}" https://wc2026-api-etckbtg6fxesbzgs.z02.a
 
 The gateway existed. The AGC traffic controller was provisioned, but the ALB controller had never reconciled the Gateway resource - it was sitting there doing nothing.
 
-## How I got here
+## Incident timeline (original run)
+
+The sequence below is the exact chronology from my original incident run.
 
 The deployment sequence looked fine on paper:
 
@@ -60,10 +64,9 @@ The deployment sequence looked fine on paper:
 5. Register feature, propagate provider -- add-on installs
 6. ALB controller pods crash-loop:
    "no matches for kind 'ReferenceGrant' in version 'gateway.networking.k8s.io/v1'"
-7. Root cause: ALB controller (v1.11.1) needs Gateway API CRDs v1.2.1
-   (ReferenceGrant graduated to v1 in v1.2.1)
-8. AKS managed Gateway API add-on ships older CRDs
-   (ReferenceGrant only at v1beta1)
+7. Root cause in my install path: ALB controller (v1.11.1) expected newer Gateway API CRDs
+  than what my managed Gateway API install exposed at the time
+8. AKS managed Gateway API add-on bundle on my cluster lagged the controller expectations
 9. Try to upgrade CRDs manually -- denied:
    "managed Gateway API disallows modifying Gateway CRDs"
 10. Try to disable managed Gateway API to install CRDs manually -- denied:
@@ -76,7 +79,7 @@ Every door was closed.
 
 ## What I did
 
-The only exit was to pull both managed add-ons out and own the installation via Helm:
+The only exit for this cluster was to pull both managed add-ons out and own the installation via Helm:
 
 ```powershell
 # Disable both managed add-ons
@@ -85,17 +88,19 @@ az aks update --resource-group rg-mvp --name wc2026-fanintel-aks \
 az aks update --resource-group rg-mvp --name wc2026-fanintel-aks \
   --disable-gateway-api
 
-# Install Gateway API CRDs v1.2.1 manually
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.2.1/standard-install.yaml
+# Install Gateway API CRDs v1.5.1 manually
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.5.1/standard-install.yaml
 
 # Install ALB controller via Helm
 helm install alb-controller oci://mcr.microsoft.com/application-lb/charts/alb-controller \
-  --version 1.11.1 \
+  --version 1.11.3 \
   --set cluster.name=wc2026-fanintel-aks \
   --set cluster.resourceGroup=rg-mvp
 ```
 
 With the right CRD version in place, the controller installed cleanly and started reconciling the Gateway resource straight away.
+
+This Helm path is supported (not a hack) when you want ALB controller + Gateway API versions independent of cluster-version-based add-on pinning.
 
 ## After the fix
 
@@ -112,11 +117,23 @@ curl -s -o /dev/null -w "%{http_code}" https://wc2026-api-etckbtg6fxesbzgs.z02.a
 
 Gateway programmed, Front Door responding. The tradeoff is that you are now managing the ALB controller version yourself - no automatic add-on upgrades, and you lose the managed identity wiring the add-on configures for you. Worth keeping in mind when you plan upgrades.
 
+## Post-update clarification (2026-07-23)
+
+Microsoft has now clarified that when you use the AKS add-on path, you should not have to manually manage Gateway API/ALB controller compatibility matrices. Add-on versions are pinned by cluster Kubernetes version and Managed Gateway API bundle support.
+
+Correction from Microsoft PM: ALB Controller `v1.11.x` targets Gateway API `v1.5.1`, and `v1.5.1` CRDs are recommended with `v1.11+` for full functionality. Latest mappings are published in the ALB controller release notes.
+
+Practical guidance:
+
+- If you want managed lifecycle and automatic compatibility pinning, use AKS add-ons and follow the documented support matrix.
+- If you want the latest Gateway API + ALB controller independent of cluster version, Helm is a supported self-managed path.
+
 ## What I learned
 
-The core problem is a version coupling that Microsoft has not documented clearly. The ALB controller (v1.11.1) requires Gateway API CRDs v1.2.1 because `ReferenceGrant` graduated from `v1beta1` to `v1` in that release. The managed Gateway API add-on ships older CRDs and does not expose a way to upgrade them. The two add-ons are mutually dependent but not mutually compatible at the CRD level.
+The core failure mode in my incident was managed-component version coupling during rollout timing. The key lesson for me is to choose the operating model early:
 
-Until the managed add-on catches up, the Helm path is the reliable installation method for AGC on AKS. If you are starting a new cluster today, install Gateway API CRDs v1.2.1 first, then the ALB controller via Helm - skip the managed add-ons entirely.
+- Managed add-ons for lifecycle simplicity and built-in compatibility pinning.
+- Helm for independent version control, with explicit ownership of upgrades and identity wiring.
 
 Hopefully this saves you a few hours of digging through crash loops and error messages.
 
@@ -124,4 +141,6 @@ Hopefully this saves you a few hours of digging through crash loops and error me
 
 - [Application Gateway for Containers documentation](https://learn.microsoft.com/azure/application-gateway/for-containers/overview?WT.mc_id=AZ-MVP-5004796)
 - [ALB controller Helm installation](https://learn.microsoft.com/azure/application-gateway/for-containers/quickstart-deploy-application-gateway-for-containers-alb-controller-helm?tabs=azure-cli%2Cinstall-helm-windows&WT.mc_id=AZ-MVP-5004796)
+- [ALB controller release notes](https://learn.microsoft.com/azure/application-gateway/for-containers/alb-controller-release-notes?WT.mc_id=AZ-MVP-5004796)
+- [Managed Gateway API support matrix](https://learn.microsoft.com/azure/aks/managed-gateway-api#supported-kubernetes-versions-for-gateway-api-bundle-versions?WT.mc_id=AZ-MVP-5004796)
 - [Gateway API CRDs](https://gateway-api.sigs.k8s.io/)
