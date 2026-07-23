@@ -55,8 +55,10 @@ desktop.ini
 tmp/
 tmp/**
 .tmp/
+/.playwright-mcp
 
 # Package manager lockfiles not used in this repo
 pnpm-lock.yaml
 npm-shrinkwrap.json
 .frontmatter/database/taxonomyDb.json
+
