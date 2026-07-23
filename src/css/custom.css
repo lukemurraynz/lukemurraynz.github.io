@@ -180,17 +180,37 @@ div[class^=announcementBar][role="banner"] {
 }
 
 :root a:visited {
-  color: #5c2a8a;
+  color: #4a1d7a;
 }
 
 [data-theme='dark'] a:visited {
-  color: #a58dff;
+  color: #9580ff;
 }
 
 :root a:focus-visible,
 [data-theme='dark'] a:focus-visible {
   outline: 2px dashed #ffb900;
   outline-offset: 2px;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .card:hover,
+  [data-theme='dark'] .card:hover {
+    transform: none;
+  }
+  
+  .button {
+    transition: none;
+  }
+  
+  a {
+    transition: none;
+  }
+  
+  .cookie-consent-btn {
+    transition: none;
+  }
 }
 
 .header-rss-link:hover {
@@ -214,7 +234,7 @@ div[class^=announcementBar][role="banner"] {
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 100;
+  z-index: 9999;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

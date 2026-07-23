@@ -302,7 +302,7 @@ const config = {
             className: "navbar-icon",
             "aria-label": "YouTube",
             html: `
-              <svg width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <svg aria-hidden="true" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M23.498,6.186c-0.273-1.186-1.143-2.144-2.332-2.417C18.389,3.153,12,3.153,12,3.153s-6.389,0-9.166,0.616
                   c-1.19,0.273-2.06,1.23-2.332,2.417C0,8.07,0,12,0,12s0,3.93,0.502,5.814c0.272,1.187,1.142,2.062,2.332,2.335
                   C5.611,20.847,12,20.847,12,20.847s6.389,0,9.166-0.698c1.189-0.273,2.059-1.148,2.332-2.335C24,15.93,24,12,24,12
@@ -316,7 +316,7 @@ const config = {
             className: "navbar-icon",
             "aria-label": "Mastodon",
             html: `
-              <svg height="20" width="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" xml:space="preserve">
+              <svg aria-hidden="true" height="20" width="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" xml:space="preserve">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
@@ -331,7 +331,7 @@ const config = {
             className: "navbar-icon",
             "aria-label": "Bluesky",
             html: `
-              <svg class="octicon" xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 16 16" height="20" width="20" fill="currentColor">
+              <svg aria-hidden="true" class="octicon" xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 16 16" height="20" width="20" fill="currentColor">
                 <title>Bluesky</title>
                 <path d="M8 7.2c-.72-1.4-2.7-4.04-4.53-5.33C1.7.63 1.04.84.6 1.04.1 1.27 0 2.05 0 2.51c0 .46.25 3.77.42 4.32.54 1.82 2.47 2.45 4.25 2.25-2.6.38-4.92 1.33-1.88 4.71 3.33 3.46 4.57-.74 5.21-2.87.64 2.13 1.37 6.18 5.16 2.87 2.84-2.87.78-4.33-1.83-4.71 1.78.2 3.71-.43 4.25-2.25.17-.55.42-3.86.42-4.32 0-.46-.09-1.24-.6-1.47-.44-.2-1.11-.42-2.87.83A17.87 17.87 0 0 0 8 7.2Z"></path>
               </svg>
@@ -342,7 +342,7 @@ const config = {
             position: "right",
             className: "navbar-icon",
             "aria-label": "X",
-            html: `<svg height="20" width="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            html: `<svg aria-hidden="true" height="20" width="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
           </svg>`,
           },
@@ -352,7 +352,7 @@ const config = {
             position: "right",
             className: "navbar-icon",
             "aria-label": "LinkedIn",
-            html: `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"></path></svg>`,
+            html: `<svg aria-hidden="true" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"></path></svg>`,
           },
       {
           href: "https://luke.geek.nz/rss",

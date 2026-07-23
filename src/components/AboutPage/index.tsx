@@ -48,6 +48,11 @@ const communityContributions: Pill[] = [
 ];
 
 const badges: Badge[] = [
+  { src: "/img/aboutpage/MVP2026Badge.png", alt: "MVP 2026 Badge" },
+  { src: "/img/aboutpage/MVP2025Badge.png", alt: "MVP 2025 Badge" },
+  { src: "/img/aboutpage/MVP2024Badge.png", alt: "MVP 2024 Badge" },
+  { src: "/img/aboutpage/MVP2023Badge.png", alt: "MVP 2023 Badge" },
+  { src: "/img/aboutpage/GitHubCopilotBadge.png", alt: "GitHub Copilot Badge" },
   { src: "/img/aboutpage/AIMVPSummit_2024.png", alt: "AI MVP Summit Badge" },
   { src: "/img/aboutpage/ArchitectureCenter_Leader.png", alt: "Azure Architecture Center badge" },
   { src: "/img/aboutpage/ArchitectureCenter_Collaborator.png", alt: "Architecture Center Collaborator Badge" },
@@ -71,9 +76,6 @@ const badges: Badge[] = [
   { src: "/img/aboutpage/MicrosoftAISkillsFestGWRHolder.png", alt: "Microsoft AI Skills Fest - GUINNESS WORLD RECORDS" },
   { src: "/img/aboutpage/microsoft-global-hackathon-2024.png", alt: "Microsoft Global Hackathon 2024" },
   { src: "/img/aboutpage/microsoft-global-hackathon-2025.png", alt: "Microsoft Global Hackathon 2025" },
-  { src: "/img/aboutpage/MVP2024Badge.png", alt: "MVP 2024 Badge" },
-  { src: "/img/aboutpage/MVP2025Badge.png", alt: "MVP 2025 Badge" },
-  { src: "/img/aboutpage/MVP2023Badge.png", alt: "MVP 2023 Badge" },
   { src: "/img/aboutpage/SpektraSystemsAzureExpert.png", alt: "Azure Expert Badge" },
   { src: "/img/aboutpage/WindowsCustomerConnectionProgramCommunityBadge.png", alt: "Windows Customer Connection Program Community Badge" },
 ];
