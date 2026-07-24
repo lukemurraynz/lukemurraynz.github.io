@@ -29,7 +29,7 @@
 <li class="">Agents designed around in-process callbacks will not migrate cleanly.</li>
 </ul>
 <!-- -->
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-azure-ai-foundry-hosted-agents-give-you">What Azure AI Foundry hosted agents give you<a href="https://luke.geek.nz/azure/foundryhostedagentmultiagentlesson/#what-azure-ai-foundry-hosted-agents-give-you" class="hash-link" aria-label="Direct link to What Azure AI Foundry hosted agents give you" title="Direct link to What Azure AI Foundry hosted agents give you" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-microsoft-foundry-hosted-agents-give-you">What Microsoft Foundry hosted agents give you<a href="https://luke.geek.nz/azure/foundryhostedagentmultiagentlesson/#what-microsoft-foundry-hosted-agents-give-you" class="hash-link" aria-label="Direct link to What Microsoft Foundry hosted agents give you" title="Direct link to What Microsoft Foundry hosted agents give you" translate="no">​</a></h2>
 <p>The model is a VM-isolated sandbox created per session, on demand. It runs for the life of the session, then tears down. Two numbers define the economics:</p>
 <ul>
 <li class=""><strong>15-minute idle timeout.</strong> Compute is deprovisioned after 15 minutes of inactivity, and there is no cost while an agent is not serving requests.</li>
