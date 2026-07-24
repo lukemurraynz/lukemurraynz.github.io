@@ -90,17 +90,18 @@ I initially mapped all six Agents to Responses, because "agent" and "chat" are e
 
 ```mermaid
 flowchart TD
-  U[Client App / Frontend] --> G[Foundry Agent Endpoint Gateway]
-  G --> R[/responses]
-  G --> I[/invocations]
+    U[Client App / Frontend] --> G[Foundry Agent Endpoint Gateway]
 
-  R --> HA[Hosted Agent Sandboxes]
-  I --> HA
+    G --> R[Responses API]
+    G --> I[Invocations API]
 
-  HA --> FS[$HOME + Session Files]
-  HA --> M[Foundry Models]
-  HA --> Q[Queue / Event Sources]
-  HA --> AI[Application Insights + OpenTelemetry]
+    R --> HA[Hosted Agent Sandboxes]
+    I --> HA
+
+    HA --> FS[$HOME + Session Files]
+    HA --> M[Foundry Models]
+    HA --> Q[Queue / Event Sources]
+    HA --> AI[Application Insights + OpenTelemetry]
 ```
 
 :::
