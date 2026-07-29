@@ -12,9 +12,10 @@ slug: azure/cleanup-your-unwanted-azure-resources-on-a-schedule
 ---
 
 Cleanup your unwanted Azure resources on a schedule
-<!-- truncate -->
 
 Every few months, I get that dreaded email "Your Microsoft Azure subscription has been suspended" - this is due to creating resources, and leaving them provisioned, so I needed a method of deleting the resources I didn't need, or wanted to spin up for a few days. I also needed away to creating resources that can stay, either for learning or a demo, independent of how the resources were deployed into the environment _(via the Azure Portal, Terraform, Bicep)_.
+
+<!-- truncate -->
 
 Naturally I went straight to [Azure Automation](https://learn.microsoft.com/azure/automation/?WT.mc_id=AZ-MVP-5004796 "Azure Automation documentation") and using PowerShell.
 

@@ -7,7 +7,6 @@ tags:
   - Mobile
 ---
 &nbsp;
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -50,3 +49,5 @@ tags:
     The Countdown Shopping app will then launch and <strong>import</strong> the list
   </li>
 </ol>
+
+<!-- truncate -->

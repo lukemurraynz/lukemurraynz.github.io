@@ -12,7 +12,6 @@ slug: azure/configure-azure-virtual-desktop-monitoring-insights
 ---
 
 Microsoft has now added a built-in Monitoring workbook for Azure Virtual Desktop performance monitoring; this monitoring includes dashboards related _(but not limited to)_:
-<!-- truncate -->
 
 - Session host diagnostics
 - Connection performance
@@ -21,6 +20,8 @@ Microsoft has now added a built-in Monitoring workbook for Azure Virtual Desktop
 - Remote Desktop client versions
 
 To configure, we first need to create a Log Analytics workspace that both the Host Pool and Workspace will connect to.
+
+<!-- truncate -->
 
 ### Create a Log Analytics workspace
 

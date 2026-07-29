@@ -12,8 +12,9 @@ tags:
   4. Right click ventrillo2.ini
   5. Select Rename
   6. Name it something different like ventlol
-<!-- truncate -->
 
 _Make sure ventrilo is closed._
 
 &nbsp;
+
+<!-- truncate -->

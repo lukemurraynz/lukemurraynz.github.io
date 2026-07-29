@@ -14,3 +14,4 @@ tags:
   6. Now save the document, your FTP client should now upload the changes and any PHP errors you may be displaying will be hidden.
 
 <!-- truncate -->
+

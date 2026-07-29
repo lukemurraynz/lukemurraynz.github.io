@@ -5,9 +5,10 @@ tags:
   - Misc
 ---
 **AMD**
-<!-- truncate -->
 
 _**AMD Athlon Series**_
+
+<!-- truncate -->
 
 AMD Athlon (socket) up to 1Ghz 90°C
   

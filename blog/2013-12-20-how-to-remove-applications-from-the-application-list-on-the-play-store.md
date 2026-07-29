@@ -15,3 +15,4 @@ date: 2013-12-20 00:00:00 +1300
   7. Now on the Google Play website – under your Applications the application you removed should be removed from the list.
 
 <!-- truncate -->
+

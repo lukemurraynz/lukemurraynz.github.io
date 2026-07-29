@@ -8,9 +8,10 @@ tags:
 ---
 
 **Drive spanning** (also known as a **spanned volume**) allows you to combine unallocated space from multiple physical disks into a single logical volume. This is useful when you want a single large drive letter that spans across multiple disks, without the redundancy overhead of RAID.
-<!-- truncate -->
 
 > **Warning:** Make sure you have **no important data** on the partitions you plan to use, as creating a spanned volume will **erase everything** on them. Spanned volumes do **not** provide any fault tolerance — if one disk in the span fails, all data on the volume is lost.
+
+<!-- truncate -->
 
 ## How to create a spanned volume
 

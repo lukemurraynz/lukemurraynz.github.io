@@ -7,9 +7,10 @@ tags:
   - Windows
 ---
 _Wishing to backup or import your configuration settings for your Vivotech cameras, follow the instructions below:_
-<!-- truncate -->
 
 ** **
+
+<!-- truncate -->
 
 **How to Backup your Vivotech settings**
 

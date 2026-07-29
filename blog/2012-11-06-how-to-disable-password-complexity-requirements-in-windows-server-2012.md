@@ -13,8 +13,9 @@ date: 2012-11-06 00:00:00 +1300
   5. Double click “**_Password must meet complexity requirements_**”
   6. Click **Disable**
   7. Click **Ok**
-<!-- truncate -->
 
 &nbsp;
 
 Note: You can also Group Policy which includes Local security policies by pressing the Windows Key+R at the same type and typing: _gpedit.msc_ into the run dialog.
+
+<!-- truncate -->

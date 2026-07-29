@@ -6,6 +6,7 @@ tags:
   - Windows
 ---
 Want to know how to change your Windows 7 Logon background to something a bit more modern/fancy? Follow the options below.
+
 <!-- truncate -->
 
   1. Launch **Regedit**, and browse to &#8216;**HKEY\_LOCAL\_MACHINESoftwareMicrosoftWindowsCurrentVersionAuthenticationLogonUIBackground**&#8216;.

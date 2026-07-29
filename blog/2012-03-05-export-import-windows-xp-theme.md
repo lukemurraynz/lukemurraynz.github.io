@@ -6,7 +6,6 @@ tags:
   - Windows
 ---
 **Export**
-<!-- truncate -->
 
   1. Right-click the desktop
   2. Select Properties
@@ -19,6 +18,8 @@ tags:
   9. Copy it to a floppy disk or USB thumb drive.
 
 **Import**
+
+<!-- truncate -->
 
   1. Right-click the desktop and select Properties
   2. On the Themes tab, click the Theme drop-down list and select Browse.

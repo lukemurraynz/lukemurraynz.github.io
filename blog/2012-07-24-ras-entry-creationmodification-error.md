@@ -8,7 +8,6 @@ tags:
   - Windows
 ---
 _This usually occurs when you are attempting to connecting to the Internet using a cell phone._
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -36,6 +35,8 @@ _This usually occurs when you are attempting to connecting to the Internet using
     Attempt to <strong>connect</strong> <strong>now</strong>
   </li>
 </ol>
+
+<!-- truncate -->
 
 _This is also caused by an issue with Motorola Phone tools you can fix this by running it as Administrator._
 

@@ -8,9 +8,10 @@ tags:
   - Linux
 ---
 **Getting infos from a video file**
-<!-- truncate -->
 
 ffmpeg -i video.avi
+
+<!-- truncate -->
 
 **Turn X images to a video sequence**
 

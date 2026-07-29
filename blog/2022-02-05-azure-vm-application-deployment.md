@@ -11,7 +11,6 @@ header:
 slug: azure/azure-vm-application-deployment
 ---
 The Azure Compute Gallery _(superseded the Shared Image Gallery)_ offers more than just Azure Image management and replication, and you can deploy Applications to your Virtual Machines.
-<!-- truncate -->
 
 ### Overview
 
@@ -25,6 +24,8 @@ The Azure Compute Gallery _(superseded the Shared Image Gallery)_ offers more th
 > * Scaling your deployments with resource replicas in each region.
 
 With images, Azure VM applications that support both Linux and Windows operating systems get these benefits.
+
+<!-- truncate -->
 
 > While you can create an image of a VM with apps pre-installed, you would need to update your image each time you have application changes. Separating your application installation from your VM images means there’s no need to publish a new image for every line of code change.
 >

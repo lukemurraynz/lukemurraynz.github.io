@@ -9,9 +9,10 @@ tags:
   - Windows
 ---
 Getting &#8220;/sbin/mount.vboxsf: mounting failed with the error: Protocol error&#8221; error with Virtualbox?
-<!-- truncate -->
 
 &nbsp;
+
+<!-- truncate -->
 
   1. The fix, re-install [Guest Additions](http://luke.geek.nz//unix/rm-virtualbox-guest-additions/ "How to Remove VirtualBox Guest Additions").
 

@@ -6,7 +6,6 @@ tags:
 date: 2014-03-30 00:00:00 +1300
 ---
 This fix is usually valid for an Exchange domain setup. The fix is to enable Cached mode on the Outlook client.
-<!-- truncate -->
 
   1. Open Outlook
   2. Click File
@@ -17,3 +16,5 @@ This fix is usually valid for an Exchange domain setup. The fix is to enable Cac
   7. Select Next and Next
 
 The Outlook client will begin to sync and create an offline cache of the exchange email and address book. Allowing for the People Pane to gather and display appropriate information.
+
+<!-- truncate -->

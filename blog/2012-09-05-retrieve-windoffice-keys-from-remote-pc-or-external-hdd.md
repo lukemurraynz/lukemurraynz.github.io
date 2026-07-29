@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 Using a Windows utility called ProduKey you can retrieve the product keys for Microsoft Windows and Office.
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -26,6 +25,8 @@ Using a Windows utility called ProduKey you can retrieve the product keys for Mi
     Select <strong>Load</strong> the Product Keys from <strong>External</strong> <strong>Windows</strong> <strong>Directory</strong> and <strong>click</strong> <strong>Browse</strong> to <strong>locate</strong> the <strong>Windows</strong> directory you want to <strong>retrieve</strong> the <strong>keys</strong> for.
   </li>
 </ol>
+
+<!-- truncate -->
 
 Note: Using this utility you can also recover the keys using a software hive and remote computers on the network _(you have admin access to)._
 

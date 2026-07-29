@@ -6,6 +6,7 @@ tags:
   - Misc
 ---
 This usually occurs when the laptop has problems coming out of standby mode.
+
 <!-- truncate -->
 
   1. **Hold down** **Power** Button for **10** **seconds**, then release.

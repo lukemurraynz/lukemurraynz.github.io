@@ -8,9 +8,10 @@ tags:
 ---
 
 If you are seeing the **"Login Service Not Available"** error when trying to log into **Star Wars: The Old Republic (SWTOR)**, the most common cause is that your computer's **date and time settings are incorrect**.
-<!-- truncate -->
 
 Online game launchers use SSL/TLS certificates to establish secure connections with the login servers. These certificates have validity periods, and if your system clock is significantly wrong, the certificate validation fails and the launcher cannot connect.
+
+<!-- truncate -->
 
 ## How to fix it
 

@@ -28,7 +28,6 @@ Now that [Workload Identity Federation (WIF)](https://learn.microsoft.com/entra/
 
 Because I've formed a preference over the last couple of years: for most DevOps / platform automation scenarios, I'll reach for a User‑Assigned Managed Identity with WIF before I create (yet another) service principal. This post walks through the why, plus where a service principal still makes sense.
 
-{/* truncate */}
 
 :::info
 In Microsoft Entra, workload identities are applications, service principals, and managed identities.
@@ -45,6 +44,8 @@ This really started for me when I migrated a Terraform pipeline from OAuth (clie
 But then a weird issue cropped up in a long‑running Azure API Management + Application Gateway deployment. The default 1‑hour token lifetime was biting us – failures were happening mid‑deployment (around the 30–40 minute mark). Swapping the service connection over to a user‑assigned managed identity removed the problem. I’m pretty sure it was a transient platform quirk at the time that’s since been ironed out, but it made me re‑examine the operational differences.
 
 Fast forward: platform engineering practices, landing zone vending, and self‑service infrastructure have matured. That’s where the management characteristics of UAMIs really shine.
+
+<!-- truncate -->
 
 ## User‑Assigned Managed Identity (WIF) vs Service Principal (WIF)
 

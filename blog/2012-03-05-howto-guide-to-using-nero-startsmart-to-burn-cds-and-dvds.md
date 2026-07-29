@@ -6,7 +6,6 @@ tags:
   - Windows
 ---
 **To Open Nero**
-<!-- truncate -->
 
   1. Click **Start**
   2. Click **All Programs**
@@ -14,6 +13,8 @@ tags:
   4. Click **Nero StartSmart**
 
 **Burning a CD using Nero StartSmart**
+
+<!-- truncate -->
 
   1. At the **top** of Nero make sure you have &#8220;**CD/DVD**&#8221; selected.
   2. To make an **Audio or Data CD select the relevant icon**.

@@ -30,6 +30,7 @@ A prompt is still a dependency. Change it, and downstream behaviour can shift wi
 
 <!-- truncate -->
 
+
 ## Why this fails quietly
 
 A bad code change usually throws, times out, or fails a test. A bad prompt change degrades tone, drifts off format, starts hallucinating in a new way, or gets subtly less accurate, and every one of those failure modes returns a valid HTTP 200 with plausible-looking text. Nothing in a typical request/response cycle distinguishes a good prompt output from a degraded one. The only way to catch it is to check the output against something, before a customer does.

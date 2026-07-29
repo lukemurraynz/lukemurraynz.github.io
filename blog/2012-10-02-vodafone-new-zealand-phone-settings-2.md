@@ -8,9 +8,10 @@ tags:
   - Mobile
 ---
 These settings are used for setting up Chinese/foreign phones onto the Vodafone NZ network.
-<!-- truncate -->
 
 APN (Access Point Name)
+
+<!-- truncate -->
 
 live.vodafone.com   &#8211; WAP/PXT
 

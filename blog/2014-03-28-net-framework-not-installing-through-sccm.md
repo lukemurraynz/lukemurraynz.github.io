@@ -15,3 +15,4 @@ date: 2014-03-28 00:00:00 +1300
 7. Double click on the SCCM Update icon in the notification tray and select Install & Install now.
 
 <!-- truncate -->
+

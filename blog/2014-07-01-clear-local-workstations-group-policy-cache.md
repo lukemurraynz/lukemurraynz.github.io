@@ -7,7 +7,6 @@ tags:
 date: 2014-07-01 00:00:00 +1300
 ---
 ## Option 1
-<!-- truncate -->
 
   1. Open My Computer/Computer
   2. In the URL or address bar paste: %windir%\system32\GroupPolicy
@@ -17,6 +16,8 @@ date: 2014-07-01 00:00:00 +1300
 Note: You can also run: gpupdate /force on the machine to force the policy to reapply.
 
 You can also run the little PowerShell oneliner as Administrator to remove the Group Policy folder and all files below:
+
+<!-- truncate -->
 
     #requires -Version 1.0
     #Requires -RunAsAdministrator

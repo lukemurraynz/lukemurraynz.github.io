@@ -7,13 +7,14 @@ tags:
 ---
 
 If you suspect your computer is infected with malware but do not have antivirus software installed (or want a second opinion from a different vendor), **online virus scanners** can scan your system directly through your web browser.
-<!-- truncate -->
 
 These tools are provided by reputable security companies and are useful for:
 
 - **Getting a second opinion** when your installed antivirus reports everything is clean but you still suspect an infection.
 - **Scanning a computer that does not have antivirus installed.**
 - **Checking specific files** against multiple antivirus engines.
+
+<!-- truncate -->
 
 ## Recommended online scanners
 

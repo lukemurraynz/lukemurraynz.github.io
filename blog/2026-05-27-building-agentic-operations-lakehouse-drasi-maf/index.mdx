@@ -33,7 +33,6 @@ I wanted to see if a different approach was feasible:
 
 This post covers the Proof of Technology I built to validate an **Agentic Operations Lakehouse** style pattern \_(and to be frank, it was a good chance for some fun, tieing these technologies together).
 
-{/* truncate */}
 
 Three Azure/hero technologies each own a distinct part of the problem:
 
@@ -44,6 +43,8 @@ Three Azure/hero technologies each own a distinct part of the problem:
 To do this, we will use a healthcare scenario using entirely synthetic data _(no real patient data, clinical records, or live hospital systems at any point)_, and the full source is in the [AgenticLakehousePoT repository](https://github.com/lukemurraynz/AgenticLakehousePoT).
 
 > **The short version.** Drasi runs continuous queries that detect risk signals deterministically _(in my scenario its multiple tables in Azure Postgres and Event Hub sources, but it could be from multiple different sources)_. Microsoft Agent Framework runs a 14-stage workflow _(5 LLM calls, 9 deterministic stages)_ that reasons about the event and produces a recommendation. In the [source implementation](https://github.com/lukemurraynz/AgenticLakehousePoT), the LLM cannot write directly to storage or bypass the action routing table, and every decision is recorded in Fabric for audit. High-impact actions require human approval.
+
+<!-- truncate -->
 
 :::note
 The full implementation is in the [AgenticLakehousePoT repository](https://github.com/lukemurraynz/AgenticLakehousePoT) on GitHub. Everything in this post deploys from that repo with `azd up`. Feel free to fork, review etc.

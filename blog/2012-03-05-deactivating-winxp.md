@@ -6,9 +6,10 @@ tags:
   - Windows
 ---
 Deactivating Windows XP can be useful especially when moving the Windows XP install from one computer to another as it makes Windows activation easier and more automated.
-<!-- truncate -->
 
 Follow the simple guide below to make the necessary Registry change to deactivate your Windows XP version.
+
+<!-- truncate -->
 
 **Deactivating Windows XP**
 

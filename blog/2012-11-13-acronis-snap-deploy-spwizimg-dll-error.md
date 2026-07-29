@@ -8,6 +8,7 @@ tags:
   - Windows
 ---
 Attempting to install Acronis Snap Deploy and getting the “spwizimg.dll” error? Follow the guide below to repair.
+
 <!-- truncate -->
 
   1. Click “<a title="spqizimg.dll download" href="http://www.dllme.com/dll/files/spwizimg_dll.html" target="_blank">here</a>” to download the **_spwizimg.dll_**

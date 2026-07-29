@@ -8,9 +8,10 @@ tags:
   - Windows
 ---
 _“Missing file XINPUT1_3.dll” error while trying to load Borderlands 2 on PC?_
-<!-- truncate -->
 
 &nbsp;
+
+<!-- truncate -->
 
   1. Update your <a title="DirectX" href="http://www.microsoft.com/en-us/download/details.aspx?id=35" target="_blank">DirectX</a> to the latest version
   2. Install Steam _(if not installed, it will install XINPUT1 and dependencies)_

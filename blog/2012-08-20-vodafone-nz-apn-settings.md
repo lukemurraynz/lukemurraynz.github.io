@@ -7,9 +7,10 @@ tags:
   - Misc
 ---
 _For use setting up Phones, inc iPhones to the Vodafone network_
-<!-- truncate -->
 
 **APN**: live.vodafone.com
+
+<!-- truncate -->
 
 **MMSC**: 
 

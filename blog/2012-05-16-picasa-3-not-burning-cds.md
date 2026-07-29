@@ -6,7 +6,6 @@ tags:
   - Windows
 ---
 First  you need to uninstall Picasa, follow the guide below to do this:
-<!-- truncate -->
 
   1. Click Start
   2. Click Control Panel
@@ -14,6 +13,8 @@ First  you need to uninstall Picasa, follow the guide below to do this:
   4. Click Picasa and select Uninstall and when prompted select No to delete the database to avoid loss of your picture file locations.
 
 Once the uninstall has completed you need to delete a DLL file so follow the steps below:
+
+<!-- truncate -->
 
   1. Click Start
   2. Click My Computer/Computer

@@ -9,6 +9,7 @@ tags:
   - Windows
 ---
 Getting a green line at the top of each Youtube video? It has recently be caused by a recent Adobe Update, follow the guide below to repair:
+
 <!-- truncate -->
 
   1. **Right** **click** the Youtube **video**

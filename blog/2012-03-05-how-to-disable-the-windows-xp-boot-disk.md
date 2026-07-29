@@ -6,7 +6,6 @@ tags:
   - Windows
 ---
 Disable the Windows XP Boot Disk
-<!-- truncate -->
 
   1. Click **Start** and then click **Run**; **type** in: **msconfig**
   2. **Click BOOT.INI** from the top tabs.
@@ -15,3 +14,5 @@ Disable the Windows XP Boot Disk
   5. Restart the computer
 
 The splash screen will be gone. It can be re-enabled by unticking /NOGUIBOOT back in the msconfig._
+
+<!-- truncate -->

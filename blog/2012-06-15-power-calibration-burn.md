@@ -16,6 +16,7 @@ tags:
   7. **Change** **Startup** Type to **Disabled**.
   8. Click **Apply **
   9. **Restart** the **PC** to apply changes.
-<!-- truncate -->
 
 _You will have to switch to another Burning application, such as Nero or CD Burner XP, and not rely on Windows XPs built in Burning function._
+
+<!-- truncate -->

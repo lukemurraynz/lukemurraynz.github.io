@@ -8,7 +8,6 @@ tags:
 ---
 
 Keeping Windows up to date is one of the most important things you can do to protect your computer. Windows Update delivers security patches, bug fixes, and feature improvements directly from Microsoft. If automatic updates are turned off, your system may be missing critical security fixes.
-<!-- truncate -->
 
 Follow these steps to enable Windows Automatic Updates through the Control Panel:
 
@@ -19,6 +18,8 @@ Follow these steps to enable Windows Automatic Updates through the Control Panel
 5. Click **Change Settings**.
 6. Select **"Check for updates but let me choose whether to download and install them"** from the dropdown menu.
 7. Click **Ok**.
+
+<!-- truncate -->
 
 ## Understanding the update options
 

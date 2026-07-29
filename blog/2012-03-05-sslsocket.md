@@ -6,9 +6,10 @@ tags:
   - Windows
 ---
 &#8220;An error occurred while using SSL configuration for socket address %2. The error status code is contained within the returned data.&#8221;
-<!-- truncate -->
 
 This error occurs when the SSL certificates that allow you to access secure content, such as Emails & Internet Banking becomes damaged or corrupted. Follow the instructions below to fix.
+
+<!-- truncate -->
 
   1. Click Start click All Programs, click Accessories
   2. **Right**&#8211;**click** **Command** **Prompt** & click **Run** **as** **Administrator**  then click Continue.

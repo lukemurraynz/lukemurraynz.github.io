@@ -11,10 +11,11 @@ header:
 
 ---
 A very brief Blog article today, I have created an AWESOME-Azure-Architecture list, this list is hosted in Github and located here:
-<!-- truncate -->
 
 * [AWESOME-Azure-Architecture](https://github.com/lukemurraynz/awesome-azure-architecture/blob/main/README.md "AWESOME-Azure-Architecture")
 
 This list is a curated list of AWESOME blogs, videos, tutorials, code, tools & scripts, related to the design and implementation of solutions in Microsoft Azure.
+
+<!-- truncate -->
 
 This list contains anything that can help with your **Microsoft Azure architecture** and quickly get you up and running when designing, planning, and implementing services that help organisations around the planet achieve more.

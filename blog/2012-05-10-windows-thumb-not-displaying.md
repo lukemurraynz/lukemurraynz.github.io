@@ -6,9 +6,10 @@ tags:
   - Windows
 ---
 Click Start
-<!-- truncate -->
   
 Click Run
+
+<!-- truncate -->
   
 Type: **_regsvr32 shdocvw.dll_**
   

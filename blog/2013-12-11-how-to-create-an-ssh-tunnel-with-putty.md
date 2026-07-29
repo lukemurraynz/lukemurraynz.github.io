@@ -6,9 +6,10 @@ tags:
 date: 2013-12-11 00:00:00 +1300
 ---
 Open PuTTY
-<!-- truncate -->
 
 Create a new PuTTY session to the remote server
+
+<!-- truncate -->
 
 Enter in the server details
 

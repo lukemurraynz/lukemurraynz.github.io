@@ -6,7 +6,6 @@ tags:
 date: 2014-04-20 00:00:00 +1300
 ---
 To configure the email notifications in Acronis:
-<!-- truncate -->
 
 1. Select the Send e-mail notifications about the operation state check box.
   
@@ -20,6 +19,8 @@ To configure the email notifications in Acronis:
 3. To check whether your settings are correct, click the Send test message button.
 
 If the test message sending fails, then perform the following:
+
+<!-- truncate -->
 
 1. Click Show extended settings.
 

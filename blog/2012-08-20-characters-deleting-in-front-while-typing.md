@@ -9,9 +9,10 @@ tags:
 ---
 
 If you are typing in a document and notice that **new characters are replacing the text in front of the cursor** instead of being inserted, you have accidentally activated **Overtype mode** (sometimes called **Overwrite mode**).
-<!-- truncate -->
 
 This commonly happens when the **Insert key** is pressed by mistake, which is easy to do since the key is located near the Delete and Backspace keys on most keyboards.
+
+<!-- truncate -->
 
 ## How to fix it
 

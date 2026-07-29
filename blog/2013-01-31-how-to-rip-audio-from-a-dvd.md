@@ -7,7 +7,6 @@ tags:
 date: 2013-01-31 00:00:00 +1300
 ---
 In this guide I am using a media player called: VLC (VideoLAN) to do the conversion – it can be downloaded free “<a title="VLC Media Player" href="http://www.videolan.org/vlc/download-windows.html" target="_blank">here</a>”.
-<!-- truncate -->
 
   1. Once installed – open VLC media player
   2. Put the DVD you want to rip the audio into your computer
@@ -21,3 +20,5 @@ In this guide I am using a media player called: VLC (VideoLAN) to do the convers
  10. Click **Start**
 
 Note: Make sure you have the right stream selected in step 6 &#8211; or you might just record the Menu sound &#8211; for example: VOB\_1 compared to Vob\_0.
+
+<!-- truncate -->

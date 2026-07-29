@@ -7,7 +7,6 @@ tags:
 date: 2013-01-15 00:00:00 +1300
 ---
 This usually occurs if Viruses or Spyware has infected _explorer.exe_ and changed the registry entry to stop it from starting.
-<!-- truncate -->
 
   1. Click Start (orb)
   2. Type in: **regedit**
@@ -19,6 +18,8 @@ This usually occurs if Viruses or Spyware has infected _explorer.exe_ and change
   8. **Restart** your computer
 
 &nbsp;
+
+<!-- truncate -->
 
 If the above doesn&#8217;t work attempt a system restore by pressing F8 during Windows Vista boot to bring up the Boot Menu and select Startup Repair.
 

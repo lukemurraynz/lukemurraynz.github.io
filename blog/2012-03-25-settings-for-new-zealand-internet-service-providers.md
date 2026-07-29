@@ -6,7 +6,6 @@ tags:
   - Misc
 ---
 Ignite Communications (formerly Data Solutions NZ)
-<!-- truncate -->
 
 * Domain name server 1 : 123.255.15.131
   
@@ -23,6 +22,8 @@ Ignite Communications (formerly Data Solutions NZ)
 * Helpdesk : 0800 33 EASY / 0800 333 279
 
 Clear
+
+<!-- truncate -->
 
 * Dialup : 086725327 or Auckland 9145656
   

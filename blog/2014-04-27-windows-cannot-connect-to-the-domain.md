@@ -16,8 +16,9 @@ date: 2014-04-27 00:00:00 +1300
   9. Windows will prompt you to restart your Computer &#8211; select **Restart** **later**
  10. **Select** **Domain** and enter in the domain name you wish to reconnect to and click **Ok**
  11. **Enter** in your domain **credentials** to add the workstation back to the domain and click **Ok** **to** **restart** the computer.
-<!-- truncate -->
 
 Note: The benefit of doing the Reset in Active Directory first &#8211; allows you to maintain the computer groups and security identifier without loosing it.
 
 You can also use the following Powershell command on the local PC to restore the secure channel to the domain: `Test-ComputerSecureChannel -Repair`
+
+<!-- truncate -->

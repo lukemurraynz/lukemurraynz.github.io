@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 _Trying to install Microsoft Security Essentials and it is complaining about not having genuine Windows? Attempting to run the Windows Genuine Advantage validation and you are ending up with a blank screen? This is usually caused when your Time/Date is out._
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -23,3 +22,5 @@ _Trying to install Microsoft Security Essentials and it is complaining about not
     <strong>Run</strong> the WGA (Windows Genuine Advantage) <strong>validation</strong> <strong>again</strong>.
   </li>
 </ol>
+
+<!-- truncate -->

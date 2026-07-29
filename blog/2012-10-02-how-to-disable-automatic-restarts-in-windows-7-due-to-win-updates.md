@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 &nbsp;
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -71,5 +70,7 @@ tags:
     <strong>Close</strong> regedit
   </li>
 </ol>
+
+<!-- truncate -->
 
 _Restart your computer and Windows should no longer restart due to automatic Windows Updates_

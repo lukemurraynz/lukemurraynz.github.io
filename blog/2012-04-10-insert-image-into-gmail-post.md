@@ -15,3 +15,4 @@ tags:
   8. Now when you compose a new email a new button, Insert Image has appeared.
 
 <!-- truncate -->
+

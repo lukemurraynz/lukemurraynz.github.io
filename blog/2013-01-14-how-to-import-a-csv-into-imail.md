@@ -7,7 +7,6 @@ tags:
   - Mac OSX
 ---
 _First – make sure iMail is closed._
-<!-- truncate -->
 
   1. Open **Finder**
   2. Go to your OSX install HDD and navigate to: **_Applications_**
@@ -18,3 +17,5 @@ _First – make sure iMail is closed._
   7. Select Open
 
 _You have now successfully imported your contacts into iMail._
+
+<!-- truncate -->

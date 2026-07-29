@@ -8,7 +8,6 @@ tags:
   - Windows
 ---
 Follow the instructions below to leave the Customer Experience program for Security Essentials
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -27,3 +26,5 @@ Follow the instructions below to leave the Customer Experience program for Sec
     Click <strong>Ok</strong>
   </li>
 </ol>
+
+<!-- truncate -->

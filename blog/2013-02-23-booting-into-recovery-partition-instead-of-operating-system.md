@@ -7,6 +7,7 @@ tags:
 date: 2013-02-23 00:00:00 +1300
 ---
 Having issues with your computer booting into the Recovery Partition instead of the Windows operating system? Try the guide below to repair.
+
 <!-- truncate -->
 
 

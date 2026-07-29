@@ -11,9 +11,10 @@ header:
 slug: azure/setup-azure-cloud-shell
 ---
 The Azure Cloud Shell allows connectivity to Microsoft Azure using an authenticated, browser-based shell experience that’s hosted in the cloud and accessible from virtually anywhere as long as you have access to your favourite browser!
-<!-- truncate -->
 
 Azure Cloud Shell is assigned per unique user account and automatically authenticated with each session.
+
+<!-- truncate -->
 
 Get a modern command-line experience from multiple access points, including the [Azure portal](https://portal.azure.com/), [shell.azure.com](https://shell.azure.com/), [Azure mobile app](https://azure.microsoft.com/en-us/get-started/azure-portal/mobile-app/?WT.mc_id=AZ-MVP-5004796), Azure docs_(e.g._[_Azure CLI_](https://learn.microsoft.com/en-us/cli/azure/?view=azure-cli-latest&WT.mc_id=AZ-MVP-5004796)_,_ [_Azure PowerShell_](https://learn.microsoft.com/en-us/powershell/azure/get-started-azureps?view=azps-7.5.0&WT.mc_id=AZ-MVP-5004796)_)_, and [VS Code Azure Account extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azure-account).
 

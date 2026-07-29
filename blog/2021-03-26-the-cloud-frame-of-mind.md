@@ -12,11 +12,12 @@ slug: the-cloud-frame-of-mind
 ---
 
 > Note: Warning buzzwords to follow. Yes, it's that type of article. The views expressed are purely my own.
-<!-- truncate -->
 
 We are at a turning point in history, where technology is enabling us to do more with less and faster, human life expectancy is longer than what it has ever been, and the world has never been as connected - We are in the 4th industrial revolution.
 
 In an effort to continue to make things better, stronger, and faster we have developed technological aids to assist to drive us forward, in areas such as (but not only) Health, space exploration, travel, and business transformation, one could almost call it the evolution of the first hammer or axe as a tool to help us survive and thrive.
+
+<!-- truncate -->
 
 Although there are many technologies in play around the world, artificial intelligence, machine learning, virtual and augmented reality, biotechnology, robotics, and the internet of things to name a few – faster computer processing capability and datacenters all connected to each other and built into the fabric of connectivity across the backbone of the internet, is what I am here to talk about today.
 

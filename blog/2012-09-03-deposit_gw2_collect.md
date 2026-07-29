@@ -8,7 +8,6 @@ tags:
   - Windows
 ---
 _Your inventory full of crafting materials & sick of right clicking sending to collection? There is an easy way of doing this._
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -21,3 +20,5 @@ _Your inventory full of crafting materials & sick of right clicking sending to c
     <strong>Click</strong> <strong>Deposit</strong> All <strong>Collectibles</strong>
   </li>
 </ol>
+
+<!-- truncate -->

@@ -7,12 +7,13 @@ tags:
   - Misc
 ---
 Trying to upload a CSV file to get Google to create multiple users with the email address, first name, and last name & password fields and getting the &#8220;read error&#8221; trying to upload. This is how I fixed it:
-<!-- truncate -->
 
 <ol start="1">
   <li>
     Locate the file you are uploading and <strong>remove</strong> the &#8220;.csv&#8221; file <strong>extension</strong>. Upload the file without the extension.
   </li>
 </ol>
+
+<!-- truncate -->
 
 _To get rid of the CSV file extension, you might have to go to a folder, click on Tools, Options, Folder Options and uncheck Show File Extensions._

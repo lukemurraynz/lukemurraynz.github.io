@@ -9,7 +9,6 @@ tags:
   - Windows
 ---
 This issue occurs when the print range for the document has inadvertently changed. Follow the guides below to fix:
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -31,3 +30,5 @@ This issue occurs when the print range for the document has inadvertently change
     You should now be able to <strong>print</strong>.
   </li>
 </ol>
+
+<!-- truncate -->

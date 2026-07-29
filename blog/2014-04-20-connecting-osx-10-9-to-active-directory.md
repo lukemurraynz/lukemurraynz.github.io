@@ -6,6 +6,7 @@ tags:
 date: 2014-04-20 00:00:00 +1300
 ---
 Connecting OSX 10.9 to Active Directory domain is very easy. Follow the quick guide below:
+
 <!-- truncate -->
 
   1. Click on the **Apple** **Menu**

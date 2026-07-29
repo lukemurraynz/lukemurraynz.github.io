@@ -10,11 +10,12 @@ Due to inconsistencies in Microsoft’s remote assistance and dual monitor techn
 
 &nbsp;
 
+<!-- truncate -->
+
 A way around this is to – publish Remote Assistance for Helpdesk and System administrator access.
 
 &nbsp;
 
-<!-- truncate -->
 
 <div id="toc_container" class="no_bullets">
   <p class="toc_title">

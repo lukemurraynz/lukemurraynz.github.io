@@ -27,7 +27,6 @@ The United Kingdom (UK) government has an [open-code policy](https://github.com/
 
 I came across an Emergency Alert System repository, and indications seemed to point to the fact this system ran on (or had some dependencies with) AWS. So I thought to myself - what could this look like if it ran on Azure? I built a proof of concept to find out.
 
-{/* truncate */}
 
 :::tip Source Code
 The complete solution is available on GitHub: [lukemurraynz/EmergencyAlertSystem](https://github.com/lukemurraynz/EmergencyAlertSystem)
@@ -40,6 +39,8 @@ While the proof of concept doesn't include broadcast functionality, I did consid
 ![Emergency Alerts System - Email notification](images/EmergencyAlertSystemEmail.jpg)
 
 This system follows the [Common Alerting Protocol (CAP)](https://en.wikipedia.org/wiki/Common_Alerting_Protocol) for events. A key differentiator is the [Drasi](https://drasi.io/) integration, intended to showcase a more proactive approach to alert management. Let's take a closer look at the context of this solution.
+
+<!-- truncate -->
 
 :::info
 This is a proof of concept intended to demonstrate architectural patterns - it's not production-ready. Authentication is mocked, and there's no actual broadcast functionality to mobile devices.

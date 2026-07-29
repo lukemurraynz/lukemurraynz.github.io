@@ -6,9 +6,10 @@ tags:
   - Windows
 ---
 Open a command prompt window _(click Start, Run, type cmd and hit Enter)_ and then type the following commands:
-<!-- truncate -->
 
 _**regsvr32 softpub.dll**_
+
+<!-- truncate -->
   
 _ **regsvr32 wintrust.dll**_
   

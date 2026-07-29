@@ -23,3 +23,4 @@ slug: win/mv-img-anywhere-in-word
 </ol>
 
 <!-- truncate -->
+

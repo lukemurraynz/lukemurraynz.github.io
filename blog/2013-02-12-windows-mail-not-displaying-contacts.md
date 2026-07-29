@@ -8,7 +8,6 @@ tags:
   - Windows
 ---
 This happens when Windows Mail is using a different contacts list to the Windows Contacts – such as a newsgroup.
-<!-- truncate -->
 
   1. Open **Windows Mail**
   2. Click **Contacts** _(left hand side)_
@@ -16,3 +15,5 @@ This happens when Windows Mail is using a different contacts list to the Windows
   4. Click **From Windows Address Book**
 
 Windows Mail will then import all your contacts into the address book restart Windows Mail and you should now be able to display and compose messages to your contacts.
+
+<!-- truncate -->

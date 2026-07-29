@@ -10,11 +10,12 @@ header:
   teaser: /uploads/azure_arc_vmware_portal_createresourcebridge.png
 ---
 [Azure Arc Bridge](https://learn.microsoft.com/en-us/azure/azure-arc/resource-bridge/overview?WT.mc_id=AZ-MVP-5004796 "What is Azure Arc resource bridge ")_(currently in preview)_ is part of the core Azure Arc Hybrid Cloud platform.
-<!-- truncate -->
 
 ### Overview
 
 The Azure Arc resource bridge allows for VM _(Virtual Machine)_ self-servicing and managing on-premises Azure Stack HCI and VMWare virtualised workloads, supporting Linux and Windows.
+
+<!-- truncate -->
 
 Along with standard integration of Azure Arc workloads, such as support for Azure Policy and Azure extensions, Azure Update Management and Defender for Cloud support. The Azure Arc resource bridge offers the following self-service functionality direct from the Microsoft Azure portal, offering a single pane of a glass of your workloads, whether they exist on-premises or in Azure:
 

@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 _Sometimes Album art may not be avaliable or you would like to add your own here is how you do it._
-<!-- truncate -->
 
   1. **Open** iTunes and go to your Music Library. **View** it in **Grid** View so that all of your albums are displayed.
   2. **Right**&#8211;**click** the **album** whose album art you wish to change. **Select** **Get** **Info**.
@@ -17,3 +16,5 @@ _Sometimes Album art may not be avaliable or you would like to add your own here
   6. The songs will be updated with the new album art and it will then be displayed in your Music Library.
 
 _You can also Copy & Paste Album art directly into it by right clicking the image you want and select copy. Then right click the Artwork screen in iTunes and select paste._
+
+<!-- truncate -->

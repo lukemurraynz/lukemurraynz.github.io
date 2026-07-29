@@ -10,7 +10,6 @@ One of the problems with Hyper-V 2012 R2 on an Intel NUC &#8211; NUC5i7RYH was b
 
 Once I made the manual adjustments to the Network drivers to get this going, I then slipstreamed the drivers and Server 2012 R2 updates (as of Feb 2016) into a Hyper-V 2012 R2 ISO which can then be made bootable for future Hyper-V installations.
 
-<!-- truncate -->
 
 <div id="toc_container" class="no_bullets">
   <p class="toc_title">
@@ -31,6 +30,8 @@ Once I made the manual adjustments to the Network drivers to get this going, I t
 </div>
 
 <span id="changing-the-intel-network-drivers-manually"></span>
+
+<!-- truncate -->
 
 ## Changing the Intel Network Drivers Manually
 

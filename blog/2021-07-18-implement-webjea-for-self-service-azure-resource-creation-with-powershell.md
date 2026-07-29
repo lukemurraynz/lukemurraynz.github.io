@@ -10,9 +10,10 @@ header:
   teaser: /uploads/webjea_startstopazvm.png
 ---
 WebJEA allows you to build web forms for any PowerShell script dynamically. WebJEA automatically **parses the script at page load for description, parameters and validation**, **then dynamically builds a form to take input and display formatted output!**
-<!-- truncate -->
 
 The main goals for WebJEA:
+
+<!-- truncate -->
 
 * Reduce delegation of privileged access to users
 * Quickly automate on-demand tasks and grant access to less-privileged users

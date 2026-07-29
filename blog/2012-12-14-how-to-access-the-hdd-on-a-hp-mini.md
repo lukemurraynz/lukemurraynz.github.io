@@ -12,6 +12,7 @@ tags:
   4. **Slide** the orange slider **left**.
   5. Now **push** the **casing** **forward** _(towards the battery end)_
   6. The plastic casing will then slide off revealing the HDD and on-board CMOs battery.
-<!-- truncate -->
 
 Note: The HP Mini uses a 2.5&#8243; SATA HDD
+
+<!-- truncate -->

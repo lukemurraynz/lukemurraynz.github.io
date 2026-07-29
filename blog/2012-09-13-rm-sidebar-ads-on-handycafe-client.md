@@ -7,9 +7,10 @@ tags:
   - Windows
 ---
 In order to remove the Ads on the sidebar, we need to block them using an inbuilt list called the HOST file.
-<!-- truncate -->
 
 &nbsp;
+
+<!-- truncate -->
 
 <ol start="1">
   <li>

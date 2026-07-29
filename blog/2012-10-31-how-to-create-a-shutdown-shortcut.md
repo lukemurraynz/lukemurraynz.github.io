@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 This tip is useful if you don’t want to go through the hassle of clicking Start, Shutdown.
-<!-- truncate -->
 
   1. Right click a blank spot on the desktop, select New, Shortcut
   2. In the location field type: **_shutdown –s –t 00_**
@@ -17,5 +16,7 @@ This tip is useful if you don’t want to go through the hassle of clicking Star
   6. You can now drag the shortcut to the Taskbar or keep it on the desktop.
 
 _Note: the “-S” indicates shutdown, changing it to “-R” will mean restart. The “-t” is time adjusting the number from 00 will change the shutdown count from immediate to what you set it to in seconds._
+
+<!-- truncate -->
 
 Tested on Windows XP/Vista/Windows 7 _(inc 64bit)_ _| Should also work with Windows 9 (untested)_

@@ -11,7 +11,6 @@ header:
 
 ---
 When you create a Log Analytics workspace using the Azure Portal, you only get the Pricing or 'Pay-as-you-go' tiers to select.
-<!-- truncate -->
 
 You used to create a 'Free' tier using the Azure Portal; however, since 2018; they removed it with a change in plans and it became a legacy offering.
 
@@ -24,6 +23,8 @@ You can change a Free Tier Log Analytics workspace to a Pay-as-you-go or commitm
 You cannot change a Log Analytics workspace created on a higher tier back to Free, even using PowerShell, due to [adjustments](https://azure.microsoft.com/en-us/blog/introducing-a-new-way-to-purchase-azure-monitoring-services/?WT.mc_id=AZ-MVP-5004796 "Introducing a new way to purchase Azure monitoring services") in 2018 around the Log Analytics billing and plans.
 
 ![Azure Log Analytics - Free](/uploads/log_analytics_free.png)
+
+<!-- truncate -->
 
 ## Create a 'Free Tier' Log Analytics using PowerShell
 

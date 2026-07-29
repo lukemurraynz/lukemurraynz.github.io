@@ -7,7 +7,6 @@ tags:
   - Misc
 ---
 _In order to fix this issue you need to reset the Ink Waste counter, which is an ink counter that monitors how many prints that it has available on that one Ink Cartridge. Follow the methods below to repair this:_
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -38,5 +37,7 @@ _In order to fix this issue you need to reset the Ink Waste counter, which is an
     Using the arrow keys again <strong>enter</strong> <strong>9</strong> and press <strong>set</strong> to <strong>select</strong>.
   </li>
 </ol>
+
+<!-- truncate -->
 
 _Now you should be able to print._

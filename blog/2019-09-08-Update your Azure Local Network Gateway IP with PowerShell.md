@@ -12,9 +12,10 @@ slug: Update-your-Azure-Local-Network-Gateway-IP-with-PowerShell
 ---
 
 One of the issues you face with setting up an Azure [Site to Site VPN](https://learn.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal?WT.mc_id=AZ-MVP-5004796) is making sure that your Azure Local Network Gateway always has your Public/On-premises IP.
-<!-- truncate -->
 
 This setup is fine when used in environments that have Static IPs (and yes if setting this up for a Business or Production, it is highly recommended to have a static IP!).
+
+<!-- truncate -->
 
 However, when used in environments like my home network or lab environments - which has a Dynamic IP that could change at any time it will cause connectivity issues if your IP changes and the Local Network Gateway is not updated.
 

@@ -26,6 +26,7 @@ tags:
  18. To avoid mistakes restoring images make sure you select Yes, Check the Save image (this will take a bit of extra time but worth it in case of problems restoring)
  19. Press Enter to continue
  20. It will then do a last scan of the hardware and ask you for confirmation (make sure that the drives you are trying to clone are the right one, this is your last chance) press Y and enter to continue
-<!-- truncate -->
 
 &nbsp;
+
+<!-- truncate -->

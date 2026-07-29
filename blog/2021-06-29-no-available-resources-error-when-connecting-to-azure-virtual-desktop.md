@@ -11,9 +11,10 @@ header:
 slug: azure/no-available-resources-error-when-connecting-to-azure-virtual-desktop
 ---
 When connecting to Azure Virtual Desktop, you may get a _"We couldn't connect because there are currently no available resources. Try again later or contact tech support for help if this keeps happening."_
-<!-- truncate -->
 
 ![We couldn't connect because there are currently no available resources.](/uploads/noresourcesavd.png "We couldn't connect because there are currently no available resources.")
+
+<!-- truncate -->
 
 ### Check your Max Session Count
 

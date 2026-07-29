@@ -12,9 +12,10 @@ slug: azure/create-a-site-to-site-vpn-to-azure-with-a-ubiquiti-dream-machine-pro
 ---
 
 The Ubiquiti [Dream Machine Pro](https://store.ui.com/collections/unifi-network-unifi-os-consoles/products/udm-pro "Dream Machine Pro") has a lot of functionality built-in, including IPsec Site-to-site VPN*(Virtual Private Network)* support.
-<!-- truncate -->
 
 I recently installed and configured a UDM-PRO at home, so now it's time to set up a site-to-vpn to my Microsoft Azure network.
+
+<!-- truncate -->
 
 I will create Virtual Network and Gateway resources using Azure Bicep, but please skip ahead.
 

@@ -23,7 +23,6 @@ description: Codespace setup for Infrastructure as Code (IaC) coding, including 
 
 I've written, about [GitHub Codespaces](https://github.com/features/codespaces) before, in the article [Coding on the Cloud - Getting Started with GitHub Codespaces](https://luke.geek.nz/azure/Getting-Started-with-GitHub-Codespaces/), this article builds on it by supplying a Codespace setup for Infrastructure as Code *(IaC)* coding, including Bicep and Terraform, and Linting.
 
-<!-- truncate -->
 
 :::tip
 The **[lukemurraynz/Codespace_IaC_Coding](https://github.com/lukemurraynz/Codespace_IaC_Coding/)** Codespace includes essential tools for Infrastructure as Code development for Azure, tools like Azure CLI, PowerShell, Azure Bicep, Azure Developer CLI (azd), Terraform, TFLint, and Terragrunt. **Feel free to fork, clone, or contribute to the repository. This template is aimed at getting you up and coding as soon as possible!**
@@ -42,6 +41,8 @@ Because this repository includes tools for both Bicep and Terraform IaC, it can 
 :::
 
 The repository also includes uses [MegaLinter](https://megalinter.io/latest/) to ensure code quality and adherence to best practices. MegaLinter analyzes the codebase for potential issues, coding standards violations, formatting discrepancies, and more across multiple languages and file formats. It helps maintain a high standard of code quality and consistency across the project.
+
+<!-- truncate -->
 
 Megalinter can be configured to automatically lint and open up a pull request with the changes, or it can be run manually. The repository is configured to run the MegaLinter on every push to the main branch, by setting a [PAT (Personal Access Token)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) in the repository secrets. The PAT is used to create a pull request with the linting results. Review the [Megalinter](https://megalinter.io/7.8.0/configuration/) documentation for more information on how to configure it.
 

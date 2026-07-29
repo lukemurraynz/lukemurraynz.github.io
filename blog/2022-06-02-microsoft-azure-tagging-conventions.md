@@ -11,7 +11,6 @@ header:
 slug: azure/microsoft-azure-tagging-conventions
 ---
 Organizing cloud-based resources is a crucial task for IT unless you only have simple deployments. Use naming and tagging standards to organize your resources for these reasons:
-<!-- truncate -->
 
 * **Resource management**: Your IT teams will need to quickly locate resources associated with specific workloads, environments, ownership groups, or other important information. Organizing resources is critical to assigning organizational roles and access permissions for resource management.
 * **Cost management and optimization**: Making business groups aware of cloud resource consumption requires IT to understand each team's resources and workloads.
@@ -21,6 +20,8 @@ Organizing cloud-based resources is a crucial task for IT unless you only have s
 * **Automation:** In addition to making resources easier for IT to manage, a proper organizational scheme allows you to take advantage of automation as part of resource creation, operational monitoring, and the result of DevOps processes.
 
 **Workload optimization:** Tagging can help identify patterns and resolve broad issues. A tag can also help determine the assets required to support a single workload. Tagging all assets associated with each workload enables a more profound analysis of your mission-critical workloads to make sound architectural decisions.
+
+<!-- truncate -->
 
 * [Use tags to organize your Azure resources and management hierarchy](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources?tabs=json&WT.mc_id=AZ-MVP-5004796 "Use tags to organize your Azure resources and management hierarchy")
 

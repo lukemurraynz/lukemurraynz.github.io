@@ -11,6 +11,7 @@ World of Warcraft includes a **Mature Language Filter** that replaces profanity 
 
 <!-- truncate -->
 
+
 ## Steps to disable the Mature Language Filter
 
 1. Press **Esc** to open the game menu.

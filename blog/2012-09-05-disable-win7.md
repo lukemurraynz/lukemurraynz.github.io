@@ -12,5 +12,6 @@ tags:
   4. Click **Command** **Prompt**
   5. **Type** in: **_net accounts /maxpwage:unlimited_**
   6. Press **enter**
+
 <!-- truncate -->
 

@@ -19,7 +19,6 @@ When considering [build agents](https://learn.microsoft.com/azure/devops/pipelin
 
 [Microsoft-hosted agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml&WT.mc_id=AZ-MVP-5004796), can be used for most things, but there are times where you may need to talk to internal company resources, or security is a concern, which is when you would consider self-hosting the agent yourself.
 
-<!-- truncate -->
 
 
 Here is a table that summarizes the pros and cons of self-hosted Azure DevOps agents and Microsoft-hosted agents:
@@ -28,6 +27,8 @@ Here is a table that summarizes the pros and cons of self-hosted Azure DevOps ag
 |----------------|----------|----------|
 | Self-hosted    | More control over the environment, ability to install dependent software needed for builds and deployments, machine-level caches and configuration persist from run to run, which can boost speed. | Maintenance and upgrades are not taken care of for you; you must manage the agent yourself. |
 | Microsoft-hosted | Maintenance and upgrades are taken care of for you; each time you run a pipeline, you get a fresh virtual machine discarded after one use. Microsoft-hosted agents can run jobs directly on the VM or in a container. The pre-defined Azure Pipelines agent pool offers several virtual machine images, each including various tools and software. You can see the installed software for each hosted agent by choosing the Included Software link in the table. Microsoft-hosted agents run on a secure Azure platform. | You have less control over the environment, you cannot install dependent software needed for builds and deployments, and machine-level caches and configurations do not persist from run to run. |
+
+<!-- truncate -->
 
 ## Overview
 

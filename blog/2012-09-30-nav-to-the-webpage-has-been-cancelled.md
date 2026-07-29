@@ -29,9 +29,10 @@ tags:
     <strong>Reopen Internet Explorer</strong> and attempt to load the webpage again.
   </li>
 </ol>
-<!-- truncate -->
 
 _If that didn’t work make sure that you don’t have InternetServiceOffers as a scheduled task._
+
+<!-- truncate -->
 
 <ol start="1">
   <li>

@@ -10,9 +10,10 @@ slug: win/using-powershell-setup-automatic-logon-windows-servers
 ---
 
 Some server based applications require to be logged into a service account to allow an Application or service to run, These applications usually require manual intervention by systems administrators to login to the account manually after a server restart.
-<!-- truncate -->
 
 There are many ways to setup Automatic Logon, using _&#8220;control userpasswords2_&#8221; via the Run Prompt, using Third Party utilities like _LogonExpert_ or_ Sysinternals Autologon for Windows  _this simply using RegEdit and setting them manually.
+
+<!-- truncate -->
 
 I have created a PowerShell script for editing the registry to set this manually in a standardized way and could be run remotely. It is pretty simple and only requires version 1 of PowerShell.
 

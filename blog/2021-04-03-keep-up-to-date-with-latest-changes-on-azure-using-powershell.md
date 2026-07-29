@@ -14,7 +14,6 @@ slug: keep-up-to-date-with-latest-changes-on-azure-using-powershell
 ---
 
 Keeping up with what is happening with changes and previews in Microsoft Azure is difficult, change happens all the time - and being able to stay informed on what is happening with the Azure ecosystem is half the battle, whether it is a new feature or security fix.
-<!-- truncate -->
 
 Microsoft publishes the latest updates on Azure Products and features to their Azure Updates blog: [https://azure.microsoft.com/en-us/updates/](https://azure.microsoft.com/en-us/updates/ "https://azure.microsoft.com/en-us/updates/?WT.mc_id=AZ-MVP-5004796")
 
@@ -25,6 +24,8 @@ So you can browse the website each week, or... monitor the RSS feeds. Sometimes 
 - Publish the information to Microsoft Teams channels to keep people informed.
 
 I have created a basic PowerShell function, that will retrieve the latest updates from the Microsoft Azure Updates RSS Feed and turn it into a PowerShell object you can actually use to keep informed.
+
+<!-- truncate -->
 
 ## The Script - Get-AzureBlogUpdates
 

@@ -6,7 +6,6 @@ tags:
 date: 2013-12-05 00:00:00 +1300
 ---
 It runs correctly if you put &#8220;-windowed&#8221; in the launch options!
-<!-- truncate -->
 
   1. Right click the Dishonored shortcut
   2. Left click Properties
@@ -15,3 +14,5 @@ It runs correctly if you put &#8220;-windowed&#8221; in the launch options!
   5. Click Ok
 
 _Note: Tested on Windows 8/8.1 & Windows 7._
+
+<!-- truncate -->

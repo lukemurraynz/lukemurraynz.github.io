@@ -11,9 +11,10 @@ header:
 slug: azure/azure-availability-zone-peering
 ---
 In most [regions ](https://learn.microsoft.com/azure/reliability/availability-zones-service-support?WT.mc_id=AZ-MVP-5004796 "Availability zone service and regional support")_(and odds are, if your area doesn't have Avalibility Zones, it's on the roadmap to be set up)_, Microsoft Azure has [Availability Zones](https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview?WT.mc_id=AZ-MVP-5004796 "What are Azure regions and availability zones?").
-<!-- truncate -->
 
 Each Azure region features data centres deployed within a latency-defined perimeter. At a high level, these zones consist of 3 separate data centres with independent cooling, power, switching etc.
+
+<!-- truncate -->
 
 ![Azure availability zones](/uploads/availability-zones.png "Azure availability zones")
 

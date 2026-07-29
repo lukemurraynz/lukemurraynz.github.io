@@ -7,13 +7,14 @@ date: 2014-04-27 00:00:00 +1300
 ---
 
 There are several reasons why a **Remote Desktop** connection might fail. Common causes include:
-<!-- truncate -->
 
 - The target computer does not have the required Remote Desktop services running.
 - The Windows Firewall is blocking the RDP port (TCP 3389).
 - The user is not a member of the **Remote Desktop Users** group on the target machine.
 
 The steps below walk through checking and enabling the necessary services on a remote computer using the Services console.
+
+<!-- truncate -->
 
 ## How to enable Remote Desktop services remotely
 

@@ -11,11 +11,12 @@ header:
 slug: azure/azure-storage-account-sftp-errors
 ---
 As part of standing up and using an Azure Storage account as an SFTP service, I ran into a few issues. This blog post is merely intended to show my findings in case others run into similar issues.
-<!-- truncate -->
 
 #### PTY allocation request failed on channel 0
 
 Even though you appear to have connected successfully, you may see the following errors:
+
+<!-- truncate -->
 
 * PTY allocation request failed on channel 0
 * shell request failed on channel 0

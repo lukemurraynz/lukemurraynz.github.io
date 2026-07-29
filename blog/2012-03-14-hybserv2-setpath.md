@@ -7,9 +7,10 @@ tags:
   - Windows
 ---
 Getting the Hybserv2 &#8220;Unable to open SETPATH&#8221; error? Follow the instructions below to repair.
-<!-- truncate -->
 
 **Windows**
+
+<!-- truncate -->
 
   1. **Right** **click** on My **Computer**
   2. **Left** **click** on **Properties**

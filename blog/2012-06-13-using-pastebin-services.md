@@ -7,9 +7,10 @@ tags:
   - Misc
 ---
 _Pastebin service allows people to upload text, code for public viewing. Very handy when you want someone&#8217;s opinion on something you have written or having problems with certain code and require help._
-<!-- truncate -->
 
 _Below are several recommended Pastebin services_
+
+<!-- truncate -->
 
 <a title="slexy pastebin" href="http://www.slexy.org" target="_blank"><strong>Slexy</strong></a>
 

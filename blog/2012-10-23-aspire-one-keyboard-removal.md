@@ -7,11 +7,12 @@ tags:
   - Misc
 ---
 Things you will need.
-<!-- truncate -->
 
 * Small Razor Blade
 
 or
+
+<!-- truncate -->
 
 * Small Flat-Head Screwdriver
 

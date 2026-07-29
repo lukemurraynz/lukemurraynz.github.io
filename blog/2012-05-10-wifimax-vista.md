@@ -6,13 +6,14 @@ tags:
   - Windows
 ---
 How to install a Wifi Max Wifi dongle in Windows Vista
-<!-- truncate -->
 
   1. Download the latest <a title="WifiMax Vista Drivers" href="http://uk.codejunkies.com/support_downloads/zydas_vista_compat.zip" target="_blank">drivers</a>
   2. Run the file and go through the install.
   3. Once installation has completed plug the Wi-Fi dongle into a USB port
 
 _If you have already plugged the WifiMax dongle in before running the driver software then the WifiMax dongle will have been installed using Vistas default wireless driver. To repair this, follow the instructions below:_
+
+<!-- truncate -->
 
   1. _Right click Computer_
   2. _Select Properties_

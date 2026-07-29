@@ -7,9 +7,10 @@ tags:
   - Windows
 ---
 The issue is caused by security permissions in the registry. This is how you fix it.
-<!-- truncate -->
 
 _You must be logged on as a local administrator to perform this task:_
+
+<!-- truncate -->
 
   1. Click &#8220;**Start**&#8220;, &#8220;**Run**&#8220;, and enter &#8220;**regedt32**&#8220;
   2. **Maximize** the &#8220;**HKEY\_LOCAL\_MACHINE**&#8221; window.

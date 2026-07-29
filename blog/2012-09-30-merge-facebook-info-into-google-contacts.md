@@ -7,7 +7,6 @@ tags:
   - Misc
 ---
 First we use a web-based tool called “Friends To Gmail” which collates the data from your Facebook friends such as Name, Birthday and Biography information (currently this does not support Phone Numbers).
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -80,6 +79,8 @@ First we use a web-based tool called “Friends To Gmail” which collates the d
     Once done you can remove the Group and you have now imported your contact information.
   </li>
 </ol>
+
+<!-- truncate -->
 
 &nbsp;
 

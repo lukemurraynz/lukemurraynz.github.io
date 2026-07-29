@@ -6,6 +6,7 @@ tags:
 date: 2014-05-17 00:00:00 +1300
 ---
 Without any bootable media &#8211; such as the Windows 8 CD. You have to reset the Surface RT at the operating system level.
+
 <!-- truncate -->
 
   1. Attach your keyboard cover

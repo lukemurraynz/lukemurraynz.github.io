@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 Getting the Failed to install catalog files error? This is how you fix it. The issue is related to registry key security settings.
-<!-- truncate -->
 
   1. Click **Start**
   2. Click **Run**
@@ -17,3 +16,5 @@ Getting the Failed to install catalog files error? This is how you fix it. The 
   6. Press **Enter **
 
 If it reports an error about not knowing where secedit is then you can download it from &#8220;here&#8221;. You need to download it and put it in My Computer/C.
+
+<!-- truncate -->

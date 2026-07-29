@@ -6,7 +6,6 @@ tags:
   - Mac OSX
 ---
 Having access to an exchange mailbox on a Mac or iMac is very useful – especially if you are a designer in a prominent Windows domain environment – setup exchange email account on mac is incredibly easy on the client site – as long as the relevant ports have been opened up allowing you to connect from outside a Windows domain.
-<!-- truncate -->
 
   1. Open the **Apple** menu
   2. Click **System** **Preferences**
@@ -22,3 +21,5 @@ Having access to an exchange mailbox on a Mac or iMac is very useful – especia
  12. Click **Done**.
 
 Note: To access an Exchange server from a Mac outside the organization’s network, confirm with the server administrator that port 443 is open on the firewall and Exchange Web Services (EWS) is enabled on the server.
+
+<!-- truncate -->

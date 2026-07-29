@@ -7,7 +7,6 @@ tags:
   - Misc
 ---
 What you need
-<!-- truncate -->
 
 *  Flat Head Screw-Driver
 * Razor Blade
@@ -24,6 +23,8 @@ What you need
  10. Reverse the process above to put it back together, remember to give the panel a test before you go through all the work to put it all back.
 
 _Note: Always best to have the laptop resting on a soft surface (ie towel) to avoid scratches._
+
+<!-- truncate -->
 
 _Note: Make sure laptop battery has been removed and the laptop is unplugged from AC power to prevent any chance of turning laptop on._
 

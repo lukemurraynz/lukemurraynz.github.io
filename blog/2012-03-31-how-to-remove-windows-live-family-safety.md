@@ -6,7 +6,6 @@ tags:
   - Windows
 ---
 Having problems getting rid of Windows Live Family Safety? Follow the steps below!
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -22,6 +21,8 @@ Having problems getting rid of Windows Live Family Safety? Follow the steps belo
     Left Click <strong>Windows Live Essentials</strong>
   </li>
 </ol>
+
+<!-- truncate -->
 
 _You can also stop Windows Family Safety from running by following the prompts below:_
 

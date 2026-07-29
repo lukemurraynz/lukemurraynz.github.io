@@ -6,6 +6,7 @@ tags:
   - Windows
 ---
 Follow the instructions to create a mapped network drive in Windows 7 without windows indexing like a local folder?
+
 <!-- truncate -->
 
   1. Create a new folder for your network shares (ie c:Shared)

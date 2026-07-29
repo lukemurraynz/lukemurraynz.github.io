@@ -11,7 +11,6 @@ header:
 slug: azure/transfer-ownership-of-azure-subscription
 ---
 Imagine you want to transfer Azure resources to another person or company? This could be because something may have been created in an external third-party subscription, to begin with, or you have created a product using Azure resources that you have just sold to the highest bidder!
-<!-- truncate -->
 
 Before you start rolling in that money bin of cash, you need to be able to give that person the Azure resources. The best way to do this is to transfer ownership of an Azure subscription.
 
@@ -20,6 +19,8 @@ It may be best to create a new Azure subscription, and then transfer _(using the
 Just a heads up IF you are selling services you have created in Microsoft Azure, whether freelance or professionally make sure you have spent time working on Azure governance to make sure you have a proper Azure Landing Zone stood up for standardization and naming conventions in place if you are a transferring a resource that has a Global Scope (ie these are usually Public-facing, the last thing you want is to transfer the resources to someone else and find out that you can't reuse the same unique name.
 
 **_Please read this carefully,_** there are certain limitations when transferring Subscription Ownership - especially across to another tenancy that you need to be aware of, these limitations are the Type of Subscription it is and the type of resources, encryption status, etc.[Transfer an Azure subscription to a different Azure AD directory](https://learn.microsoft.com/en-gb/azure/role-based-access-control/transfer-subscription?WT.mc_id=AZ-MVP-5004796#understand-the-impact-of-transferring-a-subscription) In some cases, you may need to look at alternative ways, such as redeploying or recreating the resources in the other subscription/tenancy manually - via redirecting an Azure DevOps deployment or manual backup export and import.
+
+<!-- truncate -->
 
 ## Transfer a Subscription
 

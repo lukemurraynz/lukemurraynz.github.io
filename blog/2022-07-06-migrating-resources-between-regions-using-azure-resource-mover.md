@@ -23,6 +23,7 @@ Migrating resources between regions is something that you may want to consider. 
 
 <!-- truncate -->
 
+
 ### Overview
 
 ![Azure Resource Mover](/uploads/azureresourcemover_header.png "Keep calm and migrate it in Azure")

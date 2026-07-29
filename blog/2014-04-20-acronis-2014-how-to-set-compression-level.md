@@ -6,9 +6,10 @@ tags:
 date: 2014-04-20 00:00:00 +1300
 ---
 On the Performance tab you can configure the following settings:
-<!-- truncate -->
 
 Compression level
+
+<!-- truncate -->
 
 You can choose the compression level for a backup:
 

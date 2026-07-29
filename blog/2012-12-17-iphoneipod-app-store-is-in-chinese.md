@@ -10,7 +10,6 @@ tags:
   2. Select **Featured** _(left most option – down bottom)_
   3. Scroll to the bottom and select your **account** _(the button is centered and long)_
   4. Here you can **change** your Account **country**.
-<!-- truncate -->
 
 If the above doesn&#8217;t work – you need to either create a new iTunes account temporarily or borrow someone’s.
 
@@ -20,3 +19,5 @@ If the above doesn&#8217;t work – you need to either create a new iTunes acco
   4. **Open** App **Store**
 
 The App Store will switch to English – you can now logout of the English account and the iPhone/iPod will retain its language setting.
+
+<!-- truncate -->

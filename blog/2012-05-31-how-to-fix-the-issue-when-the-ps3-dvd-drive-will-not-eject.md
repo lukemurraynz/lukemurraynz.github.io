@@ -10,6 +10,7 @@ tags:
   2. **Hold** down the **Eject** Power and **Power** button at the same time.
   3. While **holding** down both the eject and power buttons, **switch** the PS3 **on** (Switch at the back)
   4. **Hold** the **buttons** down for **_8 seconds_**; it should now force the DVD to eject.
-<!-- truncate -->
 
 Also refer to the Playstation Help Article: http://playstation.custhelp.com/app/answers/detail/a_id/1783/~/remove-stuck-disc
+
+<!-- truncate -->

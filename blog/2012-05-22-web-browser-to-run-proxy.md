@@ -9,7 +9,6 @@ tags:
   - Windows
 ---
 **Internet Explorer**
-<!-- truncate -->
 
   1. Click Tools
   2. Click Internet Options
@@ -20,6 +19,8 @@ tags:
   7. Click HTTP
 
 **Mozilla Firefox**
+
+<!-- truncate -->
 
   1. Click Tools
   2. Click Options

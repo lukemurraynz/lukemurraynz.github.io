@@ -6,9 +6,10 @@ tags:
   - Windows
 ---
 Ever found a great Winamp Skin, But you did not know how to install it? This tutorial will explain how._
-<!-- truncate -->
 
 **To install Winamp Skins:**
+
+<!-- truncate -->
 
   1. Download & save the skin you want
   2. Double click the skin file _(usually saved in Documents/Downloads)_

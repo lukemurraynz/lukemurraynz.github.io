@@ -10,10 +10,11 @@ date: 2013-12-23 00:00:00 +1300
   3. Under Windows Credentials – select & remove all associated Username & Passwords
   4. Once removed log the user out and get the user to login again.
   5. They should now be able to access the Intranet & Internet.
-<!-- truncate -->
 
 <em style="font-family: sans-serif; font-size: medium;">Note: I have come across this when the users – password has reached expiry so when attempting to login again the user is usually asked to reset his or her password.</em>
   
 <em style="font-family: sans-serif; font-size: medium;">Note: Also make sure the proxy details in Internet Explorer are set correctly for your environment.</em>
+
+<!-- truncate -->
   
 <em style="font-family: sans-serif; font-size: medium;">Note: Also – Windows 8 compatible.</em>

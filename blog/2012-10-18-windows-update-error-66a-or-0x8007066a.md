@@ -12,6 +12,7 @@ tags:
   4. Go down the list and **find** Net **Framework** 4 **Client** **Profile**
   5. Right click Net Framework 4 Client Profile and select Change/**Repair**.
   6. Select Repair
-<!-- truncate -->
 
 _The Net Framework will then go through and repair its files and registry entries, once completed restart your windows machine and attempt Windows Update again._
+
+<!-- truncate -->

@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 &nbsp;
+
 <!-- truncate -->
 
   1. Launch PHPMyAdmin _(either directly or through your web hosting control panel &#8211; doesn&#8217;t matter)_.

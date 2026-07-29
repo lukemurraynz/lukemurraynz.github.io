@@ -7,6 +7,7 @@ tags:
 date: 2013-02-26 00:00:00 +1300
 ---
 Warning: Following this method will erase all your data including Contacts & Photos
+
 <!-- truncate -->
 
   1. First you need to download your iPhone/iPod Touch firmware. Click “<a title="iPod/iPhone/iPad Firmware" href="http://www.felixbruns.de/iPod/firmware/" target="_blank">here</a>” to download the firmware.

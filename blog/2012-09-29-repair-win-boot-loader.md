@@ -7,9 +7,10 @@ tags:
   - Windows
 ---
 First things first! In order to repair the Windows boot loaders you need the appropriate Windows CD/DVD for example: _Windows XP Home/Professional CD for the Windows XP installation & Windows 7 DVD for Windows 7 install._
-<!-- truncate -->
 
 **Windows XP**
+
+<!-- truncate -->
 
 The instructions on repairing this are similar to the [DDL Kernel fix](http://http://luke.geek.nz//load-needed-dlls-for-kernel/ "Load needed DLLs for Kernel").
 

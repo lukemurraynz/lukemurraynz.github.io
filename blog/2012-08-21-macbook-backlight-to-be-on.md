@@ -26,8 +26,9 @@ tags:
     Close and <strong>save</strong>
   </li>
 </ol>
-<!-- truncate -->
 
 _You have now adjusted the minimum light the light sensor needs to activate the back-light on the keyboard. _
+
+<!-- truncate -->
 
 _Note: Only valid for Macbook Pros, normal Macbooks do not contain keyboard back-lights._

@@ -27,9 +27,10 @@ When working with [Azure API Management](https://learn.microsoft.com/azure/api-m
 
 Similar to [traceparent](https://www.w3.org/TR/trace-context/#traceparent-header-field-values), the Correlation ID is a unique identifier passed along with the request and response headers. It allows you to track a request's flow as it moves through different services and systems.
 
+<!-- truncate -->
+
 In this article, we will explore how to generate a new correlation ID through API Management Inbound policies and pass it back to the Client through an outbound policy, which then is used to help troubleshoot specific calls with [Application Insights](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview?WT.mc_id=AZ-MVP-5004796).
 
-{/* truncate */}
 
 So, if you want an experience like the following to help pass the Correlation ID back to the client, then look up the transaction in Application Insights, then let us take a look:
 

@@ -25,6 +25,8 @@ When you use an [Azure API Management](https://learn.microsoft.com/azure/api-man
 ![APIM Management Internal](apim_internal_appgw.png)
 _(Image courtesy of: [Azure APIM and Application Gateway Integration](https://medium.com/@thahif.86/azure-apim-and-application-gateway-integration-9039378ba197))_
 
+<!-- truncate -->
+
 In this scenario, you can use the following paths on your APIs:
 
 - **Internal**: `https://apim.yourdomain.com/internal/echo`
@@ -32,7 +34,6 @@ In this scenario, you can use the following paths on your APIs:
 
 ![Azure API Management - EchoAPI](apim_echoapi_external.png)
 
-<!-- truncate -->
 
 Where the path of Internal is only intended for internal consumers and internal APIs, and the external path is intended to be accessed externally *(and in some cases internally)*. You can drop all traffic that reaches the Azure Application Gateway with an /internal URL by routing it to a backend that doesn't exist.
 

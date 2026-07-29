@@ -6,9 +6,10 @@ tags:
 date: 2014-04-28 00:00:00 +1300
 ---
 Windows 8 (and Windows 8.1) – allows for RSAT (Remote Server Administration Tools) just like the previous versions of Windows for remote management of Server 2012 &#8211; however you need to reveal or show it.
-<!-- truncate -->
 
 By default however – this is hidden from the Metro Title menu and you have to enable it – follow the quick guide below to show the Administrative Tools in Windows 8.
+
+<!-- truncate -->
 
   1. Open the **Start** screen.
   2. Hit **Windows Key + C** to bring up the charms bar.

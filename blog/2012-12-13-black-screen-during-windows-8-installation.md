@@ -8,9 +8,10 @@ tags:
 ---
 
 If you see a **black screen** during a Windows 8 installation, the installer has likely switched to **UEFI boot mode** on a motherboard that does not fully support it. This commonly happens when **multiple hard drives** are connected to the system during the installation process.
-<!-- truncate -->
 
 When multiple drives are present, the Windows installer may detect a GPT-formatted drive and attempt a UEFI install, even if the target drive or motherboard firmware does not support it. The result is a blank or black screen where the installation appears to hang.
+
+<!-- truncate -->
 
 ## How to fix it
 

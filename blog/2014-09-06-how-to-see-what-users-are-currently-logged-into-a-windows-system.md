@@ -7,7 +7,6 @@ date: 2014-09-06 00:00:00 +1300
 ---
 
 Being able to determine who is currently logged into a particular Windows system – such as a server can be useful for identify performance problems and notifying the relevant users of an impending restart.
-<!-- truncate -->
 
 ### Method 1
 
@@ -16,6 +15,8 @@ Being able to determine who is currently logged into a particular Windows system
 3. This will list the users currently logged in and what type of session are they using.
 
 Note: If you have opened an elevated command prompt you can use: **quser /server:Servername** to show logged on users on remote machines.
+
+<!-- truncate -->
 
 ### Method 2
 

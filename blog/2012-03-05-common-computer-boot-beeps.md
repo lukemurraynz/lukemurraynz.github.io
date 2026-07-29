@@ -7,9 +7,10 @@ tags:
 ---
 
 When you turn on a computer, the **BIOS** runs a **Power-On Self-Test (POST)** that checks critical hardware components before loading the operating system. If the POST detects a problem, the computer communicates the error through a series of **beep codes** since the display may not be functional yet.
-<!-- truncate -->
 
 The number and pattern of beeps indicate which component has failed. Below are the most common beep codes for **Award** and **AMI BIOS** systems.
+
+<!-- truncate -->
 
 ## Common beep codes
 

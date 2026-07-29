@@ -13,11 +13,12 @@ slug: azure/microsoft-azure-zonalallocationfailed
 > **Error code**: AllocationFailed or ZonalAllocationFailed
 >
 > **Error message**: "Allocation failed. We do not have sufficient capacity for the requested VM size in this region. Read more about improving likelihood of allocation success at [https://aka.ms/allocation-guidance](https://aka.ms/allocation-guidance?WT.mc_id=AZ-MVP-5004796 "https://aka.ms/allocation-guidance")"
-<!-- truncate -->
 
 When you create a virtual machine _(VM)_, start stopped _(deallocated)_ VMs, or resize a VM, Microsoft Azure allocates compute resources to your subscription.
 
 ![ZonalAllocationFailed](/uploads/zonalallocationfailed.png "ZonalAllocationFailed")
+
+<!-- truncate -->
 
 Microsoft is continually investing in additional infrastructure and features to ensure that they always have all VM types available to support customer demand. However, you may occasionally experience resource allocation failures because of unprecedented growth in demand for Azure services in specific regions.
 

@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 &nbsp;
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -26,3 +25,5 @@ tags:
     Click <strong>Ok</strong>
   </li>
 </ol>
+
+<!-- truncate -->

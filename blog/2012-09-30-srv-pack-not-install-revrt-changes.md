@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 _This usually happens when a service that is required, the Trusted Installer is not running. Follow the instructions below to repair this._
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -32,3 +31,5 @@ _This usually happens when a service that is required, the Trusted Installer is 
     Attempt Service Pack installation again.
   </li>
 </ol>
+
+<!-- truncate -->

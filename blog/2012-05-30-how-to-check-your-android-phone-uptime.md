@@ -7,6 +7,7 @@ tags:
   - Mobile
 ---
 Want to check how long your phone has been on for? Follow the instructions below.
+
 <!-- truncate -->
 
   1. Go into **Settings**

@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 &nbsp;
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -35,5 +34,7 @@ tags:
     Press Ok
   </li>
 </ol>
+
+<!-- truncate -->
 
 Now when you open a new Tab it will display your commonly visited webpages.

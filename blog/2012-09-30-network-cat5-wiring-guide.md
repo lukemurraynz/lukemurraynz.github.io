@@ -7,9 +7,10 @@ tags:
   - Misc
 ---
 **Straight Through/Patch Cable**
-<!-- truncate -->
 
 _Both ends are the same._
+
+<!-- truncate -->
 
   * Orange-White
   * Orange

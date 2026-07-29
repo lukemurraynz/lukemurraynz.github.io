@@ -20,9 +20,10 @@ description: Learn how to create and configure a storage queue trigger using Pow
 
 [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-powershell&WT.mc_id=AZ-MVP-5004796) is a serverless compute service that enables you to run event-driven code without having to manage infrastructure. You can use Azure Functions to run small pieces of code in response to events, such as HTTP requests, messages in a queue, or changes in data in a storage account. In this article, I will show you how to use Azure Functions with a storage queue trigger using the System Managed Identity of the Function Application *(instead of a Connection String)*.
 
-{/* truncate */}
 
 When you create an Azure Function, you can use a storage queue trigger to execute the function when a message is added to a storage queue. This is useful when you want to process messages in a queue asynchronously. In this article, I will show you how to use an Azure Function with a storage queue by using the System Managed Identity of the Function Application to authenticate with the storage account.
+
+<!-- truncate -->
 
 :::info
 [Azure Queue storage trigger for Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-bindings-storage-queue-trigger?tabs=python-v2%2Cisolated-process%2Cnodejs-v4%2Cextensionv5&pivots=programming-language-powershell&WT.mc_id=AZ-MVP-5004796). The queue storage trigger runs a function as messages are added to Azure Queue storage.

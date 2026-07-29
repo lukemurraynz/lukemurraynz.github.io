@@ -12,7 +12,6 @@ slug: azure/cloud-adoption-framework-for-azure
 ---
 
 To help with your Microsoft Cloud Adoption and Azure migration, you need a few things to be successful:
-<!-- truncate -->
 
 1. Define your **strategy**, what are your expected outcomes? Where do you start, what skills do you have or need?
 2. **Plan**, this may include organisational alignment to get moving to the Cloud
@@ -20,6 +19,8 @@ To help with your Microsoft Cloud Adoption and Azure migration, you need a few t
 4. **Adopt**, this is where you actually migrate your workloads into the cloud, existing apps and new
 
 ![Cloud Adoption Framework for Azure](/images/posts/Microsoft_CloudAdoptionFramework_Azure.png "Cloud Adoption Framework for Azure")
+
+<!-- truncate -->
 
 Here are some useful tools, templates, and assessments provided by Microsoft to help on your journey:
 

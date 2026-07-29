@@ -10,13 +10,14 @@ toc: false
 
 ---
 ## Issue Description
-<!-- truncate -->
 
 Failed to delete the private endpoint. Error: Call to Microsoft.Storage/storageAccounts failed
 
 ## Root Cause
 
 Azure Backup locks the storage account when you configure protection for any file share in the corresponding account. This provides protection against accidental deletion of a storage account with backed-up file shares.
+
+<!-- truncate -->
 
 ## Resolution
 

@@ -6,9 +6,10 @@ tags:
 date: 2014-01-13 00:00:00 +1300
 ---
 Branchcache is one of those things – that can either be a blessing or a curse depending on how your network is setup.
-<!-- truncate -->
 
 Supported by Windows 7/Windows 8 & Server 2008 R2/Server 2012 – Branchcache is one of those technologies that I believe should be setup as default from the start – especially in larger organisations or enterprises.
+
+<!-- truncate -->
 
 First off – Branchcache is a method of &#8220;transparent caching&#8221; popular files from a network share to a more locally centralized – to the requesting computer – without increasing network bandwidth for a file that continuously gets pulled from a fileserver.
 

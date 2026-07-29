@@ -9,9 +9,10 @@ tags:
   - Windows
 ---
 Follow the instructions below to link your Guild Wars 1 account to Guild Wars 2
-<!-- truncate -->
 
 &nbsp;
+
+<!-- truncate -->
 
 <ol start="1">
   <li>

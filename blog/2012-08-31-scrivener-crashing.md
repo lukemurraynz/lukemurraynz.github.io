@@ -8,6 +8,7 @@ tags:
 ---
 
 If **Scrivener** crashes or closes immediately after launching on macOS, the issue is often related to **incorrect file permissions** on the application bundle. This can happen after a macOS update, a failed Scrivener update, or if the application was moved between user accounts.
+
 <!-- truncate -->
 
 ## How to fix it

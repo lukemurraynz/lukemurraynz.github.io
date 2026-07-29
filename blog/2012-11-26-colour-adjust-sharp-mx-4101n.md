@@ -7,9 +7,10 @@ tags:
   - Misc
 ---
 _How to do a colour adjustment on a Sharp MX-4101N_
-<!-- truncate -->
 
 &nbsp;
+
+<!-- truncate -->
 
 **For Copier:**
 

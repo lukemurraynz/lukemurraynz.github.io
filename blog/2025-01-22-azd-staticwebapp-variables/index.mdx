@@ -27,7 +27,8 @@ The [Azure Developer CLI (azd)](https://learn.microsoft.com/azure/developer/azur
 
 One of the resources you can deploy _(both Infrastructure and Application)_ is a [Azure Static Web App](https://learn.microsoft.com/azure/static-web-apps/overview?WT.mc_id=AZ-MVP-5004796) recently, I ran into an issue where I was deploying a backend [Azure Function](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-python&WT.mc_id=AZ-MVP-5004796), and I needed a react web application front end hosted on the Azure Static WebApp to pull the function app URL and function key from the runtime environment variables, and quickly realized that React does not support runtime environment variables - only build-time environment variables.
 
-{/* truncate */}
+<!-- truncate -->
+
 
 It makes a bit of sense when you step back - React is a front-end framework, and the environment variables are injected at build time, so the front end can be built with the correct values, especially for a static web app - that isn't dynamically generated at runtime. 
 

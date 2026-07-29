@@ -11,11 +11,12 @@ header:
 slug: azure/update-your-azure-webapp-to-be-always-on
 ---
 By default, Azure Web Apps are unloaded if they are idle for a set period of time _(20 minutes)_. This way, the system can conserve resources.
-<!-- truncate -->
 
 The downside is that the response to the first request after the web app is unloaded is longer, as the Web App has to load into memory and present itself, which could lead to a bad user experience.
 
 To ensure that the Azure App Service Web App is running and always available to respond to incoming HTTP(S) requests, can be set the "Always On" configuration feature to "On".
+
+<!-- truncate -->
 
 ## Overview
 

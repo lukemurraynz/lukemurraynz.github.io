@@ -8,7 +8,6 @@ tags:
   - Windows
 ---
 _This is how to limit the bandwidth speed of both your Uploads & Downloads for Dropbox_
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -27,3 +26,5 @@ _This is how to limit the bandwidth speed of both your Uploads & Downloads for D
     Click <strong>Ok</strong> when changes are made to confirm your settings.
   </li>
 </ol>
+
+<!-- truncate -->

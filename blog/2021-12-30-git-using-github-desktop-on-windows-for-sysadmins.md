@@ -10,9 +10,10 @@ header:
   teaser: /uploads/githubdesktop-overview.png
 ---
 [Git](https://en.wikipedia.org/wiki/Git) (_Git is software for tracking changes in any set of files, usually used for coordinating work among programmers collaboratively developing source code during software development, allowing versioning, source control and enablement of continuous Integration and deployment)_has been around for years_(development and the first release began in 2005 by Linus Torvolds)_.
-<!-- truncate -->
 
 Although primary driven and consumed by software developers – it is now a staple of everyday life for an IT professional of many disciplines _(i.e. Operations, Delivery),_ even if a git repository is used to store your PowerShell scripts _(hint – it should!)_.
+
+<!-- truncate -->
 
 You don't have to know every single git command line syntax to use Git.
 

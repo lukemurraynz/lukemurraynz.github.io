@@ -11,6 +11,7 @@ tags:
   3. Click **Settings**
   4. Choose **Select** from **List**
   5. Select your **country**
-<!-- truncate -->
 
 _Note: You can also add Kaspersky update servers by clicking Add if you want to add a custom one._
+
+<!-- truncate -->

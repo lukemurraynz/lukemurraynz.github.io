@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 To repair this issue you need to have a Windows XP CD.
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -35,5 +34,7 @@ To repair this issue you need to have a Windows XP CD.
     Type: <strong>exit</strong>
   </li>
 </ol>
+
+<!-- truncate -->
 
 Your computer will now restart, remove the Windows CD and you should now have a bootable Windows installation.

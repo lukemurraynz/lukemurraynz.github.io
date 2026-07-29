@@ -11,13 +11,14 @@ header:
 slug: azure/create-azure-bastion-with-shareable-link-support-with-powershell
 ---
 [Azure Bastion](https://learn.microsoft.com/en-us/azure/bastion/bastion-overview?WT.mc_id=AZ-MVP-5004796 "What is Azure Bastion?") is a service you deploy that lets you connect to a virtual machine using your browser and the Azure portal or via the native SSH or RDP client installed on your local computer.
-<!-- truncate -->
 
 #### Overview
 
 > The Azure Bastion service is a fully platform-managed PaaS service you provision inside your virtual network. It provides secure and seamless RDP/SSH connectivity to your virtual machines directly from the Azure portal over TLS.
 
 Because of this, if you don't have line-of-sight access to your Virtual Machines (_via express route, Site-to-Site VPN etc.)_, Bastion becomes your jump box, allowing secure access to your virtual machines without needing a public IP.
+
+<!-- truncate -->
 
 There is a downside, though. To connect to a Virtual Machine secured by Bastion, you need access to the Azure Portal, or command line connectivity to Azure, to create the tunnel; this means that you may need to grant people elevated rights and access they may not need to connect.
 

@@ -11,9 +11,10 @@ header:
 slug: azure/add-custom-dns-servers-and-set-azure-point-to-site-vpn-to-connect-automatically
 ---
 The Azure Point to Site VPN will take the DNS servers from the Virtual Network, that the Gateway is peering into by default, but due to VNET Peering or custom configuration if you may want to point this to custom DNS servers.
-<!-- truncate -->
 
 To do this, you need to edit the 'azurevpnconfig.xml' file and reimport the VPN connection.
+
+<!-- truncate -->
 
 1. Open: azurevpnconfig.xml in your favourite editor _(ie Visual Studio Code or Notepad)_
 2. Underneath the <name> _(which you can also change, as this is the name that users will see in Windows)_ add: < clientconfig>.

@@ -7,7 +7,6 @@ tags:
   - Mobile
 ---
 _Attempting to install applications from the Google Store and getting Error 921? I got this after several OS reinstalls on my phone and installing the same apps several time._
-<!-- truncate -->
 
   1. In order to fix this, you need to go into **Settings**
   2. **Accounts**
@@ -15,3 +14,5 @@ _Attempting to install applications from the Google Store and getting Error 921?
   4. Then re-**add** your **account**
 
 _Now you should be able to download and install the applications you are after._
+
+<!-- truncate -->

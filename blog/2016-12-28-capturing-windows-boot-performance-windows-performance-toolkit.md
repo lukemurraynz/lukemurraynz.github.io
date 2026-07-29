@@ -12,11 +12,12 @@ The Windows Performance Toolkit, developed by Microsoft has 3 separate tools and
 
 •    Windows Performance Recorder
 
+<!-- truncate -->
+
 •    Windows Performance Analyzer
 
 •    Xperf
 
-<!-- truncate -->
 
 <div id="toc_container" class="no_bullets">
   <p class="toc_title">

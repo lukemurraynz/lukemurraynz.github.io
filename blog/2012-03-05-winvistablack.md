@@ -7,9 +7,10 @@ tags:
 ---
 
 If your **Windows Vista** computer boots to a **black screen** or takes an extremely long time to reach the desktop, the issue is often caused by **incompatible or corrupted drivers** - particularly PCMCIA, 1394 (FireWire), and SD bus drivers, or by virtual drive software such as Daemon Tools interfering with the boot process.
-<!-- truncate -->
 
 Below are two methods to resolve the issue, starting with the most common fix.
+
+<!-- truncate -->
 
 ## Method 1: Remove problematic driver files
 

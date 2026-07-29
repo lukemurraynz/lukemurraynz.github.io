@@ -11,7 +11,6 @@ tags:
   3. **Type**: **fonts**
   4. Press **Enter**
   5. The font dialog box will open. All you need to do now is just **drag** the **font** **files** you want to install **into** the **folder**.
-<!-- truncate -->
 
 _Alternatively you can doing the following:_
 
@@ -21,3 +20,5 @@ _Alternatively you can doing the following:_
   4. Press **ok**.
 
 _The fonts directory is located at C:WINDOWSFonts_
+
+<!-- truncate -->

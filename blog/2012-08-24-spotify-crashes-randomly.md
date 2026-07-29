@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 _Having issues with Spotify? Few minutes or seconds after opening it crashes, follow the prompts below to repair:_
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -23,5 +22,7 @@ _Having issues with Spotify? Few minutes or seconds after opening it crashes, fo
     <strong>Relaunch</strong> Spotify<em> (it should now work)</em>
   </li>
 </ol>
+
+<!-- truncate -->
 
 _Note: If Spotify doesn&#8217;t work reinstall <a title="Adobe Flash Player" href="http://get.adobe.com/flashplayer/" target="_blank">Adobe Flash Player</a>_

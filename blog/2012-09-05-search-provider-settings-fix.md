@@ -6,9 +6,10 @@ tags:
   - Windows
 ---
 Nothing causes more frustration, then when your favorite Internet Explorer search engine keeps resetting. This is how you fix it.
-<!-- truncate -->
 
 &#8221; IE8 will reset the search provider setting to default setting of xxx search. IE8 will open the search provider dialog where you can change your search provider&#8221;.
+
+<!-- truncate -->
 
   1. Close any instances of Internet Explorer you have open
   2. Click **Start**.

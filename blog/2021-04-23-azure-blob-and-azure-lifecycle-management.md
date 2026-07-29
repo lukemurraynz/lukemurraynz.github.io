@@ -11,9 +11,10 @@ header:
 
 ---
 Azure Blob storage (Platform-as-a-service (PaaS)) is used for streaming and storing documents, videos, pictures, backups, and other unstructured text or binary data… however the functionality extends beyond just a place to “store stuff”, it can save you money and time by automating the lifecycle of your data using Azure Blob Lifecycle Management and access tiers.
-<!-- truncate -->
 
 As of January 2021, Blob storage now supports the Network File System (NFS) 3.0 protocol. This support provides Linux file system compatibility at object storage scale and prices and enables Linux clients to [mount a container](https://learn.microsoft.com/en-us/azure/storage/blobs/network-file-system-protocol-support?WT.mc_id=AZ-MVP-5004796 "Network File System (NFS) 3.0 protocol support in Azure Blob storage (preview)") in Blob storage from an Azure Virtual Machine (VM) or a computer on-premises.
+
+<!-- truncate -->
 
 # First up what is a Blob?
 

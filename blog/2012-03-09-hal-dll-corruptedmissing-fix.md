@@ -6,9 +6,10 @@ tags:
   - Windows
 ---
 Windows could not start because the following file is missing or corrupt:
-<!-- truncate -->
   
 Windows/system32/hal.dll
+
+<!-- truncate -->
   
 Please re-install a copy of the above file
 

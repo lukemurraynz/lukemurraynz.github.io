@@ -7,9 +7,10 @@ tags:
   - Windows
 ---
 &nbsp;
-<!-- truncate -->
 
 &nbsp;
+
+<!-- truncate -->
 
 _First things first, make sure you have Diablo 2 installed._
 

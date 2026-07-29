@@ -22,6 +22,7 @@ With more support for IPv6 being added to native Azure products, its time to tak
 
 <!-- truncate -->
 
+
 ## Overview
 
 > Most recently, [Gateway Load Balancer](https://azure.microsoft.com/en-us/updates/general-availability-gateway-load-balancer-ipv6-support/?WT.mc_id=AZ-MVP-5004796) and [Application Gateway](https://azure.microsoft.com/en-us/updates/public-preview-application-gateway-now-supports-ipv6-frontend/?WT.mc_id=AZ-MVP-5004796) has had IPv6 support announced, allowing these services to handle both IPv6 along with IPv4, from client and server.

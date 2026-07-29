@@ -12,9 +12,10 @@ header:
 
 ---
 Over the past few months, I have been busy working on a new project...
-<!-- truncate -->
 
 A news aggregator for Azure news and updates, I tested some desire for this using AzureFeeds, on [LinkedIn ](https://www.linkedin.com/in/azure-feeds-709457212/recent-activity/ "Azure Feeds - Linkedin") as a platform _(which will continue)..._
+
+<!-- truncate -->
 
 I didn't want my LinkedIn connections, to be spammed by Azure updates every day, when some connections were connected to me for other non-Azure related services, so I created a separate account that interested people could subscribe to AzureFeeds.
 

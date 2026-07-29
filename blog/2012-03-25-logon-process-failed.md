@@ -13,7 +13,6 @@ tags:
   6. Go through the startup list and uncheck everything other then your Antivirus and any other software you want starting
   7. Press Ok
   8. Restart PC
-<!-- truncate -->
 
 If the fix above, doesn&#8217;t work then follow this tomorrow:
 
@@ -23,6 +22,8 @@ If the fix above, doesn&#8217;t work then follow this tomorrow:
   4. Once completed, restart the computer.
 
 If none of the fixes above work, try the following:
+
+<!-- truncate -->
 
   1. Click Start
   2. Click Run

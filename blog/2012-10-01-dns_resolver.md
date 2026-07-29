@@ -7,9 +7,10 @@ tags:
   - Misc
 ---
 _Public Alternative DNS Resolvers_
-<!-- truncate -->
 
 **Google**:  8.8.8.8 8.8.4.4
+
+<!-- truncate -->
 
 **OpenDNS**:208.67.222.222 208.67.220.220 Y
 

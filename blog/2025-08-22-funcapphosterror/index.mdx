@@ -28,9 +28,10 @@ You might be deploying to Azure Functions or attempting to retrieve the Function
 > - `Encountered an error (BadGateway) from host runtime.`
 > - `Encountered an error (InternalServerError) from host runtime.`
 
-{/* truncate */}
 
 ![Host runtime](images/FunctionApp_HostRuntimeError.jpg)
+
+<!-- truncate -->
 
 I recently encountered an issue with a Function App deployment I was working on. It was working in an Azure CLI deployment, but as part of transitioning the Azure CLI to Bicep, I encountered an error when I noticed that my Timer trigger Function was not firing as expected. After some investigation, I found that the issue was due to the Storage account that the Function App was using. The Storage account was not correctly configured or accessible, which led to the host runtime errors.
 

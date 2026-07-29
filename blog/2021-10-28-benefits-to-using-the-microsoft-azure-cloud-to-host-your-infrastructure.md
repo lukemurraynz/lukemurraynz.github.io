@@ -11,9 +11,10 @@ header:
 
 ---
 Cloud computing offers many benefits, from your traditional on-premises infrastructure, ecosystems such as Microsoft Azure, have an underlying fabric built for today's 'software as a service' or 'software defined' world.
-<!-- truncate -->
 
 The shift of technologies from managing on-premises Exchange environments for mail to consuming Microsoft 365 services has allowed more time for the IT and businesses to adopt, consume and improve their technology and continuously improve - to get the most use of it and remain competitive in this challenging world.
+
+<!-- truncate -->
 
 Below is a high-level list of what I consider some of the benefits of using the Microsoft Azure ecosystem:
 

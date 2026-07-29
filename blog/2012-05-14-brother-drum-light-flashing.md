@@ -7,6 +7,7 @@ tags:
 ---
 
 A flashing **Drum** light on a Brother printer indicates that the drum unit is nearing the end of its estimated life, or that the drum counter needs to be reset after replacing the drum unit. The light is triggered by a page counter rather than by the actual condition of the drum, so resetting the counter will clear the warning.
+
 <!-- truncate -->
 
 ## How to reset the drum counter

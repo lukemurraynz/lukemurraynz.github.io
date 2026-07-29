@@ -11,13 +11,14 @@ header:
 slug: azure/azure-public-dns-as-code
 ---
 The Microsoft Azure ecosystem offers a lot of capabilities that enable individuals and businesses to do more; one of those capabilities that are often overlooked is [DNS](https://en.wikipedia.org/wiki/Domain_Name_System)_(Domain Name System)_.
-<!-- truncate -->
 
 > _Azure DNS allows you to host your DNS domain in Azure, so you can manage your DNS records using the same credentials, billing, and support contract as your other Azure services. Zones can be either public or private, where Private DNS Zones (in Managed Preview) are only visible to VMs that are in your virtual network._
 >
 > _You can configure Azure DNS to resolve hostnames in your public domain. For example, if you purchased the contoso.xyz domain name from a domain name registrar, you can configure Azure DNS to host the contoso.xyz domain and resolve `www.contoso.xyz` to the IP address of your web server or web app._
 
 In this article, we are going to focus on [Azure Public DNS](https://learn.microsoft.com/en-us/azure/dns/dns-overview?WT.mc_id=AZ-MVP-5004796).
+
+<!-- truncate -->
 
 I had my external DNS under source control using Terraform and the Cloudflare provider a few years ago. I wanted to see if I use source control and continuous integration to do the same thing using Azure DNS and Azure Bicep.
 

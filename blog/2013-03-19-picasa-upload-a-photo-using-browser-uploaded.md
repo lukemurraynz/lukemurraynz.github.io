@@ -12,6 +12,7 @@ Google Picasa's browser-based uploader sometimes has trouble locating photos thr
 
 <!-- truncate -->
 
+
 ## Steps to upload using the browser uploader
 
 1. **Right-click** the photo you want to upload in Windows Explorer.

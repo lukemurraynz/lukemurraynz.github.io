@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 Every time you open Google Chrome you’re getting the “Your profile could not be opened correctly” error? This is how I fixed it.
-<!-- truncate -->
 
   1. Open **My Computer/Computer**
   2. Go into your operating system drive (usually Local Disk C:)
@@ -17,5 +16,7 @@ Every time you open Google Chrome you’re getting the “Your profile could not
   6. **Delete** **WebData**
 
 _If you are running Windows XP navigate to: Application DataLocalGoogleChromeUserDataDefault._
+
+<!-- truncate -->
 
 _Note: Default is the name of the Google profile; it may be different depending on your setup._

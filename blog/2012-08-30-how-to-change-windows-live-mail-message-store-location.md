@@ -8,9 +8,10 @@ tags:
   - Windows
 ---
 Follow the instructions below to change the Windows Live Mail message store.
-<!-- truncate -->
 
 &nbsp;
+
+<!-- truncate -->
 
 <ol start="1">
   <li>

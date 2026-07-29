@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 This issue commonly occurs on DVD Flick installations but also known for other problems that deal with video codecs. Follow the steps below to repair:
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -26,5 +25,7 @@ This issue commonly occurs on DVD Flick installations but also known for other p
     <strong>Restart</strong> your computer and attempt your installation again.
   </li>
 </ol>
+
+<!-- truncate -->
 
 _Note: In some cases you can cancel or skip the error that is complaining about Quicktracks plugin and continue the installation._

@@ -12,13 +12,14 @@ slug: azure/Call-to-LLM-failed
 ---
 I recently, ran into an error  when attempting to use Azure OpenAI and custom data, in the Chat Playground.
 The error I was getting was:
-<!-- truncate -->
 
 > Error
 > Cannot connect to host aidocsopenaiaccount.openai.azure.com:443 ssl:default [Name of Service not known]
 > Call to LLM failed.
 
 ![Call to LLM failed.](/images/posts/CalltoLLMFailed_AzureOpenAIError.png "Azure OpenAI - Call to LLM failed.")
+
+<!-- truncate -->
 
 As I was calling data, that was indexed by Azure Cognitive Search, I thought the index was corrupted or invalid, but after mulitple index attempts, continuted to have the same error, all other prompts (not using my custom data) succeeded.
 

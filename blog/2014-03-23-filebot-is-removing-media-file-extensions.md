@@ -7,9 +7,10 @@ date: 2014-03-23 00:00:00 +1300
 ---
 
 [Filebot](https://www.filebot.net/) is a popular media renaming tool that can automatically organise TV shows and movies by fetching metadata from online databases. However, you might notice that after renaming, your media files are missing their file extensions (such as `.mkv`, `.mp4`, or `.avi`).
-<!-- truncate -->
 
 This happens when the **Extensions** setting is set to **Override** instead of **Preserve**.
+
+<!-- truncate -->
 
 ## How to fix it
 

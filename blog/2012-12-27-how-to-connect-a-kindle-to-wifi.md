@@ -16,3 +16,4 @@ tags:
   8. The Wifi dialog will then launch allowing you to select your Wireless Access Point and enter in your security key (remember the security key is case sensitive).
 
 <!-- truncate -->
+

@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 Follow the guides below to fix the spooler issues:
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -26,6 +25,8 @@ Follow the guides below to fix the spooler issues:
     <strong>Restart</strong> the computer and attempt printing again.
   </li>
 </ol>
+
+<!-- truncate -->
 
 _If that does not work, attempt the following:_
 

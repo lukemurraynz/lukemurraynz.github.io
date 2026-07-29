@@ -11,13 +11,14 @@ header:
 slug: azure/failed-to-persist-terraform-state-using-an-azure-blob-storage-account
 ---
 When attempting to make changes with Terraform, and the [state changes are in an Azure storage account](https://learn.microsoft.com/azure/developer/terraform/store-state-in-azure-storage?tabs=azure-cli&WT.mc_id=AZ-MVP-5004796 "Store Terraform state in Azure Storage"), you may come across: Failed to save state.
-<!-- truncate -->
 
 > Error: Failed to save state
 >
 > Error saving state: blobs:Clien#GetProperties: Failure responding to request: StatusCode=403 -- Original Error: autorest/azure: error response cannot be parsed: {"" '\\x00' '\\x00'} error: EOF
 
 And: Error: Failed to persist state to backend.
+
+<!-- truncate -->
 
 Or Error: Error releasing the state lock.
 

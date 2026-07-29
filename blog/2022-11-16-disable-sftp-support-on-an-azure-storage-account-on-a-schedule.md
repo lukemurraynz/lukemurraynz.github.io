@@ -11,11 +11,12 @@ header:
 slug: azure/disable-sftp-support-on-an-azure-storage-account-on-a-schedule
 ---
 Azure Storage account [SFTP functionality](https://learn.microsoft.com/en-us/azure/storage/blobs/secure-file-transfer-protocol-support?WT.mc_id=AZ-MVP-5004796#pricing-and-billing "SSH File Transfer Protocol (SFTP) support for Azure Blob Storage") has now gone GA _(Generally Available)_ across most regions as part of the GA release - SFTP support for Azure Storage accounts was free while it was in preview - but now that the service is GA - there is an additional charge for SFTP _(Secure File Transfer)_ functionality.
-<!-- truncate -->
 
 > Enabling the SFTP endpoint has a cost of $0.30 per hour. We will start applying this hourly cost on or after December 1, 2022.
 
 This service has worked for me without a hitch for months, but as with most resources in Microsoft Azure - you pay for what you use! Therefore, there may be instances where you do not need SFTP support 24 hours a day, seven days a week! This is where the following Azure Automation runbook can help.
+
+<!-- truncate -->
 
 _Feel free to check out a_ [_previous article_](https://luke.geek.nz/azure/sftp-in-microsoft-azure-using-azure-blob-storage/ "SFTP in Microsoft Azure using Azure Blob Storage ") _on setting up SFTP support for an Azure storage account._
 

@@ -9,6 +9,7 @@ tags:
 ---
 
 If you see the error **"The messaging interface has returned an unknown error"** when using Microsoft Outlook, it typically means your Outlook data file (PST or OST) has reached its maximum file size limit. Older versions of Outlook (2003 and earlier) had a default limit of around 2 GB, while Outlook 2007 and later support up to 50 GB, but the table format may still need upgrading.
+
 <!-- truncate -->
 
 ## How to fix it

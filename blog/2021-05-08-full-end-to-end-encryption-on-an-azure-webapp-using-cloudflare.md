@@ -12,7 +12,6 @@ slug: azure/full-end-to-end-encryption-on-an-azure-webapp-using-cloudflare
 ---
 
 Cloudflare offers many capabilities; one of the capabilities it offers is SSL offloading and CNAME flattening.
-<!-- truncate -->
 
 When setting up an Azure Web App using default settings, it is set up using HTTP, not HTTPS, so we will set the WebApp to your custom domain, then use Cloudflare to protect traffic from your user's browsers to Cloudflare, then encrypt traffic from Cloudflare to your website.
 
@@ -38,6 +37,8 @@ By default, Azure WebApps have a wildcard cert for the following domains:
 ![badasscloud - azurewebsites.net secure](/uploads/badasscloudazurewebsitessl.png "badasscloud - azurewebsites.net secure")
 
 This certificate allows you to use HTTPS using the default azurewebsites URL, which gets created when you create your Azure WebApp and is completely managed by Microsoft and the Azure ecosystem. Still, if you want to use your own Custom Domain, then these certificates won't work.
+
+<!-- truncate -->
 
 ## Prerequisites
 

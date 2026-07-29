@@ -7,13 +7,14 @@ date: 2014-01-08 00:00:00 +1300
 ---
 
 Razer – a company well known for its PC gaming peripherals.
-<!-- truncate -->
 
 With its sleep black and green designs Razer has captivated many a gamer – including myself as I type this using my Razer Blackwidow keyboard.
 
 Now &#8211; out of nowhere the company has released concepts for two products – the <a href="http://www.razerzone.com/nabu" target="_blank">Razer Nabu</a> a digital wristband that connects to your mobile phone offering various options – and <a href="http://www.razerzone.com/christine" target="_blank">Project Christine</a> the modular PC design.
 
 Computer components themselves are of a modular design – as soon as they are compatible with each other you can swap and upgrade most parts – Project Christine takes this modular design further in a fashion that reminds me of lego.
+
+<!-- truncate -->
 
 ## Simplicity
 

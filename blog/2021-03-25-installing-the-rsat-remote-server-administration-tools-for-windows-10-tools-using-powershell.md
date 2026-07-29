@@ -11,9 +11,10 @@ header:
   teaser: "images/powershell-blog-feature-banner.png"
 ---
 Installing the RSAT (Remote Server Administration Tools for Windows 10) tools using PowerShell. This is just a quick article, written purely as an easy reference.
-<!-- truncate -->
 
 In the age of the cloud and work from anywhere, Windows 10 allows you easily, install the Remote Server Administration Tools using PowerShell, sometimes (like me) you need these tools not to actually use them - but for the PowerShell modules that come with them to work on scripts locally.
+
+<!-- truncate -->
 
 Note: This needs to be run from an elevated PowerShell console (ie ran as Administrator). You can check this using the following:
 

@@ -11,9 +11,10 @@ header:
 slug: azure/architecture-in-the-cloud
 ---
 Solution architecture is concerned with the planning, design, implementation, and ongoing improvement of a technology system.
-<!-- truncate -->
 
 The architecture of a system must balance and align the business requirements with the technical capabilities that are needed to execute those requirements.
+
+<!-- truncate -->
 
 The finished architecture is a balance of risk, cost, and capability throughout the system and its components.
 

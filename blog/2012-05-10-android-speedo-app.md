@@ -6,9 +6,10 @@ tags:
   - Mobile
 ---
 Need a Speedometer with Acceleration and GPS info? The Sub Speedo app by AutoRad Industries is what you are after. This is how you can acquire this little nifty app.
-<!-- truncate -->
 
 **Using your PC**
+
+<!-- truncate -->
 
   1. Click on this <a title="Google Play - Sub Speedo" href="https://play.google.com/store/apps/details?id=autorad.subspeedopaid" target="_blank">Google Play</a> link
   2. To the left, click Buy (at time of writing it costs $2.70NZD)

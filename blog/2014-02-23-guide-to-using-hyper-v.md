@@ -7,13 +7,14 @@ tags:
 date: 2014-02-23 00:00:00 +1300
 ---
 ### Introduction to Hyper-V
-<!-- truncate -->
 
 Hyper-V is an emulation/hyper-visor Microsoft developed technology – similar to VMWare Workstation or ESXI that allows you to run Virtual Machines and different workloads simultaneously. Hyper-V is currently available in Windows 8, Windows Server 2008, Windows Server 2008 R2, Windows 8.1 & Windows Server 2012, Windows Server 2012 R2. The Hyper-V hypervisor allows multiple workloads to run on the same physical hardware that in the past would have otherwise only been suitable for one workload – allowing for power and resource efficiency.
 
 ### Hyper-V Specifications
 
 **Host operating system:**
+
+<!-- truncate -->
 
 To install the Hyper-V role, Windows Server 2008, Windows Server 2008 R2 Standard, Enterprise or Datacentre edition, Windows Server 2012 Standard or Datacentre edition, or Windows 8 (or 8.1) Pro or Enterprise edition is required. Hyper-V is only supported on x86-64 variants of Windows. It can be installed regardless of whether the installation is a full or core installation. **Processor: **An x86-64 processor
 

@@ -11,9 +11,10 @@ date: '2023-07-10 00:00:00 +1300'
 slug: azure/Azure-OpenAI-error-log-summarization
 ---
 I was assisting a user on [Microsoft Q&A](https://learn.microsoft.com/en-us/answers/questions/?WT.mc_id=AZ-MVP-5004796) with an issue, that involved looking over some event logs.
-<!-- truncate -->
 
 The issue itself was related to the Nested Virtualization, with the user unable to install Hyper-V or WSL (Windows Subsystem for Linux), it turned out to be [incompatilibies with the SKU size and Secure boot](https://learn.microsoft.com/azure/virtual-machines/trusted-launch?WT.c_id=AZ-MVP-5004796#unsupported-features).
+
+<!-- truncate -->
 
 But as part of troubleshooting this issue, I recreated the Azure compute environment, this user had and started to dig into the Windows logs.
 

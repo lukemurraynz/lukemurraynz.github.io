@@ -26,9 +26,10 @@ tags:
     Follow the prompts to uninstall.
   </li>
 </ol>
-<!-- truncate -->
 
 _In order to remove the registry information for CS6 including activation information delete the folders below:_
+
+<!-- truncate -->
 
 **_C:Program Files (x86)Common FilesAdobeSLCache
   

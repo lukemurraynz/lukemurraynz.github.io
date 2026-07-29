@@ -12,6 +12,7 @@ slug: 2021/03/25/unable-to-start-windows-azure-guest-agent-it-s-in-a-disabled-st
 ---
 
 ![Azure Backup Overview](https://csharpcorner.azureedge.net/article/an-overview-of-azure-backup/Images/An%20Overview%20Of%20Azure%20Backup01.png)
+
 <!-- truncate -->
 
 ## Issue Description

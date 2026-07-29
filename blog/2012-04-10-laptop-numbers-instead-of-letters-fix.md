@@ -6,11 +6,12 @@ tags:
   - Misc
 ---
 If you find that your Laptop&#8217;s letters have started to type numbers, the fix for this is quite simple.
-<!-- truncate -->
 
   1.  At the same time press **FN+Numlock**
 
 _If that doesn&#8217;t work, try the following:_
+
+<!-- truncate -->
 
   1.  At the same time press **Shift+Numlock**
 

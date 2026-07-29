@@ -7,7 +7,6 @@ tags:
   - Mac OSX
 ---
 **With CD**
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -38,6 +37,8 @@ tags:
     Now restart your Mac and remove the OSX CD/DVD from the drive.
   </li>
 </ol>
+
+<!-- truncate -->
 
 &nbsp;
 

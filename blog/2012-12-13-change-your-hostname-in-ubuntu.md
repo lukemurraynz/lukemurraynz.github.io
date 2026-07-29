@@ -7,6 +7,7 @@ tags:
   - Linux
 ---
 _Note: These instructions are for Ubuntu 12.10. Changing your host name in Ubuntu guide._
+
 <!-- truncate -->
 
   1. Go to **System Settings**

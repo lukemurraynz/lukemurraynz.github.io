@@ -7,9 +7,10 @@ tags:
   - Windows
 ---
 _Having problems where your monitor rotation is wrong, such as the start menu ending up upside down at the top of the screen? Follow the instructions below to repair._
-<!-- truncate -->
 
 Common fix for those using an Intel graphics driver, try the following Key combination:
+
+<!-- truncate -->
 
 <ol start="1">
   <li>

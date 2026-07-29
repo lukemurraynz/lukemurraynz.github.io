@@ -8,6 +8,7 @@ tags:
 ---
 
 By default, **Server Manager** launches automatically every time you log into **Windows Server 2012** (and later versions, including 2012 R2). While Server Manager is useful for initial configuration, having it open on every login can be annoying on servers you manage frequently.
+
 <!-- truncate -->
 
 ## How to disable Server Manager auto-start

@@ -12,13 +12,14 @@ slug: azure/Bytes-Blocks-and-Elasticity-Getting-Started-with-Azure-Elastic-SAN
 ---
 
 Today we are going to take a look at the [Microsoft Azure Elastic SAN](https://azure.microsoft.com/products/storage/elastic-san/?WT.mc_id=AZ-MVP-5004796).
-<!-- truncate -->
 
 #### Introduction
 
 > “Azure Elastic SAN is a unique cloud-native and fully managed storage area network (SAN) service. Combining SAN-like capabilities with the benefits of being a cloud-native service, Azure Elastic SAN offers a massively scalable, cost-effective, high-performance, and resilient storage solution. It can connect to a variety of Azure compute services, enabling you to seamlessly transition your SAN data estate to the cloud without having to refactor your application architectures.”
 
 Azure Elastic SAN provides a storage solution that is highly scalable, cost-effective, high-performing, and resilient. It caters to various storage needs, whether you're migrating your on-premises SAN to the cloud or creating your application directly in the cloud.
+
+<!-- truncate -->
 
 > As Azure Elastic SAN is still in the preview stage, as of 28/05/2023, it is important to note that its [features
 > and functionality](https://learn.microsoft.com/azure/storage/elastic-san/elastic-san-introduction?WT.mc_id=AZ-MVP-5004796#support-for-azure-storage-features) may change before it reaches production. Microsoft continues to actively gather feedback from users and refine the offering to ensure a seamless experience when it finally becomes

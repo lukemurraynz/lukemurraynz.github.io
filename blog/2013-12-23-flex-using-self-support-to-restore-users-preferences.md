@@ -13,3 +13,4 @@ date: 2013-12-23 00:00:00 +1300
 7. Click Reset (to reset Outlook 2010 back to Factory Defaults – or Restore to restore from backup. You can restore a Flex+ backup for the last 2 weeks.
 
 <!-- truncate -->
+

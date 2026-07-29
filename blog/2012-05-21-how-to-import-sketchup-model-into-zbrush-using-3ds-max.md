@@ -22,3 +22,4 @@ tags:
  13. Open the obj file you saved from 3DS Max
 
 <!-- truncate -->
+

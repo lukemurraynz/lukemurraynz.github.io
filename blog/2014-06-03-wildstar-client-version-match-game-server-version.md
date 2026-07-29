@@ -6,9 +6,10 @@ tags:
 date: 2014-06-03 00:00:00 +1300
 ---
 This error seems to be happening mostly to us New Zealand players.. looks like a DNS issue. The fix is to use a VPN tunnel for when you first open a launcher or edit the host file.
-<!-- truncate -->
 
 To edit the Host file do the following:
+
+<!-- truncate -->
 
   1. Click Start
   2. All Programs

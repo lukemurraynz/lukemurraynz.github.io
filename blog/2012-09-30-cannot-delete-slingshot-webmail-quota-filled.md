@@ -26,6 +26,7 @@ tags:
     Now you can delete messages and they will appear with a line through them. Click Purge Deleted Options (right hand top menu) to erase.
   </li>
 </ol>
-<!-- truncate -->
 
 _Warning using this method will delete any emails you delete without away to recover them._
+
+<!-- truncate -->

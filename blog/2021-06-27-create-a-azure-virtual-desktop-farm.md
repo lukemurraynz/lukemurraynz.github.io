@@ -12,7 +12,6 @@ slug: azure/create-a-azure-virtual-desktop-farm
 ---
 
 Previously known as Windows Virtual Desktop, [Azure Virtual Desktop](https://learn.microsoft.com/en-us/azure/virtual-desktop/overview?WT.mc_id=AZ-MVP-5004796 "What is Azure Virtual Desktop?") is the successor of Microsoft Remote Desktop; although compatible with Server OS (Operating System), it is the first to support Windows 10*(and soon Windows 11)* multisession, reducing application compatibility issues and giving consistent user experience.
-<!-- truncate -->
 
 In this guide, I will run you through creating Azure Virtual Desktop from scratch, along with some prerequisites that will help you manage AVD after you create it.
 
@@ -23,6 +22,8 @@ When selecting a region for your Session Hosts _(Virtual Machines)_, I recommend
 _If you don't already have a Microsoft Azure subscription, you can sign up for a Free subscription "_[_here_](https://azure.microsoft.com/en-us/free/?WT.mc_id=AZ-MVP-5004796 "Create your Azure free account today")_"._
 
 Assuming you already have an Azure subscription and the appropriate access to create resources in that subscription, gets begin!
+
+<!-- truncate -->
 
 ## Create Microsoft Entra ID Domain Services
 

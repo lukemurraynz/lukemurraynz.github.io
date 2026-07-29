@@ -6,7 +6,6 @@ tags:
   - Windows
 ---
 Having problems opening Word? This usually occurs when the template that it uses to generate a new fresh page is corrupted. Follow the instructions below to fix:
-<!-- truncate -->
 
   1. Open My Documents
   2. Up the top, select Tools
@@ -22,6 +21,8 @@ Having problems opening Word? This usually occurs when the template that it uses
  12. **Open Word**
 
 The file might also be located in the folders below, and is also safe to delete.
+
+<!-- truncate -->
 
 _C:/Documents and Settings/%user%/Application Data/Microsoft/Templates_
 

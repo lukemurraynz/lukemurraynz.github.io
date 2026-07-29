@@ -11,11 +11,12 @@ header:
 slug: azure/azure-budget-filters-a-key-tool-for-effective-cloud-cost-management
 ---
 [Azure Budgets](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets?WT.mc_id=AZ-MVP-5004796 "Tutorial: Create and manage Azure budgets") are a vital tool that can be used to keep on top of your Cloud financial management (FinOps) Microsoft Azure platform potential and actual costs.
-<!-- truncate -->
 
 #### The most effective Azure Budgets - are the ones that you use!
 
 ![ Azure Budgets](/uploads/budgets.png " Azure Budgets")
+
+<!-- truncate -->
 
 > In the realm of Cost Management, budgets play a pivotal role in facilitating the planning and implementation of organizational accountability. These tools enable proactive communication regarding expenses and support the management of costs by closely monitoring spending trends over extended periods.
 >

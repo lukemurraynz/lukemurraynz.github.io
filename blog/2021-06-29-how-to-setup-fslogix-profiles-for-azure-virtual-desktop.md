@@ -11,9 +11,10 @@ header:
 slug: azure/how-to-setup-fslogix-profiles-for-azure-virtual-desktop
 ---
 If you have a few Azure Virtual Desktop machines, you need some way to keep user persistence's and application customisations, which would usually be stored in the user profile locally across multiple machines _(or even the same machine if using Ephemeral OS)_, this is where FSLogix Profile Containers can assist.
-<!-- truncate -->
 
 We are going to implement FSLogix using an Azure File Share, to store the profiles.
+
+<!-- truncate -->
 
 I am going to assume you already have an Azure Virtual Desktop farm _(and Azure ADDS)_, if not you can check out my guide [here](https://luke.geek.nz/azure/create-a-azure-virtual-desktop-farm/ "How to create a Azure Virtual Desktop farm ").
 

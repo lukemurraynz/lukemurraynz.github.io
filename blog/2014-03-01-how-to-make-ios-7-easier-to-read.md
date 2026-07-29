@@ -7,9 +7,10 @@ date: 2014-03-01 00:00:00 +1300
 ---
 
 iOS 7 introduced a completely redesigned interface with thinner fonts and a more minimalist aesthetic. While it looks clean, the lighter typography can make text harder to read for some users, especially on smaller screens or in bright sunlight.
-<!-- truncate -->
 
 Apple includes several **Accessibility** settings that can significantly improve readability. Here is how to adjust them.
+
+<!-- truncate -->
 
 ## Enable bold text
 

@@ -11,9 +11,10 @@ header:
 slug: azure/create-azure-point-to-site-vpn-using-azure-active-directory-authentication
 ---
 You may be working remotely or only have a few devices needing access to your resources in Azure; a solution that can be deployed is a point to site connection straight into your Microsoft Azure network.
-<!-- truncate -->
 
 This functionality allows your computer to connect privately to resources over a secure tunnel using your internet connection, using an Azure Virtual Network gateway, you can connect to resources without having to open them up to the internet or whitelist your _(or third party vendor)_ IP address, which may change daily.
+
+<!-- truncate -->
 
 You know only your specified users access your Azure resources using Microsoft Entra ID.
 

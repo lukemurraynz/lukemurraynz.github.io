@@ -10,9 +10,10 @@ header:
   teaser: /uploads/windowsterminal_data_psrules-azure.png
 ---
 Imagine if you could validate that your Azure Resources are deployed per the Well-Architected Framework (WAF).. just **imagine**!
-<!-- truncate -->
 
 **Of a way of validating your services are secure and deployed following the Azure Architecture framework, both before and after the resources have been created!**
+
+<!-- truncate -->
 
 Imagine no longer! There is a PowerShell module designed specifically for that purpose: **PSRule for Azure**.
 

@@ -7,7 +7,6 @@ tags:
   - Windows
 ---
 _Having issues with sysprep popping up all the time? Follow the instructions below to stop that annoyance from happening._
-<!-- truncate -->
 
 <ol start="1">
   <li>
@@ -44,6 +43,8 @@ _Having issues with sysprep popping up all the time? Follow the instructions bel
     <strong>Change SystemSetupInProgress to “0”</strong>
   </li>
 </ol>
+
+<!-- truncate -->
 
 _You are pretty much changing Yes I do want to run SysPrep to No I don’t want to._
 

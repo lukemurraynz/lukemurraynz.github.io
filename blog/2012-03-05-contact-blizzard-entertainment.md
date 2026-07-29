@@ -6,13 +6,14 @@ tags:
   - Misc
 ---
 **Billing and Account Services**
-<!-- truncate -->
 
 * Email: billing@blizzard.com
   
 * Web form
 
 Live Representatives Available Mon-Fri, 8am to 8pm PST
+
+<!-- truncate -->
 
 For phone assistance please call: 1 (800) 592-5499 || 1 (800) 59-BLIZZARD
   

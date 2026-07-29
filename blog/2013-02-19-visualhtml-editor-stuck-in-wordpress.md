@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 Having problems with creating or editing a post on WordPress and you cannot change between the Visual Editor and HTML Editor?
+
 <!-- truncate -->
 
   1. First thing is trying to clearing your browser cache.

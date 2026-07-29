@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 Do you want to display more then 20 posts in the All Posts list within WordPress? Follow the guide below to reveal the rest.
+
 <!-- truncate -->
 
   1. Make sure you are logged into your WordPress account
