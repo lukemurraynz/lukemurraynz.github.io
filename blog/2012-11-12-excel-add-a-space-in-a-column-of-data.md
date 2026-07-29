@@ -8,6 +8,7 @@ tags:
   - Windows
 ---
 Ever had a bunch of next and numbers in a column and needed to separate them with a space? Follow this guide.
+<!-- truncate -->
 
   1. Find the column you want to add a space to and right click the column heading.
   2. Left click Format Cells

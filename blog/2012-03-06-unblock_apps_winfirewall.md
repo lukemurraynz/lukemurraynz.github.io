@@ -14,3 +14,5 @@ tags:
   6. Click on **Advanced** tab up the top of the dialog
   7. Click **Settings**
   8. Go to **Exceptions**
+
+<!-- truncate -->

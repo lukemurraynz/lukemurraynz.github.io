@@ -8,6 +8,7 @@ tags:
 ---
 
 The **Windows Update error 0x800f081f** typically occurs when Windows cannot reach the update servers. A common cause is a **corrupted or stale DNS cache** that prevents name resolution for Microsoft's update endpoints.
+<!-- truncate -->
 
 ## Method 1: Flush the DNS cache
 

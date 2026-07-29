@@ -7,6 +7,7 @@ tags:
   - Mac OSX
 ---
 _This usually occurs due to problems with the nVidia drivers. Follow the prompts below to repair this._
+<!-- truncate -->
 
   1. Put the Windows 7 DVD into your drive and restart and boot from the DVD
   2. When the Windows 7 prompt comes up, select Repair Your Computer (on the lower left)

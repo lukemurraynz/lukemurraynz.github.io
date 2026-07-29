@@ -10,3 +10,5 @@ tags:
   3. Press &#8220;**Enter**&#8220;
   4. Use the arrow keys and select &#8220;**Usage Page**&#8220;
   5. Press &#8220;**Enter**&#8220;
+
+<!-- truncate -->

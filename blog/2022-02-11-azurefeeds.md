@@ -12,6 +12,7 @@ header:
 
 ---
 Over the past few months, I have been busy working on a new project...
+<!-- truncate -->
 
 A news aggregator for Azure news and updates, I tested some desire for this using AzureFeeds, on [LinkedIn ](https://www.linkedin.com/in/azure-feeds-709457212/recent-activity/ "Azure Feeds - Linkedin") as a platform _(which will continue)..._
 

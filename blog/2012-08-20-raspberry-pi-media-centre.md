@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 _First off, you need a Raspberry Pi and an SD Card/Reader_
+<!-- truncate -->
 
 <ol start="1">
   <li>

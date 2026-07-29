@@ -5,6 +5,7 @@ tags:
   - Windows
 ---
 Want to skip straight to automatic hardware installation? Follow the instructions below to edit the registry.
+<!-- truncate -->
 
   1. Click **Start**
   2. Click **Programs**

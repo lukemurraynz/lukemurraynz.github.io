@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 Basically you need to download the latest version of Minda from LIC (lic.co.nz) and in order to do this you need your PART _(participant)_ code and your Minda PIN to login.
+<!-- truncate -->
 
   1. Once you have logged in to the LIC website and greeted with "“"Welcome insertnamehere" click “Get MINDA Software” – on the left hand side.
   2. Then click the blue download button titled “Click here to download the latest version of MINDA”.

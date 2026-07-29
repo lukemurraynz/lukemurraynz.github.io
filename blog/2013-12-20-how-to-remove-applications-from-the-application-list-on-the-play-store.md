@@ -13,3 +13,5 @@ date: 2013-12-20 00:00:00 +1300
   5. Select the Application you would like to remove and select – &#8220;Remove (app name) from my Apps&#8221;
   6. Click Ok
   7. Now on the Google Play website – under your Applications the application you removed should be removed from the list.
+
+<!-- truncate -->

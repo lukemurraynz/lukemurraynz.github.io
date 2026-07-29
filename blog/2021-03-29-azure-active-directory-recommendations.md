@@ -11,6 +11,7 @@ header:
   classes: wide
 ---
 Microsoft Entra ID is the foundation, which Microsoft 365 is built-on.
+<!-- truncate -->
 
 In the words of Microsoft:
 

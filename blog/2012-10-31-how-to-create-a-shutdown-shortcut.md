@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 This tip is useful if you don’t want to go through the hassle of clicking Start, Shutdown.
+<!-- truncate -->
 
   1. Right click a blank spot on the desktop, select New, Shortcut
   2. In the location field type: **_shutdown –s –t 00_**

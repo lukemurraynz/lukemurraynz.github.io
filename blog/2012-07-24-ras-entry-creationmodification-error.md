@@ -8,6 +8,7 @@ tags:
   - Windows
 ---
 _This usually occurs when you are attempting to connecting to the Internet using a cell phone._
+<!-- truncate -->
 
 <ol start="1">
   <li>

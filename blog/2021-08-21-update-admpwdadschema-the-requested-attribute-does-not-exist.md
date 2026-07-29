@@ -11,6 +11,7 @@ header:
 
 ---
 Are you attempting to update the Active Directory Schema for LAPS (Local Administrator Password Solution) and keep getting the error below?
+<!-- truncate -->
 
 **Update-AdmPwdAdSchema: The requested attribute does not exist**
 

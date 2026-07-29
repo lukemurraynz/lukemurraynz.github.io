@@ -12,5 +12,6 @@ tags:
   4. Click Email Accounts
   5. Click Import
   6. Browse to the location of the backup IAF file and click Open to import your account settings.
+<!-- truncate -->
 
 _Note: To export your mail account settings follow steps 1-4 and click Export instead of Import._

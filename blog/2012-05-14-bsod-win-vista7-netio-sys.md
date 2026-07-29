@@ -6,6 +6,7 @@ tags:
   - Windows
 ---
 Caused when your network driver has become corrupted or changed for NetBIOs with an incompatible version from either Windows Updates or a filter from your Firewall (most commonly Zone Alarm).
+<!-- truncate -->
 
 You can “repair” this by using System Restore to go back to a previous driver, follow the guide below to do this:
 

@@ -11,6 +11,7 @@ header:
 slug: azure/deploy-azure-naming-tool-into-an-azure-webapp-as-a-container
 ---
 Organising your cloud workloads to support governance, operational management, and accounting requirements can take a lot of effort before the first resource is created.
+<!-- truncate -->
 
 Well-defined naming and metadata tagging conventions help to locate and manage resources quickly. These conventions also help associate cloud usage costs with business teams via chargeback and show-back accounting mechanisms, along with rapidly identifying what services are used across services.
 

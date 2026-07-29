@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 _Trying to install Service Pack 1 for Windows Vista and getting “x800703F0” error? Follow the guides below to fix it._
+<!-- truncate -->
 
 _Enable the Windows Module Installer Service_
 

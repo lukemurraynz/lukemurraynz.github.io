@@ -7,6 +7,7 @@ tags:
 ---
 
 eMachines and Gateway computers come with a **hidden recovery partition** on the hard drive that contains a factory image of the operating system. This allows you to restore the computer to its original state without needing a separate recovery disc.
+<!-- truncate -->
 
 ## How to access the recovery partition
 

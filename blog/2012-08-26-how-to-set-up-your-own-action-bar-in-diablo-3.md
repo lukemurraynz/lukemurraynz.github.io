@@ -9,6 +9,7 @@ tags:
   - Windows
 ---
 _Playing Diablo 3 and want to use abilities that are on the same tree and change the ability locations? Here is how you can do it._
+<!-- truncate -->
 
   1. Click on **Options**
   2. Click **Gameplay**

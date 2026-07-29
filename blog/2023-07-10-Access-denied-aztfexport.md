@@ -11,6 +11,7 @@ date: '2023-07-10 00:00:00 +1300'
 slug: azure/Access-denied-aztfexport
 ---
 When attempting to use [aztfexport](https://github.com/Azure/aztfexport), a tool designed to export currently deployed Azure resources into HashiCorp Configuration Language (HCL) for use with Terraform, you may get: Access denied.
+<!-- truncate -->
 
 When using aztfexport, the first thing you need to do is make sure you have the [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli?WT.mc_id=AZ-MVP-5004796) installed, and run an:
 

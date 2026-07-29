@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 _Having problems with the Canvas Stretcher promotion and needing to Practice Hammering 7 Times? The fix for this is simple._
+<!-- truncate -->
 
 <ol start="1">
   <li>

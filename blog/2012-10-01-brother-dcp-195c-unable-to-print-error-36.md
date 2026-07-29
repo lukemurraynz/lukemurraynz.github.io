@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 _In order to fix this issue you need to reset the Ink Waste counter, which is an ink counter that monitors how many prints that it has available on that one Ink Cartridge. Follow the methods below to repair this:_
+<!-- truncate -->
 
 <ol start="1">
   <li>

@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 Internet Explorer limits the amount of concurrent downloads. This is how you increase it
+<!-- truncate -->
 
   1.  Click **Start**
   2. Click **Run**

@@ -11,6 +11,7 @@ header:
 slug: azure/azure-architecture-solution-requirement-consideration-checklist
 ---
 Building a cloud solution on Azure can be an exciting yet daunting task.
+<!-- truncate -->
 
 The key to a successful implementation is carefully planning and considering solution requirements using the guidance of the [Microsoft Cloud Adoption](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/?WT.mc_id=AZ-MVP-5004796 "Microsoft Cloud Adoption Framework for Azure") and [Well Architecture frameworks](https://learn.microsoft.com/en-us/azure/architecture/framework/?WT.mc_id=AZ-MVP-5004796 "Microsoft Azure Well-Architected Framework").
 

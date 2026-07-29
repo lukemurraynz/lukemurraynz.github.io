@@ -6,6 +6,7 @@ tags:
   - Windows
 ---
 Ever found a great Winamp Skin, But you did not know how to install it? This tutorial will explain how._
+<!-- truncate -->
 
 **To install Winamp Skins:**
 

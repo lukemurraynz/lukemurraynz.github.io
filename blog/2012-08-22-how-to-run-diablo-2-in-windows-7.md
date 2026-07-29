@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 &nbsp;
+<!-- truncate -->
 
 &nbsp;
 

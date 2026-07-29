@@ -7,6 +7,7 @@ tags:
   - Mobile
 ---
 &nbsp;
+<!-- truncate -->
 
 <ol start="1">
   <li>

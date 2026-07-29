@@ -11,6 +11,7 @@ header:
 
 ---
 A very brief Blog article today, I have created an AWESOME-Azure-Architecture list, this list is hosted in Github and located here:
+<!-- truncate -->
 
 * [AWESOME-Azure-Architecture](https://github.com/lukemurraynz/awesome-azure-architecture/blob/main/README.md "AWESOME-Azure-Architecture")
 

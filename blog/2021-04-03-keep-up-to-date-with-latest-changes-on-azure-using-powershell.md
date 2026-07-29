@@ -14,6 +14,7 @@ slug: keep-up-to-date-with-latest-changes-on-azure-using-powershell
 ---
 
 Keeping up with what is happening with changes and previews in Microsoft Azure is difficult, change happens all the time - and being able to stay informed on what is happening with the Azure ecosystem is half the battle, whether it is a new feature or security fix.
+<!-- truncate -->
 
 Microsoft publishes the latest updates on Azure Products and features to their Azure Updates blog: [https://azure.microsoft.com/en-us/updates/](https://azure.microsoft.com/en-us/updates/ "https://azure.microsoft.com/en-us/updates/?WT.mc_id=AZ-MVP-5004796")
 

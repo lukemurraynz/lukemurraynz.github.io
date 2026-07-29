@@ -6,6 +6,7 @@ tags:
 date: 2014-09-01 00:00:00 +1300
 ---
 <span lang="en-nz"><span style="color: #000000;font-size: small">Its a common question &#8211; what antivirus should I get for my computer? That&#8217;s a good question &#8211; here is my recommended list:</span></span>
+<!-- truncate -->
 
   1. If it’s Windows 7 &#8211; get <a title="Microsoft Security Essentials" href="http://windows.microsoft.com/en-NZ/windows/security-essentials-download" target="_blank">Microsoft Security Essentials</a>!
   2. If it’s Windows 8 &#8211; don&#8217;t worry. Windows Defender should be good enough!

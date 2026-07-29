@@ -14,6 +14,7 @@ tags:
   7. Once it is completed, you need to dot down the partition information for your external HDD so grab a piece of paper and pen.
   8.  Right click on your HDD partition (which should now be labeled the OSX install) and select Information, this will display information on the external HDD and partition information look for partition number, write this down.
   9.  Now restart your Mac and hold down Command+Option+O+F when starting, this will open the iMacs firmware, be careful in this area.
+<!-- truncate -->
   
     Type: dev / ls (this will open a list of the devices in your computer)
  10.  In the list, look for information under usb such as /usb@a/disk@0, once you find this, wrote down the full path for example /@p/pci@1/usb@a/disk@0.

@@ -6,6 +6,7 @@ tags:
   - Misc
 ---
 **Billing and Account Services**
+<!-- truncate -->
 
 * Email: billing@blizzard.com
   

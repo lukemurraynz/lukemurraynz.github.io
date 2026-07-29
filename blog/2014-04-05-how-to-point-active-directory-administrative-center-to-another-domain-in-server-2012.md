@@ -11,5 +11,6 @@ date: 2014-04-05 00:00:00 +1300
   4. Click on **Add Navigation Node**
   5. Click **Connect to other domains..** _(on the lower right of the window)
   6. Type the **domain name** you want to connect to and click **ok**.
+<!-- truncate -->
 
 Note: This is only valid for trusted federated domains; this method of connecting uses your local credentials and in order to run as separate credentials you will need to launch the Administrative Center using Runas.

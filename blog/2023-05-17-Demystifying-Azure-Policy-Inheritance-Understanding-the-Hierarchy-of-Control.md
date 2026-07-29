@@ -11,6 +11,7 @@ slug: azure/Demystifying-Azure-Policy-Inheritance-Understanding-the-Hierarchy-of
 ---
 
 Today, we are going to look into demystifying Azure Policy inheritance and how it works, so let’s do some testing.
+<!-- truncate -->
 
 In my tests – I have a single resource group named: AzPolicy-Test. This resource group has been placed in the Australia East region.
 

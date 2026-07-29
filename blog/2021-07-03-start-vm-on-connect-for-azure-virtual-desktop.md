@@ -12,6 +12,7 @@ slug: azure/start-vm-on-connect-for-azure-virtual-desktop
 ---
 
 One of the models of Cloud governance and cost in Microsoft Azure is _'Pay As You Go', ie. Pay for what you need when you need it._
+<!-- truncate -->
 
 The Azure Resource Manager fabrics allow you to scale up and down resources when you need it, whether built-in to the Azure portal or through various other automation mechanisms.
 

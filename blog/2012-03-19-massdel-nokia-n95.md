@@ -10,5 +10,6 @@ tags:
   3. Choose **Mark**/**Unmark**
   4. **Select** **Mark** **All**
   5. Press &#8220;**C**&#8221; (or Options, then Delete)
+<!-- truncate -->
 
 You can also press Edit  while scrolling up or down to select if you want to choose messages then press the C button to remove the messages.

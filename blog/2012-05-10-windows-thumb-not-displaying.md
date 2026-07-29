@@ -6,6 +6,7 @@ tags:
   - Windows
 ---
 Click Start
+<!-- truncate -->
   
 Click Run
   

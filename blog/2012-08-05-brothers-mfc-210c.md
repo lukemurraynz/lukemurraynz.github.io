@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 Follow the instructions below to reset your page counter on the Brother MFC-210C
+<!-- truncate -->
 
 _**You need to go into Maintenance mode**_
 

@@ -12,3 +12,5 @@ tags:
   6. Uncheck Lock Desktop Items
   7. Click Ok
   8. Click Apply
+
+<!-- truncate -->

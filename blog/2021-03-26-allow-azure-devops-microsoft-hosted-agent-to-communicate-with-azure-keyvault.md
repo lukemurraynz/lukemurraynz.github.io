@@ -9,6 +9,7 @@ toc: false
 
 ---
 It is best practice to lock down Azure resources to be accessible by location and services that is only to what's required and, the Azure Key vault is no exception.
+<!-- truncate -->
 
 When using Microsoft Hosted Agents in Azure DevOps, you need to make sure that the AzureCloud IPs for the Azure DevOps regions are opened on the Firewall.
 

@@ -6,6 +6,7 @@ tags:
   - Mac OSX
 ---
 **1 beep** = No RAM installed/detected
+<!-- truncate -->
   
 **2 beeps** = Incompatible RAM type installed (for example, EDO)
   

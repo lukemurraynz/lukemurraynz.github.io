@@ -32,3 +32,5 @@ tags:
     Now all the selected files will be renamed <em>(for example: tech(1), tech(2))</em>
   </li>
 </ol>
+
+<!-- truncate -->

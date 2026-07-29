@@ -8,6 +8,7 @@ tags:
 ---
 
 If you see the error **"You do not have enough permission"** on an **ASUS eeePC** running **Xandros Linux**, it is typically caused by the `/media` directory not existing. This commonly happens after enabling the **full KDE desktop** mode, which can alter the default directory structure.
+<!-- truncate -->
 
 The `/media` directory is where Linux mounts removable storage devices such as USB drives and SD cards. Without it, the system cannot mount external media and throws a permission error.
 

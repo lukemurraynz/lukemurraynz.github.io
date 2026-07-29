@@ -24,3 +24,5 @@ tags:
     <strong>Convert</strong>, copy to your Tablet S and enjoy your video!
   </li>
 </ol>
+
+<!-- truncate -->

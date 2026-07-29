@@ -11,6 +11,7 @@ date: '2023-08-15 00:00:00 +1300'
 slug: azure/Getting-Started-with-GitHub-Codespaces
 ---
 [Github Codespaces](https://github.com/features/codespaces) gives you the full capability of your favourite IDE (Integrated Development Environment) like Visual Studio Code, Jupyter, or JetBrains and an extension, to your web browser. With it, you can develop your applications without needing any dependant service or tool installed or configured locally, giving developers a standard way of working on applications and scripts.
+<!-- truncate -->
 
 ![Github Codespaces - Getting Started](/images/posts/Header_Getting_Started_with_GitHub_Codespace.gif)
 

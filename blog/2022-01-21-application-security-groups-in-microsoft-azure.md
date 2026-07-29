@@ -11,6 +11,7 @@ header:
 slug: azure/application-security-groups-in-microsoft-azure
 ---
 Azure Application Security Groups (ASG) allow you to define what workloads _(Virtual Machines)_ you are running in Azure has access to what resource - without being tied by managing complex IP address rules inside a [Network Security Group](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview?WT.mc_id=AZ-MVP-5004796 "Network security groups").
+<!-- truncate -->
 
 > Application security groups enable you to configure network security as a natural extension of an application's structure, allowing you to group virtual machines and define network security policies based on those groups. You can reuse your security policy at scale without manual maintenance of explicit IP addresses.
 

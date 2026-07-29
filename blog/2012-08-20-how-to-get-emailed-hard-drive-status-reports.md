@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 _Want to get emailed disk status reports of your drives/hard drives and you are using a Windows PC? Using a great tool developed by Acronis you can. Acronis Drive Monitor runs down in the notification tray (by the time) and monitors your hard drive(s) temperature/spin time and sector failure rate giving you a good indication of when/if they are going to fail before they do. If you are away from the computer or simply would rather get status reports emailed to you, this is how you do it._
+<!-- truncate -->
 
 <ol start="1">
   <li>

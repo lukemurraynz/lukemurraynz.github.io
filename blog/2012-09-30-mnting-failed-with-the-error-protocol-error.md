@@ -9,6 +9,7 @@ tags:
   - Windows
 ---
 Getting &#8220;/sbin/mount.vboxsf: mounting failed with the error: Protocol error&#8221; error with Virtualbox?
+<!-- truncate -->
 
 &nbsp;
 

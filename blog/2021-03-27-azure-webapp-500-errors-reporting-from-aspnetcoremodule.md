@@ -9,6 +9,7 @@ toc: false
 slug:  azure/azure-webapp-500-errors-reporting-from-aspnetcoremodule
 ---
 ## Issue Description
+<!-- truncate -->
 
 Intermittent issues with Azure WebApp constantly stop functioning, a Stop/Start operation brings it back online.
 

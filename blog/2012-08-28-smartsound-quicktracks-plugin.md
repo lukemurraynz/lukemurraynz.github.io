@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 This issue commonly occurs on DVD Flick installations but also known for other problems that deal with video codecs. Follow the steps below to repair:
+<!-- truncate -->
 
 <ol start="1">
   <li>

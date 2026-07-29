@@ -12,6 +12,7 @@ slug: azure/azure-optimization-engine
 ---
 
 This post is a part of [Azure Spring Clean](https://www.azurespringclean.com/), which is a community event focused on Azure management topics from March 14-18, 2022.
+<!-- truncate -->
 
 Thanks to [Joe Carlyle](https://twitter.com/wedoazure) and [Thomas Thornton](https://twitter.com/tamstar1234) for putting in the time and organising this event.
 

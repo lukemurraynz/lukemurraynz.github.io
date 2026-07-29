@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 Having problems with creating or editing a post on WordPress and you cannot change between the Visual Editor and HTML Editor?
+<!-- truncate -->
 
   1. First thing is trying to clearing your browser cache.
   2. If that doesn&#8217;t work the issue is probably the theme you are using, some themes have shortcodes and therefore have buttons on the editor that might be damaged or corrupt – the fix for this is update to a newer theme version or change the theme.

@@ -9,6 +9,7 @@ tags:
   2. Press and **HOLD** the **Power** button, and **connect** **printer** to AC **power**
   3. **Release** the the **Power** button
   4. **Press** the **Power** button again
+<!-- truncate -->
 
 If the above method does not work, try the following:
 

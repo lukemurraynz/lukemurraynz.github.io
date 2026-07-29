@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 **Google Search queries**
+<!-- truncate -->
 
 **define:<span style="text-decoration: underline;">phrase</span>**
 

@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 _To operate this device, you need to have to have installed Cyberlink DVD Producer that came on a CD with your device._
+<!-- truncate -->
 
 <ol start="1">
   <li>

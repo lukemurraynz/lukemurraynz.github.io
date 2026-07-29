@@ -10,6 +10,7 @@ header:
   teaser: /uploads/azure_arc_vmware_portal_createresourcebridge.png
 ---
 [Azure Arc Bridge](https://learn.microsoft.com/en-us/azure/azure-arc/resource-bridge/overview?WT.mc_id=AZ-MVP-5004796 "What is Azure Arc resource bridge ")_(currently in preview)_ is part of the core Azure Arc Hybrid Cloud platform.
+<!-- truncate -->
 
 ### Overview
 

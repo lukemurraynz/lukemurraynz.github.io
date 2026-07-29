@@ -9,6 +9,7 @@ tags:
 <div>
   Problems running Javascript and want to enable it? This is how you do it.
 </div>
+<!-- truncate -->
 
 <div>
 </div>

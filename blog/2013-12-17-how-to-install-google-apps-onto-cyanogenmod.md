@@ -6,6 +6,7 @@ tags:
 date: 2013-12-17 00:00:00 +1300
 ---
 Note: This is usually – for the nightly builds. The stable builds seem to have Google integration.
+<!-- truncate -->
 
 Note: Please backup your phone beforehand – I take no responsibility if your phone fails to boot.
   

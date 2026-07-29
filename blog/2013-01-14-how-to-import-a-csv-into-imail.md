@@ -7,6 +7,7 @@ tags:
   - Mac OSX
 ---
 _First – make sure iMail is closed._
+<!-- truncate -->
 
   1. Open **Finder**
   2. Go to your OSX install HDD and navigate to: **_Applications_**

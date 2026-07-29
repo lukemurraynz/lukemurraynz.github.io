@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 Getting the Failed to install catalog files error? This is how you fix it. The issue is related to registry key security settings.
+<!-- truncate -->
 
   1. Click **Start**
   2. Click **Run**

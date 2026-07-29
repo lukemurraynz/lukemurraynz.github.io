@@ -7,6 +7,7 @@ date: 2014-09-06 00:00:00 +1300
 ---
 
 Being able to determine who is currently logged into a particular Windows system – such as a server can be useful for identify performance problems and notifying the relevant users of an impending restart.
+<!-- truncate -->
 
 ### Method 1
 

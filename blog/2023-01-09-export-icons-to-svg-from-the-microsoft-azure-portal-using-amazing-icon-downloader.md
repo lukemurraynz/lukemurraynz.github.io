@@ -10,6 +10,7 @@ header:
   teaser: /uploads/azure-icon-downloader.png
 ---
 Have you ever wanted to export an icon from the Microsoft Azure Portal but found yourself having to screenshot the icon at a low definition to include in your documentation or presentations?
+<!-- truncate -->
 
 Well - using the [Amazing Icon Downloader browser](https://github.com/mattl-msft/Amazing-Icon-Downloader "logo Amazing Icon Downloader") plugin, you can export a single or all icons on a specific page in high definition as an SVG (Scalable Vector Graphics) file.
 

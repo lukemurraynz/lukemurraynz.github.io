@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 Go to your <a title="Last.FM" href="https://www.last.fm/settings/account" target="_blank">Last.FM</a> Account <strong>Settings</strong>
+<!-- truncate -->
 
 Click on the <strong>Data</strong> tab to the right of the top menu
 

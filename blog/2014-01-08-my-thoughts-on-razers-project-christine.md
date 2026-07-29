@@ -7,6 +7,7 @@ date: 2014-01-08 00:00:00 +1300
 ---
 
 Razer – a company well known for its PC gaming peripherals.
+<!-- truncate -->
 
 With its sleep black and green designs Razer has captivated many a gamer – including myself as I type this using my Razer Blackwidow keyboard.
 

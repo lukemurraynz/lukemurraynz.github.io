@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 <span style="font-family:Times New Roman;font-size:12pt"><br /> </span>
+<!-- truncate -->
 
 <p style="margin-left: 36pt">
   <span style="font-family:Times New Roman;font-size:12pt"><br /> </span>

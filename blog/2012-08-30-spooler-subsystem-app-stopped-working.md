@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 Follow the guides below to fix the spooler issues:
+<!-- truncate -->
 
 <ol start="1">
   <li>

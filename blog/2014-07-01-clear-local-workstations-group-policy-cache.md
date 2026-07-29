@@ -7,6 +7,7 @@ tags:
 date: 2014-07-01 00:00:00 +1300
 ---
 ## Option 1
+<!-- truncate -->
 
   1. Open My Computer/Computer
   2. In the URL or address bar paste: %windir%\system32\GroupPolicy

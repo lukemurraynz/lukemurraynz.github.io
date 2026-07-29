@@ -6,6 +6,7 @@ tags:
 date: 2014-10-02 00:00:00 +1300
 ---
 Windows 10 Technical- How to switch from Start Menu to Start Screen
+<!-- truncate -->
 
 1. Click the Start button
 

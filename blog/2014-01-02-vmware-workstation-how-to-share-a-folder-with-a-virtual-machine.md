@@ -19,6 +19,7 @@ date: 2014-01-02 00:00:00 +1300
 12. You can specify an alternative name if you want or just select Next
 13. You can specify to have the share Read Only here if you want, make sure Enable this Share is selected and select Finish
 14. Done – as soon you as press Ok your virtual machine would have mapped a network share to your workstation. You can find this under My Computer or Computer!
+<!-- truncate -->
 
 Note: You can map the same network share between multiple Virtual Machines.
 Note: The Virtual machine must be on to allow Shared Folder configuration – if it is off the option will simply not be enabled.

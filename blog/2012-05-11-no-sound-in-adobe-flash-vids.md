@@ -10,6 +10,7 @@ tags:
   3. Type in:  cmd.exe
   4. Press Enter
   5. Type: sfc /scannow
+<!-- truncate -->
 
 _Wait for scan to complete, you may need your Windows CD/DVD for this if it needs to copy data from it._
 

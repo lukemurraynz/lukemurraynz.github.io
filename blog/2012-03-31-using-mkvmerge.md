@@ -7,6 +7,7 @@ tags:
 ---
 
 [MKVMerge](https://mkvtoolnix.download/) (part of the MKVToolNix suite) is a free tool that lets you combine video, audio, and subtitle tracks into a single **MKV** container file. This is useful when you have a separate **SRT subtitle file** and want to embed it permanently into the video.
+<!-- truncate -->
 
 ## How to add subtitles with MKVMerge
 

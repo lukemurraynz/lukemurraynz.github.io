@@ -7,6 +7,7 @@ tags:
   - Mobile
 ---
 Trying to add your Google Account to your Android phone and it&#8217;s coming up with the error &#8220;Can’t establish a reliable data connection to the server&#8221; try the tips below:
+<!-- truncate -->
 
   1. Go into Applications and select the Youtube Application
   2. Login using your Google Account

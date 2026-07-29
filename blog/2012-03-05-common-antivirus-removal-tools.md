@@ -7,6 +7,7 @@ date: 2012-03-05 00:00:00 +1300
 ---
 
 Uninstalling antivirus software through the standard Windows **Add/Remove Programs** (or **Programs and Features**) does not always remove everything. Leftover files, registry entries, drivers, and services can remain on the system, potentially causing conflicts with a new antivirus installation or other software.
+<!-- truncate -->
 
 Most antivirus vendors provide dedicated **removal tools** that are designed to thoroughly clean up all traces of their products. Below is a list of official removal tools from major antivirus vendors.
 

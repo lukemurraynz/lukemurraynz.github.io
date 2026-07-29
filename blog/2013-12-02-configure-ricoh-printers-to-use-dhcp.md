@@ -11,3 +11,5 @@ tags:
   3. <span style="font-family:Times New Roman;font-size:12pt">Select: <strong>Interface Settings</strong><br /> </span>
   4. <span style="font-family:Times New Roman;font-size:12pt">Select: <strong>Machine iPv4 Address</strong><br /> </span>
   5. <span style="font-family:Times New Roman;font-size:12pt">Select: <strong>Auto-Obtain (DHCP)</strong><br /> </span>
+
+<!-- truncate -->

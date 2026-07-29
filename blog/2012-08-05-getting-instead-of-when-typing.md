@@ -8,6 +8,7 @@ tags:
 ---
 
 If pressing **Shift + 2** produces a double quote instead of the **@ symbol**, your keyboard layout has been changed from **US** to **UK**. The US and UK keyboard layouts swap the positions of the `@` and `"` characters, which is a common source of confusion.
+<!-- truncate -->
 
 This can happen accidentally by pressing **Left Alt + Shift**, which is the default Windows shortcut for switching between installed keyboard layouts.
 

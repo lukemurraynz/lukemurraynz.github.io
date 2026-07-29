@@ -8,6 +8,7 @@ tags:
   - Windows
 ---
 This happens when Windows Mail is using a different contacts list to the Windows Contacts – such as a newsgroup.
+<!-- truncate -->
 
   1. Open **Windows Mail**
   2. Click **Contacts** _(left hand side)_

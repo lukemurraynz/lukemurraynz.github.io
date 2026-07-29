@@ -6,6 +6,7 @@ tags:
 date: 2014-07-08 00:00:00 +1300 
 ---
 **Lync 2010**
+<!-- truncate -->
 
 Log off of the Lync client and delete the profile from:
 

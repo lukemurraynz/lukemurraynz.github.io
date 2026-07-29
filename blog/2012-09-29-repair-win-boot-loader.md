@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 First things first! In order to repair the Windows boot loaders you need the appropriate Windows CD/DVD for example: _Windows XP Home/Professional CD for the Windows XP installation & Windows 7 DVD for Windows 7 install._
+<!-- truncate -->
 
 **Windows XP**
 

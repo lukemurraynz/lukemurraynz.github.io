@@ -6,6 +6,7 @@ tags:
 date: 2016-12-28 00:00:00 +1300
 ---
 'An error occurred while accessing the DHCP database.'
+<!-- truncate -->
   
 <img class="alignnone" src="https://i1.wp.com/luke.geek.nz/wp-content/uploads/2016/12/122816_0625_Databaseerr1.png?resize=515%2C179&#038;ssl=1" alt="an error occurred while accessing the DHCP database" width="515" height="179" data-recalc-dims="1" />
 

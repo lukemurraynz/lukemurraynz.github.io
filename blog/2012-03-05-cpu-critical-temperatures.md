@@ -5,6 +5,7 @@ tags:
   - Misc
 ---
 **AMD**
+<!-- truncate -->
 
 _**AMD Athlon Series**_
 

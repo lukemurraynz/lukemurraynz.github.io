@@ -12,6 +12,7 @@ tags:
   4. Click Documents _(or Drive if you have Google Drive enabled on the domain)_
   5. Check “Users can publish document to the public internet”
   6. Click Save
+<!-- truncate -->
 
 &nbsp;
 

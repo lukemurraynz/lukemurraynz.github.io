@@ -6,6 +6,7 @@ tags:
   - Mac OSX
 ---
 This usually happens, when some of the OSX settings become corrupted. OSX can regenerate new settings, which should resolve your problem. Follow the settings below:
+<!-- truncate -->
 
   1. Open **Finder**
   2. **Navigate** to your **hard****drive**

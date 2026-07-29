@@ -6,6 +6,7 @@ tags:
   - Mac OSX
 ---
 Credits goes to Apple and OSX86 community. This is just the instructions for the install.
+<!-- truncate -->
   
 Attention:
 

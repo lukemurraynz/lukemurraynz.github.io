@@ -12,3 +12,5 @@ tags:
   4. Make sure &#8220;**_Specify the Server Manager Data refresh period (in minutes)_**” is ticked
   5. **Type** in the **number** of minutes you want to refresh your server(s) status.
   6. Click **Ok**
+
+<!-- truncate -->

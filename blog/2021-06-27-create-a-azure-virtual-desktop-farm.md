@@ -12,6 +12,7 @@ slug: azure/create-a-azure-virtual-desktop-farm
 ---
 
 Previously known as Windows Virtual Desktop, [Azure Virtual Desktop](https://learn.microsoft.com/en-us/azure/virtual-desktop/overview?WT.mc_id=AZ-MVP-5004796 "What is Azure Virtual Desktop?") is the successor of Microsoft Remote Desktop; although compatible with Server OS (Operating System), it is the first to support Windows 10*(and soon Windows 11)* multisession, reducing application compatibility issues and giving consistent user experience.
+<!-- truncate -->
 
 In this guide, I will run you through creating Azure Virtual Desktop from scratch, along with some prerequisites that will help you manage AVD after you create it.
 

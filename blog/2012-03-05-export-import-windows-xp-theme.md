@@ -6,6 +6,7 @@ tags:
   - Windows
 ---
 **Export**
+<!-- truncate -->
 
   1. Right-click the desktop
   2. Select Properties

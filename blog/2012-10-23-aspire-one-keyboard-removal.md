@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 Things you will need.
+<!-- truncate -->
 
 * Small Razor Blade
 

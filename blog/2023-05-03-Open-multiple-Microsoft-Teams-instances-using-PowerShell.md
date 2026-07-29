@@ -12,6 +12,7 @@ slug: m365/Open-multiple-Microsoft-Teams-instances-using-PowerShell
 ---
 
 There may be circumstances, you need to open up multiple Microsoft Team instances, a reason for this - maybe to chat and join meetings across multiple accounts.
+<!-- truncate -->
 
 Microsoft are working on a version of [Microsoft Teams](https://techcommunity.microsoft.com/t5/microsoft-teams-public-preview/bd-p/MicrosoftTeamsPublicPreview?WT.mc_id=AZ-MVP-5004796 "Microsoft Teams Public Preview") that supports multiple-accounts, but until thats released - you can use a PowerShell script to open up another version of Microsoft Teams in another profile _(or multiple, if you update the profilename)_.
 

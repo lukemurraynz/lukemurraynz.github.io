@@ -8,5 +8,6 @@ tags:
 ---
   1. Press the **windows** **key** on your keyboard
   2. On the metro interface click **Administrative** **Tools**
+<!-- truncate -->
 
 _Note: Using Server Manager, you can also select Tools (top right) to select common tasks._

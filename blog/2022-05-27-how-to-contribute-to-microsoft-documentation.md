@@ -12,6 +12,7 @@ slug: misc/how-to-contribute-to-microsoft-documentation
 ---
 
 Did you know you can contribute to Microsoft documentation _(ms docs)_?
+<!-- truncate -->
 
 Suppose you see something not quite right, technically or even if the document's readability doesn't look right! Then, in true community style, you can contribute!
 

@@ -11,6 +11,7 @@ header:
 slug: azure/setup-azure-cloud-shell
 ---
 The Azure Cloud Shell allows connectivity to Microsoft Azure using an authenticated, browser-based shell experience that’s hosted in the cloud and accessible from virtually anywhere as long as you have access to your favourite browser!
+<!-- truncate -->
 
 Azure Cloud Shell is assigned per unique user account and automatically authenticated with each session.
 

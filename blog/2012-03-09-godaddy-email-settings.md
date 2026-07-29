@@ -6,6 +6,7 @@ tags:
   - Misc
 ---
 **Godaddy Email Settings**
+<!-- truncate -->
 
 Godaddy and there resellers (Wild West Domains resellers) use the following servers for incomming and outgoing email, Depending on what datacenter you are in
 

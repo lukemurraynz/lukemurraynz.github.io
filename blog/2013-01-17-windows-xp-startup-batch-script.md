@@ -8,6 +8,7 @@ tags:
   - Windows
 ---
 Save the following into a notepad document and name it with .bat at the end &#8211; for example WinXPStartup.BAT. You can then run the batch script directly from the recovery console on a Windows XP CD.
+<!-- truncate -->
 
 `<br />
 @echo off<br />

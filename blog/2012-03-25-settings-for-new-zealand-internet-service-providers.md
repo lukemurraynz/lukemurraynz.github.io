@@ -6,6 +6,7 @@ tags:
   - Misc
 ---
 Ignite Communications (formerly Data Solutions NZ)
+<!-- truncate -->
 
 * Domain name server 1 : 123.255.15.131
   

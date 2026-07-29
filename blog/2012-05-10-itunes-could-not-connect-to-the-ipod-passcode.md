@@ -8,6 +8,7 @@ tags:
 ---
 
 If you have forgotten the passcode on your iPod and iTunes displays the error **"iTunes could not connect to the iPod because it is locked with a passcode"**, the only way to regain access is to perform a full restore through **Recovery Mode**.
+<!-- truncate -->
 
 > **Warning:** This process will erase all data on your iPod. If you have a previous backup in iTunes or iCloud, you can restore your content after the reset.
 

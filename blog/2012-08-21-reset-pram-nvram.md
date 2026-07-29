@@ -7,6 +7,7 @@ tags:
   - Mac OSX
 ---
 _Warning: Resetting the PRAM/NVRAM will cause the Mac to lose operating system settings such as Time and Volume settings._
+<!-- truncate -->
 
 _Note: Used successfully to fix Touchpad not “clicking” issue on a Macbook Pro_
 

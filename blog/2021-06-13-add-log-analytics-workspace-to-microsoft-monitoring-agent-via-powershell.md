@@ -12,6 +12,7 @@ slug: powershell/add-log-analytics-workspace-to-microsoft-monitoring-agent-via-p
 ---
 
 Have you ever wanted to add a Log Analytics workspace to multiple Microsoft Monitoring Agent (MMA)'s before?
+<!-- truncate -->
 
 Maybe you are setting up Windows Defender or wanting to redirect to collect event or performance logs.
 

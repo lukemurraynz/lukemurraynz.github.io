@@ -6,6 +6,7 @@ tags:
 date: 2012-03-05 00:00:00 +1300
 ---
 &#8220;The Session Manager Initialization system process terminated unexpectedly with a status of 0xc000026c&#8221;
+<!-- truncate -->
 
 Caused by a recently Windows Update
 

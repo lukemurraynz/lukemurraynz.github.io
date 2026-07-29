@@ -6,6 +6,7 @@ tags:
 date: 2014-03-30 00:00:00 +1300
 ---
 This fix is usually valid for an Exchange domain setup. The fix is to enable Cached mode on the Outlook client.
+<!-- truncate -->
 
   1. Open Outlook
   2. Click File

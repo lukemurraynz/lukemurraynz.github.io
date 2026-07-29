@@ -11,6 +11,7 @@ date: '2023-06-24 00:00:00 +1300'
 slug: azure/Management-Groups-not-displaying-AzurePortal
 ---
 When logging into the Microsoft Azure Portal, to view your [Management Group](https://learn.microsoft.com/azure/governance/management-groups/overview?WT.mc_id=AZ-MVP-5004796 "What are Azure management groups?") You might have found it blank or constantly attempting to load.
+<!-- truncate -->
 
 ![Azure Management Group - Not loading](/images/posts/azure-management-group-notloading.png "Azure Management Group - Not loading")
 

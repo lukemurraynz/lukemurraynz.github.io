@@ -11,6 +11,7 @@ header:
 slug: azure/failed-to-persist-terraform-state-using-an-azure-blob-storage-account
 ---
 When attempting to make changes with Terraform, and the [state changes are in an Azure storage account](https://learn.microsoft.com/azure/developer/terraform/store-state-in-azure-storage?tabs=azure-cli&WT.mc_id=AZ-MVP-5004796 "Store Terraform state in Azure Storage"), you may come across: Failed to save state.
+<!-- truncate -->
 
 > Error: Failed to save state
 >

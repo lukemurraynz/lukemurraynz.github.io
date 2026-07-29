@@ -6,6 +6,7 @@ tags:
 date: 2012-03-05 00:00:00 +1300
 ---
 The application has failed to start because CSRSRV.DLL was not found. Reinstalling the application may fix this problem.
+<!-- truncate -->
 
 First you need to access the recovery console. Following the instructions below
 

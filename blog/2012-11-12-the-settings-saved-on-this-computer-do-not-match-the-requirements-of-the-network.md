@@ -12,3 +12,5 @@ tags:
   4. Click **Manage Wireless Networks** _(to the left)_
   5. Right click and **remove** your wireless **network** from the list
   6. **Attempt** re-**connection**
+
+<!-- truncate -->

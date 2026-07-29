@@ -7,6 +7,7 @@ tags:
 date: 2012-03-05 00:00:00 +1300
 ---
 Short fix:
+<!-- truncate -->
 
   1.  Right-click on Aion in your Launcher game list
   2. Select Properties

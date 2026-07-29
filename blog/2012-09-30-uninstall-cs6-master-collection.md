@@ -26,6 +26,7 @@ tags:
     Follow the prompts to uninstall.
   </li>
 </ol>
+<!-- truncate -->
 
 _In order to remove the registry information for CS6 including activation information delete the folders below:_
 

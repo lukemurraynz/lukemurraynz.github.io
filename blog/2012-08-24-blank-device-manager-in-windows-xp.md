@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 The issue is caused by security permissions in the registry. This is how you fix it.
+<!-- truncate -->
 
 _You must be logged on as a local administrator to perform this task:_
 

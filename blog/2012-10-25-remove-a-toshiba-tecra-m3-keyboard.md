@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 What you need
+<!-- truncate -->
 
 * Philips Screwdriver
 * Small Razor Blade/Flat-Head Screwdriver

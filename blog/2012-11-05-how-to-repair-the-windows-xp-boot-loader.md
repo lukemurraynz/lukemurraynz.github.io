@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 What you need.
+<!-- truncate -->
 
 * Windows XP CD _(doesn’t matter whether Home or Professional)_
 

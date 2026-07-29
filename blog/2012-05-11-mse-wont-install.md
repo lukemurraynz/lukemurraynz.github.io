@@ -6,6 +6,7 @@ tags:
   - Windows
 ---
 Having problems and your trying to install Microsoft Security Essentials and it just won&#8217;t install? I have ran into this issue and this is how I repaired it.
+<!-- truncate -->
 
   1. First, you need to download the <a title="Windows Installer Cleanup Utility" href="http://majorgeeks.com/download.php?det=4459" target="_blank">Windows Installer Cleanup Utility</a>
   2. Run the utility and select Microsoft Antimalware

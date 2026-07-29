@@ -11,6 +11,7 @@ header:
 
 ---
 **![Festive Tech Calender - Microsoft Dev Box](/uploads/festivetechcalendar2022.png "Festive Tech Calender - Microsoft Dev Box")**
+<!-- truncate -->
 
 It's that time of year again! The time to be jolly and experience the Month of December by looking at the [Festive Tech Calendar](https://festivetechcalendar.com/ "Festive Tech Calender")!
 

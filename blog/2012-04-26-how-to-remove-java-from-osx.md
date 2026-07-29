@@ -8,5 +8,6 @@ tags:
   1. Open Terminal (/Utilities/Terminal)
   2. Type in: **sudo rm -rf /System/Library/Frameworks/JavaVM.framework/**
   3. Press Enter
+<!-- truncate -->
 
 Tested in 10.5.8

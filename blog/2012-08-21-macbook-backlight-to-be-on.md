@@ -26,6 +26,7 @@ tags:
     Close and <strong>save</strong>
   </li>
 </ol>
+<!-- truncate -->
 
 _You have now adjusted the minimum light the light sensor needs to activate the back-light on the keyboard. _
 

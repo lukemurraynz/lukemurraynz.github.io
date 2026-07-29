@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 _This issue commonly occurs on websites such as Facebook and Internet Explorer 9_
+<!-- truncate -->
 
   1. Open Internet Explorer 9
   2. Click Tools

@@ -13,3 +13,5 @@ date: 2014-03-28 00:00:00 +1300
 5. **Delete** the: SoftwareDistribution folder
 6. **Start** the **Automatic Update** service
 7. Double click on the SCCM Update icon in the notification tray and select Install & Install now.
+
+<!-- truncate -->

@@ -18,3 +18,5 @@ tags:
  11. Set Number of **Audio** Buffers to: **_10_** and set the Maximal **Volume** Level to** _1.6_**
  12. Click Save
  13. **Restart** VLC Media Player
+
+<!-- truncate -->

@@ -11,6 +11,7 @@ header:
 slug: azure/azure-virtual-machine-and-mac-address-software-licensing
 ---
 You may need an Azure Virtual Machine to install or license software bound to a media access control address _(MAC address)_.
+<!-- truncate -->
 
 In Microsoft Azure, you can make changes to the Primary Network interface; these changes include manually setting the IP settings to changing the MAC address - these settings are managed by the underlying Network Interface and Azure host.
 

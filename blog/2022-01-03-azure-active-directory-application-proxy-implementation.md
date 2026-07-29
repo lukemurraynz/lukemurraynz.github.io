@@ -11,6 +11,7 @@ header:
 slug: azure/azure-active-directory-application-proxy-implementation
 ---
 Are you running internal web-based applications that you want to give access to users working remotely securely without the need for a VPN or firewall? Do you want to enforce or use Azure Conditional Access policies to protect and manage access?
+<!-- truncate -->
 
 Let me introduce the Microsoft Microsoft Entra ID Application Proxy...
 

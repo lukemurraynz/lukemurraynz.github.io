@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 To repair this issue you need to have a Windows XP CD.
+<!-- truncate -->
 
 <ol start="1">
   <li>

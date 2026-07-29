@@ -17,3 +17,5 @@ tags:
  10. Click Run
  11. Type in: **_%systemroot%system32oobemsoobe.exe /a_**
  12. Press Enter
+
+<!-- truncate -->

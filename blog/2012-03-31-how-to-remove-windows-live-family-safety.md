@@ -6,6 +6,7 @@ tags:
   - Windows
 ---
 Having problems getting rid of Windows Live Family Safety? Follow the steps below!
+<!-- truncate -->
 
 <ol start="1">
   <li>

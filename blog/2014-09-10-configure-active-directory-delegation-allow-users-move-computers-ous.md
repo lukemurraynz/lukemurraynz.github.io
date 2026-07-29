@@ -15,5 +15,6 @@ date: 2014-09-10 00:00:00 +1300
   8. Check "Delegate selected objects..." and click Next
   9. Make sure Write is checked and click Next
  10. Click Finish
+<!-- truncate -->
 
 Repeat steps 2 to 10 again on other OUs you would like to delegate move rights to.

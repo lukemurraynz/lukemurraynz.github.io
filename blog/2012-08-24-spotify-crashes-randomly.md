@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 _Having issues with Spotify? Few minutes or seconds after opening it crashes, follow the prompts below to repair:_
+<!-- truncate -->
 
 <ol start="1">
   <li>

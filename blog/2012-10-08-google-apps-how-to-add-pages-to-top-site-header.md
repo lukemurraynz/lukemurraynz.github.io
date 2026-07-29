@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 To add a page to the top navigation (tabs) following the instructions below:
+<!-- truncate -->
 
 First you must have already created the page you want to add.
 

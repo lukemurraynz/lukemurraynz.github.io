@@ -11,3 +11,5 @@ date: 2014-01-02 00:00:00 +1300
   4. Click **Account Settings**
   5. Select the mailbox you would like to retrieve the Exchange address of and select Change
   6. Your Exchange address is titled under the Server field
+
+<!-- truncate -->

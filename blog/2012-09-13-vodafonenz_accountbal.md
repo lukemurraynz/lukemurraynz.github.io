@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 **Mobile Phone**
+<!-- truncate -->
 
 _These instructions differ slightly depending on your phones make/model. Please adjust accordingly._
 

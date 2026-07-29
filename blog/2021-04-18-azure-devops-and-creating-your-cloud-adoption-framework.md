@@ -21,6 +21,7 @@ keywords:
 ---
 
 Do you want to make a start on Azure Adoption and Governance, Server Migration or Azure Virtual Desktop and do not know where to start, or whether you are asking the right questions?
+<!-- truncate -->
 
 If you want to create a framework for your cloud adoption or migration plans, you can look at... using [Azure DevOps Demo Generator](https://azuredevopsdemogenerator.azurewebsites.net/ "Azure DevOps Generator")…
 

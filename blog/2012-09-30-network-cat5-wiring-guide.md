@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 **Straight Through/Patch Cable**
+<!-- truncate -->
 
 _Both ends are the same._
 

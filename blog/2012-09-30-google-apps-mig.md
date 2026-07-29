@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 Sample CSV (Comma Separated Values File) for migration to Google Apps using the Apps <a title="Exchange_to_Google_Tool" href="https://tools.google.com/dlpage/exchangemigration/" target="_blank">Migration tool</a> from Exchange. The bottom is a sample of the heading needed for Google to recognise it.
+<!-- truncate -->
 
 &nbsp;
 

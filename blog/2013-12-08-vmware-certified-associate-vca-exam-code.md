@@ -6,6 +6,7 @@ tags:
 date: 2013-12-08 00:00:00 +1300
 ---
 VMWare have launched a campaign to show off their new 3 [VMWare Certified Associate](http://mylearn.vmware.com/portals/certification/) exams.
+<!-- truncate -->
 
 * VMWare Certified Associate – Workforce Mobility
 * VMWare Certified Associate – Data Center Virtualization

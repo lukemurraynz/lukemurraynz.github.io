@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 _Having issues with sysprep popping up all the time? Follow the instructions below to stop that annoyance from happening._
+<!-- truncate -->
 
 <ol start="1">
   <li>

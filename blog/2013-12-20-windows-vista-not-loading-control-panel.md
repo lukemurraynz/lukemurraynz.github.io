@@ -6,6 +6,7 @@ tags:
 date: 2013-12-20 00:00:00 +1300
 ---
 Having problems when you try opening the Vista Control panel and all you see is the outline of the window? 
+<!-- truncate -->
 
 Follow the instructions below to repair it. 
 

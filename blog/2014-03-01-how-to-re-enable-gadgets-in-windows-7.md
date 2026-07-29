@@ -14,5 +14,6 @@ date: 2014-03-01 00:00:00 +1300
   7. Check Windows Gadget Platform
   8. Press Ok
   9. Your PC will restart and gadgets will be re-enabled.
+<!-- truncate -->
 
 _Note: Although originally enabled in Windows 7 – Microsoft had deactivated the gadgets due to unstable/malicious code that allowed unsavoury individuals remote access to the PC. If re-enabled make you are running the latest Windows Update and the Windows Firewall service is enabled._

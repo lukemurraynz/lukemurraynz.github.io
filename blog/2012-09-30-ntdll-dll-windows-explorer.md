@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 Having problems with Windows Explorer with the “ntdll.dll” error? This usually occurs when you are running an AMD system.
+<!-- truncate -->
 
 &nbsp;
 

@@ -7,6 +7,7 @@ tags:
   - Mac OSX
 ---
 **With CD**
+<!-- truncate -->
 
 <ol start="1">
   <li>

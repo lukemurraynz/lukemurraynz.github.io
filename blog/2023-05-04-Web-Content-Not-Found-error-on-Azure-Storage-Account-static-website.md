@@ -13,6 +13,7 @@ slug: azure/Web-Content-Not-Found-error-on-Azure-Storage-Account-static-website
 
 Azure Storage accounts [can host static websites](https://learn.microsoft.com/azure/storage/blobs/storage-blob-static-website?WT.mc_id=AZ-MVP-5004796) by opening up a public endpoint to an Azure storage
 container ($web), so anything inside of $web will be accessible publicly.
+<!-- truncate -->
 
 This can be enabled easily by toggling the Static website to Enabled.
 

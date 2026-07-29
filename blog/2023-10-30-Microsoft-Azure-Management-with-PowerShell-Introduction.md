@@ -17,6 +17,7 @@ slug: azure/powershell/azure-management-powershell
 ---
 
 # Introduction to PowerShell in Azure
+<!-- truncate -->
 
 > To see a video of these commands in action, take a look at the following YouTube-hosted video: [Microsoft Azure Management with PowerShell - Introduction](https://youtu.be/a4gehHwlwBQ)
 

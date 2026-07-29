@@ -17,6 +17,7 @@ slug: azure/PrincpalNotFound-bicep-roleassignment
 ---
 
 Recently, I was deploying an [User Assigned Managed identity](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp&WT.mc_id=AZ-MVP-5004796), and assigning the managed identity a role assignment with Azure Bicep, and ran into an issue, where the assignment would fail, but then after a rerun would work.
+<!-- truncate -->
 
 > Principal e892476361114c90be141d9bf20cc94b does not exist in the directory 73160ae1-aa4a-48b5-a424-d5e43d808f53. Check that you have the correct principal ID. If you are creating this principal and then immediately assigning a role, this error might be related to a replication delay. In this case, set the role assignment principalType property to a value, such as ServicePrincipal, User, or Group. See [https://aka.ms/docs-principaltype](https://learn.microsoft.com/azure/role-based-access-control/troubleshooting?tabs=bicep&WT.mc_id=AZ-MVP-5004796)
 

@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 &nbsp;
+<!-- truncate -->
 
 Having issues opening an application and getting “_0x0000135_” error?
 

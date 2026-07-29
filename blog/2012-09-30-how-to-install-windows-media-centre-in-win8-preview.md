@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 Windows 8 Consumer preview does not have the Windows Media Centre installed by _default (most likely because this will be an Add-on for purchase on release)_
+<!-- truncate -->
 
 <ol start="1">
   <li>

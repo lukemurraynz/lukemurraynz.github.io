@@ -6,6 +6,7 @@ tags:
 date: 2014-03-25 00:00:00 +1300
 ---
 Note: This usually needs to be done when the Windows 7 profile has been manually deleted and not properly removed – as Windows 7 uses a security identifier attached to the user account in the registry and this needs to be cleared as well_
+<!-- truncate -->
 
 Note: It is also recommend making a backup of the registry before this change – and you may need to restart the PC for the registry entry to be able to be removed.
 

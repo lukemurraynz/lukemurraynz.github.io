@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 Warning:  _This will remove all posts on your wordpress installation. Make sure you have a backup or simply don’t want them anymore&#8230; when they are gone they are gone!_
+<!-- truncate -->
 
   1. Login to PHPMyAdmin
   2. On the left hand side – select your wordpress database

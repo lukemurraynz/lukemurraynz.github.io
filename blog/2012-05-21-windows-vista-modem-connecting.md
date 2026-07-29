@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 _This usually occurs Operator Assisted Dialing is enabled for the Dialup connection, to disable follow the instructions below:_
+<!-- truncate -->
 
   1. Click **Start**
   2. Click **Network Connections**

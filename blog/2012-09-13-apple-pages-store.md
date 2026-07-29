@@ -7,5 +7,6 @@ tags:
   - Mac OSX
 ---
 Apple Pages, stores it&#8217;s files at the location below:
+<!-- truncate -->
 
 **//var/mobile/applications/Pages/Library/Application Support/Documents**

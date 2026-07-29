@@ -26,6 +26,7 @@ tags:
     <strong>Wait</strong> for it to complete the operation and the <strong>permissions</strong> should be <strong>reset</strong> back to <strong>Factory</strong> <strong>Settings</strong>.
   </li>
 </ol>
+<!-- truncate -->
 
 If the above does not work, try this <a title="Security_Restore" href="http://www.softpedia.com/get/Security/Security-Related/Security-Restore.shtml" target="_blank">Security Restore Utility</a>.
 

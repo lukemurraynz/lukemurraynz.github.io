@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 Every time you open Google Chrome you’re getting the “Your profile could not be opened correctly” error? This is how I fixed it.
+<!-- truncate -->
 
   1. Open **My Computer/Computer**
   2. Go into your operating system drive (usually Local Disk C:)

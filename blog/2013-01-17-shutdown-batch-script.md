@@ -8,6 +8,7 @@ tags:
   - Windows
 ---
 Save the following into a notepad document and name it with .bat at the end &#8211; for example shutdown.BAT. You can then either set it to the desktop or add it to a scheduled task to turn your computer off at a certain time.
+<!-- truncate -->
 
 `<br />
 @echo off<br />

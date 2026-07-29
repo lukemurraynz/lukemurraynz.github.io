@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 _These issues are usually caused by damage and/or faulty nVidia drivers and DirectX components within Windows. Follow the instructions below to repair:_
+<!-- truncate -->
 
 &nbsp;
 

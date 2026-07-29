@@ -8,6 +8,7 @@ slug: misc/how-to-access-the-ricoh-printer-maintenance-shell
 ---
 
 Most Ricoh network capable printers include a Telnet server that is used by Ricoh for maintenance of their printers allowing you to access the Ricoh Printer maintenance shell. Using telnet or in my guide – I am using the third party tool pUTTY _(as in my domain environment – telnet hasn’t been installed on most workstations)_ you can access the Maintenance Shell.
+<!-- truncate -->
 
 1. Download and run [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).
 2. **Open** **PuTTY** and choose **Telnet** under Connection Type.

@@ -11,6 +11,7 @@ header:
 slug: azure/ims-payroll-not-opening-as-a-published-application-in-azure-virtual-desktop
 ---
 [Azure Virtual Desktop](https://azure.microsoft.com/en-us/services/virtual-desktop/?WT.mc_id=AZ-MVP-5004796 " Azure Virtual Desktop") allows you to access an entire desktop or a published application with shortcuts and an appearance like it was running locally; depending on the requirements; I prefer published applications where possible to keep the user experience on the endpoint device and keep the cost down.
+<!-- truncate -->
 
 One of the applications I published for a customer is [MYOB IMS Payroll](https://www.myob.com/nz/enterprise/ims-payroll " MYOB IMS Payroll ").
 

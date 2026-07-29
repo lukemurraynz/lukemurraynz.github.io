@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 Having random crashes on DCS A10 C Warthog? With Texture mismatches and Runtime errors? This is usually due to security permissions inside Windows.
+<!-- truncate -->
 
   1. Click Start
   2. In the Search field, type: CMD. Then press enter.

@@ -11,6 +11,7 @@ header:
 slug: azure/microsoft-student-education-hub
 ---
 Students learn in different ways through many possible avenues and experiences. Microsoft has assets to help students navigate through their journey.
+<!-- truncate -->
 
 This article aims to help to make access to student resources clearer.
 

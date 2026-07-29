@@ -12,3 +12,5 @@ tags:
   4. **Push** the **tab** **out** and **push** the **back** **of** the **CD-Rom** out to create room to move above the RAM slots.
   5. To take the HDD out, go to the left hand corner and **unscrew** the **screw**, then **take** **off** the HD **Lock**.
   6. **Unplug** **HD** and **push** **out**.
+
+<!-- truncate -->

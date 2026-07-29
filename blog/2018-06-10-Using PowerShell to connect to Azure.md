@@ -14,6 +14,7 @@ slug: azure/powershell/Using-PowerShell-to-connect-to-Azure
 Microsoft Azure has a good user portal where you can do most things, however
 when it comes to automation, gathering a lot of information at once and more
 in-depth scenarios that the Portal doesn’t quite offer – PowerShell is used.
+<!-- truncate -->
 
 Before you can use PowerShell to connect to Microsoft Azure, you need to install
 the Azure Resource Manager modules first – follow the guide below:

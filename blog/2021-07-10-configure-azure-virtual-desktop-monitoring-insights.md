@@ -12,6 +12,7 @@ slug: azure/configure-azure-virtual-desktop-monitoring-insights
 ---
 
 Microsoft has now added a built-in Monitoring workbook for Azure Virtual Desktop performance monitoring; this monitoring includes dashboards related _(but not limited to)_:
+<!-- truncate -->
 
 - Session host diagnostics
 - Connection performance

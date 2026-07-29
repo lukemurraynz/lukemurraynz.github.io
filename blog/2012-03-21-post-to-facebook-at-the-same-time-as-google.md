@@ -6,6 +6,7 @@ tags:
   - Misc
 ---
 Ever wanted to post on Google+ and have it automatic post Facebook as well? This is how you can do it.
+<!-- truncate -->
 
   1. Find your secret email ID by logging into the <a title="Facebook Mobile" href="http://m.facebook.com/" target="_blank">Facebook</a> Mobile page _(Look for the email address at the bottom of the page)_
   2. Go to your <a title="Google+" href="https://plus.google.com/" target="_blank">Google+</a> profile and write something you would like to share.

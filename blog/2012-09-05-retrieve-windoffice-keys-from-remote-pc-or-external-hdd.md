@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 Using a Windows utility called ProduKey you can retrieve the product keys for Microsoft Windows and Office.
+<!-- truncate -->
 
 <ol start="1">
   <li>

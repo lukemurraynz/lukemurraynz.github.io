@@ -6,6 +6,7 @@ tags:
   - Misc
 ---
 Using the Define Word extension, you can select it to search Auction sites such as Trademe by hi-lighting a word.
+<!-- truncate -->
 
   1. <a href="https://addons.mozilla.org/en-US/firefox/addon/define-word/" target="_blank">Download Extension </a> _(Restart Firefox after install)_
   2. Click Tools

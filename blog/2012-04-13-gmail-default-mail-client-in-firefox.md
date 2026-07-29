@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 If you have Gmail and use the Firefox web browser, having gmail as your default email client for typing out emails will be handy and save alot of time. Here is how you do it.
+<!-- truncate -->
 
   1. Open Firefox
   2. Left click Tools

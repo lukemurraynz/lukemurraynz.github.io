@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 Follow the guide below to remove Microsoft Groove from your PC.
+<!-- truncate -->
 
 <ol start="1">
   <li>

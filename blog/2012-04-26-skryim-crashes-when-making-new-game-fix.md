@@ -6,6 +6,7 @@ tags:
   - Windows
 ---
 Having issues with Skyrim, when you attempt to make a new game and it crashes? This is how I fixed it.
+<!-- truncate -->
 
   1. Click Start
   2. Click Control Panel

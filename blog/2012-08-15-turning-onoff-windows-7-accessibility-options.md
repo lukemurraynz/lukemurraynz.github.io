@@ -7,6 +7,7 @@ tags:
   - Windows
 ---
 If your like me and get annoyed with the virtual keyboard popping up out of nowhere follow the instructions below, or maybe you just want to enable them for a better computer experience.
+<!-- truncate -->
 
 **Digital Keyboard**
 

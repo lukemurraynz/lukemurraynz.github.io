@@ -6,6 +6,7 @@ tags:
   - Windows
 ---
 Disable the Windows XP Boot Disk
+<!-- truncate -->
 
   1. Click **Start** and then click **Run**; **type** in: **msconfig**
   2. **Click BOOT.INI** from the top tabs.

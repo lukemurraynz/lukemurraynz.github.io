@@ -6,6 +6,7 @@ tags:
   - Mobile
 ---
 Running Windows 3.1 on your Nokia phone in DOSBox and forgot how to control it? The guide is below:
+<!-- truncate -->
 
 Using the T9 Keypad
 

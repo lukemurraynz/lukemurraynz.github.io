@@ -9,6 +9,7 @@ tags:
   - Windows
 ---
 **Internet Explorer**
+<!-- truncate -->
 
   1. Click Tools
   2. Click Internet Options

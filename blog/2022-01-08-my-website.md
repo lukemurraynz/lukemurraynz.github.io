@@ -12,6 +12,7 @@ slug: misc/my-website
 ---
 
 Pretty simple article today regarding 'My website setup'.
+<!-- truncate -->
 
 I've had a few people ask what CMS _(Content Management System)_ my website runs on - and no it's not running on an Azure App Service!
 

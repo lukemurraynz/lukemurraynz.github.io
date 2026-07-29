@@ -7,6 +7,7 @@ tags:
 ---
 
 The **"You have exceeded your profile space"** error in Windows XP appears when a **Group Policy** or local policy has set a maximum size for your user profile. Once your profile (which includes your Desktop, Documents, application settings, and registry hive) exceeds the limit, Windows displays this warning and may prevent you from logging in or saving changes.
+<!-- truncate -->
 
 The fix involves removing the registry keys that enforce the profile quota.
 

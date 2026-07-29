@@ -8,6 +8,7 @@ tags:
 ---
 
 Keeping Windows up to date is one of the most important things you can do to protect your computer. Windows Update delivers security patches, bug fixes, and feature improvements directly from Microsoft. If automatic updates are turned off, your system may be missing critical security fixes.
+<!-- truncate -->
 
 Follow these steps to enable Windows Automatic Updates through the Control Panel:
 

@@ -11,3 +11,5 @@ tags:
   3. **Update** **Aptitude**: Type &#8220;a**pt-get update**&#8221; to update your software.
   4. **Install** **KSMServer** and **Kicker**: Type &#8220;**apt-get install ksmserver kicker**.&#8221; This will download both of the needed applications to enable the KDE desktop environment.
   5. Restart.
+
+<!-- truncate -->

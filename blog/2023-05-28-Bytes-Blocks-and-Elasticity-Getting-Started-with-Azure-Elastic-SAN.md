@@ -12,6 +12,7 @@ slug: azure/Bytes-Blocks-and-Elasticity-Getting-Started-with-Azure-Elastic-SAN
 ---
 
 Today we are going to take a look at the [Microsoft Azure Elastic SAN](https://azure.microsoft.com/products/storage/elastic-san/?WT.mc_id=AZ-MVP-5004796).
+<!-- truncate -->
 
 #### Introduction
 

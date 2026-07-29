@@ -8,6 +8,7 @@ tags:
   - Windows
 ---
 _“Missing file XINPUT1_3.dll” error while trying to load Borderlands 2 on PC?_
+<!-- truncate -->
 
 &nbsp;
 

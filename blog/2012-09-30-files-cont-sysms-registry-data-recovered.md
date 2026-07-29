@@ -8,6 +8,7 @@ tags:
   - Windows
 ---
 _This can someone be the result of bad RAM or Video RAM. Try to change the video memory in the BIOs from the lower number (usually 32MB/64MB) to the higher number (64/128MB) if this does not work try the following below to repair the “NTUser.DAT” file that has become corrupted/damaged on the User Account._
+<!-- truncate -->
 
 _First we have to reveal Hidden files & folders:_
 

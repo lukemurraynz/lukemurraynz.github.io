@@ -7,5 +7,6 @@ tags:
   - Misc
 ---
   1. Press **F9** during POST (computer start) to enter into the ASUS Recovery Partition.
+<!-- truncate -->
 
 _Note: Tested on an Acer x58 Laptop_

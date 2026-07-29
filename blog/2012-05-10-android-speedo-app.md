@@ -6,6 +6,7 @@ tags:
   - Mobile
 ---
 Need a Speedometer with Acceleration and GPS info? The Sub Speedo app by AutoRad Industries is what you are after. This is how you can acquire this little nifty app.
+<!-- truncate -->
 
 **Using your PC**
 

@@ -8,6 +8,7 @@ tags:
 ---
 
 If web pages are displaying with missing buttons, broken layouts, or unusual colours in both **Internet Explorer** and **Firefox**, the issue is likely not with the browsers themselves. Instead, it is usually caused by **Windows High Contrast mode** being enabled.
+<!-- truncate -->
 
 High Contrast mode overrides the colours and styles used by websites to improve readability for users with visual impairments. However, it can make normal web browsing look broken — buttons may disappear, backgrounds may turn black, and text colours may change unexpectedly.
 

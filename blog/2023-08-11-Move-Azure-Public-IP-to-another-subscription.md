@@ -11,6 +11,7 @@ date: '2023-08-11 00:00:00 +1300'
 slug: azure/Move-Azure-Public-IP-to-another-subscription
 ---
 You can move a [Public IP](https://learn.microsoft.com/azure/virtual-network/ip-services/public-ip-addresses?WT.mc_id=AZ-MVP-5004796) address in Microsoft Azure, to a new Subscription (BUT NOT A [DIFFERENT REGION](https://learn.microsoft.com/azure/virtual-network/move-across-regions-publicip-portal?WT.mc_id=AZ-MVP-5004796)).
+<!-- truncate -->
 
 There are some limitations as below:
 

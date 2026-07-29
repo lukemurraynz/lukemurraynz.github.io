@@ -12,6 +12,7 @@ slug: azure/Call-to-LLM-failed
 ---
 I recently, ran into an error  when attempting to use Azure OpenAI and custom data, in the Chat Playground.
 The error I was getting was:
+<!-- truncate -->
 
 > Error
 > Cannot connect to host aidocsopenaiaccount.openai.azure.com:443 ssl:default [Name of Service not known]

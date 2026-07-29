@@ -10,6 +10,7 @@ header:
   teaser: /uploads/azportal_loganalyticscap.png
 ---
 This is just an additional configuration that may help with sizing and pricing Log Analytics, you can set a 'Daily cap' for the amount of Data you ingest **_per day_**, to help restrict cost.
+<!-- truncate -->
 
 The downside of this is if you reach the cap, you will no longer collect any data, until the following day, meaning you may miss key events or issues.
 

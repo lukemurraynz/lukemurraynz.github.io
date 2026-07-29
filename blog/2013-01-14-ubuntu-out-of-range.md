@@ -7,6 +7,7 @@ tags:
   - Linux
 ---
 This issue is commonly caused by the screen resolution settings in Ubuntu becoming too high for the actual monitor. This guide is written with the Ubuntu Live CD and version 12.10 in mind.
+<!-- truncate -->
 
   1. During start-up select your language when prompted.
   2. Press **F6** (Other Options)

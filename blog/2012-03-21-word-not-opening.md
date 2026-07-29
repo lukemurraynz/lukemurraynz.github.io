@@ -6,6 +6,7 @@ tags:
   - Windows
 ---
 Having problems opening Word? This usually occurs when the template that it uses to generate a new fresh page is corrupted. Follow the instructions below to fix:
+<!-- truncate -->
 
   1. Open My Documents
   2. Up the top, select Tools

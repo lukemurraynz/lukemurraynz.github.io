@@ -7,6 +7,7 @@ tags:
   - Misc
 ---
 What you need
+<!-- truncate -->
 
 *  Flat Head Screw-Driver
 * Razor Blade

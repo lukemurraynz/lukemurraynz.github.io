@@ -6,6 +6,7 @@ tags:
 date: 2013-12-17 00:00:00 +1300
 ---
 Note: You need the rights to be able to run an elevated Command Prompt.
+<!-- truncate -->
 
 **Windows 7**
 

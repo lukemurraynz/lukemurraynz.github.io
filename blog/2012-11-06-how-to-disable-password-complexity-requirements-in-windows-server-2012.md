@@ -13,6 +13,7 @@ date: 2012-11-06 00:00:00 +1300
   5. Double click “**_Password must meet complexity requirements_**”
   6. Click **Disable**
   7. Click **Ok**
+<!-- truncate -->
 
 &nbsp;
 

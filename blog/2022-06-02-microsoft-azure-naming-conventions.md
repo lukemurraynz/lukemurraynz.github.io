@@ -11,6 +11,7 @@ header:
 slug: azure/microsoft-azure-naming-conventions
 ---
 Accurately representing and naming your resources is essential for security purposes.
+<!-- truncate -->
 
 In a security incident, it is critical to identify affected systems quickly, what functions those systems support, and the potential business impact.
 

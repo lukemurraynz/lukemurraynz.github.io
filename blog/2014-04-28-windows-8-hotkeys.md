@@ -7,6 +7,7 @@ date: 2014-04-28 00:00:00 +1300
 ---
 
 Windows 8 introduced a significantly redesigned interface with the Start screen, charms bar, and Metro apps. While these features were designed for touch screens, they can be navigated efficiently on a keyboard using **hotkey combinations**.
+<!-- truncate -->
 
 Here is a reference guide to the most useful Windows 8 keyboard shortcuts.
 

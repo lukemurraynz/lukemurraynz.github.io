@@ -6,6 +6,7 @@ tags:
   - Windows
 ---
 First  you need to uninstall Picasa, follow the guide below to do this:
+<!-- truncate -->
 
   1. Click Start
   2. Click Control Panel

@@ -5,6 +5,7 @@ tags:
   - Windows
 ---
 This is fixed by removing the Excel11.xlb excel template file located in the following locations:
+<!-- truncate -->
 
 Win7 32bit:
 

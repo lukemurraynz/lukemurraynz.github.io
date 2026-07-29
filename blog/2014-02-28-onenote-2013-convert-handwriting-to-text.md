@@ -9,6 +9,7 @@ date: 2014-02-28 00:00:00 +1300
   2. Click on Type
   3. Drag over your handwritten notes and click Ink to Text _(you can also right your click your selection and choose Ink to Text)_
   4. It will then convert your selection to Text
+<!-- truncate -->
 
 Note if your handwriting doesn&#8217;t convert you can follow the guide below:
 

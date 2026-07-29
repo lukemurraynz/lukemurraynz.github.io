@@ -7,6 +7,7 @@ tags:
 date: 2013-01-15 00:00:00 +1300
 ---
 This usually occurs if Viruses or Spyware has infected _explorer.exe_ and changed the registry entry to stop it from starting.
+<!-- truncate -->
 
   1. Click Start (orb)
   2. Type in: **regedit**

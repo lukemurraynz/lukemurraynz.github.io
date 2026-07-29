@@ -20,3 +20,5 @@ tags:
  11. Export as “obj using ZBrush Presets”
  12. Open ZBrush
  13. Open the obj file you saved from 3DS Max
+
+<!-- truncate -->

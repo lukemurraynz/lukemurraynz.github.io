@@ -8,6 +8,7 @@ tags:
   - Windows
 ---
 _You need to download 3 DLLs click the links below to download and save them in a place you will remember and have easy access to for example your Desktop or Documents folder._
+<!-- truncate -->
 
 <a title="MSVCI70.DLL" href="http://www.dll-files.com/dllindex/dll-files.shtml?msvci70" target="_blank">MSVCI70.dll</a>
 

@@ -7,6 +7,7 @@ tags:
 date: 2014-03-01 00:00:00 +1300
 ---
 Deleting the Auto Complete entries in Google Chrome is very useful – especially if you are like me and wasn't paying attention and misspelt a username that would have forever been popping up in the login field.
+<!-- truncate -->
 
   1. Open Chrome
   2. Navigate to the login webpage of the autocomplete details you would like to remove.

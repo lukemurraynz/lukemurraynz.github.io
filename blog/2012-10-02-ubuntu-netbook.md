@@ -7,6 +7,7 @@ tags:
   - Linux
 ---
 _Note: Be best to be plugged into the Internet (through Ethernet) to make sure latest updates are installed and downloaded while running the install._
+<!-- truncate -->
 
 _Note: Early 2011/As of 11.04 Ubuntu &#8220;folded&#8221; the Netbook Edition into the normal installation instead of having it separate. _
 

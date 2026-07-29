@@ -11,6 +11,7 @@ header:
 slug: azure/controlled-chaos-in-azure-using-chaos-studio
 ---
 Chaos engineering has been around for a while; Netflix runs their own famous [Chaos Monkey](https://netflix.github.io/chaosmonkey/), supposedly running 24/7, taking down their resources and pushing them to the limit continuously; it almost sounds counter-intuitive – but it's not.
+<!-- truncate -->
 
 > Chaos engineering is defined as “the discipline of experimenting on a system in order to build confidence in the system’s capability to withstand turbulent conditions in production” (Principles of Chaos Engineering, [http://principlesofchaos.org/](http://principlesofchaos.org/ "http://principlesofchaos.org/")). In other words, it’s a software testing method focusing on finding evidence of problems before they are experienced by users.
 >

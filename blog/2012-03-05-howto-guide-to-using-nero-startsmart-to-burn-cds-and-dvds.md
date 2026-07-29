@@ -6,6 +6,7 @@ tags:
   - Windows
 ---
 **To Open Nero**
+<!-- truncate -->
 
   1. Click **Start**
   2. Click **All Programs**

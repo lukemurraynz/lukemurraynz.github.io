@@ -6,6 +6,7 @@ tags:
   - Mac OSX
 ---
 Issues with your iPad&#8217;s wireless? Try the following tips below, these can also be used for just normal Wireless issues.
+<!-- truncate -->
 
 **Turning it on or off again**
 

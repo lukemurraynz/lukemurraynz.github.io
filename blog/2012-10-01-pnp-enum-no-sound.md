@@ -95,3 +95,5 @@ tags:
     A list of devices should now appear select Plug and Play Software Enumerator and click <strong>Install</strong>
   </li>
 </ol>
+
+<!-- truncate -->

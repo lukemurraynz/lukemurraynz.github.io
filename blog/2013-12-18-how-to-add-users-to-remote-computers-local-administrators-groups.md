@@ -12,6 +12,7 @@ date: 2013-12-18 00:00:00 +1300
   5. In the computernames.txt document – add (one in each new line) the computer names that you will like to add the user to the Administrators group of.
   6. Once they have been added – save the time with the computer names.
   7. Now we need to create a batch script – open a new Notepad document and in the first line type: 
+<!-- truncate -->
   
       PSEXEC.EXE @computernames.txt NET LOCALGROUP Administrators **DOMAIN\****USERID** /ADD
 
