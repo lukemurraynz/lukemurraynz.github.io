@@ -22,7 +22,7 @@ PSRule is a suite of rules to validate resources and infrastructure as code _(Ia
 Features of [PSRule for Azure](https://azure.github.io/PSRule.Rules.Azure/ "PSRule for Azure")
  include:
 
-* Leverage over 200 pre-built rules across five WAF pillars:
+* Over 200 pre-built rules across five WAF pillars:
   * Cost Optimization
   * Operational Excellence
   * Performance Efficiency

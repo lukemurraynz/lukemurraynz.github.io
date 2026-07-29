@@ -28,7 +28,7 @@ When you submit a Bicep file or an ARM template to a deployment stack, it define
 
 You can create and update deployment stacks using Azure CLI, Azure PowerShell, or the Azure portal along with Bicep files. These Bicep files are transpiled into ARM JSON templates, which are then deployed as a deployment object by the stack.
 
-Deployment stacks offer additional capabilities beyond regular deployment resources, such as simplified provisioning and management of resources, preventing undesired modifications to managed resources, efficient environment cleanup, and the ability to utilize standard templates like Bicep, ARM templates, or Template specs.
+Deployment stacks offer additional capabilities beyond regular deployment resources, such as simplified provisioning and management of resources, preventing undesired modifications to managed resources, efficient environment cleanup, and the ability to use standard templates like Bicep, ARM templates, or Template specs.
 
 > When planning your deployment and determining which resource groups should be part of the same stack, it's important to consider the management lifecycle of those resources, which includes creation, updating, and deletion. For instance, suppose you need to provision some test VMs for various application teams across different resource group scopes.
 
@@ -46,17 +46,17 @@ Before we dig into it further, it may help to give you a comparison between the 
 | Management of Resources | Manages a group of Azure resources as an atomic unit. | Defines and deploys a repeatable set of Azure resources that adhere to organizational standards. | Defines and deploys Azure resources using a declarative language. | Defines and deploys reusable infrastructure code using template specs. | Defines and provisions infrastructure resources across various cloud providers using a declarative language. |  
 | Resource Definition     | Bicep files or ARM JSON templates are used to define the resources managed by the stack. | Blueprint artifacts, including ARM templates, policy assignments, role assignments, and resource groups, are used to define the blueprint. | Bicep files are used to define the Azure resources. | Template specs are used to define reusable infrastructure code. | Terraform configuration files are used to define the infrastructure resources. |  
 | Access Control          | Access to the deployment stack can be restricted using Azure role-based access control (Azure RBAC). | Access to blueprints is managed through Azure role-based access control (Azure RBAC). | Access to Azure resources is managed through Azure role-based access control (Azure RBAC). | Access to template specs is managed through Azure role-based access control (Azure RBAC). | Access to cloud resources is managed through provider-specific authentication mechanisms. |  
-| Benefits                | *Simplified provisioning and management of resources as a cohesive entity.*  Preventing undesired modifications to managed resources.*Efficient environment cleanup.*Utilizing standard templates such as Bicep, ARM templates, or Template specs for your deployment stacks. | *Rapidly build and start up new environments with organizational compliance.*  Built-in components for speeding up development and delivery. | *Easier management and deployment of Azure resources.*Improved readability and understanding of resource configurations. | *  Publish libraries of reusable infrastructure code. | *  Infrastructure-as-Code approach for provisioning resources across multiple cloud providers. |  
+| Benefits                | *Simplified provisioning and management of resources as a cohesive entity.*  Preventing undesired modifications to managed resources.*Efficient environment cleanup.*Using standard templates such as Bicep, ARM templates, or Template specs for your deployment stacks. | *Rapidly build and start up new environments with organizational compliance.*  Built-in components for speeding up development and delivery. | *Easier management and deployment of Azure resources.*Improved readability and understanding of resource configurations. | *  Publish libraries of reusable infrastructure code. | *  Infrastructure-as-Code approach for provisioning resources across multiple cloud providers. |  
 | Deprecation              | N/A | Azure Blueprints (Preview) will be deprecated. | N/A | N/A | N/A |  
 
-*It is always recommended to refer to the [official documentation](https://learn.microsoft.com/?WT.mc*id=AZ-MVP-5004796) for the most up-to-date and comprehensive information. The comparison table above, was created with the help of AI.*
+*It is always recommended to refer to the [official documentation](https://learn.microsoft.com/?WT.mc*id=AZ-MVP-5004796) for the most up-to-date and complete information. The comparison table above, was created with the help of AI.*
 
 It is hard to do a complete comparison, as always 'it depends' on your use cases and requirements, but hopefully this makes it clear where Deployment Stacks come into play (and it does not replace Bicep but works with it for better governance), with out-of-the-box benefits such as:
 
 * Simplified provisioning and management of resources across different scopes as a cohesive entity.
 * Preventing undesired modifications to managed resources through deny settings.
 * Efficient environment cleanup by employing delete flags during deployment stack updates.
-* Utilizing standard templates such as Bicep, ARM templates, or Template specs for your deployment stacks.
+* Using standard templates such as Bicep, ARM templates, or Template specs for your deployment stacks.
 
 > The key here is that Azure Deployment Stacks, is a native way to treat your infrastructure components as an atmonic unit or stack, so you manage the lifecycle of the resources as a whole vs every resource separately.
 

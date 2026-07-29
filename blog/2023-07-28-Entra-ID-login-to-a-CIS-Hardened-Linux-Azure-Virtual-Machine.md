@@ -157,4 +157,4 @@ If you are unable to connect, it may be due to an issue with the AADSSHLogin ext
 
     cat /var/log/azure/Microsoft.Azure.ActiveDirectory.AADSSHLoginForLinux/CommandExecution.log
 
-The Azure directory is protected, so you will need Administrator rights to delve into the logs.
+The Azure directory is protected, so you will need Administrator rights to dig into the logs.

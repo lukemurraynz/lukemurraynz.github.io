@@ -68,16 +68,16 @@ Treat cost monitoring and optimization as a process rather than a point-in-time 
 
 Today, we will focus on **Monitor and optimize**.
 
-#### Review Underutilized Resources
+#### Review Underused Resources
 
-Optimize and improve efficiency by identifying idle and underutilized resources across the Azure ecosystem.
+Identify and improve efficiency by finding idle and underused resources across the Azure ecosystem.
 
 ##### Review Azure App Service Plans
 
 Review [Azure App Service Plans](https://portal.azure.com/#blade/HubsExtension/BrowseResource/resourceType/Microsoft.Web%2FserverFarms "Azure Portal - App Service plan") to determine if:
 
 1. The Azure App Service Plan is ‘Standard’ or ‘Premium’ pricing and has an associated application.
-2. If the Azure App Service is getting utilized _(by looking at the Metrics/CPU)_ and doesn’t need to be downscaled to a smaller plan.
+2. If the Azure App Service is being used _(by looking at the Metrics/CPU)_ and doesn't need to be downscaled to a smaller plan.
 
 ##### Review shutdown workloads
 
@@ -103,7 +103,7 @@ Review [Azure SQL Databases](https://portal.azure.com/#blade/HubsExtension/Brows
 
 #### Review Azure Reserved Instances
 
-Azure reserved instances significantly reduce costs—up to 72 per cent compared to pay-as-you-go prices—with one-year or three-year terms on Windows and Linux virtual machines (VMs). What's more, you can now improve budgeting and forecasting with a single upfront payment (i.e. Pay for a VM Upfront for 1/3 Year or 5 Years), making it easy to calculate your investments. Or lower your upfront cash outflow with monthly payment options at no additional cost.
+Azure reserved instances significantly reduce costs - up to 72 per cent compared to pay-as-you-go prices - with one-year or three-year terms on Windows and Linux virtual machines (VMs). What's more, you can now improve budgeting and forecasting with a single upfront payment (i.e. Pay for a VM Upfront for 1/3 Year or 5 Years), making it easy to calculate your investments. Or lower your upfront cash outflow with monthly payment options at no additional cost.
 
 ![Azure Reserved Instance](/uploads/azure-ri.png "Azure Reserved Instance")
 

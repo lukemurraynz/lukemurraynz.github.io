@@ -28,7 +28,7 @@ PowerShell is a powerful scripting and automation framework developed by Microso
 
 ## PowerShell and Microsoft Azure
 
-When it comes to Microsoft Azure, PowerShell provides a robust set of cmdlets (pronounced "command-lets") that enable you to interact with and manage Azure resources, making it a valuable tool for working with Azure services.
+When it comes to Microsoft Azure, PowerShell provides a solid set of cmdlets (pronounced "command-lets") that enable you to interact with and manage Azure resources, making it a valuable tool for working with Azure services.
 
 When you run a PowerShell cmdlet to, for example, create a virtual machine or retrieve information about an Azure resource, the cmdlet translates your request into an HTTP request to the relevant Azure REST API endpoint.
 

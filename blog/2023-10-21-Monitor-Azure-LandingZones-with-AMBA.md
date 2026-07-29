@@ -206,4 +206,4 @@ You can check the Alert rules in Azure Monitor:
 > It won't deploy all alert rules unless you have the resources; an example is the Deploy VNetG Tunnel Bandwidth alert; the policy rule will only deploy if it matches:
 > The existence of a Virtual Network Gateway, with a VPN Gateway type, doesn't include the MonitorDisable tag; if I were to deploy a VPN Gateway, it would create the alert rule for me.
 
-Finally, if you want to clean up *(delete the resources)*, you can leverage the Start-AMBACleanup.ps1 script; it will leave the Resource Group, Alert processing rules and action group.
+Finally, if you want to clean up *(delete the resources)*, you can use the Start-AMBACleanup.ps1 script; it will leave the Resource Group, Alert processing rules and action group.

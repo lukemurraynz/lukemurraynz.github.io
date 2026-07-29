@@ -42,7 +42,7 @@ Introducing [Azure Elastic SAN](https://azure.microsoft.com/products/storage/ela
 
 With the Azure Elastic SAN, we can the elasticity of the Microsoft Azure block storage systems, to supply expandable block storage capabilities to workloads via [iSCSI](https://learn.microsoft.com/en-gb/azure/storage/elastic-san/elastic-san-planning?WT.mc_id=AZ-MVP-5004796#iscsi-support) (Internet Small Computer Systems Interface), or services such as Azure Kubernetes Services through [Azure Container Storage](https://techcommunity.microsoft.com/t5/azure-storage-blog/azure-container-storage-in-public-preview/ba-p/3819246?WT.mc_id=AZ-MVP-5004796).
 
-When looking at some of the [benefits](https://learn.microsoft.com/azure/storage/elastic-san/elastic-san-introduction?WT.mc_id=AZ-MVP-5004796#benefits-of-elastic-san) of an Azure Elastic SAN, over a traditional SAN, we will delve into several
+When looking at some of the [benefits](https://learn.microsoft.com/azure/storage/elastic-san/elastic-san-introduction?WT.mc_id=AZ-MVP-5004796#benefits-of-elastic-san) of an Azure Elastic SAN, over a traditional SAN, we will look at several
 common user stories around SAN provisioning and capacity management, with key differences around time to deployment and skills required.
 
 ![Azure Elastic SAN - User journey](/images/posts/AzureElasticSAN_UserJourney.PNG "Azure Elastic SAN - User journey")
@@ -205,7 +205,7 @@ Pathping, reported 0 hops for DNS resolution, this Virtual Machine is in another
 
 ![Azure Elastic SAN - Pathping](/images/posts/AzureElasticSAN_Pathping.png "Azure Elastic SAN - Pathping")
 
-In terms of Scalability, a few things to note:
+On scalability, a few things to note:
 
 * You cannot increase the volume size, while an active session (i.e., in use by a workload) is in use.
 * You can increase the Base and Additional size of the SAN, while sessions are in use.
@@ -226,7 +226,7 @@ For day to day operations, I was able to enable the [Volume Shadow Copies](https
 
 #### Security and Compliance
 
-Other than the usual filesystem permissions, you can use with your filesystems across Windows and Linux on the Azure Elastic SAN, there are built-in roles that can be leveraged for Azure Elastic SAN management.
+Other than the usual filesystem permissions, you can use with your filesystems across Windows and Linux on the Azure Elastic SAN, there are built-in roles that can be used for Azure Elastic SAN management.
 
 Assigning least privilege operations or creating your own custom role is possible with Azure Elastic SAN, and roles such as Volume Group Owner will be key to how the SAN is architectured for an organisation.
 
@@ -244,7 +244,7 @@ At the moment, Azure Elastic SAN supports, Service Endpoints only, [Private endp
 
 Connectivity to Windows and Linux machines, will be done through native iSCSI protocols, as the Azure Portal displayed when attempting to connect.
 
-At the time of this writing, [Azure Container Storage](https://techcommunity.microsoft.com/t5/azure-storage-blog/azure-container-storage-in-public-preview/ba-p/3819246?WT.mc_id=AZ-MVP-5004796) – connecting to Azure Kubernetes Service, can be leveraged by Azure Elastic SAN (Azure Container Storage is also in Public Preview).
+At the time of this writing, [Azure Container Storage](https://techcommunity.microsoft.com/t5/azure-storage-blog/azure-container-storage-in-public-preview/ba-p/3819246?WT.mc_id=AZ-MVP-5004796) – connecting to Azure Kubernetes Service, can be used by Azure Elastic SAN (Azure Container Storage is also in Public Preview).
 
 ![Azure Elastic SAN - Azure services integration](/images/posts/AzureElasticSAN_ComputeIntegration.PNG "Azure Elastic SAN - Azure services integration")
 

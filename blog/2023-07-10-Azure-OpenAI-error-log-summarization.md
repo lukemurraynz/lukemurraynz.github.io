@@ -14,9 +14,9 @@ I was assisting a user on [Microsoft Q&A](https://learn.microsoft.com/en-us/answ
 
 The issue itself was related to the Nested Virtualization, with the user unable to install Hyper-V or WSL (Windows Subsystem for Linux), it turned out to be [incompatilibies with the SKU size and Secure boot](https://learn.microsoft.com/azure/virtual-machines/trusted-launch?WT.c_id=AZ-MVP-5004796#unsupported-features).
 
-But as part of troubleshooting this issue, I recreated the Azure compute environment, this user had and started to delve into the Windows logs.
+But as part of troubleshooting this issue, I recreated the Azure compute environment, this user had and started to dig into the Windows logs.
 
-However, in this case I did something a bit different, I exported the logs as text file and opened up [Azure OpenAI](https://learn.microsoft.com/azure/cognitive-services/openai/overview?WT.mc_id=AZ-MVP-5004796), then navigated to Azure OpenAI Studio, clicked on Completion and used the summarization powers of the GPT 3.5 Large language model, to delve into the logs for me:
+However, in this case I did something a bit different, I exported the logs as text file and opened up [Azure OpenAI](https://learn.microsoft.com/azure/cognitive-services/openai/overview?WT.mc_id=AZ-MVP-5004796), then navigated to Azure OpenAI Studio, clicked on Completion and used the summarization powers of the GPT 3.5 Large language model, to dig into the logs for me:
 
 ![Azure OpenAI - Summarize Error Log](/images/posts/AzureOpenAI_Completion_ErrorLog.png "Azure OpenAI - Summarize Error Log")
 
