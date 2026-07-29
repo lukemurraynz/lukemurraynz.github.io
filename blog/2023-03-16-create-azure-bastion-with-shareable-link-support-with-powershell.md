@@ -22,8 +22,8 @@ There is a downside, though. To connect to a Virtual Machine secured by Bastion,
 
 As of November 2022, Microsoft introduced shareable links into public preview, solving two key pain points:
 
-* Administrators will no longer have to provide full access to their Azure accounts to one-time VM users—helping to maintain their privacy and security.
-* Users without Azure subscriptions can seamlessly connect to VMs without exposing RDP/SSH ports to the public internet.
+* Administrators will no longer have to provide full access to their Azure accounts to one-time VM users, helping to maintain their privacy and security.
+* Users without Azure subscriptions can connect to VMs directly without exposing RDP/SSH ports to the public internet.
 
 > The Bastion **Shareable Link** feature lets users connect to a target resource (virtual machine or virtual machine scale set) using Azure Bastion without accessing the Azure portal.
 
@@ -33,7 +33,7 @@ Because the service is in Public Preview - native PowerShell cmdlet support, ena
 
 ![Create Azure Bastion with Shareable Link Support](/uploads/azurebastion_shareablelinkheader.png "Create Azure Bastion with Shareable Link Support")
 
-To get around that, we will leverage the [Azure Rest API](https://learn.microsoft.com/rest/api/azure/?WT.mc_id=AZ-MVP-5004796 "Azure REST API reference") directly, using PowerShell to enable the Shareable Link feature and create and obtain a shareable link for a Virtual Machine.
+To get around that, we will use the [Azure Rest API](https://learn.microsoft.com/rest/api/azure/?WT.mc_id=AZ-MVP-5004796 "Azure REST API reference") directly, using PowerShell to enable the Shareable Link feature and create and obtain a shareable link for a Virtual Machine.
 
 #### Create Azure Bastion
 

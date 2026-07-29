@@ -45,7 +45,7 @@ At a very high level, this is what a day in the life of a technical lead means t
 * Try, Learn, Adapt, Try again
 * Agile is about speed to adapt, not velocity
 * Log what's useful, monitor what matters, alert on what's actionable
-* Empower others while making sure that everything is auditable, standardised.
+* Enable others while making sure that everything is auditable, standardised.
 * We live in a VUCA (Volatile, Uncertain, Complexity, Ambiguity) world, you will never see perfect.
 
 

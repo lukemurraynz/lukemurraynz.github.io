@@ -52,7 +52,7 @@ Although still in a transitory period with some services, Microsoft has come som
 
 This will be an ever-increasing functionality.
 
-As the world becomes increasingly interconnected, the need for robust and scalable networking solutions has never been greater. IPv6 is the latest version of the Internet Protocol, offering a range of benefits over its predecessor, IPv4.
+As the world becomes increasingly interconnected, the need for reliable and scalable networking solutions has never been greater. IPv6 is the latest version of the Internet Protocol, offering a range of benefits over its predecessor, IPv4.
 
 There are several benefits of using IPv6 over IPv4, including:
 

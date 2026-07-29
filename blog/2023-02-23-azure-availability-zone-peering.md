@@ -85,7 +85,7 @@ It's worth noting that **mapping the Logical to Physical Zones of the Avalibilit
 
 **During normal business use - you don't need to know any of this; select a zone and deploy**; if you have resources across subscriptions and run into additional latency - this may be why, although each availability zone is connected through a dedicated regional low-latency network with a round-trip latency of less than 2ms.
 
-But suppose you are curious or want to delve deeper into your Disaster Recovery and resiliency architecture within a single region. In that case, it can be helpful to know the mapping.
+But suppose you are curious or want to dig deeper into your Disaster Recovery and resiliency architecture within a single region. In that case, it can be helpful to know the mapping.
 
 This information isn't fed into the Azure Portal. To find the mapping, we need to query the Azure API directly using the [Check Zone Peers](https://learn.microsoft.com/en-us/rest/api/resources/subscriptions/check-zone-peers?tabs=HTTP&WT.mc_id=AZ-MVP-5004796 "Subscriptions - Check Zone Peers") endpoint.
 

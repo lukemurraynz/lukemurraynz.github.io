@@ -144,7 +144,7 @@ Now that you have your Connector setup, its time to set up your application
 * **Name**: This is the application that users will see _(i.e. I am going with Pizza, which is the name of my NAS)_
 * **Internal URL**: This is the internal URL used to access your application inside the network _(in my example, it is:_ [_http://pizza.corp.contoso.com/_](http://pizza.corp.contoso.com/)_)_
 * **External Url**: This is the external URL that will be created so that users can access the application form; _I will go with Pizza._ Note this URL down.
-* **Pre-Authentication**: You don't have to authenticate with Azure AD, you can use passthrough, but it is not something I would recommend without delving into requirements, testing _– I am going to select: Microsoft Entra ID._
+* **Pre-Authentication**: You don't have to authenticate with Azure AD, you can use passthrough, but it is not something I would recommend without first looking at your requirements and testing _– I am going to select: Microsoft Entra ID._
 * **Connector Group**: Select the connector group you created earlier or that your Connector is signed to.
 * **Leave** all **Additional Settings as default** – they can be changed later if you need to.
   1. ![Azure Application Proxy](/uploads/azureportal-applicationproxynewapplication.png)

@@ -357,6 +357,6 @@ If you navigate to: **Configuration**, this is where you can specify any Custom 
 
 You can also **Export** and **Import** a configuration from a previous install on the Configuration pane.
 
-There is also an Azure Naming Tool Swagger API that you can leverage _(the API key can be found under Admin)_ in your Infrastructure as Code or script deployments.
+There is also an Azure Naming Tool Swagger API that you can use _(the API key can be found under Admin)_ in your Infrastructure as Code or script deployments.
 
 ![Azure Naming Tool - API](/uploads/azurenamingtool-api.png "Azure Naming Tool - API")

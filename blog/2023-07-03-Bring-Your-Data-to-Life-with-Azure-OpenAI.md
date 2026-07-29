@@ -28,7 +28,7 @@ Just like the prompt states, ChatGPT only has data up to September 2021 and isn'
 
 So let us use the Azure OpenAI and bring in outside data [(ground data)](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/how-to/chatgpt?pivots=programming-language-chat-completions&WT.mc_id=AZ-MVP-5004796#using-data-for-grounding), in this case, the Azure document library, to overlay on top of the GPT models, giving the illusion the model is aware of the data.
 
-To do this, we will leverage native '[Bring Your Own Data](https://learn.microsoft.com/azure/cognitive-services/openai/use-your-data-quickstart?tabs=command-line&pivots=programming-language-studio&WT.mc_id=AZ-MVP-5004796)' functionality, now in Azure OpenAI - **this is in Public Preview as of 04/07/2023**.
+To do this, we will use the native '[Bring Your Own Data](https://learn.microsoft.com/azure/cognitive-services/openai/use-your-data-quickstart?tabs=command-line&pivots=programming-language-studio&WT.mc_id=AZ-MVP-5004796)' functionality, now in Azure OpenAI - **this is in Public Preview as of 04/07/2023**.
 
 **To be clear, I don't expect you to start downloading from GitHub; this is just an example I have used to add your data. The ability to bring in updated data on Azure, specifically, will be solved by [Plugins](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/generative-ai-for-developers-exploring-new-tools-and-apis-in/ba-p/3817003?WT.mc_id=AZ-MVP-5004796), such as Bing Search.**
 
@@ -216,7 +216,7 @@ We will not change the System Prompt (although to get the most out of your own d
 1. Check, I acknowledge that connecting to an Azure Cognitive Search account will incur usage to my account. [View Pricing](https://azure.microsoft.com/en-us/pricing/details/search/?WT.mc_id=AZ-MVP-5004796)
 1. Click Next
 1. It should bring in the index metadata; for example - our content data is mapped to content - so I will leave this as is; click Next
-1. I am not utilizing Semantic search, so I click Next
+1. I am not using Semantic search, so I click Next
 1. Finally, review my settings and click Save and Close
 1. Now we can verify our own data is getting checked by leaving the: Limit responses to your own data content checked
 1. Then, in the Chat session, in the User message, I type: Tell me about Azure Elastic SAN?
@@ -226,7 +226,7 @@ We will not change the System Prompt (although to get the most out of your own d
 
 ### Optional - Deploy to an Azure WebApp
 
-Interacting with our data in the Chat playground can be an enlightening experience, but we can go a step further and leverage the native tools to a chat interface - straight to an Azure web app.
+Interacting with our data in the Chat playground can be an enlightening experience, but we can go a step further and use the native tools to create a chat interface - straight to an Azure web app.
 
 To do this, we need to navigate back to the Chat playground, ensure you have added your own cognitive search, and can successfully retrieve data from your index.
 

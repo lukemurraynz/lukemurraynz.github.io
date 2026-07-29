@@ -43,7 +43,7 @@ Azure Optimisation Engine combines multiple data sources to give you better data
 - Extracts data periodically to build a recommendations history
 - Joins and queries data in an analytics-optimised repository _(Log Analytics)_
 - Virtual Machine performance metrics collected with Log Analytics agent
-- Can leverage existing customer setup
+- Can use existing customer setup
 - Requires only a few metrics collected with a frequency >= 60 seconds
 
 > Besides collecting **all Azure Advisor recommendations**, AOE includes other custom recommendations that you can tailor to your needs:
@@ -115,7 +115,7 @@ Taken directly from the Git repository readme, the prerequisite for Azure Optimi
 
 During deployment, you'll be asked several questions. It would be best if you planned for the following:
 
-- Whether you're going to reuse an existing Log Analytics Workspace or create a new one. **IMPORTANT**: you should ideally reuse a workspace where you have VMs onboarded and already sending performance metrics _(`Perf` table)_; otherwise, you will not fully leverage the augmented right-size recommendations capability. If this is not possible/desired for some reason, you can still manage to use multiple workspaces _(see_ [_Configuring Log Analytics workspaces_](https://github.com/helderpinto/AzureOptimizationEngine/blob/master/docs/configuring-workspaces.md)_)_.
+- Whether you're going to reuse an existing Log Analytics Workspace or create a new one. **IMPORTANT**: you should ideally reuse a workspace where you have VMs onboarded and already sending performance metrics _(`Perf` table)_; otherwise, you will not fully use the augmented right-size recommendations capability. If this is not possible/desired for some reason, you can still manage to use multiple workspaces _(see_ [_Configuring Log Analytics workspaces_](https://github.com/helderpinto/AzureOptimizationEngine/blob/master/docs/configuring-workspaces.md)_)_.
 - An Azure subscription to deploy the solution _(if you're reusing a Log Analytics workspace, you must deploy into the same subscription the workspace is in)._
 - A unique name prefix for the Azure resources being created (if you have specific naming requirements, you can also choose resource names during deployment)
 - Azure region

@@ -15,7 +15,7 @@ Although primary driven and consumed by software developers – it is now a stap
 
 You don't have to know every single git command line syntax to use Git.
 
-Tools such as Visual Studio Code allows you to utilize git source control efficiently, and of course, you can use Git directly from the command line; however, sometimes you want an easy way to leverage Git through a point and click interface, there a lot of tools out there to give you easy access to Git, but today I will concentrate on Github Desktop.
+Tools such as Visual Studio Code allow you to use git source control efficiently, and of course, you can use Git directly from the command line; however, sometimes you want an easy way to use Git through a point and click interface, there a lot of tools out there to give you easy access to Git, but today I will concentrate on Github Desktop.
 
 If you are looking at something a bit more powerful _(especially if you are wanting to do submodules)_, then I suggest [Atlassian Sourcetree](https://www.atlassian.com/software/sourcetree "Atlassian Sourcetree").
 
@@ -27,7 +27,7 @@ Github Desktop gives you a clean, light and easy to use tool to work with git re
 
 Although Github Desktop is published by Github – this doesn't mean you cannot use a git repository hosted by another provider, such as Azure DevOps.
 
-This article assumes that you have a Git repository initialized already; you can create free repositories from [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/?nav=min&WT.mc_id=AZ-MVP-5004796 "Azure DevOps") or [Github](https://github.com/ "GitHub"). Microsoft owns Azure DevOps and Github; personally, I have moved from Azure DevOps to Github for my git repositories but utilize AzureDevOps pipelines.
+This article assumes that you have a Git repository initialized already; you can create free repositories from [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/?nav=min&WT.mc_id=AZ-MVP-5004796 "Azure DevOps") or [Github](https://github.com/ "GitHub"). Microsoft owns Azure DevOps and Github; personally, I have moved from Azure DevOps to Github for my git repositories but use AzureDevOps pipelines.
 
 ![Git High level workflow](/images/posts/HLGit_Workflow.png "Git High level workflow")
 

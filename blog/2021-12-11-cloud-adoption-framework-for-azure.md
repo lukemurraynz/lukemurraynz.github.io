@@ -34,7 +34,7 @@ _Note: It is not as if you can't get these resources elsewhere, I purely just wa
 
 - [Cloud adoption plan generator](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/plan/template?WT.mc_id=AZ-MVP-5004796)
 - [Azure DevOps demo generator](https://azuredevopsdemogenerator.azurewebsites.net/?name=CloudAdoptionPlan)
-  Leverage Azure DevOps to log and track your cloud adoption plan
+  Use Azure DevOps to log and track your cloud adoption plan
 
 **Ready**
 

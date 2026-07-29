@@ -56,7 +56,7 @@ So, what are some of the benefits that Azure Resource Mover offers us?
 - Streamline your move process by identifying dependencies.
 - Plan and test your move multiple times.
 - Stage your move as part of scheduled downtime.
-- Azure Resource Mover helps you orchestrate seamlessly with a consistent experience across common Azure resources​:
+- Azure Resource Mover helps you orchestrate with a consistent experience across common Azure resources​:
 - Move multiple resources through a single pane of glass.
 - Reduce manual touchpoints, which could increase the change of services being missed.
 - Reduce overall time for your move from months to weeks or days\* (based on the service and data being consumed).

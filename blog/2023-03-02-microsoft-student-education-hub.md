@@ -46,7 +46,7 @@ If you are an independent learner, the resources below can supplement your desir
 * [**Showcase Skills**](https://learn.microsoft.com/certifications/?WT.mc_id=AZ-MVP-5004796 "Microsoft Learn - Certifications"): Help advance their career by  
   completing challenges that demonstrate expertise.  
   Earn globally recognized and industry-endorsed  
-  certifications and showcase them to their network.
+  certifications and show them to their network.
 * [**Code Samples**](https://learn.microsoft.com/samples/browse/?WT.mc_id=AZ-MVP-5004796 "Microsoft Learn - Code Samples"): Test out new capabilities in their  
   own projects faster and easier with code samples  
   that bring Microsoft technology to life.

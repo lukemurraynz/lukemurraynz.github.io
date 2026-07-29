@@ -14,12 +14,12 @@ slug: azure/Getting-Started-with-GitHub-Codespaces
 
 ![Github Codespaces - Getting Started](/images/posts/Header_Getting_Started_with_GitHub_Codespace.gif)
 
-Github Codespaces does this by leveraging the power of the Cloud and GitHub to run containers that you can personalize to run your IDE, extensions, and any dependencies that you may need, whether you are a developer needing Python, apache, react, or a devops engineer requiring Bicep and Terraform support, Codespaces is an ideal enabler for our toolkit, in fact, this article was written in a Github Codespace, using Visual Studio Code and Markdown extensions.
+Github Codespaces does this by using the power of the Cloud and GitHub to run containers that you can personalize to run your IDE, extensions, and any dependencies that you may need, whether you are a developer needing Python, apache, react, or a devops engineer requiring Bicep and Terraform support, Codespaces is an ideal enabler for our toolkit, in fact, this article was written in a Github Codespace, using Visual Studio Code and Markdown extensions.
 
 > A codespace is a development environment that's hosted in the cloud. You can customize your project for GitHub Codespaces by configuring dev container files to your repository (often known as Configuration-as-Code), creating a repeatable codespace configuration for all project users.
 > GitHub Codespaces run on various VM-based compute options hosted by GitHub.com, which you can configure from 2-core machines up to 32-core machines. You can connect to your codespaces from the browser or locally using an IDE like Visual Studio Code or IntelliJ.
 
-Let's delve into [Github Codespaces](https://github.com/features/codespaces) a bit more!
+Let's look at [Github Codespaces](https://github.com/features/codespaces) a bit more!
 
 #### Introduction
 
@@ -36,7 +36,7 @@ Key features and benefits of GitHub Codespaces include:
 * Quick Setup: Setting up a development environment is quick and easy. You don't need to spend time installing and configuring software locally.
 * Configurability: Codespaces can be customized with extensions, tools, and settings to match your preferred development environment.
 * Scalability: GitHub Codespaces can scale according to your needs, making it suitable for individual developers and larger teams.
-* Version Control Integration: Codespaces is tightly integrated with GitHub repositories, making it seamless to switch between your code and the development environment.
+* Version Control Integration: Codespaces is tightly integrated with GitHub repositories, making it easy to switch between your code and the development environment.
 * Security: Codespaces offer a secure environment for development, as it doesn't store sensitive data and is protected by GitHub's security measures.
 * Project Setup: Codespaces can be configured to automatically set up a project with required dependencies and tools, reducing the time needed to get started.
 
@@ -110,7 +110,7 @@ There are a lot of customisation you can do, we won't be able to cover all possi
 
 ##### Setting Sync
 
-Before delving into some of the customisation of the devcontainer configuration itself, let us remember the Visual Studio Code settings sync.
+Before getting into some of the customisation of the devcontainer configuration itself, let us remember the Visual Studio Code settings sync.
 
 If you are someone who works on the same products and services and has invested time in configuring Visual Studio profiles, there's nothing indicating that you can't use this in a Github Codespace, especially if it is a trusted repository.
 
@@ -168,7 +168,7 @@ Let us take a look at the 'devcontainer.json' file. As Codespaces uses the [devc
   
 Can be used, offering a vast range of customisation opportunities to suit your needs.
 
-For most purposes, you may be able to find you can get away with a devcontainer.json file without having to delve into building your own dockerfile.
+For most purposes, you may be able to find you can get away with a devcontainer.json file without having to get into building your own dockerfile.
 
 Let us look into the devcontainer.json file I am using for this blog article:
 

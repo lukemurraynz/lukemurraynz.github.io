@@ -153,7 +153,7 @@ There are a few things to call out here:
 
 ![Create Azure Recovery Services Vault](/images/posts/rpo-rto-infographic.jpg)
 
-If we take a look at the Snapshot retention, we can leverage [Instant restore](https://learn.microsoft.com/en-us/azure/backup/backup-instant-restore-capability?WT.mc_id=AZ-MVP-5004796) snapshots, to restore the workloads, quickly from the previous 5 days, reducing our time RTO (recovery time objective), and overall impact of an outage or restore, by storing the snapshots locally (as close to the original disk) without putting it (waiting for it) into archive (slower disk), this will incurr more cost, but dramatically reduces restores time. I recommend always keeping a few Instant restore snapshots available for all production systems.
+If we take a look at the Snapshot retention, we can use [Instant restore](https://learn.microsoft.com/en-us/azure/backup/backup-instant-restore-capability?WT.mc_id=AZ-MVP-5004796) snapshots, to restore the workloads, quickly from the previous 5 days, reducing our time RTO (recovery time objective), and overall impact of an outage or restore, by storing the snapshots locally (as close to the original disk) without putting it (waiting for it) into archive (slower disk), this will incurr more cost, but dramatically reduces restores time. I recommend always keeping a few Instant restore snapshots available for all production systems.
 
 ![Snapshot](/images/posts/instant-rp-flow.png)
 
