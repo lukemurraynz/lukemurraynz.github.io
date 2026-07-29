@@ -2,20 +2,27 @@
 title: "When Your AI Agent Lies: Silent LLM Fallbacks"
 description: "Detect silent LLM fallbacks: when AI agents return templated responses with 200 OK, monitor token usage and fallback rates to avoid hidden correctness failures."
 slug: azure/silent-llm-fallback
-authors:
-  - luke
 tags:
+  - Azure
+keywords:
   - azure
   - ai
   - well-architected
   - resiliency
   - azure-openai
+  - fallback
+  - observability
+  - monitoring
+  - llm
+  - error-handling
+  - logging
+  - telemetry
 date: 2026-07-29T05:48:30.614Z
 ---
 
 A system I was debugging had AI-generated content flowing through it for days. The responses came back fast. No errors in the logs. No alerts fired. Every single response was templated.
 
-The fallback logic was intentional. If a model call failed, the system would return a deterministic template instead of showing the user an error. That works fine when failures are actually rare. But something had gone wrong. The fallback wasn't rare anymore—it was the only path that ever executed. And nobody was watching for it.
+The fallback logic was intentional. If a model call failed, the system would return a deterministic template instead of showing the user an error. That works fine when failures are actually rare. But something had gone wrong. The fallback wasn't rare anymore - it was the only path that ever executed. And nobody was watching for it.
 
 <!-- truncate -->
 
