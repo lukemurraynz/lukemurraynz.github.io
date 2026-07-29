@@ -16,3 +16,5 @@ WOL (Wake on Lan) functions – can be extremely useful especially in remote man
   7. Right click and select Wake-On-LAN, Send Wake-On-LAN signal to send the WOL packet to the workstations in the IP range. 
 
 Note: What I would recommend doing – is doing this process while you know the workstations have been started and instead of sending the Wake-On-LAN signal in Step 8 – select Save MAC to WOL Manager. You can then go to Options on the top menu of the Network Scanner and select Wake-On-LAN Manager – here you can add more workstations – clear the workstations by hostname/mac address and subnet that you do not want to include and specify a delay in sending out the Wake-On-LAN packets between workstations.
+
+<!-- truncate -->

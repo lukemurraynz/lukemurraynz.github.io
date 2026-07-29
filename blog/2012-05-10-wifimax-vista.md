@@ -13,6 +13,8 @@ How to install a Wifi Max Wifi dongle in Windows Vista
 
 _If you have already plugged the WifiMax dongle in before running the driver software then the WifiMax dongle will have been installed using Vistas default wireless driver. To repair this, follow the instructions below:_
 
+<!-- truncate -->
+
   1. _Right click Computer_
   2. _Select Properties_
   3. _Click the Hardware Tab_

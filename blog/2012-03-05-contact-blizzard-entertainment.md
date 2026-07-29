@@ -13,6 +13,8 @@ tags:
 
 Live Representatives Available Mon-Fri, 8am to 8pm PST
 
+<!-- truncate -->
+
 For phone assistance please call: 1 (800) 592-5499 || 1 (800) 59-BLIZZARD
   
 *Australian users should call 1-800-041-378 if the above number doesn’t work.

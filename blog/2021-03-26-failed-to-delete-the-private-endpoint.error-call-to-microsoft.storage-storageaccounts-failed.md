@@ -17,6 +17,8 @@ Failed to delete the private endpoint. Error: Call to Microsoft.Storage/storageA
 
 Azure Backup locks the storage account when you configure protection for any file share in the corresponding account. This provides protection against accidental deletion of a storage account with backed-up file shares.
 
+<!-- truncate -->
+
 ## Resolution
 
 In my case, the Storage account I was attempting to remove the Private Endpoint from was an Azure File Sync storage account, that had Azure File Shares that were getting Backuped Up.

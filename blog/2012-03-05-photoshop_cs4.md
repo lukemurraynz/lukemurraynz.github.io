@@ -7,6 +7,8 @@ tags:
 ---
 This error is caused by the Flexnet Licensing service being disabled. This is how you fix it
 
+<!-- truncate -->
+
   1. Click Start
   2. Click Run, or in Search Box
   3. Type **_services.msc_** press Enter

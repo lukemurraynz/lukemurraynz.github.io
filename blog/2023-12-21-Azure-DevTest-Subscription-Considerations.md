@@ -14,6 +14,7 @@ When looking at your Dev/Test workloads in Azure, you may be considering the [Az
 
 <!-- truncate -->
 
+
 ## Overview
 
 So, let us look at what this entails...

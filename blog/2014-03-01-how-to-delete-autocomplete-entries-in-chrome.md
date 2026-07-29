@@ -15,3 +15,5 @@ Deleting the Auto Complete entries in Google Chrome is very useful – especiall
   5. Press SHIFT+DELETE _(if you are using OSX – you can press FN+SHIFT+DEL)_ keys at the same time to permanently remove these details from Google Chromes cache.
 
 You have now stopped that autocomplete entry from forever reminding you of that misspell!
+
+<!-- truncate -->

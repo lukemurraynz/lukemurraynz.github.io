@@ -14,6 +14,8 @@ Today, we will look at using Azure OpenAI and 'Bring Your Data' to allow recent 
 
 ![Bring Your Data to Life with Azure OpenAI](/images/posts/Header-BringYourDatatoLifewithAzureOpenAI.gif "Bring Your Data to Life with Azure OpenAI")
 
+<!-- truncate -->
+
 The example we are going to use today is the Microsoft Learn documentation for [Microsoft Azure](https://learn.microsoft.com/azure/?product=popular&WT.mc_id=AZ-MVP-5004796).
 
 Our scenario is this:

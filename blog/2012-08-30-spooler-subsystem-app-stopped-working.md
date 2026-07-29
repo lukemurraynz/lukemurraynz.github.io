@@ -26,6 +26,8 @@ Follow the guides below to fix the spooler issues:
   </li>
 </ol>
 
+<!-- truncate -->
+
 _If that does not work, attempt the following:_
 
 <ol start="1">

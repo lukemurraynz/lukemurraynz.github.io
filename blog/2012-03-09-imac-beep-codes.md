@@ -8,6 +8,8 @@ tags:
 **1 beep** = No RAM installed/detected
   
 **2 beeps** = Incompatible RAM type installed (for example, EDO)
+
+<!-- truncate -->
   
 **3 beeps** = No RAM banks passed memory testing
   

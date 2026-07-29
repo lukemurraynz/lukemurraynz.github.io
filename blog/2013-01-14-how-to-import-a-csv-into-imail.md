@@ -17,3 +17,5 @@ _First – make sure iMail is closed._
   7. Select Open
 
 _You have now successfully imported your contacts into iMail._
+
+<!-- truncate -->

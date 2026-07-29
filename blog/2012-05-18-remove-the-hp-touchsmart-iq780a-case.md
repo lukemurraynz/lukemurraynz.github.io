@@ -11,3 +11,6 @@ tags:
   3. **Removed** the **screw** right next to the IR Out
   4. **Hold** the side **casing** of the computer and **slide** it towards **you**
   5. You have now removed the casing and can access the Power Supply/DVD Drive etc.
+
+<!-- truncate -->
+

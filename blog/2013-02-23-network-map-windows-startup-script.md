@@ -9,6 +9,8 @@ date: 2013-02-23 00:00:00 +1300
 
 If you regularly access a shared folder on your network, you can create a simple batch script that runs at startup to automatically map the network drive. This saves you from having to manually reconnect the drive each time you log in.
 
+<!-- truncate -->
+
 ## The script
 
 Create a new text file with a `.bat` extension (for example, `MapDrive.bat`) and add the following:

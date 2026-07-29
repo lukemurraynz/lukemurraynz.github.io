@@ -16,3 +16,5 @@ _Sometimes Album art may not be avaliable or you would like to add your own here
   6. The songs will be updated with the new album art and it will then be displayed in your Music Library.
 
 _You can also Copy & Paste Album art directly into it by right clicking the image you want and select copy. Then right click the Artwork screen in iTunes and select paste._
+
+<!-- truncate -->

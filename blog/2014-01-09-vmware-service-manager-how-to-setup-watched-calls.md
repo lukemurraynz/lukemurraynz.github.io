@@ -9,6 +9,8 @@ In VMWare Service Manager you can add a Watched Call; state to an Incident or Se
 
 Note: Putting this watched call state on will not add any history or adjust any of the lifecycle management of the call.
 
+<!-- truncate -->
+
 * First open an Incident – in the top banner click Watched Call
 * A dialog box will open saying: A watch has been placed on the following call(s): (call number)
 * Once you receive that dialog box – you have successfully setup a Watched Call and will be notified via email of any call changes.

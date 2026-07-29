@@ -14,3 +14,5 @@ Start with a clean laptop and a clean, flat working surface. To clean your lapto
   4. If you need to trim the skin to fit, bond the skin well around all edges first, then use a sharp utility knife and gently run the blade down the edge that needs to be trimmed.
 
 &nbsp;
+
+<!-- truncate -->

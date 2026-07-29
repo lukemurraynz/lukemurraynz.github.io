@@ -10,6 +10,8 @@ Sample CSV (Comma Separated Values File) for migration to Google Apps using th
 
 &nbsp;
 
+<!-- truncate -->
+
 office@domain.com#password,office@newdomain.com
   
 admin@domain.com#password,admin@newdomain.com

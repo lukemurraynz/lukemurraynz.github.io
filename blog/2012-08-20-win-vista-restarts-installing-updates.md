@@ -43,3 +43,5 @@ _One of the common causes of Windows Vista problems is due to Windows Updates; e
     Now <strong>restart</strong> your computer, it should now load Windows properly.
   </li>
 </ol>
+
+<!-- truncate -->

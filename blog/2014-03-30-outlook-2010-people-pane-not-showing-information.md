@@ -16,3 +16,5 @@ This fix is usually valid for an Exchange domain setup. The fix is to enable Cac
   7. Select Next and Next
 
 The Outlook client will begin to sync and create an offline cache of the exchange email and address book. Allowing for the People Pane to gather and display appropriate information.
+
+<!-- truncate -->

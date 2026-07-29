@@ -10,6 +10,8 @@ Go to your <a title="Last.FM" href="https://www.last.fm/settings/account" targe
 
 Click on the <strong>Data</strong> tab to the right of the top menu
 
+<!-- truncate -->
+
 Click <strong>Delete</strong> entire <strong>account</strong> 
 
 Click <strong>yes</strong> to confirm deletion.

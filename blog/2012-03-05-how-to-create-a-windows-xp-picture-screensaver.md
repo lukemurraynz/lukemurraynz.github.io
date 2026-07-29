@@ -7,6 +7,8 @@ tags:
 ---
 How to create a Windows XP Picture Screensaver
 
+<!-- truncate -->
+
   1. Right-click an empty spot on your desktop and then click **Properties**.
   2. Click the **Screen** **Saver** tab.
   3. In the Screen saver list, **click** My **Pictures** **Slideshow**.

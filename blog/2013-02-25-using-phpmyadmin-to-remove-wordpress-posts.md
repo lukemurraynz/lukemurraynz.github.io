@@ -16,3 +16,5 @@ Warning:  _This will remove all posts on your wordpress installation. Make sure
   6. Click Ok
 
 Note: Clearing the postsmeta table will delete the references to your images and post tags.
+
+<!-- truncate -->

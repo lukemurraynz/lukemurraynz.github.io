@@ -11,3 +11,5 @@ Want to boot from CD/DVD on your Macbook but don&#8217;t know how? The answer is
   2. **Using** the arrow keys, **select** the **CD**/**DVD** Drive at the **menu** and select **return**.
 
 Using this same method you can switch between Bootcamp and the OSX install.
+
+<!-- truncate -->

@@ -12,3 +12,5 @@ Having the problem where BearShare opens when you open a new Firefox tab even af
   3. Right click the **Bearshare** folder & **Delete**
 
 &nbsp;
+
+<!-- truncate -->

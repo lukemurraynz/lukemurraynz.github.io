@@ -23,3 +23,6 @@ tags:
     Once installed <strong>restart</strong> your computer
   </li>
 </ol>
+
+<!-- truncate -->
+

@@ -9,6 +9,8 @@ Caused when your network driver has become corrupted or changed for NetBIOs with
 
 You can “repair” this by using System Restore to go back to a previous driver, follow the guide below to do this:
 
+<!-- truncate -->
+
   1. Restart your computer
   2. While it is starting up and just before the computer starts to load Windows continuously tap F8.
   3. A text-based menu will appear and using the Arrow Keys and the Enter key select Repair My Computer (up the top of the menu)

@@ -20,6 +20,8 @@ slug: azure/powershell/azure-management-powershell
 
 > To see a video of these commands in action, take a look at the following YouTube-hosted video: [Microsoft Azure Management with PowerShell - Introduction](https://youtu.be/a4gehHwlwBQ)
 
+<!-- truncate -->
+
 ## PowerShell
 
 PowerShell is a powerful scripting and automation framework developed by Microsoft. It is designed for task automation and configuration management and is particularly useful for managing and automating Microsoft Windows environments. PowerShell uses a command-line interface with a scriptable approach, and it's built on the .NET Framework.

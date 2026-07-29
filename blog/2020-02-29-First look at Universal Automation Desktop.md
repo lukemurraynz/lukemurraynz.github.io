@@ -40,6 +40,8 @@ create a Resource Group in Azure.
 * TOC
 {:toc}
 
+<!-- truncate -->
+
 
 ## Install Universal Automation Desktop:
 

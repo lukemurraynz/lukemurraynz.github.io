@@ -14,6 +14,8 @@ The [PowerShell App Deployment Toolkit](https://psappdeploytoolkit.com/ "PowerSh
 
 ![PowerShell App Deployment Toolkit](/uploads/powershell_app_deploymenttoolkit.png "PowerShell App Deployment Toolkit")
 
+<!-- truncate -->
+
 Although the PowerShell App Deployment Toolkit, makes application installation a lot more visible and gives your users more control over how and when the Application is installed,  due to some technical limitations, you can't run the PowerShell App Deployment Toolkit, directly from the Datto RMM package store.
 
 This is a brief article, intended to help other people who may be using the App Deployment Toolkit with Datto RMM.

@@ -13,3 +13,6 @@ tags:
   5. You will see _&#8220;You currently have caching ON&#8221;_ and below that you will &#8220;_If you&#8217;d like to change your settings, Click here&#8221;_
   6. Click it to **turn** Slingshot&#8217;s Internet **Caching** **off**
   7. Give it about one minute, then **restart** your Broadband **modem**.
+
+<!-- truncate -->
+

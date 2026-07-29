@@ -18,6 +18,8 @@ Microsoft Azure and other Cloud/Software as a Service product operate in the Ope
 * TOC 
 {:toc}
 
+<!-- truncate -->
+
 ## Roles & Responsibilities & Azure Governance
 
 Before I start through some of the Products that can help you on your managing cost journey – I need to cover off the People aspect first; what I mean by this are Roles & Responsibilities; you need to have some clear clarity in your organisations around who is responsible for what costs are not only created but anything running, whether you have a Product Owner approving and managing the financials or entire Agile Squads dedicated to keeping their resources lean and responsibly for any costs incurred you need to be transparent around Responsibility and Accountability of your costs to help manage (and pay for) the costs and avoid waste. Microsoft Azure has a ‘[Billing Administrator](https://learn.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles?WT.mc_id=AZ-MVP-5004796)’ role which may be helpful to give someone visibility of costs in Microsoft Azure, also be aware of what roles users have, and what they can do with it, you don’t want to give someone Contributor rights over a subscription and have them create a ton of resources when all they needed was Reader rights to view someone else work or skip internal processes for deploying resources.

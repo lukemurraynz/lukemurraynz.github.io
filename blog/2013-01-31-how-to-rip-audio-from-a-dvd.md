@@ -20,3 +20,5 @@ In this guide I am using a media player called: VLC (VideoLAN) to do the convers
  10. Click **Start**
 
 Note: Make sure you have the right stream selected in step 6 &#8211; or you might just record the Menu sound &#8211; for example: VOB\_1 compared to Vob\_0.
+
+<!-- truncate -->

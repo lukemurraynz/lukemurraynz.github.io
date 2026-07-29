@@ -14,6 +14,8 @@ slug: azure/Getting-Started-with-GitHub-Codespaces
 
 ![Github Codespaces - Getting Started](/images/posts/Header_Getting_Started_with_GitHub_Codespace.gif)
 
+<!-- truncate -->
+
 Github Codespaces does this by using the power of the Cloud and GitHub to run containers that you can personalize to run your IDE, extensions, and any dependencies that you may need, whether you are a developer needing Python, apache, react, or a devops engineer requiring Bicep and Terraform support, Codespaces is an ideal enabler for our toolkit, in fact, this article was written in a Github Codespace, using Visual Studio Code and Markdown extensions.
 
 > A codespace is a development environment that's hosted in the cloud. You can customize your project for GitHub Codespaces by configuring dev container files to your repository (often known as Configuration-as-Code), creating a repeatable codespace configuration for all project users.

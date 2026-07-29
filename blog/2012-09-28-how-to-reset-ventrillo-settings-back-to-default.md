@@ -16,3 +16,5 @@ tags:
 _Make sure ventrilo is closed._
 
 &nbsp;
+
+<!-- truncate -->

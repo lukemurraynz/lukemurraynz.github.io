@@ -14,4 +14,6 @@ Trying to upload a CSV file to get Google to create multiple users with the emai
   </li>
 </ol>
 
+<!-- truncate -->
+
 _To get rid of the CSV file extension, you might have to go to a folder, click on Tools, Options, Folder Options and uncheck Show File Extensions._

@@ -14,6 +14,8 @@ Microsoft Entra ID is the foundation, which Microsoft 365 is built-on.
 
 In the words of Microsoft:
 
+<!-- truncate -->
+
 > Microsoft Entra ID (Azure AD) is Microsoft’s cloud-based identity and access management service, which helps your employees sign in and access resources in:
 >
 > * External resources, such as Microsoft 365, the Azure portal, and thousands of other SaaS applications.

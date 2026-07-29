@@ -22,4 +22,6 @@ date: 2013-12-18 00:00:00 +1300
 
 Note: Proper syntac allows for the group name to be set like &#8221; NET LOCALGROUP &#8220;Administrators&#8221; – however my test on a Windows XP workstation didn&#8217;t like the &#8220;&#8221; so I got rid of them – if you encounter an error with unable to find local group – re add them around the group name in the script.
 
+<!-- truncate -->
+
 Note: Tested on Windows 7 workstations without an issue.

@@ -10,3 +10,6 @@ date: 2013-12-23 00:00:00 +1300
   3. Change Logging in Lync to: Full
   4. Check – Also turn on Windows Event Logging for Lync to collect troubleshooting info
   5. Click Ok
+
+<!-- truncate -->
+

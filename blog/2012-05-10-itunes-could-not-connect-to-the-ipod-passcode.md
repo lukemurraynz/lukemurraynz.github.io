@@ -11,6 +11,8 @@ If you have forgotten the passcode on your iPod and iTunes displays the error **
 
 > **Warning:** This process will erase all data on your iPod. If you have a previous backup in iTunes or iCloud, you can restore your content after the reset.
 
+<!-- truncate -->
+
 ## How to restore using Recovery Mode
 
 1. **Turn the iPod off** completely.

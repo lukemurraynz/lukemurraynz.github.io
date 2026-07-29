@@ -9,6 +9,8 @@ date: 2012-03-05 00:00:00 +1300
 
 Caused by a recently Windows Update
 
+<!-- truncate -->
+
 First you need to access the recovery console. Following the instructions below
 
   1. **Boot** with your original **Windows XP CD**. You need one which will allow you to get into the Recovery Console.

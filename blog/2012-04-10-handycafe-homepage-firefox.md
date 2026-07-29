@@ -7,6 +7,8 @@ tags:
 ---
 This usually occurs when HandyCafe uses Firefox permissions/Javascript security to lock the homepage, follow the prompts to repair.
 
+<!-- truncate -->
+
   1. First you need to open your Firefox profile folder. Open Firefox.
   2. Click Help
   3. Click Troubleshooting Information

@@ -19,6 +19,8 @@ This usually occurs if Viruses or Spyware has infected _explorer.exe_ and change
 
 &nbsp;
 
+<!-- truncate -->
+
 If the above doesn&#8217;t work attempt a system restore by pressing F8 during Windows Vista boot to bring up the Boot Menu and select Startup Repair.
 
 &nbsp;

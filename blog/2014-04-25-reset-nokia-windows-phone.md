@@ -10,6 +10,8 @@ As part of my role at work – we continuously swap the company’s mobile phone
 
 **Warning:** This erases all personal content on your phone and restores the factory settings._
 
+<!-- truncate -->
+
 _Make sure the charger is disconnected, and switch your phone off.
 
   1. Press and hold the **volume down** key, and connect the charger. The screen will show an exclamation mark (**!**).

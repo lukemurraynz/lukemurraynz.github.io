@@ -13,6 +13,8 @@ The Microsoft Azure Portal displays a list of Recent resources _(whether they ar
 
 This capability makes it quick to access resources you use the most often, but sometimes you may want to view the resources in a list for easy access or clear the recent resources _(ie if you are going to do a presentation)_ - this is how you can do it.
 
+<!-- truncate -->
+
 The Azure portal has a service called: Recent, to access it.
 
 1. Log in to the [**Microsoft Azure Portal**](https://portal.azure.com/?l=en.en-nz#home "Microsoft Azure Portal")

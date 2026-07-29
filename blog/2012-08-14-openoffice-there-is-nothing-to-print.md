@@ -30,3 +30,5 @@ This issue occurs when the print range for the document has inadvertently change
     You should now be able to <strong>print</strong>.
   </li>
 </ol>
+
+<!-- truncate -->

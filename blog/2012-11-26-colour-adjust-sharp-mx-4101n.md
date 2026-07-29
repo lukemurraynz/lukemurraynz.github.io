@@ -10,6 +10,8 @@ _How to do a colour adjustment on a Sharp MX-4101N_
 
 &nbsp;
 
+<!-- truncate -->
+
 **For Copier:**
 
   1. **System** Settings (right of the LCD panel)

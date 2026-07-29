@@ -10,6 +10,8 @@ _Having problems where your monitor rotation is wrong, such as the start menu en
 
 Common fix for those using an Intel graphics driver, try the following Key combination:
 
+<!-- truncate -->
+
 <ol start="1">
   <li>
     On the keyboard, press and hold the: <strong>CTRL+ALT</strong> key then <strong>hold</strong> down the <strong>UP-ARROW</strong> button, to <strong>switch</strong> the <strong>screen</strong> <strong>rotation</strong>, keep <strong>pressing</strong> the UP-<strong>ARROW</strong> till you get your desired <strong>rotation</strong>.

@@ -10,6 +10,8 @@ Windows 8 introduced a significantly redesigned interface with the Start screen,
 
 Here is a reference guide to the most useful Windows 8 keyboard shortcuts.
 
+<!-- truncate -->
+
 ## Navigation shortcuts
 
 | Shortcut | Action |

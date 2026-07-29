@@ -22,6 +22,8 @@ slug: azure/deallocate-stopped-virtual-machines-using-azure-automation
 | Deallocating | This is the transitional state between running and deallocated.                                                                                                                                                                                                                                                                            | Not billed |
 | Deallocated  | The Virtual Machine has released the lease on the underlying hardware and is completely powered off. This state is also referred to as Stopped (Deallocated).                                                                                                                                                                              | Not billed |
 
+<!-- truncate -->
+
 Suppose a Virtual Machine is not being used. In that case, turning off a Virtual Machine from the Microsoft Azure Portal _(or programmatically via_ [_PowerShell_](https://learn.microsoft.com/en-us/powershell/azure/?WT.mc_id=AZ-MVP-5004796 "Azure PowerShell Documentation")_/_[_Azure CLI_](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli?WT.mc_id=AZ-MVP-5004796 "How to install the Azure CLI")_)_ is recommended to ensure that the Virtual Machine is deallocated and its affinity on the host has been released.
 
 ![Microsoft Azure - Virtual Machine Power States](/uploads/azvm-power-states.png "Microsoft Azure - Virtual Machine Power States")

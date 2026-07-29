@@ -14,6 +14,8 @@ First  you need to uninstall Picasa, follow the guide below to do this:
 
 Once the uninstall has completed you need to delete a DLL file so follow the steps below:
 
+<!-- truncate -->
+
   1. Click Start
   2. Click My Computer/Computer
   3. Navigate to: C:WindowsSystem32drivers

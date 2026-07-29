@@ -9,6 +9,8 @@ This error seems to be happening mostly to us New Zealand players.. looks like a
 
 To edit the Host file do the following:
 
+<!-- truncate -->
+
   1. Click Start
   2. All Programs
   3. Accessories

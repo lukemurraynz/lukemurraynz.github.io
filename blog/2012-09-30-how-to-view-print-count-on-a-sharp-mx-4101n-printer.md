@@ -7,3 +7,6 @@ tags:
   - Misc
 ---
 To view the print count on a Sharp MX-4101N printer, **hold** down the **Copy** button on the printer&#8217;s Touch Pad to **view** the Total **Count** which includes Black & White and Color prints.
+
+<!-- truncate -->
+

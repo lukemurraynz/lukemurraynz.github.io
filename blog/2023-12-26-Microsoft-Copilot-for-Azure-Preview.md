@@ -28,6 +28,7 @@ This is carried out within Azure's steadfast commitment to safeguarding your dat
 
 <!-- truncate -->
 
+
 ## Overview
 
 Microsoft Copilot for Azure is designed to generate the best possible responses within the context it can access.

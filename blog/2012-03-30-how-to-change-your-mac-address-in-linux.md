@@ -11,3 +11,5 @@ tags:
   4. Type: **_ifconfig eth0 up_**
 
 The mac address change is only temporary, until you restart
+
+<!-- truncate -->

@@ -12,6 +12,8 @@ tags:
   <span style="font-family:Times New Roman;font-size:12pt"><br /> </span>
 </p>
 
+<!-- truncate -->
+
   * Click on Paragraph 
   * Click the little &#8220;enlarge icon&#8221; 
   * Change Line Spacing to: Single and uncheck don&#8217;t add space between paragraphs of the same style.

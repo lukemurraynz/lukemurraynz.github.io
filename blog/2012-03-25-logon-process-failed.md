@@ -23,6 +23,8 @@ If the fix above, doesn&#8217;t work then follow this tomorrow:
 
 If none of the fixes above work, try the following:
 
+<!-- truncate -->
+
   1. Click Start
   2. Click Run
   3. Type:  devmgmt.msc _(This will open Device Manager, which lists your devices)_

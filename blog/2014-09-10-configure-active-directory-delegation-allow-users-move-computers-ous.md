@@ -17,3 +17,5 @@ date: 2014-09-10 00:00:00 +1300
  10. Click Finish
 
 Repeat steps 2 to 10 again on other OUs you would like to delegate move rights to.
+
+<!-- truncate -->

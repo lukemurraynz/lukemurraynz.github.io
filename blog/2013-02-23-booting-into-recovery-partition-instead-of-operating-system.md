@@ -8,6 +8,8 @@ date: 2013-02-23 00:00:00 +1300
 ---
 Having issues with your computer booting into the Recovery Partition instead of the Windows operating system? Try the guide below to repair.
 
+<!-- truncate -->
+
 
   1. First download <a title="GParted (Gnome Partition Manager)" href="http://gparted.sourceforge.net/download.php" target="_blank">Gparted</a> and burn it to a CD
   2. Boot from the Gparted CD _(F12 or Esc are common hotkeys to bring up the boot menu during system startup)_

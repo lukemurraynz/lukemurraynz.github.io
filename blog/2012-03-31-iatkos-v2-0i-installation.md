@@ -9,6 +9,8 @@ Credits goes to Apple and OSX86 community. This is just the instructions for the
   
 Attention:
 
+<!-- truncate -->
+
 1- This DVD is designed for Intel architectures.
   
 Minimum requirements: Intel SSE3 CPU, 512MB RAM, 12GB free space on target partition.

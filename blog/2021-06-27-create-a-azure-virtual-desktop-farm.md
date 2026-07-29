@@ -23,6 +23,8 @@ _If you don't already have a Microsoft Azure subscription, you can sign up for a
 
 Assuming you already have an Azure subscription and the appropriate access to create resources in that subscription, gets begin!
 
+<!-- truncate -->
+
 ## Create Microsoft Entra ID Domain Services
 
 1.  Log in to the **Azure Portal**

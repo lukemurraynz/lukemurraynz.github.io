@@ -10,6 +10,8 @@ The **"You have exceeded your profile space"** error in Windows XP appears when 
 
 The fix involves removing the registry keys that enforce the profile quota.
 
+<!-- truncate -->
+
 ## How to fix it
 
 1. Click **Start > Programs > Accessories** and open **Notepad**.

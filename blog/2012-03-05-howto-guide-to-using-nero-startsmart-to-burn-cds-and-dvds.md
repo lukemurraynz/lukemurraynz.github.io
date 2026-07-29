@@ -14,6 +14,8 @@ tags:
 
 **Burning a CD using Nero StartSmart**
 
+<!-- truncate -->
+
   1. At the **top** of Nero make sure you have &#8220;**CD/DVD**&#8221; selected.
   2. To make an **Audio or Data CD select the relevant icon**.
   3. **Click Make Data / Make Audio CD**.

@@ -11,6 +11,8 @@ If you find that your Laptop&#8217;s letters have started to type numbers, the f
 
 _If that doesn&#8217;t work, try the following:_
 
+<!-- truncate -->
+
   1.  At the same time press **Shift+Numlock**
 
 That&#8217;s it, it should be now typing letters.

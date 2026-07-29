@@ -16,6 +16,8 @@ slug: azure/azure-budget-filters-a-key-tool-for-effective-cloud-cost-management
 
 ![ Azure Budgets](/uploads/budgets.png " Azure Budgets")
 
+<!-- truncate -->
+
 > In the realm of Cost Management, budgets play a pivotal role in facilitating the planning and implementation of organizational accountability. These tools enable proactive communication regarding expenses and support the management of costs by closely monitoring spending trends over extended periods.
 >
 > One can set up alerts based on current or projected expenditures to maintain adherence to the established organizational spending limit. Upon surpassing the budget thresholds, notifications are promptly triggered. Such occurrences neither impact any of the available resources nor interrupt any consumption processes.

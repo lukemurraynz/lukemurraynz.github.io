@@ -16,3 +16,5 @@ date: 2014-01-07 00:00:00 +1300
 >Note: The same method allows Hyper-V to be installed on Windows 8.1 if you are running a 64bit OS & your Motherboard & CPU supports virtualization.
 
 Note: Surface RT does not support Hyper-V – this is only suitable for the Surface Pros.
+
+<!-- truncate -->

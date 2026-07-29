@@ -10,3 +10,6 @@ tags:
   3. **Go** to the **Logos** **and Skins** **page**
   4. **Select** your **skin** In the Select Skin section
   5. Click **Apply** Skin
+
+<!-- truncate -->
+

@@ -49,3 +49,5 @@ tags:
     The Countdown Shopping app will then launch and <strong>import</strong> the list
   </li>
 </ol>
+
+<!-- truncate -->

@@ -10,3 +10,5 @@ tags:
   3. Press Enter
 
 Tested in 10.5.8
+
+<!-- truncate -->

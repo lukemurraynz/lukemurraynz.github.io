@@ -13,3 +13,5 @@ tags:
   4. Navigate to the webpage you were having issues with **sound** on, you should **now****hear** it.
 
 _Note: Can cause some Flash animations not to display. Install the latest <a title="Adobe Flash Player" href="http://get.adobe.com/flashplayer/" target="_blank">Flash Player</a>._
+
+<!-- truncate -->

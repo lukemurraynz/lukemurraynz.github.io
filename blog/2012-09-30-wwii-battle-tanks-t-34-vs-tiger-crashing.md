@@ -11,6 +11,8 @@ _You need to download 3 DLLs click the links below to download and save them in 
 
 <a title="MSVCI70.DLL" href="http://www.dll-files.com/dllindex/dll-files.shtml?msvci70" target="_blank">MSVCI70.dll</a>
 
+<!-- truncate -->
+
 <a title="MSVCP71.DLL" href="http://www.dll-files.com/dllindex/dll-files.shtml?msvcp71" target="_blank">msvcp71.dll</a>
 
 <a title="MSVCR71.DLL" href="http://www.dll-files.com/dllindex/dll-files.shtml?msvcr71" target="_blank">msvcr71.dll</a>

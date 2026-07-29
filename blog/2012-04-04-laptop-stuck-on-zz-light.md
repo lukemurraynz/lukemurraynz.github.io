@@ -7,5 +7,7 @@ tags:
 ---
 This usually occurs when the laptop has problems coming out of standby mode.
 
+<!-- truncate -->
+
   1. **Hold down** **Power** Button for **10** **seconds**, then release.
   2. Remove the RAM module(s) _(Replace RAM modules into another slot)_

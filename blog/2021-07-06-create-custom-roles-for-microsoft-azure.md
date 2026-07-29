@@ -13,6 +13,8 @@ Microsoft Azure uses Role's to define who can access what - Role-Based Access Co
 
 You may be familiar with some of the more common ones, such as:
 
+<!-- truncate -->
+
 * Owner
 * Contributor
 * Reader

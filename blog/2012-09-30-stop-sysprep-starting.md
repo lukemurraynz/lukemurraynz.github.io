@@ -44,6 +44,8 @@ _Having issues with sysprep popping up all the time? Follow the instructions bel
   </li>
 </ol>
 
+<!-- truncate -->
+
 _You are pretty much changing Yes I do want to run SysPrep to No I don’t want to._
 
 <ol start="1">

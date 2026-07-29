@@ -11,3 +11,6 @@ date: 2013-12-18 00:00:00 +1300
   4. Click Add – and add the user that you want to delegate approval to.
   5. Select Notify Delegate to send an email to the delegate so they are aware of the change. Make sure Activate Delegation is ticked. 
   6. You have now setup delegation!
+
+<!-- truncate -->
+

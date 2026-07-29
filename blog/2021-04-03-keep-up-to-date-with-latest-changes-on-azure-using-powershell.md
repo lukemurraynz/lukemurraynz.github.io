@@ -25,6 +25,8 @@ So you can browse the website each week, or... monitor the RSS feeds. Sometimes 
 
 I have created a basic PowerShell function, that will retrieve the latest updates from the Microsoft Azure Updates RSS Feed and turn it into a PowerShell object you can actually use to keep informed.
 
+<!-- truncate -->
+
 ## The Script - Get-AzureBlogUpdates
 
 The script is hosted on my Github repository. Feel free to clone/recommend improvements or fork, I can add parameter sets instead of relying on the PowerShell methods listed in the examples section - if you find this script useful:

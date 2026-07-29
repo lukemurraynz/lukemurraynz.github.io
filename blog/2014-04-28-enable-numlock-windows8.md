@@ -8,12 +8,13 @@ date: 2014-04-28 00:00:00 +1300
 
 If you are like me – you rely heavily on the Num Lock key and having it disabled on boot is extremely annoying – using a quick registry change you can enable Numlock by default in Windows 8.
 
-<!-- truncate -->
 
 <div id="toc_container" class="no_bullets">
   <p class="toc_title">
     Table of Contents
   </p>
+
+<!-- truncate -->
   
   <ul class="toc_list">
     <li>

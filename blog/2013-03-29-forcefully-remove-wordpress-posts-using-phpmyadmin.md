@@ -8,6 +8,8 @@ tags:
 ---
 &nbsp;
 
+<!-- truncate -->
+
   1. Launch PHPMyAdmin _(either directly or through your web hosting control panel &#8211; doesn&#8217;t matter)_.
   2. Go into the wordpress database
   3. Go into your: **Posts** table

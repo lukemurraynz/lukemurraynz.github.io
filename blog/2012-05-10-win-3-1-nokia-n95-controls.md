@@ -9,6 +9,8 @@ Running Windows 3.1 on your Nokia phone in DOSBox and forgot how to control it? 
 
 Using the T9 Keypad
 
+<!-- truncate -->
+
 Receive Call button -Switching between input modes
   
 End Call button &#8211; Exit from DOSBox

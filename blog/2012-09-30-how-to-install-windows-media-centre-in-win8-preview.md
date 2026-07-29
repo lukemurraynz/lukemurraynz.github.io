@@ -43,3 +43,5 @@ Windows 8 Consumer preview does not have the Windows Media Centre installed by 
     Windows 8 will then <strong>restart</strong> your computer and Windows Media Centre will not be installed <em>(You can find it pinned to the Metro Start Panel)</em>
   </li>
 </ol>
+
+<!-- truncate -->

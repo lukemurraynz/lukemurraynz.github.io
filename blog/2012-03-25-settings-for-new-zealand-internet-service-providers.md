@@ -23,6 +23,8 @@ Ignite Communications (formerly Data Solutions NZ)
 
 Clear
 
+<!-- truncate -->
+
 * Dialup : 086725327 or Auckland 9145656
   
 * ADSL login : username\_adsl@clear.net.nz (or for a wholesale Telecom account being paid on a Clear invoice : username\_adsl@dsl.clear.net.nz)

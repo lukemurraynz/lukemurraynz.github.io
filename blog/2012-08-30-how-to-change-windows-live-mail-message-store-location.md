@@ -11,6 +11,8 @@ Follow the instructions below to change the Windows Live Mail message store.
 
 &nbsp;
 
+<!-- truncate -->
+
 <ol start="1">
   <li>
     <strong>Open</strong> <strong>Windows</strong> <strong>Live</strong> <strong>Mail</strong>

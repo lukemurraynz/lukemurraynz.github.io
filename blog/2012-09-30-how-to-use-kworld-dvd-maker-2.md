@@ -31,3 +31,5 @@ _To operate this device, you need to have to have installed Cyberlink DVD Produc
     Press <strong>End Record</strong> to <strong>finalise</strong> and <strong>finish</strong> the recording. <em>Make sure that if you are recording from a VHS machine to make sure that the VHS is rewind and press Play when recording.</em>
   </li>
 </ol>
+
+<!-- truncate -->

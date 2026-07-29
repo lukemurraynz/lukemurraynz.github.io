@@ -11,6 +11,8 @@ If you are seeing the **"Login Service Not Available"** error when trying to log
 
 Online game launchers use SSL/TLS certificates to establish secure connections with the login servers. These certificates have validity periods, and if your system clock is significantly wrong, the certificate validation fails and the launcher cannot connect.
 
+<!-- truncate -->
+
 ## How to fix it
 
 1. **Close** the **Old Republic Launcher** completely.

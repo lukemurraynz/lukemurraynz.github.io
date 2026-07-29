@@ -7,6 +7,8 @@ tags:
 ---
 Follow the steps below to remove your Nod32 password, useful when trying to uninstall and cannot remember what it is.
 
+<!-- truncate -->
+
   1. Click Start
   2. Click Run
   3. Type: regedit

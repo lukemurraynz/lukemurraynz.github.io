@@ -15,6 +15,8 @@ slug: azure/connect-to-azure-sql-database-in-a-jupyter-notebook-using-python
 
 I am not a python or Jupyter expert, so this article will be brief on how I was able to connect to an Azure SQL Database using Microsoft Entra ID authentication and run a query.
 
+<!-- truncate -->
+
 To run a Jupyter Notebook, you can install [Anaconda](https://www.anaconda.com/products/distribution "Anaconda") and then use that to download Juypter to run the notebooks from a locally _(or server)_ hosted web-based interface.
 
 However, today I will be using Visual Studio Code with the [Jupyter extension](https://code.visualstudio.com/docs/datascience/jupyter-notebooks " Jupyter Notebooks in VS Code ") on a windows endpoint.

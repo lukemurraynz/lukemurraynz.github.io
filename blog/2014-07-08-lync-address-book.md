@@ -9,6 +9,8 @@ date: 2014-07-08 00:00:00 +1300
 
 Log off of the Lync client and delete the profile from:
 
+<!-- truncate -->
+
 **%userprofile%/AppData/Local/Microsoft/Communicator**
 
 Then run the following command into an elevated command prompt to add the registry that forces the Lync client to immediately download the address book:

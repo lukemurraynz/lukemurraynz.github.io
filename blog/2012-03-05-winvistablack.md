@@ -10,6 +10,8 @@ If your **Windows Vista** computer boots to a **black screen** or takes an extre
 
 Below are two methods to resolve the issue, starting with the most common fix.
 
+<!-- truncate -->
+
 ## Method 1: Remove problematic driver files
 
 > **Warning:** This method involves deleting system files. Only attempt this if you are comfortable working with Windows system directories. Create a backup or System Restore point first if possible.

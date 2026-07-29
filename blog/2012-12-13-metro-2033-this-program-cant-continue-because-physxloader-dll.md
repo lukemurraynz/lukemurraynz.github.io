@@ -14,3 +14,6 @@ tags:
   5. Once the install has completed **run** the PhysX **installer** again to **re-install**.
   6. Once completed – you have to close and **restart** the **Steam** client.
   7. Attempt to run Metro 2033
+
+<!-- truncate -->
+

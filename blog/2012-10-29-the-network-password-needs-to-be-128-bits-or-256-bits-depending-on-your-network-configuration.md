@@ -8,6 +8,8 @@ tags:
 ---
 Attempting to enter in your wireless passkey and getting “The network password needs to be 128bits or 256bits depending on your network configuration “error? This usually occurs when the networking stack has been damaged/corrupted. Follow the instructions below to repair:
 
+<!-- truncate -->
+
   1. Click **Start**
   2. Click **Run**
   3. Type in: _**cmd**_

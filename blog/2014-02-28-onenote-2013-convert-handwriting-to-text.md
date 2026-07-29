@@ -12,6 +12,8 @@ date: 2014-02-28 00:00:00 +1300
 
 Note if your handwriting doesn&#8217;t convert you can follow the guide below:
 
+<!-- truncate -->
+
   1. Click on Draw
   2. Click on Lasso tool
   3. Select your handwritten text

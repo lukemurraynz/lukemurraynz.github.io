@@ -9,6 +9,8 @@ Note: This usually needs to be done when the Windows 7 profile has been manually
 
 Note: It is also recommend making a backup of the registry before this change – and you may need to restart the PC for the registry entry to be able to be removed.
 
+<!-- truncate -->
+
   1. Press Windows Key + R to open the **Run** dialog window.
   2. Type in: **regedit** and press Enter or click Ok
   3. Press yes to accept UAC prompt.

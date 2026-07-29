@@ -25,6 +25,7 @@ Swapping only the deployment name is not a safe change for reasoning-tier models
 
 <!-- truncate -->
 
+
 ## 1. The API surface itself might change under you
 
 Azure OpenAI currently has two versioning surfaces. The legacy route uses dated strings like `POST {endpoint}/openai/responses?api-version=2025-04-01-preview`. The newer route, `/openai/v1/responses`, is designed to remove that treadmill. In preview, it expects the literal `api-version=preview` rather than a date. At GA, `api-version` is no longer required.

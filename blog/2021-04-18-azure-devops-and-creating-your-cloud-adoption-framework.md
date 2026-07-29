@@ -24,6 +24,8 @@ Do you want to make a start on Azure Adoption and Governance, Server Migration o
 
 If you want to create a framework for your cloud adoption or migration plans, you can look at... using [Azure DevOps Demo Generator](https://azuredevopsdemogenerator.azurewebsites.net/ "Azure DevOps Generator")…
 
+<!-- truncate -->
+
 Azure DevOps is not only a continuous integration and deployment tool, along with the Repos, Pipelines, Test plans and Artifacts – there is Azure Boards, with Boards you can plan and track your work items and use the Kanban board functionality to easy update or track your work in progress items and add to the backlog, although Agile squads and sprint planning organizations primarily use Azure Boards – it does not have to be.
 
 The Azure DevOps Board’s come with your MSDN license or free under the Basic plan for the first 5 users.

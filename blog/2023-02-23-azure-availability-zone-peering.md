@@ -14,6 +14,8 @@ In most [regions ](https://learn.microsoft.com/azure/reliability/availability-zo
 
 Each Azure region features data centres deployed within a latency-defined perimeter. At a high level, these zones consist of 3 separate data centres with independent cooling, power, switching etc.
 
+<!-- truncate -->
+
 ![Azure availability zones](/uploads/availability-zones.png "Azure availability zones")
 
 > Azure availability zones are connected by a high-performance network with a round-trip latency of less than 2ms. They help your data stay synchronized and accessible when things go wrong. Each zone is composed of one or more datacenters equipped with independent power, cooling, and networking infrastructure. Availability zones are designed so that if one zone is affected, regional services, capacity, and high availability are supported by the remaining two zones.

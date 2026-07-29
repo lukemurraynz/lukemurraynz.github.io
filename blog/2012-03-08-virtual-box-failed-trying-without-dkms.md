@@ -8,6 +8,8 @@ tags:
 
 When you install or start [VirtualBox](https://www.virtualbox.org/) on a Linux distribution, you may encounter the error message **"Failed, trying without DKMS"**. This error indicates that the **DKMS (Dynamic Kernel Module Support)** package is not installed on your system.
 
+<!-- truncate -->
+
 ## What is DKMS?
 
 DKMS is a framework that allows kernel modules to be dynamically rebuilt when a new kernel is installed. VirtualBox relies on kernel modules (such as `vboxdrv`) to interface with your hardware. Without DKMS, these modules will not be rebuilt automatically after kernel updates, causing VirtualBox to fail.

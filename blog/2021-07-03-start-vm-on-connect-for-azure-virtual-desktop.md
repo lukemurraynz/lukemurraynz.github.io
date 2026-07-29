@@ -15,6 +15,8 @@ One of the models of Cloud governance and cost in Microsoft Azure is _'Pay As Yo
 
 The Azure Resource Manager fabrics allow you to scale up and down resources when you need it, whether built-in to the Azure portal or through various other automation mechanisms.
 
+<!-- truncate -->
+
 For Azure Virtual Desktop, this means ensuring that session hosts _(Virtual Machines)_ are available for users to connect to consume their services when they need it the most, whether first thing in the morning or late hours of the evening.
 
 One of the technologies that can help with this is: [Start VM on Connect](https://learn.microsoft.com/en-us/azure/virtual-desktop/start-virtual-machine-connect?WT.mc_id=AZ-MVP-5004796 "Start VM On Connect")_(Start VM on Connect allows users to start the virtual machine from a deallocated state)_.

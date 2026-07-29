@@ -10,6 +10,8 @@ To add a page to the top navigation (tabs) following the instructions below:
 
 First you must have already created the page you want to add.
 
+<!-- truncate -->
+
   1. Once you have logged into a Site click **_More_** _(up the top)_
   2. Click **_Edit Site Layout_**
   3. Click **_Edit Horizontal Navigation_** _(by hovering your mouse over the top tabs)_

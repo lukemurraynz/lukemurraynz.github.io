@@ -17,4 +17,6 @@ tags:
 
 _Note: If you are having issues with this not working, make sure that the when the document, ie a Powerpoint document is set to be shared with the public when adding it to your site article._
 
+<!-- truncate -->
+
 _Note: It has also been reported by various sources that this was a bug and if you were running the free version you could activate a trial to the enterprise/paid version of Google Apps, check the box as above and then remove the trial. If you have the paid version, contact Google Support if you are having issues._

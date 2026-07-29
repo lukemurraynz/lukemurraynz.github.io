@@ -29,4 +29,6 @@ tags:
 
 If the above does not work, try this <a title="Security_Restore" href="http://www.softpedia.com/get/Security/Security-Related/Security-Restore.shtml" target="_blank">Security Restore Utility</a>.
 
+<!-- truncate -->
+
 _This has also been reported as the fix for Windows Update Error #8007005_

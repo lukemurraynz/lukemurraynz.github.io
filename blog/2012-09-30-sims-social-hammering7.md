@@ -22,3 +22,5 @@ _Having problems with the Canvas Stretcher promotion and needing to Practice Ham
     <strong>Go</strong> <strong>back</strong> every <strong>10</strong> <strong>Minutes</strong> to finish the job, until you have <strong>completed</strong> it <strong>7</strong> <strong>times</strong>.
   </li>
 </ol>
+
+<!-- truncate -->

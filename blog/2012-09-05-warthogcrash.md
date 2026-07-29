@@ -14,4 +14,6 @@ Having random crashes on DCS A10 C Warthog? With Texture mismatches and Runtime 
 
 _You may need to temporarily disable UAC/run as administrator for this to work_
 
+<!-- truncate -->
+
 _If you wish to reverse this command back to default, simply use &#8220;bcdedit /deletevalue increaseuserva&#8221;_

@@ -15,3 +15,5 @@ date: 2014-09-06 00:00:00 +1300
 <span style="color:black;font-family:Arial;font-size:9pt">You can also install the Telnet client – using the command line by running the following command from an elevated command prompt:<br /> </span>
 
 **start /w pkgmgr /iu:&#8221;TelnetClient&#8221;**
+
+<!-- truncate -->

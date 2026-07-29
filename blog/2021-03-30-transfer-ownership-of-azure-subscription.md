@@ -20,6 +20,8 @@ Just a heads up IF you are selling services you have created in Microsoft Azure,
 
 **_Please read this carefully,_** there are certain limitations when transferring Subscription Ownership - especially across to another tenancy that you need to be aware of, these limitations are the Type of Subscription it is and the type of resources, encryption status, etc.[Transfer an Azure subscription to a different Azure AD directory](https://learn.microsoft.com/en-gb/azure/role-based-access-control/transfer-subscription?WT.mc_id=AZ-MVP-5004796#understand-the-impact-of-transferring-a-subscription) In some cases, you may need to look at alternative ways, such as redeploying or recreating the resources in the other subscription/tenancy manually - via redirecting an Azure DevOps deployment or manual backup export and import.
 
+<!-- truncate -->
+
 ## Transfer a Subscription
 
 Once you are ready to transfer a subscription, you can do the rest, simply through the Azure Portal:

@@ -14,6 +14,8 @@ Solution architecture is concerned with the planning, design, implementation, an
 
 The architecture of a system must balance and align the business requirements with the technical capabilities that are needed to execute those requirements.
 
+<!-- truncate -->
+
 The finished architecture is a balance of risk, cost, and capability throughout the system and its components.
 
 Running a solution in the cloud does not reduce the need for requirements to be clear. In fact, the flexibility and power provided by the cloud mean that it is even more important to have clear requirements from business stakeholders; otherwise, you could end up solving problems that don't exist, missing an important design decision, or going beyond the available budget by adding unnecessary resiliency.

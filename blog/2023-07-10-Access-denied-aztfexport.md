@@ -14,6 +14,8 @@ When attempting to use [aztfexport](https://github.com/Azure/aztfexport), a tool
 
 When using aztfexport, the first thing you need to do is make sure you have the [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli?WT.mc_id=AZ-MVP-5004796) installed, and run an:
 
+<!-- truncate -->
+
     az login
 
 After logging in, you need to verify you are on the right subscription, by running:

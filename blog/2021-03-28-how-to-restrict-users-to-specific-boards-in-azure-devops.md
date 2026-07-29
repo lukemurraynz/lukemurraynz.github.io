@@ -13,6 +13,8 @@ Do you ever want to add external Microsoft Entra ID or other users to specific b
 
 Using the steps below, we can restrict users to a specific board.
 
+<!-- truncate -->
+
 1. Invite external users to DevOps org with Stakeholder access.
 2. In the project, create a new Team and do not add it to the existing security group to inherit permissions.
 ![Azure DevOps - Boards](/uploads/azdevopsboard1.jpg)

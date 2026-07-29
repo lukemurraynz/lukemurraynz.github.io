@@ -11,6 +11,8 @@ If pressing **Shift + 2** produces a double quote instead of the **@ symbol**, y
 
 This can happen accidentally by pressing **Left Alt + Shift**, which is the default Windows shortcut for switching between installed keyboard layouts.
 
+<!-- truncate -->
+
 ## How to switch back to the US keyboard layout
 
 1. Click **Start**.

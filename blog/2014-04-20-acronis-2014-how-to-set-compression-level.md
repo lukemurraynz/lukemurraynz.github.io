@@ -9,6 +9,8 @@ On the Performance tab you can configure the following settings:
 
 Compression level
 
+<!-- truncate -->
+
 You can choose the compression level for a backup:
 
  * None &#8211; the data will be copied without any compression, which may significantly increase the backup file size.

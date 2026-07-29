@@ -23,3 +23,6 @@ tags:
     Under the Allow Applications to be downloaded from, <strong>select</strong> <strong>Anywhere</strong>
   </li>
 </ol>
+
+<!-- truncate -->
+

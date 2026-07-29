@@ -14,6 +14,8 @@ header:
 
 It's that time of year again! The time to be jolly and experience the Month of December by looking at the [Festive Tech Calendar](https://festivetechcalendar.com/ "Festive Tech Calender")!
 
+<!-- truncate -->
+
 > This year the Festive Tech Calendar Team is **raising money** for the charity [@missingpeople](https://www.missingpeople.org.uk/).
 >
 > We believe its important to support charities that do great work. Without fundraising Missing People wouldn’t be able to find vulnerable missing people and reunite families.

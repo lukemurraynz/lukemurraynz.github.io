@@ -15,3 +15,5 @@ Here is how you edit the Bit Torrent upload speed in Opera 9
   6. **Restart** Opera
 
 If you restart your broswer and realise that the torrents are no longer downloading. Check your download folder and reopen them again.
+
+<!-- truncate -->

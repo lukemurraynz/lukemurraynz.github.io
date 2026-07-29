@@ -15,6 +15,8 @@ _Wait for scan to complete, you may need your Windows CD/DVD for this if it need
 
 If the above did not work, try the following below:
 
+<!-- truncate -->
+
   1.  Open Notepad (Start, Programs, Accessories, Notepad)
   2. Select the text below and right click it and choose Copy.
 

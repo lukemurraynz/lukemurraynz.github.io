@@ -20,6 +20,8 @@ tags:
 
 **Mozilla Firefox**
 
+<!-- truncate -->
+
   1. Click Tools
   2. Click Options
   3. Click Advanced

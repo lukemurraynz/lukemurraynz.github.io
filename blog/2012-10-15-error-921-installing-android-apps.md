@@ -14,3 +14,5 @@ _Attempting to install applications from the Google Store and getting Error 921?
   4. Then re-**add** your **account**
 
 _Now you should be able to download and install the applications you are after._
+
+<!-- truncate -->

@@ -20,6 +20,8 @@ Chaos engineering has been around for a while; Netflix runs their own famous [Ch
 
 Introducing controlled Chaos tools such as Chaos Monkey and now – [Azure Chaos Studio](https://azure.microsoft.com/en-us/services/chaos-studio/?WT.mc_id=AZ-MVP-5004796) allows you to put pressure and, in some cases, take down your services to teach you how your services will react under strain and identity areas of improvement as resiliency and scalability to improve your systems.
 
+<!-- truncate -->
+
 ![Chaos](/images/chaosengineering-banner.png "Chaos")
 
 Azure Chaos Studio _(currently in Preview and only supported in several_ [_regions_](https://azure.microsoft.com/en-us/global-infrastructure/services/?products=chaos-studio&WT.mc_id=AZ-MVP-5004796)_now)_ is an enabler for 'controlled Chaos' in the Microsoft Azure ecosystem. Using that same tool that Microsoft uses to test and improve their services – you can as well!

@@ -9,6 +9,8 @@ Microsoft have released a Lync Metro App &#8211; available free through the <a t
 
 On first run &#8211; select if you want to run Lync in the background &#8211; this means that Lync will run regardless of whether you have opened it up first.
 
+<!-- truncate -->
+
 You can also use this Lync Application to join as an attendee to an existing Lync Meeting.
 
   1. Type in your sign-in address &#8211; example@example.com

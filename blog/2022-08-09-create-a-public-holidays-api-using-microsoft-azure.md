@@ -17,6 +17,8 @@ Using a previous [blog post](https://luke.geek.nz/azure/turn-on-a-azure-virtual-
 
 _Note: As this is a demonstration, I will be using a_ [_Consumption-based Azure Function_](https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale?WT.mc_id=AZ-MVP-5004796 "Azure Functions hosting options") _and Azure storage account, and although it is a good place to start - depending on your requirements, you may be better off with Azure Function Premium Plan to avoid cold-start times, and if you need a high amount of requests and writes (GET and POSTs) and resiliency, then replace the Storage account table with a_ [_Cosmos DB_](https://learn.microsoft.com/en-us/azure/cosmos-db/introduction?WT.mc_id=AZ-MVP-5004796 "Azure Cosmos DB")_._
 
+<!-- truncate -->
+
 The solution will be made up of the following:
 
 | Azure Service | Name | Plan | Note |

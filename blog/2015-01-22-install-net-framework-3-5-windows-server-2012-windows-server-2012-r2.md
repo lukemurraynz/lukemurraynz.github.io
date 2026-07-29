@@ -11,4 +11,6 @@ date: 2015-01-22 00:00:00 +1300
 
     dism /online /enable-feature /featurename:NetFX3 /all /Source:d:sourcessxs /LimitAccess
 
+<!-- truncate -->
+
 _Note: Source should be the Windows DVD location, ie d: **/Source:x**_ if x is your DVD mount point.

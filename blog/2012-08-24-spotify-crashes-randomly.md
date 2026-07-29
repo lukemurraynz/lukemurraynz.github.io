@@ -23,4 +23,6 @@ _Having issues with Spotify? Few minutes or seconds after opening it crashes, fo
   </li>
 </ol>
 
+<!-- truncate -->
+
 _Note: If Spotify doesn&#8217;t work reinstall <a title="Adobe Flash Player" href="http://get.adobe.com/flashplayer/" target="_blank">Adobe Flash Player</a>_

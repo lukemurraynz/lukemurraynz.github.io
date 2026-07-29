@@ -25,3 +25,5 @@ tags:
  16. Now is time to boot from the USB HDD type:
  17. boot ud:0,SystemLibraryCoreServicesBootX ((again the “0” is your partition number)
  18. Press Enter
+
+<!-- truncate -->

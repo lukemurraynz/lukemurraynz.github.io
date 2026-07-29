@@ -17,4 +17,6 @@ Every time you open Google Chrome you’re getting the “Your profile could not
 
 _If you are running Windows XP navigate to: Application DataLocalGoogleChromeUserDataDefault._
 
+<!-- truncate -->
+
 _Note: Default is the name of the Google profile; it may be different depending on your setup._

@@ -14,6 +14,8 @@ Azure Bicep is a Domain Specific Language (DSL) for deploying Azure resources de
 
 Azure Bicep has recently _(December 2021)_ been updated to: v0.4.1124, along with various other hotfixes and enhancements; this version supports 'Insert Resource' functionality.
 
+<!-- truncate -->
+
 Insert Resource simplifies ARM to Bicep conversion without exporting entire ARM templates, then compiles them to Bicep when you are only after export for a single resource.
 
 To use Insert Resource, you will need to have:

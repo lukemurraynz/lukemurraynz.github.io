@@ -8,3 +8,6 @@ tags:
 ---
   1. Press the green **Pencil** button
   2. **Select Predictive **Text
+
+<!-- truncate -->
+

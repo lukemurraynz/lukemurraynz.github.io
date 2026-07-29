@@ -12,3 +12,5 @@ date: 2013-12-17 00:00:00 +1300
   5. This will start a Repair-AppvClientPackage script to repair & redeploy; the application back to the user.
 
 Note: The repair will not work if the application process is running. Make sure it is fully closed in the Windows task manager before attempting the repair.
+
+<!-- truncate -->

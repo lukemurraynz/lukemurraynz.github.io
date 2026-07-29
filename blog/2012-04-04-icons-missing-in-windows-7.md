@@ -7,6 +7,8 @@ tags:
 ---
 Try the following fixes below:
 
+<!-- truncate -->
+
   1. Open **Task** **Manager** (Ctrl+Shift+Esc)
   2. Click **Process**
   3. **Right** **click** **Explorer**.exe and choose **End** **Task**

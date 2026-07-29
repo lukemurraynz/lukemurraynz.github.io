@@ -20,6 +20,8 @@ To help with your Microsoft Cloud Adoption and Azure migration, you need a few t
 
 ![Cloud Adoption Framework for Azure](/images/posts/Microsoft_CloudAdoptionFramework_Azure.png "Cloud Adoption Framework for Azure")
 
+<!-- truncate -->
+
 Here are some useful tools, templates, and assessments provided by Microsoft to help on your journey:
 
 _Note: It is not as if you can't get these resources elsewhere, I purely just wanted a list format for easy reference._

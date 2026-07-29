@@ -24,6 +24,8 @@ You cannot change a Log Analytics workspace created on a higher tier back to Fre
 
 ![Azure Log Analytics - Free](/uploads/log_analytics_free.png)
 
+<!-- truncate -->
+
 ## Create a 'Free Tier' Log Analytics using PowerShell
 
 Change the script's variables below to suit your environment, connect to Azure and run the script to create your Log Analytics workspace.

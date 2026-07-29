@@ -15,6 +15,8 @@ This post is a part of [Azure Spring Clean](https://www.azurespringclean.com/), 
 
 Thanks to [Joe Carlyle](https://twitter.com/wedoazure) and [Thomas Thornton](https://twitter.com/tamstar1234) for putting in the time and organising this event.
 
+<!-- truncate -->
+
 This article, along with others of its kind _(Articles, Videos etc.),_ cover Azure Management topics such as Azure Monitor, Azure Cost Management, Azure Policy, Azure Security Principles or Azure Foundations!
 
 Today I will be covering the [Azure Optimization Engine](https://github.com/helderpinto/AzureOptimizationEngine "Azure Optimization Engine").

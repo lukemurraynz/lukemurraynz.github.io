@@ -8,6 +8,8 @@ tags:
 
 _**AMD Athlon Series**_
 
+<!-- truncate -->
+
 AMD Athlon (socket) up to 1Ghz 90°C
   
 AMD Athlon (slot) all speeds 70°C

@@ -28,3 +28,5 @@ tags:
 </ol>
 
 _Warning using this method will delete any emails you delete without away to recover them._
+
+<!-- truncate -->

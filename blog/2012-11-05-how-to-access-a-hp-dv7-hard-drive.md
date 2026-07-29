@@ -10,3 +10,6 @@ tags:
   2. Move the battery latch right – to unlock the bottom panel.
   3. Now on the top of the panel _(bottom cover)_ gently lift up.
   4. You should now have access to the 2.5” HDD.
+
+<!-- truncate -->
+

@@ -12,6 +12,8 @@ It is best practice to lock down Azure resources to be accessible by location an
 
 When using Microsoft Hosted Agents in Azure DevOps, you need to make sure that the AzureCloud IPs for the Azure DevOps regions are opened on the Firewall.
 
+<!-- truncate -->
+
 In my case, I was in the: AustraliaEast region and needed to identify and add the following 'AzureCloud' Address Ranges to the KeyVault firewall:
 
 * "name": "**_AzureCloud.australiaeast_**",

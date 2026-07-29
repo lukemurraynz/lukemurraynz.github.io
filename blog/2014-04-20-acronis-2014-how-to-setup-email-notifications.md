@@ -20,6 +20,8 @@ To configure the email notifications in Acronis:
 
 If the test message sending fails, then perform the following:
 
+<!-- truncate -->
+
 1. Click Show extended settings.
 
 2. Configure additional email settings:

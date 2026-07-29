@@ -9,6 +9,8 @@ tags:
 
 Godaddy and there resellers (Wild West Domains resellers) use the following servers for incomming and outgoing email, Depending on what datacenter you are in
 
+<!-- truncate -->
+
 **American datacenters**
 
 Incoming (POP3) server: pop.secureserver.net

@@ -10,3 +10,5 @@ tags:
   2. On the metro interface click **Administrative** **Tools**
 
 _Note: Using Server Manager, you can also select Tools (top right) to select common tasks._
+
+<!-- truncate -->

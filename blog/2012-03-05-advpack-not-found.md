@@ -12,6 +12,7 @@ Although mainly occurring in the older versions of Windows I have seen this erro
 
 <!-- truncate -->
 
+
 ## Fixing this error in Windows 7
 
 1. Click Start

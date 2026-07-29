@@ -8,6 +8,8 @@ tags:
 
 Want to capture a still image from a movie or video clip? Both **Windows Media Player** and **VLC Media Player** have built-in snapshot features that make this straightforward.
 
+<!-- truncate -->
+
 ## Using Windows Media Player
 
 1. Play the video and navigate to the scene you want to capture.

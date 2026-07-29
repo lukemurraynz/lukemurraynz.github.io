@@ -15,6 +15,8 @@ slug: azure/you-don-t-have-authorization-to-perform-action-microsoft.resources-d
 
 This is because by default, even if you have Owner right on an Azure subscription, and are a Global Administer, you are unable to assign rights at the root '/' tenant level, to be able to create new Management Groups and move subscriptions between them.
 
+<!-- truncate -->
+
 However, users who have the Global Microsoft Entra ID role can elevate rights to do this.  There are a few steps to enabling this, including using [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/what-is-azure-powershell?WT.mc_id=AZ-MVP-5004796 "Azure PowerShell") to assign rights.
 
 With an account with Global Administrator rights, do the following:

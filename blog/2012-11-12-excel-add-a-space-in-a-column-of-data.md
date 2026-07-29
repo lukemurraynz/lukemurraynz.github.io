@@ -16,3 +16,5 @@ Ever had a bunch of next and numbers in a column and needed to separate them wit
   5. Click Ok to accept changes.
 
 _Note: You can preview the changes you make in the preview dialog above the custom edit field._
+
+<!-- truncate -->

@@ -20,3 +20,5 @@ _Alternatively you can doing the following:_
   4. Press **ok**.
 
 _The fonts directory is located at C:WINDOWSFonts_
+
+<!-- truncate -->

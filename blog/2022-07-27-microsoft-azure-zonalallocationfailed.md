@@ -18,6 +18,8 @@ When you create a virtual machine _(VM)_, start stopped _(deallocated)_ VMs, or 
 
 ![ZonalAllocationFailed](/uploads/zonalallocationfailed.png "ZonalAllocationFailed")
 
+<!-- truncate -->
+
 Microsoft is continually investing in additional infrastructure and features to ensure that they always have all VM types available to support customer demand. However, you may occasionally experience resource allocation failures because of unprecedented growth in demand for Azure services in specific regions.
 
 These tips, also apply to the 'Following SKUs have failed for Capacity Restrictions' error.

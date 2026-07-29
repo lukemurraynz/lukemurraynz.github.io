@@ -9,6 +9,8 @@ Having problems when you try opening the Vista Control panel and all you see is 
 
 Follow the instructions below to repair it. 
 
+<!-- truncate -->
+
 1. Left Click the Vista &#8220;Orb&#8221; 
 
 2. Left Click All Programs 

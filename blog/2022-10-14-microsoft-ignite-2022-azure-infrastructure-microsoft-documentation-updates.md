@@ -14,6 +14,8 @@ slug: azure/microsoft-ignite-2022-azure-infrastructure-microsoft-documentation-u
 
 Make sure you check out the [Microsoft Ignite 2022 Book of News](https://news.microsoft.com/ignite-2022-book-of-news/?WT.mc_id=AZ-MVP-5004796] "Microsoft Ignite 2022 - Book of News")! For a consolidated list of features and releases!
 
+<!-- truncate -->
+
 Also, check out [AzureFeeds](https://azurefeeds.com/ "AzureFeeds") - for a consolidated feed across all Microsoft changes!
 
 Along with the product pages, current and new Microsoft documentation have been updated to align with these new products, features and changes!

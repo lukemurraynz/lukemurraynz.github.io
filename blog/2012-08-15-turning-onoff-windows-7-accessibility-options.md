@@ -10,6 +10,8 @@ If your like me and get annoyed with the virtual keyboard popping up out of nowh
 
 **Digital Keyboard**
 
+<!-- truncate -->
+
   1. Click **Start**
   2. Click **Control** **Panel**
   3. Click **Ease** **of** **Access**

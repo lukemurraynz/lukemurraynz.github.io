@@ -10,6 +10,8 @@ In order to remove the Ads on the sidebar, we need to block them using an inbuil
 
 &nbsp;
 
+<!-- truncate -->
+
 <ol start="1">
   <li>
     Go to a machine with Handycafe installed

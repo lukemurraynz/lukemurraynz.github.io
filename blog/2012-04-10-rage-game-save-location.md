@@ -8,3 +8,5 @@ tags:
 Retail: C:\Users\(your user name)\Saved Game\sid Software\Rage\base\savegame
 
 STEAM:  Local files\program files\steam\steam\steam apps\(your account)\ rage\look for game saves
+
+<!-- truncate -->

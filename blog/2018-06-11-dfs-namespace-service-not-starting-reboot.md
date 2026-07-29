@@ -13,6 +13,8 @@ Distributed File System (DFS) has some service dependencies - so if those don't 
 
 <img class="alignnone" src="https://i1.wp.com/luke.geek.nz/wp-content/uploads/2016/12/121316_0835_DFSNamespac1.png?resize=584%2C112" alt="DFS Namespace" width="584" height="112" data-recalc-dims="1" />
 
+<!-- truncate -->
+
 The dependencies are:
 
 - Remote Registry

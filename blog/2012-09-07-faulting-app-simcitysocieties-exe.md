@@ -10,6 +10,8 @@ Getting the &#8220;Faulting application name: SimCitySocieties.exe, version: 1.0
 
 _Usually caused by the Tradmark characters in a folder name &#8220;™&#8221; which Windows does not support._
 
+<!-- truncate -->
+
   1. **Uninstall SimCity** Societies
   2. **Reinstall** the game and make sure the **install** **path** is **C:Program FilesElectronic ArtsSimCity Societies**
 

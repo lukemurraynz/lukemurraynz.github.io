@@ -10,6 +10,8 @@ Having problems with Windows Explorer with the “ntdll.dll” error? This usual
 
 &nbsp;
 
+<!-- truncate -->
+
 <ol start="1">
   <li>
     <strong>Right</strong> <strong>click</strong> My <strong>Computer</strong>

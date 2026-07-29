@@ -14,6 +14,8 @@ There are several reasons why a **Remote Desktop** connection might fail. Common
 
 The steps below walk through checking and enabling the necessary services on a remote computer using the Services console.
 
+<!-- truncate -->
+
 ## How to enable Remote Desktop services remotely
 
 1. Press **Win + R** to open the **Run** dialog.

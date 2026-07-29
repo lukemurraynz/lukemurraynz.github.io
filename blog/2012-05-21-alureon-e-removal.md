@@ -15,3 +15,6 @@ tags:
   7. Now you should see a list of partitions on your drive, there should be a very small partition that will be roughly about a few megabytes and should not have a drive letter assigned to it. IGNORE C: AND EVERY OTHER PARITION/DRIVE TO AVOID LOSS OF DATA.
   8. Right click on the few megabytes unlabelled partition and left click Delete Volume.
   9. Now restart your computer and do another virus scan and you should be all clean.
+
+<!-- truncate -->
+

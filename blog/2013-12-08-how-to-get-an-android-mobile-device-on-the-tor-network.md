@@ -9,6 +9,8 @@ Thankfully over the last few years – connecting securely & joining your workst
 
 Note: This application needs root access for full functionality and is recommend.
 
+<!-- truncate -->
+
   1. Open Play Store/Google Play on your android device.
   2. Search for: Orbot.
   3. Select – Orbot: Proxy with Tor _(from The Tor Project)_ & install it to your Android device.

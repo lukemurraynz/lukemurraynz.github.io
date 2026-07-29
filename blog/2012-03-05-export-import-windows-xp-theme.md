@@ -19,6 +19,8 @@ tags:
 
 **Import**
 
+<!-- truncate -->
+
   1. Right-click the desktop and select Properties
   2. On the Themes tab, click the Theme drop-down list and select Browse.
   3. In the Open Theme dialog box, access the My Documents folder, locate your theme file, and double-click it.

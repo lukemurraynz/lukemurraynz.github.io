@@ -16,6 +16,8 @@ Intermittent issues with Azure WebApp constantly stop functioning, a Stop/Start 
 
 Further investigation using Azure Application Insights, reveals the Azure WebApp was experiencing a few FailedRequestCount, with HTTP 500 Errors. An exception was thrown by a TaskScheduler. Exception of type 'System.OutOfMemoryException' was thrown.
 
+<!-- truncate -->
+
 ## Resolution
 
 In my case, the service that was running on the Azure WebApp was using .NET Core 2.0, the fix was to upgrade to the latest version.

@@ -16,6 +16,8 @@ This article is part of [Azure Back to School](https://azurebacktoschool.github.
 
 Along with the basics of the Azure Backup solutions, particularly on Virtual Machines running on Microsoft Azure, there have been a lot of changes in the last year, including Immutable vaults, enhanced policies, intelligence tiering, and cross-region restore.
 
+<!-- truncate -->
+
 ## Introduction
 
 Let us start with the basics with a user story; what do we need to achieve:

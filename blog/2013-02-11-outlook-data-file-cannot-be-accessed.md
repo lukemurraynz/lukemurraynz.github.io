@@ -10,6 +10,8 @@ tags:
 
 The **"Outlook data file cannot be accessed"** error commonly appears after **upgrading from Outlook 2007 to Outlook 2010**. The upgrade can break the folder mapping that tells Outlook where to deliver incoming emails, causing it to reference a data file path that no longer exists or has changed.
 
+<!-- truncate -->
+
 ## How to fix it
 
 1. Open **Outlook 2010**.

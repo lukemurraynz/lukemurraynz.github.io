@@ -15,6 +15,8 @@ One of the issues you face with setting up an Azure [Site to Site VPN](https://l
 
 This setup is fine when used in environments that have Static IPs (and yes if setting this up for a Business or Production, it is highly recommended to have a static IP!).
 
+<!-- truncate -->
+
 However, when used in environments like my home network or lab environments - which has a Dynamic IP that could change at any time it will cause connectivity issues if your IP changes and the Local Network Gateway is not updated.
 
 The script below – intended to be run on as a Daily scheduled task, will find

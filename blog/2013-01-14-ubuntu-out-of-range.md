@@ -15,6 +15,8 @@ This issue is commonly caused by the screen resolution settings in Ubuntu becomi
 
 _Ubuntu should now boot with a resolution of 1024 by 768 (32bit). Click &#8220;<a title="VESA Video Modes" href="http://en.wikipedia.org/wiki/VESA_BIOS_Extensions#Linux_video_mode_numbers" target="_blank">here</a>&#8221; for a Wikipedia link to other Video display choices._
 
+<!-- truncate -->
+
 If that doesn&#8217;t work:
 
 Start the Live CD process

@@ -19,3 +19,5 @@ If the above doesn&#8217;t work – you need to either create a new iTunes acco
   4. **Open** App **Store**
 
 The App Store will switch to English – you can now logout of the English account and the iPhone/iPod will retain its language setting.
+
+<!-- truncate -->

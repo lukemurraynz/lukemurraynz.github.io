@@ -10,6 +10,8 @@ Having issues trying to install device drivers in Windows XP and its stopping ha
 
 What you need
 
+<!-- truncate -->
+
 * Windows XP Home/Professional CD
 
   1. Open My **Computer**

@@ -8,6 +8,8 @@ tags:
 ---
 Trying to burn an Audio CD but Windows Media Player keeps burning them as Data MP3 disks? This is how you fix it.
 
+<!-- truncate -->
+
   1. Open Windows Media Player
   2. Click the small little tab below Burn up the top and select Audio CD
   3. That&#8217;s it! Now drag the files onto the burn list on the right, burn and you are good to go!

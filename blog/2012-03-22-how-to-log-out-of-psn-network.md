@@ -9,3 +9,6 @@ tags:
   2. Go to **Account** **Management**
   3. Press **TRIANGLE**
   4. Select **Sign** **Out** (here you can also disable AutoLogon to prevent the play-station network from logging you in automatically)
+
+<!-- truncate -->
+

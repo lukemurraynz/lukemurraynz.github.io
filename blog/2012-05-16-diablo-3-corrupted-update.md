@@ -12,3 +12,5 @@ Trying to either install Diablo 3 or update it and you are getting an error &#82
   1. Another option is to **install** the **game** in a **separate folder** or if possible hard drive , so instead of installing it in C:Program Files (x86) install it to C:Diablo III
 
 If you still get the same issue it has been reported that removing the update file and trying again till you get a better server connection has worked but not guaranteed._
+
+<!-- truncate -->

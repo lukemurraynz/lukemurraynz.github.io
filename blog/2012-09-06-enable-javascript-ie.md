@@ -13,6 +13,8 @@ tags:
 <div>
 </div>
 
+<!-- truncate -->
+
   1. Open **Internet** **Explorer **
   2. Click on the &#8220;**Tools**&#8221; menu.
   3. Click **Internet** **Options**

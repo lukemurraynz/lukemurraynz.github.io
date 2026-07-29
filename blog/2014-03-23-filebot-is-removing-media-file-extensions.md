@@ -10,6 +10,8 @@ date: 2014-03-23 00:00:00 +1300
 
 This happens when the **Extensions** setting is set to **Override** instead of **Preserve**.
 
+<!-- truncate -->
+
 ## How to fix it
 
 1. In Filebot, navigate to **Rename Options** (the settings/gear icon near the rename panel).

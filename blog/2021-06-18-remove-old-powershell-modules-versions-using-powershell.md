@@ -15,6 +15,8 @@ Did you know, that if you update PowerShell modules, the old versions can someti
 
 This little snippet with remove any old PowerShell modules _(that are not the latest version)_, which are installed.
 
+<!-- truncate -->
+
     #requires -Version 2.0 -Modules PowerShellGet
     function Remove-OldModules
     {

@@ -15,3 +15,5 @@ Have more emails in your inbox than you can read? Sometimes those all important 
   6. Tick **automatically accept meeting requests and remove cancelled meetings**.
 
 Note: Un-ticking automatically accept meeting requests and remove cancelled meetings for setting your calendar meeting requests manually.
+
+<!-- truncate -->

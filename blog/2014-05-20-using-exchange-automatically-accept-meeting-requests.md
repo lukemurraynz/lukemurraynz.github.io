@@ -9,6 +9,8 @@ Having multiple mailboxes and calendars can be hard to manage &#8211; especially
 
 Using a quick powershell cmdlet from the Exchange Management Shell you can quickly set a calender to AutoAccept meeting requests
 
+<!-- truncate -->
+
     Set-MailboxCalendarSettings "mailbox name" -AutomateProcessing AutoAccept
 
 Note: Remember to run the Management Shell as Administrator.

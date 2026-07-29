@@ -16,6 +16,8 @@ Azure Application Security Groups (ASG) allow you to define what workloads _(Vir
 
 These Azure Application Security groups allow you to define your workloads, for example, Azure Virtual Desktop Session Hosts as a 'group' and what they may have access to in your Azure Virtual Network without opening up the service to everything inside of that VNET or creating overly complex rules that could make it hard to troubleshoot.
 
+<!-- truncate -->
+
 There are a few things to be mindful of:
 
 * Azure Application Security Groups are Virtual Network-specific, so they can work to allow resources across subnets, but not in separate Virtual Networks, even if they have peered.

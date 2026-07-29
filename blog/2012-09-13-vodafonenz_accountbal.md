@@ -10,6 +10,8 @@ tags:
 
 _These instructions differ slightly depending on your phones make/model. Please adjust accordingly._
 
+<!-- truncate -->
+
   1. On the phone, **go** **to** the **Main** **Menu**
   2. Go to **Messaging**
   3. Choose **Create** **New**

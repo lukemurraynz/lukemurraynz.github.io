@@ -9,6 +9,8 @@ Open PuTTY
 
 Create a new PuTTY session to the remote server
 
+<!-- truncate -->
+
 Enter in the server details
 
 Save session

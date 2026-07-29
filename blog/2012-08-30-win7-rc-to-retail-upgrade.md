@@ -25,3 +25,5 @@ tags:
     <strong>Save</strong> and <strong>run</strong> the windows <strong>setup</strong> from the folder to do the upgrade.
   </li>
 </ol>
+
+<!-- truncate -->

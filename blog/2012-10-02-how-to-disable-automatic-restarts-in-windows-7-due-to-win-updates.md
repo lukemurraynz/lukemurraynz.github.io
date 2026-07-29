@@ -71,4 +71,6 @@ tags:
   </li>
 </ol>
 
+<!-- truncate -->
+
 _Restart your computer and Windows should no longer restart due to automatic Windows Updates_

@@ -14,6 +14,8 @@ Accurately representing and naming your resources is essential for security purp
 
 In a security incident, it is critical to identify affected systems quickly, what functions those systems support, and the potential business impact.
 
+<!-- truncate -->
+
 A useful naming convention composes resource names from important information about each resource. A well-chosen name helps you quickly identify the resource's type, its associated workload, its deployment environment, and the Azure region hosting it.
 
 Some resource names, such as PaaS services with public endpoints or virtual machine DNS labels, have global scopes, so they must be unique across the Azure platform.

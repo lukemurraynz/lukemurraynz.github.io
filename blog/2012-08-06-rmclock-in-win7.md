@@ -25,3 +25,5 @@ tags:
     Click <strong>Ok</strong>
   </li>
 </ol>
+
+<!-- truncate -->

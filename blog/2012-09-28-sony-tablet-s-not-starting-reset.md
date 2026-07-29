@@ -14,3 +14,5 @@ _Having problems where your Sony S Tablet is getting power from the adapter but 
   4. Your Tablet should now **restart** on its own.
 
 _Note: Pressing the Reset button will not set the tablet back to Factory settings, but pressing the Reset button and turning your Tablet off will reset it back to Factory settings._
+
+<!-- truncate -->

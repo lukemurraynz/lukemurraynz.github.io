@@ -8,6 +8,8 @@ tags:
 
 If your **Epson AcuLaser C1100** is printing noticeably **darker on the left side** of the page, the most likely cause is a dirty or misaligned print head. This can happen over time as toner dust accumulates inside the printer.
 
+<!-- truncate -->
+
 ## Clean the print head
 
 1. Locate the **blue lever** on the **right side** of the printer.

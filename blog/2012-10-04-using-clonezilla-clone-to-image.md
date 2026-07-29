@@ -28,3 +28,5 @@ tags:
  20. It will then do a last scan of the hardware and ask you for confirmation (make sure that the drives you are trying to clone are the right one, this is your last chance) press Y and enter to continue
 
 &nbsp;
+
+<!-- truncate -->

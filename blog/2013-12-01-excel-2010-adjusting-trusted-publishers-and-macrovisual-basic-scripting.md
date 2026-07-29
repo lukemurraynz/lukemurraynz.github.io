@@ -38,3 +38,6 @@ tags:
     <span style="font-family: Trebuchet MS;font-size: 10pt">Restart Excel 2010 </span>
   </li>
 </ol>
+
+<!-- truncate -->
+

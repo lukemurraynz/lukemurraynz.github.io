@@ -20,6 +20,8 @@ slug: azure/deploy-azure-firewall-mon-to-a-static-web-app
 
 Azure-Firewall-mon _(AFM or Azure Firewall Monitor)_ is a custom solution _(currently in a functional beta)_ created by an Italian Microsoft Cloud Solution Architect called: [Nicola Delfino](https://nicolgit.github.io/ "Nicola Delfino"), its worth mentioning that although a Microsoft CSA makes AFM, **IT IS NOT A SUPPORTED MICROSOFT PRODUCT**.
 
+<!-- truncate -->
+
 Monitoring Azure Firewall can be a pain - with trawling through logs - using the [Azure Firewall Workbook](https://learn.microsoft.com/en-us/azure/firewall/firewall-workbook?WT.mc_id=AZ-MVP-5004796 "Monitor logs using Azure Firewall Workbook") - helps fill in the gap - especially around the application and network rule traffic. Still, you may want something more straightforward and designed for real-time traffic to assist with in-the-moment troubleshooting.
 
 Azure-Firewall-mon is an open-source, [single Page Application](https://en.wikipedia.org/wiki/Single-page_application) written in [Angular](https://angular.io/) and hosted on an [Azure WebApp](https://az-firewall-mon.azurewebsites.net "az-firewall-mon") - so to use this, you don't need to deploy to your environment.. add in an Event Hub connection string, and away you go _(there is also a demo mode - so you can see what the experience will be like)_!

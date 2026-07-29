@@ -18,6 +18,8 @@ slug: azure/create-azure-bastion-with-shareable-link-support-with-powershell
 
 Because of this, if you don't have line-of-sight access to your Virtual Machines (_via express route, Site-to-Site VPN etc.)_, Bastion becomes your jump box, allowing secure access to your virtual machines without needing a public IP.
 
+<!-- truncate -->
+
 There is a downside, though. To connect to a Virtual Machine secured by Bastion, you need access to the Azure Portal, or command line connectivity to Azure, to create the tunnel; this means that you may need to grant people elevated rights and access they may not need to connect.
 
 As of November 2022, Microsoft introduced shareable links into public preview, solving two key pain points:

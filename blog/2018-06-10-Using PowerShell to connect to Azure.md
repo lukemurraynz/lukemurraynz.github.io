@@ -18,6 +18,8 @@ in-depth scenarios that the Portal doesn’t quite offer – PowerShell is used.
 Before you can use PowerShell to connect to Microsoft Azure, you need to install
 the Azure Resource Manager modules first – follow the guide below:
 
+<!-- truncate -->
+
 - [Install and configure Azure
   PowerShell](https://learn.microsoft.com/en-us/powershell/azure/new-azureps-module-az?view=azps-7.5.0&viewFallbackFrom=azps-5.7.0&WT.mc_id=AZ-MVP-5004796)
 

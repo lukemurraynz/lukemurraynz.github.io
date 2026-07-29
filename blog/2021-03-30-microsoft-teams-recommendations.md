@@ -14,6 +14,8 @@ In the age of remote working and collaboration, Microsoft Teams is one of the mo
 
 Especially those undergoing implementation and migrations from Skype for Business to Microsoft Teams - it is a good opportunity to take a step back and evaluate and clarify your implementation, the recommendations below as good as a place to start as any.
 
+<!-- truncate -->
+
 Please keep in mind that like any recommendations, do not blindly follow them, make sure to determine the impact on your users on enabling some of this functionality, there may also be recommendations that you will not be able to apply, do to business constraints.
 
 **Recommendation**|**Description**

@@ -26,6 +26,8 @@ Using a Windows utility called ProduKey you can retrieve the product keys for Mi
   </li>
 </ol>
 
+<!-- truncate -->
+
 Note: Using this utility you can also recover the keys using a software hive and remote computers on the network _(you have admin access to)._
 
 Note: Below are the command prompts commands to run the tool from the windows Command Prompt.

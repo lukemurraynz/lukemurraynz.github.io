@@ -11,6 +11,8 @@ If you see the error **"You do not have enough permission"** on an **ASUS eeePC*
 
 The `/media` directory is where Linux mounts removable storage devices such as USB drives and SD cards. Without it, the system cannot mount external media and throws a permission error.
 
+<!-- truncate -->
+
 ## How to fix it
 
 1. Open a **Terminal**.

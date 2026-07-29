@@ -12,6 +12,8 @@ Follow the instructions below to link your Guild Wars 1 account to Guild Wars 2
 
 &nbsp;
 
+<!-- truncate -->
+
 <ol start="1">
   <li>
     <strong>Go</strong> to Guild Wars 2 <a title="Guild Wars 2 Account" href="https://account.guildwars2.com/login" target="_blank">account page</a>

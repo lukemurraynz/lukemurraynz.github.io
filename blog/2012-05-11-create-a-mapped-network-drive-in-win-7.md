@@ -7,6 +7,8 @@ tags:
 ---
 Follow the instructions to create a mapped network drive in Windows 7 without windows indexing like a local folder?
 
+<!-- truncate -->
+
   1. Create a new folder for your network shares (ie c:Shared)
   2. Go into the folder you created and make a new folder  (ie c:SharedMovies)
   3. Now you need to link the library into the folder you create in the second step  (ie c:SharedMovies) by going into Documents and up the top click &#8220;Includes: 2 locations&#8221; and click Add and add the folder.

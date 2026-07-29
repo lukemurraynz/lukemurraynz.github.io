@@ -80,6 +80,8 @@ First we use a web-based tool called “Friends To Gmail” which collates the d
   </li>
 </ol>
 
+<!-- truncate -->
+
 &nbsp;
 
 _If you have an Android phone and want to import your friends profile pictures from Facebook to Google Contacts, good news there is a free utility you can use._

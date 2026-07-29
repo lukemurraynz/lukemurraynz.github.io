@@ -16,6 +16,8 @@ As I am in 'New Zealand', I will be setting my WebApp (which is hosted in Austra
 
 I will be using a Windows-based App Service, for this article.
 
+<!-- truncate -->
+
 ## Find the Timezone
 
 The Azure App Service uses the same naming standard as Windows.

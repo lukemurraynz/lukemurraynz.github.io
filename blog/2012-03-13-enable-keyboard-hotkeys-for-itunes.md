@@ -10,3 +10,6 @@ tags:
   3. Click **Preferences**
   4. **Check** the **checkbox** titled &#8220;**Enable Full Keyboard Navigation**&#8220;
   5. Click **ok**
+
+<!-- truncate -->
+

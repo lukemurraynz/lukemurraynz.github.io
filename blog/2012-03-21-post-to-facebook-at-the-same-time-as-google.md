@@ -12,3 +12,5 @@ Ever wanted to post on Google+ and have it automatic post Facebook as well? This
   3. Add your secret email address along with whatever circles you want to share the post with and then hit share.
 
 Your post should now be shared with your Facebook account as well.
+
+<!-- truncate -->

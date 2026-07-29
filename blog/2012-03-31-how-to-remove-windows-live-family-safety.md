@@ -22,6 +22,8 @@ Having problems getting rid of Windows Live Family Safety? Follow the steps belo
   </li>
 </ol>
 
+<!-- truncate -->
+
 _You can also stop Windows Family Safety from running by following the prompts below:_
 
 <ol start="1">

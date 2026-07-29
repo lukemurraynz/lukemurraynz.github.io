@@ -10,6 +10,8 @@ iOS 7 introduced a completely redesigned interface with thinner fonts and a more
 
 Apple includes several **Accessibility** settings that can significantly improve readability. Here is how to adjust them.
 
+<!-- truncate -->
+
 ## Enable bold text
 
 1. Open **Settings**.

@@ -17,4 +17,6 @@ This tip is useful if you don’t want to go through the hassle of clicking Star
 
 _Note: the “-S” indicates shutdown, changing it to “-R” will mean restart. The “-t” is time adjusting the number from 00 will change the shutdown count from immediate to what you set it to in seconds._
 
+<!-- truncate -->
+
 Tested on Windows XP/Vista/Windows 7 _(inc 64bit)_ _| Should also work with Windows 9 (untested)_

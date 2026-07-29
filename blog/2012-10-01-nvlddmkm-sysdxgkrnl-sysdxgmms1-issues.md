@@ -10,6 +10,8 @@ _These issues are usually caused by damage and/or faulty nVidia drivers and Dire
 
 &nbsp;
 
+<!-- truncate -->
+
 <ol start="1">
   <li>
     Firstly you need to <strong>download</strong> a tool called “<strong>Driver Sweeper</strong>”

@@ -12,3 +12,5 @@ As most MMORG out these days; Wildstar allows addons.
   2. The second is to download the addons and extract the ZIP file to: %appdata%/NCSOFT/Wildstar/Addons
 
 Note: If the Addons folder does not exist &#8211; you will need to create it.
+
+<!-- truncate -->

@@ -22,3 +22,5 @@ _Trying to install Microsoft Security Essentials and it is complaining about not
     <strong>Run</strong> the WGA (Windows Genuine Advantage) <strong>validation</strong> <strong>again</strong>.
   </li>
 </ol>
+
+<!-- truncate -->

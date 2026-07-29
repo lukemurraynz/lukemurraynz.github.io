@@ -12,6 +12,8 @@ If you are typing in a document and notice that **new characters are replacing t
 
 This commonly happens when the **Insert key** is pressed by mistake, which is easy to do since the key is located near the Delete and Backspace keys on most keyboards.
 
+<!-- truncate -->
+
 ## How to fix it
 
 Press the **Insert** key on your keyboard to toggle back to **Insert mode**.

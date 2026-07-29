@@ -14,6 +14,8 @@ When logging into the Microsoft Azure Portal, to view your [Management Group](ht
 
 ![Azure Management Group - Not loading](/images/posts/azure-management-group-notloading.png "Azure Management Group - Not loading")
 
+<!-- truncate -->
+
 It looks like a potential bug in the Portal interface, especially  if you have the correct permissions to see those Management Groups. Here is a few things to look for:
 
 ### Elevated rights - Global Administrator

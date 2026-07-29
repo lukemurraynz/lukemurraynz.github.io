@@ -16,4 +16,6 @@ Note: The intended guide for this audience is a Help Desk or Service Desk – th
 
 You can also run: delprof2 /u /d:30 /c:computername
 
+<!-- truncate -->
+
 _Note: What I have done in the past is create a batch script that will clear up remote profiles from workstations & add this to a scheduled task &#8211; in conjunction with SCCM disk reporting this is useful for keeping on top of workstation&#8217;s HDD space._

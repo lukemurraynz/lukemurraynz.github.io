@@ -19,6 +19,8 @@ Follow these steps to enable Windows Automatic Updates through the Control Panel
 6. Select **"Check for updates but let me choose whether to download and install them"** from the dropdown menu.
 7. Click **Ok**.
 
+<!-- truncate -->
+
 ## Understanding the update options
 
 Windows offers several update settings:

@@ -21,6 +21,8 @@ Organizing cloud-based resources is a crucial task for IT unless you only have s
 
 **Workload optimization:** Tagging can help identify patterns and resolve broad issues. A tag can also help determine the assets required to support a single workload. Tagging all assets associated with each workload enables a more profound analysis of your mission-critical workloads to make sound architectural decisions.
 
+<!-- truncate -->
+
 * [Use tags to organize your Azure resources and management hierarchy](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources?tabs=json&WT.mc_id=AZ-MVP-5004796 "Use tags to organize your Azure resources and management hierarchy")
 
 ### Tagging Types

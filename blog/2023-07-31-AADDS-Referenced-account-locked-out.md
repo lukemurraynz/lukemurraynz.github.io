@@ -16,6 +16,8 @@ So you have just stood up [Entra ID Domain Services](https://learn.microsoft.com
 
 ![The referenced account is currently locked out and may not be logged on to.](/images/posts/AADDS_ReferencedAccount.png)
 
+<!-- truncate -->
+
 This is commonly due to the following:
 
 > Entra ID doesn't generate or store password hashes in the format that's required for NTLM or Kerberos authentication until you enable Azure AD DS for your tenant. For security reasons, Entra ID also doesn't store any password credentials in clear-text form. Therefore, Azure AD can't automatically generate these NTLM or Kerberos password hashes based on users' existing credentials.

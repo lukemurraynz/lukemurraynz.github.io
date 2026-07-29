@@ -12,6 +12,8 @@ tags:
 
 If the above method does not work, try the following:
 
+<!-- truncate -->
+
   1. **Press** the **resume** button and then **press** **power** button
   2. **Release** the **resume** **button** and **press** **2** more times then **release** **both**
   3. **Press** and **release** **resume** **4** times and **power** **2** times.

@@ -20,3 +20,5 @@ BOOTCFG /Rebuild<br />
 CHKDSK /R /F<br />
 FIXBOOT<br />
 `
+
+<!-- truncate -->

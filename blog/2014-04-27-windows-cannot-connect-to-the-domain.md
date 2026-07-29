@@ -20,3 +20,5 @@ date: 2014-04-27 00:00:00 +1300
 Note: The benefit of doing the Reset in Active Directory first &#8211; allows you to maintain the computer groups and security identifier without loosing it.
 
 You can also use the following Powershell command on the local PC to restore the secure channel to the domain: `Test-ComputerSecureChannel -Repair`
+
+<!-- truncate -->

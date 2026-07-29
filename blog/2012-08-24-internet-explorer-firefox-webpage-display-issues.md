@@ -11,6 +11,8 @@ If web pages are displaying with missing buttons, broken layouts, or unusual col
 
 High Contrast mode overrides the colours and styles used by websites to improve readability for users with visual impairments. However, it can make normal web browsing look broken — buttons may disappear, backgrounds may turn black, and text colours may change unexpectedly.
 
+<!-- truncate -->
+
 ## How to disable High Contrast mode
 
 1. Click **Start**.

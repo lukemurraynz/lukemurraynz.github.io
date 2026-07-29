@@ -14,6 +14,8 @@ AVD-Collect is a handy PowerShell script created by Microsoft Customer Support S
 
 You can download this script from: [https://aka.ms/avd-collect](https://aka.ms/avd-collect "https://aka.ms/avd-collect?WT.mc_id=AZ-MVP-5004796")
 
+<!-- truncate -->
+
 > There is no publically avaliable github repository for it currently, Microsoft will retain the latest version of the script at this link.
 >
 > This script was NOT created by me and comes 'As/Is', this article is merely intended to share the script to assit others in their AVD troubleshooting.

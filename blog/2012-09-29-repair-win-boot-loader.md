@@ -10,6 +10,8 @@ First things first! In order to repair the Windows boot loaders you need the ap
 
 **Windows XP**
 
+<!-- truncate -->
+
 The instructions on repairing this are similar to the [DDL Kernel fix](http://http://luke.geek.nz//load-needed-dlls-for-kernel/ "Load needed DLLs for Kernel").
 
 To access the recover console follow the prompts below:

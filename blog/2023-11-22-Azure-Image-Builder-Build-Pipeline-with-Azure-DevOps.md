@@ -19,6 +19,7 @@ slug: azure/Azure-Image-Builder-Build-Pipeline-with-Azure-DevOps
 
 <!-- truncate -->
 
+
 ## Overview
 
 With the AIB (Azure Image Builder) service, you can quickly and easily create machine images for Azure environments using standardized virtual machine (VM) images, create a configuration that describes your image and submit it to the service for building and distribution.

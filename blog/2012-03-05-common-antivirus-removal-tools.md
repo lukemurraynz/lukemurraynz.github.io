@@ -10,6 +10,8 @@ Uninstalling antivirus software through the standard Windows **Add/Remove Progra
 
 Most antivirus vendors provide dedicated **removal tools** that are designed to thoroughly clean up all traces of their products. Below is a list of official removal tools from major antivirus vendors.
 
+<!-- truncate -->
+
 ## Official removal tools
 
 - **Norton Antivirus / Norton Internet Security** — [Norton Remove and Reinstall Tool](https://support.norton.com/sp/en/us/home/current/solutions/v60392881)

@@ -13,6 +13,8 @@ slug: 2021/03/25/unable-to-start-windows-azure-guest-agent-it-s-in-a-disabled-st
 
 ![Azure Backup Overview](https://csharpcorner.azureedge.net/article/an-overview-of-azure-backup/Images/An%20Overview%20Of%20Azure%20Backup01.png)
 
+<!-- truncate -->
+
 ## Issue Description
 
 Unable to start Windows Azure Guest Agent (it's in a disabled state). When trying and set the service to auto the following error occurs 'The specified service has been marked for deletion.'

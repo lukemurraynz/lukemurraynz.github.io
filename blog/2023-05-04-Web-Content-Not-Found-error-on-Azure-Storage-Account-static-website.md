@@ -16,6 +16,8 @@ container ($web), so anything inside of $web will be accessible publicly.
 
 This can be enabled easily by toggling the Static website to Enabled.
 
+<!-- truncate -->
+
 ![Azure Storage Account - Static website](/images/posts/AzureStorageAccount_Static_Site_WebContent_Config.png "Azure Storage Account - Static website")
 
 Once enabled, the Azure storage account will add a NEW endpoint - \<storageaccname>.z\*.web.core.windows.net.

@@ -17,3 +17,5 @@ _Playing Diablo 3 and want to use abilities that are on the same tree and change
   5. Now right click the skill that you would like to change and using the side arrows you can select the skill you would like to add to that slow.
 
 &nbsp;
+
+<!-- truncate -->

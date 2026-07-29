@@ -21,3 +21,6 @@ slug: win/mv-img-anywhere-in-word
     Now you should be <strong>able</strong> <strong>to move the image</strong> anywhere you want.
   </li>
 </ol>
+
+<!-- truncate -->
+

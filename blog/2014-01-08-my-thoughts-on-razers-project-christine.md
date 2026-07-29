@@ -14,6 +14,8 @@ Now &#8211; out of nowhere the company has released concepts for two products �
 
 Computer components themselves are of a modular design – as soon as they are compatible with each other you can swap and upgrade most parts – Project Christine takes this modular design further in a fashion that reminds me of lego.
 
+<!-- truncate -->
+
 ## Simplicity
 
 - The design like all of Razers products is simple yet aesthetically pleasing.

@@ -10,6 +10,8 @@ _For use setting up Phones, inc iPhones to the Vodafone network_
 
 **APN**: live.vodafone.com
 
+<!-- truncate -->
+
 **MMSC**: 
 
 **MMS Proxy**: 172.030.038.003:8080

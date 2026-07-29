@@ -18,6 +18,8 @@ Let me introduce the Microsoft Microsoft Entra ID Application Proxy...
 >
 > Application Proxy is recommended for giving remote users access to internal resources. Application Proxy replaces the need for a VPN or reverse proxy.
 
+<!-- truncate -->
+
 ## Overview
 
 The [Microsoft Entra ID Application Proxy](https://learn.microsoft.com/en-us/azure/active-directory/app-proxy/what-is-application-proxy?WT.mc_id=AZ-MVP-5004796)has been around for a few years, but appears to be a hidden gem; the Application Proxy allows users_(by using Microsoft Entra ID and an Application Proxy Connector(s))_ to connect to internally hosted web applications, by the connector relaying the traffic.

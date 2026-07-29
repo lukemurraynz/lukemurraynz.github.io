@@ -21,3 +21,5 @@ Having access to an exchange mailbox on a Mac or iMac is very useful – especia
  12. Click **Done**.
 
 Note: To access an Exchange server from a Mac outside the organization’s network, confirm with the server administrator that port 443 is open on the firewall and Exchange Web Services (EWS) is enabled on the server.
+
+<!-- truncate -->

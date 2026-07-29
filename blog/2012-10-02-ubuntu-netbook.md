@@ -10,6 +10,8 @@ _Note: Be best to be plugged into the Internet (through Ethernet) to make sure l
 
 _Note: Early 2011/As of 11.04 Ubuntu &#8220;folded&#8221; the Netbook Edition into the normal installation instead of having it separate. _
 
+<!-- truncate -->
+
 &nbsp;
 
   1. Download Ubuntu (tested with 12.04)

@@ -10,6 +10,8 @@ Getting the Hybserv2 &#8220;Unable to open SETPATH&#8221; error? Follow the inst
 
 **Windows**
 
+<!-- truncate -->
+
   1. **Right** **click** on My **Computer**
   2. **Left** **click** on **Properties**
   3. Left click on **Advanced** **System** **Settings**

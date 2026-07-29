@@ -26,4 +26,6 @@ This issue commonly occurs on DVD Flick installations but also known for other p
   </li>
 </ol>
 
+<!-- truncate -->
+
 _Note: In some cases you can cancel or skip the error that is complaining about Quicktracks plugin and continue the installation._

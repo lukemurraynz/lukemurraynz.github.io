@@ -16,6 +16,8 @@ The downside is that the response to the first request after the web app is unlo
 
 To ensure that the Azure App Service Web App is running and always available to respond to incoming HTTP(S) requests, can be set the "Always On" configuration feature to "On".
 
+<!-- truncate -->
+
 ## Overview
 
 By setting the "Always On" feature of the App Service Web App to “On”, will ensure that Azure will always keep an instance of the Web App running at all times. This way when a user/client hits the Azure Front Door endpoint, the back-end Web App will always be ready to respond to that request without timing out. This will ensure the application is always available even during times of low usage or inactivity. Azure will continuously ping the website to keep the website alive.

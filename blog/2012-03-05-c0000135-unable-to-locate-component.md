@@ -9,6 +9,8 @@ The application has failed to start because CSRSRV.DLL was not found. Reinstalli
 
 First you need to access the recovery console. Following the instructions below
 
+<!-- truncate -->
+
   1. **Boot** with your original **Windows XP CD**. You need one which will allow you to get into the Recovery Console.
   2. Once booted, choose to use the **Recovery Console**
   3. **Choose** which **Windows installation** you need to log into. if there’s only one on that machine, it will be “1?.

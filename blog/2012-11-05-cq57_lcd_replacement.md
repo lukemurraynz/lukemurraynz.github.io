@@ -24,6 +24,8 @@ What you need
 
 _Note: Always best to have the laptop resting on a soft surface (ie towel) to avoid scratches._
 
+<!-- truncate -->
+
 _Note: Make sure laptop battery has been removed and the laptop is unplugged from AC power to prevent any chance of turning laptop on._
 
 _Note: I have found the webcam area has more resistance (due to the fact there is a webcam there) starting from either end and making your way to the webcam decreases the chance of cracking the plastic casing._

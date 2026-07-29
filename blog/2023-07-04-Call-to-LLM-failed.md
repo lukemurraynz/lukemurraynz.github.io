@@ -19,6 +19,8 @@ The error I was getting was:
 
 ![Call to LLM failed.](/images/posts/CalltoLLMFailed_AzureOpenAIError.png "Azure OpenAI - Call to LLM failed.")
 
+<!-- truncate -->
+
 As I was calling data, that was indexed by Azure Cognitive Search, I thought the index was corrupted or invalid, but after mulitple index attempts, continuted to have the same error, all other prompts (not using my custom data) succeeded.
 
 I recreated the Azure OpenAI service, and was able to succesffuly call the custom data, so started to look at the comparisons between the Azure OpenAI instance, that was working and the Azure OpenAI instance that wasn't.

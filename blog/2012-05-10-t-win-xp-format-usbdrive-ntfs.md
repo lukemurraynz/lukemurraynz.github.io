@@ -8,6 +8,8 @@ tags:
 
 By default, **Windows XP** only offers **FAT** and **FAT32** as formatting options for USB flash drives. If you need to format a USB drive as **NTFS** (for example, to store files larger than 4 GB or to use NTFS permissions), you need to change the device's policy to **Optimize for Performance** first.
 
+<!-- truncate -->
+
 ## How to enable NTFS formatting
 
 1. Right-click **My Computer** and click **Properties**.

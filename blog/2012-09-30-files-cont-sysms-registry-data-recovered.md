@@ -11,6 +11,8 @@ _This can someone be the result of bad RAM or Video RAM. Try to change the video
 
 _First we have to reveal Hidden files & folders:_
 
+<!-- truncate -->
+
 <ol start="1">
   <li>
     Click Start

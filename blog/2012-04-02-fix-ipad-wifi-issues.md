@@ -9,6 +9,8 @@ Issues with your iPad&#8217;s wireless? Try the following tips below, these can 
 
 **Turning it on or off again**
 
+<!-- truncate -->
+
 First things first &#8220;have you tried turning it on and off again&#8221;.
 
   1. Turn your broadband router off for a few minutes then turn it on to have the device reconnect to the exchange.

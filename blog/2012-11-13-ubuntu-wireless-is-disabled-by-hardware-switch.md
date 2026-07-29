@@ -14,3 +14,5 @@ This commonly occurs right after an upgrade/update to the operating system.
   4. You should now be able to access the wireless.
 
 If neither of the above work – then the problem most likely is you’re wireless on & off switch and it might need to be rewired to be permanently on.
+
+<!-- truncate -->

@@ -12,3 +12,5 @@ tags:
   4. **Hold** the **buttons** down for **_8 seconds_**; it should now force the DVD to eject.
 
 Also refer to the Playstation Help Article: http://playstation.custhelp.com/app/answers/detail/a_id/1783/~/remove-stuck-disc
+
+<!-- truncate -->

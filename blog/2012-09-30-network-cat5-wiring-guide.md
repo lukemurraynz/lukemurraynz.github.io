@@ -10,6 +10,8 @@ tags:
 
 _Both ends are the same._
 
+<!-- truncate -->
+
   * Orange-White
   * Orange
   * Green-White

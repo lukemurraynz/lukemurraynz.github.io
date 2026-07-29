@@ -19,6 +19,8 @@ Trying to add your Google Account to your Android phone and it&#8217;s coming up
 
 If that does not work, try the following:
 
+<!-- truncate -->
+
   1. Turn your mobile phone off
   2. Take out your Sim Card
   3. Start your phone _(without Sim card)_

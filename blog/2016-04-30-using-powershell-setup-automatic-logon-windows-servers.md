@@ -13,6 +13,8 @@ Some server based applications require to be logged into a service account to a
 
 There are many ways to setup Automatic Logon, using _&#8220;control userpasswords2_&#8221; via the Run Prompt, using Third Party utilities like _LogonExpert_ or_ Sysinternals Autologon for Windows  _this simply using RegEdit and setting them manually.
 
+<!-- truncate -->
+
 I have created a PowerShell script for editing the registry to set this manually in a standardized way and could be run remotely. It is pretty simple and only requires version 1 of PowerShell.
 
 #authors: [Luke] Murray (Luke.Geek.NZ)

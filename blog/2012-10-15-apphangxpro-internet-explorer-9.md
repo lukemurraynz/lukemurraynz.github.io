@@ -16,3 +16,5 @@ _This issue commonly occurs on websites such as Facebook and Internet Explorer 9
   6. Click Ok
 
 _Restart your browser and attempt to use the website that was having the HangXPro error before._
+
+<!-- truncate -->

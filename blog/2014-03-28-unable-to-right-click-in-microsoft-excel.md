@@ -8,6 +8,8 @@ This is fixed by removing the Excel11.xlb excel template file located in the fol
 
 Win7 32bit:
 
+<!-- truncate -->
+
 C:/Program Files/Microsoft Office/Office14/XLSTART
 
 C:/Users/UserName/AppData/Roaming/Microsoft/Excel/XLSTART

@@ -14,6 +14,8 @@ If you have a few Azure Virtual Desktop machines, you need some way to keep user
 
 We are going to implement FSLogix using an Azure File Share, to store the profiles.
 
+<!-- truncate -->
+
 I am going to assume you already have an Azure Virtual Desktop farm _(and Azure ADDS)_, if not you can check out my guide [here](https://luke.geek.nz/azure/create-a-azure-virtual-desktop-farm/ "How to create a Azure Virtual Desktop farm ").
 
 This article will be based on the Azure Virtual Desktop farm created in a previous article, however, you can just still along and replace the resource names and groups with your own.

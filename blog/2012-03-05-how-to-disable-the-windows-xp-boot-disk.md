@@ -14,3 +14,5 @@ Disable the Windows XP Boot Disk
   5. Restart the computer
 
 The splash screen will be gone. It can be re-enabled by unticking /NOGUIBOOT back in the msconfig._
+
+<!-- truncate -->

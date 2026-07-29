@@ -8,6 +8,8 @@ tags:
 ---
 Want to check how long your phone has been on for? Follow the instructions below.
 
+<!-- truncate -->
+
   1. Go into **Settings**
   2. Go down and select **About phone**
   3. Select **Status**

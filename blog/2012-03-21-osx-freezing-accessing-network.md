@@ -15,6 +15,8 @@ This usually happens, when some of the OSX settings become corrupted. OSX can re
 
 If the above doesn&#8217;t work then delete these files:
 
+<!-- truncate -->
+
 _Library/Preferences/com.apple.systempreferences.plist_
 
 _Library/Preferences/com.apple.NetworkUtility.plist_

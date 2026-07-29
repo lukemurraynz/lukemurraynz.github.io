@@ -9,6 +9,8 @@ Deactivating Windows XP can be useful especially when moving the Windows XP inst
 
 Follow the simple guide below to make the necessary Registry change to deactivate your Windows XP version.
 
+<!-- truncate -->
+
 **Deactivating Windows XP**
 
 <ol style="font-family: sans-serif; font-size: medium; font-style: normal; line-height: normal;">

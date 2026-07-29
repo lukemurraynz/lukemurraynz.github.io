@@ -9,6 +9,8 @@ In this example I am using a &#8211; TD-W8960N<span style="color: black;font-fam
   
 _I am only going to give you a brief outline on how to set this up as various people need various settings – however it is extremely easy to utilise and doesn&#8217;t require a router restart to take effect._<span style="color: black;font-family: Arial;font-size: 9pt;background-color: #fafafa"><br /> </span>
 
+<!-- truncate -->
+
   1. First navigate to the routers administration page – open your internet browser and navigate to: 192.168.1.1
   2. On the left hand side Menu select Advanced Setup
   3. Select Parental Control

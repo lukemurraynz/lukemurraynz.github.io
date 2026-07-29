@@ -22,6 +22,8 @@ An [IP Group](https://learn.microsoft.com/azure/firewall/ip-groups?WT.mc_id=AZ-M
 
 The IP Group allows you to define an IP address that can be used in conjunction with Azure Firewall, to allow or deny internal or external traffic from a perspective set of IP addresses.
 
+<!-- truncate -->
+
 > The following IPv4 address format examples are valid to use in IP Groups:
 >
 > * Single address: 10.0.0.0

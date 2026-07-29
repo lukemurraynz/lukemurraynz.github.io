@@ -13,7 +13,6 @@ Upgrading MDT _(Microsoft Deployment Toolkit)_ is generally not an issue – the
 
 Now that we have a backup it is now time to go through the Windows ADK _(Windows Assessment and Deployment Kit)_ upgrade on the MDT server and MDT current branch update. Follow the guide below to complete.
 
-<!-- truncate -->
 
 <div id="toc_container" class="no_bullets">
   <p class="toc_title">
@@ -31,6 +30,8 @@ Now that we have a backup it is now time to go through the Windows ADK _(Windows
 </div>
 
 <span id="upgrade-windows-adk"></span>
+
+<!-- truncate -->
 
 ## Upgrade Windows ADK
 

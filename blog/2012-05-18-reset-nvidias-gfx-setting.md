@@ -14,3 +14,6 @@ tags:
   6. Click the **Global Settings** tab
   7. Click **Restore**
   8. Click Ok
+
+<!-- truncate -->
+

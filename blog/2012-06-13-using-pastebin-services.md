@@ -10,6 +10,8 @@ _Pastebin service allows people to upload text, code for public viewing. Very ha
 
 _Below are several recommended Pastebin services_
 
+<!-- truncate -->
+
 <a title="slexy pastebin" href="http://www.slexy.org" target="_blank"><strong>Slexy</strong></a>
 
 Slexy.org is a powerful, slick, and sexy pastebin designed with the user in mind.

@@ -12,3 +12,6 @@ tags:
   4. In the registry editor locate to: _**HKEY\_CURRENT\_USERSoftwareMicrosoftWindowsCurrentVersionPoliciesExplorer**_
   5. **Create** a 32-bit DWORD **value** called **_NoWinKeys_** and set the value to **1**.
   6. You’ll need to **log** on and back **off** for the **changes** to take effect.
+
+<!-- truncate -->
+

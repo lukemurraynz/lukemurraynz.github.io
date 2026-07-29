@@ -13,6 +13,8 @@ header:
 
 Although primary driven and consumed by software developers – it is now a staple of everyday life for an IT professional of many disciplines _(i.e. Operations, Delivery),_ even if a git repository is used to store your PowerShell scripts _(hint – it should!)_.
 
+<!-- truncate -->
+
 You don't have to know every single git command line syntax to use Git.
 
 Tools such as Visual Studio Code allow you to use git source control efficiently, and of course, you can use Git directly from the command line; however, sometimes you want an easy way to use Git through a point and click interface, there a lot of tools out there to give you easy access to Git, but today I will concentrate on Github Desktop.

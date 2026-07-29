@@ -14,6 +14,8 @@ slug: azure/hosting-your-workloads-in-azure-vs-on-premises
 
 Azure and hosting your own datacenter are two different approaches for deploying and managing applications and workloads.
 
+<!-- truncate -->
+
 There are several key differences between Azure and hosting your own datacenter, including the following:
 
 * Capital expenditure and operational costs: Azure is a pay-as-you-go service, with no upfront costs or long-term commitments, while hosting your own datacenter involves a significant capital expenditure, and ongoing costs for maintenance, support, and infrastructure upgrades.

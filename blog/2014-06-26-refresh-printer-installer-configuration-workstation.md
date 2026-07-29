@@ -9,6 +9,8 @@ Sometimes making adjustments with Printer Installer can be a nightmare &#8211; 
 
 Using this method you can easily use Printer Installer to update the configuration on the local computer without having to wait for replication.
 
+<!-- truncate -->
+
   1. Click **Start**
   2. Click **All Programs**
   3. Click **Printer Installer**

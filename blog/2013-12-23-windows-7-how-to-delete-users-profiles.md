@@ -12,3 +12,6 @@ date: 2013-12-23 00:00:00 +1300
   5. Under – User Profiles select Settings
   6. Choose the profile you would like to Delete
   7. Select Delete
+
+<!-- truncate -->
+

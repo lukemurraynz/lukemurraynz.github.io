@@ -14,6 +14,8 @@ These tools are provided by reputable security companies and are useful for:
 - **Scanning a computer that does not have antivirus installed.**
 - **Checking specific files** against multiple antivirus engines.
 
+<!-- truncate -->
+
 ## Recommended online scanners
 
 - **[ESET Online Scanner](https://www.eset.com/int/home/online-scanner/)** - Full system scan using ESET's detection engine. Downloads a lightweight scanner agent.

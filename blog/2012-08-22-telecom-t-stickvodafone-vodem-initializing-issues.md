@@ -64,3 +64,5 @@ _Make sure you have credit on your Vodem/T-Stick. This is the common cause of wh
     <strong>Reconnect</strong> the <strong>T-Stick/Vodem</strong> and your computer should recognise it as a new device and install. It should now be up and running.  If not repeat step 14.
   </li>
 </ol>
+
+<!-- truncate -->

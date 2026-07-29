@@ -10,6 +10,8 @@ tags:
 ---
 Getting a green line at the top of each Youtube video? It has recently be caused by a recent Adobe Update, follow the guide below to repair:
 
+<!-- truncate -->
+
   1. **Right** **click** the Youtube **video**
   2. **Click** Flash Player **Settings**
   3. Make sure you are in the **General** settings **tab** _(left most tab)_

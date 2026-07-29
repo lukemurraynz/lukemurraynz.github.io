@@ -14,6 +14,8 @@ The Azure Point to Site VPN will take the DNS servers from the Virtual Network, 
 
 To do this, you need to edit the 'azurevpnconfig.xml' file and reimport the VPN connection.
 
+<!-- truncate -->
+
 1. Open: azurevpnconfig.xml in your favourite editor _(ie Visual Studio Code or Notepad)_
 2. Underneath the <name> _(which you can also change, as this is the name that users will see in Windows)_ add: < clientconfig>.
 

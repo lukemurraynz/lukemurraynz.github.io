@@ -22,3 +22,5 @@ date: 2014-01-02 00:00:00 +1300
 
 Note: You can map the same network share between multiple Virtual Machines.
 Note: The Virtual machine must be on to allow Shared Folder configuration – if it is off the option will simply not be enabled.
+
+<!-- truncate -->

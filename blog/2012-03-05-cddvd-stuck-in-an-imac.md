@@ -8,6 +8,8 @@ date: 2012-03-05 00:00:00 +1300
 
 iMacs use a slot-loading disc drive with no physical eject button, so if a CD or DVD gets stuck, you need to use software or keyboard shortcuts to force it out. Here are three methods to try, in order of simplicity.
 
+<!-- truncate -->
+
 ## Method 1: Hold the mouse button at boot
 
 1. **Restart** your iMac (or shut it down and turn it back on).

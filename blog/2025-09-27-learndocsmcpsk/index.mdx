@@ -34,7 +34,6 @@ date: 2025-09-27
 
 I was recently working on a content discovery app and needed access to current Microsoft documentation, but I wasn't keen on scraping their site (and dealing with all that maintenance overhead).
 
-{/* truncate */}
 
 So, that leaves the [Microsoft Learn MCP Server](https://learn.microsoft.com/training/support/mcp?WT.mc_id=AZ-MVP-5004796). Model Context Protocol (MCP) is essentially a standardized method for connecting external data sources to AI applications. Microsoft maintains its own Learn MCP Server, which stays current with its documentation, and this solved my problem perfectly.
 
@@ -43,6 +42,8 @@ So, that leaves the [Microsoft Learn MCP Server](https://learn.microsoft.com/tra
 The problem was that most [Semantic Kernel](https://learn.microsoft.com/semantic-kernel/overview/?WT.mc_id=AZ-MVP-5004796) examples for [MCP integration](https://learn.microsoft.com/en-us/semantic-kernel/concepts/plugins/adding-mcp-plugins?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796) use Python, but my project is C# (.NET 9). It took a bit of figuring out, but I eventually got it working. Here's the implementation in case it helps someone else.
 
 ![Learn MCP](images/MCP.jpg  "Microsoft Learn MCP Server")
+
+<!-- truncate -->
 
 ## Architecture overview
 

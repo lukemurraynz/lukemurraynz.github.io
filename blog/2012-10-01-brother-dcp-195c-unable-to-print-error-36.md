@@ -38,4 +38,6 @@ _In order to fix this issue you need to reset the Ink Waste counter, which is an
   </li>
 </ol>
 
+<!-- truncate -->
+
 _Now you should be able to print._

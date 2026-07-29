@@ -9,6 +9,8 @@ Note: You need the rights to be able to run an elevated Command Prompt.
 
 **Windows 7**
 
+<!-- truncate -->
+
   1. Click Start
   2. Click All Programs
   3. Click Accessories

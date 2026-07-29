@@ -18,6 +18,8 @@ The Microsoft Azure ecosystem offers a lot of capabilities that enable individua
 
 In this article, we are going to focus on [Azure Public DNS](https://learn.microsoft.com/en-us/azure/dns/dns-overview?WT.mc_id=AZ-MVP-5004796).
 
+<!-- truncate -->
+
 I had my external DNS under source control using Terraform and the Cloudflare provider a few years ago. I wanted to see if I use source control and continuous integration to do the same thing using Azure DNS and Azure Bicep.
 
 My theory was I could make a change to a file and then commit it and have the Azure DNS records created or modified automatically, allowing changes to DNS to be gated, approved, scheduled and audited, allowing changes and rollback a lot easier – without having to give people access to be able to create DNS records with no auditability, turns out you can!

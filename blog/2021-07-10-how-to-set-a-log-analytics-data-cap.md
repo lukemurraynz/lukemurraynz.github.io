@@ -13,6 +13,8 @@ This is just an additional configuration that may help with sizing and pricing L
 
 The downside of this is if you reach the cap, you will no longer collect any data, until the following day, meaning you may miss key events or issues.
 
+<!-- truncate -->
+
 This is something that I would recommend ONLY to do if you run into any financial constraints, giving you more time time to work through, of course, situation depending.
 
 This is a pretty quick 'How To' so let's get straight into it:

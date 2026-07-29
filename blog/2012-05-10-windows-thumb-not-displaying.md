@@ -8,6 +8,8 @@ tags:
 Click Start
   
 Click Run
+
+<!-- truncate -->
   
 Type: **_regsvr32 shdocvw.dll_**
   

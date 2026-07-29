@@ -13,3 +13,5 @@ tags:
   5. Select your **country**
 
 _Note: You can also add Kaspersky update servers by clicking Add if you want to add a custom one._
+
+<!-- truncate -->

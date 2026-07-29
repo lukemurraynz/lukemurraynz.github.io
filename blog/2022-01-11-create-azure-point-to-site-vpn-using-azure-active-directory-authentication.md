@@ -14,6 +14,8 @@ You may be working remotely or only have a few devices needing access to your re
 
 This functionality allows your computer to connect privately to resources over a secure tunnel using your internet connection, using an Azure Virtual Network gateway, you can connect to resources without having to open them up to the internet or whitelist your _(or third party vendor)_ IP address, which may change daily.
 
+<!-- truncate -->
+
 You know only your specified users access your Azure resources using Microsoft Entra ID.
 
 You can have a site to site and point to site VPN running on the same Gateway today. We will set up a Point to Site VPN using Windows 11.

@@ -7,6 +7,8 @@ date: 2014-03-06 00:00:00 +1300
 ---
 Mounting a VHD _(Virtual Hard Disk)_ in Windows 7 is extremely useful and this technique can be used to recover files from a Windows system image. 
 
+<!-- truncate -->
+
   1. Click Start
   2. Right click Computer
   3. Left click Manage

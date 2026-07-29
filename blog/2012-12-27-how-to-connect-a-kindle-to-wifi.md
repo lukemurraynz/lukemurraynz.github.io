@@ -14,3 +14,6 @@ tags:
   6. Select **Bookmarks**
   7. Here you can either select a pre-selected **Bookmark** or **enter** the **URL** of an address you want to go to.
   8. The Wifi dialog will then launch allowing you to select your Wireless Access Point and enter in your security key (remember the security key is case sensitive).
+
+<!-- truncate -->
+

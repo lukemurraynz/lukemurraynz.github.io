@@ -9,3 +9,5 @@ tags:
 Apple Pages, stores it&#8217;s files at the location below:
 
 **//var/mobile/applications/Pages/Library/Application Support/Documents**
+
+<!-- truncate -->

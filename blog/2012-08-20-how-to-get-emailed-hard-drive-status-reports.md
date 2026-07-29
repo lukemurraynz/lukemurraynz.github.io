@@ -47,4 +47,6 @@ _Want to get emailed disk status reports of your drives/hard drives and you are 
   </li>
 </ol>
 
+<!-- truncate -->
+
 _Note: One of the adjustments I make for my home computer, is to disable Backup alerts (under Backup Monitoring)_

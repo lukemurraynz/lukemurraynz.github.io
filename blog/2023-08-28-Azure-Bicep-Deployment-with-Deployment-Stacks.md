@@ -14,6 +14,8 @@ slug: azure/Azure-Bicep-Deployment-with-Deployment-Stacks
 
 Maybe you have been browsing the Microsoft Azure Portal and noticed a new section in the management blade called: Deployment stacks and wondered what it was, and how you can use it.
 
+<!-- truncate -->
+
 Let us take a look!
 
 > Before we get started its worth noting that as of the time of this article, this feature is under Public Preview. Features or ways of working with Deployment Stacks may change, when it becomes generally available. If you run into issues, make sure you have a look at the current [known issues](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deployment-stacks?tabs=azure-powershell&WT.mc*id=AZ-MVP-5004796#known-issues).

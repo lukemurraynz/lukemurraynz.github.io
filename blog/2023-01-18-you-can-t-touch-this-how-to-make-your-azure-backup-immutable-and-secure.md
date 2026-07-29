@@ -15,6 +15,8 @@ With [immutable vaults](https://learn.microsoft.com/en-us/azure/backup/backup-az
 
 Hence, this helps you protect your backups against ransomware attacks and malicious actors by disallowing operations such as deleting backups or reducing retention in backup policies.
 
+<!-- truncate -->
+
 > [Immutable vaults is now Generally available](https://azure.microsoft.com/en-us/updates/azure-backup-immutable-vaults-ga?WT.mc_id=AZ-MVP-5004796 "Generally available: Immutable vaults for Azure Backup") in all regions (March 13th 2023).
 
 An immutable vault can assist in safeguarding your backup data by prohibiting any actions that might result in the loss of recovery points.

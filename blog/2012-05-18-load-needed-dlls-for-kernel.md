@@ -14,3 +14,6 @@ tags:
   7. Type: **_fixboot_** and press Enter
   8. Type: **_fixmbr_** and press Enter
   9. Restart your computer which should now be loading Windows properly.
+
+<!-- truncate -->
+

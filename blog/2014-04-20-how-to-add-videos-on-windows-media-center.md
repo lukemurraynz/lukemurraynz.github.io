@@ -11,6 +11,8 @@ date: 2014-04-20 00:00:00 +1300
   3. Select Add folders, and then select Next.
   4. Do one, or both, of the following:
 
+<!-- truncate -->
+
   * To add videos that are on the Media Center PC, select Add folders on this computer.
   * To add videos that are on another computer on the network, select Add shared folders from another computer.
 

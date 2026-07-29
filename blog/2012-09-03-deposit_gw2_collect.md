@@ -20,3 +20,5 @@ _Your inventory full of crafting materials & sick of right clicking sending to c
     <strong>Click</strong> <strong>Deposit</strong> All <strong>Collectibles</strong>
   </li>
 </ol>
+
+<!-- truncate -->

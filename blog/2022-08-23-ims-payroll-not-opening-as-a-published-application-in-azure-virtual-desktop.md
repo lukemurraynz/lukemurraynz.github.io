@@ -14,6 +14,8 @@ slug: azure/ims-payroll-not-opening-as-a-published-application-in-azure-virtual-
 
 One of the applications I published for a customer is [MYOB IMS Payroll](https://www.myob.com/nz/enterprise/ims-payroll " MYOB IMS Payroll ").
 
+<!-- truncate -->
+
 IMS Payroll worked well as a published application for months until one day; it didn't seem to open for the user, whether as a published application or in the Full Desktop.
 
 The symptoms were that once the user clicked on the icon, it would appear to open _(visible on the Taskbar)_, but there was no window, and when you hovered over the preview thumbnail, it was blank. The cursor also appeared to be active with a circle, indicating it was trying to open.

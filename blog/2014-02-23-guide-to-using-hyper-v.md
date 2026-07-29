@@ -14,6 +14,8 @@ Hyper-V is an emulation/hyper-visor Microsoft developed technology – similar t
 
 **Host operating system:**
 
+<!-- truncate -->
+
 To install the Hyper-V role, Windows Server 2008, Windows Server 2008 R2 Standard, Enterprise or Datacentre edition, Windows Server 2012 Standard or Datacentre edition, or Windows 8 (or 8.1) Pro or Enterprise edition is required. Hyper-V is only supported on x86-64 variants of Windows. It can be installed regardless of whether the installation is a full or core installation. **Processor: **An x86-64 processor
 
 Hardware-assisted virtualization support: This is available in processors that include a virtualization option; specifically, Intel VT or AMD Virtualization (AMD-V, formerly code-named &#8220;Pacifica&#8221;).

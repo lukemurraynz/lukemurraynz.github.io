@@ -10,6 +10,8 @@ On a computer running Windows 7 x64 SP1 Enterprise running Internet Explorer 11 
 
 <img class="alignnone" src="https://i1.wp.com/luke.geek.nz/wp-content/uploads/2016/12/123116_0852_StuckataBla1.jpg?resize=636%2C572&#038;ssl=1" alt="vCloud Console black screen" width="636" height="572" data-recalc-dims="1" />
 
+<!-- truncate -->
+
 This was resolved by completing the following:
 
   1. Adding the website to the Trusted Site list

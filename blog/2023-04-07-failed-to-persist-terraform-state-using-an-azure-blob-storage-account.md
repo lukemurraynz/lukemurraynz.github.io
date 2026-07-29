@@ -18,6 +18,8 @@ When attempting to make changes with Terraform, and the [state changes are in an
 
 And: Error: Failed to persist state to backend.
 
+<!-- truncate -->
+
 Or Error: Error releasing the state lock.
 
 ![Terraform - Failed to save state](/uploads/terraform_savestate.PNG "Terraform - Failed to save state")

@@ -13,7 +13,6 @@ slug: azure/misc/Book-Review-Azure-architecture-explained
 ---
 Book review of [Azure Architecture Explained: A comprehensive guide to building effective cloud solutions](https://www.packtpub.com/product/azure-architecture-explained/9781837634811)
 
-<!-- truncate -->
 
 > Disclaimer: This is the first book review I have ever done, and this review is entirely my opinion and may not fully reflect the value you may or may not get from this book. Everyone will have their unique viewpoint and priorities of what they want out of a book, so please take my review as an opinionated view from my own viewpoint; I am, of course, happy to discuss different points of view and discussions on this page comments. We are all here to learn something!
 
@@ -23,6 +22,8 @@ Book synopsis:
 > You’ll begin by understanding the effective and efficient security management and operation techniques in Azure to implement the appropriate configurations in Microsoft Entra ID. Next, you’ll explore how to modernize your applications for the cloud, examining the different computation and storage options, as well as using Azure data solutions to help migrate and monitor workloads. You’ll also learn how to build your solutions, including containers, networking components, security principles, governance, and advanced observability. With practical examples and step-by-step instructions, you can work on infrastructure-as-code to effectively deploy and manage resources in your environment."
 
 ![Azure Architecture Explained](/images/posts/Review_AzureArchitectureExplained_TitleBoat.jpg)
+
+<!-- truncate -->
 
 ## Introduction
 

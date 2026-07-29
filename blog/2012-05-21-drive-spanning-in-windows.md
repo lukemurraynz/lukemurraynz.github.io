@@ -11,6 +11,8 @@ tags:
 
 > **Warning:** Make sure you have **no important data** on the partitions you plan to use, as creating a spanned volume will **erase everything** on them. Spanned volumes do **not** provide any fault tolerance — if one disk in the span fails, all data on the volume is lost.
 
+<!-- truncate -->
+
 ## How to create a spanned volume
 
 1. Open **Disk Management** (right-click the Start button or search for `diskmgmt.msc`).

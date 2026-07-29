@@ -22,6 +22,8 @@ Recently, I was deploying an [User Assigned Managed identity](https://learn.micr
 
 ![PrincpalNotFound](/images/posts/PrincipalNotExistinDirectory.png)
 
+<!-- truncate -->
+
 What was happening, was that the User Assigned Identity was created, and immediately after the role assignment was attempted, leaving no time for the role assignment API to be aware that the User Assigned Managed identity existed, even with a hard coded dependson!
 
 The fix was to Set the: [principalType](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/scenarios-rbac?WT.mc_id=AZ-MVP-5004796#principal) into the Bicep, as ServicePrincipal, making sure that the Azure platform can wait for the replication to complete, before trying the role assignment.

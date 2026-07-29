@@ -26,3 +26,5 @@ Follow the instructions below to leave the Customer Experience program for Sec
     Click <strong>Ok</strong>
   </li>
 </ol>
+
+<!-- truncate -->

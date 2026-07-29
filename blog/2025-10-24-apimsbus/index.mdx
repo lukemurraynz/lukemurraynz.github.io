@@ -24,7 +24,6 @@ date: 2025-10-23T21:03:42.152Z
 
 Recently Microsoft announced [native Service Bus message publishing from Azure API Management](https://techcommunity.microsoft.com/blog/integrationsonazureblog/introducing-native-service-bus-message-publishing-from-azure-api-management-prev/4462644?WT.mc_id=AZ-MVP-5004796), today we are going to take a look at this new feature and see how we can use it to publish messages AMQP _(Advanced Message Queuing Protocol)_ to an Azure Service Bus queue or topic directly through an API Management endpoint, without needing middleware to do a transform for you -  allowing external systems and mobile apps that lack native AMQP support can send messages to Service Bus by using standard HTTP/REST APIs via API Management.
 
-{/* truncate */}
 
 :::info
 A client sends a standard HTTP request to your API endpoint in API Management. 
@@ -53,6 +52,8 @@ sequenceDiagram
 
 All configurations happen in API Management - no code changes or new infrastructure are required.  
 :::
+
+<!-- truncate -->
 
 The resources I am using for this test are as follows:
 

@@ -9,6 +9,8 @@ Unfortunately ASUS hasn&#8217;t released driver updates for the Rampage 3 Black
 
 Note: Tested in Windows 8.1 64 bit.
 
+<!-- truncate -->
+
   1. First you need to download the Windows 7 thunderbolt drivers &#8211; &#8220;<a style="font-family: sans-serif;font-style: normal" title="ASUS Rampage 3 Black Edition Drivers/Utilities" href="http://support.asus.com/download.aspx?SLanguage=en&m=Rampage%20III%20Black%20Edition&os=30" target="_blank">here</a>&#8220;
   2. Download and extract the drivers to a folder
   3. Press the Windows Key + Pause/Break at the same time to open up your computers System properties

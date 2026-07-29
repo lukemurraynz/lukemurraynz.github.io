@@ -28,3 +28,5 @@ Follow the guide below to remove Microsoft Groove from your PC.
     <strong>Deselect</strong> the <strong>Groove</strong> component and next <strong>Next</strong>
   </li>
 </ol>
+
+<!-- truncate -->

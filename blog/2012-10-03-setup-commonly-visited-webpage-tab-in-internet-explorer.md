@@ -35,4 +35,6 @@ tags:
   </li>
 </ol>
 
+<!-- truncate -->
+
 Now when you open a new Tab it will display your commonly visited webpages.

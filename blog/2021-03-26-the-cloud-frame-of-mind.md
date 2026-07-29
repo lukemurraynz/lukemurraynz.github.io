@@ -17,6 +17,8 @@ We are at a turning point in history, where technology is enabling us to do more
 
 In an effort to continue to make things better, stronger, and faster we have developed technological aids to assist to drive us forward, in areas such as (but not only) Health, space exploration, travel, and business transformation, one could almost call it the evolution of the first hammer or axe as a tool to help us survive and thrive.
 
+<!-- truncate -->
+
 Although there are many technologies in play around the world, artificial intelligence, machine learning, virtual and augmented reality, biotechnology, robotics, and the internet of things to name a few – faster computer processing capability and datacenters all connected to each other and built into the fabric of connectivity across the backbone of the internet, is what I am here to talk about today.
 
 Companies such as Microsoft, in just over 11 years have revolutionized the world of Information Technology. The Microsoft Azure ecosystem is not just ‘_someone else computer’_, it is so much more than that.

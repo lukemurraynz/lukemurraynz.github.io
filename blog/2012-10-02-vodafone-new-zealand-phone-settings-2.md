@@ -11,6 +11,8 @@ These settings are used for setting up Chinese/foreign phones onto the Vodafone 
 
 APN (Access Point Name)
 
+<!-- truncate -->
+
 live.vodafone.com   &#8211; WAP/PXT
 
 www.vodafone.net.nz -Email/DATA

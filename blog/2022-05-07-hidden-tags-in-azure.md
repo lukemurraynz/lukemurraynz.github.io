@@ -14,6 +14,8 @@ slug: azure/hidden-tags-in-azure
 
 But sometimes, you need that extra bit of information to help discover what resources are for, or you may way to add information to a resource that isn't directly displayed in the portal, especially when complex tags are in use that might be used in automation initiatives.
 
+<!-- truncate -->
+
 This is where 'hidden' Azure Tags come in handy.
 
 Tags starting with the prefix of _'hidden-'_ will not be displayed under Tags in the Azure Portal; however, they will be displayed in the resource metadata and used by PowerShell and Azure CLI for automation initiatives.

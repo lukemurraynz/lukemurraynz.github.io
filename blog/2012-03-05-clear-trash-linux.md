@@ -14,6 +14,8 @@ date: 2012-03-05 00:00:00 +1300
 
 &nbsp;
 
+<!-- truncate -->
+
 **`rm -rf ~/.local/share/Trash`**
 
 <p class="Style1">

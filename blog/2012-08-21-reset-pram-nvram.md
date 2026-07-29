@@ -10,6 +10,8 @@ _Warning: Resetting the PRAM/NVRAM will cause the Mac to lose operating system s
 
 _Note: Used successfully to fix Touchpad not “clicking” issue on a Macbook Pro_
 
+<!-- truncate -->
+
 <ol start="1">
   <li>
     Make sure the <strong>Mac</strong> is turned <strong>off</strong>

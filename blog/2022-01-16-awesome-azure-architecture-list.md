@@ -16,4 +16,6 @@ A very brief Blog article today, I have created an AWESOME-Azure-Architecture li
 
 This list is a curated list of AWESOME blogs, videos, tutorials, code, tools & scripts, related to the design and implementation of solutions in Microsoft Azure.
 
+<!-- truncate -->
+
 This list contains anything that can help with your **Microsoft Azure architecture** and quickly get you up and running when designing, planning, and implementing services that help organisations around the planet achieve more.

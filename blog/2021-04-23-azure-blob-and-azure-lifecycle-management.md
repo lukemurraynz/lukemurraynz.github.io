@@ -14,6 +14,8 @@ Azure Blob storage (Platform-as-a-service (PaaS)) is used for streaming and stor
 
 As of January 2021, Blob storage now supports the Network File System (NFS) 3.0 protocol. This support provides Linux file system compatibility at object storage scale and prices and enables Linux clients to [mount a container](https://learn.microsoft.com/en-us/azure/storage/blobs/network-file-system-protocol-support?WT.mc_id=AZ-MVP-5004796 "Network File System (NFS) 3.0 protocol support in Azure Blob storage (preview)") in Blob storage from an Azure Virtual Machine (VM) or a computer on-premises.
 
+<!-- truncate -->
+
 # First up what is a Blob?
 
 Blobs - _“Highly scalable, REST-based cloud object store”_

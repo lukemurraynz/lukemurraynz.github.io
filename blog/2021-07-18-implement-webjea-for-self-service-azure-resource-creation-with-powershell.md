@@ -13,6 +13,8 @@ WebJEA allows you to build web forms for any PowerShell script dynamically. WebJ
 
 The main goals for WebJEA:
 
+<!-- truncate -->
+
 * Reduce delegation of privileged access to users
 * Quickly automate on-demand tasks and grant access to less-privileged users
 * Use your existing PowerShell knowledge to build web forms and automate on-demand processes

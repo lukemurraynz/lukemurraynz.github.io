@@ -10,6 +10,8 @@ _Wishing to backup or import your configuration settings for your Vivotech camer
 
 ** **
 
+<!-- truncate -->
+
 **How to Backup your Vivotech settings**
 
 <ol start="1">

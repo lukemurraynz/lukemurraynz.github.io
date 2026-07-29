@@ -8,6 +8,8 @@ tags:
 ---
 What you need.
 
+<!-- truncate -->
+
 * Windows XP CD _(doesn’t matter whether Home or Professional)_
 
   1.  Boot the computer from the Windows XP disk at start-up

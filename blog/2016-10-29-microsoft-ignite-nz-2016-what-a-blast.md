@@ -10,9 +10,10 @@ Microsoft Ignite NZ 2016! What a blast! _#NinjaCat #MSIgniteNZ_
 
 [<img class="alignnone" title="image" src="https://i2.wp.com/luke.geek.nz/wp-content/uploads/2016/10/image_thumb.png?resize=714%2C37" alt="Microsoft Ignite NZ 2016" width="714" height="37" data-recalc-dims="1" />](https://i2.wp.com/luke.geek.nz/wp-content/uploads/2016/10/image.png)
 
+<!-- truncate -->
+
 I was lucky enough to attend Microsoft Ignite this year, so I thought I would do a high level blog post about my experience at this event.
 
-<!-- truncate -->
 
 <div id="toc_container" class="no_bullets">
   <p class="toc_title">

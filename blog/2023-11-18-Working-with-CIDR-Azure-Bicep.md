@@ -14,9 +14,10 @@ slug: azure/Working-with-CIDR-Azure-Bicep
 
 ![Mastering CIDRs With Azure Bicep](/images/posts/BlogHeading_Mastering-CIDRs-with-Azure-Bicep.gif)
 
+<!-- truncate -->
+
 This article includes sample Bicep functions for working with CIDR, for Azure Virtual Network and Subnet creation.
 
-<!-- truncate -->
 
 ```bicep title="CiDR.bicep"
     // This function parses the CIDR notation and returns an object with the network address, subnet mask, and other details.

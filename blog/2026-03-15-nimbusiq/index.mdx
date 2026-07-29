@@ -29,7 +29,6 @@ Today, I want to walk through something I have been building over the last wee w
 
 At its core, NimbusIQ is built on [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/overview/?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796) - Microsoft's orchestration layer for composing multi-agent pipelines in .NET. It gives you a `WorkflowBuilder` pattern for wiring agents together with explicit edges, lifecycle management via `InProcessExecution`, and the structure needed to run ten specialised agents in a coordinated sequence without the whole thing becoming a tangle of custom plumbing.
 
-{/* truncate */}
 
 ![NimbusIQ Dashboard](images/NimbusIQDashboard.png)
 
@@ -40,6 +39,8 @@ I spend some time working with Azure environments - helping teams understand the
 So I thought to myself: what if I could build something that does the bit that currently requires a human cloud architect? Not the detection - Azure already does that well enough - but the reasoning, prioritisation, and remediation planning that happens after detection - scoped per [Azure Service Group](https://learn.microsoft.com/en-us/azure/governance/service-groups/overview?WT.mc_id=AZ-MVP-5004796).
 
 > That is what NimbusIQ aimed to do.
+
+<!-- truncate -->
 
 ## What is NimbusIQ?
 

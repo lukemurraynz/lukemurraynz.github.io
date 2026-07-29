@@ -25,6 +25,8 @@ The Azure Compute Gallery _(superseded the Shared Image Gallery)_ offers more th
 
 With images, Azure VM applications that support both Linux and Windows operating systems get these benefits.
 
+<!-- truncate -->
+
 > While you can create an image of a VM with apps pre-installed, you would need to update your image each time you have application changes. Separating your application installation from your VM images means there’s no need to publish a new image for every line of code change.
 >
 > Application packages provide benefits over other deployment and packaging methods:

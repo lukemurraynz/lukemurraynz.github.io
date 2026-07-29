@@ -11,6 +11,8 @@ tags:
 
 ffmpeg -i video.avi
 
+<!-- truncate -->
+
 **Turn X images to a video sequence**
 
 ffmpeg -f image2 -i image%d.jpg video.mpg

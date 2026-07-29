@@ -7,6 +7,8 @@ date: 2014-05-17 00:00:00 +1300
 ---
 Without any bootable media &#8211; such as the Windows 8 CD. You have to reset the Surface RT at the operating system level.
 
+<!-- truncate -->
+
   1. Attach your keyboard cover
   2. Power on your Surface
   3. <span style="color: #333333">Press and hold the </span><b style="color: #333333">Left Shift</b><span style="color: #333333"> key at the logon screen</span>

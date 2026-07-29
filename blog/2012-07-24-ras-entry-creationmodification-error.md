@@ -36,6 +36,8 @@ _This usually occurs when you are attempting to connecting to the Internet using
   </li>
 </ol>
 
+<!-- truncate -->
+
 _This is also caused by an issue with Motorola Phone tools you can fix this by running it as Administrator._
 
 <ol start="1">

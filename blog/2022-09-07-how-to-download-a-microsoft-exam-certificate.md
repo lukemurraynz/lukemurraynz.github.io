@@ -12,6 +12,8 @@ This was asked in the Microsoft forums; with the change of platform from being a
 
 The certificate format has also been refreshed.
 
+<!-- truncate -->
+
 **Old**
 
 ![Microsoft certificate](/uploads/001-mtc-cert_old.png "Microsoft certificate")

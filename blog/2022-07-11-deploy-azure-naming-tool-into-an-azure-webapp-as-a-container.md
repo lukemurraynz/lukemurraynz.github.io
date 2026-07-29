@@ -14,6 +14,8 @@ Organising your cloud workloads to support governance, operational management, a
 
 Well-defined naming and metadata tagging conventions help to locate and manage resources quickly. These conventions also help associate cloud usage costs with business teams via chargeback and show-back accounting mechanisms, along with rapidly identifying what services are used across services.
 
+<!-- truncate -->
+
 A useful naming convention composes resource names from important information about each resource. A well-chosen name helps you quickly identify the resource's type, associated workload, deployment environment, and the Azure region hosting it. Some resource names, such as PaaS services with public endpoints or virtual machine DNS labels, have global scopes, so they must be unique across the Azure platform.
 
 There's no one size fits Azure naming convention; it needs to suit your organisation. However, it is worth noting that there are limitations to naming rules for Azure resources.

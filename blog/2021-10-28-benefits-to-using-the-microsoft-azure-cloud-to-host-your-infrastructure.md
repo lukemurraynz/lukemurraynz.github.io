@@ -14,6 +14,8 @@ Cloud computing offers many benefits, from your traditional on-premises infrastr
 
 The shift of technologies from managing on-premises Exchange environments for mail to consuming Microsoft 365 services has allowed more time for the IT and businesses to adopt, consume and improve their technology and continuously improve - to get the most use of it and remain competitive in this challenging world.
 
+<!-- truncate -->
+
 Below is a high-level list of what I consider some of the benefits of using the Microsoft Azure ecosystem:
 
 * Each Azure datacentre 'region' has 3 Availability Zones, each zone acts as a separate datacentre, giving redundant power and networking services, quickly allowing you to separate your services across different fault domains and zones, providing better resiliency, while also giving you the ability to keep them logically and physically close together.

@@ -16,6 +16,8 @@ Want to skip straight to automatic hardware installation? Follow the instruction
   <p>
     <em>REGEDIT4</em>
   </p>
+
+<!-- truncate -->
   
   <p>
     <em>[HKEY_LOCAL_MACHINESOFTWAREPoliciesMicrosoftWindowsDriverSearching]</em><br /> <em> &#8220;DontSearchWindowsUpdate&#8221;=dword:00000001</em><br /> <em> &#8220;DontPromptForWindowsUpdate&#8221;=dword:00000001</em><br /> <em> &#8220;DontSearchCD&#8221;=dword:00000001</em><br /> <em> &#8220;DontSearchFloppies&#8221;=dword:00000001</em>

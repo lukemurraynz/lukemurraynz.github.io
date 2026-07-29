@@ -15,6 +15,8 @@ When attempting to deploy an [Azure Firewall](https://learn.microsoft.com/en-us/
     "code": "InternalServerError",
     "message": "An error occurred."
 
+<!-- truncate -->
+
 ![Deployment Failed - Azure Firewall](/uploads/deploymentfailedazurefirewall.png "Deployment Failed - Azure Firewall")
 
 If you click Input in the deployment, you may notice your vnetName, vnetAddressSpace and subnetAddressSpace are blank.

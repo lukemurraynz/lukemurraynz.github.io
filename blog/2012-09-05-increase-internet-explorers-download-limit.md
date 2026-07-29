@@ -18,6 +18,8 @@ Internet Explorer limits the amount of concurrent downloads. This is how you inc
 
 &nbsp;
 
+<!-- truncate -->
+
 [HKEY\_LOCAL\_MACHINESOFTWAREMicrosoftInternet ExplorerMAINFeatureControlFEATURE_MAXCONNECTIONSPERSERVER]
 
 &#8220;iexplore.exe&#8221;=dword:0000000a

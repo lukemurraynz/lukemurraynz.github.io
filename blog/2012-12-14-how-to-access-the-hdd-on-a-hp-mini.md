@@ -14,3 +14,5 @@ tags:
   6. The plastic casing will then slide off revealing the HDD and on-board CMOs battery.
 
 Note: The HP Mini uses a 2.5&#8243; SATA HDD
+
+<!-- truncate -->

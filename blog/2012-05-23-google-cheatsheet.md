@@ -10,6 +10,8 @@ tags:
 
 **define:<span style="text-decoration: underline;">phrase</span>**
 
+<!-- truncate -->
+
 Show a list of definitions for phrase
   
 **cache:www.example.com**

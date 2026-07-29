@@ -30,6 +30,7 @@ A prompt is still a dependency. Change it, and downstream behaviour can shift wi
 
 <!-- truncate -->
 
+
 ## Why this fails quietly
 
 A bad code change usually throws, times out, or fails a test. A bad prompt change degrades tone, drifts off format, starts hallucinating in a new way, or gets subtly less accurate, and every one of those failure modes returns a valid HTTP 200 with plausible-looking text. Nothing in a typical request/response cycle distinguishes a good prompt output from a degraded one. The only way to catch it is to check the output against something, before a customer does.
@@ -84,7 +85,7 @@ Versioning is the unit of promotion, not the prompt text itself. Every save of a
 
 The evaluators are built in, not something you write from scratch. Foundry ships evaluators that map directly to common failure modes: Groundedness and Relevance for RAG-style factual drift, Coherence and Fluency for format and tone drift, Intent Resolution / Tool Call Accuracy / Task Adherence for agentic behaviour, and risk and safety evaluators (hate/unfairness, sexual, violence, self-harm, prompt injection) for the failure modes that matter far more than "the wording is a bit off".
 
-The practical CI gate mechanism is a GitHub Action, and it is honest about uncertainty. The [`microsoft/ai-agent-evals` action (preview)](https://github.com/microsoft/ai-agent-evals) takes a candidate version and a baseline version in `agent-name:version` form, runs both against your dataset with the evaluators you name, and returns scores with confidence intervals and significance testing. That is the difference between "up by 0.02" (likely noise) and "significantly better at p<0.05" (likely real).
+The practical CI gate mechanism is a GitHub Action, and it is honest about uncertainty. The [`microsoft/ai-agent-evals` action (preview)](https://github.com/microsoft/ai-agent-evals) takes a candidate version and a baseline version in `agent-name:version` form, runs both against your dataset with the evaluators you name, and returns scores with confidence intervals and significance testing. That is the difference between "up by 0.02" (likely noise) and "significantly better at p&lt;0.05" (likely real).
 
 The caveat is important: there is no single "promote" API that the platform automatically blocks on your own score threshold. Promotion in Foundry today is a human or CI decision informed by comparison output. So "fail closed" is still your pipeline logic. Do not merge, deploy, or re-route traffic unless the evaluation step passed.
 

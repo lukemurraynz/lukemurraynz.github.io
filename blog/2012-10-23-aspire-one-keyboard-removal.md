@@ -12,6 +12,8 @@ Things you will need.
 
 or
 
+<!-- truncate -->
+
 * Small Flat-Head Screwdriver
 
   1. Unplug the Aspire One battery _(to avoid any chances of the laptop turning on while you are working on it)._

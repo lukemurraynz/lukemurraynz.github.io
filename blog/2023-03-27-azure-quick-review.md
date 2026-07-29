@@ -16,6 +16,8 @@ There are a lot of workbooks that help with Microsoft Azure cost optimization, b
 
 [Azure Quick Review](https://github.com/cmendible/azqr "Azure Quick Review") _(created by Microsoft Senior Cloud Solution Architect_ [Carlos Mendible](https://www.linkedin.com/in/carlosmendible/)_),_ can supplement other tools - to give you visibility into your Azure services and answer questions such as:
 
+<!-- truncate -->
+
 * What is my expected SLA?
 * Are my resources protected against zone failures?
 * Am I collecting diagnostic logs for my resources?

@@ -13,6 +13,8 @@ Short fix:
   3. Change/update language
 
 Long fix:
+
+<!-- truncate -->
   
 You are running a North American client from Europe and may need to reinstall the European client. Odds are you&#8217;ve been playing Aion since way back in the beginning. When you re-install, the version that gets installed is determined by your OS locale settings and Launcher Options. It will take a while, but you will need to remove Aion completely from the Launcher and from your PC and start from square one with the installation. If you have a decent speed internet, this shouldn&#8217;t take all too long unless you do it during prime time.
 

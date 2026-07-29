@@ -14,6 +14,8 @@ Turning off a Virtual Machine in Microsoft Azure on a schedule can quickly be do
 
 You have a few options, Logic Apps, PowerShell, Functions and Runbooks; most of the time, these will run on a standard 7 AM to 5 PM Monday to Friday schedule _(meaning the Virtual Machine is off during off-peak hours and weekends, reducing compute cost)_.
 
+<!-- truncate -->
+
 This works fine for most scenarios, but what happens if a Bank or Public Holiday falls during the week? With the normal schedule, your Virtual Machine starts.
 
 Because all your users are on Holiday, it wastes money while you and your users drink snicker cocktails at the beach?

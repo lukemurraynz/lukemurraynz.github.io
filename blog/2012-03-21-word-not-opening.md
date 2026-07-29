@@ -22,6 +22,8 @@ Having problems opening Word? This usually occurs when the template that it uses
 
 The file might also be located in the folders below, and is also safe to delete.
 
+<!-- truncate -->
+
 _C:/Documents and Settings/%user%/Application Data/Microsoft/Templates_
 
 _C:/Program Files/Microsoft Office/Templates_

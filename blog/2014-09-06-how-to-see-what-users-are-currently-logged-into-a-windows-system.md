@@ -16,6 +16,8 @@ Being able to determine who is currently logged into a particular Windows system
 
 Note: If you have opened an elevated command prompt you can use: **quser /server:Servername** to show logged on users on remote machines.
 
+<!-- truncate -->
+
 ### Method 2
 
 1. Open Task Manager (by clicking CTRL+ALT+DEL) on the PC

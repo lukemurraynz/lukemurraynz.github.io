@@ -15,6 +15,8 @@ There may be circumstances, you need to open up multiple Microsoft Team instance
 
 Microsoft are working on a version of [Microsoft Teams](https://techcommunity.microsoft.com/t5/microsoft-teams-public-preview/bd-p/MicrosoftTeamsPublicPreview?WT.mc_id=AZ-MVP-5004796 "Microsoft Teams Public Preview") that supports multiple-accounts, but until thats released - you can use a PowerShell script to open up another version of Microsoft Teams in another profile _(or multiple, if you update the profilename)_.
 
+<!-- truncate -->
+
 This script also works within your LocalAppData, so you don't need local administrator rights to run.
 
 ```powershell

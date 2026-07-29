@@ -14,6 +14,8 @@ Working with [Azure Bicep](https://learn.microsoft.com/en-us/azure/azure-resourc
 
 The Bicep Visual Studio Code extension keeps evolving, with a recent (Experimental) feature being added called the **Deploy Pane**.
 
+<!-- truncate -->
+
 > The Deployment Pane is a UI panel in VSCode that allows you to connect to your Azure subscription and execute validate, deploy & whatif operations and get instant feedback without leaving the editor.
 
 ![Azure Bicep - Deploy Pane](/images/posts/VisualStudioCode_DeployPane.png)

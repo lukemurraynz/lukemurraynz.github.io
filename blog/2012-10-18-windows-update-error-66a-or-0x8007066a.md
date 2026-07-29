@@ -14,3 +14,5 @@ tags:
   6. Select Repair
 
 _The Net Framework will then go through and repair its files and registry entries, once completed restart your windows machine and attempt Windows Update again._
+
+<!-- truncate -->

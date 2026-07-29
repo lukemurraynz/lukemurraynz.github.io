@@ -9,6 +9,8 @@ tags:
 
 If you are using the Google Calendar Sync plugin with Microsoft Outlook and receiving **Error 1011**, the most common cause is that the Google Calendar add-in has been automatically disabled by Outlook. This can happen after an Outlook crash, an update, or if the add-in took too long to load.
 
+<!-- truncate -->
+
 ## How to fix it
 
 Re-enable the Google Calendar add-in in Outlook by following these steps:

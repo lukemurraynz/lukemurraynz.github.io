@@ -41,6 +41,8 @@ _First off, you need a Raspberry Pi and an SD Card/Reader_
   </li>
 </ol>
 
+<!-- truncate -->
+
 &nbsp;
 
 _Note: Xbian automatically boots NTFS/FAT32 External HDDs, however make sure that the external HDD has its own power source the Pi doesn’t have enough juice to pump through to drives that only have one USB cable for both power and data._

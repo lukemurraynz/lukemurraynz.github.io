@@ -14,3 +14,5 @@ date: 2014-09-01 00:00:00 +1300
   5. If it’s OSX – get <a title="ClamXav" href="http://www.clamxav.com/download.html" target="_blank">ClamXav</a>!
 
 Note: Bear in mind this is my own personal opinion and I am not responsible for any virus that may occur from following this recommendation!
+
+<!-- truncate -->
