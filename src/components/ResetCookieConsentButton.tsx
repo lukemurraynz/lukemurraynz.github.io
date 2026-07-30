@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./ResetCookieConsentButton.module.css";
 
 export default function ResetCookieConsentButton() {
   const [message, setMessage] = useState("");
@@ -14,23 +15,15 @@ export default function ResetCookieConsentButton() {
   };
 
   return (
-    <div style={{ marginTop: "1.5rem" }}>
+    <div className={styles.wrapper}>
       <button
         type="button"
         onClick={handleReset}
-        style={{
-          background: "var(--ifm-color-primary)",
-          color: "white",
-          border: "none",
-          borderRadius: "0.5rem",
-          padding: "0.75rem 1rem",
-          cursor: "pointer",
-          fontWeight: 600,
-        }}
+        className={styles.button}
       >
         Reset Cookie Choice
       </button>
-      {message ? <p style={{ marginTop: "0.75rem" }}>{message}</p> : null}
+      {message ? <p className={styles.message}>{message}</p> : null}
     </div>
   );
 }

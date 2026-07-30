@@ -192,7 +192,7 @@ const config = {
         },
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://luke.geek.nz/search?q={search_term_string}",
+          "target": "https://luke.geek.nz/search/?q={search_term_string}",
           "query-input": "required name=search_term_string"
         }
       }),
@@ -272,7 +272,7 @@ const config = {
         respectPrefersColorScheme: false,
       },
       // Replace with your project's social card
-      image: "img/social-card.png",
+      image: "img/social-card.jpg",
       navbar: {
         title: "luke.geek.nz",
         logo: {
@@ -407,8 +407,8 @@ const config = {
       apiKey: '62f58247ec020d11cd9d655e22b5fc6d',
 
       indexName: 'luke-geek',
-  contextualSearch: false,
-      searchPagePath: false,
+      contextualSearch: false,
+      searchPagePath: 'search',
     },
     }),
 };

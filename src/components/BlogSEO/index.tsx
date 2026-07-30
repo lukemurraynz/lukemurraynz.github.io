@@ -16,7 +16,7 @@ interface BlogFrontMatter {
   description?: string;
   header?: {
     teaser?: unknown;
-  };
+  } | string;
   image?: unknown;
   keywords?: unknown;
   lastmod?: string;
@@ -71,9 +71,29 @@ interface BlogPostingJsonLd {
 }
 
 function getFrontMatterImage(frontMatter: BlogFrontMatter): string | undefined {
-  const image = frontMatter.image || frontMatter.header?.teaser;
+  const header = frontMatter.header;
+  // Legacy Jekyll-style frontmatter carries the teaser image either as a
+  // nested `header.teaser` or, on some older posts, as a bare `header` string.
+  const headerImage = typeof header === 'string' ? header : header?.teaser;
+  const image = frontMatter.image || headerImage;
 
-  return typeof image === 'string' && image ? image : undefined;
+  if (typeof image !== 'string' || !image) return undefined;
+
+  // Bare filenames (no "/" and not already an absolute URL) are co-located
+  // post assets that only resolve once webpack hashes them via an inline
+  // markdown/MDX reference — there is no way to derive that hashed path from
+  // a plain frontmatter string, so guessing here would produce a broken
+  // image link. Only trust values that are already a static-root-relative
+  // path (e.g. "images/foo.png", "/uploads/foo.png") or a full URL.
+  if (!image.includes('/') && !image.startsWith('http')) return undefined;
+
+  return image;
+}
+
+function toAbsoluteUrl(imageUrl: string | undefined): string | undefined {
+  if (!imageUrl) return undefined;
+  if (imageUrl.startsWith('http')) return imageUrl;
+  return `https://luke.geek.nz${imageUrl.startsWith('/') ? '' : '/'}${imageUrl}`;
 }
 
 export default function BlogSEO(props: BlogSEOProps) {
@@ -96,7 +116,7 @@ export default function BlogSEO(props: BlogSEOProps) {
   // Use custom meta description or excerpt
   const metaDescription = frontMatter.metaDescription || frontMatter.description || description || title;
   const imageUrl = getFrontMatterImage(frontMatter);
-  const absoluteImageUrl = imageUrl?.startsWith('http') ? imageUrl : imageUrl ? `https://luke.geek.nz${imageUrl}` : undefined;
+  const absoluteImageUrl = toAbsoluteUrl(imageUrl);
   
   // Generate keywords from tags and frontmatter
   const frontMatterKeywords = Array.isArray(frontMatter.keywords)
@@ -183,6 +203,11 @@ export default function BlogSEO(props: BlogSEOProps) {
         </>
       )}
 
+      {/* og:image/twitter:image themselves are set natively by the swizzled
+          BlogPostPage/Metadata component (src/theme/BlogPostPage/Metadata),
+          which also understands header/header.teaser — that path correctly
+          overrides the site default, whereas duplicating the tag here does
+          not reliably win the Head de-duplication against it. */}
       {/* twitter:image:alt is not added by Docusaurus */}
       {imageUrl && (
         <meta name="twitter:image:alt" content={title} />
