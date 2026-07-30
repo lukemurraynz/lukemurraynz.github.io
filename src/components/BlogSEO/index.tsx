@@ -203,15 +203,11 @@ export default function BlogSEO(props: BlogSEOProps) {
         </>
       )}
 
-      {/* Docusaurus only auto-emits og:image/twitter:image from the native
-          `image` frontmatter field; header/header.teaser (legacy Jekyll
-          fields) need it set explicitly here instead. */}
-      {absoluteImageUrl && (
-        <>
-          <meta property="og:image" content={absoluteImageUrl} />
-          <meta name="twitter:image" content={absoluteImageUrl} />
-        </>
-      )}
+      {/* og:image/twitter:image themselves are set natively by the swizzled
+          BlogPostPage/Metadata component (src/theme/BlogPostPage/Metadata),
+          which also understands header/header.teaser — that path correctly
+          overrides the site default, whereas duplicating the tag here does
+          not reliably win the Head de-duplication against it. */}
       {/* twitter:image:alt is not added by Docusaurus */}
       {imageUrl && (
         <meta name="twitter:image:alt" content={title} />
