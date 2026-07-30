@@ -54,7 +54,7 @@
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="treat-the-prompt-like-the-artifact-it-is">Treat the prompt like the artifact it is<a href="https://luke.geek.nz/azure/eval-gates-for-prompts/#treat-the-prompt-like-the-artifact-it-is" class="hash-link" aria-label="Direct link to Treat the prompt like the artifact it is" title="Direct link to Treat the prompt like the artifact it is" translate="no">​</a></h2>
 <p>Treat a prompt exactly like any other artefact that can change production behaviour without a compiler catching mistakes. Give it a test set, give it a gate, and default that gate to blocking until proven otherwise.</p>
 <p>Hopefully this helps you avoid the quiet regressions that only show up after customers do, and gives you a practical path to move from manual review to repeatable evaluation gates.</p>]]></content>
-        <category label="azure" term="azure"/>
+        <category label="Azure" term="Azure"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Avoiding Reasoning Model Failures with Microsoft Foundry]]></title>

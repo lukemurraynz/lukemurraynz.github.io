@@ -12,7 +12,7 @@
             "summary": "Prevent silent regressions by treating prompt edits like code deploys, with automated tests, CI gating, and continuous evaluation.",
             "date_modified": "2026-07-29T06:37:14.516Z",
             "tags": [
-                "azure"
+                "Azure"
             ]
         },
         {

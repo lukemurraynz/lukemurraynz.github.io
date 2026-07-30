@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                       xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <ShortName>luke.geek.nz</ShortName>
+  <Description>Search luke.geek.nz</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image width="16" height="16" type="image/x-icon">https://luke.geek.nz/img/favicon.ico</Image>
+  <Url type="text/html" method="get" template="https://luke.geek.nz/search?q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://luke.geek.nz/opensearch.xml" />
+  <moz:SearchForm>https://luke.geek.nz/</moz:SearchForm>
+</OpenSearchDescription>
