@@ -272,7 +272,7 @@ const config = {
         respectPrefersColorScheme: false,
       },
       // Replace with your project's social card
-      image: "img/social-card.png",
+      image: "img/social-card.jpg",
       navbar: {
         title: "luke.geek.nz",
         logo: {
