@@ -1,0 +1,23 @@
+.wrapper {
+  margin-top: 1.5rem;
+}
+
+.button {
+  background: var(--ifm-color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+[data-theme='dark'] .button {
+  /* --ifm-color-primary is a bright teal in dark mode; white text on it
+     fails contrast (~1.5:1), so use a dark foreground instead. */
+  color: #121212;
+}
+
+.message {
+  margin-top: 0.75rem;
+}

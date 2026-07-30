@@ -26,6 +26,7 @@
 .portrait {
   display: block;
   width: 100%;
+  height: auto;
   border-radius: 1rem;
 }
 
@@ -133,5 +134,15 @@
 
   .badgeGrid {
     grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badgeCard {
+    transition: none;
+  }
+
+  .badgeCard:hover {
+    transform: none;
   }
 }

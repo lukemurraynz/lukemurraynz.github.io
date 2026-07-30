@@ -11,40 +11,7 @@ date: 2014-04-27 00:00:00 +1300
   Taleo is used for many organisations as its tool for managing job applications. These settings are Internet Explorer recommended settings for displaying Taleo with no problems.
 </p>
 
-
-<div id="toc_container" class="no_bullets">
-  <p class="toc_title">
-    Table of Contents
-  </p>
-
 <!-- truncate -->
-  
-  <ul class="toc_list">
-    <li>
-      <a href="#magnification"><span class="toc_number toc_depth_1">1</span> Magnification</a>
-    </li>
-    <li>
-      <a href="#configuring-cookie-policy-for-internet-explorer"><span class="toc_number toc_depth_1">2</span> Configuring Cookie Policy for Internet Explorer</a>
-    </li>
-    <li>
-      <a href="#enabling-javascript"><span class="toc_number toc_depth_1">3</span> Enabling JavaScript</a>
-    </li>
-    <li>
-      <a href="#troubleshooting-javascript"><span class="toc_number toc_depth_1">4</span> Troubleshooting JavaScript</a>
-    </li>
-    <li>
-      <a href="#setting-browser-to-cache-web-files"><span class="toc_number toc_depth_1">5</span> Setting Browser to Cache Web Files</a>
-    </li>
-    <li>
-      <a href="#optimizing-cache-settings"><span class="toc_number toc_depth_1">6</span> Optimizing Cache Settings</a>
-    </li>
-    <li>
-      <a href="#configuring-the-printer"><span class="toc_number toc_depth_1">7</span> Configuring the Printer</a>
-    </li>
-  </ul>
-</div>
-
-<span id="magnification"></span>
 
 #### Magnification
 
@@ -53,8 +20,6 @@ The magnification level of your Internet browser must be set to 100%.
 Using a setting other than 100% might produce less than optimal results depending on the Taleo product you are
 
 using and the action you are performing. For this reason, 100% is the only recommended magnification level.
-
-<span id="configuring-cookie-policy-for-internet-explorer"></span>
 
 #### Configuring Cookie Policy for Internet Explorer
 
@@ -82,8 +47,6 @@ Steps
 
 7. Click Done.
 
-<span id="enabling-javascript"></span>
-
 #### Enabling JavaScript
 
 JavaScript is required for the proper function and use of Taleo Enterprise.
@@ -99,8 +62,6 @@ Steps
 2. Click Default Level.
 
 3. Click OK.
-
-<span id="troubleshooting-javascript"></span>
 
 #### Troubleshooting JavaScript
 
@@ -132,8 +93,6 @@ Result
 
 Application should run as expected.
 
-<span id="setting-browser-to-cache-web-files"></span>
-
 #### Setting Browser to Cache Web Files
 
 Prerequisite
@@ -149,8 +108,6 @@ Steps
 3. Click OK.
 
 4. Restart browser.
-
-<span id="optimizing-cache-settings"></span>
 
 #### Optimizing Cache Settings
 
@@ -179,8 +136,6 @@ cache size higher than 500 MB might actually reduce performance.
 4. Click OK.
 
 5. In the Internet Options window, click OK.
-
-<span id="configuring-the-printer"></span>
 
 #### Configuring the Printer
 

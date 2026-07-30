@@ -407,8 +407,8 @@ const config = {
       apiKey: '62f58247ec020d11cd9d655e22b5fc6d',
 
       indexName: 'luke-geek',
-  contextualSearch: false,
-      searchPagePath: false,
+      contextualSearch: false,
+      searchPagePath: 'search',
     },
     }),
 };

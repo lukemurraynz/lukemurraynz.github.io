@@ -109,6 +109,8 @@ export default function AboutPage() {
               src="/img/aboutpage/LukeMurray_Azure.jpg"
               alt="Profile picture of Luke Murray"
               className={styles.portrait}
+              width={704}
+              height={880}
             />
           </div>
         </div>
