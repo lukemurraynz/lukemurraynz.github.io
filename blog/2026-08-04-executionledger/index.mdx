@@ -22,7 +22,7 @@ keywords:
   - event-driven architecture
 date: 2026-08-04T07:25:59.161Z
 ---
-Execution Ledger is an open-source durable workflow orchestrator I built in Rust on Azure Container Apps. It handles step-level idempotency, targeted replay, and compensation for long-running jobs that span external systems. This post is about why I chose Rust, why I chose ACA, and what I learned along the way.
+[Execution-Ledger](https://github.com/lukemurraynz/Execution-Ledger) is an open-source durable workflow orchestrator I built in Rust on Azure Container Apps. It handles step-level idempotency, targeted replay, and compensation for long-running jobs that span external systems. This post is about why I chose Rust, why I chose ACA, and what I learned along the way.
 
 I’ve spent a lot of time around orchestration frameworks. Azure Durable Functions doesn’t automatically rewind entire orchestrations when a single step fails; instead, the orchestrator fails and previous steps remain executed, with "rewind" only available as a manual, preview‑level recovery that replays from the failure point. Temporal demands a Kubernetes cluster and a team comfortable with its programming model. And then there’s the dark matter: the cron scripts and PowerShell scheduled tasks that run half the back offices I’ve seen, failing silently at 3am until someone notices the queue depth.
 
