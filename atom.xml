@@ -2,12 +2,48 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://luke.geek.nz/</id>
     <title>luke.geek.nz Blog</title>
-    <updated>2026-08-04T07:25:59.161Z</updated>
+    <updated>2026-08-04T08:37:19.666Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://luke.geek.nz/"/>
     <subtitle>luke.geek.nz Blog</subtitle>
     <icon>https://luke.geek.nz/img/favicon.ico</icon>
     <rights>Copyright © 2026 luke.geek.nz.</rights>
+    <entry>
+        <title type="html"><![CDATA[Strangler fig: retiring a legacy dispatch layer]]></title>
+        <id>https://luke.geek.nz/misc/incremental-legacy-dispatch-migration/</id>
+        <link href="https://luke.geek.nz/misc/incremental-legacy-dispatch-migration/"/>
+        <updated>2026-08-04T08:37:19.666Z</updated>
+        <summary type="html"><![CDATA[Apply the strangler fig pattern to retire a legacy dispatch layer: domain-by-domain migration, route parity tests, ported tests, and safe cutovers.]]></summary>
+        <content type="html"><![CDATA[<p>Every codebase that has lasted long enough builds up at least one layer like this. Request stubs call into a wiring dict: a lookup table of small lambda functions, one per route, that exists only to find the right handler. Those lambdas call translation functions that move data between an old dispatch shape and what the framework now wants on its own. It worked when it was written. Every new feature since has paid a cost: it goes through three extra steps to do something the framework could do directly if you let it.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-shape-of-the-problem">The shape of the problem<a href="https://luke.geek.nz/misc/incremental-legacy-dispatch-migration/#the-shape-of-the-problem" class="hash-link" aria-label="Direct link to The shape of the problem" title="Direct link to The shape of the problem" translate="no">​</a></h2>
+<!-- -->
+<p>Three extra steps sit between "a request arrived" and "code that does something with it." None of the three add behaviour. All three exist because, at some point, the framework's built-in routing did not do what the app needed yet. That was the fastest way to bridge the gap. Years later, the framework has caught up. But hundreds of routes still depend on that bridge, and nobody wants to be the one who breaks it.</p>
+<p>"Just rewrite it" is the answer everyone reaches for. It is also the answer almost nobody can actually ship. A rewrite means a feature freeze long enough to matter. It also means one huge merge that is almost impossible to review well. And it creates a regression surface that spans the entire app instead of one corner of it. The option that actually ships is one domain at a time.</p>
+<p>That option already has a name, so use it instead of acting like it is new. Martin Fowler wrote about it on martinfowler.com in 2004 as the <a href="https://martinfowler.com/bliki/StranglerFigApplication.html" target="_blank" rel="noopener noreferrer" class="">strangler fig application</a>. The name comes from the way a strangler fig seed grows high in a host tree's branches. Over years, it sends roots down around the trunk until the original tree is no longer holding anything up. Build the new path next to the old one. Move traffic to it one piece at a time. Retire the old piece as nothing depends on it anymore. The general shape is Fowler's. What is specific to a legacy HTTP dispatch layer is the fixed rule set below. It shows what a strangler fig migration looks like when the thing you are strangling is three layers of route-dispatch extra steps in front of hundreds of endpoints.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-migration-rules">The migration rules<a href="https://luke.geek.nz/misc/incremental-legacy-dispatch-migration/#the-migration-rules" class="hash-link" aria-label="Direct link to The migration rules" title="Direct link to The migration rules" translate="no">​</a></h2>
+<ol>
+<li class=""><strong>Freeze the current list of routes as a baseline before changing anything:</strong> add a test that checks the current set of registered routes. Then any drop or duplicate during migration fails loudly instead of shipping silently. This one test is what makes everything after it safe. You cannot check "nothing changed for the caller" without first writing down what "unchanged" means.</li>
+<li class=""><strong>Move one domain's handlers to the framework's built-in pattern for each pass.</strong> Not the whole app. Pick one clear slice, such as a single API domain (orders, billing, or whatever your app's real seams are). Replace it with native routers and typed request and response schemas. Share one dependency-injection context instead of spreading ad hoc lookups through the handler.</li>
+<li class=""><strong>Port the old tests to the new transport, don't write them from scratch.</strong> The current test suite shows the real behaviour, edge cases and all. Those cases often came from real incidents. Writing tests from a blank page means finding those edge cases the hard way, in production, again. Porting a dispatch-based test to hit the new HTTP layer directly keeps the same contract while changing the mechanism underneath it. Keep the same inputs and the same status codes and payloads. Only the transport changes.</li>
+<li class=""><strong>Delete the old domain's legacy modules as soon as the cutover is done.</strong> Not "leave them for now in case we need to roll back." The moment the new path is checked and merged, remove the old wiring for that domain in the same change. Two ways to do the same thing are worse than either way alone. A bug fix now has to be made in both places, or it silently does not.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="where-the-actual-time-goes">Where the actual time goes<a href="https://luke.geek.nz/misc/incremental-legacy-dispatch-migration/#where-the-actual-time-goes" class="hash-link" aria-label="Direct link to Where the actual time goes" title="Direct link to Where the actual time goes" translate="no">​</a></h2>
+<p>The router code itself is close to mechanical. The time sink is everywhere the old and new paths disagree about details nobody wrote down:</p>
+<ul>
+<li class=""><strong>Status code mapping:</strong> the old dispatch shim might turn a permission error into a 403 and a value error into a 400 through some central error handler. The new built-in router needs the same mapping. If it does not, clients that depend on specific status codes break. That can be easy to miss in a quick manual check and obvious the moment a real client hits it.</li>
+<li class=""><strong>Test harness behaviour that hides real errors:</strong> a test client that swallows server exceptions by default can report a clean pass on a handler that is actually throwing a 500. The framework caught the exception before your assertion ever saw the status code. Get this wrong and "port the tests" from rule 3 quietly stops testing anything.</li>
+<li class=""><strong>Request shape differences:</strong> a GET that used to pass parameters through a dispatch-layer body now needs those parameters in the query string to fit the framework more cleanly. Each difference is small. There are a lot of them.</li>
+</ul>
+<p>A design doc never catches this. A failing test does, one at a time. That is why a domain-by-domain migration matters. A failing test in a 30-route migration tells you something specific. A failing test in a 400-route one huge rewrite tells you almost nothing about where to look.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-this-rule-set-adds-to-the-general-pattern">What this rule set adds to the general pattern<a href="https://luke.geek.nz/misc/incremental-legacy-dispatch-migration/#what-this-rule-set-adds-to-the-general-pattern" class="hash-link" aria-label="Direct link to What this rule set adds to the general pattern" title="Direct link to What this rule set adds to the general pattern" translate="no">​</a></h2>
+<p>The general case for a strangler fig migration over a rewrite is well known: ship value steadily, avoid a feature freeze, and catch regressions in a scope small enough to debug. What this rule set adds for a dispatch-layer migration is specific. The baseline from rule 1 turns each migration into a change you can check with a test, not just a smaller one. You are not asking a reviewer to trust that "the behaviour is the same." You are pointing to a test that proves it. That test fails the build the moment parity breaks. This scales in a way careful review never does, and it misses nothing the test actually covers.</p>
+<p>None of this is tied to one framework. None of it requires treating the strangler fig approach as a new idea. It is the discipline that makes "boring, steady, and safe" beat "fast, exciting, and scary" when the thing you are strangling is a dispatch layer that hundreds of routes depend on.</p>]]></content>
+        <author>
+            <name>Luke Murray</name>
+            <uri>https://luke.geek.nz</uri>
+        </author>
+        <category label="Misc" term="Misc"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Building Execution Ledger - Durable Workflow Orchestration in Rust on Azure Container Apps]]></title>
         <id>https://luke.geek.nz/azure/execution-ledger/</id>
@@ -723,253 +759,5 @@
 <li class=""><a href="https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-networking?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">PostgreSQL Flexible Server networking</a></li>
 </ul>]]></content>
         <category label="Azure" term="Azure"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[From cloud adoption to value realisation]]></title>
-        <id>https://luke.geek.nz/misc/cloud-adoption-value-realisation/</id>
-        <link href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/"/>
-        <updated>2026-06-07T07:54:38.670Z</updated>
-        <summary type="html"><![CDATA[Explore how to transition from cloud adoption to realizing true value with Azure, ensuring measurable improvements for your organization.]]></summary>
-        <content type="html"><![CDATA[<p>A lot of Azure programmes can answer one question pretty quickly: what did we deploy?</p>
-<ul>
-<li class="">Landing zone. Done.</li>
-<li class="">Workloads migrated. Done.</li>
-<li class="">Monitoring enabled. Done.</li>
-<li class="">Tags and budgets configured. Done.</li>
-<li class="">Security baseline applied. Done.</li>
-</ul>
-<p>Those are all useful things, and I am not downplaying them. They are part of getting cloud adoption right. But they are not the whole story.</p>
-<p>The harder question is usually this one:</p>
-<blockquote>
-<p>What is measurably better because we adopted Azure?</p>
-</blockquote>
-<p>That is where the conversation shifts from cloud adoption to value realisation.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="adoption-is-not-the-finish-line">Adoption is not the finish line<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#adoption-is-not-the-finish-line" class="hash-link" aria-label="Direct link to Adoption is not the finish line" title="Direct link to Adoption is not the finish line" translate="no">​</a></h2>
-<p>The <a href="https://learn.microsoft.com/azure/cloud-adoption-framework/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Microsoft Cloud Adoption Framework</a> gives us a really useful way to think about the cloud journey. Strategy, Plan, Ready, Adopt, Govern, Secure, and Manage all have a place, and they are not only technical activities.</p>
-<p>That matters because cloud adoption is not just moving workloads or deploying services. It is integrating cloud into the way the organisation works.</p>
-<p>The trap I see is that teams often treat the Adopt phase as the finish line.</p>
-<p>A workload is migrated.<br>
-<!-- -->A platform is available.<br>
-<!-- -->A dashboard exists.<br>
-<!-- -->A new service is live.</p>
-<p>Then the project closes, and everyone moves to the next thing.</p>
-<p>That is where value can quietly leak out of the programme. The technical delivery might be successful, but the outcome is left assumed rather than managed.</p>
-<p>A simple way I think about it is:</p>
-<table><thead><tr><th>Cloud adoption asks</th><th>Value realisation asks</th></tr></thead><tbody><tr><td>Did we move or build the thing?</td><td>Did the organisation get better because of it?</td></tr><tr><td>Is the platform ready?</td><td>Can teams use it safely and consistently?</td></tr><tr><td>Is monitoring enabled?</td><td>Are decisions improving from the signals?</td></tr><tr><td>Do we have cost visibility?</td><td>Is spend changing behaviour?</td></tr><tr><td>Did we migrate the workload?</td><td>Did we retire cost, risk, or friction?</td></tr></tbody></table>
-<p>Cloud adoption creates the conditions for value. It does not automatically realise it.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-familiar-pattern">The familiar pattern<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#the-familiar-pattern" class="hash-link" aria-label="Direct link to The familiar pattern" title="Direct link to The familiar pattern" translate="no">​</a></h2>
-<p>This is a pattern I have seen a few times, in different shapes.</p>
-<p>A business case gets approved. The platform team does the right thing and builds the Azure foundation properly. Workloads move. Governance is applied. Azure Monitor starts collecting useful data. Microsoft Defender for Cloud is switched on. Cost Management reports are available.</p>
-<p>The project is technically successful.</p>
-<p>Then, six months later, someone asks:</p>
-<blockquote>
-<p>What did we get for the investment?</p>
-</blockquote>
-<p>And the answer is harder than it should be.</p>
-<p>Not because Azure failed. Usually the platform did exactly what it was asked to do.</p>
-<p>The gap is that nobody kept ownership of the value after go-live. The original benefit owner moved on, the review cadence became operational only, and the measures that justified the work were not carried into the run state.</p>
-<p>The team can show that the workload is healthy. They can show that it is patched, monitored, backed up, and policy-compliant. But they cannot easily show whether the business outcome improved.</p>
-<p><img decoding="async" loading="lazy" alt="Diagram showing a programme timeline split into Delivery and Run State zones. The Delivery zone tracks milestones from business case to go-live. The Run State zone shows operational health items staying tracked but benefit ownership, value reviews, and success measures quietly dropping off after project close." src="https://luke.geek.nz/assets/images/adoption-value-gap-df9e438b86daa3cce2c0e66c7fca5d6e.png" width="3096" height="1476" class="img_ev3q"></p>
-<p>That is the bit worth fixing.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="start-with-the-outcome-not-the-service">Start with the outcome, not the service<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#start-with-the-outcome-not-the-service" class="hash-link" aria-label="Direct link to Start with the outcome, not the service" title="Direct link to Start with the outcome, not the service" translate="no">​</a></h2>
-<p>This is where Azure roadmaps need a bit of discipline.</p>
-<p>If the roadmap item says:</p>
-<blockquote>
-<p>Migrate application X to Azure.</p>
-</blockquote>
-<p>That is not wrong, but it is incomplete.</p>
-<p>A better version is closer to:</p>
-<blockquote>
-<p>Migrate application X to Azure so that recovery time improves, platform risk reduces, can make use of additional functionality, and the legacy hosting contract can be retired by Q4.</p>
-</blockquote>
-<p>That second version gives you more to work with. It names the technical move, but it also names the expected value.</p>
-<p>Some examples:</p>
-<table><thead><tr><th>Azure activity</th><th>Better value framing</th></tr></thead><tbody><tr><td>Deploy an Azure landing zone</td><td>Teams can launch compliant workloads faster, with inherited security and governance controls</td></tr><tr><td>Migrate virtual machines</td><td>Legacy infrastructure risk reduces, recovery improves, and old hosting costs can be retired</td></tr><tr><td>Build a Fabric data platform</td><td>Decision latency reduces because trusted data is available at the right cadence</td></tr><tr><td>Roll out Copilot or Azure AI</td><td>A named workflow improves, with human review, quality thresholds, and support ownership</td></tr><tr><td>Enable Azure Monitor</td><td>Teams can act before users are impacted, not only after an incident is raised</td></tr></tbody></table>
-<p>The technical activity still matters. It just needs to sit inside a value story.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="four-questions-before-calling-an-azure-roadmap-done">Four questions before calling an Azure roadmap done<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#four-questions-before-calling-an-azure-roadmap-done" class="hash-link" aria-label="Direct link to Four questions before calling an Azure roadmap done" title="Direct link to Four questions before calling an Azure roadmap done" translate="no">​</a></h2>
-<p>These are the questions I like to ask before treating an Azure roadmap item as ready.</p>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-business-outcome-should-change">What business outcome should change?<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#what-business-outcome-should-change" class="hash-link" aria-label="Direct link to What business outcome should change?" title="Direct link to What business outcome should change?" translate="no">​</a></h3>
-<p>Be specific.</p>
-<p>Not "modernise infrastructure".<br>
-<!-- -->Not "improve reporting".<br>
-<!-- -->Not "adopt AI".</p>
-<p>Better outcomes sound like:</p>
-<ul>
-<li class="">reduce time to recover from a priority incident</li>
-<li class="">reduce manual reporting effort for the finance team</li>
-<li class="">improve release confidence for a customer-facing workload</li>
-<li class="">reduce audit preparation effort</li>
-<li class="">improve cost visibility by product, team, or service</li>
-<li class="">reduce dependency on unsupported infrastructure</li>
-</ul>
-<p>If the outcome is hard to name, the roadmap item may still be a technical task rather than a value item.</p>
-<p>That is fine, but call it what it is.</p>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="who-owns-the-value-after-go-live">Who owns the value after go-live?<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#who-owns-the-value-after-go-live" class="hash-link" aria-label="Direct link to Who owns the value after go-live?" title="Direct link to Who owns the value after go-live?" translate="no">​</a></h3>
-<p>This is a big one.</p>
-<p>The delivery owner is not always the value owner.</p>
-<p>A platform team might own the Azure landing zone. An application team might own the workload. But the value might belong to operations, finance, risk, customer service, or a product owner.</p>
-<p>If nobody owns the value after go-live, the value probably will not be reviewed.</p>
-<p>For each roadmap item, I want to know:</p>
-<table><thead><tr><th>Role</th><th>Question</th></tr></thead><tbody><tr><td>Delivery owner</td><td>Who gets it live?</td></tr><tr><td>Operational owner</td><td>Who runs it after go-live?</td></tr><tr><td>Value owner</td><td>Who proves whether it was worth doing?</td></tr><tr><td>Decision owner</td><td>Who can change course if the measure does not move?</td></tr></tbody></table>
-<p>Those roles might be the same person in a small organisation. In larger environments, they often are not.</p>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-should-move-first">What should move first?<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#what-should-move-first" class="hash-link" aria-label="Direct link to What should move first?" title="Direct link to What should move first?" translate="no">​</a></h3>
-<p>Lagging measures are useful, but they can arrive too late.</p>
-<p>If the only measure is annual cost reduction, customer satisfaction, or revenue growth, you might wait months before you know whether the change is working.</p>
-<p>A leading indicator gives you an earlier signal.</p>
-<p>For example:</p>
-<table><thead><tr><th>Outcome</th><th>Early signal</th></tr></thead><tbody><tr><td>Faster release cycle</td><td>Deployment frequency or lead time changes within 30-60 days</td></tr><tr><td>Better reliability</td><td>Incident volume, alert quality, or mean time to restore starts improving</td></tr><tr><td>Better reporting</td><td>Manual report preparation time reduces</td></tr><tr><td>Better cost ownership</td><td>Teams review cost by workload or product each month</td></tr><tr><td>Better adoption</td><td>Repeat usage grows after the first training wave</td></tr></tbody></table>
-<p>Azure gives us a lot of telemetry. <a href="https://learn.microsoft.com/azure/azure-monitor/fundamentals/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Monitor</a>, <a href="https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview?tabs=webapps&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Application Insights</a>, <a href="https://learn.microsoft.com/azure/azure-monitor/logs/log-analytics-overview?tabs=simple&amp;WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Log Analytics</a>, <a href="https://learn.microsoft.com/azure/cost-management-billing/costs/overview-cost-management?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Cost Management</a>, <a href="https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Defender for Cloud</a>, and <a href="https://learn.microsoft.com/azure/governance/policy/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Policy</a> can all provide useful signals.</p>
-<p>The trick is connecting those signals to the outcome the organisation cares about.</p>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-gets-retired">What gets retired?<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#what-gets-retired" class="hash-link" aria-label="Direct link to What gets retired?" title="Direct link to What gets retired?" translate="no">​</a></h3>
-<p>One of the cleanest ways to realise value is to stop paying for, supporting, or working around something.</p>
-<p>Cloud programmes sometimes add the new thing but keep the old thing alive.</p>
-<ul>
-<li class="">New platform, old process.</li>
-<li class="">New dashboard, old spreadsheet.</li>
-<li class="">New cloud environment, old hosting contract.</li>
-<li class="">New automation, old manual approval path.</li>
-<li class="">New governance model, old exception process.</li>
-</ul>
-<p>That is how cost and complexity grow together - someone once told me:</p>
-<blockquote>
-<p>"Cloud is not where you work, it's how you work."</p>
-</blockquote>
-<p>For each Azure roadmap item, ask:</p>
-<blockquote>
-<p>What do we stop, retire, reduce, or simplify if this works?</p>
-</blockquote>
-<p>That could be:</p>
-<ul>
-<li class="">a legacy server or hosting contract</li>
-<li class="">a manual reporting process</li>
-<li class="">an old integration path</li>
-<li class="">duplicate tooling</li>
-<li class="">a support burden</li>
-<li class="">a recurring security exception</li>
-<li class="">a governance meeting that no longer adds value</li>
-</ul>
-<p>If nothing gets retired or simplified, the organisation might still choose to proceed, but it should do so with eyes open.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="a-few-field-learnings">A few field learnings<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#a-few-field-learnings" class="hash-link" aria-label="Direct link to A few field learnings" title="Direct link to A few field learnings" translate="no">​</a></h2>
-<p>None of these are tied to a specific customer. They are patterns I have seen often enough that I now look for them early.</p>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="a-landing-zone-without-a-first-workload-is-hard-to-explain">A landing zone without a first workload is hard to explain<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#a-landing-zone-without-a-first-workload-is-hard-to-explain" class="hash-link" aria-label="Direct link to A landing zone without a first workload is hard to explain" title="Direct link to A landing zone without a first workload is hard to explain" translate="no">​</a></h3>
-<p>Azure landing zones are important. I am a <strong>big fan</strong> of doing the foundation properly: identity, network, management groups, policy, logging, security baseline, subscription structure, and deployment patterns.</p>
-<p>But a landing zone by itself can be a hard thing for a business sponsor to value.</p>
-<p>The value becomes clearer when it is tied to the first workload or product team that uses it - and I generally try to push for 'what is the business strategy, that the platform can also help to support to ensure alignment'.</p>
-<p>Instead of saying:</p>
-<blockquote>
-<p>We deployed the landing zone.</p>
-</blockquote>
-<p>Try to get to:</p>
-<blockquote>
-<p>The first product team can now deploy into a governed subscription without a custom security review every time.</p>
-</blockquote>
-<p>That moves the conversation from foundation delivered to friction removed.</p>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cost-visibility-is-not-the-same-as-cost-ownership">Cost visibility is not the same as cost ownership<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#cost-visibility-is-not-the-same-as-cost-ownership" class="hash-link" aria-label="Direct link to Cost visibility is not the same as cost ownership" title="Direct link to Cost visibility is not the same as cost ownership" translate="no">​</a></h3>
-<p>I have seen teams build good Azure Cost Management views, dashboards, tags, and budgets, then wonder why spend behaviour does not change.</p>
-<p>The missing part is usually ownership.</p>
-<p>If a team can see cost but cannot change architecture, scale settings, licensing, retention, or product priority, then visibility becomes reporting rather than management.</p>
-<p>The FinOps conversation needs at least three groups in the room:</p>
-<table><thead><tr><th>Group</th><th>What they bring</th></tr></thead><tbody><tr><td>Finance</td><td>Budget, forecast, and commercial discipline</td></tr><tr><td>Engineering or platform</td><td>Technical options and trade-offs</td></tr><tr><td>Business or product owner</td><td>Value judgement and prioritisation</td></tr></tbody></table>
-<p>If one of those is missing, the conversation usually turns into either "cut spend" or "explain spend", neither of which is enough. I do feel <a href="https://learn.microsoft.com/azure/governance/service-groups/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Service Groups</a> will help here - they provide a way to group and govern resources across subscriptions by business context, making it easier to align cost visibility with the workloads and products that own the spend. I have started including them in all deliverables for that reason.</p>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="monitoring-has-to-produce-a-decision">Monitoring has to produce a decision<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#monitoring-has-to-produce-a-decision" class="hash-link" aria-label="Direct link to Monitoring has to produce a decision" title="Direct link to Monitoring has to produce a decision" translate="no">​</a></h3>
-<p>Azure Monitor, Application Insights, and Log Analytics can give you a lot of useful telemetry.</p>
-<p>The trap is building dashboards that nobody uses to make a decision.</p>
-<p>For each dashboard or workbook, I like to ask:</p>
-<ul>
-<li class="">who looks at this?</li>
-<li class="">how often?</li>
-<li class="">what decision can they make from it?</li>
-<li class="">what action happens when the number is red?</li>
-<li class="">what gets ignored because it is noise?</li>
-</ul>
-<p>If the answer is "we might need it someday", the dashboard is probably an archive, not an operational tool.</p>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ai-pilots-need-a-boring-operating-model">AI pilots need a boring operating model<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#ai-pilots-need-a-boring-operating-model" class="hash-link" aria-label="Direct link to AI pilots need a boring operating model" title="Direct link to AI pilots need a boring operating model" translate="no">​</a></h3>
-<p>AI pilots are exciting, but the value usually comes from the boring bits around them.</p>
-<p>Who owns the workflow?
-Who reviews the output?
-What quality threshold is acceptable?
-What happens when the model is wrong?
-Who pays for run cost if usage grows?
-Who supports users after the demo?</p>
-<p>Those questions are less flashy than the demo, but they are usually what decides whether the pilot becomes useful.</p>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-old-thing-has-a-habit-of-surviving">The old thing has a habit of surviving<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#the-old-thing-has-a-habit-of-surviving" class="hash-link" aria-label="Direct link to The old thing has a habit of surviving" title="Direct link to The old thing has a habit of surviving" translate="no">​</a></h3>
-<p>One of the easiest value leaks to miss is the old thing staying alive.</p>
-<p>The old report. The old server. The old approval process. The old spreadsheet. The old vendor contract. The old incident workaround.</p>
-<p>Sometimes there is a good reason. Maybe the migration is phased, the risk is too high, or the replacement has not proven itself yet.</p>
-<p>But if the old thing survives because nobody owns the retirement decision, the business case quietly weakens.</p>
-<p>I now try to make retirement part of the roadmap item, not an afterthought.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="value-needs-a-review-cadence">Value needs a review cadence<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#value-needs-a-review-cadence" class="hash-link" aria-label="Direct link to Value needs a review cadence" title="Direct link to Value needs a review cadence" translate="no">​</a></h2>
-<p>A value measure without a review cadence is mostly decoration.</p>
-<p>The cadence does not need to be heavy. In fact, it is better if it isn't.</p>
-<p>A few examples:</p>
-<table><thead><tr><th>Cadence</th><th>Useful for</th></tr></thead><tbody><tr><td>Monthly service review</td><td>Operational health, incidents, support, adoption, cost anomalies</td></tr><tr><td>Quarterly value review</td><td>Outcome progress, roadmap adjustment, benefit tracking</td></tr><tr><td>FinOps iteration</td><td>Spend, optimisation, forecasting, unit economics</td></tr><tr><td>Well-Architected review</td><td>Workload risk, trade-offs, quality improvement</td></tr><tr><td>Product or platform steering</td><td>Priorities, ownership, funding, and stop/change/continue decisions</td></tr></tbody></table>
-<p>This is where the <a href="https://learn.microsoft.com/azure/cloud-adoption-framework/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Cloud Adoption Framework</a> and <a href="https://learn.microsoft.com/azure/well-architected/?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Well-Architected Framework</a> complement each other nicely.</p>
-<p>CAF helps shape the adoption and operating model. Well-Architected helps you keep improving workload quality across reliability, security, cost optimisation, operational excellence, and performance efficiency.</p>
-<p>FinOps adds another important lens: cost decisions need to be connected to business value, not just lower spend.</p>
-<p>To be frank, that is where some cloud cost conversations go sideways. Saving money is good, but the better question is whether the spend is producing enough value for the workload, product, or service it supports.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="a-simple-value-realisation-loop">A simple value realisation loop<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#a-simple-value-realisation-loop" class="hash-link" aria-label="Direct link to A simple value realisation loop" title="Direct link to A simple value realisation loop" translate="no">​</a></h2>
-<p>The model I keep coming back to is:</p>
-<p><img decoding="async" loading="lazy" alt="Value realisation loop showing six steps from business outcome through to stop, change, or continue decision, with a feedback arrow returning to the top" src="https://luke.geek.nz/assets/images/value-realisation-loop-c8adb54cb73e5595bdef06d3b9ff63dd.png" width="1863" height="1722" class="img_ev3q"></p>
-<p>The six steps are:</p>
-<ol>
-<li class=""><strong>Define the business outcome</strong> - name what should improve, not just what gets built</li>
-<li class=""><strong>Identify the Azure capability</strong> - the service, pattern, or platform that enables it</li>
-<li class=""><strong>Assign ownership</strong> - delivery, operational, and value owners, not just a project lead</li>
-<li class=""><strong>Set the leading indicator</strong> - the earliest signal that the outcome is moving</li>
-<li class=""><strong>Review on cadence</strong> - a scheduled checkpoint where the measure is actually looked at</li>
-<li class=""><strong>Stop, change, or continue</strong> - a decision trigger so the work stays accountable</li>
-</ol>
-<p>Nothing clever there, but it forces the right conversation.</p>
-<p>If an item cannot make it through that loop, it is probably not ready to be called a strategic roadmap item yet. It might still be necessary technical work, but you need to be aware of it.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="a-practical-example">A practical example<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#a-practical-example" class="hash-link" aria-label="Direct link to A practical example" title="Direct link to A practical example" translate="no">​</a></h2>
-<p>Take a simple migration example.</p>
-<p>Weak framing:</p>
-<blockquote>
-<p>Migrate the claims application to Azure.</p>
-</blockquote>
-<p>Better framing:</p>
-<blockquote>
-<p>Migrate the claims application to Azure so that recovery time improves, unsupported infrastructure risk is removed, deployment lead time reduces, and the legacy hosting arrangement can be retired.</p>
-</blockquote>
-<p>The value realisation loop might look like this:</p>
-<table><thead><tr><th>Element</th><th>Example</th></tr></thead><tbody><tr><td>Outcome</td><td>Claims platform is more resilient and cheaper to operate</td></tr><tr><td>Azure capability</td><td>Azure landing zone, workload migration, Azure Monitor, Azure Backup, policy baseline</td></tr><tr><td>Operating owner</td><td>Application owner plus platform operations</td></tr><tr><td>Leading indicator</td><td>Restore test completes within RTO target within 30 days; deployment lead time drops from days to hours within 60 days; support tickets down 20% by month 3</td></tr><tr><td>Review cadence</td><td>Monthly service review for 3 months post go-live, then quarterly</td></tr><tr><td>Stop/change/continue</td><td>Continue if recovery and deployment measures improve; revisit scope if legacy hosting contract cannot be confirmed for retirement by end of Q3</td></tr></tbody></table>
-<p>The point is not the table itself - it is that the team now has something to look at together at the monthly review, rather than only tracking whether the workload is green.</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="where-this-fits-for-azure-teams">Where this fits for Azure teams<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#where-this-fits-for-azure-teams" class="hash-link" aria-label="Direct link to Where this fits for Azure teams" title="Direct link to Where this fits for Azure teams" translate="no">​</a></h2>
-<p>For Azure architects and platform teams, this does not mean turning every technical task into a business case.</p>
-<p>Some work is foundational. Some work is hygiene. Some work is risk reduction. Not everything needs a dramatic value story.</p>
-<p>But the bigger the investment, the more important this becomes.</p>
-<p>If you are asking for funding, executive attention, delivery capacity, migration downtime, security exceptions, or behaviour change, then value ownership matters.</p>
-<p>At minimum, each major Azure roadmap item (I would do this as an Epic in Agile) should have:</p>
-<ul>
-<li class="">a named outcome</li>
-<li class="">a value owner</li>
-<li class="">one leading indicator</li>
-<li class="">one lagging measure if available</li>
-<li class="">a review cadence</li>
-<li class="">a clear statement of what gets retired, reduced, or simplified</li>
-<li class="">a stop/change/continue trigger</li>
-</ul>
-<p>That is enough to move the conversation from "we adopted Azure" to "Azure helped us improve something that mattered."</p>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="final-thoughts">Final thoughts<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#final-thoughts" class="hash-link" aria-label="Direct link to Final thoughts" title="Direct link to Final thoughts" translate="no">​</a></h2>
-<p>The best Azure roadmap is not the one with the most services on it.</p>
-<p>It is the one where every platform decision traces to an outcome, every outcome has an owner, every owner has a measure, and every measure is reviewed after go-live.</p>
-<p>Adoption gets you into Azure. Value realisation proves Azure was worth adopting.</p>
-<p>Hopefully, this helps you look at your next Azure roadmap with a slightly sharper lens.</p>
-<p>Before approving the next wave, ask:</p>
-<blockquote>
-<p>What will be measurably better 90 days after this goes live, and who owns proving it?</p>
-</blockquote>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="references">References<a href="https://luke.geek.nz/misc/cloud-adoption-value-realisation/#references" class="hash-link" aria-label="Direct link to References" title="Direct link to References" translate="no">​</a></h2>
-<ul>
-<li class=""><a href="https://learn.microsoft.com/azure/cloud-adoption-framework/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Microsoft Cloud Adoption Framework for Azure</a></li>
-<li class=""><a href="https://learn.microsoft.com/azure/cloud-adoption-framework/plan/prepare-organization-for-cloud?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Prepare your organisation for the cloud</a></li>
-<li class=""><a href="https://learn.microsoft.com/azure/cloud-adoption-framework/plan/document-cloud-adoption-plan?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Document your cloud adoption plan</a></li>
-<li class=""><a href="https://learn.microsoft.com/azure/cloud-adoption-framework/manage/ready-cloud-operations?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Ready your Azure cloud operations</a></li>
-<li class=""><a href="https://learn.microsoft.com/azure/well-architected/what-is-well-architected-framework?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Well-Architected Framework</a></li>
-<li class=""><a href="https://learn.microsoft.com/azure/well-architected/operational-excellence/principles?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Operational Excellence design principles</a></li>
-<li class=""><a href="https://learn.microsoft.com/cloud-computing/finops/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">What is FinOps?</a></li>
-<li class=""><a href="https://learn.microsoft.com/cloud-computing/finops/framework/quantify/quantify-business-value?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Quantify business value with FinOps</a></li>
-</ul>]]></content>
-        <category label="Misc" term="Misc"/>
     </entry>
 </feed>
