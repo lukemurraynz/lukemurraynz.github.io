@@ -1,0 +1,380 @@
+---
+title: "Azure Monitor SLIs on Managed Prometheus: the bits the docs don't tell you"
+slug: azure/monitor-sli-managed-prometheus-gotchas
+description: Root causes and workarounds for creating Azure Monitor Service Level Indicators against Managed Prometheus metrics with Bicep and the ARM API.
+date: 2026-08-13T02:58:13.349Z
+tags:
+  - Azure
+keywords:
+  - Azure
+  - AKS
+  - Operations
+---
+
+# Azure Monitor SLIs on Managed Prometheus: the bits the docs don't tell you
+
+Azure Monitor now does SLIs and SLOs natively, with error budgets and burn rate alerting, which is good news if you have been hand-rolling multi-window burn rate rules out of metric alerts for years. I have been building a demo that pairs Azure Monitor SLIs with the Azure SRE Agent on AKS, all deployed with the Azure Developer CLI, and I wanted every part of it in infrastructure as code.
+
+Getting the infrastructure up was the easy part. Getting a single SLI created against Managed Prometheus metrics took considerably longer, and almost none of the reasons were in the documentation. This post is the list of things I wish I had known before I started, in the order they bit me.
+
+If you only read one line: **the metric namespace for Managed Prometheus metrics is `customdefault`, not `prometheus`.** That one value cost me the most time by a wide margin.
+
+<!-- truncate -->
+
+## The setup
+
+A three-tier app on AKS, instrumented with the Prometheus client, scraped by Managed Prometheus into an Azure Monitor Workspace (AMW). The SLI reads `http_requests_total` and compares good requests (status code below 500) against total requests. Standard availability SLI, nothing exotic.
+
+Worth knowing up front, because it shapes everything else:
+
+- An SLI is an **extension resource on a tenant-scoped service group**, at `/providers/Microsoft.Management/serviceGroups/{sg}/providers/Microsoft.Monitor/slis/{name}`. That is not the scope an `azd` Bicep deployment targets, so in practice you apply SLIs with a direct ARM call rather than from your main template.
+- The resource type is `Microsoft.Monitor/slis`, and at the time of writing the only published API version is `2025-03-01-preview`, even though the SLI/SLO feature itself is GA.
+
+## Gotcha 1: the metric namespace is `customdefault`
+
+This is the big one. Every Microsoft example I could find uses an MDM style metric namespace, and the obvious guess for Managed Prometheus metrics is `prometheus`, especially since the generated query text shows `metricNamespace("prometheus")` quite happily when you supply it.
+
+Here is the trap. With `prometheus`, the metric name resolves without complaint, so you get no "metric not found" error. What you get instead is one of these two, depending on whether you declared any dimensions:
+
+```text
+QueryErrorCE2001: Name 'service' does not exist in current context
+```
+
+```text
+NoPartitioningDimension: Query metadata returned no partitioning dimension,
+for account: mac_..., metricName: http_requests_total, metricNamespace: prometheus
+```
+
+Both of those point you at dimensions, which is where I spent hours. I checked the Prometheus endpoint and confirmed all 17 labels were present and queryable. I checked the portal, and the SLI blade happily listed `service`, `namespace`, `status_code`, `path`, and the rest in its dimension picker. Everything said the dimensions existed, and the API insisted they did not.
+
+The dimensions were fine. The namespace was wrong.
+
+```json
+{
+  "signalSourceId": "A",
+  "metricNamespace": "customdefault",
+  "metricName": "http_requests_total",
+  "sourceAmwAccountResourceId": "/subscriptions/.../providers/microsoft.monitor/accounts/<amw>",
+  "sourceAmwAccountManagedIdentity": "/subscriptions/.../userAssignedIdentities/<identity>",
+  "filters": [
+    { "dimensionName": "status_code", "operator": "notstartswith", "value": "5" }
+  ],
+  "spatialAggregation": { "type": "Sum", "dimensions": ["service"] },
+  "temporalAggregation": { "type": "Average" }
+}
+```
+
+Change `prometheus` to `customdefault` and the same request that had been failing for hours returns `provisioningState: Succeeded`.
+
+Note also that an SLI needs **at least one partitioning dimension**. An empty `dimensions` array fails with `NoPartitioningDimension`, so pick something meaningful (I use `service`).
+
+## Gotcha 2: the identity roles go on the DCR, not the workspace
+
+The documented prerequisites say the SLI identity needs **Monitoring Reader** on the source workspace, and **Monitoring Reader** plus **Monitoring Metrics Publisher** on the destination workspace's default data collection rule (DCR).
+
+I read that, and assigned both roles on the Azure Monitor Workspace resource. That looks right, it passes review, and it fails at SLI creation with:
+
+```text
+[DestinationAmwAccountAccessValidator] Access denied to target resource
+/subscriptions/.../resourceGroups/MA_<amw>_<region>_managed/providers/Microsoft.Insights/dataCollectionRules/<amw>
+for identity /subscriptions/.../userAssignedIdentities/<identity>
+```
+
+The default DCR is not in your resource group. It lives in the workspace's **managed** resource group, named `MA_<amw-name>_<region>_managed`, and it shares the workspace's name.
+
+![Where the SLI identity's roles actually need to go: assigning Monitoring Reader and Monitoring Metrics Publisher to the Azure Monitor Workspace resource itself fails SLI creation, the roles need to go on the default DCR inside Azure's own automatically-created managed resource group instead](images/gotcha2-dcr-rbac.svg)
+
+In Bicep you need a separate module scoped to that resource group:
+
+```bicep
+module sliDcrRbac 'modules/sli-dcr-rbac.bicep' = {
+  scope: az.resourceGroup('MA_${amwName}_${location}_managed')
+  name: 'sli-dcr-rbac'
+  params: {
+    azureMonitorWorkspaceName: amwName
+    sliIdentityPrincipalId: sliIdentity.outputs.principalId
+  }
+}
+```
+
+with the DCR referenced as `existing` inside that module, and role assignments scoped to it.
+
+## Gotcha 3: the preview call is useless for debugging, the create call is excellent
+
+There is a `sliSignalPreview` action that the portal's **Validate** button uses. It is tempting to gate your deployment on it, which is exactly what I did, and it was a mistake.
+
+For essentially every failure, `sliSignalPreview` returns this:
+
+```json
+{ "code": "MalformedStructureError", "message": "The request properties payload is not in the correct format." }
+```
+
+No detail, no field name, nothing. Meanwhile the actual create call (`PUT .../slis/{name}`) returns the generated query, the validator that rejected it, and the offending identifier by name. Same inputs, completely different diagnostic value.
+
+So do not gate creation on a successful preview. Attempt the create and read what comes back. My script now runs the preview as advisory output only.
+
+## Gotcha 4: the real error is often in the portal notification pane
+
+SLI creation runs several validators in sequence, and each one masks the next. When it fails in the portal, the blade shows a generic validation banner and resets the wizard back to Basics, which tells you nothing.
+
+The full error, including the validator name, shows up in the **notification pane** (the bell icon). The `DestinationAmwAccountAccessValidator` failure above was visible nowhere else: not in the blade, and not in the response to the preview call.
+
+If both your API calls and the portal appear to fail identically, check the notifications before you conclude anything about the platform. I twice decided this was a platform limitation and twice I was wrong.
+
+## Gotcha 5: prerequisites that fail as generic errors
+
+Two more that produce contentless errors rather than saying what is missing.
+
+**The service group needs a default Azure Monitor Workspace.** Until Monitor settings are configured on the service group, every SLI call fails. The portal path is service group, then Monitoring, then Monitor settings. Microsoft documents the subscription scoped association:
+
+```http
+PUT https://management.azure.com/subscriptions/<sub>/providers/microsoft.monitor/settings/default?api-version=2025-06-03-preview
+{ "properties": { "defaultAzureMonitorWorkspace": "<amw resource id>" } }
+```
+
+What is not documented, but works, is the same settings resource at **service group scope**:
+
+```http
+PUT https://management.azure.com/providers/Microsoft.Management/serviceGroups/<sg>/providers/microsoft.monitor/settings/default?api-version=2025-06-03-preview
+```
+
+That one returns a proper resource with an etag, and it means you can keep the whole thing in code instead of clicking through the portal. Treat it as undocumented and re-check it on each new API version.
+
+**The metrics have to exist first.** An SLI requires its input metric and its partitioning dimensions to already be present in Managed Prometheus at creation time. Create the SLI before the series materialises and validation fails. In a fresh environment that is a real wait: allow for the scrape interval plus two to three minutes of ingestion lag before you try. My deployment script polls the Prometheus endpoint for the metric name and only then creates the SLI.
+
+## Gotcha 6: `enableAlert` looks like the switch, and it lies
+
+At `2025-03-01-preview`, the SLI resource exposes a single boolean, `enableAlert`. The fast burn and slow burn thresholds and the action group selection that the portal offers on the Baseline + Alert tab have no representation anywhere in the API surface, and there is no SLI specific alert type under `Microsoft.AlertsManagement` or `Microsoft.Insights` either. Read the API cold and the reasonable conclusion is that SLI alerting is portal-only, a boolean with nowhere for the real configuration to live.
+
+I believed that for the better part of a day, and started building a parallel implementation in `Microsoft.AlertsManagement/prometheusRuleGroups` to work around it. Wrong. `enableAlert` is a display flag. The real configuration lives in ordinary `Microsoft.Insights/metricAlerts` resources, using `Microsoft.Azure.Monitor.PromQLCriteria`, that read the SLI's own published `:good`/`:total` metrics, and every bit of it deploys from Bicep. I cover the discovery, the queries, and the working resource definition in a companion post: [Azure Monitor SLI alerting really is deployable as code, just not where you'd look](azure-monitor-sli-alerting-as-code.md).
+
+The parallel `prometheusRuleGroups` implementation I built first is worth knowing about as a cautionary tale, not a recommendation. My selectors summed across all three service tiers and left health-check paths in the denominator, both of which quietly made the alert less sensitive than the SLO it was meant to enforce. Deriving alerts from the SLI's own output instead of recomputing them is the actual fix, and it's the pattern I'd ship.
+
+## Gotcha 7: the burn rate windows everybody quotes assume a 30 day budget
+
+This one is not an Azure quirk at all, which is exactly why it is worth writing down. It cost me more time than any of the API problems above, and it will be sitting in a lot of SLO implementations right now.
+
+Every reference for multi window burn rate alerting gives you the same table: fast burn at 14.4x over 1h and 5m, slow burn at 6x over 6h and 30m. What almost nobody carries along with it is the precondition. Those windows assume a **30 day** error budget.
+
+My demo uses a 1-day compliance window, because on 30 days a fresh error budget barely moves and there is nothing to show. I copied the canonical windows in anyway.
+
+The failure mode is not what you would expect. It is not that the alert is noisy, or that it fires late. It is that the **long window is the rate limiter**, and it makes partial faults invisible. A rolling 1h average starting from zero has to be physically dragged up to the threshold, and how long that takes depends on how big the fault is. Against a 7.2% threshold:
+
+| Injected error rate | Time for the 1h window to cross |
+| --- | --- |
+| 95%, a total outage | about 4.5 minutes |
+| 20% | about 22 minutes |
+| 8% | about 54 minutes |
+
+Read that table again, because the shape of it is the point. The alert fires promptly for a total outage and effectively never fires for a realistic partial degradation.
+
+And here is why it survives review: the fault everyone tests with is a total outage. Kill the pod, watch the page arrive, tick the box. The configuration passes every test you throw at it while being unable to detect the degradations you are most likely to actually experience.
+
+I only noticed because I wanted a better demo. A crashing pod is a weak SLO story, since Kubernetes already tells you about a crashing pod. What I wanted was the fault where every pod is `Running` with zero restarts and users are still failing, because that is the entire argument for SLIs on one screen. When I injected a 20% error rate, nothing fired. My first instinct was that the fault was too small. It was not, the window was too long.
+
+Shortening the fast burn long window from 1h to 15m fixed it. Measured on the live environment: a 20% error rate now pages at Sev1 in **8 minutes 36 seconds**, which is faster than the total outage managed under the old windows.
+
+If you take one thing from this post, take this: **derive your long window from your compliance window, and test with a partial fault.** Compute `long_window x threshold / expected_error_rate` and ask whether that many minutes is acceptable for the smallest degradation you care about. Copying 1h/5m onto a 1-day budget is as wrong as copying it onto a 1-hour budget, and it fails silently in the direction of missing real incidents.
+
+A related trap while you are testing: a long window keeps carrying the previous incident's errors well after recovery, so a slow burn rule can still be Fired from your *last* test run. I nearly recorded a stale Sev2 as a successful detection. Filter alerts by `startDateTime` against your injection time rather than trusting what is on the screen.
+
+## Gotcha 8: the signal model is much more capable than the examples suggest
+
+Every worked example I found uses a single signal source and a `signalFormula` of `"A"`. That makes the model look thin. It is not, and I built three noticeably better SLIs once I read the TypeSpec instead of the examples.
+
+**`signalFormula` combines multiple sources.** Give each source a distinct `signalSourceId` and reference them in the formula. Dividing a histogram's `_sum` by its `_count` gives you mean latency computed inside the SLI, with no recording rule and no change to your app:
+
+```json
+"signals": {
+  "signalFormula": "A / B",
+  "signalSources": [
+    { "signalSourceId": "A", "metricName": "http_request_duration_seconds_sum" },
+    { "signalSourceId": "B", "metricName": "http_request_duration_seconds_count" }
+  ]
+}
+```
+
+**`in` and `notin` take a `^^` delimited string, not a JSON array.** This is documented only in a doc comment on the `ConditionOperator` union, and it is useful rather than trivia:
+
+```json
+{ "dimensionName": "service", "operator": "in", "value": "frontend^^api^^upstream-auth-service" }
+```
+
+That is one SLI spanning a whole call chain instead of three separate ones. It matters for design, not just syntax. An edge only availability SLI stays green when something fails deep in the chain and the edge masks it with a cache or a fallback. A journey scoped one does not.
+
+**`windowUptimeCriteria.target` is a float**, so sub-second thresholds work fine, and window-based SLIs are worth having alongside request-based ones rather than instead of them. The request-based one answers "what share of requests were good". The window-based one answers "how much of the time was the service bad", and it is the one that stays meaningful in a quiet period where a handful of slow requests can swing a ratio.
+
+One caveat to close that loop, and it is the mistake I made. Because burn rate alerting lives in a parallel system rather than on the SLI resource, nothing keeps the two in step. I ended up with four SLIs, two availability and two latency, and burn rate rules for availability only. The latency SLIs charted perfectly and paged nobody. The list looks symmetrical, which is precisely why nobody catches it. Enumerate your SLIs and your alert rules side by side.
+
+## Gotcha 9: enabling the monitoring add-on does not enable monitoring
+
+This is the one I am most annoyed about, because I hit the same failure mode twice in the same build and still did not recognise it the second time.
+
+Managed Prometheus first. Setting `azureMonitorProfile.metrics.enabled = true` in Bicep gets you the metrics agent and no metrics. You also need a data collection endpoint, a data collection rule, and an association to the cluster. I knew this, I built it, it worked.
+
+Then Container Insights. `omsAgentEnabled: true` with the right workspace id. Addon reports enabled. The `ama-logs` pods run happily. And every single Container Insights table was empty for the entire life of the cluster:
+
+```kql
+union withsource=T *
+| where TimeGenerated > ago(24h)
+| summarize n=count() by T
+```
+
+No rows. Not "a bit thin", not "one table missing". Nothing, anywhere, ever. Same root cause as Prometheus: the enable flag provisions the agent, and a **data collection rule associated to the cluster** is what gives it a job. `az aks enable-addons` creates that rule for you. Bicep does not.
+
+```bash
+az monitor data-collection rule association list --resource <cluster-id> --query "[].name" -o tsv
+```
+
+Expect one association per collection path. I had exactly one, the Prometheus one, and no error anywhere in the portal, the CLI, the addon status, or the pod logs to suggest anything was missing.
+
+Take the DCR shape and the stream list from the canonical onboarding template in [`microsoft/Docker-Provider`](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/onboarding-using-msi-auth/existingClusterOnboarding.json) rather than writing it from memory. The stream names are exact strings and there are twelve of them.
+
+The knock-on effect is worth stating: my workbook had never had data, and my write-up claimed the SRE Agent "cites the AKS pod event as root-cause evidence". It cannot cite a pod event from an empty table. I had asserted that from the design rather than from an observation.
+
+## Gotcha 10: an empty panel and an impossible query look identical
+
+Once Container Insights was actually collecting, one workbook panel stayed empty. The query was fine, in the sense that it parsed and ran and returned zero rows:
+
+```kql
+InsightsMetrics
+| where Namespace == 'container.azm.ms/memory'
+| where Name == 'memoryWorkingSetBytes'
+```
+
+There is no `container.azm.ms/memory` namespace. `InsightsMetrics` carries node, disk and kube-state metrics. Container CPU and memory live in the **`Perf`** table under `ObjectName == 'K8SContainer'`, and to get from there to a namespace you have to join back to `KubePodInventory`, because `Perf.InstanceName` is `<clusterResourceId>/<podUID>/<containerName>`:
+
+```kql
+let podMap = KubePodInventory
+| where Namespace == 'payment'
+| distinct ContainerName, Name;
+Perf
+| where ObjectName == 'K8SContainer' and CounterName == 'memoryWorkingSetBytes'
+| extend ContainerName = strcat(tostring(split(InstanceName, '/')[-2]), '/', tostring(split(InstanceName, '/')[-1]))
+| join kind=inner podMap on ContainerName
+| summarize WorkingSetMiB = avg(CounterValue) / 1024 / 1024 by bin(TimeGenerated, 1m), Name
+```
+
+The lesson generalises well beyond workbooks: **a query against the wrong table returns zero rows forever, and zero rows is indistinguishable from "no data yet" or "nothing is broken right now".** Before you believe an empty panel, strip the filters and run a positive control:
+
+```kql
+InsightsMetrics | summarize count() by Namespace, Name | order by count_ desc
+```
+
+That one command would have shown me the real namespaces immediately, and it is the first thing I will run next time.
+
+## Gotcha 11: Service Group membership looks tenant-blocked, and is actually an api-version trap
+
+This one I got wrong, publicly and for weeks, so it is worth walking through properly.
+
+Service groups are pitched as spanning resources across subscriptions, which is exactly what makes them attractive for a service-level SLO. I could not add a single member. The path, each step producing a different error:
+
+1. `PUT .../providers/Microsoft.Relationships/serviceGroupMember/<name>` returns `SubscriptionNotRegistered`.
+2. `az provider register --namespace Microsoft.Relationships` succeeds.
+3. Retry: `HttpRequestPayloadAPISpecValidationFailed`. Two things buried in the details array: the name must match `^[a-zA-Z0-9]{3,64}$`, so hyphens are rejected, and `sourceId` is required alongside `targetId`.
+4. Retry with a valid payload: **`RelLifecycleNotEnabledForTenant`**, *"Relationship lifecycle callbacks are not enabled for tenant."*
+
+Undocumented flag, no self-serve way to enable it. I recorded it as a hard limitation and designed around it.
+
+It is not a limitation. **Step 4 only happens on `2026-03-01-preview`.**
+
+```bash
+# fails: RelLifecycleNotEnabledForTenant
+PUT .../serviceGroupMember/slisreShowcase?api-version=2026-03-01-preview
+{"properties":{"sourceId":"/subscriptions/<sub>","targetId":"<sg>"}}
+
+# succeeds
+PUT .../serviceGroupMember/slisreShowcase?api-version=2023-09-01-preview
+{"properties":{"targetId":"<sg>"}}
+```
+
+The older version infers `sourceId` from the parent scope and provisions in seconds. The newer one demands `sourceId` explicitly and *then* refuses on a tenant flag. So the newest preview is the more restrictive one, which is the opposite of the assumption that sent me down this path. I had reached for the newest api-version precisely because the older one seemed to be failing, and in doing so swapped a solvable error for an unsolvable-looking one.
+
+What actually misled me is subtler than the version number. Errors 1, 3 and 4 are all real and all different, so each retry felt like progress toward a wall. A single error repeated would have made me question the request; a *sequence* of distinct, plausible errors reads like a narrowing path toward a wall.
+
+**And once it works, it is ordinary Bicep**, because the relationship's parent is the *member*, not the service group:
+
+```bicep
+targetScope = 'subscription'
+
+resource serviceGroupMembership 'Microsoft.Relationships/serviceGroupMember@2023-09-01-preview' = {
+  name: 'slisreShowcaseBicep'          // alphanumeric only
+  properties: {
+    targetId: '/providers/Microsoft.Management/serviceGroups/${serviceGroupId}'
+  }
+}
+```
+
+That is a subscription-scoped resource, so it deploys from the same template as everything else. Which produces an odd asymmetry worth knowing:
+
+| | Parent | Deployment scope needed | In Bicep? |
+|---|---|---|---|
+| Service group **membership** | the member subscription | subscription | **yes** |
+| The **SLI** itself | the service group | tenant | no, without RBAC at `/` |
+
+Same feature area, opposite answers, purely because of which end of the relationship owns the resource.
+
+**Does membership matter?** Less than the effort suggests, and the reason is worth understanding. An SLI does not reference Azure resources at all: its scope is `sourceAmwAccountResourceId` plus `metricNamespace`, `metricName`, and **dimension filters**. My `journey-availability` SLI spans three tiers purely because of `service in "frontend^^api^^upstream-auth-service"`. Membership gives you topology and rollup; it changes no SLI's computation.
+
+What it does buy is letting something else *tell* you what composes the service, rather than you asserting it. That matters for the SRE Agent, which scopes its knowledge graph to a resource group: if a service actually spans resource groups, the agent investigates one and silently misses the rest.
+
+**The lesson, and it is the same one as the alerting post:** when an Azure preview API refuses, check whether an *older* api-version accepts. Newer previews tighten validation and add gates, and the resource provider will happily tell you which versions exist: the error at the wrong version named all of them, and I did not read it.
+
+## Gotcha 12: GET returns shapes that PUT rejects
+
+Round-tripping a resource (GET it, change one field, PUT it back) is the most natural thing to try, and it fails in several places across this stack:
+
+- **SLI**: the `identity.userAssignedIdentities` values from GET are rejected on PUT with `InvalidIdentityValues`. They must be empty objects (`{}`).
+- **SRE Agent response plans**: GET returns `isDeleted`, `documentType`, `partitionKey`, `createdAt`, `updatedAt`; POST rejects all five with `Unknown incident filter properties`.
+- **SRE Agent skills and subagents**: GET returns array fields as *stringified* lists (`"tools": "['RunAzCliReadCommands']"`), while PUT requires real JSON arrays. Sending back what you received yields `400 ... could not be converted to System.Collections.Generic.List`.
+
+Strip server-generated fields and rebuild write payloads from the documented shape rather than from a GET response.
+
+## Two SLI correctness traps while you are here
+
+Neither of these is an Azure quirk, they are just easy to get wrong, and both quietly produce an SLI that measures the wrong thing.
+
+**Health probe traffic.** Your scraped series includes `/healthz` and `/readyz`. Those never fail, so leaving them in the denominator dilutes the error ratio and your SLO will not move the way you expect. Filter to the user journey path.
+
+**Multi-tier double counting.** If every tier emits the same metric name, one user request is counted once per hop. Filter to the edge service, otherwise a three-tier app inflates the denominator threefold.
+
+## What actually found the answers
+
+Worth saying, because the method matters more than the specific values.
+
+Searching the docs and Learn got me nowhere on the namespace. What found it was searching **GitHub code for the literal error string**, `DestinationAmwAccountAccessValidator`. That returned exactly one result, a `workarounds.md` in Toru Makabe's [aks-chaos-lab](https://github.com/torumakabe/aks-chaos-lab), which documents both the DCR RBAC requirement and the metrics-must-exist-first constraint, and whose SLI Bicep module has `metricNamespace` defaulting to `customdefault`. Full credit there, that repo saved me a support case.
+
+If you are stuck on an Azure error that reads like an internal validator name, put the exact string into GitHub code search before you do anything else. Somebody has usually hit it and written it down.
+
+The other thing that paid off was reading the **TypeSpec** rather than the examples. `sliProperties.tsp` in `Azure/azure-rest-api-specs` is about 260 lines and took five minutes, and it is where the `^^` delimiter, the float target, and the multi source formula all are. The examples had led me to believe none of those existed.
+
+And one anti method, since it wasted an hour. When I could not find an API to list the SRE Agent's incidents, I started guessing endpoint paths. Three of them returned HTTP 200, which felt like progress, right up until I looked at the body and found the portal's single page app HTML rather than JSON. A 200 from a SPA host means "this host serves a web app", not "this endpoint exists". If you are guessing paths, you have already left the part of the problem that is solvable by guessing.
+
+What actually worked was asking what the service **emits** rather than what it exposes. The agent resource has a `logConfiguration.applicationInsightsConfiguration.appId`, and the agent writes an `IncidentActivitySnapshot` custom event to it on every incident transition, carrying the response plan id, the autonomy level, the handled timestamp, and the agent's written investigation summary. That answered in one KQL query what an hour of path guessing could not. When an Azure service will not give you an API, check its telemetry before you reach for its UI.
+
+## Wrap up
+
+None of this makes Azure Monitor SLIs a bad feature. The error budget and burn rate experience is useful, and having it native beats maintaining your own burn rate rules. But the preview API surface is sharp in places, and the failure modes are almost all generic errors that point away from the real cause.
+
+The short version for anyone starting out:
+
+- Use `customdefault` as the metric namespace for Managed Prometheus metrics.
+- Put the identity roles on the default DCR in `MA_<amw>_<region>_managed`, not on the workspace.
+- Debug with the create call, not `sliSignalPreview`.
+- Check the portal notification pane for the real error.
+- Configure the service group default AMW first, and wait for your metrics to land.
+- Don't recompute burn rate alerting yourself. Derive it from the SLI's own `:good`/`:total` metrics via `Microsoft.Insights/metricAlerts` and `PromQLCriteria`, it's IaC-able, just not where the SLI resource itself suggests.
+
+Hopefully this saves you the afternoon it cost me.
+
+The full Bicep, scripts, and agent configuration for the showcase this was all found while building are public: [lukemurraynz/AzureSLI-AzureSREAgent](https://github.com/lukemurraynz/AzureSLI-AzureSREAgent).
+
+## References
+
+- [Create service level indicators in Azure Monitor](https://learn.microsoft.com/azure/azure-monitor/fundamentals/service-level-indicators-create?WT.mc_id=AZ-MVP-5004796)
+- [Microsoft.Monitor/slis template reference](https://learn.microsoft.com/azure/templates/microsoft.monitor/2025-03-01-preview/slis?pivots=deployment-language-bicep&WT.mc_id=AZ-MVP-5004796)
+- [Use Azure Monitor issues (default AMW association)](https://learn.microsoft.com/azure/azure-monitor/aiops/issues-how-to?WT.mc_id=AZ-MVP-5004796)
+- [Service groups overview](https://learn.microsoft.com/azure/governance/service-groups/overview?WT.mc_id=AZ-MVP-5004796)
+- [torumakabe/aks-chaos-lab](https://github.com/torumakabe/aks-chaos-lab)
+- [lukemurraynz/AzureSLI-AzureSREAgent](https://github.com/lukemurraynz/AzureSLI-AzureSREAgent)
+
