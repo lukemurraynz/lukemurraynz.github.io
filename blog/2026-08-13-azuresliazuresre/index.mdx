@@ -80,7 +80,7 @@ An SLI in Azure Monitor is an extension resource on a tenant-scoped Service Grou
 
 That scope is the point. A service is rarely one resource group: frontend here, API there, a database in a shared subscription. A tenant-scoped Service Group gives the service an identity that outlives any particular resource layout, and the SLO hangs off the service rather than off a cluster.
 
-The Service Group does not define what the SLI measures. There is no membership involved. An SLI's scope is `sourceAmwAccountResourceId` plus a metric name and dimension filters:
+The Service Group does not define what the SLI measures. There is no membership involved. An SLI's scope is `sourceAmwAccountResourceId` [(Azure Monitor Workspace)](https://learn.microsoft.com/azure/azure-monitor/metrics/azure-monitor-workspace-overview?WT.mc_id=AZ-MVP-5004796) plus a metric name and dimension filters:
 
 ```jsonc
 "filters": [
