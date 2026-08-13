@@ -57,7 +57,11 @@ The dimensions were fine. The namespace was wrong.
   "sourceAmwAccountResourceId": "/subscriptions/.../providers/microsoft.monitor/accounts/<amw>",
   "sourceAmwAccountManagedIdentity": "/subscriptions/.../userAssignedIdentities/<identity>",
   "filters": [
-    { "dimensionName": "status_code", "operator": "notstartswith", "value": "5" }
+    {
+      "dimensionName": "status_code",
+      "operator": "notstartswith",
+      "value": "5"
+    }
   ],
   "spatialAggregation": { "type": "Sum", "dimensions": ["service"] },
   "temporalAggregation": { "type": "Average" }
@@ -106,7 +110,10 @@ There is a `sliSignalPreview` action that the portal's **Validate** button uses.
 For essentially every failure, `sliSignalPreview` returns this:
 
 ```json
-{ "code": "MalformedStructureError", "message": "The request properties payload is not in the correct format." }
+{
+  "code": "MalformedStructureError",
+  "message": "The request properties payload is not in the correct format."
+}
 ```
 
 No detail, no field name, nothing. Meanwhile the actual create call (`PUT .../slis/{name}`) returns the generated query, the validator that rejected it, and the offending identifier by name. Same inputs, completely different diagnostic value.
@@ -146,7 +153,7 @@ That one returns a proper resource with an etag, and it means you can keep the w
 
 At `2025-03-01-preview`, the SLI resource exposes a single boolean, `enableAlert`. The fast burn and slow burn thresholds and the action group selection that the portal offers on the Baseline + Alert tab have no representation anywhere in the API surface, and there is no SLI specific alert type under `Microsoft.AlertsManagement` or `Microsoft.Insights` either. Read the API cold and the reasonable conclusion is that SLI alerting is portal-only, a boolean with nowhere for the real configuration to live.
 
-I believed that for the better part of a day, and started building a parallel implementation in `Microsoft.AlertsManagement/prometheusRuleGroups` to work around it. Wrong. `enableAlert` is a display flag. The real configuration lives in ordinary `Microsoft.Insights/metricAlerts` resources, using `Microsoft.Azure.Monitor.PromQLCriteria`, that read the SLI's own published `:good`/`:total` metrics, and every bit of it deploys from Bicep. I cover the discovery, the queries, and the working resource definition in a companion post: [Azure Monitor SLI alerting really is deployable as code, just not where you'd look](azure-monitor-sli-alerting-as-code.md).
+I believed that for the better part of a day, and started building a parallel implementation in `Microsoft.AlertsManagement/prometheusRuleGroups` to work around it. Wrong. `enableAlert` is a display flag. The real configuration lives in ordinary `Microsoft.Insights/metricAlerts` resources, using `Microsoft.Azure.Monitor.PromQLCriteria`, that read the SLI's own published `:good`/`:total` metrics, and every bit of it deploys from Bicep. I cover the discovery, the queries, and the working resource definition in a companion post: [Azure Monitor SLI alerting really is deployable as code, just not where you'd look](/azure/monitor-sli-alerting-as-code/).
 
 The parallel `prometheusRuleGroups` implementation I built first is worth knowing about as a cautionary tale, not a recommendation. My selectors summed across all three service tiers and left health-check paths in the denominator, both of which quietly made the alert less sensitive than the SLO it was meant to enforce. Deriving alerts from the SLI's own output instead of recomputing them is the actual fix, and it's the pattern I'd ship.
 
@@ -161,10 +168,10 @@ My demo uses a 1-day compliance window, because on 30 days a fresh error budget 
 The failure mode is not what you would expect. It is not that the alert is noisy, or that it fires late. It is that the **long window is the rate limiter**, and it makes partial faults invisible. A rolling 1h average starting from zero has to be physically dragged up to the threshold, and how long that takes depends on how big the fault is. Against a 7.2% threshold:
 
 | Injected error rate | Time for the 1h window to cross |
-| --- | --- |
-| 95%, a total outage | about 4.5 minutes |
-| 20% | about 22 minutes |
-| 8% | about 54 minutes |
+| ------------------- | ------------------------------- |
+| 95%, a total outage | about 4.5 minutes               |
+| 20%                 | about 22 minutes                |
+| 8%                  | about 54 minutes                |
 
 Read that table again, because the shape of it is the point. The alert fires promptly for a total outage and effectively never fires for a realistic partial degradation.
 
@@ -176,7 +183,7 @@ Shortening the fast burn long window from 1h to 15m fixed it. Measured on the li
 
 If you take one thing from this post, take this: **derive your long window from your compliance window, and test with a partial fault.** Compute `long_window x threshold / expected_error_rate` and ask whether that many minutes is acceptable for the smallest degradation you care about. Copying 1h/5m onto a 1-day budget is as wrong as copying it onto a 1-hour budget, and it fails silently in the direction of missing real incidents.
 
-A related trap while you are testing: a long window keeps carrying the previous incident's errors well after recovery, so a slow burn rule can still be Fired from your *last* test run. I nearly recorded a stale Sev2 as a successful detection. Filter alerts by `startDateTime` against your injection time rather than trusting what is on the screen.
+A related trap while you are testing: a long window keeps carrying the previous incident's errors well after recovery, so a slow burn rule can still be Fired from your _last_ test run. I nearly recorded a stale Sev2 as a successful detection. Filter alerts by `startDateTime` against your injection time rather than trusting what is on the screen.
 
 ## Gotcha 8: the signal model is much more capable than the examples suggest
 
@@ -197,7 +204,11 @@ Every worked example I found uses a single signal source and a `signalFormula` o
 **`in` and `notin` take a `^^` delimited string, not a JSON array.** This is documented only in a doc comment on the `ConditionOperator` union, and it is useful rather than trivia:
 
 ```json
-{ "dimensionName": "service", "operator": "in", "value": "frontend^^api^^upstream-auth-service" }
+{
+  "dimensionName": "service",
+  "operator": "in",
+  "value": "frontend^^api^^upstream-auth-service"
+}
 ```
 
 That is one SLI spanning a whole call chain instead of three separate ones. It matters for design, not just syntax. An edge only availability SLI stays green when something fails deep in the chain and the edge masks it with a cache or a fallback. A journey scoped one does not.
@@ -272,7 +283,7 @@ Service groups are pitched as spanning resources across subscriptions, which is 
 1. `PUT .../providers/Microsoft.Relationships/serviceGroupMember/<name>` returns `SubscriptionNotRegistered`.
 2. `az provider register --namespace Microsoft.Relationships` succeeds.
 3. Retry: `HttpRequestPayloadAPISpecValidationFailed`. Two things buried in the details array: the name must match `^[a-zA-Z0-9]{3,64}$`, so hyphens are rejected, and `sourceId` is required alongside `targetId`.
-4. Retry with a valid payload: **`RelLifecycleNotEnabledForTenant`**, *"Relationship lifecycle callbacks are not enabled for tenant."*
+4. Retry with a valid payload: **`RelLifecycleNotEnabledForTenant`**, _"Relationship lifecycle callbacks are not enabled for tenant."_
 
 Undocumented flag, no self-serve way to enable it. I recorded it as a hard limitation and designed around it.
 
@@ -288,11 +299,11 @@ PUT .../serviceGroupMember/slisreShowcase?api-version=2023-09-01-preview
 {"properties":{"targetId":"<sg>"}}
 ```
 
-The older version infers `sourceId` from the parent scope and provisions in seconds. The newer one demands `sourceId` explicitly and *then* refuses on a tenant flag. So the newest preview is the more restrictive one, which is the opposite of the assumption that sent me down this path. I had reached for the newest api-version precisely because the older one seemed to be failing, and in doing so swapped a solvable error for an unsolvable-looking one.
+The older version infers `sourceId` from the parent scope and provisions in seconds. The newer one demands `sourceId` explicitly and _then_ refuses on a tenant flag. So the newest preview is the more restrictive one, which is the opposite of the assumption that sent me down this path. I had reached for the newest api-version precisely because the older one seemed to be failing, and in doing so swapped a solvable error for an unsolvable-looking one.
 
-What actually misled me is subtler than the version number. Errors 1, 3 and 4 are all real and all different, so each retry felt like progress toward a wall. A single error repeated would have made me question the request; a *sequence* of distinct, plausible errors reads like a narrowing path toward a wall.
+What actually misled me is subtler than the version number. Errors 1, 3 and 4 are all real and all different, so each retry felt like progress toward a wall. A single error repeated would have made me question the request; a _sequence_ of distinct, plausible errors reads like a narrowing path toward a wall.
 
-**And once it works, it is ordinary Bicep**, because the relationship's parent is the *member*, not the service group:
+**And once it works, it is ordinary Bicep**, because the relationship's parent is the _member_, not the service group:
 
 ```bicep
 targetScope = 'subscription'
@@ -307,18 +318,18 @@ resource serviceGroupMembership 'Microsoft.Relationships/serviceGroupMember@2023
 
 That is a subscription-scoped resource, so it deploys from the same template as everything else. Which produces an odd asymmetry worth knowing:
 
-| | Parent | Deployment scope needed | In Bicep? |
-|---|---|---|---|
-| Service group **membership** | the member subscription | subscription | **yes** |
-| The **SLI** itself | the service group | tenant | no, without RBAC at `/` |
+|                              | Parent                  | Deployment scope needed | In Bicep?               |
+| ---------------------------- | ----------------------- | ----------------------- | ----------------------- |
+| Service group **membership** | the member subscription | subscription            | **yes**                 |
+| The **SLI** itself           | the service group       | tenant                  | no, without RBAC at `/` |
 
 Same feature area, opposite answers, purely because of which end of the relationship owns the resource.
 
 **Does membership matter?** Less than the effort suggests, and the reason is worth understanding. An SLI does not reference Azure resources at all: its scope is `sourceAmwAccountResourceId` plus `metricNamespace`, `metricName`, and **dimension filters**. My `journey-availability` SLI spans three tiers purely because of `service in "frontend^^api^^upstream-auth-service"`. Membership gives you topology and rollup; it changes no SLI's computation.
 
-What it does buy is letting something else *tell* you what composes the service, rather than you asserting it. That matters for the SRE Agent, which scopes its knowledge graph to a resource group: if a service actually spans resource groups, the agent investigates one and silently misses the rest.
+What it does buy is letting something else _tell_ you what composes the service, rather than you asserting it. That matters for the SRE Agent, which scopes its knowledge graph to a resource group: if a service actually spans resource groups, the agent investigates one and silently misses the rest.
 
-**The lesson, and it is the same one as the alerting post:** when an Azure preview API refuses, check whether an *older* api-version accepts. Newer previews tighten validation and add gates, and the resource provider will happily tell you which versions exist: the error at the wrong version named all of them, and I did not read it.
+**The lesson, and it is the same one as the alerting post:** when an Azure preview API refuses, check whether an _older_ api-version accepts. Newer previews tighten validation and add gates, and the resource provider will happily tell you which versions exist: the error at the wrong version named all of them, and I did not read it.
 
 ## Gotcha 12: GET returns shapes that PUT rejects
 
@@ -326,7 +337,7 @@ Round-tripping a resource (GET it, change one field, PUT it back) is the most na
 
 - **SLI**: the `identity.userAssignedIdentities` values from GET are rejected on PUT with `InvalidIdentityValues`. They must be empty objects (`{}`).
 - **SRE Agent response plans**: GET returns `isDeleted`, `documentType`, `partitionKey`, `createdAt`, `updatedAt`; POST rejects all five with `Unknown incident filter properties`.
-- **SRE Agent skills and subagents**: GET returns array fields as *stringified* lists (`"tools": "['RunAzCliReadCommands']"`), while PUT requires real JSON arrays. Sending back what you received yields `400 ... could not be converted to System.Collections.Generic.List`.
+- **SRE Agent skills and subagents**: GET returns array fields as _stringified_ lists (`"tools": "['RunAzCliReadCommands']"`), while PUT requires real JSON arrays. Sending back what you received yields `400 ... could not be converted to System.Collections.Generic.List`.
 
 Strip server-generated fields and rebuild write payloads from the documented shape rather than from a GET response.
 
@@ -377,4 +388,3 @@ The full Bicep, scripts, and agent configuration for the showcase this was all f
 - [Service groups overview](https://learn.microsoft.com/azure/governance/service-groups/overview?WT.mc_id=AZ-MVP-5004796)
 - [torumakabe/aks-chaos-lab](https://github.com/torumakabe/aks-chaos-lab)
 - [lukemurraynz/AzureSLI-AzureSREAgent](https://github.com/lukemurraynz/AzureSLI-AzureSREAgent)
-
