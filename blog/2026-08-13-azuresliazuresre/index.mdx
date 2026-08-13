@@ -46,6 +46,15 @@ I got several things wrong. The corrections stay in the post because they expose
 
 <!-- truncate -->
 
+## Who this is for
+
+This walkthrough is aimed at teams that share responsibility for a customer-facing service:
+
+- Platform engineers who own Azure Monitor workspaces, identities, collection, and RBAC
+- SRE and operations teams who define SLOs, error-budget policy, and incident response
+- Product and engineering leaders who need reliability data expressed in terms of customer impact
+- Teams evaluating how much operational work an AI agent should investigate, propose, or perform
+
 :::info
 
 > Before getting into the build, three terms need separating. An **SLI (Service Level Indicator)** is the measured number, such as "99.2% of checkout requests succeeded in the last 24 hours." An **SLO (Service Level Objective)** is the internal target for that number, such as "availability stays above 99% over a rolling 28 days." An **SLA (Service Level Agreement)** is the contractual promise to a customer, and should be looser than the SLO.
@@ -72,7 +81,7 @@ flowchart TB
         slis["Azure Monitor SLIs<br/><i>availability · journey · latency · external</i>"]:::sli
     end
 
-    alerts["SLI-native alerts<br/><i>metricAlerts + PromQLCriteria</i>"]:::infra
+    alerts["SLI-derived alerts<br/><i>native SLI or metricAlerts</i>"]:::infra
     agent["Azure SRE Agent"]:::agent
 
     users --> fe
@@ -282,6 +291,8 @@ The second has already eliminated most of the search space: not a capacity probl
 
 This is where the business lens changes the response. A blended 85.02% can trigger concern, but it does not tell a product manager whether premium customers, free customers, or everyone is affected. The partitioned result supports prioritisation, customer communication, and a more honest conversation about differentiated service commitments.
 
+Imagine a premium customer trying to complete checkout during this fault. The pods are healthy and the overall availability number is still above zero, but that customer cannot complete the transaction. The tier-specific SLI turns that experience into an operational fact: investigate the premium path first, communicate the impact accurately, and avoid spending the incident response effort on healthy free and standard traffic.
+
 There are four limits:
 
 1. Azure cannot infer business dimensions. `customer_tier` exists because the application chose to emit it.
@@ -351,7 +362,7 @@ sequenceDiagram
     autonumber
     participant A as App on AKS
     participant S as Azure Monitor SLI
-    participant AL as SLI-native alert
+    participant AL as SLI-derived alert
     participant G as Azure SRE Agent
     participant K as AKS
 
@@ -423,15 +434,15 @@ Writer rather than Admin excludes role bindings, so the agent cannot grant itsel
 
 When the agent remediated, it used `RunInTerminal`, not the obvious kubectl-specific tool. A matcher listing only write tools would have missed it.
 
-A response plan with `agentMode: review` also did not prevent execution in my test. Tested twice on a supervised agent, every plan set to review, and it scaled a Deployment without approval. This differs from the current product guidance, which describes Review mode as requiring approval for write operations. Treat that discrepancy as a release-specific behavior to verify in your tenant, not as a supported guarantee either way. RBAC and hooks answer what the agent can do. Governance must answer who decided that it may.
+A response plan with `agentMode: review` also did not prevent execution in my test. That contradicted the current product guidance, which describes Review mode as requiring approval for write operations, so I treated it as a behaviour to retest rather than a safety guarantee.
 
 From a design-thinking perspective, the question is not “can the AI fix the incident?” It is “what level of autonomy is appropriate for this incident, this customer impact, and this reversibility?” A scale-up in one namespace may be a bounded experiment. A database migration or a change affecting every tenant is a different service risk and needs a different approval model.
 
-### The correction that mattered: `Review` did not hold either
+### The re-test showed why the underlying control matters
 
 I wrote that `Review` was the one control that prevented writes after testing it once. It was not. Repeating the scaled-to-zero fault twice showed the supervised agent, ARM `mode: Review`, performing the scale operation without approval.
 
-The agent's incident telemetry said `IncidentMitigatedByAgent: False` both times. Kubernetes audit logs were the only reliable witness: `kube-audit-admin` named the principal that executed the `PATCH .../scale` request.
+The agent's incident telemetry said `IncidentMitigatedByAgent: False` both times. Kubernetes audit logs were the only reliable witness: `kube-audit-admin` named the principal that executed the `PATCH .../scale` request. Treat that discrepancy as release-specific behaviour to verify in your tenant, not as a supported guarantee either way.
 
 The cause was a hook named `require-approval-for-restarts` whose content effectively said: deny unless the action is confined to the namespace, reversible, evidence-backed, and not a delete. It did not check whether a human had approved anything. The agent was grading its own homework.
 
