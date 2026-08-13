@@ -346,7 +346,7 @@ Searching the docs and Learn got me nowhere on the namespace. What found it was 
 
 If you are stuck on an Azure error that reads like an internal validator name, put the exact string into GitHub code search before you do anything else. Somebody has usually hit it and written it down.
 
-The other thing that paid off was reading the **TypeSpec** rather than the examples. `sliProperties.tsp` in `Azure/azure-rest-api-specs` is about 260 lines and took five minutes, and it is where the `^^` delimiter, the float target, and the multi source formula all are. The examples had led me to believe none of those existed.
+The other thing that paid off was reading the **TypeSpec** rather than the examples. `sliProperties.tsp` in [`Azure/azure-rest-api-specs`](https://github.com/Azure/azure-rest-api-specs) is about 260 lines and took five minutes, and it is where the `^^` delimiter, the float target, and the multi source formula all are. The examples had led me to believe none of those existed.
 
 And one anti method, since it wasted an hour. When I could not find an API to list the SRE Agent's incidents, I started guessing endpoint paths. Three of them returned HTTP 200, which felt like progress, right up until I looked at the body and found the portal's single page app HTML rather than JSON. A 200 from a SPA host means "this host serves a web app", not "this endpoint exists". If you are guessing paths, you have already left the part of the problem that is solvable by guessing.
 
