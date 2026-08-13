@@ -20,11 +20,8 @@ I got several things wrong. The corrections stay in the post because they are th
 
 :::info
 > Before getting into the build, three terms need separating. An **SLI (Service Level Indicator)** is the measured number, such as "99.2% of checkout requests succeeded in the last 24 hours." An **SLO (Service Level Objective)** is the internal target for that number, such as "availability stays above 99% over a rolling 28 days." An **SLA (Service Level Agreement)** is the contractual promise to a customer, and should be looser than the SLO.
-
 Most teams have an SLA somewhere in a contract, an SLO nobody agreed on, and an SLI that's really just "whatever our dashboard happens to show."
-
 Azure SRE Agent is Microsoft's AI agent product for exactly this problem: it watches Azure Monitor alerts, investigates using your actual logs and metrics, and, if configured to do so, takes a remediation action itself and looks for root cause if it has access to the codebase. No human has to be paged, triage the graphs, and type `kubectl scale` at 3am. The agent does the first pass, and depending on how much you trust it for a given incident class, either proposes what it would do or does it.
-
 The outcome I wanted was an SLO breach that names which customer segment is affected, a differentiated SLA expressed in Azure Monitor, and an AI agent that checks the other firing SLIs before it touches a workload. 
 :::
 
