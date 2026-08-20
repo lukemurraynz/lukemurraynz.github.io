@@ -34,7 +34,7 @@ The pipeline works like this: facilitators capture evidence (what was said, by w
 
 I went for clean architecture: Domain / Application / Infrastructure / API layers, with a single canonical `OpportunityGraph` per engagement as the only authoritative state. Everything else (recommendations, cards, review views, handoff artefacts) is derived and cannot approve or mutate it.
 
-![Evidence to Decision architecture](./images/architecture-overview.svg)
+![Evidence to Decision architecture](./images/architecture-overview.png)
 
 Cosmos DB holds an event-style record of the graph, with optimistic concurrency via ETags on every mutation. It is the only system of record.
 
