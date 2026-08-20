@@ -50,6 +50,8 @@ Entra ID authenticates facilitators and reviewers. Anonymous workshop participan
 
 I built the shared canvas (zoom and pan, drag-to-place cards, live cursors, undo, private and reveal rounds, fullscreen presenter mode) directly on Azure SignalR groups rather than reaching for a commercial whiteboard SDK.
 
+![Shared card board with lanes for workshop discussion](./images/card_board.png)
+
 ![Live mural walkthrough](./images/mural-walkthrough.gif)
 
 SignalR groups are opaque. You can broadcast to a group, but you cannot enumerate its members. That constraint shaped how "start a new private round" works. In a private round, only facilitators see the cards until someone reveals them. The server tracks round state, and clients ask whether reveal mode is active on every render.
@@ -67,6 +69,8 @@ I planted weak evidence twice, an invented "80% faster at another company, never
 ![Agentic capabilities: live AI calls across the workshop](./images/agentic-capabilities-showcase.gif)
 
 Also live: "Ask AI for card suggestions" on the Discovery Cards page. A second, independent agent (FoundryDiscoveryCardSuggestionAgent) reads the current persona and journey step and proposes AI-capability cards with a one-line rationale tied to that persona's actual pain point. Each is addable to the shortlist with one click.
+
+![Discovery Cards catalogue with search, pinning, and board-placement actions](./images/discoverycards.png)
 
 ## Governance is part of the product
 
