@@ -57,7 +57,6 @@
 <p>For an AI-envisioning workshop tool, that record is the product. The customers funding this need a defensible way to turn workshops into delivery, not a faster sticky note app.</p>
 <p>I built it on Azure because Foundry, Agent Framework, SignalR, Cosmos DB, and Entra ID provide those capabilities without custom infrastructure. The platform supports the policy gates, audit trail, and identity model this workflow needs.</p>
 <p>For AI features that need to stay accountable, use the same sequence: evidence → recommendation → review → decision. Let the AI suggest. Keep approval and the record with people.</p>
-<hr>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="links">Links<a href="https://luke.geek.nz/azure/evidence-to-decision-ai-workshop/#links" class="hash-link" aria-label="Direct link to Links" title="Direct link to Links" translate="no">​</a></h2>
 <ul>
 <li class=""><a href="https://learn.microsoft.com/azure/foundry/what-is-foundry?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Microsoft Foundry</a></li>
