@@ -84,7 +84,7 @@ The audit trail lives in Application Insights alongside the regular telemetry: `
 
 The Container Apps API and Static Web Apps frontend deploy together from one `azd` environment. They use managed identity, with no connection strings in configuration. Bicep configures CORS, SignalR groups, and the Foundry connections.
 
-I started on .NET 8 and moved to the .NET 9 preview partway through. It brought newer LINQ features and better performance on hot paths. It also meant waiting for a few NuGet packages tied to the release calendar before production.
+I started on .NET 8 and moved to the .NET 11 preview partway through. It brought newer LINQ features and better performance on hot paths. It also meant waiting for a few NuGet packages tied to the release calendar before production.
 
 I tested every feature in a browser against the deployed app as well as running unit tests. That found a client-side "Start an Ideation Round" error. Backend session creation succeeds, and Application Insights records 200 responses, but the client does not receive the message. I documented it as a separate follow-up because it does not block this workflow.
 
