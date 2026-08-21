@@ -26,7 +26,7 @@
 <meta name="author" content="Luke Murray">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search/?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.3b286f07.css">
-<script src="/assets/js/runtime~main.4e830490.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.f1e5bb1a.js" defer="defer"></script>
 <script src="/assets/js/main.4cdd5e1e.js" defer="defer"></script>
 </head>
 <body>
@@ -89,7 +89,7 @@
 <p>The audit trail lives in Application Insights alongside the regular telemetry: <code>policy.gate_name</code>, <code>policy.mode</code>, <code>policy.result</code>, and the full context of what the model saw and what it returned. You can trace from a delivery document back through the approval chain back to the original evidence.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="shipping-on-azure">Shipping on Azure<a href="#shipping-on-azure" class="hash-link" aria-label="Direct link to Shipping on Azure" title="Direct link to Shipping on Azure" translate="no">​</a></h2>
 <p>The Container Apps API and Static Web Apps frontend deploy together from one <code>azd</code> environment. They use managed identity, with no connection strings in configuration. Bicep configures CORS, SignalR groups, and the Foundry connections.</p>
-<p>I started on .NET 8 and moved to the .NET 9 preview partway through. It brought newer LINQ features and better performance on hot paths. It also meant waiting for a few NuGet packages tied to the release calendar before production.</p>
+<p>I started on .NET 8 and moved to the .NET 11 preview partway through. It brought newer LINQ features and better performance on hot paths. It also meant waiting for a few NuGet packages tied to the release calendar before production.</p>
 <p>I tested every feature in a browser against the deployed app as well as running unit tests. That found a client-side &quot;Start an Ideation Round&quot; error. Backend session creation succeeds, and Application Insights records 200 responses, but the client does not receive the message. I documented it as a separate follow-up because it does not block this workflow.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-output-is-evidence-first-delivery">The output is evidence-first delivery<a href="#the-output-is-evidence-first-delivery" class="hash-link" aria-label="Direct link to The output is evidence-first delivery" title="Direct link to The output is evidence-first delivery" translate="no">​</a></h2>
 <p>The final artefact is a generated delivery document (a technical delivery brief) built from the approved opportunity record. It includes an AI-written summary explicitly labelled &quot;NOT VERIFIED&quot; with a note that a human should check it against the structured fields below.</p>
