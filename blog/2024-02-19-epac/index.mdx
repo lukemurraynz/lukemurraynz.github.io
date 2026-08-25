@@ -27,7 +27,7 @@ Enterprise Azure Policy as Code (EPAC) comprises a number of scripts which can b
 
 [Enterprise Azure Policy as Code (EPAC)](https://azure.github.io/enterprise-azure-policy-as-code/) allows you to define and deploy your Azure policies and exemptions as code. This is a great way to ensure consistency of one or more Azure environments, including managing your exemptions in a way that is auditable and a way that can be integrated into CI/CD pull request approval processes.
 
-So, let's delve a little further into it.
+So, let's look a little further into it.
 
 <!-- truncate -->
 
@@ -51,7 +51,7 @@ Main features include:
 Enterprise Policy as Code, runs primarily on PowerShell scripts, at the time of writing, there is 114 PowerShell scripts that make up this solution *(not all are in use for day-to-day operations)*, from the actual deployment to the plan, importing existing policies and initiatives, creating GitHub or Azure DevOps issues, for policy remediation tasks and even importing Azure Landing Zone policies into the solution, this solution is jam-packed with an ever-expanding toolset.
 
 :::tip
-It is worth noting that although this solution was designed and implemented by Microsoft employees, this is an [Open Source initiative](https://opensource.microsoft.com/codeofconduct/) and is not officially supported by Microsoft, but the community is very active, and the solution is constantly being updated and improved upon. All [Issues](https://github.com/Azure/enterprise-azure-policy-as-code/issues) can be raised directly on GitHub, and if you have any queries, concerns or issues, I suggest you look here first.
+Although this solution was designed and implemented by Microsoft employees, this is an [Open Source initiative](https://opensource.microsoft.com/codeofconduct/) and is not officially supported by Microsoft, but the community is very active, and the solution is constantly being updated and improved upon. All [Issues](https://github.com/Azure/enterprise-azure-policy-as-code/issues) can be raised directly on GitHub, and if you have any queries, concerns or issues, I suggest you look here first.
 :::
 
 ## Why would you use Enterprise Azure Policy as Code?
@@ -96,7 +96,7 @@ In this article, I am going to assume a few things:
 1. You have permission to deploy policies and policy assignments in your Azure environment
 2. You have an Azure DevOps environment (we will use Azure DevOps pipelines in this article, however there is also GitHub action workflows that can be used if you are using GitHub as well) and [Service Connection configured](https://azure.github.io/enterprise-azure-policy-as-code/ci-cd-app-registrations/).
 
-We are going to leverage the EPAC [StarterKit](https://github.com/Azure/enterprise-azure-policy-as-code/tree/main/StarterKit), for the pipelines and scripts.
+We are going to use the EPAC [StarterKit](https://github.com/Azure/enterprise-azure-policy-as-code/tree/main/StarterKit), for the pipelines and scripts.
 
 Before we get CI/CD pipelines set up, we need to do a few things locally first.
 
@@ -110,7 +110,7 @@ This requires a computer running: [PowerShell](https://learn.microsoft.com/power
 
 In my environment, I have a range of Custom and Builtin policies and initiatives, that are mostly deployed to at the top level, including Sandbox policies, and am I also running an NZISM 3.5 initiative, which is a builtin iniative but not the most up-to-date, so as part of the EPAC implementation, I want to replace the policy assignment with 3.6 custom and assign my Sandbox policies to the Sandbox Management Group.
 
-So let us get cracking!
+Let's get started!
 
 1. First, we need to install the EPAC PowerShell module and the Az module and connect to our Azure environment.
 

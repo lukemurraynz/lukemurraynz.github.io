@@ -79,7 +79,7 @@ Most teams building on [Microsoft Foundry](https://learn.microsoft.com/azure/fou
 
 ## What steps 3 and 4 actually look like on Microsoft Foundry
 
-Worth being precise here, because it is easy to overstate what is automatic.
+The details matter here, because it is easy to overstate what is automatic.
 
 Versioning is the unit of promotion, not the prompt text itself. Every save of a prompt-based agent in Foundry creates an immutable version. You route traffic to a specific version and roll back to a prior one if the new one misbehaves. Promotion is traffic moving from version N to N+1. Rollback is moving it back.
 
@@ -103,4 +103,4 @@ A gate that is slow, opaque, or noisy on legitimate changes gets bypassed. Someo
 
 Treat a prompt exactly like any other artefact that can change production behaviour without a compiler catching mistakes. Give it a test set, give it a gate, and default that gate to blocking until proven otherwise.
 
-Hopefully this helps you avoid the quiet regressions that only show up after customers do, and gives you a practical path to move from manual review to repeatable evaluation gates.
+This gives you a practical path from manual review to repeatable evaluation gates, and catches the quiet regressions before customers do.

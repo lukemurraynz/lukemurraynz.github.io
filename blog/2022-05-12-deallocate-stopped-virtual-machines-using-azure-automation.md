@@ -305,7 +305,7 @@ Now that the Automation framework has been created with the Azure Automation acc
 18. Click **+ Create action group**
 19. **Select** your subscription and **resource group** _(this is where the Action alert will go, I recommend your Azure Management/Monitoring resource group that may have a Log Analytics workspace as an example)_.
 20. Give your Action Group a **name**, i.e. AzureAutomateActionGroup
-21. The display name will be automatically generated, but feel free to adjust it to suit your naming convention
+21. The display name will be automatically generated, but adjust it to suit your naming convention if needed.
 22. Click **Next: Notifications**
 23. Under **Notifications**, you can trigger an **email alert**, which can be handy in determining how often the runbook runs. This can be modified and removed if it is running, especially during testing.
 24. Click **Next: Actions**

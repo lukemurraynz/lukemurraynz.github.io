@@ -30,7 +30,7 @@ In this article, we will use [Azure DevOps](https://azure.microsoft.com/products
 <!-- truncate -->
 
 
-## 📋Overview
+## Overview
 
 :::info
 [Copa](https://github.com/project-copacetic/copacetic) gives the ability to patch containers quickly without going upstream for a complete rebuild. As the window between [vulnerability disclosure and active exploitation](https://www.bleepingcomputer.com/news/security/hackers-scan-for-vulnerabilities-within-15-minutes-of-disclosure/) continues to narrow, there is a growing operational need to patch critical security vulnerabilities in container images so they can be quickly redeployed into production.
@@ -69,7 +69,7 @@ _(Consumers do not need to migrate to a new and potentially more limited support
 _(For OS package vulnerabilities, no specialized knowledge about a specific image is needed to be patch it as Copa relies on the vulnerability remediation knowledge already embedded in the reports produced by popular container scanning tools today.)_
 :::
 
-## 🚀Azure DevOps deploy
+## Azure DevOps deploy
 
 So let's get started by creating a new Azure DevOps pipeline that will use Trivy to scan a container image for vulnerabilities, and then use Copa to patch the vulnerabilities found by Trivy, and then push the patched image to an Azure Container Registry (ACR).
 
@@ -95,7 +95,7 @@ graph TD
 
 Make sure you update the parameters, and Service Principal variable name with the up-to-date versions of Trivy, Copacetic and BuildKit, at the time you run this, and of course the container image you want to patch.
 
-### 🛠️Pipeline
+### Pipeline
 
 You can also find the full pipeline code at the following gist: [lukemurraynz/copacetic.yml](https://gist.github.com/lukemurraynz/ea00bc9c6b6a9468a82f3b679c40a220).
 
@@ -291,7 +291,7 @@ stages:
 
 For demo purposes, I am using an older version of the [api-firewall](https://hub.docker.com/_/api-firewall) image, which has known vulnerabilities that must be patched.
 
-### ✅Deployment results
+### Deployment results
 
 Let's look at the image in Azure Container Registry before the patch.
 

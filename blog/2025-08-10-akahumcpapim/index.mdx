@@ -18,18 +18,18 @@ description: Expose Akahu open banking APIs through Azure API Management as an M
 date: 2025-08-10T07:59:51.617Z
 ---
 
-A recent release to Azure API Management is - MCP server support, the ability to expose a [REST API in API Management as an MCP server](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server?WT.mc_id=AZ-MVP-5004796).
+A recent release to Azure API Management adds MCP server support: the ability to expose a [REST API in API Management as an MCP server](https://learn.microsoft.com/en-us/azure/api-management/export-rest-mcp-server?WT.mc_id=AZ-MVP-5004796).
 
 
 Today we are going to look at how to expose an REST API as an MCP server through your API Management instance, with [Akahu](https://www.akahu.nz/) APIs as my example.
 
 <!-- truncate -->
 
-## 🚀 Overview
+## Overview
 
 This guide walks through publishing Akahu’s open banking-style REST endpoints through Azure API Management (APIM) and exposing them as an MCP server consumable by compatible developer tools (e.g., VS Code extensions). You’ll configure headers via policies, secure tokens with named values, and register the MCP server locally.
 
-## 🧰 Prerequisites
+## Prerequisites
 
 Before starting, ensure you have:
 
@@ -42,7 +42,7 @@ Before starting, ensure you have:
 | VS Code | Latest version + MCP-capable extension (e.g., GitHub Copilot supporting MCP) |
 | Network Access | Outbound HTTPS to api.akahu.io and your APIM gateway |
 
-## 🗺️ Quick Steps
+## Quick Steps
 
 | Step | Action | Outcome |
 |------|--------|---------|
@@ -59,7 +59,7 @@ Before starting, ensure you have:
 |11 | Configure local mcp.json | Client can reach MCP endpoint |
 |12 | Invoke tools in editor | Accounts/me data accessible |
 
-## 🔎 Why Akahu + MCP?
+## Why Akahu + MCP?
 
 I've been reading up a lot on [open banking](https://www.consumer.org.nz/articles/what-is-open-banking), which is a system that enables financial apps and technologies to connect securely and directly with customers’ bank accounts with the customer’s consent, and seems to be ahead in Australian banking, but New Zealand banking is catching up, and with an API driven intermediary such as [Akahu](https://www.akahu.nz/), allows me to connect to my bank accounts across various banks, and aggregate my financial data in one place.
 
@@ -68,7 +68,7 @@ So naturally, I wondered how I could expose the Akahu APIs and make them availab
 ![Akahu list accounts](images/Akahu_MCP_ListAccountsOverview.jpg)
 *Figure: Accounts view returned through the Akahu API (demo data).* 
 
-## 🔐 Get Akahu Credentials
+## Get Akahu Credentials
 
 To get started, we will need credentials from Akahu to connect.
 
@@ -82,11 +82,11 @@ To get started, we will need credentials from Akahu to connect.
 
 5. Once the connection has been stood up, make note of the  base URL, App Token, and the User Token as we will need these later.
 
-## 🏗️ Create Azure API Management Instance
+## Create Azure API Management Instance
 
 Once we have these details, it's time for API Management, so create an [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796) instance, in my demo I am using a Standard Tier API Management instance in the New Zealand North Azure region.
 
-## 🌐 Add the Akahu HTTP API
+## Add the Akahu HTTP API
 
 Now we need to add the Akahu APIs into Azure API Management, so add in an HTTP API:
 
@@ -105,11 +105,11 @@ Then you can add your Operations, because I am using the Akahu Demo bank, I will
 ![Akahu Add Accounts](images/Akahu_APIM_AddAPI_Accounts.jpg)
 *Figure: Defining the accounts operation.*
 
-## 🧾 Document Operations
+## Document Operations
 
 Make sure you fill out a description, as this will be parsed through as the description of the MCP Tool.
 
-## 🧪 Test the API (Manual)
+## Test the API (Manual)
 
 Make sure you test the API using the Test functionality directly in API Management, you should get a response back with your accounts, and the details of the account, you will need to specify the X-Akahu-Id and Authorization headers.
 
@@ -135,7 +135,7 @@ _(In a scenario for Production, ideally these values will be stored and referenc
 
 You could add these values as input into the Header for the MCP Server calls, but in my case, I am using them directly in API Management.
 
-## 🛠️ Add Inbound Headers via Policy
+## Add Inbound Headers via Policy
 
 Now that we have added the values, we need to create a new API Management policy so that it will pick up the named values and add them to the header of any future requests.
 
@@ -164,7 +164,7 @@ Now you can retest, without needing to add in the Id and Authorization headers, 
 ![API Named Values policy test](images/Test_APIM_AddAPI_NamedValuesPolicyTest.jpg)
 *Figure: Successful 200 response after policy application.*
 
-## ⚙️ Enable MCP Server Support (Preview)
+## Enable MCP Server Support (Preview)
 
 Next up is enabling the MCP server support, so navigate to the API Management instance, and MCP Servers (Preview). 
 
@@ -190,7 +190,7 @@ Now click Create MCP server, and select Expose an API as an MCP server, and sele
 ![Create MCP Server](images/Akahu_AddAkahuMCP.gif)
 *Figure: Wizard to expose API as an MCP server.*
 
-## 🧩 Add MCP Endpoint Policy
+## Add MCP Endpoint Policy
 
 Now navigate to Policies, as you can see, you can have separate policies for MCP endpoints than the API endpoints, so add in the headers again.
 
@@ -229,9 +229,9 @@ Now navigate to Policies, as you can see, you can have separate policies for MCP
 
 Once that has been completed and save, the endpoint should be available for use.
 
-## 🖥️ Configure Local MCP Client
+## Configure Local MCP Client
 
-So let us test, to do this we will use Visual Studio Code, so launch GitHub Copilot chat, and select Add MCP Server to open the mcp.json file, and add the following MCP server configuration:
+To test this, launch Visual Studio Code, open GitHub Copilot chat, and select Add MCP Server to open the mcp.json file, and add the following MCP server configuration:
 
 ```json
 {
@@ -254,7 +254,7 @@ Although we no longer need to add the X-Akahu-Id and Authorization headers, we s
 ![Akahu MCP mcp.json](images/Akahu_MCP_mcpjson.jpg)
 *Figure: Example mcp.json configuration with subscription key.*
 
-## ▶️ Run and Verify
+## Run and Verify
 
 Finally, run the MCP server, and you should be able to see the Akahu accounts exposed as tools you can invoke, allowing you to call the Akahu APIs through the MCP interface.
 
@@ -262,7 +262,7 @@ Finally, run the MCP server, and you should be able to see the Akahu accounts ex
 *Figure: MCP client showing available Akahu tools.*
 
 
-## 🔒 Security & Governance Considerations
+## Security & Governance Considerations
 
 - Prefer Azure Key Vault integration with APIM Named Values (secret type) instead of storing tokens directly.
 - Rotate Akahu tokens periodically; update Named Values without redeploying APIs.
@@ -272,7 +272,7 @@ Finally, run the MCP server, and you should be able to see the Akahu accounts ex
 - Avoid over-broad scopes when future Akahu endpoints require granular permissions.
 - For production, add validation policies (JSON schema, response caching as appropriate) and observability (tracing, metrics).
 
-## 🧯 Troubleshooting
+## Troubleshooting
 
 | Symptom | Cause | Fix |
 |---------|-------|-----|

@@ -25,7 +25,7 @@ New Zealand has a new _(and only)_ Azure Cloud region: [New Zealand North](https
 <!-- truncate -->
 
 
-## 🔍 Overview
+## Overview
 
 New Zealand North region follows the newer, now standard, 3 + 0 model, with 3 [availability zones](https://learn.microsoft.com/azure/reliability/availability-zones-overview?tabs=azure-cli&WT.mc_id=AZ-MVP-5004796) (three separate datacenters that make up a region) but with [no specified region pair](https://learn.microsoft.com/azure/reliability/cross-region-replication-azure?WT.mc_id=AZ-MVP-5004796#regions-with-availability-zones-and-no-region-pair) _(e.g., locally or in Australia)_. This means that Microsoft needs to assume which other region you may want to use as a failover. You can choose any region you want (e.g., object replication on an Azure storage account can be any region). Most of us in New Zealand will likely choose New Zealand North as the primary and Australia East as the secondary, where applicable. These three availability zones already provide more resiliency out of the box than most New Zealand organizations had before.
 
@@ -45,7 +45,7 @@ Availability zones are close enough to have low-latency connections to other ava
 If you are interested in more information about Availability Zones and the differences between Physical + Logical zones, make sure you have read a previous blog article of mine: [Azure Availability Zone Peering](https://luke.geek.nz/azure/azure-availability-zone-peering/). In essence, you need to be aware that Avalibility Zone 1 _(physical and logical avalibility zones can be different)_, does not always equal Availability Zone 1, especially if you have workloads spread across multiple subscriptions. For today, all my testing is done in a single subscription.
 :::
 
-## 📉 Latency Testing
+## Latency Testing
 
 But this is not a resiliency discussion; it is a latency discussion, so let's examine the latency of what New Zealand North is giving us.
 
@@ -98,7 +98,7 @@ Inspired by [Nicola Delfino](https://www.linkedin.com/in/nicoladelfino) post on 
 * multiple v-nets (in peering) across availability zones
 * multiple v-nets connected in a Hub & Spoke topology and Routing via Azure Firewall
 
-## 🏢 Scenario 1 - Same Virtual Network, same availability zone, same proximty placement group
+## Scenario 1 - Same Virtual Network, same availability zone, same proximty placement group
 
 In this scenario, we will have a single VNET, with a single subnet, and two virtual machines in the same availability zone, and the same [proximty placement](https://learn.microsoft.com/azure/virtual-machines/co-location?WT.mc_id=AZ-MVP-5004796) group.
 
@@ -125,7 +125,7 @@ In this example, we have VM1 talking to VM2.
 
 **Latency(usec): 72.75** – The average latency per message is 72.75 microseconds. This is the time it takes for a message to be sent and received back, which is relatively low and suggests a reasonably fast response time for small message sizes.
 
-## 🌐 Scenario 2 - Same Virtual Network, same availability zone, virtual machine NOT in proximity placement group
+## Scenario 2 - Same Virtual Network, same availability zone, virtual machine NOT in proximity placement group
 
 In this scenario, we will have a single VNET, with a single subnet, and two virtual machines in the same availability zone, but not in the same proximty placement group.
 
@@ -152,7 +152,7 @@ We will be talking from VM1 to VM3.
 
 The table lists the latency and system performance between **VM1 (Sender)** and **VM3 (Receiver)**. The average latency per message is **55.97 microseconds**, which is interesting and slightly lower than the previous scenario, and not what I expected, however, could be luck of the draw - something worth noting that without a proximity placement group, the next time I would deallocate this Virtual Machine, it could be spun up in a separate place within the zone.
 
-## 🔗 Scenario 3 - Same Virtual Network, across availability zones
+## Scenario 3 - Same Virtual Network, across availability zones
 
 In this scenario, we will have a single VNET with a single subnet and two virtual machines in different availability zones.
 
@@ -231,7 +231,7 @@ Even though the latency is higher than the previous scenarios, it is still relat
 
 All of these latency values are **well below 1 millisecond**, indicating **sub-millisecond latency** between the VMs, in different zones within the same Virtual Network and subnet.
 
-## 🖧  Scenario 4 - Multiple Virtual Networks (peered), same availability zone
+## Scenario 4 - Multiple Virtual Networks (peered), same availability zone
 
 In this scenario, we will have two virtual networks, each with a single subnet, and two virtual machines in the same availability zone.
 
@@ -258,7 +258,7 @@ We will have VM1 _(10.0.1.4)_ in our Spoke1 network, talking to VM2 _(10.0.2.4)_
 
 This table summarizes the latency and system performance between **VM1 (Sender)** and **VM2 (Receiver)** through VNet peering. The latency of 67.81 microseconds is still well under 1 millisecond for a Virtual Machine talking over a Virtual Network peering within the same Availability Zone.
 
-## 🖧 Scenario 5 - Multiple Virtual Networks (peered), across availability zones
+## Scenario 5 - Multiple Virtual Networks (peered), across availability zones
 
 In this scenario, we will have two virtual networks, each with a single subnet, and two virtual machines in different availability zones.
 
@@ -310,7 +310,7 @@ This table summarizes the latency and system performance between **VM1 (Sender)*
 
 So far, we have seen that the latency between Virtual Machines in different availability zones over a peered Virtual Network is still under 1 millisecond. This is a great result and shows that Azure's network infrastructure is capable of providing low-latency communication between Virtual Machines in different availability zones. 
 
-## 🛡️ Scenario 6 - Multiple Virtual Networks connected in a Hub & Spoke topology and Routing via Azure Firewall
+## Scenario 6 - Multiple Virtual Networks connected in a Hub & Spoke topology and Routing via Azure Firewall
 
 In this scenario, we will have three virtual networks, each with a single subnet, and three virtual machines in different availability zones, connecting to each other through a Hub Virtual Network, with user defined routes, and routing through an Azure Firewall.
 
@@ -384,7 +384,7 @@ Finally, we will look at VM2 in Avalibility Zone 2, talk to VM3 in Avalibility Z
 
 This is a slightly lower latency than the previous scenario, but still underneath 1 millisecond, we can see how processing through the Azure Firewall and Hub and Spoke adds additional latency _(as we would expect)_  are routing through an Azure Firewall.
 
-## 📝 Summary
+## Summary
 
 The speed for inter-compute communication between the same and different Availability Zones for NZ North is very impressive. The latency between Virtual Machines in the same availability zone is well under 1 millisecond. The latency between Virtual Machines in different availability zones over a peered Virtual Network is still under 1 millisecond. Even with Azure Firewall and a Hub and Spoke network, the latency is still around 1 millisecond. This is a great result and shows that Azure's network infrastructure is capable of providing low-latency communication between Virtual Machines in different availability zones.
 

@@ -30,7 +30,7 @@ As part of the [Azure Spring Clean 2025](https://www.azurespringclean.com/) even
 <!-- truncate -->
 
 
-## 🏗️ Introduction to Azure Landing Zones
+## Introduction to Azure Landing Zones
 
 [Azure Landing Zones](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/?WT.mc_id=AZ-MVP-5004796) provide a structured approach for designing and implementing cloud environments in Azure. They are essential for organizations looking to migrate, modernize, and innovate their applications at scale, mainly because of the considerations you make in designing and implementing them, considerations such as how your workloads are going to connect to the internet, how each service connects, and importantly, how your organisation will use Cloud - I saw a comment from someone the other day _(Cloud is not WHERE you work, its HOW you work)_. 
 
@@ -44,7 +44,7 @@ An Azure landing zone architecture is scalable and modular to meet various deplo
 
 More information on Azure Landing Zones, can be found in the [Microsoft Cloud Adoption Framework for Azure](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/?WT.mc_id=AZ-MVP-5004796), Landing Zones specifically sits under the Ready phase.
 
-## 🚀 Understanding Azure Landing Zone Accelerators
+## Understanding Azure Landing Zone Accelerators
 
 [Azure Landing Zone Accelerators](https://azure.github.io/Azure-Landing-Zones/accelerator/) are automation frameworks designed to expedite the deployment of Azure Landing Zone architecture. They come in three flavors:
 
@@ -67,9 +67,9 @@ For this article, we will be discussing the:
 
 ![Azure Landing Zones - Customer Journey](images/ALZAccelerator_SampleLandingZoneDeployment.JPG)
 
-## 🔄 Deploying Azure Landing Zones with Terraform
+## Deploying Azure Landing Zones with Terraform
 
-### 🛠️ Bootstrap
+### Bootstrap
 
 It begins with a Bootstrap process, which is the initial setup of the Azure DevOps environment, including creating a new project, repository, and service connection. This process is automated using a mix of PowerShell and Terraform.
 
@@ -142,7 +142,7 @@ We will bootstrap the environment, to create our Azure DevOps environment, and t
 Before you start, make sure you request a parallelism grant for Azure DevOps, by default, Azure DevOps has a limit of 1 concurrent job, to request a free parallelism grant, please fill out the following form https://aka.ms/azpipelines-parallelism-request
 :::
 
-### 📋 Bootstrap Process
+### Bootstrap process
 
 1. First login to Azure 'az login' and then run the following commands:
 2. Next we need the ALZ PowerShell Module, so we will install that:
@@ -461,9 +461,9 @@ You can rerun the Continuous Delivery pipeline, and select Destroy if you want t
 ![Azure DevOps Azure Landing Zone Pipelines](images/ALZAccelerator_DepoloyedLandingZoneDeployment.JPG)
 ![Azure DevOps Azure Landing Zone Pipelines](images/ALZAccelerator_DepoloyedLandingZoneDeploymentResources.JPG)
 
-## ✅ Conclusion
+## Conclusion
 
-The [Azure Landing Zone Terraform Accelerator](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-landing-zones-accelerators-for-bicep-and-terraform-announcing-general-avai/4029866?WT.mc_id=AZ-MVP-5004796) offers a robust foundation for organizations looking to implement a well-architected Azure environment. 
+The [Azure Landing Zone Terraform Accelerator](https://techcommunity.microsoft.com/blog/azuretoolsblog/azure-landing-zones-accelerators-for-bicep-and-terraform-announcing-general-avai/4029866?WT.mc_id=AZ-MVP-5004796) gives organizations a solid foundation for implementing a well-architected Azure environment. 
 
 Through this article, we've explored how to:
 

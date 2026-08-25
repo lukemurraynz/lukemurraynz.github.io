@@ -67,7 +67,7 @@ The guts of this is the [pre-commit framework](https://pre-commit.com/), a Pytho
 
 For the Codespace, we will add the pre-commit framework to the Codespace, then add a script to initialize the pre-commit hooks, then configure the pre-commit hooks to run the checks we want.
 
-Let's add the pre-commit framework to the Codespace devcontainer.json.
+Add the pre-commit framework to the Codespace devcontainer.json.
 
 ```json
 "features": {
@@ -198,7 +198,7 @@ Here's a breakdown of what each part does:
 
 This configuration ensures that various checks and fixes are automatically applied to the codebase before commits are made, helping to maintain code quality and security.
 
-So, let's spin up our Codespace and see the pre-commit hooks in action.
+So, spin up the Codespace and see the pre-commit hooks in action.
 
 The first time you run this, it will take a while as it will download the pre-commit hooks and install them. Be mindful of this if you are running this in a new Codespace environment.
 

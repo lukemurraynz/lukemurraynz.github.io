@@ -20,4 +20,4 @@ World of Warcraft includes a **Mature Language Filter** that replaces profanity 
 4. **Uncheck** the **Mature Language Filter** option.
 5. Click **Ok** to save.
 
-The change takes effect immediately — no need to relog or restart the game client. If you ever want to re-enable the filter, follow the same steps and check the option again.
+The change takes effect immediately. No need to relog or restart the game client. If you ever want to re-enable the filter, follow the same steps and check the option again.

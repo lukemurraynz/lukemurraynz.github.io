@@ -34,7 +34,7 @@ In this post, I will walk through a checklist I used to harden a .NET project ru
 
 ## 1. Non-root containers
 
-Running as root inside a container means that if an attacker exploits a vulnerability in your application, they inherit root privileges within the container. In some scenarios, that can be leveraged for container escape.
+Running as root inside a container means that if an attacker exploits a vulnerability in your application, they inherit root privileges within the container. In some scenarios, that can be used for container escape.
 
 The fix is straightforward. In your Dockerfile:
 

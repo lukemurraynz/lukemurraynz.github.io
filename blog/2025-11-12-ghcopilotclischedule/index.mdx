@@ -49,7 +49,7 @@ Once the PAT has been created, add it to the repository secrets named `COPILOT_G
 
 ## The Performance Detector Agent
 
-So let us take a look at the performance-regression-detector agent configuration file - `performance-detector.agent.md`:
+Here's the performance-regression-detector agent configuration file - `performance-detector.agent.md`:
 
 ```markdown title=".github/agents/performance-detector.agent.md"
 ---
@@ -307,7 +307,7 @@ With 100 users, this executes 101 queries instead of 2.
 
 ## The GitHub Actions Workflow
 
-The GitHub Copilot CLI, has GitHub MCP server integration built-in, so we can use this to run the agent and create issues directly in the repository, so far you can run the performance detector agent manually from your IDE like Visual Studio Code, or through the GitHub Coding Agent, but what if we want this to run on a schedule, lets delve into the core of this solution - the GitHub Actions workflow file - `performance-detector.yml`:
+The GitHub Copilot CLI, has GitHub MCP server integration built-in, so we can use this to run the agent and create issues directly in the repository, so far you can run the performance detector agent manually from your IDE like Visual Studio Code, or through the GitHub Coding Agent, but what if we want this to run on a schedule — here's the core of this solution — the GitHub Actions workflow file - `performance-detector.yml`:
 
 ```yaml title=".github/workflows/performance-detector.yml"
 name: Weekly Performance Regression Detector

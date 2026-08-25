@@ -33,9 +33,9 @@ Today, we are going to use the [Azure Storage SFTP functionality](https://learn.
 <!-- truncate -->
 
 
-# 🚀 Processing SFTP Events with Azure Functions and Event Hub
+# Processing SFTP Events with Azure Functions and Event Hub
 
-## 🏗️ Environment Overview
+## Environment Overview
 
 So for my environment, I have a:
 
@@ -66,7 +66,7 @@ flowchart LR
 
 So I've already pre-created these resources, but is there some more information about the resource configuration that you can follow along with?
 
-## 📦 Storage Account Configuration
+## Storage Account Configuration
 
 For the Azure Storage account with SFTP enabled, I'm using the following configuration:
 
@@ -98,7 +98,7 @@ The hierarchical namespace (HNS) is a prerequisite for SFTP support in Azure Sto
 
 With SFTP and local users enabled, you can create local SFTP users that can authenticate with password and/or SSH key authentication, and assign them permissions to specific containers and directories within your storage account.
 
-## 📡 Event Hub Namespace Configuration
+## Event Hub Namespace Configuration
 
 For receiving and processing the Azure Storage SFTP events, I've set up an Event Hub Namespace with the following configuration:
 
@@ -119,7 +119,7 @@ Within this namespace, I've created an Event Hub instance with a single partitio
 
 ![Event Hub Namespace Configuration](images/EventHubNSConfig.jpg)
 
-## ⚙️ Function App Configuration
+## Function App Configuration
 
 For processing the SFTP events from the Event Hub, I've set up an Azure Function App with the following configuration:
 
@@ -139,13 +139,13 @@ For processing the SFTP events from the Event Hub, I've set up an Azure Function
   - Public network access: Enabled
   - Client certificate mode: Required
 
-## 🔒 Authentication Setup
+## Authentication Setup
 
 The Function App connects to the Event Hub namespace using the System Managed Identity of the Function App, which is granted the `Azure Event Hubs Data Receiver` role on the Event Hub namespace.
 
 ![Function App Configuration](images/Function_SMI_EventHubDataReceiver.jpg)
 
-## 🛠️ Function App Settings
+## Function App Settings
 
 To use the Event Hub trigger in the Azure Function with Managed Identity authentication, you need to add the following settings to the Function App settings :
 
@@ -158,7 +158,7 @@ To use the Event Hub trigger in the Azure Function with Managed Identity authent
 
 ![Event Hub App setting](images/Function_AppSetting.jpg)
 
-## 📋 Function Configuration File
+## Function Configuration File
 
 The namespace, Consumer Group, and identity type will need to be updated in the function.json file.
 
@@ -180,7 +180,7 @@ The namespace, Consumer Group, and identity type will need to be updated in the 
 }
 ```
 
-## 💻 PowerShell Code
+## PowerShell Code
 
 Here is my run.ps1 file for the Azure Function:
 
@@ -236,18 +236,18 @@ $eventHubMessages | ForEach-Object {
 You can find the Function App code in the following GitHub repository [lukemurraynz/SFTPEventHubFunction](https://github.com/lukemurraynz/SFTPEventHubFunction) for this blog post.
 :::
 
-## 🔍 See it in Action!
+## See it in action
 
-So let us take a look at it in action!
+Here it is in action:
 
 ![Azure SFTP Blob Write Run](images/SFTPEventHubFunctionRun.gif)
 
-## ⏱️ Performance Considerations
+## Performance Considerations
 
 _(On average, I have seen this take about 2 minutes, from the initial file upload, to the Function execution)_.
 
 ![SFTP Function execution](images/SFTPFuncExecuteTime.jpg)
 
-## 🚀 Next Steps and Extensions
+## Next steps and extensions
 
-Hopefully, that's given you the base to work from; you could potentially add logic around if a file from x user, do this, or notify the user of receipt based on a map lookup, etc.
+Hopefully, that's given you the base to work from; you could add logic around if a file from x user, do this, or notify the user of receipt based on a map lookup, etc.

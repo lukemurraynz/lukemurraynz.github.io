@@ -20,7 +20,7 @@ Along with the basics of the Azure Backup solutions, particularly on Virtual Mac
 
 ## Introduction
 
-Let us start with the basics with a user story; what do we need to achieve:
+Starting with the basics, here is a user story covering what we need to achieve:
 
 > "As a Cloud Infrastructure Administrator at Contoso, I want to implement an automated backup solution for virtual machines (Windows and Linux) hosted in Microsoft Azure,
 So that I can ensure data reliability, disaster recovery, and compliance with minimal manual intervention."
@@ -71,7 +71,7 @@ We know to fulfil the requirements, we need to implement the following:
 * [Azure Role-Based Access Control (RBAC)](https://learn.microsoft.com/azure/role-based-access-control/rbac-and-directory-admin-roles?WT.mc_id=AZ-MVP-5004796)
 * [Azure Policy](https://learn.microsoft.com/azure/governance/policy/overview?WT.mc_id=AZ-MVP-5004796)
 
-So, let us take our notebooks and look at the Backup sections.
+So, take a look at the Backup sections.
 
 ## Backup Center
 
@@ -200,7 +200,7 @@ Now that we have our Recovery Services Vault and custom backup policies, it's ti
 
 Once added, the Virtual Machine will now get backed up according to the specified policy.
 
-> Its worth noting that you can backup a Virtual Machine if it is deallocated, but it will Crash-consistent _(Only the data that already exists on the disk at the time of backup is captured and backed up, and it triggers a disk check during recovery)_ compared to Application consistent, which is more application and OS aware, so can prepare to the OS and applications for the backups to make sure that everything is written successfully to the disk ahead of the backup. You can read more about [Snapshot consistency](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction?WT.mc_id=AZ-MVP-5004796#snapshot-consistency).
+> You can back up a Virtual Machine if it is deallocated, but it will be crash-consistent _(only the data that already exists on the disk at the time of backup is captured and backed up, and it triggers a disk check during recovery)_ compared to application-consistent, which is more application and OS aware, so can prepare the OS and applications for the backups to make sure that everything is written successfully to the disk ahead of the backup. You can read more about [Snapshot consistency](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction?WT.mc_id=AZ-MVP-5004796#snapshot-consistency).
 
 ## Monitor Backups
 
@@ -282,7 +282,7 @@ Backup service: The Azure Backup service keeps your data safe and recoverable.
 
 > Just as important (if not more) than the technology to enable this, clear business requirements and preparation is paramount for a successful disaster recovery solution, I highly recommend the [Azure Business Continuity Guide](https://techcommunity.microsoft.com/t5/fasttrack-for-azure/introducing-the-azure-business-continuity-guide/ba-p/3905424?WT.mc_id=AZ-MVP-5004796). Supplied by the Microsoft Fastrack team, this guide includes resources to prepare for thorough disaster recovery plan.
 
-The key to successful disaster recovery is not only the workloads themselves but supporting services, such as DNS, Firewall rules, connectivity etc., that need to be considered, These are out of the scope of this article but the following Microsoft Azure architecture references are worth a read:
+The key to successful disaster recovery is not only the workloads themselves but supporting services, such as DNS, Firewall rules, connectivity etc., that need to be considered. These are out of the scope of this article but the following Microsoft Azure architecture references cover the topic in depth:
 
 * [Enterprise-scale disaster recovery](https://learn.microsoft.com/azure/architecture/solution-ideas/articles/disaster-recovery-enterprise-scale-dr?WT.mc_id=AZ-MVP-5004796)
 * [SMB disaster recovery with Azure Site Recovery](https://learn.microsoft.com/azure/architecture/solution-ideas/articles/disaster-recovery-smb-azure-site-recovery?WT.mc_id=AZ-MVP-5004796)
