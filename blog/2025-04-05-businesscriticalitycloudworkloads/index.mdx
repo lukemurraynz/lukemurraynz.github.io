@@ -26,16 +26,16 @@ keywords:
 description: Learn to assess workload criticality in Azure, understand SLAs, and make informed decisions based on business impact and risks.
 ---
 
-# 🔍 Understanding Workload Criticality in the Cloud
+# Understanding Workload Criticality in the Cloud
 
-Today, we are going to take a look at something a little different. We are going to talk about workload criticality, methods to assess how critical your workload is, and the ramifications of that criticality in terms of the Cloud.
+This post covers workload criticality, methods to assess how critical your workload is, and the ramifications of that criticality in the cloud.
 
 ![Workload Criticality](images/workload-criticality.jpg)
 
 <!-- truncate -->
 
 
-## 📦 Defining a Workload
+## Defining a Workload
 
 First, let's define Workload.
 
@@ -49,9 +49,9 @@ All these resources in the Microsoft Azure Cloud can be designed to work togethe
 
 In the Microsoft Azure Cloud, these resources can be deployed in different regions, availability zones, and resource groups. This allows for high availability and disaster recovery options to be built into the application architecture.
 
-## 🤝 Shared Responsibility in the Cloud
+## Shared responsibility in the cloud
 
-Let us delve into the [Reliability](https://learn.microsoft.com/azure/well-architected/reliability/?WT.mc_id=AZ-MVP-5004796) and Availability of these workloads by looking at the [Shared responsibility model](https://learn.microsoft.com/azure/reliability/concept-shared-responsibility?WT.mc_id=AZ-MVP-5004796).
+Let us look at the [Reliability](https://learn.microsoft.com/azure/well-architected/reliability/?WT.mc_id=AZ-MVP-5004796) and Availability of these workloads by looking at the [Shared responsibility model](https://learn.microsoft.com/azure/reliability/concept-shared-responsibility?WT.mc_id=AZ-MVP-5004796).
 
 There is some overlap in the responsibility of your workloads in the Cloud, and this is where the criticality of your workload comes into play. The more critical the workload, the more responsibility you have regarding availability and reliability, and the more you need to consider the implications of that criticality in your architecture and design. Before I jump ahead, let's assume Microsoft's responsibility as the customer and us as the cloud provider.
 
@@ -63,11 +63,11 @@ Microsoft is solely responsible for [core platform reliability](https://learn.mi
 
 The configuration of each of the resources that make up your workload determines how reliable and available it is. The more critical the workload, the more you need to consider its implications for your architecture and design.
 
-## 📝 Service Level Agreements (SLAs)
+## Service Level Agreements (SLAs)
 
 > Understanding the service level agreements (SLAs) for each Azure service is important. SLAs provide essential information on the expected uptime of the service and any conditions you need to meet to be eligible for the SLA. For SLAs for each service, see [Service Level Agreements (SLA) for Online Services](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
 
-So, let's delve a little deeper into SLAs and how they relate to the criticality of your workload.
+So, let's look a little deeper into SLAs and how they relate to the criticality of your workload.
 
 An SLA _(Service Level Agreement)_ is a contract between you and the service provider that defines the level of service you can expect from the provider. It typically includes information on the availability of the service, the response time for support requests, and any penalties for not meeting the SLA. In the context of Azure resources, an SLA guarantees that the service will be available for a certain percentage of time over a given period. For example, an SLA of 99.9% means that the service is guaranteed to be available for 99.9% over a given period.
 
@@ -77,7 +77,7 @@ This means that the service can be down for a maximum of 43.2 minutes per month,
 
 There are some considerations however, and these are outlined in the SLA for each service. For example, if you are using a service that the SLA does not cover, or if you are not meeting the conditions of the SLA, you may not be eligible for a credit, and by meeting conditions, I mean the configuration of the resources that make up your workload - for example, if you are using a single instance of a service, and not Zone redundant, you may not be eligable for a credit, as the SLA may not match. There is a difference between an outage of one availability zone vs an entire region. Virtual Machines come to mind where the Disk type selected can impact the SLA of your resource.
 
-## 🎯 SLO and SLI: Beyond SLAs
+## SLO and SLI: beyond SLAs
 
 We won't go into detail about SLO (Service Level Objective) or SLI (Service Level Indicator) in this post, but they are important to understand when assessing the SLA of your workload. 
 
@@ -87,7 +87,7 @@ An SLO is a target for the level of service you want to achieve, and an SLI meas
 
 
 
-## 🧩 Composite SLAs
+## Composite SLAs
 
 What we will touch on is [Composite SLAs](https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics?WT.mc_id=AZ-MVP-5004796#define-composite-slo-targets), which are a combination of the SLAs of the individual resources that make up your workload. For example, if you have a web app that is using an SQL database, the SLA for the web app and the SLA for the SQL database will determine the overall SLA for your workload. The composite SLA is calculated by multiplying the individual SLAs together. For example, if the web app has an SLA of 99.95% and the SQL database has an SLA of 99.99%, the composite SLA for the workload would be 99.94% _(Maximum acceptable downtime /Year: 315m 33s)_.
 That's lower than the individual SLAs, which isn't surprising because an application that relies on multiple services has more potential failure points.
@@ -101,7 +101,7 @@ A few resources that are useful for working out Composite SLA's are:
 
 For more Active/Active workloads, you can have a parallel SLA _(Parallel SLA = 100% - (ServiceA unavailability * ServiceB unavailability))_.
 
-## 🌐 Regions and Availability Zones
+## Regions and availability zones
 
 I've alluded to it but not touched on it - let us discuss [Regions](https://learn.microsoft.com/azure/reliability/regions-overview?WT.mc_id=AZ-MVP-5004796) and [Avaliability Zones](https://learn.microsoft.com/azure/reliability/availability-zones-overview?tabs=azure-cli&WT.mc_id=AZ-MVP-5004796), which are key considerations when looking at how your Azure Cloud workloads are architected.
 
@@ -119,7 +119,7 @@ Whether you use Availability Zones or cross-regions can depend a lot on the crit
 I suggest reading the Azure architecture center [Cloud design patterns](https://learn.microsoft.com/azure/architecture/patterns/?WT.mc_id=AZ-MVP-5004796) for recommendations on how to design your workloads, with patterns like retry, sharding, and bulkhead. I also touched on some design patterns in a previous article [Cloud Design Patterns](https://luke.geek.nz/azure/cloud-design-patterns/) and video [Cloud Design Patterns](https://youtu.be/nnuo_mxPcNw).
 :::
 
-## ⚠️ Risk Assessment
+## Risk assessment
 
 ![Workload Disaster Scope](images/workload-disasterscope.JPG)
 
@@ -141,13 +141,13 @@ And then, compare those risks to the design and SLA of your workload in accordan
 | **Operational Excellence** | 🟢 Easy          | 🔴 Complex    | 🟢 Easy        | 🔴 Complex   |
 | **Data Residency**      | 🟢 Strong        | 🟢 Strong     | 🟢 Strong      | 🔵 Depends   |
 
-## ❓ How to Determine Workload Criticality
+## How to determine workload criticality
 
 So, we've discussed SLA, some of the technical considerations for your workloads - lets take a look at how do you know - that your workload is critical?
 
 This is always a hard question to answer, and it is up to the business to determine—it's a risk/benefit analysis. For example, in Health, is there a Clinical Risk to patients? In finance, is there a financial risk to the business? In retail, is there a reputational risk to the business? The criticality of your workload can be determined by looking at the impact of an outage on the business and the cost of that outage.
 
-## 🏆 Criticality Classification Framework
+## Criticality classification framework
 
 However, for those starting out or don't know where to start with classifying your workload criticality, we can use the [Cloud Adoption Framework workload priority](https://learn.microsoft.com/azure/cloud-adoption-framework/manage/protect?WT.mc_id=AZ-MVP-5004796#manage-reliability) as a base.
 
@@ -172,7 +172,7 @@ The most successfully organisations I have seen implement criticality assessment
 Ideally, the criticality of your workload should be assessed at the time of the design of the workload and not AFTER the system is in production or in use. The criticality SHOULD determine how the workload is designed and built, and not the other way around. However, in my career, I have found that this is not always the case. The criticality of the workload is assessed after the fact, and this can lead to issues down the line, as the workload may not be designed to be critical (or not), and this can lead to issues with availability and reliability and cost expenditure on the wrong workloads.
 :::
 
-## 📋 Key Criticality Assessment Considerations
+## Key criticality assessment considerations
 
 Areas to consider when looking at the criticality of your workload:
 
@@ -191,8 +191,8 @@ Areas to consider when looking at the criticality of your workload:
 For more questions and considerations for architecting solutions on Azure—including business context questions that can help you with criticality—consider the Solution Requirement Consideration Checklist I made a few years ago! It's open for Pull Requests, and you can read more here: [Azure Architecture - Solution Requirement Consideration Checklist](https://luke.geek.nz/azure/azure-architecture-solution-requirement-consideration-checklist/).
 :::
 
-## 💡 Conclusion
+## Conclusion
 
-Hopefully, that has given you a glimpse into the world of workload criticality and how it can impact your workloads in the Microsoft Azure Cloud. There is a lot to consider when looking at the criticality of your workload, and it is important to understand the implications of that criticality in terms of your architecture and design. The more critical the workload, the more you need to consider the implications of that criticality in terms of your architecture and design, cost, and complexity. 
+That covers workload criticality and how it can impact your workloads in the Microsoft Azure Cloud. There is a lot to consider when looking at the criticality of your workload, and it is important to understand the implications of that criticality in terms of your architecture and design. The more critical the workload, the more you need to consider the implications of that criticality in terms of your architecture and design, cost, and complexity. 
 
 **The question I leave you is: Do you really need that second region?**

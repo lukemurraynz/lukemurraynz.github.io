@@ -38,7 +38,7 @@ What this means is that for items like Azure Virtual Machines running Windows as
 
 > Provision fast, lean, and highly secure dev/test workloads on Azure—and realize substantial cost savings compared to your production workloads. Your dev/test discounted rates continue as long as you maintain your Visual Studio subscription.
 
-It is worth noting that although the intended readers of this are those with MCA or Enterprise Agreements with Microsoft, for those Visual Studio subscribers, you can go down the Dev/Test subscription route with [PayAsYouGo/DevTest](https://azure.microsoft.com/en-gb/pricing/offers/ms-azr-0023p/?WT.mc_id=AZ-MVP-5004796) with a credit card as well, keep in mind the considerations below.
+Although the intended readers of this are those with MCA or Enterprise Agreements with Microsoft, for those Visual Studio subscribers, you can go down the Dev/Test subscription route with [PayAsYouGo/DevTest](https://azure.microsoft.com/en-gb/pricing/offers/ms-azr-0023p/?WT.mc_id=AZ-MVP-5004796) with a credit card as well, keep in mind the considerations below.
 
 CSP *(Cloud Solution Provider)* doesn't currently have a DevTest offer, but you could fall back to the Pay As You Go route.
 

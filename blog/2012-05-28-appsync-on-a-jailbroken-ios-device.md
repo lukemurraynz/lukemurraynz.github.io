@@ -16,7 +16,7 @@ tags:
   8. Cydia will now run a repository update and check for latest packages etc
   9. Once update has completed **search** for **AppSync** in Cydia
  10. **Install** the latest version
- 11. It will then patch the necessary files to be able to utilize iTunes compatibility.
+ 11. It will then patch the necessary files to be able to use iTunes compatibility.
 
 <!-- truncate -->
 

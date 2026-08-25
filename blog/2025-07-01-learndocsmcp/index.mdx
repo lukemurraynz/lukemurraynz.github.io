@@ -41,13 +41,13 @@ date: 2025-06-30T22:32:59.580Z
  - Continuously updated content: Access the latest Microsoft documentation as it is published.
  - The ability to fetch full pages of documentation using the `microsoft_docs_fetch` tool, which returns the content as clean markdown with headings, code blocks, tables, and links.
 
- It's worth noting as we go into the demo that MCP servers expose the tools and resources but do not run any reasoning logic themselves; tool invocation is determined by the host application and model configuration. You can control this behavior in the description of your MCP servers and the crafting of your system and user prompts, you will see some of this in our demo shortly.
+ As we go into the demo, note that MCP servers expose the tools and resources but do not run any reasoning logic themselves; tool invocation is determined by the host application and model configuration. You can control this behavior in the description of your MCP servers and the crafting of your system and user prompts, you will see some of this in our demo shortly.
 
  ![Model Context Protocol _(MCP)_](images/mcp.jpg)
 
- So, let's get started. First, we will add the [Microsoft Learn MCP Server](https://github.com/MicrosoftDocs/mcp) itself. Then, we will conduct some testing, followed by a custom GitHub Copilot Chat Mode.
+ First, we will add the [Microsoft Learn MCP Server](https://github.com/MicrosoftDocs/mcp) itself. Then, we will conduct some testing, followed by a custom GitHub Copilot Chat Mode.
 
- First thing, let us start with a Visual Studio Code instance. We will click on GitHub Copilot, select Agent Mode, click on the Configure Tools, and scroll to the bottom for Add MCP server.
+ Start with a Visual Studio Code instance. Click on GitHub Copilot, select Agent Mode, click on Configure Tools, and scroll to the bottom for Add MCP server.
  Add an HTTP server, and add `https://learn.microsoft.com/api/mcp` and specify a name \_(for example: `microsoft.docs.mcp`).
 
  ![Configure Learn MCP](images/ConfigureLearnMCPVSCode.gif)
@@ -406,7 +406,7 @@ Once added, you can then call it as another mode, directly from the Copilot Chat
 
 ![Luke Mentor MCP](images/TestLearnMCPVSCodeLukeMentorNZN.gif)
 
-Now lets look at the latest addition to the Learn MCP Server the: `microsoft_docs_fetch` tool,
+Now let's look at the latest addition to the Learn MCP Server: the `microsoft_docs_fetch` tool.
 
 The `microsoft_docs_fetch` tool allows you to fetch the latest content from Microsoft Learn, Azure documentation, and other official Microsoft sources. This tool is particularly useful for retrieving up-to-date information without needing to specify a search query, and continue to be in your flow of work, this is useful if you want to understand more about the subject matter, instead of getting the perceived answer, that could be split across multiple documents and sources, you can fetch the latest documentation as an entire page, and returns it to the chat interface as clean markdown, with the applicable headings, code blocks, tables and links.
 

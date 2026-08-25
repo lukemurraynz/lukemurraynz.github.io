@@ -27,7 +27,7 @@ When attempting to work with [Azure Open AI](https://learn.microsoft.com/azure/a
 <!-- truncate -->
 
 
-If you encounter this error, it could be likely that you are using the Azure Function ExtensionBundle, which does not contain the necessary dependencies to query the OpenAI API. 
+If you encounter this error, you are likely using the Azure Function ExtensionBundle, which does not contain the necessary dependencies to query the OpenAI API. 
 
 The binding requires at least the following:
 
@@ -42,7 +42,7 @@ The binding type(s) 'textCompletion' were not found in the configured extension 
 
 Both packages are not integrated into the [4.13.2](https://github.com/Azure/azure-functions-extension-bundles/releases/tag/4.13.2) version of the ExtensionBundle, which, at the time of writing, is not available in the production ExtensionBundle shipped with new Azure Functions *(which is 4.13.2)*. 
 
-**However**, it is integrated into the Extension Bundle Preview. For example, Extension Bundle Preview for [4.18.0](https://github.com/Azure/azure-functions-extension-bundles/releases/tag/4.18.0-Preview) features:
+**However**, it is integrated into the Extension Bundle Preview. For example, Extension Bundle Preview for [4.18.0](https://github.com/Azure/azure-functions-extension-bundles/releases/tag/4.18.0-Preview) includes:
 
 * Microsoft.Azure.WebJobs.Extensions.OpenAI: 0.13.0-alpha
 * Microsoft.Azure.WebJobs.Extensions.OpenAI.Kusto: 0.13.0-alpha

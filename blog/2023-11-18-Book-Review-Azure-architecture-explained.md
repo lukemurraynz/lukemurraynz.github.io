@@ -72,7 +72,7 @@ I believe, reading the [Cloud Adoption](https://learn.microsoft.com/azure/cloud-
 
 ### Patterns and practices
 
-Let us look at a particular part of the book; my example is the 'Making the Most of the Infrastructure-as-Code for Azure' section.
+One particular part worth examining is the 'Making the Most of the Infrastructure-as-Code for Azure' section.
 
 When I talk about patterns and practices, I am thinking of 2 things:
 

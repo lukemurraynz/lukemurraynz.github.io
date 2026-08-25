@@ -98,11 +98,11 @@ Azure Resource Mover uses a 6-step process.
 5. **Commit** your move or discard the move! Depending on if you want to complete the move process you can decide whether you want to keep or remove the replicated resources in the destination region.
 6. **Delete** the **source** is the cleanup step required to remove the source resources from the region you have transferred from to finish your migration.
 
-### Let's see Azure Resource Mover in action
+### Azure Resource Mover in action
 
 ![Azure Resource Mover - In Action](/uploads/azure-resource-mover-arm-in-action.png "Azure Resource Mover - In Action")
 
-So enough talking, let us see Azure Resource Mover in action?
+Here is Azure Resource Mover in action.
 
 #### Demo
 

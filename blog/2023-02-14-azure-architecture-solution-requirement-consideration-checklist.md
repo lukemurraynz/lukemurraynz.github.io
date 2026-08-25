@@ -49,7 +49,7 @@ Examples of some questions are:
 
 ![Azure Architecture - Solution requirement considerations](/uploads/azurearchitecture_considerations.png "Azure Architecture - Solution requirement considerations")
 
-> The Azure Architecture - Solution Requirement Consideration checklist, is intended to be a living resource, I am not an expert in all fields so there may be gaps or questions you feel is relevant or missing! Feel free to open a Pull Request to contribute! This is for you!
+> The Azure Architecture - Solution Requirement Consideration checklist, is intended to be a living resource, I am not an expert in all fields so there may be gaps or questions you feel is relevant or missing! Pull Requests are welcome! This is for you!
 >
 > You can find the **latest version of the checklis**t on GitHub here: [lukemurraynz/**Azure_Checklists**](https://github.com/lukemurraynz/Azure_Checklists "lukemurraynz/Azure_Checklists")
 

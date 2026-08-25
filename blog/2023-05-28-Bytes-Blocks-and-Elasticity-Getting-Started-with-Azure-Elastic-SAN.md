@@ -267,7 +267,7 @@ As a result, you can cost-effectively scale performance while migrating workload
 
 The total price of Azure Elastic SAN depends on the base and capacity scale unit (LRS and ZRS dependent).
 
-Elastic SAN will need to be provisioned with at least one base unit of 1TiB. It is also important to note that the SAN-provisioned resources are shared by all volume groups and volumes.
+Elastic SAN will need to be provisioned with at least one base unit of 1TiB. The SAN-provisioned resources are shared by all volume groups and volumes.
 
 ![Azure Elastic SAN - Provisioning Model](/images/posts/AzureElasticSAN_ProvisioningModel.PNG "Azure Elastic SAN - Provisioning Model")
 

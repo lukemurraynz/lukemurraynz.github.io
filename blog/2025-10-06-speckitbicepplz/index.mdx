@@ -38,17 +38,17 @@ Spec-Driven Development (SDD) is a software development approach in which detail
 You can read more about Spec Kit and Spec-Driven Development [here](https://github.com/github/spec-kit/blob/main/spec-driven.md).
 :::
 
-So let's get started.
+Get started below.
 
 <!-- truncate -->
 
-## 🚀 Getting Started with Spec Kit
+## Getting Started with Spec Kit
 
 First, we need to install Spec Kit. I will be running this from a devcontainer, but you can install the [Specify CLI](https://github.com/github/spec-kit#1-install-specify) directly on your machine if you prefer, or copy the files from the latest set of Releases [github/spec-kit](https://github.com/github/spec-kit/releases). The CLI is not required, but it does help you bootstrap, access the latest prompts, and verify that all necessary dependencies (i.e., you're using the proper IDE and git initialization) are in place.
 
 Spec Kit is a collection of prompts and workflows that guide you through the Spec-Driven Development process. It utilizes AI to assist you in creating and managing specifications, plans, and tasks for your software projects.
 
-### 🛠️ Spec Kit Commands Overview
+### Spec Kit Commands Overview
 
 | Command | Description | Why It's Needed |
 |---------|-------------|-----------------|
@@ -64,7 +64,7 @@ We will go through the process of creating a new project, defining the constitut
 
 I love that specification development is front and centre, and that the process encourages you to think about the "why" and "what" before jumping into the "how". This is a great way to ensure that the result is actually what was needed, and not just what was easy to implement, so let's get started.
 
-## 🏗️ Project Initialization
+## Project Initialization
 
 First, we will initialize our project and create our constitution. The model I will be using throughout this post is GPT-5, specifically for spec-driven development. When it comes to implementation, we will proceed with GPT-5-Codex.
 
@@ -74,7 +74,7 @@ specify init .
 
 ![SpecKit_BicepPLZ_Init](images/SpecKit_BicepPLZ_Init.gif)
 
-## 📜 Creating the Project Constitution
+## Creating the project constitution
 
 Now that we have initialized our project, we can create our constitution. The constitution is a set of guiding principles that will govern the development of our project. It is essential to get this right, as it will be used throughout the rest of the process to ensure that all generated code adheres to these principles.
 
@@ -84,7 +84,7 @@ Now that we have initialized our project, we can create our constitution. The co
 
 ![SpecKit_BicepPLZ_Constitution](images/SpecKit_BicepPLZ_Constitution.gif)
 
-## 📋 Defining the Specification
+## Defining the specification
 
 A constitution has been generated, covering the following principles, Modular & Composable, Reusability and Idempotent deployments, Security by design, Compliance and governance, Day 2 operations and observability, Resilience and Recovery, Cost Optimization and sustainability, version and change control, testing and validation shift left and documentation and discovery - some of the main principles, when looking at a Platform Landing Zone project. If needed, we can edit the constitution, but this looks good to me, so let's move on to specifying what we actually want to build.
 
@@ -104,13 +104,13 @@ With an acceptance scenario of:
 
 > **Given** the platform team triggers the automated infrastructure deployment pipeline with an approved specification, **When** the pipeline completes, **Then** the foundational platform resources (management groups scope, hub VNet, spoke placeholder structure, firewall, policies, tagging baseline, address space reservation) are provisioned in the New Zealand North region successfully in a single execution.
 
-:::note
-It's worth noting that nothing has been actually created yet, ie, no Bicep etc - this is the benefit of the Spec-Driven Development approach, we are focusing on the "what" and "why" before the "how", and it helps us flesh out the actual requirements.
+::: note
+Nothing has been actually created yet — no Bicep, no infrastructure — which is the point of the Spec-Driven Development approach. The focus is on the "what" and "why" before the "how", and it helps flesh out the actual requirements.
 :::
 
 It looks good enough to me, but there are areas that still need to be clarified, if we search for [NEEDS CLARIFICATION] we can see that there are a few areas that need to be clarified before we can move on to planning the technical implementation.
 
-## 🔍 Clarifying Requirements
+## Clarifying requirements
 
 This is great, as it ensures that we have a clear understanding of what we want to build before we start planning the technical implementation, and gaps we may have missed or need a decision on, a few highlighted areas in my example are:
 
@@ -130,7 +130,7 @@ The clarity process gives us a great multi-turn conversation, where we can answe
 
 We can continue the clarification process and flesh out the details and potential edge cases, working on some of the low-impact or optional areas later. However, for this Platform Landing Zone, we have enough information to move on to the planning stage.
 
-## 🎯 Technical Planning
+## Technical planning
 
 ```txt 
 /plan
@@ -147,12 +147,12 @@ The plan will also contain, assumptions, folder and file structure it will aim t
 ![Spec Kit Plan](images/SpecKit_BicepPLZ_Plan.gif)
 
 :::note
-It's still worth noting that no Bicep has been created yet; we are still in the planning stage, and this is a great way to ensure that we have a clear understanding of what we want to build before we start implementing the technical solution. The next step is to generate the tasks, which will break down the plan into actionable tasks, which will then be implemented.
+No Bicep has been created yet; we are still in the planning stage. This ensures a clear understanding of what we want to build before implementing the technical solution. The next step is to generate the tasks, which will break down the plan into concrete tasks for implementation.
 :::
 
-## ✅ Breaking Down Into Tasks
+## Breaking down into tasks
 
-The next stage is to create the tasks, which will break down the plan into actionable tasks.
+The next stage is to create the tasks, which will break down the plan into concrete tasks.
 
 * Entities → model/module creation tasks
 * Schemas → contract validation & test tasks
@@ -165,9 +165,9 @@ The next stage is to create the tasks, which will break down the plan into actio
 
 ![Spec Kit Tasks](images/SpecKit_BicepPLZ_Tasks.gif)
 
-A tasks.md file has been created, with a list of tasks that need to be completed in order to implement the plan. The tasks are broken down into sections, based on the plan, and each task has a description and acceptance criteria. One thing worth noting is that Spec Kit and generative AI like Tests! Even for this scenario, where we are creating a Platform Landing Zone, there are still tasks around creating test scenarios and test scaffolding, which we may not necessarily need, so now is the time to strip this out, make any final adjustments, and verify that the Tasks that will be completed are what we wanted.
+A tasks.md file has been created, with a list of tasks that need to be completed in order to implement the plan. The tasks are broken down into sections, based on the plan, and each task has a description and acceptance criteria. One thing to note is that Spec Kit and generative AI like Tests! Even for this scenario, where we are creating a Platform Landing Zone, there are still tasks around creating test scenarios and test scaffolding, which we may not necessarily need, so now is the time to strip this out, make any final adjustments, and verify that the Tasks that will be completed are what we wanted.
 
-## 🔬 Analyzing for Consistency
+## Analyzing for consistency
 
 Before we proceed to the implementation stage, we can run the analyze command, which will check for consistency across all artifacts and ensure that there are no gaps or contradictions in the specifications, useful if you have run through this in multiple sittings or have adjusted the spec or plan files manually.
 
@@ -187,9 +187,9 @@ For Production use cases, it's worth addressing these areas. However, for this p
 Now is the time to make any final adjustments to the spec, plan, or tasks before we proceed to the implementation stage. Once we proceed with implementation, we will generate code based on the functions, so the tasks must be accurate and complete. Now is also the time to confirm the details, i.e., can all resources that will be created based on the Task actually be deployed in the New Zealand North region? For this specific use case, I could have consulted the [Microsoft Learn MCP Server](https://learn.microsoft.com/training/support/mcp?WT.mc_id=AZ-MVP-5004796) throughout the process to verify and confirm, thereby utilizing relevant MCP servers and tools as needed to incorporate external sources of information or functionality. Spec Kit is not perfect, and it will make mistakes, so its important to review and verify the output at each stage, it also does not replace the need for human expertise in building and archititecting solutions - but it does help to go into the detail, in my opinion its a great assistance _(or Copilot)_ in building out and working on the functionality of what you are building, and considering the end to end functionality of that project or feature you are building, in my opinion you will get more out of it for a specific feature or function, rather than something like this, but it is still a great way to ensure that you have a clear foundation for what you want to build before you start implementing the technical solution and give you the base to then work towards and build out further features - the trick is not to over complicate what you are doing and scope it, the artifacts that Spec Kit generates can be used to tell the story of your project and allow for further modernisation and capability uplift going forward without losing the context that may have been in that one architects mind!
 :::
 
-## 💻 Implementation Phase
+## Implementation phase
 
-Now, let's proceed to the implementation stage, where we will generate the Bicep code.
+Now, proceed to the implementation stage, where we will generate the Bicep code.
 
 ```txt
 /implement
@@ -199,9 +199,9 @@ We can see it break down the tasks into creating the scaffold for Infrastructure
 
 ![Spec Kit Implement](images/SpecKit_BicepPLZ_Implement.gif)
 
-## 📁 Examining the Generated Bicep Code
+## Examining the generated Bicep code
 
-Now, let's take a look at the Bicep it created.
+Now, take a look at the Bicep it created.
 
 ![Spec Kit Bicep](images/SpecKit_BicepPLZ_Bicep.gif)
 
@@ -209,7 +209,7 @@ We can see that it has created a Bicep module for the Virtual Network, and a Bic
 
 Long story short, its given me enough of a scaffold to then work from, and I can then go in and adjust the Bicep to use Azure Verified Modules, and add in any additional functionality or configuration that I need, in these cases I would use Spec Kit to focus my attention on the feature enhancements I want to make, vs entirely doing it all from scratch, because we have the constitution already defined, I can now merge my changes from the Bicep scaffold, then use Spec Kit to jump straight into Specify to add the new features I want, and then use the rest of the Spec Kit workflow to implement those changes, and keep the constitution and spec up to date as we work on it.
 
-## 🎓 Lessons Learned and Improvements
+## Lessons learned and improvements
 
 If I were to repeat this process from scratch _(outside of this blog article)_, here are some of the things I would do differently:
 
@@ -219,6 +219,6 @@ If I were to repeat this process from scratch _(outside of this blog article)_, 
 * Remove the need for Tests, or be more specific in the Tests I need (ie, AVM version and retrieval tests, bicep build).
 * Reduce Placeholder Debt - ie, I could have specified the exact resources I wanted to create, and the naming conventions, tags, and other configuration details, so there was less need for me to go in and adjust the Bicep after it was generated. If something was a placeholder or not clearly defined in the Research, I could have specified in the Tasks to clean these up at the end.
 
-## 🎯 Conclusion
+## Conclusion
 
 Hopefully this has given you a good overview of how to use Spec Kit and Spec-Driven Development to create a Platform Landing Zone using Bicep, and how it can help you to focus on the "what" and "why" before the "how", and ensure that you have a clear understanding of what you want to build before you start implementing the technical solution, and some of the gotchas if you don't - in my mind Spec Development is an iterative process, and fast-tracks a lot of the design decisions you would need to make anyway, or know about but may not have documented.

@@ -61,7 +61,7 @@ The patterns we will cover today are only a small set of common patterns documen
 
 
 
-## 🌩️ Cloud Design Patterns
+## Cloud Design Patterns
 
 ### Importance of Design Patterns
 
@@ -136,7 +136,7 @@ In the following sections, we will examine common cloud design patterns, their u
 
 ![Design Patterns - Data Management](Blog_CloudDesignPatterns_DataManagement.PNG)
 
-### 📚 Cache-Aside
+### Cache-Aside
 
 > Load data on demand into a cache from a data store
 
@@ -187,7 +187,7 @@ If the data is found in Azure Cache for Redis (cache hit), the application will 
 If the data is not found in Azure Cache for Redis (cache miss), the application must retrieve it from the appropriate Azure database service.
 For cache miss scenarios, the requesting application should add the data retrieved from the Azure Database service to Azure Cache for Redis.
 
-### 📚 Sharding
+### Sharding
 
 > Divide a data store into a set of horizontal partitions or shards.
 
@@ -242,7 +242,7 @@ The number of possible books cataloged in this workload and the typical query/us
 
 Azure resources that can be used to implement this pattern include [Azure SQL Database](https://learn.microsoft.com/azure/azure-sql/database/sql-database-paas-overview?view=azuresql&WT.mc_id=AZ-MVP-5004796), [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction?WT.mc_id=AZ-MVP-5004796), and [Azure Storage](https://learn.microsoft.com/azure/storage/common/storage-introduction?WT.mc_id=AZ-MVP-5004796).
 
-### 🚗 Valet Key
+### Valet Key
 
 > Use a token or key that provides clients with restricted direct access to a specific resource or service.
 
@@ -300,7 +300,7 @@ Azure supports shared access signatures on Azure Storage for granular access con
 
 Azure resources that can be used to implement this pattern include [Azure Storage](https://learn.microsoft.com/azure/storage/common/storage-introduction?WT.mc_id=AZ-MVP-5004796) and [Azure Function](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796).
 
-### 📦 Static Content Hosting
+### Static Content Hosting
 
 > Deploy static content to a cloud-based storage service that can deliver them directly to the client.
 
@@ -359,7 +359,7 @@ Azure resources that can be used to implement this pattern include [Azure Blob S
 
 ![Design & Implementation Patterns](Blog_CloudDesignPatterns_DesignImplementation.PNG)
 
-### 🎉 Ambassador
+### Ambassador
 
 > Create helper services that send network requests on behalf of a consumer service or application.
 
@@ -382,7 +382,7 @@ When implementing the Ambassador pattern, consider the following issues and cons
 * Security and Configuration - Network calls may require substantial connection, authentication, and authorization configuration. If these calls are used across multiple applications built using multiple languages and frameworks, the calls must be configured for each of these instances. Additionally, network and security functionality may need to be managed by a central team within your organization
 * Specialized Teams - Features that are offloaded to the ambassador can be managed independently of the application. This allows for separate, specialized teams to implement and maintain security, networking, or authentication features that have been moved to the ambassador without disturbing the application's legacy functionalityBy addressing these issues and considerations, you can effectively implement the Ambassador pattern to enhance the networking capabilities, security, and maintainability of your applications.
 
-#### When to use this 
+#### When to use this
 
 The Ambassador pattern should be used in the following scenarios:
 * Offloading Common Client Connectivity Tasks - When you need to offload common client connectivity tasks such as monitoring, logging, routing, security (such as TLS), and resiliency patterns in a language-agnostic way
@@ -416,7 +416,7 @@ graph TB
 
 Azure resources that can be used to implement this pattern include [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796), [Azure Front Door](https://learn.microsoft.com/azure/frontdoor/front-door-overview?WT.mc_id=AZ-MVP-5004796) and [Azure Firewall](https://learn.microsoft.com/azure/firewall/overview?WT.mc_id=AZ-MVP-5004796).
 
-### 🚀 Sidecar
+### Sidecar
 
 > Deploy components of an application into a separate process or container to provide isolation and encapsulation.
 
@@ -440,7 +440,7 @@ When implementing the Sidecar pattern, consider the following issues and conside
 * Operational Excellence - The sidecar pattern provides an approach to implementing flexibility in tool integration that might enhance the application's observability without requiring the application to take direct implementation dependencies. It enables the sidecar functionality to evolve and be maintained independently of the application's lifecycle
 * Performance Efficiency - Moving cross-cutting tasks to a single process that can scale across multiple instances of the main process reduces the need to deploy duplicate functionality for each instance of the application, by addressing these issues and considerations, you can effectively implement the Sidecar pattern to enhance the modularity, security, and maintainability of your applications.
 
-#### When to use this 
+#### When to use this
 
 The Sidecar pattern should be used in the following scenarios.
 
@@ -481,7 +481,7 @@ In an Azure Container Instances container group, each container can take over pa
 
 Azure resources that can be used to implement this pattern include [Azure Container Instances](https://learn.microsoft.com/azure/container-instances/container-instances-overview?WT.mc_id=AZ-MVP-5004796), [Azure Kubernetes Service](https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796), and [Azure App Service](https://learn.microsoft.com/azure/app-service/?WT.mc_id=AZ-MVP-5004796).
 
-### 🎖️ Leader Election
+### Leader Election
 
 > Coordinate the actions performed by a collection of collaborating task instances in a distributed application by electing one instance as the leader who assumes responsibility for managing the other instances.
 
@@ -508,7 +508,7 @@ When implementing the Leader Election pattern, consider the following issues and
 * Coordination Requirements - Use the Leader Election pattern when tasks in a distributed application need careful coordination and there is no natural leader. This pattern is useful for cloud-hosted solutions where multiple instances need to work together without conflict
 * Alternative Solutions — Evaluate whether a more lightweight method, such as optimistic or pessimistic locking, can achieve the required coordination. Also, consider third-party solutions like Apache Zookeeper for managing leader election and coordination tasks. By addressing these issues and considerations, you can effectively implement the Leader Election pattern to ensure reliable and efficient coordination in distributed systems.
 
-#### When to use this 
+#### When to use this
 
 The Leader Election pattern should be used in the following scenarios.
 
@@ -543,7 +543,7 @@ graph TB
 
 Azure resources that can be used to implement this pattern include [Azure Service Fabric](https://learn.microsoft.com/azure/service-fabric/service-fabric-overview?WT.mc_id=AZ-MVP-5004796), [Azure Kubernetes Service](https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796), and [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796).
 
-### 🌳 Strangler Fig
+### Strangler Fig
 
 > Incrementally migrate a legacy system by gradually replacing specific pieces of functionality with new applications and services.
 
@@ -567,7 +567,7 @@ When implementing the Strangler Fig pattern, consider the following issues and c
 * Performance Considerations - The facade should not become a performance bottleneck. It must be capable of handling the load and routing requests efficiently to avoid degrading the user experience
 * Completing the Migration - At some point, when the migration is complete, the strangler fig facade will either go away or evolve into an adaptor for legacy clients. Plan for this transition to ensure that the final system is clean and does not retain unnecessary components2 By addressing these issues and considerations, you can effectively implement the Strangler Fig pattern to ensure a smooth and controlled migration from a legacy system to a new architecture.
 
-#### When to use this 
+#### When to use this
 
 The Strangler Fig pattern should be used in the following scenarios.
 
@@ -586,7 +586,7 @@ Many [Azure products](https://azure.microsoft.com/products?WT.mc_id=AZ-MVP-50047
 
 ![Messaging Patterns](Blog_CloudDesignPatterns_Messaging.PNG)
 
-#### 🚚 Sequential Convoy
+#### Sequential Convoy
 
 > Process a set of related messages in a defined order without blocking the processing of other groups of messages.
 
@@ -631,7 +631,7 @@ graph TB
 
 Azure resources that can be used to implement this pattern include [Azure Service Bus](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview?WT.mc_id=AZ-MVP-5004796), [Azure Event Grid](https://learn.microsoft.com/azure/event-grid/overview?WT.mc_id=AZ-MVP-5004796), and [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796).
 
-### 📌 Queue-Based Load Leveling
+### Queue-Based Load Leveling
 
 > Use a buffer between a task and a service that it invokes in order to smooth intermittent heavy loads.
 
@@ -691,7 +691,7 @@ graph TB
 
 Azure resources that can be used to implement this pattern include [Azure Service Bus](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview?WT.mc_id=AZ-MVP-5004796), [Azure Event Grid](https://learn.microsoft.com/azure/event-grid/overview?WT.mc_id=AZ-MVP-5004796), and [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796).
 
-#### 📌 Publisher-Subscriber
+#### Publisher-Subscriber
 
 > Enable an application to announce events to multiple interested consumers asynchronously, without coupling the senders to the receivers.
 
@@ -755,7 +755,7 @@ graph TB
 
 Azure resources that can be used to implement this pattern include [Azure Service Bus](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview?WT.mc_id=AZ-MVP-5004796), [Azure Event Grid](https://learn.microsoft.com/azure/event-grid/overview?WT.mc_id=AZ-MVP-5004796).
 
-#### 🔄 Asynchronous Request-Reply
+#### Asynchronous Request-Reply
 
 > Decouple backend processing from a frontend host, where backend processing needs to be asynchronous, but the frontend still needs a clear response.
 
@@ -822,7 +822,7 @@ Azure resources that can be used to implement this pattern include [Azure Functi
 
 ![Reliability Patterns](Blog_CloudDesignPatterns_Reliability.PNG)
 
-#### ⚡️ Circuit Breaker
+#### Circuit Breaker
 
 > Handle faults that might take a variable amount of time to recover from when connecting to a remote service or resource. This can improve an application's stability and resiliency.
 
@@ -881,7 +881,7 @@ graph TB
 
 Azure resources that can be used to implement this pattern include [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796).
 
-#### 📮 Deployment Stamps
+#### Deployment Stamps
 
 > The deployment stamp pattern involves provisioning, managing, and monitoring a heterogeneous group of resources to host and operate multiple workloads or tenants.
 
@@ -938,7 +938,7 @@ graph TB
 
 Azure resources that can be used to implement this pattern include [Azure Traffic Manager](https://learn.microsoft.com/azure/traffic-manager/traffic-manager-overview?WT.mc_id=AZ-MVP-5004796), [Azure Front Door](https://learn.microsoft.com/azure/frontdoor/front-door-overview?WT.mc_id=AZ-MVP-5004796).
 
-#### 🚢 Bulkhead
+#### Bulkhead
 
 > In a bulkhead architecture, elements of an application are isolated into pools so that if one fails, the others will continue to function.
 
@@ -1002,7 +1002,7 @@ graph TB
 
 Azure resources that can be used to implement this pattern include [Azure Kubernetes Service (AKS)](https://learn.microsoft.com/azure/aks/intro-kubernetes?WT.mc_id=AZ-MVP-5004796), [Azure Container Instances](https://learn.microsoft.com/azure/container-instances/container-instances-overview?WT.mc_id=AZ-MVP-5004796), and [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots=programming-language-csharp&WT.mc_id=AZ-MVP-5004796).
 
-#### 😊 Compensating Transaction
+#### Compensating Transaction
 
 > If one or more of the steps fail, you can use the Compensating Transaction pattern to undo the work that the steps performed.
 
@@ -1062,7 +1062,7 @@ Azure resources that can be used to implement this pattern include [Azure Functi
 
 ![Security Patterns](Blog_CloudDesignPatterns_Security.PNG)
 
-#### 😊 Backends for Frontends
+#### Backends for Frontends
 
 > Create separate backend services to be consumed by specific frontend applications or interfaces. 
 
@@ -1114,7 +1114,7 @@ graph TB
 
 Azure resources that can be used to implement this pattern include [Azure API Management](https://learn.microsoft.com/azure/api-management/api-management-key-concepts?WT.mc_id=AZ-MVP-5004796), [Application Gateway](https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796), [App Service](https://learn.microsoft.com/azure/app-service/?WT.mc_id=AZ-MVP-5004796).
 
-#### 🚧 Gatekeeper
+#### Gatekeeper
 
 > Protect applications and services by using a dedicated host instance to broker requests between clients and the application or service.
 
@@ -1177,7 +1177,7 @@ graph TB
 
 The Azure resources that can be used to implement this pattern include [Azure Application Gateway](https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796) and [Azure Firewall](https://learn.microsoft.com/azure/firewall/overview?WT.mc_id=AZ-MVP-5004796). 
 
-#### 🤝 Federated Identity
+#### Federated Identity
 
 > Delegate authentication to an external identity provider. This can simplify development, minimize the requirement for user administration, and improve the user experience of the application.
 
@@ -1245,7 +1245,7 @@ graph TB
 
 Azure services that can be used to implement this pattern include [Microsoft Entra ID](https://learn.microsoft.com/entra/fundamentals/whatis?WT.mc_id=AZ-MVP-5004796) and [Microsoft Entra ID External](https://learn.microsoft.com/entra/external-id/external-identities-overview?WT.mc_id=AZ-MVP-5004796).
 
-#### 🛡️ Gateway Offloading
+#### Gateway Offloading
 
 > Offload shared or specialized service functionality to a gateway proxy. 
 
@@ -1308,7 +1308,7 @@ graph TB
 
 Azure resources that can be used to implement this pattern include [Azure Front Door with WAF](https://learn.microsoft.com/azure/frontdoor/front-door-overview?WT.mc_id=AZ-MVP-5004796), [Azure Application Gateway](https://learn.microsoft.com/azure/application-gateway/overview?WT.mc_id=AZ-MVP-5004796) and [Azure Firewall](https://learn.microsoft.com/azure/firewall/overview?WT.mc_id=AZ-MVP-5004796)
 
-### 🏗️ Architecting for Azure
+### Architecting for Azure
 
 The following Frameworks can help guide you, from the business requirements to the technical implementation of your solution:
 

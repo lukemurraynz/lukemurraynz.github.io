@@ -22,12 +22,12 @@ description: Learn how to authenticate with Azure OpenAI using an API key for lo
 
 When developing a Python application that interacts with [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796), you may want to authenticate with an API key for testing, however in Production, you should use Managed Identities within Microsoft Azure.
 
-In this article, we will look at how to authenticate with [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796) using an API key in Python for local development, then using an environment variable switch to authenticating using [managed Identities](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview?WT.mc_id=AZ-MVP-5004796).
+This article covers authenticating with [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=AZ-MVP-5004796) using an API key in Python for local development, then switching to [managed Identities](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview?WT.mc_id=AZ-MVP-5004796) via an environment variable.
 
 <!-- truncate -->
 
 
-The true hero for Azure authentication is the [DefaultAzureCredential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&WT.mc_id=AZ-MVP-5004796) class from the Azure Identity library. This class can authenticate with Azure services using various methods, including Managed Identity, Shared Token Cache, and environment variables.
+The key class for Azure authentication is [DefaultAzureCredential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python&WT.mc_id=AZ-MVP-5004796) from the Azure Identity library. This class can authenticate with Azure services using various methods, including Managed Identity, Shared Token Cache, and environment variables.
 
 ![DefaultAzureCredential](images/DefaultAzureCredential.png)
 

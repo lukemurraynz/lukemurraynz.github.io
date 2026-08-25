@@ -31,7 +31,7 @@ Your Sandbox isn’t a pathway to production; it’s a pathway to “CLICK, CLIC
 <!-- truncate -->
 
 
-## ☁️ What is a Cloud Sandbox environment?
+## What is a Cloud Sandbox environment?
 
 What am I talking about when talking about a Sandbox environment?
 
@@ -50,9 +50,9 @@ The general principles for a Sandbox environment are:
 
 :::
 
-## ❔Why would I want a Sandbox environment?
+## Why would I want a Sandbox environment?
 
-Having an environment for learning is key to driving the adoption of Cloud technologies by giving consumers the ability to leverage and test Azure resources in an isolated environment from Production; users using the Sandbox could be users new to Microsoft Azure or those who may already have Azure knowledge but want to trial and test preview features, that may not be compliant with Production controls.
+Having an environment for learning is key to driving the adoption of Cloud technologies by giving consumers the ability to use and test Azure resources in an isolated environment from Production; users using the Sandbox could be users new to Microsoft Azure or those who may already have Azure knowledge but want to trial and test preview features, that may not be compliant with Production controls.
 
 ![Gartner Top 10 - Strategic Technology Trends for 2024](Gartner_Top_10_StrategicTechTrends_2024.png)
 
@@ -62,25 +62,25 @@ Platform Engineering is the discipline of building and operating self-service in
 
 According to the Gartner Top 10 technology trends for 2024, Platform Engineering is a key element to enabling developers and application teams to remain competitive, not only from a business standpoint but also from talent retention, empowering employees to do more, the premise of Platform Engineering is for a 'Platform Team' to manage the governance of the Cloud platforms _(following key well-architected framework guidelines, such as Operational Excellence, Security, Performance and Reliability)_ and also allowing the Application owners to deploy and manage their applications, without having to worry about the necessary organisational guardrails.
 
-## 😷What are the antipatterns to avoid?
+## What are the antipatterns to avoid?
 
 The word 'anti-patterns' can be quite negative terminology to use. However, it's really a trade-off between having an environment protected, i.e., with regulatory requirements, etc., like you would in Production, which in most cases prevents your Sandbox consumers from being able to learn without running into the various guardrails and having an environment on the opposite end of the scale, where there are no guardrails in place.
 
 When we look at anti-patterns, we need to remember what we are trying to achieve with the Cloud Sandboxes, i.e. give Sandbox consumers an environment for learning Cloud technologies.
 
-So, let us take a look at some patterns and areas to avoid.
+Here are some patterns and areas to avoid.
 
 * Regional restrictions - the reason why you might want to restrict Regional Restrictions is due to the fact that not all Azure services are available in all regions.
 * Over extensive blocklists
 * Trying to build the entire platform at once
 
-## 📋Sandbox Patterns
+## Sandbox Patterns
 
-Ok, let's talk Patterns! Every organisation may have a different Sandbox requirement, but before we discuss the particular of patterns, let's first talk about Platform Landing Zones at a high level so I can make sure we are all talking the same language.
+Every organisation may have a different Sandbox requirement. Before diving into particular patterns, here's a quick overview of Platform Landing Zones so we're all working from the same definition.
 
 In the context of Platform Landing Zones, I am referring to an Azure environment setup like the Enterprise Scale Landing Zone Reference architecture (ESLZ), where the Landing Zone features common components for the Platform, such as Security and Connectivity, and is usually the base of your networking infrastructure, such as Virtual WAN (Wide Area Network) connecting to your on-premises environment or a Virtual Network connecting different Applications and dependencies together.
 
-The Platform Landing Zone design aims to keep Platform management consistent, centralised, and secure, allowing your application teams to leverage the shared services supplied by the Platform Landing Zone design. An organisation may have requirements to move from this reference pattern - and that is ok - but the premise here is that the Platform Landing Zone is looked after by a Platform or Infrastructure team _(in most cases)_ and the environment is architected in a way that does not impede application teams, to deliver business value, while making sure that their solutions are secure and where necessary, consistent.
+The Platform Landing Zone design aims to keep Platform management consistent, centralised, and secure, allowing your application teams to use the shared services supplied by the Platform Landing Zone design. An organisation may have requirements to move from this reference pattern - and that is ok - but the premise here is that the Platform Landing Zone is looked after by a Platform or Infrastructure team _(in most cases)_ and the environment is architected in a way that does not impede application teams, to deliver business value, while making sure that their solutions are secure and where necessary, consistent.
 
 ![Azure Landing Zone - Sandbox - Reference Architecture](Azure_Landing_Zone-Sandbox-ReferenceArchitecture.png)
 
@@ -175,7 +175,7 @@ We have a Data Scientist named Samuel.
 Samuel's goals are to:
 
 1. **Deliver high-quality and robust machine learning solutions that can enhance customer satisfaction and loyalty**x, as well as increase the revenue and profitability of the company. 
-2. **Learn the latest and most advanced techniques and methods in the field of artificial intelligence, such as natural language processing**, computer vision, and deep learning, to create innovative and cutting-edge models.
+2. **Learn the latest and most advanced techniques and methods in the field of artificial intelligence, such as natural language processing**, computer vision, and deep learning, to create advanced models.
 3. To **collaborate and learn from other data scientists and experts in the field, both within and outside his company**, to improve his knowledge.
 4. **Self-management and accountability of cost management** and access to the environment for Data/AI projects across multiple responsible team members**.
 
@@ -189,7 +189,7 @@ The reference architecture of Samuel's Sandbox could look like the following:
 
 ![Azure Sandbox - Reference Architecture - Samuel](Sandbox_Reference_Architecture.png)
 
-## 🚙Pathway to Production
+## Pathway to Production
 
 :::info
 Remember: The Sandbox is not a pathway to production; it is a pathway to "CLICK, CLICK, OOPS".
@@ -222,7 +222,7 @@ The Canary Landing Zone architecture is useful as it provides a controlled envir
 
 ![Azure Landing Zones - Canary](canary-mgmt-groups.png)
 
-## 🚢Products and tools
+## Products and tools
 
 When considering a Sandbox environment, you may want to consider the following products and tools to assist.
 
@@ -231,7 +231,7 @@ When considering a Sandbox environment, you may want to consider the following p
 * [Entra ID Access Packages](https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-create?WT.mc_id=AZ-MVP-5004796) - Access packages are great for giving delegated access to a specific set of resources, for a specific period of time, and can be useful for Lightly and Unmanaged  Sandboxes, where you want to give a team access to a specific Resource Group or Subscription.
 * [Microsoft Purview](https://learn.microsoft.com/purview/purview?WT.mc_id=AZ-MVP-5004796) - Microsoft Purview is a unified data governance service that helps you manage and govern your on-premises, multi-cloud, and software-as-a-service (SaaS) data. You can use Purview to understand your data, manage data policies, and ensure data privacy and compliance. Microsoft Purview is useful for understanding the data that is being used in the Sandbox.
 
-## 📖Reference Links
+## Reference Links
 
 1. [Festive Tech Calender - 2023 - Azure Sandbox Design](https://youtu.be/WR9zRbzYfTQ)
 2. [Gartner Top 10 Strategic Technology Trends for 2024](https://www.gartner.com/en/articles/gartner-top-10-strategic-technology-trends-for-2024)

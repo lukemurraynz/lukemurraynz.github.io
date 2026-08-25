@@ -30,7 +30,7 @@ Today, we will implement a Terraform bootstrap script that will install Terrafor
 <!-- truncate -->
 
 
-## 📜 Script Overview
+## Script Overview
 
 Inspired by the [ALZ Accelerator](https://github.com/Azure/ALZ-PowerShell-Module) bootstrap script, this script will:
 
@@ -58,14 +58,14 @@ You could also look at turning it into an executable using something like [PS2EX
 ![Run Terraform Bootstrap Executable](images/TerraformBootstrapExecutable.gif)
 :::
 
-## 📋 Prerequisites
+## Prerequisites
 
 - [PowerShell](https://learn.microsoft.com/powershell/scripting/install/installing-powershell?view=powershell-7.4&WT.mc_id=AZ-MVP-5004796) 5.1 or PowerShell Core 6.0+
 - Internet connectivity for downloading [Terraform](https://www.terraform.io/)
 - [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli?WT.mc_id=AZ-MVP-5004796) is installed and logged in (`az login`). It is only required if deploying to [Microsoft Azure](https://learn.microsoft.com/azure/developer/terraform/overview?WT.mc_id=AZ-MVP-5004796).
 - Write permissions to the directory where you'll run the script
 
-## 🎯 Usage Examples
+## Usage Examples
 
 Basic usage with default parameters:
 
@@ -85,7 +85,7 @@ Using a specific Terraform version:
 .\Terraform-Bootstrap.ps1 -terraformPath "C:\terraform" -configPath "C:\tf-configs" -outputPath "C:\tf-output"
 ```
 
-## 💻 PowerShell Script
+## PowerShell Script
 
 ```powershell title="Terraform-Bootstrap.ps1"
 <#
@@ -307,7 +307,7 @@ This script can also be found on GitHub [here](https://github.com/lukemurraynz/P
 
 Hopefully this is useful for you, having a script like this means I can quickly deploy resources that are coded in Terraform _(HCL)_.
 
-## 📂 Example Terraform Files
+## Example Terraform Files
 
 For those interested, here is the base Terraform code I am using in my example:
 

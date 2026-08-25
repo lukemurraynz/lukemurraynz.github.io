@@ -51,7 +51,7 @@ Although still in a transitory period with some services, Microsoft has come som
 
 > On November 19, 2020, the United States Office of Management and Budget (OMB) issued the latest U. S. federal government IPv6-only policy in its memorandum (M-21-07) directing all federal government agencies to complete at least 80% of the transition from IPv4 to the single stack of IPv6 by 2025.
 
-This will be an ever-increasing functionality.
+This will be a growing area of functionality.
 
 As the world becomes increasingly interconnected, the need for reliable and scalable networking solutions has never been greater. IPv6 is the latest version of the Internet Protocol, offering a range of benefits over its predecessor, IPv4.
 

@@ -21,16 +21,16 @@ keywords:
 description: Detailed guide on setting up an Azure Proactive Resiliency Assessment.
 ---
 
-The [Azure Proactive Resiliency Library](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/) is a curated collection of best practices, guidance, and recommendations designed to improve the resiliency of applications and services running in Azure. Built on the Resiliency pillar of the Well-Architected Framework, this catalog provides valuable insights to ensure your workloads remain robust and reliable.
+The [Azure Proactive Resiliency Library](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/) is a curated collection of best practices, guidance, and recommendations designed to improve the resiliency of applications and services running in Azure. Built on the Resiliency pillar of the Well-Architected Framework, this catalog provides valuable insights to ensure your workloads remain reliable.
 
-The library also includes automation capabilities (using Azure Graph queries) that allow you to collect data, analyze it, and generate detailed Word and PowerPoint reports. These reports, part of the Well-Architected Resiliency Assessment workshop, provide visibility into the resiliency of your Azure workloads. This toolset, often used by Microsoft Cloud Solution architects, can be leveraged to identify areas for improvement in your own Azure estate, following [Resiliency](https://learn.microsoft.com/azure/well-architected/reliability/principles?WT.mc_id=AZ-MVP-5004796) well-architected principles.
+The library also includes automation capabilities (using Azure Graph queries) that allow you to collect data, analyze it, and generate detailed Word and PowerPoint reports. These reports, part of the Well-Architected Resiliency Assessment workshop, provide visibility into the resiliency of your Azure workloads. This toolset, often used by Microsoft Cloud Solution architects, can be used to identify areas for improvement in your own Azure estate, following [Resiliency](https://learn.microsoft.com/azure/well-architected/reliability/principles?WT.mc_id=AZ-MVP-5004796) well-architected principles.
 
 In this article, we will walk through the process of running the scripts to collect, analyze, and report on resiliency data for your workloads using the Azure Proactive Resiliency Library to help you identify and address potential reliability issues in your Azure environment.
 
 <!-- truncate -->
 
 
-## 🌐 Overview
+## Overview
 
 Along with recommendations to increase Azure resource resiliency, supplementing the guidance on the Well-Architected Framework, the proactive resiliency library includes sample [Azure Resource Graph queries](https://learn.microsoft.com/azure/governance/resource-graph/overview?WT.mc_id=AZ-MVP-5004796), to determine the current state of your resources.
 
@@ -48,9 +48,9 @@ The answer is simple: ensure that your applications and services are available a
 
 ![Azure Proactive Resiliency Library - Importance of realibility](AzProactiveResiliencyLibrary_ImportanceRealiability.png)
 
-When managing resources and workloads in Azure, ensuring reliability is paramount to avoid unexpected failures and downtime. But why exactly do bad things happen, even when there seem to be numerous safeguards in place? Let's delve into reliability and why it's essential for your Azure environment by exploring the "Swiss Cheese Model" of accident causation, illustrated in the image above.
+When managing resources and workloads in Azure, ensuring reliability is essential to avoid unexpected failures and downtime. But why do bad things happen, even when there seem to be numerous safeguards in place? This section explores reliability and why it matters for your Azure environment through the "Swiss Cheese Model" of accident causation, illustrated in the image above.
 
-The [Swiss Cheese Model](https://en.wikipedia.org/wiki/Swiss_cheese_model), developed by James Reason, is a popular way to understand how errors and failures occur in complex systems. Each defense layer—represented as Swiss cheese slices—has holes or weaknesses. When these holes align across multiple layers, an accident can occur. Let's break down this model and see how it applies to Azure reliability.
+The [Swiss Cheese Model](https://en.wikipedia.org/wiki/Swiss_cheese_model), developed by James Reason, is a popular way to understand how errors and failures occur in complex systems. Each defense layer—represented as Swiss cheese slices—has holes or weaknesses. When these holes align across multiple layers, an accident can occur. Here is how this model applies to Azure reliability.
 
 * Institutional Level: Institutions may need more procedures and regulatory narrowness at the highest level. In the context of Azure, this could mean inadequate governance policies or a lack of compliance with best practices. These gaps can create vulnerabilities that might be exploited, leading to system failures.
 * Organizational Level: Organizations often face mixed messages and production pressures. This could translate to conflicting priorities for Azure between rapid deployment and maintaining robust security and reliability. Pressure to deliver quickly might lead to overlooked reliability checks, creating potential points of failure.
@@ -59,7 +59,7 @@ The [Swiss Cheese Model](https://en.wikipedia.org/wiki/Swiss_cheese_model), deve
 * Individual Level: Individual contributors might be distracted or make errors. In Azure, this could involve misconfigurations or overlooking critical logs and alerts. Encouraging a culture of attention to detail and thoroughness can help mitigate these risks.
 * Technical Level: Finally, technical issues such as clumsy technology, coding bugs, and deferred maintenance can directly impact reliability; in Azure, this might involve outdated software versions, unpatched vulnerabilities, or inefficient resource configurations.
 
-By understanding the layers of defense and potential triggers for failures, you can take proactive steps to enhance the reliability of your Azure resources and workloads, ensuring a robust, secure, and efficient cloud environment.
+By understanding the layers of defense and potential triggers for failures, you can take proactive steps to enhance the reliability of your Azure resources and workloads, ensuring a secure and efficient cloud environment.
 
 The Azure Proactive Resiliency library and the assessments we will run through will concentrate on the technical level to ensure that your Azure resources are configured correctly and are resilient to failures; however, the other layers of defense are also essential to consider and are a [shared responsibility](https://learn.microsoft.com/azure/reliability/overview?WT.mc_id=AZ-MVP-5004796#reliability-requirements) between Microsoft and the customer.
 
@@ -67,7 +67,7 @@ The Azure Proactive Resiliency library and the assessments we will run through w
 
 So - let us get started with the Azure Proactive Resiliency Library and the assessment report.
 
-## 📊 Create Resiliency Reports
+## Create resiliency reports
 
 The Assessment report is a 3 stage process.
 
@@ -79,9 +79,9 @@ The Assessment report is a 3 stage process.
 
 > You can do both the data collection in an Azure CloudShell, which is useful for running this in customer environments; however, to create and analyze the data, you must run the script from a computer with Word and Excel installed.
 
-**It is worth noting that not all services will be supported by the automated resource graph queries, so you will need to check any services that are not supported manually, and when looking at running this for Production workloads, remember to consider the business context around the resiliency requirements.**
+**Not all services will be supported by the automated resource graph queries, so you will need to check any services that are not supported manually, and when looking at running this for Production workloads, remember to consider the business context around the resiliency requirements.**
 
-### 📊 Collect the data
+### Collect the data
 
 The Collector PowerShell script is designed to collect data from the Azure environment to help identify potential issues and areas for improvement using the Azure Resource Graph queries within this repository.
 
@@ -106,7 +106,7 @@ The Collector PowerShell script is designed to collect data from the Azure envir
 
 ![1_wara_collector.ps1](AzProactiveResiliencyLibrary_Collector.gif)
 
-### 📈 Analyse the data
+### Analyse the data
 
 The Data Analyzer PowerShell script is the second script in the Azure Proactive Resiliency Library (APRL) tooling suite. This tool summarizes the collected data and provides actionable insights into the health and resiliency of the Azure environment.
 
@@ -155,7 +155,7 @@ You should now have an Excel Action Plan with the data from the JSON file, inclu
 
 > There will be resources that are not supported by the Resource Graph queries, so you will need to check these manually. Could you remove or add any recommendations based on your analysis before generating reports?
 
-### 📝 Create the report
+### Create the report
 
 The Report Generator PowerShell script is the final script in the Azure Proactive Resiliency Library (APRL) tooling suite. Its goal is to generate a Word and PowerPoint report based on the data collected and analyzed by the Collector and Data Analyzer scripts.
 
@@ -203,7 +203,7 @@ More detail can then be added to the Word document.
 
 ![Word Report](AzProactiveResiliencyLibrary_WordGeneration.gif)
 
-## 📖 References: 
+## References
 
 * 🔗[Overview and Usage of APRL Scripts](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/tools/script-overviews/)
 * 🔗[Reliability design principles](https://learn.microsoft.com/azure/well-architected/reliability/principles?WT.mc_id=AZ-MVP-5004796)

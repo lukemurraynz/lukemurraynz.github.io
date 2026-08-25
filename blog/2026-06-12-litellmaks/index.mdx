@@ -28,7 +28,7 @@ readTime: 17
 description: Deploy LiteLLM on AKS effortlessly using azd and Bicep for a robust, self-hosted LLM gateway with caching and spend tracking.
 ---
 
-I've been spending time with [LiteLLM](https://litellm.ai) and wanted to see how far I could take it as a self-hosted LLM gateway on Azure Kubernetes Service. The goal was simple: build a deployment that you can spin up with a single `azd up` command, with all the production bits - private networking, Redis caching, PostgreSQL for spend tracking, and a proper ingress with automatic TLS.
+I've been spending time with [LiteLLM](https://litellm.ai) and wanted to see how far I could take it as a self-hosted LLM gateway on Azure Kubernetes Service. The goal was simple: build a deployment that you can spin up with a single `azd up` command, with all the production pieces: private networking, Redis caching, PostgreSQL for spend tracking, and a proper ingress with automatic TLS.
 
 Turns out it works pretty well. Here's what I built and what I found.
 
@@ -319,7 +319,7 @@ The `predown` hook deletes the `litellm` Kubernetes namespace before the resourc
 
 ## Wrapping up
 
-Hopefully this gives you a starting point for running LiteLLM on AKS. The `azd` template handles the full deployment lifecycle, and the production configuration covers caching, rate limiting, spend tracking, and high availability out of the box.
+This should give you a starting point for running LiteLLM on AKS. The `azd` template handles the full deployment lifecycle, and the production configuration covers caching, rate limiting, spend tracking, and high availability out of the box.
 
 I had a lot of fun setting this up. The mind boggles at what you could do with the MCP Gateway features on top of this - wiring up Microsoft Learn documentation tools or GitHub MCP servers through the same proxy. Something for the backlog.
 

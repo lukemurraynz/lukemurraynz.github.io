@@ -64,7 +64,7 @@ Make sure your Virtual Machine is not in a Proximtry or Avalibility Group and do
 2. **Remove any resources** that may have been created as part of the original failed deployment.
 3. **Redeploy** your workload and **select** another Availability **Zone**, such as _(2 - if your failed deployment was in Zone 1)_
 
-##### Change the Virtual Machine version  
+##### Change the Virtual Machine version
 
 By version, I don't mean [Generation 1 and Generation 2](https://learn.microsoft.com/en-us/azure/virtual-machines/generation-2?WT.mc_id=AZ-MVP-5004796#features-and-capabilities "Generation 1 vs. generation 2 features") Virtual Machines; I mean the version of underlying Compute; when you look at a VM SKU size, you will see:
 
