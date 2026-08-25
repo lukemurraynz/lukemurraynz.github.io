@@ -26,7 +26,7 @@
 <meta name="author" content="Luke Murray">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"luke.geek.nz","description":"Microsoft MVP - Microsoft Azure ☁, Technical Consultant, Azure Solutions Architect Expert, Technologist and a drinker of coffee.","url":"https://luke.geek.nz","author":{"@type":"Person","name":"Luke Murray","url":"https://luke.geek.nz/about","sameAs":["https://twitter.com/lukemurraynz","https://www.linkedin.com/in/ljmurray/","https://aus.social/@lukemurray","https://bsky.app/profile/lukemurraynz.bsky.social"]},"publisher":{"@type":"Person","name":"Luke Murray"},"potentialAction":{"@type":"SearchAction","target":"https://luke.geek.nz/search/?q={search_term_string}","query-input":"required name=search_term_string"}}</script><link rel="stylesheet" href="/assets/css/styles.3b286f07.css">
-<script src="/assets/js/runtime~main.f1e5bb1a.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a073c64b.js" defer="defer"></script>
 <script src="/assets/js/main.4cdd5e1e.js" defer="defer"></script>
 </head>
 <body>
@@ -59,7 +59,7 @@
 <p><img decoding="async" loading="lazy" alt="Empowering Resilience with Azure backup services" src="/assets/images/Header-Blog-AzureBackup_Services_Innovations-f2d9510f5e2dd62c9ae8c7b0cb844b2b.gif" width="1200" height="628" class="img_ev3q"></p>
 <p>Along with the basics of the Azure Backup solutions, particularly on Virtual Machines running on Microsoft Azure, there have been a lot of changes in the last year, including Immutable vaults, enhanced policies, intelligence tiering, and cross-region restore.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="introduction">Introduction<a href="#introduction" class="hash-link" aria-label="Direct link to Introduction" title="Direct link to Introduction" translate="no">​</a></h2>
-<p>Let us start with the basics with a user story; what do we need to achieve:</p>
+<p>Starting with the basics, here is a user story covering what we need to achieve:</p>
 <blockquote>
 <p>&quot;As a Cloud Infrastructure Administrator at Contoso, I want to implement an automated backup solution for virtual machines (Windows and Linux) hosted in Microsoft Azure,
 So that I can ensure data reliability, disaster recovery, and compliance with minimal manual intervention.&quot;</p>
@@ -197,7 +197,7 @@ It is worth mentioning, especially around disaster recovery, that there is much 
 <li class=""><a href="https://learn.microsoft.com/azure/role-based-access-control/rbac-and-directory-admin-roles?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Role-Based Access Control (RBAC)</a></li>
 <li class=""><a href="https://learn.microsoft.com/azure/governance/policy/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Policy</a></li>
 </ul>
-<p>So, let us take our notebooks and look at the Backup sections.</p>
+<p>So, take a look at the Backup sections.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="backup-center">Backup Center<a href="#backup-center" class="hash-link" aria-label="Direct link to Backup Center" title="Direct link to Backup Center" translate="no">​</a></h2>
 <p>When needing a single control plane for your Backups across multiple tenancies <em>(using <a href="https://learn.microsoft.com/azure/lighthouse/overview?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Lighthouse</a></em>), Subscriptions and regions, then Backup Center is the place to start with.</p>
 <blockquote>
@@ -347,7 +347,7 @@ I talked a bit about immutability in another blog article: <a href="https://luke
 <p><img decoding="async" loading="lazy" alt="Add Virtual Machines" src="/assets/images/BackupItem_BackupCenter_RSV_AzurePolicyEnhanced-596ff07a42ef094acce54b682d8f2b7f.gif" width="1893" height="907" class="img_ev3q"></p>
 <p>Once added, the Virtual Machine will now get backed up according to the specified policy.</p>
 <blockquote>
-<p>Its worth noting that you can backup a Virtual Machine if it is deallocated, but it will Crash-consistent <em>(Only the data that already exists on the disk at the time of backup is captured and backed up, and it triggers a disk check during recovery)</em> compared to Application consistent, which is more application and OS aware, so can prepare to the OS and applications for the backups to make sure that everything is written successfully to the disk ahead of the backup. You can read more about <a href="https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction?WT.mc_id=AZ-MVP-5004796#snapshot-consistency" target="_blank" rel="noopener noreferrer" class="">Snapshot consistency</a>.</p>
+<p>You can back up a Virtual Machine if it is deallocated, but it will be crash-consistent <em>(only the data that already exists on the disk at the time of backup is captured and backed up, and it triggers a disk check during recovery)</em> compared to application-consistent, which is more application and OS aware, so can prepare the OS and applications for the backups to make sure that everything is written successfully to the disk ahead of the backup. You can read more about <a href="https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction?WT.mc_id=AZ-MVP-5004796#snapshot-consistency" target="_blank" rel="noopener noreferrer" class="">Snapshot consistency</a>.</p>
 </blockquote>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="monitor-backups">Monitor Backups<a href="#monitor-backups" class="hash-link" aria-label="Direct link to Monitor Backups" title="Direct link to Monitor Backups" translate="no">​</a></h2>
 <p>Now that we have our Recovery Services Vault, policies and protected items <em>(backed up Virtual Machines)</em>, we need to monitor to make sure that the backups are working. Backup center gives us a complete view of Failed, In Progress, and Completed jobs in the overview pane, which is excellent for a quick view of the status across subscriptions and regions.</p>
@@ -452,7 +452,7 @@ Backup service: The Azure Backup service keeps your data safe and recoverable.</
 <blockquote>
 <p>Just as important (if not more) than the technology to enable this, clear business requirements and preparation is paramount for a successful disaster recovery solution, I highly recommend the <a href="https://techcommunity.microsoft.com/t5/fasttrack-for-azure/introducing-the-azure-business-continuity-guide/ba-p/3905424?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Azure Business Continuity Guide</a>. Supplied by the Microsoft Fastrack team, this guide includes resources to prepare for thorough disaster recovery plan.</p>
 </blockquote>
-<p>The key to successful disaster recovery is not only the workloads themselves but supporting services, such as DNS, Firewall rules, connectivity etc., that need to be considered, These are out of the scope of this article but the following Microsoft Azure architecture references are worth a read:</p>
+<p>The key to successful disaster recovery is not only the workloads themselves but supporting services, such as DNS, Firewall rules, connectivity etc., that need to be considered. These are out of the scope of this article but the following Microsoft Azure architecture references cover the topic in depth:</p>
 <ul>
 <li class=""><a href="https://learn.microsoft.com/azure/architecture/solution-ideas/articles/disaster-recovery-enterprise-scale-dr?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Enterprise-scale disaster recovery</a></li>
 <li class=""><a href="https://learn.microsoft.com/azure/architecture/solution-ideas/articles/disaster-recovery-smb-azure-site-recovery?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">SMB disaster recovery with Azure Site Recovery</a></li>

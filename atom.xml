@@ -618,7 +618,7 @@
 </ol>
 <p>Most teams building on <a href="https://learn.microsoft.com/azure/foundry/what-is-foundry?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Microsoft Foundry</a> or a similar platform are somewhere between 1 and 2 today. Getting to 3 doesn't need custom infrastructure. It needs wiring together pieces the platform already gives you.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-steps-3-and-4-actually-look-like-on-microsoft-foundry">What steps 3 and 4 actually look like on Microsoft Foundry<a href="https://luke.geek.nz/azure/eval-gates-for-prompts/#what-steps-3-and-4-actually-look-like-on-microsoft-foundry" class="hash-link" aria-label="Direct link to What steps 3 and 4 actually look like on Microsoft Foundry" title="Direct link to What steps 3 and 4 actually look like on Microsoft Foundry" translate="no">​</a></h2>
-<p>Worth being precise here, because it is easy to overstate what is automatic.</p>
+<p>The details matter here, because it is easy to overstate what is automatic.</p>
 <p>Versioning is the unit of promotion, not the prompt text itself. Every save of a prompt-based agent in Foundry creates an immutable version. You route traffic to a specific version and roll back to a prior one if the new one misbehaves. Promotion is traffic moving from version N to N+1. Rollback is moving it back.</p>
 <p>The evaluators are built in, not something you write from scratch. Foundry ships evaluators that map directly to common failure modes: Groundedness and Relevance for RAG-style factual drift, Coherence and Fluency for format and tone drift, Intent Resolution / Tool Call Accuracy / Task Adherence for agentic behaviour, and risk and safety evaluators (hate/unfairness, sexual, violence, self-harm, prompt injection) for the failure modes that matter far more than "the wording is a bit off".</p>
 <p>The practical CI gate mechanism is a GitHub Action, and it is honest about uncertainty. The <a href="https://github.com/microsoft/ai-agent-evals" target="_blank" rel="noopener noreferrer" class=""><code>microsoft/ai-agent-evals</code> action (preview)</a> takes a candidate version and a baseline version in <code>agent-name:version</code> form, runs both against your dataset with the evaluators you name, and returns scores with confidence intervals and significance testing. That is the difference between "up by 0.02" (likely noise) and "significantly better at p&lt;0.05" (likely real).</p>
@@ -633,7 +633,7 @@
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="treat-the-prompt-like-the-artifact-it-is">Treat the prompt like the artifact it is<a href="https://luke.geek.nz/azure/eval-gates-for-prompts/#treat-the-prompt-like-the-artifact-it-is" class="hash-link" aria-label="Direct link to Treat the prompt like the artifact it is" title="Direct link to Treat the prompt like the artifact it is" translate="no">​</a></h2>
 <p>Treat a prompt exactly like any other artefact that can change production behaviour without a compiler catching mistakes. Give it a test set, give it a gate, and default that gate to blocking until proven otherwise.</p>
-<p>Hopefully this helps you avoid the quiet regressions that only show up after customers do, and gives you a practical path to move from manual review to repeatable evaluation gates.</p>]]></content>
+<p>This gives you a practical path from manual review to repeatable evaluation gates, and catches the quiet regressions before customers do.</p>]]></content>
         <category label="Azure" term="Azure"/>
     </entry>
     <entry>
@@ -800,7 +800,7 @@
 <li class="">Design agents around message contracts and events, not callbacks.</li>
 <li class="">Treat each agent as an independently deployable workload with its own identity and sizing.</li>
 </ul>
-<p>Hopefully this helps if you're weighing up Hosted Agents for real workloads.</p>
+<p>If you're weighing up Hosted Agents for real workloads, I hope the above is useful.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="references">References<a href="https://luke.geek.nz/azure/foundryhostedagentmultiagentlesson/#references" class="hash-link" aria-label="Direct link to References" title="Direct link to References" translate="no">​</a></h2>
 <ul>
 <li class=""><a href="https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents?WT.mc_id=AZ-MVP-5004796" target="_blank" rel="noopener noreferrer" class="">Hosted agents in Foundry Agent Service</a></li>
