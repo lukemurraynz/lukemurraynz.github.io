@@ -21,15 +21,15 @@ keywords:
   - standing queries
   - event-driven
   - real-time
-description: Detect 'events that never happened' with Drasi standing queries - trueLater and trueFor replace polling pipelines for absence and sustained-condition alerts.
-date: 2026-09-02T09:00:00+12:00
+description: "Detecting absence with Drasi: continuous PostgreSQL queries (trueLater/trueFor) to alert when events stop—replace pollers with real-time, reliable alerts."
+date: 2026-08-30T08:47:11.639Z
 categories:
   - Azure
 ---
 
 I have written more "check if X hasn't happened in N minutes" pollers than I care to admit. A timer-triggered Function, a state table to remember the last time you checked, some dedup logic so you don't page the same person twice, and a nagging feeling that the poll interval itself is a bug waiting to happen (miss the window and the alert arrives late, or not at all). It works, but it is infrastructure you built to answer a question your database should just be able to answer on its own.
 
-[Drasi](https://drasi.io/), a CNCF Sandbox project for continuous queries over changing data, handles a question SQL cannot express well: "alert me when something *stops* happening." I have been testing it against a real AKS cluster and Azure Database for PostgreSQL.
+[Drasi](https://drasi.io/), a CNCF Sandbox project for continuous queries over changing data, handles a question SQL cannot express well: "alert me when something _stops_ happening." I have been testing it against a real AKS cluster and Azure Database for PostgreSQL.
 
 <!-- truncate -->
 
@@ -59,11 +59,11 @@ The left side is every poller I have ever written, and that's the set of problem
 
 ## The function toolbox
 
-| Function | Signature | Semantics |
-|---|---|---|
-| `drasi.trueFor` | `trueFor(expr, duration)` | `expr` must stay true continuously for `duration` from the change time before an `added` result fires |
-| `drasi.trueLater` | `trueLater(expr, timestamp)` | evaluates `expr` at a future `timestamp`, returns `drasi.awaiting` meanwhile and re-schedules |
-| `drasi.trueUntil` | `trueUntil(expr, timestamp)` | `expr` must remain true until `timestamp` |
+| Function          | Signature                    | Semantics                                                                                             |
+| ----------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `drasi.trueFor`   | `trueFor(expr, duration)`    | `expr` must stay true continuously for `duration` from the change time before an `added` result fires |
+| `drasi.trueLater` | `trueLater(expr, timestamp)` | evaluates `expr` at a future `timestamp`, returns `drasi.awaiting` meanwhile and re-schedules         |
+| `drasi.trueUntil` | `trueUntil(expr, timestamp)` | `expr` must remain true until `timestamp`                                                             |
 
 :::danger
 `drasi.slidingWindow` is documented (it's in the official Drasi custom functions reference), but it is not registered at the pinned 0.10.0 platform release. I wrote a query against it expecting an aggregation over a trailing window, and got `UnknownFunction("drasi.slidingWindow")` back instead, a hard failure, not a silent no-op. If you want a trailing-window aggregation today, you'll need to check the function actually exists on your pinned release before you build anything on top of it, the documentation is ahead of what 0.10.0 actually ships.
@@ -73,7 +73,7 @@ While `trueLater` waits for its scheduled timestamp, it returns the special valu
 
 ## Worked example: the silent sensor
 
-The pattern that sold me on the whole model is the "device gone quiet" query, because it has to do two things at once: catch devices that are *already* overdue when the query is created, and schedule a future check for devices that will go quiet later.
+The pattern that sold me on the whole model is the "device gone quiet" query, because it has to do two things at once: catch devices that are _already_ overdue when the query is created, and schedule a future check for devices that will go quiet later.
 
 ```cypher
 MATCH (d:devices)

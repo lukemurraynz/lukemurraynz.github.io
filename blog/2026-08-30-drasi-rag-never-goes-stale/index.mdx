@@ -20,8 +20,8 @@ keywords:
   - retrieval augmented generation
   - vector database
   - reindex
-description: Keep your RAG vector store continuously in sync with Drasi's SyncVectorStore reaction - embeddings scale with churn, not corpus size, and deletion is reconciled too.
-date: 2026-09-16T09:00:00+12:00
+description: Keep RAG embeddings fresh with Drasi's continuous vector sync—per-change embeddings and deletions, lower cost than nightly reindexing.
+date: 2026-08-30T08:48:29.747Z
 categories:
   - Azure
 ---
@@ -75,7 +75,7 @@ name: product-vectors
 spec:
   kind: SyncVectorStore
   properties:
-    vectorStoreType: InMemory      # see "upstream bug" below, this is currently the only backend that works end to end
+    vectorStoreType: InMemory # see "upstream bug" below, this is currently the only backend that works end to end
     embeddingServiceType: AzureOpenAI
     embeddingEndpoint: https://<your-foundry>.openai.azure.com/
     embeddingModel: text-embedding-3-large
@@ -103,7 +103,7 @@ One config gotcha cost me a round of debugging: `Secret` references work for `em
 
 ## Deletion semantics, the headline result
 
-The central claim of this whole approach is that the continuous query result set *is* the corpus, continuously reconciled, including the deletion half. I tested this directly rather than trusting the docs to be right about it.
+The central claim of this whole approach is that the continuous query result set _is_ the corpus, continuously reconciled, including the deletion half. I tested this directly rather than trusting the docs to be right about it.
 
 With the pipeline running and one product synced, I ran `UPDATE products SET instock = false WHERE id = 'prod-1';` directly against Postgres. The product left the continuous query's result set within seconds, and the reaction logs showed the remaining changes.
 

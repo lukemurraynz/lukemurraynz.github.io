@@ -1,5 +1,5 @@
 ---
-title: "Give your Copilot a live data feed with Drasi's MCP Reaction"
+title: Give your Copilot a live data feed with Drasi's MCP Reaction
 metaDescription: Subscribe your AI agent to live data with Drasi's MCP Reaction - push notifications replace polling, proven with the MCP Inspector against a real Kubernetes deployment.
 tags:
   - Azure
@@ -23,15 +23,15 @@ keywords:
   - Agent Framework
   - Copilot Studio
   - real-time
-description: Give your Copilot a live data feed - Drasi's MCP Reaction exposes continuous queries as subscribable resources and pushes notifications on change instead of polling.
-date: 2026-09-23T09:00:00+12:00
+description: "Give Copilot a live data feed with Drasi's MCP Reaction: subscribe to continuous queries for instant push updates—no polling, real-time agent context."
+date: 2026-08-30T08:48:38.466Z
 categories:
   - Azure
 ---
 
 LLM context is a snapshot. Ask an agent "what's the status of order 47?" and it answers from whatever it retrieved minutes ago, because Model Context Protocol solved tool access but not the other half of the problem, knowing when the underlying data has actually changed. MCP resources are usually read-on-demand: the client asks, the server answers, and nothing happens in between unless the client asks again.
 
-Drasi's MCP Reaction closes that gap. It exposes each continuous query as an MCP resource that a client can subscribe to, and the server pushes a notification the moment the result set changes, no polling, no re-fetching on a timer. I wanted to see whether that actually held up with a real client rather than trusting the resource model on paper, so I connected the official MCP Inspector to a live reaction and watched what happened.
+[Drasi](https://drasi.io/) has an MCP Reaction that closes that gap. It exposes each continuous query as an MCP resource that a client can subscribe to, and the server pushes a notification the moment the result set changes, no polling, no re-fetching on a timer. I wanted to see whether that actually held up with a real client rather than trusting the resource model on paper, so I connected the official MCP Inspector to a live reaction and watched what happened.
 
 <!-- truncate -->
 
@@ -109,8 +109,6 @@ Microsoft Agent Framework's built-in MCP support (`MCPStreamableHTTPTool`, `MCPS
 Copilot Studio's MCP integration is the same story from a different angle. The current documentation describes exactly one connection shape: add an MCP server as a **tool**, configure a transport and auth, and the agent orchestrator calls it. The sample schema even names the operation `InvokeMCP`. Nothing in the current docs mentions resource subscriptions or push notifications. If you want your Copilot Studio agent reacting to a Drasi query changing rather than calling it as a tool, today that means bridging it yourself, an HTTP reaction posting to a Power Automate flow or a custom connector, not something Copilot Studio does for you out of the box.
 
 Neither of those is a knock on Drasi. The MCP Reaction does exactly what it claims, subscribe and get pushed updates, and I proved that above with a real client. The lag is on the client ecosystem side, which still treats MCP as tools first, resources later. Plan around that, because both of these frameworks are built on the tools-only assumption today.
-
-The MCP Events extension is also worth watching. It's still in draft, but it generalises this same idea from resource subscriptions to full event and webhook delivery, and Drasi already has working contributor implementations bridging continuous queries into it. Document today's stable surface honestly and the post ages well regardless of where that extension lands.
 
 Hopefully this gives your Copilot something better to work with than a snapshot from five minutes ago.
 
