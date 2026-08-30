@@ -25,13 +25,13 @@ keywords:
   - mitmproxy
   - index naming
   - troubleshooting
-description: Chase down why Drasi's Azure AI Search backend crash-loops to a one-character bug, then fix it with a rewrite proxy, ingress-nginx, cert-manager, and a nip.io hostname.
-date: 2026-09-30T09:00:00+12:00
+description: "Diagnosing and fixing Drasi's Azure AI Search backend: root-cause of leading-underscore index bug, Kubernetes ingress, cert-manager & Let's Encrypt proxy fix."
+date: 2026-08-30T08:54:59.481Z
 categories:
   - Azure
 ---
 
-I was wiring up Drasi's SyncVectorStore reaction against Azure AI Search when it crash-looped on startup with what looked like a straightforward Azure AI Search naming restriction. The reaction contains a one-character bug in two places, with no YAML setting, secret reference, or config flag that routes around it. Getting it working meant reading the reaction's source, proving the exact constraint with a live REST test, and building the fix as network infrastructure rather than waiting on an upstream release.
+I was wiring up the [Drasi](https://drasi.io/) SyncVectorStore reaction against Azure AI Search when it crash-looped on startup with what looked like a straightforward Azure AI Search naming restriction. The reaction contains a one-character bug in two places, with no YAML setting, secret reference, or config flag that routes around it. Getting it working meant reading the reaction's source, proving the exact constraint with a live REST test, and building the fix as network infrastructure rather than waiting on an upstream release.
 
 <!-- truncate -->
 
@@ -149,7 +149,7 @@ The specific bug will get fixed or it won't. What's reusable is the checking hab
 
 ## References
 
-- [Azure AI Search - index naming rules](https://learn.microsoft.com/rest/api/searchservice/naming-rules)
+- [Azure AI Search - index naming rules](https://learn.microsoft.com/rest/api/searchservice/naming-rules?WT.mc_id=AZ-MVP-5004796)
 - [drasi-project/drasi-platform](https://github.com/drasi-project/drasi-platform)
 - [cert-manager documentation](https://cert-manager.io/docs/)
 - [ingress-nginx documentation](https://kubernetes.github.io/ingress-nginx/)
