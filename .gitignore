@@ -62,3 +62,4 @@ pnpm-lock.yaml
 npm-shrinkwrap.json
 .frontmatter/database/taxonomyDb.json
 
+/.omo
