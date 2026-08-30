@@ -72,9 +72,6 @@
             <uri>https://luke.geek.nz</uri>
         </author>
         <category label="Azure" term="Azure"/>
-        <category label="AI" term="AI"/>
-        <category label="AKS" term="AKS"/>
-        <category label="Operations" term="Operations"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Give your Copilot a live data feed with Drasi's MCP Reaction]]></title>
@@ -122,9 +119,6 @@
             <uri>https://luke.geek.nz</uri>
         </author>
         <category label="Azure" term="Azure"/>
-        <category label="AI" term="AI"/>
-        <category label="Copilot" term="Copilot"/>
-        <category label="AKS" term="AKS"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[RAG that never goes stale: continuous vector sync with Drasi]]></title>

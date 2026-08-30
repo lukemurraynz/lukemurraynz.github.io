@@ -69,9 +69,6 @@
 <li class=""><a href="https://nip.io/" target="_blank" rel="noopener noreferrer" class="">nip.io</a></li>
 </ul>]]></content:encoded>
             <category>Azure</category>
-            <category>AI</category>
-            <category>AKS</category>
-            <category>Operations</category>
         </item>
         <item>
             <title><![CDATA[Give your Copilot a live data feed with Drasi's MCP Reaction]]></title>
@@ -115,9 +112,6 @@
 <li class=""><a href="https://github.com/drasi-project/drasi-platform" target="_blank" rel="noopener noreferrer" class="">drasi-project/drasi-platform</a></li>
 </ul>]]></content:encoded>
             <category>Azure</category>
-            <category>AI</category>
-            <category>Copilot</category>
-            <category>AKS</category>
         </item>
         <item>
             <title><![CDATA[RAG that never goes stale: continuous vector sync with Drasi]]></title>
