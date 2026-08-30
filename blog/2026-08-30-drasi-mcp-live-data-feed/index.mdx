@@ -48,7 +48,7 @@ flowchart LR
     C -.->|"notifications/resources/updated (pushed)"| D
 ```
 
-The dotted lines are the part that matters: subscribe once, and everything after that is the server pushing to the client, not the client asking again.
+The dotted lines show the model: subscribe once, then the server pushes changes to the client.
 
 ## The server YAML, corrected
 
@@ -76,17 +76,17 @@ spec:
       }
 ```
 
-Worth calling out separately: the `template` value is itself a JSON string nested inside the outer JSON string, so its own quotes need escaping. Get one level wrong and the error message won't tell you which layer broke it, so it pays to build these up one query at a time rather than writing the whole file blind.
+The `template` value is a JSON string nested inside the outer JSON string, so its quotes need escaping. If one level is wrong, the error message does not identify the broken layer. Build the queries one at a time.
 
 The `before`/`after` template context here is the same model as EventGrid reaction templates, learn it once and it carries across every Drasi reaction that uses templates.
 
-## The five-minute win, actually tested
+## Tested with MCP Inspector
 
 I ran the official [MCP Inspector](https://github.com/modelcontextprotocol/inspector) against a port-forwarded reaction, connected as `streamable-http` (the endpoint is the bare root `/`, not `/mcp`, worth probing before you assume a path), and subscribed to a query watching a Kubernetes deployment that was sitting under-replicated in the cluster.
 
 ![MCP Inspector subscribed to a Drasi query resource, showing a notifications/resources/updated push arriving from the server the moment a Kubernetes deployment recovers, with the resource content updating from the under-replicated row to an empty result set](images/mcp-inspector-live-notification.gif)
 
-I then fixed the deployment underneath, outside of MCP entirely, just a normal `kubectl` fix to the thing that was actually broken. A `notifications/resources/updated` message arrived at the client unprompted, no request preceded it, and re-reading the resource confirmed the payload had gone from the under-replicated row to empty. Subscribe once, get pushed a live update, never poll again. That's the pitch, and it held up with a real client instead of the resource model on paper.
+I then fixed the deployment with a normal `kubectl` update. A `notifications/resources/updated` message arrived at the client unprompted, with no preceding request, and re-reading the resource confirmed the payload had gone from the under-replicated row to empty. The live client received the pushed update without polling.
 
 One small thing to check before you build against this yourself: `resources/templates/list` returns `Method not found`. That's an unimplemented optional capability, not a bug, the reaction only implements `resources/list`, `resources/read`, and `resources/subscribe`.
 
@@ -94,7 +94,7 @@ One small thing to check before you build against this yourself: `resources/temp
 A correctly wired subscription is silent until it isn't. After `resources/subscribe` succeeds, you shouldn't see anything at all from the server, no polling traffic, no periodic re-sends of state that hasn't changed, right up until the underlying result set actually changes. The moment it does, exactly one `notifications/resources/updated` should arrive, unprompted, and a `resources/read` straight after should already reflect the new state with no lag. If your client is still issuing `resources/read` calls on a timer after subscribing, the subscription isn't doing its job and you've quietly rebuilt polling on top of a protocol designed to avoid it. And if you subscribe and hear nothing at all even after a real change, check the reaction's own logs first, the "no subscribers, skipping notification" line I mentioned earlier means the server genuinely doesn't think anyone's listening, which usually means the subscription itself never completed.
 :::
 
-## The pinned MCP spec and what the client actually negotiated
+## The pinned MCP spec and negotiated client version
 
 Drasi's documentation states it pins MCP spec `2025-03-26`, while upstream MCP has since shipped `2025-06-18`, `2025-11-25`, and `2026-07-28` (the last of which introduced an extensions architecture: Tasks, MCP Apps, Skills over MCP). In practice, put auth enforcement at the gateway, don't expect OIDC discovery metadata, and record the exact spec revision pair in your own ADR before you build against it.
 
@@ -102,7 +102,7 @@ One loose end I haven't resolved: the live Inspector session negotiated protocol
 
 ## Two client paths that don't do this today
 
-I wanted to know how far this pattern reaches into the tools people actually build agents with, so I checked both the Microsoft Agent Framework SDK and the current Copilot Studio MCP integration rather than guessing. Neither supports it. Worth knowing why before you assume either one will.
+I checked both the Microsoft Agent Framework SDK and the current Copilot Studio MCP integration. Neither supports resource subscriptions.
 
 Microsoft Agent Framework's built-in MCP support (`MCPStreamableHTTPTool`, `MCPStdioTool`) connects to a server and hands the agent its `functions`. Tools, callable on request. Every code path in the framework that touches an MCP server does the same thing: enumerate the tools, append them to the agent's toolset, call them when the model decides to. There's no `resources/subscribe` API anywhere in the SDK. To wire up the pattern in this post you'd drop past Agent Framework's MCP wrapper entirely, use a lower-level MCP client library to hold the subscription yourself, and feed whatever arrives into the agent's context on your own terms. That's a real, buildable pattern. I just haven't built and tested it yet, and I'm not going to write it up as five minutes of framework support when it isn't.
 

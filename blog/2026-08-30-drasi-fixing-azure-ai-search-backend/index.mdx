@@ -31,7 +31,7 @@ categories:
   - Azure
 ---
 
-I was wiring up Drasi's SyncVectorStore reaction against Azure AI Search when it crash-looped on startup with an error that looked, on its face, like a straightforward Azure AI Search naming restriction. It wasn't. What actually happened was a one-character bug baked into two different places in the reaction's own code, and there was no YAML setting, secret reference, or config flag anywhere that could route around it. Getting it working meant reading the reaction's source, proving the exact constraint with a live REST test rather than trusting the error text, and then building the fix as network infrastructure instead of waiting on an upstream release.
+I was wiring up Drasi's SyncVectorStore reaction against Azure AI Search when it crash-looped on startup with what looked like a straightforward Azure AI Search naming restriction. The reaction contains a one-character bug in two places, with no YAML setting, secret reference, or config flag that routes around it. Getting it working meant reading the reaction's source, proving the exact constraint with a live REST test, and building the fix as network infrastructure rather than waiting on an upstream release.
 
 <!-- truncate -->
 
@@ -82,7 +82,7 @@ Once I'd worked around the first occurrence (more on how below), the reaction cr
 private const string MetadataCollectionPrefix = "_drasi_metadata_";
 ```
 
-This isn't a disposable self-test. It's the sync-point bookkeeping the reaction depends on for its entire lifetime, created fresh on every bootstrap. A hypothetical upstream fix limited to just the self-test's name would still leave AzureAISearch unusable, because this second collection hits the exact same wall. Both prefixes needed the same one-character correction.
+This is the sync-point bookkeeping the reaction depends on for its entire lifetime, created fresh on every bootstrap. An upstream fix limited to the self-test's name would still leave AzureAISearch unusable because this collection hits the same constraint. Both prefixes need the same one-character correction.
 
 ## Why a proxy alone wasn't enough
 
@@ -127,7 +127,7 @@ kubectl annotate svc ingress-nginx-controller -n ingress-nginx \
 
 That points the probe at ingress-nginx's own always-200 health endpoint instead of the data path. My first attempt at this exact command silently failed for a completely different reason: Git Bash on Windows rewrites a bare leading slash before `kubectl` ever sees it, so `/healthz` became `C:/Program Files/Git/healthz` with no error from anything. `MSYS_NO_PATHCONV=1` in front of the command, or doubling the leading slash, avoids it. Worth knowing if you're running `kubectl` or `az` from Git Bash on Windows and an argument starts with `/`.
 
-## Confirming it actually worked
+## Confirming the fix
 
 With the health probe fixed, the certificate issued on the first real attempt. I pointed the reaction's `connectionString` at the proxy's new HTTPS hostname, triggered a genuine write against the underlying Postgres table, and watched the reaction log a real embedding call and a real upsert. Rather than trust that log line the way I'd learned not to trust the original error text, I checked the actual index directly, with no proxy in the request path this time:
 

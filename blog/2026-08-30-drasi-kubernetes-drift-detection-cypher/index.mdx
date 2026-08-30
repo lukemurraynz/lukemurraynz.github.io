@@ -33,7 +33,7 @@ categories:
 
 Every AKS cluster running GitOps already has tools watching for drift. Gatekeeper or Kyverno block bad configuration at admission time. Flux or Argo tell you when the live cluster has drifted from git. Prometheus alerts fire on metrics with a `for:` duration. None of them are wrong to have, and I am not going to pretend Drasi replaces any of them. What they all share is a boundary: each one is good at the specific thing it watches, and none of them answers a question that cuts across a few resource types at once.
 
-What none of them do well is answer a *relational* question about the live cluster state after admission has already happened: is this Deployment still under-replicated after five minutes, not just right now, and is that specific Pod running an image nobody approved. That gap, standing queries over a graph of live resources, is what I spent time testing Drasi against on a real AKS cluster. The result was more honest than I expected: only two of the six rules I originally set out to build survived contact with a live cluster unchanged, and that gap between what looked right on paper and what actually ran turned out to be the most useful part of the post.
+Drasi answers *relational* questions about live cluster state after admission: is this Deployment still under-replicated after five minutes, and is that Pod running an unapproved image? I tested standing queries over a live AKS resource graph. Only two of the six rules I set out to build survived unchanged; the gap between what looked right on paper and what ran was the useful result.
 
 <!-- truncate -->
 
@@ -74,7 +74,7 @@ I wrote six rules against the documentation first, then ran every one of them ag
 
 The Kubernetes source watches a fixed list of twelve resource types, no matter what your queries reference: Pod, Deployment, ReplicaSet, StatefulSet, DaemonSet, Job, Service, ServiceAccount, Node, Ingress, PersistentVolume, and PersistentVolumeClaim. Namespace, NetworkPolicy, PodDisruptionBudget, and Secret aren't on that list, and no RBAC grant changes it. So those three cut rules are a platform limitation, not a query bug. You work around it by picking a different resource to watch, not by Cypher-ing your way out of it.
 
-The cut rules all trace back to the watch list, not to bad query logic. In their place three new rules earned a spot. Two of them are proven against real violations rather than a toy example; the third I only proved on syntax, and I'll be up front about why when I get to it.
+The cut rules all trace back to the watch list, not bad query logic. Three replacement rules earned a spot. Two are proven against real violations; I only proved the third on syntax.
 
 ### Under-replicated deployments, sustained
 
@@ -108,7 +108,7 @@ RETURN p.metadata.namespace AS namespace, p.metadata.name AS pod, c.image AS ima
 
 ![Debug Reaction gateway JSON showing the live unapproved-images and under-replicated-deployments results: broken-app under-replicated, the intended registry-offender catch, and the two real allowlist gotchas, a Drasi pod's own dapr sidecar and a digest-pinned calico image with no registry prefix](images/rulebook-live-results.png)
 
-That screenshot is the actual live result set, and it caught more than I planned for. It correctly flagged a `docker.io/library/nginx` deployment I'd deliberately mislabelled, but it also surfaced two real-world gotchas any allowlist has to account for on a genuine cluster rather than a toy example:
+The live result set correctly flagged a `docker.io/library/nginx` deployment I'd deliberately mislabelled. It also surfaced two allowlist cases that a toy cluster would miss:
 
 - Dapr sidecars report as `docker.io/daprio/daprd:1.14.5`. Allowlist `docker.io/daprio/` explicitly, or every Drasi pod with a sidecar flags.
 - Calico components report a bare `sha256:<digest>`, with no registry prefix at all. A prefix-based rule is blind to digest-pinned images, and that's a genuine blind spot worth calling out rather than a footnote.

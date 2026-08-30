@@ -26,13 +26,13 @@ categories:
   - Azure
 ---
 
-Every RAG pipeline I have looked at has the same quiet flaw: embeddings generated at index time go stale the moment the source system changes, and the standard fix is a nightly reindex job. That job is really just a polling pipeline with extra steps, and it bills you for re-embedding your entire corpus every night regardless of how little actually changed. I wanted to see whether Drasi's SyncVectorStore reaction could invert that, so I built a small products catalogue against Azure Database for PostgreSQL, pointed a continuous query at "in-stock products with a description," and wired the reaction straight to a vector store.
+Every RAG pipeline I have looked at has the same quiet flaw: embeddings generated at index time go stale when the source system changes, and the standard fix is a nightly reindex job. The job polls and re-embeds the entire corpus every night regardless of how little changed. I tested whether Drasi's SyncVectorStore reaction could invert that with a small products catalogue in Azure Database for PostgreSQL, a continuous query for "in-stock products with a description," and a vector store.
 
 <!-- truncate -->
 
 ## The mental model shift
 
-The continuous query result set is the live corpus. Sync is reconciliation against that result set, not a nightly rebuild, and embeddings happen per change, not per night. If that holds, the whole post reduces to one sentence: the embedding bill scales with churn, not corpus size. A nightly reindex spends N times the corpus in embeddings every day, no matter how little moved.
+The continuous query result set is the live corpus. Sync reconciles against that result set, and embeddings happen per change. The embedding bill scales with churn rather than corpus size. A nightly reindex spends N times the corpus in embeddings every day, no matter how little moved.
 
 ```mermaid
 flowchart LR
@@ -97,7 +97,7 @@ spec:
       }
 ```
 
-A few things worth walking through. `keyField` matters because it drives upsert idempotency, duplicates must dedupe on this key or you'll silently accumulate copies. `documentTemplate` is Handlebars, so shape it for embedding quality the same way you'd shape any RAG chunk, not just as a data dump. And `embeddingServiceType` is `AzureOpenAI` only at the pinned platform version, a guide mentioning "and OpenAI" predates this release.
+`keyField` drives upsert idempotency; duplicates must dedupe on this key or copies accumulate silently. `documentTemplate` is Handlebars, so shape it for embedding quality as you would any RAG chunk, rather than as a data dump. `embeddingServiceType` is `AzureOpenAI` only at the pinned platform version; a guide mentioning "and OpenAI" predates this release.
 
 One config gotcha cost me a round of debugging: `Secret` references work for `embeddingApiKey`, but not for `connectionString`, the object gets passed through verbatim and the connectivity test fails. Apply-time substitution is the workaround for the connection string specifically.
 
@@ -105,7 +105,7 @@ One config gotcha cost me a round of debugging: `Secret` references work for `em
 
 The central claim of this whole approach is that the continuous query result set *is* the corpus, continuously reconciled, including the deletion half. I tested this directly rather than trusting the docs to be right about it.
 
-So, let's test it. With the pipeline already running and one product already synced, I ran a plain `UPDATE products SET instock = false WHERE id = 'prod-1';` straight against Postgres, no Drasi tooling involved, just the kind of write your application would make on a normal Tuesday. The product left the continuous query's result set within a couple of seconds, and the reaction logs told the rest of the story.
+With the pipeline running and one product synced, I ran `UPDATE products SET instock = false WHERE id = 'prod-1';` directly against Postgres. The product left the continuous query's result set within seconds, and the reaction logs showed the remaining changes.
 
 ![SyncVectorStore reaction logs showing two live change events on the same product: sequence 9 generating a real Azure OpenAI embedding when the row re-enters the result set, and sequence 10 deleting the document from the vector store the moment the row leaves](images/vectorstore-add-delete-sequence.png)
 
@@ -128,7 +128,7 @@ A healthy pipeline is quiet. Watch the reaction logs and you should see nothing 
 
 I tested the `AzureAISearch` backend first, and it is unusable at this platform version. The reaction crash-loops on startup because it hardcodes a leading-underscore index name (`_drasi_test_<hash>`), which Azure AI Search rejects. It is a one-character bug in the reaction's own code, not a configuration gap on your side.
 
-So the `InMemory` vector store above is not a convenience choice. It proves the sync, embedding, and reconciliation logic works end to end while that upstream bug gets fixed. The whole point of this post, deletion included, is backend-agnostic. I walked the full root-cause chase, the workaround, and a live verification in a separate post if you need the `AzureAISearch` path today:
+The `InMemory` vector store proves the sync, embedding, and reconciliation logic works end to end while that upstream bug gets fixed. The mechanism, including deletion, is backend-agnostic. The separate post below covers the root cause, workaround, and live verification for `AzureAISearch`:
 
 - [Fixing Drasi's 'unusable' Azure AI Search backend](/drasi-fixing-azure-ai-search-backend)
 
