@@ -207,6 +207,233 @@ flowchart TD
     Targets -- no --> Block
 ```
 
+## From one repository to an organisation
+
+The interesting part of APM is not just what happens in one repository.
+
+It is what happens when ten, fifty, or five hundred repositories need the same agent engineering baseline.
+
+An organisation might have separate platform, data, security, application, and AI engineering teams. They should not all have to independently discover the same skills, MCP servers, policies, and agent configuration.
+
+The model can instead be layered:
+
+```text
+                         GitHub Organisation
+                                │
+                       Organisation policy
+                                │
+                ┌───────────────┼───────────────┐
+                │               │               │
+             Platform          Data          Security
+               team            team             team
+                │               │               │
+          shared skills    shared skills    shared skills
+                │               │               │
+                └───────────────┼───────────────┘
+                                │
+                         Team repositories
+                                │
+                    ┌───────────┼───────────┐
+                    │           │           │
+                  Repo A      Repo B      Repo C
+                    │           │           │
+                  apm.yml     apm.yml     apm.yml
+                    │           │           │
+                    └───────────┼───────────┘
+                                │
+                               APM
+                                │
+                       Agent-specific output
+```
+
+The important distinction is that teams do not need identical agent configurations.
+
+They need a **common starting point**.
+
+A platform team might provide Azure architecture, AKS, networking, monitoring, reliability, and cost guidance. A security team might provide security and identity guidance. An AI engineering team might provide Foundry and Agent Framework skills.
+
+Individual application teams can then add their own domain-specific context.
+
+That gives the organisation a useful division of responsibility:
+
+```text
+Organisation
+    │
+    └── What is allowed and required?
+
+Team
+    │
+    └── What capabilities does this team need?
+
+Repository
+    │
+    └── What does this workload specifically require?
+
+APM
+    │
+    └── Resolve, lock, install, and audit the result.
+```
+
+This is where APM starts to look less like a developer convenience and more like an organisational distribution mechanism for agent context.
+
+### GitHub makes this practical
+
+For organisations using GitHub, APM can work alongside the existing repository and organisation model rather than creating another management hierarchy.
+
+The organisation can maintain an APM policy in its GitHub organisation configuration. APM can discover that organisation-level policy from the repository's Git remote, allowing the same baseline to apply across participating repositories.
+
+For example, the organisation could establish rules around:
+
+* approved package sources
+* approved MCP servers
+* approved transports
+* allowed agent targets
+* required packages
+* required manifest metadata
+
+Teams still maintain their own `apm.yml`.
+
+That means the platform team does not need to edit every application repository whenever the organisational policy changes.
+
+The relationship is closer to:
+
+```text
+GitHub Organisation
+        │
+        ├── Organisation APM policy
+        │
+        ├── Platform packages
+        │
+        └── Team repositories
+                 │
+                 ├── apm.yml
+                 ├── apm.lock.yaml
+                 └── application code
+```
+
+GitHub then provides the repository governance around that model.
+
+Organisation rulesets can target multiple repositories and can require workflows or status checks before changes are merged. This provides a natural enforcement point for an APM audit workflow.
+
+The result could look like:
+
+```text
+Pull Request
+     │
+     ▼
+GitHub Actions
+     │
+     ├── apm audit --ci
+     │
+     ├── dependency checks
+     │
+     └── other engineering validation
+     │
+     ▼
+GitHub Ruleset
+     │
+     ▼
+Required checks pass
+     │
+     ▼
+Merge
+```
+
+This is important because APM policy is an **install-time and CI governance mechanism**, not a replacement for runtime security or agent sandboxing. Runtime permissions still belong to the agent harness and the underlying platform. [APM policy documentation](https://microsoft.github.io/apm/enterprise/apm-policy-getting-started/?utm_source=chatgpt.com)
+
+### The platform team becomes a paved road
+
+This changes the role of a central platform team.
+
+It does not need to become the team that configures every developer's agent.
+
+Instead, it can provide a supported baseline.
+
+For example:
+
+```text
+HVE Azure Engineering Baseline
+
+├── Azure architecture
+├── Azure Well-Architected
+├── AKS
+├── App Service
+├── Functions
+├── API Management
+├── Container Apps
+├── Identity
+├── Monitoring
+├── Reliability
+├── Cost
+└── Approved MCP servers
+```
+
+An application team might then consume that baseline and add:
+
+```text
+Application Team
+
+├── HVE Azure Engineering Baseline
+├── Payments domain skills
+├── Application-specific instructions
+└── Workload-specific MCP dependencies
+```
+
+Another team might consume the same baseline but add:
+
+```text
+Data Team
+
+├── HVE Azure Engineering Baseline
+├── Fabric skills
+├── Data engineering guidance
+└── Data-specific MCP dependencies
+```
+
+The organisation gets consistency without requiring every team to become identical.
+
+### Scaling the rollout
+
+I would also avoid trying to deploy this everywhere on day one.
+
+The rollout can be incremental:
+
+```text
+Pilot
+  │
+  ▼
+One platform team
+  │
+  ▼
+Several application teams
+  │
+  ▼
+Organisation baseline
+  │
+  ▼
+Required CI checks
+  │
+  ▼
+Fleet-wide adoption
+```
+
+Start with a small set of capabilities that the platform team can actually support.
+
+Pin reviewed versions.
+
+Run APM audits in CI.
+
+Use GitHub rulesets to make the checks required where appropriate.
+
+Then expand the baseline as the organisation gains confidence.
+
+That is a much more realistic approach than attempting to define every possible agent policy before anyone has used it.
+
+The goal is not to centrally control every prompt an engineer writes.
+
+The goal is to make the **supported path easier than building an agent environment from scratch**.
+
+
 ## Lockfiles give you the forensic answer
 
 The lockfile is where APM starts to feel familiar.
