@@ -71,6 +71,7 @@ dependencies:
     - microsoft/skills/.github/plugins/azure-sdk-typescript
     - microsoft/skills/.github/plugins/azure-sdk-rust
     - microsoft/skills/.github/plugins/microsoft-foundry
+    - "microsoft/hve-core#c7ee5b9642ab1877a6b5ce5336ebc448b89b2708"
     - dotnet/skills
 ```
 
@@ -152,6 +153,7 @@ dependencies:
   allow:
     - DietrichGebert/ponytail
     - dotnet/skills
+    - microsoft/hve-core
     - microsoft/skills/**
 
 mcp:
@@ -273,7 +275,40 @@ That distinction is important. APM can be used in stages:
 
 This staged rollout avoids making a giant governance programme a prerequisite.
 
-## How I would roll this out for Azure engineering teams
+## What HVE Core is
+
+[Hypervelocity Engineering (HVE) Core](https://github.com/microsoft/hve-core) is Microsoft's open-source library of agentic SDLC workflow building blocks for GitHub Copilot. It brings together specialised agents for research, planning, implementation, and review; reusable prompts; coding instructions; and skills.
+
+The value is not a magic workflow. It is a consistent set of starting points that teams can review, adapt, and use repeatedly. HVE Core is explicitly opinionated and rapidly evolving, so treat it as a source of patterns to evaluate rather than an unexamined platform dependency.
+
+It also makes HVE Core a useful APM example. Instead of copying external skills, agents, prompts, and instructions into a repo, APM declares the upstream package, applies the same policy controls, and locks the exact content alongside the team's local context.
+
+The following is a complete example for someone new to HVE Core: declare the exact source, allow it in policy, install it, and commit the resulting lockfile. The installed content lands in the shared `.agents/skills` directory, which supported agent harnesses can use.
+
+The quoted reference is deliberate: YAML would otherwise treat `#` and the commit as a comment.
+
+```yaml title="apm.yml"
+dependencies:
+  apm:
+    - "microsoft/hve-core#c7ee5b9642ab1877a6b5ce5336ebc448b89b2708"
+```
+
+```yaml title="apm-policy.yml"
+dependencies:
+  allow:
+    - microsoft/hve-core
+```
+
+```powershell title="Install and verify"
+apm install --target agent-skills
+apm audit --ci --policy .\apm-policy.yml
+```
+
+This recorded run uses that setup in an isolated `agent-skills` target. APM resolves the exact commit, integrates 74 HVE Core skills, and records the commit and content hash in its lockfile:
+
+![APM installing the pinned HVE Core plugin, integrating 74 skills, and recording its lockfile entry](./images/apm-hve-core-native.gif)
+
+For a team rollout, start with the subset you can support. Pin a reviewed revision, assess the agents and skills you select, and update deliberately.
 
 For an Azure platform team, I would keep the first implementation small:
 
@@ -338,4 +373,5 @@ Skills that guide AKS deployment, APIM configuration, Application Insights instr
 - [APM homepage](https://microsoft.github.io/apm/)
 - [APM targets matrix](https://microsoft.github.io/apm/reference/targets-matrix/)
 - [APM policy overview](https://microsoft.github.io/apm/enterprise/apm-policy/)
+- [Hypervelocity Engineering Core](https://github.com/microsoft/hve-core)
 - Evidence: [apm.yml](https://github.com/lukemurraynz/Coding/blob/main/apm.yml), [apm.lock.yaml](https://github.com/lukemurraynz/Coding/blob/main/apm.lock.yaml), and [apm-policy.yml](https://github.com/lukemurraynz/Coding/blob/main/apm-policy.yml)
