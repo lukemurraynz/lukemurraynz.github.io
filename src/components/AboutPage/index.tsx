@@ -65,6 +65,7 @@ const badges: Badge[] = [
   { src: "/img/aboutpage/FinOpsCertifiedPractitioner.png", alt: "FinOps Certified Practitioner" },
   { src: "/img/aboutpage/FrontierTransformationEngineer_FY26.png", alt: "Frontier Transformation Engineer FY26 Badge" },
   { src: "/img/aboutpage/github-copilot_certification.png", alt: "GitHub Copilot Certification" },
+  { src: "/img/aboutpage/Microsoft Pro Badge GitHub Copilot - Proficient.png", alt: "GitHub Copilot Proficient Badge" },
   { src: "/img/aboutpage/KustoDetectiveAgencyCase2Limited.png", alt: "Kusto Detective Agency Case 2 Limited Badge" },
   { src: "/img/aboutpage/LinuxFoundationOpenAIFundamentals.png", alt: "Linux Foundation OpenAI Fundamentals Badge" },
   { src: "/img/aboutpage/LinuxFoundationScalingCloudNativeAppswithKEDA.png", alt: "Linux Foundation Scaling Cloud Native Apps with KEDA" },
