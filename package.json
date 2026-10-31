@@ -55,7 +55,7 @@
   "resolutions": {
     "serialize-javascript": "7.1.4",
     "uuid": "14.0.3",
-    "ws": "8.22.0"
+    "ws": "8.22.1"
   },
   "packageManager": "yarn@1.22.22"
 }
