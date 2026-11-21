@@ -123,7 +123,7 @@ export default function AboutPage() {
         <div className={styles.contentColumn}>
           <Heading as="h1">About Me</Heading>
           <p className={styles.lead}>
-            My name is <strong>Luke Murray</strong>. I am a Microsoft MVP in Azure and a Microsoft Learn Expert who helps organizations design and implement secure, scalable cloud solutions.
+            My name is <strong>Luke Murray</strong>. I work at Microsoft as a Solution Engineer - Cloud and AI Apps, helping organizations design and implement secure, scalable cloud and AI solutions. I am a former Microsoft MVP in Azure and a Microsoft Learn Expert.
           </p>
           <p>
             With over a decade of experience in IT, I specialize in Microsoft technologies, cloud architecture, automation, Infrastructure as Code, and DevOps practices. I am passionate about sharing knowledge through my blog, community contributions, and technical presentations.
